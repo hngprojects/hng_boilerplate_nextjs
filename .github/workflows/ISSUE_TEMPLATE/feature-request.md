@@ -11,17 +11,17 @@ assignees: ''
 
 
 ## Acceptance Criteria
-- []
-- []
+- [ ] one
+- [ ] two
 
 ### Purpose
 
-### Requirem#ents	
-- []
-- []
+### Requirements	
+- [ ] one 
+- [ ] two
 
 ### Expected Outcome
-- []
-- []
+- [ ] one
+- [ ] two
 
 ### 
