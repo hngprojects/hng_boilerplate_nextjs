@@ -18,6 +18,27 @@ body:
       description: What are the things that must be achieved for your ticket to be considered complete.
     validations:
       required: true
+   - type: textarea
+    id: requirements
+    attributes:
+      label: Requirements
+      description: What are the requirements for this ticket.
+    validations:
+      required: true
+   - type: textarea
+    id: tests
+    attributes:
+      label: Tests
+      description: What are the required Tests that must be passed for your ticket to be considered complete.
+    validations:
+      required: true
+     - type: textarea
+    id: tasks
+    attributes:
+      label: Tasks
+      description: What are the task(s) that must be completetd for your ticket to be considered complete.
+    validations:
+      required: true
   - type: markdown
     attributes:
       value: >
@@ -26,5 +47,14 @@ body:
   - type: textarea
     id: links
     attributes:
+      value: |
+        [`FIGMA LINK`](LINK_HERE)
       label: Links
       description: Place links to supporting docs here. e.g. Figma
+        - type: textarea
+    id: images
+    attributes:
+      label: Images
+      description: Paste images or image urls
+      value: |
+      ![image](URL_HERE)
