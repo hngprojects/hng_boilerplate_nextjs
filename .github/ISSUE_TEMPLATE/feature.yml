@@ -11,7 +11,7 @@ body:
       placeholder: On the user page, you should be able to...
     validations:
       required: true
-  - type: markdown
+  - type: textarea
     id: acceptanceCriteria
     attributes:
       label: Acceptance Criteria
@@ -20,7 +20,6 @@ body:
       required: true
   - type: markdown
     attributes:
-      label: Images
       value: >
         | Please include any screenshots which would help demonstrate the steps
         and point out which parts the feature is related to
