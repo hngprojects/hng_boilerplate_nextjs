@@ -28,3 +28,12 @@ body:
     attributes:
       label: Links
       description: Place links to supporting docs here. e.g. Figma
+      value: >
+        | [`FIGMA LINK`](LINK_HERE)
+  - type: textarea
+    id: images
+    attributes:
+      label: Images
+      description: Paste images or image urls
+      value: |
+      ![image](URL_HERE)
