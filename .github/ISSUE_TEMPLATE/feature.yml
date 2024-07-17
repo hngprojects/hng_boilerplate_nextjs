@@ -35,5 +35,4 @@ body:
     attributes:
       label: Images
       description: Paste images or image urls
-      value: >
-      | ![image](URL_HERE)
+      value: "![image](URL_HERE)"
