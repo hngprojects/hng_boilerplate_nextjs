@@ -1,7 +1,7 @@
 name: Feature
 description: An enhancement or feature
 title: "[Feature]: "
-labels: ["Awaiting approval", "feature"]
+labels: ["triage", "feature"]
 body:
   - type: textarea
     id: description
