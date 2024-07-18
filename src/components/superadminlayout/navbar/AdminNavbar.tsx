@@ -2,7 +2,7 @@ import { BellIcon, ChevronDown, HelpCircle, SearchIcon } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
 
-const index = () => {
+const AdminNavbar = () => {
   return (
     <nav className="flex justify-between items-center gap-2 bg-[#FDFDFD] px-[10px] py-[14px]">
       <div className="flex justify-between items-center gap-2 px-3 h-10 border border-[#E4E4E7] rounded-[6px] text-sm placeholder:text-sm font-normal">
@@ -31,7 +31,7 @@ const index = () => {
           />
         </div>
         <div className="flex justify-between items-center gap-2 max-w-[64px] w-full">
-          <Avatar className="h-10 w-10">
+          <Avatar data-testid="avatar" className="h-10 w-10">
             <AvatarImage src="https://github.com/shadcn.png" />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
@@ -45,4 +45,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default AdminNavbar;

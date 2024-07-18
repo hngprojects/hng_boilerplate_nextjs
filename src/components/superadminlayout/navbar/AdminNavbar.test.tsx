@@ -1,11 +1,11 @@
 import { render } from "@testing-library/react";
 
-import Navbar from "./index";
+import AdminNavbar from "./AdminNavbar";
 
 describe("component rendering tests", () => {
   it("render help icon", () => {
     expect.assertions(1);
-    const utils = render(<Navbar />);
+    const utils = render(<AdminNavbar />);
 
     // eslint-disable-next-line testing-library/prefer-screen-queries
     expect(utils.getByTestId("help")).toBeTruthy();
@@ -13,7 +13,7 @@ describe("component rendering tests", () => {
   it("render bell icon", () => {
     expect.assertions(1);
 
-    const utils = render(<Navbar />);
+    const utils = render(<AdminNavbar />);
 
     // eslint-disable-next-line testing-library/prefer-screen-queries
     expect(utils.getByTestId("bell")).toBeTruthy();
@@ -21,20 +21,20 @@ describe("component rendering tests", () => {
   it("render chevron down icon", () => {
     expect.assertions(1);
 
-    const utils = render(<Navbar />);
+    const utils = render(<AdminNavbar />);
 
     // eslint-disable-next-line testing-library/prefer-screen-queries
     expect(utils.getByTestId("chevronDown")).toBeTruthy();
   });
-  it("input filed icon", () => {
+  it("input search icon", () => {
     expect.assertions(1);
-    const utils = render(<Navbar />);
+    const utils = render(<AdminNavbar />);
     // eslint-disable-next-line testing-library/prefer-screen-queries
     expect(utils.getByTestId("search")).toBeTruthy();
   });
   it("input field has placeholder", () => {
     expect.assertions(1);
-    const utils = render(<Navbar />);
+    const utils = render(<AdminNavbar />);
 
     // eslint-disable-next-line testing-library/prefer-screen-queries
     expect(utils.getByPlaceholderText("Search option...")).toBeTruthy();
@@ -42,9 +42,17 @@ describe("component rendering tests", () => {
 
   it("input field renders", () => {
     expect.assertions(1);
-    const utils = render(<Navbar />);
+    const utils = render(<AdminNavbar />);
 
     // eslint-disable-next-line testing-library/prefer-screen-queries
     expect(utils.getByTestId("input")).toBeTruthy();
+  });
+
+  it("avatar renders", () => {
+    expect.assertions(1);
+    const utils = render(<AdminNavbar />);
+
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    expect(utils.getByTestId("avatar")).toBeTruthy();
   });
 });
