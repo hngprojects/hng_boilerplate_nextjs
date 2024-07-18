@@ -16,14 +16,9 @@ import { useEffect, useState } from "react";
 
 import { cn } from "~/lib/utils";
 
-type SettingsSidebarProperties = {
-  id?: number;
-  label: string;
-  icon: LucideIcon;
-  link: string;
-};
 
-const Settings_Sidebar_Links: SettingsSidebarProperties[] = [
+
+const SETTINGS_SIDEBAR_LINKS = [
   {
     id: 1,
     label: "Profile",
@@ -66,7 +61,7 @@ const SettingsSidebar = () => {
   const [activeLink, setActiveLink] = useState("");
   const router = useRouter();
   const pathname = usePathname();
-  // remove the /settings/ from the pathname
+
   const currentPath = pathname?.replace("/settings/", "");
 
   useEffect(() => {
@@ -86,7 +81,7 @@ const SettingsSidebar = () => {
             <h2>Settings</h2>
           </button>
         </div>
-        {Settings_Sidebar_Links.map((link) => (
+        {SETTINGS_SIDEBAR_LINKS.map((link) => (
           <Link
             href={`/settings/${link.link}`}
             key={link.id}
