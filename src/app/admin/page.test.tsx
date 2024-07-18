@@ -7,6 +7,6 @@ describe("page tests", () => {
 
     const view = render(<Page />);
 
-    expect(view).toBeTruthy();
+    expect(view).toBeInTheDocument();
   });
 });

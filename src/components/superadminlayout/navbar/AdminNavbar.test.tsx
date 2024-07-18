@@ -6,9 +6,8 @@ describe("component rendering tests", () => {
   it("render help icon", () => {
     expect.assertions(1);
     const utils = render(<AdminNavbar />);
-
     // eslint-disable-next-line testing-library/prefer-screen-queries
-    expect(utils.getByTestId("help")).toBeTruthy();
+    expect(utils.getByTestId("help")).toBeInTheDocument();
   });
   it("render bell icon", () => {
     expect.assertions(1);
@@ -16,7 +15,7 @@ describe("component rendering tests", () => {
     const utils = render(<AdminNavbar />);
 
     // eslint-disable-next-line testing-library/prefer-screen-queries
-    expect(utils.getByTestId("bell")).toBeTruthy();
+    expect(utils.getByTestId("bell")).toBeInTheDocument();
   });
   it("render chevron down icon", () => {
     expect.assertions(1);
@@ -24,20 +23,20 @@ describe("component rendering tests", () => {
     const utils = render(<AdminNavbar />);
 
     // eslint-disable-next-line testing-library/prefer-screen-queries
-    expect(utils.getByTestId("chevronDown")).toBeTruthy();
+    expect(utils.getByTestId("chevronDown")).toBeInTheDocument();
   });
   it("input search icon", () => {
     expect.assertions(1);
     const utils = render(<AdminNavbar />);
     // eslint-disable-next-line testing-library/prefer-screen-queries
-    expect(utils.getByTestId("search")).toBeTruthy();
+    expect(utils.getByTestId("search")).toBeInTheDocument();
   });
   it("input field has placeholder", () => {
     expect.assertions(1);
     const utils = render(<AdminNavbar />);
 
     // eslint-disable-next-line testing-library/prefer-screen-queries
-    expect(utils.getByPlaceholderText("Search option...")).toBeTruthy();
+    expect(utils.getByPlaceholderText("Search option...")).toBeInTheDocument();
   });
 
   it("input field renders", () => {
@@ -45,7 +44,7 @@ describe("component rendering tests", () => {
     const utils = render(<AdminNavbar />);
 
     // eslint-disable-next-line testing-library/prefer-screen-queries
-    expect(utils.getByTestId("input")).toBeTruthy();
+    expect(utils.getByTestId("input")).toBeInTheDocument();
   });
 
   it("avatar renders", () => {
@@ -53,6 +52,6 @@ describe("component rendering tests", () => {
     const utils = render(<AdminNavbar />);
 
     // eslint-disable-next-line testing-library/prefer-screen-queries
-    expect(utils.getByTestId("avatar")).toBeTruthy();
+    expect(utils.getByTestId("avatar")).toBeInTheDocument();
   });
 });
