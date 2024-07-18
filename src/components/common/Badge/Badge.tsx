@@ -32,7 +32,9 @@ const Badge = ({ label, icon, variant }: BadgeInterface) => {
     <div
       className={`${badgeTextVariants[variant]} ${badgeBackgroundVariants[variant]} ${commonStyling} ${smallStyling} ${mediumStyling} ${largeStyling} `}
     >
-      <p>{icon && icon}</p>
+      <p role="img" aria-label={label}>
+        {icon && icon}
+      </p>
       <p>{label}</p>
     </div>
   );
