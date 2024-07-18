@@ -20,14 +20,12 @@ const config = {
     extend: {
       colors: {
         border: "hsl(var(--border))",
-        "input-border": "#CBD5E1",
-        "sidebar-background": "#FAFAFA",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#F97316",
+          DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
