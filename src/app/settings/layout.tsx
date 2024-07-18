@@ -1,3 +1,5 @@
+import SettingsSidebar from "~/components/common/settings/sidebar";
+
 export default function SettingsLayout({
   children,
 }: {
@@ -6,6 +8,7 @@ export default function SettingsLayout({
   return (
     <>
       <header>Navbar</header>
+      <SettingsSidebar />
       <section className="w-full relative  md:pl-[96px] min-[1140px]:pl-[270px] ">
         <div className="flex w-full flex-col h-full relative max-container pt-12 md:pt-0 dark:bg-gray-900">
           {children}

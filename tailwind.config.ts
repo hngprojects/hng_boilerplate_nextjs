@@ -21,6 +21,7 @@ const config = {
       colors: {
         border: "hsl(var(--border))",
         "input-border": "#CBD5E1",
+        "sidebar-background": "#FAFAFA",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
