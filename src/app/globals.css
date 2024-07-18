@@ -33,6 +33,9 @@
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
+    --error: #F81404;
+    --neutralColor-dark-1: #525252;
+    --neutralColor-dark-2: #0A0A0A;
   }
 
   .dark {

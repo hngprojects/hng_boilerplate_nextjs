@@ -49,12 +49,15 @@ const config = {
           foreground: "hsl(var(--popover-foreground))",
         },
         card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+          DEFAULT: "var(--card)",
+          foreground: "var(--card-foreground)",
         },
-        error: "#F81404",
+        error: "var(--error)",
         neutral: {
-          dark: { 1: "#525252", 2: "#0A0A0A" },
+          dark: {
+            1: "hsl(var(--neutralColor-dark-2))",
+            2: "hsl(var(--neutralColor-dark-2))",
+          },
         },
       },
       borderRadius: {
