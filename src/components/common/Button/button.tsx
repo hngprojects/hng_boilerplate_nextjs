@@ -39,10 +39,6 @@ interface ButtonProperties {
   ariaLabel?: string;
   /** Href to link button to a URL or route */
   href?: string;
-  /** Class for custom styling */
-  className?: string;
-  /** Click event handler for the button */
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 /**
@@ -63,8 +59,6 @@ const CustomButton: React.FC<ButtonProperties> = ({
   isIconOnly = false,
   ariaLabel,
   href,
-  className,
-  onClick,
 }) => {
   const modifiedIcon = icon ? (
     React.cloneElement(icon as React.ReactElement, {
@@ -96,19 +90,12 @@ const CustomButton: React.FC<ButtonProperties> = ({
 
     if (isExternal) {
       return (
-        <a
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={ariaLabel}
-        >
+        <a href={href} target="_blank" rel="noopener noreferrer">
           <Button
             variant={variant}
             size={size}
             disabled={isDisabled}
             aria-label={ariaLabel}
-            className={className}
-            onClick={onClick}
             role="button"
           >
             {buttonContent}
@@ -118,14 +105,12 @@ const CustomButton: React.FC<ButtonProperties> = ({
     }
 
     return (
-      <Link href={href} passHref aria-label={ariaLabel}>
+      <Link href={href} passHref>
         <Button
           variant={variant}
           size={size}
           disabled={isDisabled}
           aria-label={ariaLabel}
-          className={className}
-          onClick={onClick}
           role="button"
         >
           {buttonContent}
@@ -141,8 +126,6 @@ const CustomButton: React.FC<ButtonProperties> = ({
         size={size}
         disabled={isDisabled}
         aria-label={ariaLabel}
-        className={className}
-        onClick={onClick}
         role="button"
       >
         {buttonContent}
