@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 
 import DeactivateModal from "./DeactivateModal";
 
-describe("DeactivateModal", () => {
+describe("deactivateModal", () => {
   it("displays modal centered on the page", () => {
     render(
       <DeactivateModal
@@ -12,17 +12,21 @@ describe("DeactivateModal", () => {
         onDeactivate={() => {}}
       />,
     );
-    const modalOverlay = screen.getByRole("dialog").parentElement;
     const modal = screen.getByRole("dialog");
 
     // Check parent container styles
-    expect(modalOverlay).toHaveClass("fixed");
-    expect(modalOverlay).toHaveClass("inset-0");
-    expect(modalOverlay).toHaveClass("flex");
-    expect(modalOverlay).toHaveClass("items-center");
-    expect(modalOverlay).toHaveClass("justify-center");
-    expect(modalOverlay).toHaveClass("bg-opacity-50");
-    expect(modalOverlay).toHaveClass("z-50");
+    const modalOverlay = modal.parentElement;
+    if (modalOverlay) {
+      expect(modalOverlay).toHaveClass("fixed");
+      expect(modalOverlay).toHaveClass("inset-0");
+      expect(modalOverlay).toHaveClass("flex");
+      expect(modalOverlay).toHaveClass("items-center");
+      expect(modalOverlay).toHaveClass("justify-center");
+      expect(modalOverlay).toHaveClass("bg-opacity-50");
+      expect(modalOverlay).toHaveClass("z-50");
+    } else {
+      throw new Error("Modal overlay is not in the document.");
+    }
 
     // Check modal styles
     expect(modal).toHaveClass("bg-[#FFFFFF]");
