@@ -1,4 +1,4 @@
-import Dashboard from "../components/common/Dashboard/Dashboard";
+import Image from "next/image";
 
 export default function Home() {
   return (
