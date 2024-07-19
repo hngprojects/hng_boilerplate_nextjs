@@ -19,8 +19,7 @@ const UserForm: React.FC = () => {
     }
     if (!formData.email) {
       newErrors.email = "Please enter a valid email address";
-    } 
-    else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Please enter a valid email address";
     }
     return newErrors;
@@ -50,19 +49,28 @@ const UserForm: React.FC = () => {
       <div className="text-center md:w-[623px]">
         <div className="flex justify-center items-center gap-[7px] mb-[12px] md:mb-[8px]">
           <img src="/circle 1.svg" alt="Circle with Tick" />
-          <h3 className="font-medium  text-deployment text-[18px] leading-[16.94px] md:leading-[21.78px]">
+          <h3 className="font-medium text-[18px] leading-[16.94px] md:leading-[21.78px]"
+          style={{ color: "rgba(25, 26, 21, 1)" }}
+          >
             Deployment made easy
           </h3>
         </div>
-        <h1 className="font-bold mb-[10px] md:w-[623px] text-levelUp text-[24px] md:text-[36px] leading-[29.05px] md:leading-[43.57px]">
+        <h1 className="font-bold mb-[10px] md:w-[623px] text-[24px] md:text-[36px] leading-[29.05px] md:leading-[43.57px]"
+        style={{ color: "rgba(82, 82, 82, 1)" }}
+        >
           You can level up your SaaS production today
         </h1>
-        <p className="text-center font-medium text-joinWaitList text-[16px] md:text-[20px] leading-[19.36px] md:leading-[28px]">
+        <p className="text-center font-medium text-[16px] md:text-[20px] leading-[19.36px] md:leading-[28px]"
+        style={{ color: "rgba(82, 82, 82, 1)" }}
+        >
           Join our waitlist and get early access to our boilerplates
         </p>
       </div>
 
-      <div className="border-[0.5px] border-footerBorder rounded-[8px] w-[383.344px] h-auto md:w-[510px] p-[28.8px] md:p-[10px] mt-[87px] md:mt-[20px] flex items-start gap-[19.2px] shrink-0">
+      <div
+        className="rounded-[8px] w-[383.344px] h-auto md:w-[510px] p-[28.8px] md:p-[10px] mt-[87px] md:mt-[20px] flex items-start gap-[19.2px] shrink-0"
+        style={{ border: "0.5px solid rgba(228, 228, 231, 1)" }}
+      >
         {!success ? (
           <form onSubmit={handleSubmit} className="w-full">
             <div className="mb-[24px]">
@@ -80,8 +88,8 @@ const UserForm: React.FC = () => {
                   placeholder="Meghan Grace"
                   value={formData.name}
                   onChange={handleChange}
-                  className="text-muted-foreground border-[1.2px] border-gray-300-alpha w-full pt-[14.4px] pr-[67.2px] pb-[14.4px] pl-[14.4px] rounded-md font-normal text-[16.8px] leading-[23.24px] text-left"
-                  style={{ borderColor: errors.name ? "red" : "black" }}
+                  className="border-[1.2px] border-[rgba(82, 82, 82, 0.3)] w-full pt-[14.4px] pr-[67.2px] pb-[14.4px] pl-[14.4px] rounded-md font-normal text-[16.8px] leading-[23.24px] text-left"
+                  style={{ borderColor: errors.name ? "red" : "black", color: 'rgba(100, 116, 139, 1)' }}
                 />
                 {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
               </div>
@@ -100,8 +108,9 @@ const UserForm: React.FC = () => {
                   placeholder="Enter email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="text-muted-foreground border-[1.2px] border-gray-300-alpha w-full pt-[14.4px] pr-[67.2px] pb-[14.4px] pl-[14.4px] rounded-md font-normal text-[16.8px] leading-[23.24px] text-left"
-                  style={{ borderColor: errors.email ? "red" : "black" }}
+                  className="border-[1.2px] border-[rgba(82, 82, 82, 0.3)] w-full pt-[14.4px] pr-[67.2px] pb-[14.4px] pl-[14.4px] rounded-md font-normal text-[16.8px] leading-[23.24px] text-left"
+                  style={{ borderColor: errors.email ? "red" : "black", color: 'rgba(100, 116, 139, 1)'}}
+                  
                 />
                 {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
               </div>
@@ -120,8 +129,16 @@ const UserForm: React.FC = () => {
         ) : (
           <div className="w-full flex flex-col items-center justify-center">
             <div className="relative">
-              <img src="/BACKGROUND.png" alt="Success Background" className="mb-4" />
-              <img src="/icon (1).svg" alt="Success Tick" className="absolute top-20 left-2 transform translate-x-[50%] translate-y-[-50%]" />
+              <img
+                src="/BACKGROUND.png"
+                alt="Success Background"
+                className="mb-4"
+              />
+              <img
+                src="/icon (1).svg"
+                alt="Success Tick"
+                className="absolute top-20 left-2 transform translate-x-[50%] translate-y-[-50%]"
+              />
             </div>
             <p className="text-center font-medium text-successText text-[16px] md:text-[20px] leading-[19.36px] md:leading-[28px]">
               You're all signed up!
