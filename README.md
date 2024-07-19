@@ -32,4 +32,37 @@ pnpm dev
 
 ## Contributing
 
+#### Using the waitlist hero card component
+It accepts 3 mandatory arguments and 1 optiona className as it's props, cardTitle, cardDescription and cardIcon.
+- cardTitle: string
+- cardDescription:  string
+- cardIcon: string - Pass the absolute path of the icon to icon property
+
+##### The commponent can be rendered as follows:
+```
+import WaitlistCard, { WaitlistCardProps } from '~/components/common/Waitlist/WaitlistCard';
+
+const cardProp: WaitlistCardProps = {
+  cardTitle: "Easy Customization",
+  cardDescription: "Hello there!",
+  cardIcon:"../../../public/Wailtist/vector-icon.svg"
+}
+
+<WaitlistCard {...cardProp} /> Use this way by spreading the card property
+```
+
+- OR
+
+```
+import WaitlistCard from '~/components/common/Waitlist/WaitlistCard';
+
+<WaitlistCard
+  cardTitle={"Easy Customization"}
+  cardDescription={cardDescription}
+  cardIcon={require("../../public/Wailtist/vector-icon.svg")}
+/>
+```
+
+- Please do not alterate the Waitlist Hero Card Component, kindly reach out to me.
+
 Please see [CONTRIBUTING](CONTRIBUTING.md)
