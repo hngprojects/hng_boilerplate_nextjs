@@ -1,4 +1,4 @@
-import UserForm from "~/components/layouts/WaitListForm/UserForm";
+import UserForm from "../../src/components/layouts/WaitListForm/UserForm";
 
 export default function Home() {
   return ( 
