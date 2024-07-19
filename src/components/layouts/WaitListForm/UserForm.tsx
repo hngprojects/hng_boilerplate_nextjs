@@ -42,11 +42,11 @@ const UserForm: React.FC = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    setFormData((previousData) => ({ ...previousData, [name]: value }));
   };
 
   return (
-    <div className="flex flex-col justify-center items-center mt-[81px] ">
+    <div className="flex flex-col justify-center items-center mt-[81px]">
       <div className="text-center md:w-[623px]">
         <div className="flex justify-center items-center gap-[7px] mb-[12px] md:mb-[8px]">
           <Image
@@ -159,7 +159,7 @@ const UserForm: React.FC = () => {
               />
             </div>
             <p className="text-center font-medium text-successText text-[16px] md:text-[20px] leading-[19.36px] md:leading-[28px]">
-              You're all signed up!
+              You&apos;re all signed up!
             </p>
           </div>
         )}
