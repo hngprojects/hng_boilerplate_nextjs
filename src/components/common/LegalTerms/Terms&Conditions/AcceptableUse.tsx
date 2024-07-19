@@ -1,20 +1,23 @@
-import { Disclaimers } from "~/app/constants/constant";
-import { TermsType } from "~/app/types/types";
+import { AcceptableUsePolicy } from "~/components/common/LegalTerms/Terms&Conditions/constants/constant";
 
-const Discclaimer = () => {
+interface TermsType {
+  title: string;
+  value: string;
+}
+
+const AcceptableUse = () => {
   return (
     <div className="self-stretch flex flex-col items-start justify-start gap-[10px]">
       <h2 className="mt-0 self-stretch relative text-inherit font-bold font-inherit sm:text-[28px] text-2xl">
-        Disclaimers and Limitations of Liability
+        Acceptable Use Policy
       </h2>
       <div className="self-stretch relative inline-block text-base">
         <div className="mb-[10px]">
-          To ensure clarity regarding our responsibilities and your
-          expectations, the following disclaimers and limitations of liability
-          apply:
+          To maintain a positive and productive environment, we have established
+          the following acceptable use policy:
         </div>
-        <ul className=" pl-[21px]">
-          {Disclaimers.map((list: TermsType) => (
+        <ul className="m-0 pl-[21px]">
+          {AcceptableUsePolicy.map((list: TermsType) => (
             <li className="list-disc mb-[10px]" key={list.title}>
               <span>{list.title}</span> <span>{list.value}</span>
             </li>
@@ -25,4 +28,4 @@ const Discclaimer = () => {
   );
 };
 
-export default Discclaimer;
+export default AcceptableUse;
