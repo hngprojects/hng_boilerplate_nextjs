@@ -66,6 +66,17 @@
   }
 }
 
+.nav {
+  padding: 8px 32px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+
+  &:hover {
+    color: #f97316;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
