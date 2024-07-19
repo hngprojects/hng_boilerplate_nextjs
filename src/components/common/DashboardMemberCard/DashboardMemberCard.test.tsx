@@ -1,6 +1,6 @@
-import { describe, test, vi } from "vitest";
-import {render} from '@testing-library/react'
-import DashboardMemberCard from './index'
+import { describe, test } from "vitest";
+import {render} from '@testing-library/react';
+import DashboardMemberCard from './index';
 
 const Card = <DashboardMemberCard 
                 profileImage='https://i.ibb.co/Jk11psz/avatar.png' 
@@ -15,7 +15,7 @@ const Card = <DashboardMemberCard
                   console.log('Member deleted')
                 }} 
                 otherInfo={[]}  
-              />
+              />;
 
 describe("<DashboardMemberCard />", () => {
     test("renders DashboardMemberCard", () => {
@@ -71,4 +71,4 @@ describe("<DashboardMemberCard />", () => {
     });
 
 
-})
+});

@@ -19,7 +19,7 @@ type DashboardMemberCardProps = {
     }>;
     changeRole: (role: string) => void;
     deleteMember: PointerEventHandler<HTMLDivElement>;
-}
+};
 
 const Index = ({
     profileImage,
