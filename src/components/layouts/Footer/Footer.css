@@ -1,0 +1,40 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f3efef;
+  padding: 3.5rem 0;
+}
+
+.footer__icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3.3rem;
+}
+
+.footer__text-container {
+  padding: 0 5.6rem;
+}
+
+.footer__paragraph {
+  font-size: 1.4rem;
+  color: #5b5b5d;
+}
+.footer__paragraph:first-of-type {
+  margin: 3rem 0;
+}
+.footer__paragraph:last-of-type {
+  margin-top: 0.8rem;
+}
+
+.footer__support,
+.footer__link {
+  color: #111;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer__support {
+  text-decoration: underline;
+}
