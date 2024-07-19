@@ -40,8 +40,10 @@ const CharacterLimitTextarea = ({
         name={name}
         onChange={handleChange}
         aria-describedby="textarea-info textarea-error"
-        className={`text-[#0F172A] font-normal text-sm resize-none rounded-md w-full max-w-[826px] focus:outline-none focus:border-[#0F172A] bg-white box-border h-20 py-[8px] px-[12px] border-[1px] border-[#CBD5E1] ${
-          error ? "border-[#DC2626]" : ""
+        className={`text-[#0F172A] font-normal text-sm resize-none rounded-md w-full max-w-[826px] focus:outline-none ${
+          error ? "border-[#DC2626]" : "border-[#CBD5E1]"
+        } bg-white box-border h-20 py-[8px] px-[12px] border border-solid ${
+          error ? "focus:border-[#DC2626]" : "focus:border-[#0F172A]"
         }`}
       />
       </div>
