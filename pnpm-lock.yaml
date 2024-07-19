@@ -22,7 +22,13 @@ importers:
       '@radix-ui/react-slot':
         specifier: ^1.1.0
         version: 1.1.0(@types/react@18.3.3)(react@18.3.1)
+<<<<<<< HEAD
 >>>>>>> 6ab9e74 (Version History)
+=======
+      '@react-email/components':
+        specifier: 0.0.21
+        version: 0.0.21(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+>>>>>>> 8644748 (Version History)
       '@t3-oss/env-nextjs':
         specifier: ^0.10.1
         version: 0.10.1(typescript@5.5.3)(zod@3.23.8)
@@ -824,6 +830,9 @@ packages:
     resolution: {integrity: sha512-j7P6Rgr3mmtdkeDGTe0E/aYyWEWVtc5yFXtHCRHs28/jptDEWfaVOc5T7cblqy1XKPPfCxJc/8DwQ5YgLOZOVQ==}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8644748 (Version History)
   '@radix-ui/colors@1.0.1':
     resolution: {integrity: sha512-xySw8f0ZVsAEP+e7iLl3EvcBXX7gsIlC1Zso/sPBW9gIWerBTgz6axrjU+MZ39wD+WFi5h5zdWpsg3+hwt2Qsg==}
 
@@ -843,6 +852,7 @@ packages:
       '@types/react-dom':
         optional: true
 
+<<<<<<< HEAD
   '@radix-ui/react-avatar@1.1.0':
     resolution: {integrity: sha512-Q/PbuSMk/vyAd/UoIShVGZ7StHHeRFYU7wXmi5GV+8cLXflZAEpHL/F697H1klrzxKXNtZ97vWiC0q3RKUH8UA==}
     peerDependencies:
@@ -856,6 +866,8 @@ packages:
       '@types/react-dom':
         optional: true
 
+=======
+>>>>>>> 8644748 (Version History)
   '@radix-ui/react-collapsible@1.1.0':
     resolution: {integrity: sha512-zQY7Epa8sTL0mq4ajSJpjgn2YmCgyrG7RsQgLp3C0LQVkG7+Tf6Pv1CeNWZLyqMjhdPkBa5Lx7wYBeSu7uCSTA==}
     peerDependencies:
@@ -1292,8 +1304,11 @@ packages:
     peerDependencies:
       react: ^18.2.0
 
+<<<<<<< HEAD
 =======
 >>>>>>> 6ab9e74 (Version History)
+=======
+>>>>>>> 8644748 (Version History)
   '@rollup/rollup-android-arm-eabi@4.18.0':
     resolution: {integrity: sha512-Tya6xypR10giZV1XzxmH5wr25VcZSncG0pZIjfePT0OVBvqNEurzValetGNarVrGiq66EBVAFn15iYX4w6FKgQ==}
     cpu: [arm]
@@ -5076,6 +5091,9 @@ snapshots:
   '@polka/url@1.0.0-next.25': {}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8644748 (Version History)
   '@radix-ui/colors@1.0.1': {}
 
   '@radix-ui/primitive@1.1.0': {}
@@ -5089,6 +5107,7 @@ snapshots:
       '@types/react': 18.2.47
       '@types/react-dom': 18.3.0
 
+<<<<<<< HEAD
   '@radix-ui/react-avatar@1.1.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@radix-ui/react-context': 1.1.0(@types/react@18.3.3)(react@18.3.1)
@@ -5101,6 +5120,8 @@ snapshots:
       '@types/react': 18.3.3
       '@types/react-dom': 18.3.0
 
+=======
+>>>>>>> 8644748 (Version History)
   '@radix-ui/react-collapsible@1.1.0(@types/react-dom@18.3.0)(@types/react@18.2.47)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@radix-ui/primitive': 1.1.0
@@ -5154,12 +5175,15 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.2.47
 
+<<<<<<< HEAD
   '@radix-ui/react-context@1.1.0(@types/react@18.3.3)(react@18.3.1)':
     dependencies:
       react: 18.3.1
     optionalDependencies:
       '@types/react': 18.3.3
 
+=======
+>>>>>>> 8644748 (Version History)
   '@radix-ui/react-direction@1.1.0(@types/react@18.2.47)(react@18.3.1)':
     dependencies:
       react: 18.3.1
@@ -5273,6 +5297,7 @@ snapshots:
       '@types/react': 18.2.47
       '@types/react-dom': 18.3.0
 
+<<<<<<< HEAD
   '@radix-ui/react-primitive@2.0.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@radix-ui/react-slot': 1.1.0(@types/react@18.3.3)(react@18.3.1)
@@ -5282,6 +5307,8 @@ snapshots:
       '@types/react': 18.3.3
       '@types/react-dom': 18.3.0
 
+=======
+>>>>>>> 8644748 (Version History)
   '@radix-ui/react-roving-focus@1.1.0(@types/react-dom@18.3.0)(@types/react@18.2.47)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@radix-ui/primitive': 1.1.0
@@ -5373,12 +5400,15 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.2.47
 
+<<<<<<< HEAD
   '@radix-ui/react-use-callback-ref@1.1.0(@types/react@18.3.3)(react@18.3.1)':
     dependencies:
       react: 18.3.1
     optionalDependencies:
       '@types/react': 18.3.3
 
+=======
+>>>>>>> 8644748 (Version History)
   '@radix-ui/react-use-controllable-state@1.1.0(@types/react@18.2.47)(react@18.3.1)':
     dependencies:
       '@radix-ui/react-use-callback-ref': 1.1.0(@types/react@18.2.47)(react@18.3.1)
@@ -5399,12 +5429,15 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.2.47
 
+<<<<<<< HEAD
   '@radix-ui/react-use-layout-effect@1.1.0(@types/react@18.3.3)(react@18.3.1)':
     dependencies:
       react: 18.3.1
     optionalDependencies:
       '@types/react': 18.3.3
 
+=======
+>>>>>>> 8644748 (Version History)
   '@radix-ui/react-use-rect@1.1.0(@types/react@18.2.47)(react@18.3.1)':
     dependencies:
       '@radix-ui/rect': 1.1.0
@@ -5546,8 +5579,11 @@ snapshots:
     dependencies:
       react: 18.3.1
 
+<<<<<<< HEAD
 =======
 >>>>>>> 6ab9e74 (Version History)
+=======
+>>>>>>> 8644748 (Version History)
   '@rollup/rollup-android-arm-eabi@4.18.0':
     optional: true
 
