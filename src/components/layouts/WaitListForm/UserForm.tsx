@@ -1,6 +1,7 @@
 "use client";
-import React, { FormEvent, useState } from "react";
+
 import Image from "next/image";
+import React, { FormEvent, useState } from "react";
 
 interface FormData {
   name: string;
@@ -48,20 +49,30 @@ const UserForm: React.FC = () => {
     <div className="flex flex-col justify-center items-center mt-[81px] ">
       <div className="text-center md:w-[623px]">
         <div className="flex justify-center items-center gap-[7px] mb-[12px] md:mb-[8px]">
-          <Image layout="fit" objectFit="contain" width={23} height={21} src="/circle 1.svg" alt="Circle with Tick" />
-          <h3 className="font-medium text-[18px] leading-[16.94px] md:leading-[21.78px]"
-          style={{ color: "rgba(25, 26, 21, 1)" }}
+          <Image
+            layout="fit"
+            objectFit="contain"
+            width={23}
+            height={21}
+            src="/circle 1.svg"
+            alt="Circle with Tick"
+          />
+          <h3
+            className="font-medium text-[18px] leading-[16.94px] md:leading-[21.78px]"
+            style={{ color: "rgba(25, 26, 21, 1)" }}
           >
             Deployment made easy
           </h3>
         </div>
-        <h1 className="font-bold mb-[10px] md:w-[623px] text-[24px] md:text-[36px] leading-[29.05px] md:leading-[43.57px]"
-        style={{ color: "rgba(82, 82, 82, 1)" }}
+        <h1
+          className="font-bold mb-[10px] md:w-[623px] text-[24px] md:text-[36px] leading-[29.05px] md:leading-[43.57px]"
+          style={{ color: "rgba(82, 82, 82, 1)" }}
         >
           You can level up your SaaS production today
         </h1>
-        <p className="text-center font-medium text-[16px] md:text-[20px] leading-[19.36px] md:leading-[28px]"
-        style={{ color: "rgba(82, 82, 82, 1)" }}
+        <p
+          className="text-center font-medium text-[16px] md:text-[20px] leading-[19.36px] md:leading-[28px]"
+          style={{ color: "rgba(82, 82, 82, 1)" }}
         >
           Join our waitlist and get early access to our boilerplates
         </p>
@@ -89,7 +100,10 @@ const UserForm: React.FC = () => {
                   value={formData.name}
                   onChange={handleChange}
                   className="border-[1.2px] border-[rgba(82, 82, 82, 0.3)] w-full pt-[14.4px] pr-[67.2px] pb-[14.4px] pl-[14.4px] rounded-md font-normal text-[16.8px] leading-[23.24px] text-left"
-                  style={{ borderColor: errors.name ? "red" : "black", color: 'rgba(100, 116, 139, 1)' }}
+                  style={{
+                    borderColor: errors.name ? "red" : "black",
+                    color: "rgba(100, 116, 139, 1)",
+                  }}
                 />
                 {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
               </div>
@@ -109,8 +123,10 @@ const UserForm: React.FC = () => {
                   value={formData.email}
                   onChange={handleChange}
                   className="border-[1.2px] border-[rgba(82, 82, 82, 0.3)] w-full pt-[14.4px] pr-[67.2px] pb-[14.4px] pl-[14.4px] rounded-md font-normal text-[16.8px] leading-[23.24px] text-left"
-                  style={{ borderColor: errors.email ? "red" : "black", color: 'rgba(100, 116, 139, 1)'}}
-                  
+                  style={{
+                    borderColor: errors.email ? "red" : "black",
+                    color: "rgba(100, 116, 139, 1)",
+                  }}
                 />
                 {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
               </div>
@@ -121,7 +137,14 @@ const UserForm: React.FC = () => {
                 className="text-white font-bold text-[16.8px] leading-[28.8px] bg-buttonColor rounded-md w-[195.6px] h-[51.78px] flex justify-between items-center py-[9.6px] px-[19.2px]"
                 type="submit"
               >
-                <Image layout="fit" objectFit="contain" width={20} height={20} src="/icon.svg" alt="Envelope" />
+                <Image
+                  layout="fit"
+                  objectFit="contain"
+                  width={20}
+                  height={20}
+                  src="/icon.svg"
+                  alt="Envelope"
+                />
                 Join the Waitlist
               </button>
             </div>
@@ -130,13 +153,19 @@ const UserForm: React.FC = () => {
           <div className="w-full flex flex-col items-center justify-center">
             <div className="relative">
               <Image
-                layout="fit" objectFit="contain" width={177} height={179}
+                layout="fit"
+                objectFit="contain"
+                width={177}
+                height={179}
                 src="/BACKGROUND.png"
                 alt="Success Background"
                 className="mb-4"
               />
               <Image
-              layout="fit" objectFit="contain" width={31} height={31}
+                layout="fit"
+                objectFit="contain"
+                width={31}
+                height={31}
                 src="/icon (1).svg"
                 alt="Success Tick"
                 className="absolute top-20 left-2 transform translate-x-[50%] translate-y-[-50%]"
