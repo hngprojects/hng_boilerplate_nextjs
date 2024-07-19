@@ -1,4 +1,6 @@
-import { Button, Html, Text } from "@react-email/components";
+import { Button, Head, Html, Preview, Text } from "@react-email/components";
+
+import Tailwindwrapper from "~/email/templates/_components/tailwindWrapper";
 
 interface IProperties {
   name: string;
@@ -9,14 +11,18 @@ export default function Email(properties: IProperties) {
 
   return (
     <Html>
-      <Text>Hi there, {name}!</Text>
-      <Button
-        href="https://example.com"
-        style={{ background: "#000", color: "#fff", padding: "12px 20px" }}
-        className=""
-      >
-        Click me
-      </Button>
+      <Head />
+      <Preview>{`Welcome ${name}`}</Preview>
+
+      <Tailwindwrapper>
+        <Text>Hi there, {name}!</Text>
+        <Button
+          href="https://example.com"
+          className="bg-black px-5 py-3 text-white"
+        >
+          Click me
+        </Button>
+      </Tailwindwrapper>
     </Html>
   );
 }
