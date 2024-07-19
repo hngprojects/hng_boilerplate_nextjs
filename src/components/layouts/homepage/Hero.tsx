@@ -42,15 +42,15 @@ const Hero = () => {
 
 
                         <div className="image-container">
-                            <div className="hero-checkmark">
+                            <div data-testid="hero-checkmark" className="hero-checkmark">
                                 <HeroCheckMark />
                             </div>
 
-                            <div className="hero-chat">
+                            <div data-testid="hero-chat" className="hero-chat">
                                 <HeroChat />
                             </div>
 
-                            <div className="hero-boilerplate">
+                            <div data-testid="hero-boilerplate" className="hero-boilerplate">
                                 <HeroBoilerPlate />
                             </div>
 
@@ -65,6 +65,7 @@ const Hero = () => {
                                 }}
                                 loop={true}
                                 speed={4000}
+                                data-testid="swiper"
                             >
 
                                 <SwiperSlide>
