@@ -53,13 +53,10 @@
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
-    --neutralColor-dark-1: 0, 0%, 32%;
-    --neutralColor-dark-2: 0, 0%, 4%;
 
     --stroke-colors-stroke: 213, 27%, 84%;
 
-    --neutralColor-dark-1: 0, 0%, 32%;
-    --neutralColor-dark-2: 0, 0%, 4%;
+    --primary-primary: 25, 95%, 53%;
   }
 
   .dark {
