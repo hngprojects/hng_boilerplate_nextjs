@@ -1,7 +1,5 @@
-import AdminLayout from "~/components/superadminlayout";
-
 const page = () => {
-  return <AdminLayout>Dashboard</AdminLayout>;
+  return <main>Dashboard</main>;
 };
 
 export default page;
