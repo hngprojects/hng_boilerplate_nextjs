@@ -2,10 +2,10 @@ import { render, screen } from "@testing-library/react";
 import { expect } from "vitest";
 
 import WaitlistCard, {
-  WaitlistCardProperties,
+  WaitlistCardProps,
 } from "~/components/common/Waitlist/WaitlistCard";
 
-const cardProperty: WaitlistCardProperties = {
+const cardProperty: WaitlistCardProps = {
   cardTitle: "Easy Customization",
   cardDescription: "Hello there!",
   cardIcon: "../../../public/Wailtist/vector-icon.svg",
@@ -13,13 +13,11 @@ const cardProperty: WaitlistCardProperties = {
 
 describe("waitlistCard", () => {
   it("renders the WaitlistCard properly", () => {
-    expect.assertions(0);
     render(<WaitlistCard {...cardProperty} />);
-    screen.debug();
+    // screen.debug();
   });
 
   it("image must have alt text", () => {
-    expect.assertions(1);
     render(<WaitlistCard {...cardProperty} />);
     expect(screen.getByRole("image")).toHaveAttribute("alt");
   });

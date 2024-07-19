@@ -1,5 +1,9 @@
 import Image from "next/image";
 
+import WaitlistCard from "~/components/common/Waitlist/WaitlistCard";
+
+const cardDescription =
+  "Tailor your experience to your specific needs and preferences for maximum results";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
