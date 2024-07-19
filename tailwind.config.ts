@@ -28,6 +28,15 @@ const config = {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
+        
+          'gray-300-alpha': 'rgba(82, 82, 82, 0.3)',
+          'footerBorder': 'rgba(228, 228, 231, 1)',
+          'levelUp': 'rgba(82, 82, 82, 1)',
+          'deployment': 'rgba(25, 26, 21, 1)',
+          'joinWaitList': 'rgba(82, 82, 82, 1)',
+          'errorColor': 'rgba(248, 20, 4, 1)',
+          'muted-foreground': 'rgba(100, 116, 139, 1)',
+
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
@@ -52,6 +61,9 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        
+          buttonColor: 'rgba(249, 115, 22, 1)'
+        
       },
       borderRadius: {
         lg: "var(--radius)",
