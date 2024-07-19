@@ -9,7 +9,10 @@ module.exports = {
   arrowParens: "always",
   endOfLine: "auto",
 
-  plugins: ["@ianvs/prettier-plugin-sort-imports"],
+  plugins: [
+    "@ianvs/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss",
+  ],
 
   // #region @ianvs/prettier-plugin-sort-imports
   importOrder: ["<THIRD_PARTY_MODULES>", "", "^~/", "^[.][.]/", "^[.]/"],
