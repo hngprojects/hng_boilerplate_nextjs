@@ -107,7 +107,7 @@ export default function Page() {
                         ? "text-red-500 border-red-500 focus:outline-none"
                         : "text-slate-400 border-[#CBD5E1] focus:outline-[#CBD5E1]"
                     } border outline-none focus:outline-[1.5px] focus:outline-offset-0`}
-                    placeholder="Paste your HTML code here"
+                    placeholder="Enter your link here"
                   />
                   {errors.htmlContent && (
                     <p className="text-xs text-red-500 mt-1 mb-">
