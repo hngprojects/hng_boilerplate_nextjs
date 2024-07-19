@@ -1,6 +1,6 @@
 import React from "react";
 
-import Navbar from "./Navbar/Navbar";
+import Navbar from "./Navbar";
 
 interface IProperties {
   children: React.ReactNode;
