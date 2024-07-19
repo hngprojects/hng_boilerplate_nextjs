@@ -1,0 +1,24 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+
+  @media only screen and (max-width: 48em) {
+    font-size: 55%;
+  }
+}
+
+body {
+  color: rgba(17, 17, 17, 0.9);
+  font-weight: 400;
+  font-size: 1.6rem;
+  font-style: normal;
+  line-height: 1.5;
+}
