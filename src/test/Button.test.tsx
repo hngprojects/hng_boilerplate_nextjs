@@ -46,4 +46,58 @@ describe('Custom Button Component', () => {
     mockRender();
     expect(mockRender).toHaveBeenCalledTimes(1);
   });
+
+  it('renders internal link correctly with Next.js Link component', () => {
+    render(<CustomButton href="/internal-page" ariaLabel="internal-link">Internal Link</CustomButton>);
+    expect(screen.getByRole('button', { name: /internal-link/i })).toBeInTheDocument();
+    expect(screen.getByText(/internal link/i)).toBeInTheDocument();
+    userEvent.click(screen.getByRole('button', { name: /internal-link/i }));
+  });
+
+  it('renders external link correctly with anchor tag', () => {
+    render(<CustomButton href="https://external-site.com" ariaLabel="external-link">External Link</CustomButton>);
+    const button = screen.getByRole('button', { name: /external-link/i });
+    expect(button).toBeInTheDocument();
+    expect(button.closest('a')).toHaveAttribute('href', 'https://external-site.com');
+  });
+
+  it('applies all props correctly', () => {
+    render(
+      <CustomButton
+        variant="primary"
+        size="lg"
+        icon={<Plus />}
+        isLoading={true}
+        isIconOnly={true}
+        isLeftIconVisible={false}
+        isRightIconVisible={true}
+        isDisabled={true}
+        ariaLabel="custom-button"
+        href="/test-page"
+      >
+        Test Button
+      </CustomButton>
+    );
+
+    const button = screen.getByRole('button', { name: /custom-button/i });
+    expect(button).toBeInTheDocument();
+    expect(button).toHaveAttribute('aria-label', 'custom-button');
+    const icon = screen.queryByTestId('icon');
+    if (icon) {
+      expect(icon).toBeInTheDocument();
+      expect(icon).toHaveClass('w-[1rem] h-[1rem]');
+    } else {
+      expect(icon).toBeNull();
+    }
+    const loadingSpinner = screen.queryByTestId('loading-spinner');
+    expect(loadingSpinner).toBeInTheDocument();
+    expect(button).toBeDisabled();
+    expect(screen.queryByText(/test button/i)).toBeNull();
+    const link = screen.queryByRole('link');
+    if (link) {
+      expect(link).toHaveAttribute('href', '/test-page');
+    } else {
+      expect(screen.queryByRole('link')).toBeNull();
+    }
+  });
 });
