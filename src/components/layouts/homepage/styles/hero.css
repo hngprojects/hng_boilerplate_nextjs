@@ -1,6 +1,6 @@
 .hero {
-  background: #fafafa;
   padding: 84px 0;
+  background:var(--default)
 }
 
 .hero-content {
@@ -29,15 +29,11 @@
   margin-bottom: 48px;
   font-family: "Inter";
   margin-top: 29px;
-  color: #525252;
-
 }
 
-.hero-left .get-started {
+.hero-left button {
   padding: 17px 30px;
   border-radius: 6px;
-  background: var(--Primary-Primary-Color, #f97316);
-  color: white;
   border: none;
 }
 

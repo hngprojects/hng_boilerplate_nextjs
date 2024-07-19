@@ -1,5 +1,5 @@
 .testimonials {
-  background: #fafafa;
+  background: var(--error);
   padding: 113px 0;
 }
 
