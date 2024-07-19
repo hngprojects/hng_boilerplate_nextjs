@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 0, 0%, 98%;
     --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
@@ -42,19 +42,21 @@
 
     --outline: 0, 0%, 100%;
     --outline-hover: 210, 40%, 96%;
-    --outline-border: 214, 32%, 91%;
     --outline-foreground: 222, 47%, 11%;
 
     --link: 222, 47%, 11%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
+    --error: 0, 72%, 51%;
+    --success: 102, 51%, 52%;
+    --warning: 45, 93%, 47%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
-    --error: 4 97% 49%;
-    --neutralColor-dark-1: 0 0% 32%;
-    --neutralColor-dark-2: 0 0% 4%;
+    --neutralColor-dark-1: 0, 0%, 32%;
+    --neutralColor-dark-2: 0, 0%, 4%;
   }
 
   .dark {

@@ -54,7 +54,6 @@ const config = {
         outline: {
           DEFAULT: "hsl(var(--outline))",
           hover: "hsl(var(--outline-hover))",
-          border:"hsl(var(--outline-border))",
           foreground: "hsl(var(--outline-foreground))",
         },
         link: {
@@ -77,6 +76,8 @@ const config = {
           foreground: "var(--card-foreground)",
         },
         error: "hsl(var(--error))",
+        success: "hsl(var(--success))",
+        warning: "hsl(var(--warning))",
         neutral: {
           dark: {
             1: "hsl(var(--neutralColor-dark-2))",
