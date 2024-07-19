@@ -43,10 +43,10 @@ export interface BadgeInterface {
 
 const Badge = ({ label, icon, variant }: BadgeInterface) => {
   const badgeTextVariants = {
-    default: "text-[#344054] bg-[#F2F4F7]",
-    primary: "text-[#B15210] bg-[#FFFAF7]",
-    success: "text-[#0B7C17] bg-[#E7F7E9]",
-    error: "text-[#A50909] bg-[#FDE7E7]",
+    default: "badge-default",
+    primary: "badge-primary",
+    success: "badge-success",
+    error: "badge-error",
   };
 
   return (
