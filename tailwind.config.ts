@@ -49,7 +49,7 @@ const config = {
         outline: {
           DEFAULT: "hsl(var(--outline))",
           hover: "hsl(var(--outline-hover))",
-          border:"hsl(var(--outline-border))",
+          border: "hsl(var(--outline-border))",
           foreground: "hsl(var(--outline-foreground))",
         },
         link: {
@@ -68,8 +68,20 @@ const config = {
           foreground: "hsl(var(--popover-foreground))",
         },
         card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+          DEFAULT: "var(--card)",
+          foreground: "var(--card-foreground)",
+        },
+        error: "hsl(var(--error))",
+        success: "hsl(var(--success))",
+        warning: "hsl(var(--warning))",
+        neutral: {
+          dark: {
+            1: "hsl(var(--neutralColor-dark-1))",
+            2: "hsl(var(--neutralColor-dark-2))",
+          },
+        },
+        stroke: {
+          "colors-stroke": "hsl(var(--stroke-colors-stroke))",
         },
       },
       borderRadius: {
