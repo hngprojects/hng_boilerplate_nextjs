@@ -22,21 +22,18 @@ const CareerCard: React.FC<CareerCardProperties> = ({
   onViewDetails,
 }) => {
   return (
-    <Card className="max-w-[100%]  text-cardText hover:transtion-all hover:duration-500  hover:scale-[1.04]">
+    <Card className="max-w-[100%]  text-cardText ">
       <CardContent className="pt-6">
         {isLoading ? (
           <div className="flex flex-col space-y-3">
             <Skeleton
-              className="h-[125px] w-[250px] md:w-full rounded-[7px]"
+              className="h-[125px] w-[500px] md:w-full rounded-[7px]"
               data-testid="skeleton"
             />
             <div className="space-y-2">
+              <Skeleton className="h-4 w-[500px] " data-testid="skeleton" />
               <Skeleton
                 className="h-4 w-[250px] md:w-full"
-                data-testid="skeleton"
-              />
-              <Skeleton
-                className="h-4 w-[200px] md:w-full"
                 data-testid="skeleton"
               />
             </div>
@@ -65,7 +62,7 @@ const CareerCard: React.FC<CareerCardProperties> = ({
             </span>
             <Button
               onClick={onViewDetails}
-              className="bg-primary hover:bg-primary/700 text-white"
+              className="bg-primary hover:duration-200 hover:transtion-all   hover:scale-[1.03] hover:bg-primary/300 text-white"
             >
               View Details
             </Button>

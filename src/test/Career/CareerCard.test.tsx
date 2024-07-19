@@ -1,6 +1,5 @@
 // components/CustomCard.test.tsx
 
-//A  Simple test for the card component created
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
