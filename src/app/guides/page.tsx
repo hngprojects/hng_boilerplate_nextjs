@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-import CharacterLimitTextarea from "../../components/common/CharacterLimitTextarea";
+import { useState } from "react";
 
+import CharacterLimitTextarea from "../../components/common/CharacterLimitTextarea";
 
 export default function Home() {
   // create state to handle text
