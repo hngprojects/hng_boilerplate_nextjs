@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { TestimonialLeftArrow, TestimonialRightArrow } from '~/components/svgs';
+import { TestimonialLeftArrow, TestimonialRightArrow } from './svgs';
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
