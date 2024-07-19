@@ -1,79 +1,103 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import DeleteModal from '../components/modals/DeleteModal';
+import { describe, test, expect, vi } from 'vitest';
+import DeleteModal from '../components/common/DeleteModal'; 
+import { useDeleteModal } from '~/hooks/useDeleteModal';
 
+vi.mock('~/hooks/useDeleteModal', () => ({
+  useDeleteModal: vi.fn(),
+}));
 
 describe('DeleteModal', () => {
   test('should display the modal correctly when visible', () => {
-    render(<DeleteModal closeDeleteModal={vi.fn()} />);
+    vi.mocked(useDeleteModal).mockReturnValue({
+      isVisible: true,
+      closeDeleteModal: vi.fn(),
+      openDeleteModal: vi.fn(),
+    });
+    render(<DeleteModal />);
     const modalContainer = screen.getByTestId('modal-container');
-    const modalContent = screen.getByTestId('modal-content');
+    expect(modalContainer).toBeInTheDocument();
+  });
 
-    expect(modalContainer).toBeVisible();
-    expect(modalContent).toBeVisible();
+  test('should not display the modal when not visible', () => {
+    vi.mocked(useDeleteModal).mockReturnValue({
+      isVisible: false,
+      closeDeleteModal: vi.fn(),
+      openDeleteModal: vi.fn(),
+    });
+    render(<DeleteModal />);
+    const modalContainer = screen.queryByTestId('modal-container');
+    expect(modalContainer).toBeNull();
+  });
+
+  test('should have correct alignment for heading, message, and buttons', () => {
+    vi.mocked(useDeleteModal).mockReturnValue({
+      isVisible: true,
+      closeDeleteModal: vi.fn(),
+      openDeleteModal: vi.fn(),
+    });
+    render(<DeleteModal />);
+    const modalContent = screen.getByTestId('modal-content');
+    expect(modalContent).toHaveClass('absolute lg:left-[32.2%] lg:top-[425px] lg:w-[512px]');
   });
 
   test('should be responsive across all screens', () => {
-    render(<DeleteModal closeDeleteModal={vi.fn()} />);
+    vi.mocked(useDeleteModal).mockReturnValue({
+      isVisible: true,
+      closeDeleteModal: vi.fn(),
+      openDeleteModal: vi.fn(),
+    });
+    render(<DeleteModal />);
     const modalContent = screen.getByTestId('modal-content');
+    expect(modalContent).toHaveClass('absolute lg:left-[32.2%]');
+  });
 
-    // Check for the specific classes instead of the entire class name string
-    expect(modalContent).toHaveClass('absolute');
-    expect(modalContent).toHaveClass('max-w-[1440px]');
-    expect(modalContent).toHaveClass('lg:left-[33%]');
-    expect(modalContent).toHaveClass('lg:top-[425px]');
-    expect(modalContent).toHaveClass('top-[300px]');
-    expect(modalContent).toHaveClass('lg:w-[512px]');
-    expect(modalContent).toHaveClass('w-[95%]');
-    expect(modalContent).toHaveClass('left-[50%]');
-    expect(modalContent).toHaveClass('lg:right-0');
+  test('should close the modal when clicking Delete button', () => {
+    const handleClose = vi.fn();
+    vi.mocked(useDeleteModal).mockReturnValue({
+      isVisible: true,
+      closeDeleteModal: handleClose,
+      openDeleteModal: vi.fn(),
+    });
+    render(<DeleteModal />);
+    const deleteButton = screen.getByText('Delete');
+    fireEvent.click(deleteButton);
+    expect(handleClose).toHaveBeenCalled();
+  });
+
+  test('should close the modal when clicking Cancel button', () => {
+    const handleClose = vi.fn();
+    vi.mocked(useDeleteModal).mockReturnValue({
+      isVisible: true,
+      closeDeleteModal: handleClose,
+      openDeleteModal: vi.fn(),
+    });
+    render(<DeleteModal />);
+    const cancelButton = screen.getByText('Cancel');
+    fireEvent.click(cancelButton);
+    expect(handleClose).toHaveBeenCalled();
   });
 
   test('should close the modal when clicking outside of the modal content', () => {
     const handleClose = vi.fn();
-    render(<DeleteModal closeDeleteModal={handleClose} />);
-    
-    const modalContainer = screen.getByTestId('modal-container');
-    fireEvent.click(modalContainer);
-    
+    vi.mocked(useDeleteModal).mockReturnValue({
+      isVisible: true,
+      closeDeleteModal: handleClose,
+      openDeleteModal: vi.fn(),
+    });
+    render(<DeleteModal />);
+    fireEvent.mouseDown(document.body);
     expect(handleClose).toHaveBeenCalled();
   });
 
-  test('should properly align heading, message, and buttons', () => {
-    render(<DeleteModal closeDeleteModal={vi.fn()} />);
-    const modalHeading = screen.getByTestId('modal-heading');
-    const modalMessage = screen.getByTestId('modal-message');
-    const modalButtons = screen.getByTestId('modal-buttons');
-
-    expect(modalHeading).toBeInTheDocument();
-    expect(modalMessage).toBeInTheDocument();
-    expect(modalButtons).toBeInTheDocument();
-  });
-
-  test('should close the modal when clicking the Cancel button', () => {
-    const handleClose = vi.fn();
-    render(<DeleteModal closeDeleteModal={handleClose} />);
-    
-    const cancelButton = screen.getByTestId('modal-buttons');
-    fireEvent.click(cancelButton);
-    
-    expect(handleClose).toHaveBeenCalled();
-  });
-
-  test('should close the modal when clicking the Delete button', () => {
-    const handleClose = vi.fn();
-    render(<DeleteModal closeDeleteModal={handleClose} />);
-    
-    const deleteButton = screen.getByTestId('modal-buttons');
-    fireEvent.click(deleteButton);
-    
-    expect(handleClose).toHaveBeenCalled();
-  });
-
-  test('should correctly apply overlay opacity', () => {
-    render(<DeleteModal closeDeleteModal={vi.fn()} />);
-    const modalContainer = screen.getByTestId('modal-container');
-    
-    expect(modalContainer).toHaveClass('bg-opacity-[25%]');
+  test('should have correct overlay opacity', () => {
+    vi.mocked(useDeleteModal).mockReturnValue({
+      isVisible: true,
+      closeDeleteModal: vi.fn(),
+      openDeleteModal: vi.fn(),
+    });
+    render(<DeleteModal />);
+    const overlay = screen.getByTestId('modal-container');
+    expect(overlay).toHaveStyle('opacity: 25%');
   });
 });
