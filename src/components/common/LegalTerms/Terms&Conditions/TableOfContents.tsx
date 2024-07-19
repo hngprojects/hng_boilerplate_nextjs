@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { Contents } from "~/app/constants/constant";
+import { Contents } from "~/components/common/LegalTerms/Terms&Conditions/constants/constant";
 
 interface ContentProps {
   id: string;

@@ -1,19 +1,24 @@
-import { GoverningLaw } from "~/app/constants/constant";
-import { TermsType } from "~/app/types/types";
+import { Disclaimers } from "~/components/common/LegalTerms/Terms&Conditions/constants/constant";
 
-const GoverningLaws = () => {
+interface TermsType {
+  title: string;
+  value: string;
+}
+
+const Disclaimer = () => {
   return (
     <div className="self-stretch flex flex-col items-start justify-start gap-[10px]">
       <h2 className="mt-0 self-stretch relative text-inherit font-bold font-inherit sm:text-[28px] text-2xl">
-        Governing Law and Dispute Resolution
+        Disclaimers and Limitations of Liability
       </h2>
       <div className="self-stretch relative inline-block text-base">
         <div className="mb-[10px]">
-          To address any disputes that may arise, the following provisions
+          To ensure clarity regarding our responsibilities and your
+          expectations, the following disclaimers and limitations of liability
           apply:
         </div>
         <ul className=" pl-[21px]">
-          {GoverningLaw.map((list: TermsType) => (
+          {Disclaimers.map((list: TermsType) => (
             <li className="list-disc mb-[10px]" key={list.title}>
               <span>{list.title}</span> <span>{list.value}</span>
             </li>
@@ -24,4 +29,4 @@ const GoverningLaws = () => {
   );
 };
 
-export default GoverningLaws;
+export default Disclaimer;

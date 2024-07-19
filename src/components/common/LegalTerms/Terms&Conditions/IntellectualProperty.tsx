@@ -1,5 +1,9 @@
-import { IntellectualPropertyRight } from "~/app/constants/constant";
-import { TermsType } from "~/app/types/types";
+import { IntellectualPropertyRight } from "~/components/common/LegalTerms/Terms&Conditions/constants/constant";
+
+interface TermsType {
+  title: string;
+  value: string;
+}
 
 const IntellectualProperty = () => {
   return (

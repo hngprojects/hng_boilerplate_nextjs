@@ -1,3 +1,4 @@
+import Image from "next/image";
 import TermsConditions from "./terms_and_conditions/page";
 
 export default function Home() {
