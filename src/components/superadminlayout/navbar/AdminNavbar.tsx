@@ -4,40 +4,40 @@ import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
 
 const AdminNavbar = () => {
   return (
-    <nav className="flex justify-between items-center gap-2 bg-[#FDFDFD] px-[10px] py-[14px]">
-      <div className="flex justify-between items-center gap-2 px-3 h-10 border border-[#E4E4E7] rounded-[6px] text-sm placeholder:text-sm font-normal">
+    <nav className="flex items-center justify-between gap-2 bg-[#FDFDFD] px-[10px] py-[14px]">
+      <div className="flex h-10 items-center justify-between gap-2 rounded-[6px] border border-[#E4E4E7] px-3 text-sm font-normal placeholder:text-sm">
         <SearchIcon
           data-testid="search"
           className="h-4 w-4 text-neutral-dark-2"
         />
         <input
-          className="border-none outline-none ring-0 w-full h-full text-neutral-dark-2 placeholder:text-neutral-dark-1"
+          className="h-full w-full border-none text-neutral-dark-2 outline-none ring-0 placeholder:text-neutral-dark-1"
           placeholder="Search option..."
           data-testid="input"
         />
       </div>
-      <div className="w-full max-w-[152px] flex justify-between items-center gap-1">
+      <div className="flex w-full max-w-[152px] items-center justify-between gap-1">
         <div className="relative">
           <BellIcon
             data-testid="bell"
-            className="text-neutral-dark-2 h-6 w-6"
+            className="h-6 w-6 text-neutral-dark-2"
           />
-          <span className="h-[6px] w-[6px] rounded-full bg-error absolute top-0 right-1"></span>
+          <span className="absolute right-1 top-0 h-[6px] w-[6px] rounded-full bg-error"></span>
         </div>
         <div>
           <HelpCircle
             data-testid="help"
-            className="text-neutral-dark-2 h-6 w-6"
+            className="h-6 w-6 text-neutral-dark-2"
           />
         </div>
-        <div className="flex justify-between items-center gap-2 max-w-[64px] w-full">
+        <div className="flex w-full max-w-[64px] items-center justify-between gap-2">
           <Avatar data-testid="avatar" className="h-10 w-10">
             <AvatarImage src="https://github.com/shadcn.png" />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
           <ChevronDown
             data-testid="chevronDown"
-            className="text-neutral-dark-1 h-5 2-5"
+            className="2-5 h-5 text-neutral-dark-1"
           />
         </div>
       </div>
