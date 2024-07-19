@@ -12,7 +12,8 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "~/components/ui/breadcrumb";
+} from "~/components/common/Breadcrumb/breadcrumb";
+import { cn } from "~/lib/utils";
 
 type PagesList = {
   name: string;
@@ -52,14 +53,12 @@ export function Breadcrumb({
       <BreadcrumbList>
         <BreadcrumbItem>
           {firstBreadcrumb.isCurrent ? (
-            <BreadcrumbPage
-              className={isPrimary ? "text-[#F97316]" : "text-[#6A6A6A]"}
-            >
+            <BreadcrumbPage className={cn(isPrimary && "text-primary")}>
               {firstBreadcrumb.name}
             </BreadcrumbPage>
           ) : (
             <BreadcrumbLink
-              className={isPrimary ? "text-[#525252]" : "text-[#222222]"}
+              className={cn(isPrimary && "text-neutral-dark-1")}
               asChild
             >
               <Link href={firstBreadcrumb.href}>{firstBreadcrumb.name}</Link>
@@ -68,10 +67,10 @@ export function Breadcrumb({
         </BreadcrumbItem>
         {hasEllipsis && (
           <>
-            <BreadcrumbSeparator className="text-[#6A6A6A]" />
+            <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbLink
-                className={isPrimary ? "text-[#525252]" : "text-[#222222]"}
+                className={cn(isPrimary && "text-neutral-dark-1")}
                 asChild
               >
                 <Link href={breadcrumbs[breadcrumbs.length - maxPages].href}>
@@ -86,23 +85,17 @@ export function Breadcrumb({
           .map(({ name, href, isCurrent }) => {
             return (
               <Fragment key={name}>
-                <BreadcrumbSeparator className="text-[#6A6A6A]" />
+                <BreadcrumbSeparator />
                 {isCurrent ? (
                   <BreadcrumbItem>
-                    <BreadcrumbPage
-                      className={
-                        isPrimary ? "text-[#F97316]" : "text-[#6A6A6A]"
-                      }
-                    >
+                    <BreadcrumbPage className={cn(isPrimary && "text-primary")}>
                       {name}
                     </BreadcrumbPage>
                   </BreadcrumbItem>
                 ) : (
                   <BreadcrumbItem>
                     <BreadcrumbLink
-                      className={
-                        isPrimary ? "text-[#525252]" : "text-[#222222]"
-                      }
+                      className={cn(isPrimary && "text-neutral-dark-1")}
                       asChild
                     >
                       <Link href={href}>{name}</Link>
