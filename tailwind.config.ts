@@ -25,8 +25,35 @@ const config = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          50: "#E1E8EF",
+          100: "#D4DEE7",
+          200: "#B7C7D7",
+          300: "#99B0C7",
+          400: "#7C99B6",
+          500: "#5E82A6",
+          600: "#4C6B8A",
+          700: "#3C546C",
+          800: "#2C3D4F",
+          900: "#1B2631",
+          950: "#141C24",
+        },
+        acent: {
+          100: "#FFF7F2",
+          200: "#F6C790",
+          300: "#E77F1E",
+          400: "#F97316",
+        },
+        natural: {
+          100: "#FAFAFA",
+          200: "#525252",
+          300: "#0A0A0A",
+          400: "#000000",
+        },
+        stroke: {
+          100: "#DCDCDC",
+          200: "#FDFDFD",
+          300: "#CBD5E1",
+          400: "#E4E4E7",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -60,6 +87,13 @@ const config = {
           },
         },
       },
+      // fontSize: {
+      //   fns: {
+      //     16: "16px",
+      //     18: "20px",
+      //     24: "24px",
+      //   },
+      // },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

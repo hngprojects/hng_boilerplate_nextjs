@@ -3,6 +3,9 @@ import { Inter } from "next/font/google";
 
 import "./globals.css";
 
+import Navbar from "~/components/layouts/Navbar";
+import SideBar from "~/components/layouts/Sidebar";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,7 +20,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={`antialiased flex min-h-screen bg-stroke-200 ${inter.className}`}
+      >
+        <SideBar />
+        <div className="flex-auto">
+          <Navbar />
+          <div className="p-[30px]">{children}</div>
+        </div>
+      </body>
     </html>
   );
 }
