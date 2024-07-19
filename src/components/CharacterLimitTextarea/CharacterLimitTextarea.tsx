@@ -1,5 +1,3 @@
-// 'use client'; // Add this if you're using the App Router and this is a client component
-
 import React from "react";
 import { useCharacterLimit } from "./useCharacterLimit";
 

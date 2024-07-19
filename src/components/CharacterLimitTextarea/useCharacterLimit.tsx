@@ -1,5 +1,3 @@
-// 'use client'; // Add this if you're using the App Router and this is a client hook
-
 import { useState, useEffect } from 'react';
 
 export function useCharacterLimit(value: string, maxLength: number, label: string) {
