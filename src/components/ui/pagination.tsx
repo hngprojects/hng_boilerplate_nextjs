@@ -5,7 +5,10 @@ import * as React from "react";
 import { ButtonProperties, buttonVariants } from "~/components/ui/button";
 import { cn } from "~/lib/utils";
 
-const Pagination = ({ className, ...properties }: React.ComponentProps<"nav">) => (
+const Pagination = ({
+  className,
+  ...properties
+}: React.ComponentProps<"nav">) => (
   <nav
     role="navigation"
     aria-label="pagination"
