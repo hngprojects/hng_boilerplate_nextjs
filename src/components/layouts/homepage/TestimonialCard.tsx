@@ -11,7 +11,7 @@ interface Props {
 
 const TestimonialCard = (props: Props) => {
     return (
-        <div className="testimonial-card">
+        <div className="testimonial-card bg-[#ffffff] border border-primary border-solid ">
             <p>“I've been using this web hosting service for over a year and I'm really impressed with the uptime and support. The website has never gone down and the customer service is always quick to help with any issues I have. Highly recommend!”</p>
 
             <Rating/>
