@@ -6,6 +6,45 @@ const Btn: React.FC = () => {
     return (
         <main className="flex min-h-screen flex-col items-start gap-7 p-6 overflow-hidden md:p-24 sm:p-12">
             <h2 className="text-2xl font-semibold">
+                Color Guides
+            </h2>
+            <div className="grid w-full items-start gap-4" style={{ gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))" }}>
+                <div className="rounded-lg px-4 py-4 bg-default text-background whitespace-nowrap w-full flex items-center justify-center">
+                    bg-default, text-background
+                </div>
+                <div className="rounded-lg px-4 py-4 bg-background text-foreground border border-border whitespace-nowrap w-full flex items-center justify-center">
+                    bg-background, text-foreground
+                </div>
+                <div className="rounded-lg px-4 py-4 bg-primary text-background whitespace-nowrap w-full flex items-center justify-center">
+                    bg-primary, text-background
+                </div>
+                <div className="rounded-lg px-4 py-4 bg-subtle text-foreground whitespace-nowrap w-full flex items-center justify-center">
+                    bg-subtle, text-foreground
+                </div>
+                <div className="rounded-lg px-4 py-4 bg-neutral-dark-1 text-background whitespace-nowrap w-full flex items-center justify-center">
+                    bg-neutral-dark-1, text-background
+                </div>
+                <div className="rounded-lg px-4 py-4 bg-neutral-dark-2 text-background whitespace-nowrap w-full flex items-center justify-center">
+                    bg-neutral-dark-2, text-background
+                </div>
+
+                <div className="rounded-lg px-4 py-4 bg-error text-background whitespace-nowrap w-full flex items-center justify-center">
+                    bg-error, text-background
+                </div>
+                <div className="rounded-lg px-4 py-4 bg-destructive text-background whitespace-nowrap w-full flex items-center justify-center">
+                    bg-destructive, text-background
+                </div>
+                <div className="rounded-lg px-4 py-4 bg-warning text-background whitespace-nowrap w-full flex items-center justify-center">
+                    bg-warning, text-background
+                </div>
+                <div className="rounded-lg px-4 py-4 bg-success text-background whitespace-nowrap w-full flex items-center justify-center">
+                    bg-success, text-background
+                </div>
+                <div className="rounded-lg px-4 py-4 border-border border text-foreground whitespace-nowrap w-full flex items-center justify-center">
+                    border-border, text-foreground
+                </div>
+            </div>
+            <h2 className="text-2xl font-semibold">
                 Button Variants
             </h2>
             <div className="grid grid-cols-5 w-full items-start gap-4" style={{ gridTemplateColumns: "repeat(auto-fit,minmax(250px,1fr))" }}>
