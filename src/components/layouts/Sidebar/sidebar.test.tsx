@@ -80,13 +80,13 @@ describe("sidebar", () => {
     render(<Sidebar />);
 
     const homeLink = screen.getByRole("link", { name: /home/i });
-    console.debug(homeLink.firstChild.outerHTML);
-    expect(homeLink).not.toHaveClass("text-white bg-primary_color");
+
+    expect(homeLink.firstChild).not.toHaveClass("bg-primary_color");
     //console.debug(homeLink.outerHTML);
 
     const aboutLink = screen.getByRole("link", { name: /about us/i });
     //console.debug(aboutLink.outerHTML);
-    console.debug(aboutLink.children[0].outerHTML);
-    expect(aboutLink).toHaveClass("text-white bg-primary_color");
+
+    expect(aboutLink.firstChild).toHaveClass("bg-primary_color");
   });
 });
