@@ -61,4 +61,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            ./deploy_prod.sh
+            ./deploy_prod.sh next
