@@ -20,12 +20,14 @@ const config = {
     extend: {
       colors: {
         border: "hsl(var(--border))",
+        "card-border": "#FAFAFA",
+        cardText: "#0A0A0A",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
+          DEFAULT: "#F97316",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
@@ -35,25 +37,6 @@ const config = {
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
-        },
-        subtle: {
-          DEFAULT: "hsl(var(--subtle))",
-          hover: "hsl(var(--subtle-hover))",
-          foreground: "hsl(var(--subtle-foreground))",
-        },
-        loading: {
-          DEFAULT: "hsl(var(--loading))",
-          hover: "hsl(var(--loading-hover))",
-          foreground: "hsl(var(--loading-foreground))",
-        },
-        outline: {
-          DEFAULT: "hsl(var(--outline))",
-          hover: "hsl(var(--outline-hover))",
-          border: "hsl(var(--outline-border))",
-          foreground: "hsl(var(--outline-foreground))",
-        },
-        link: {
-          DEFAULT: "hsl(var(--link))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
@@ -68,20 +51,8 @@ const config = {
           foreground: "hsl(var(--popover-foreground))",
         },
         card: {
-          DEFAULT: "var(--card)",
-          foreground: "var(--card-foreground)",
-        },
-        error: "hsl(var(--error))",
-        success: "hsl(var(--success))",
-        warning: "hsl(var(--warning))",
-        neutral: {
-          dark: {
-            1: "hsl(var(--neutralColor-dark-1))",
-            2: "hsl(var(--neutralColor-dark-2))",
-          },
-        },
-        stroke: {
-          "colors-stroke": "hsl(var(--stroke-colors-stroke))",
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
         },
       },
       borderRadius: {
