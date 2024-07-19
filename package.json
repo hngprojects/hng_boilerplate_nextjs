@@ -12,19 +12,24 @@
     "shad:add": "npx shadcn-ui@latest add",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "test:ci": "vitest --coverage"
+    "test:ci": "vitest --coverage",
+    "email:dev": "email dev --dir \"./src/email/templates\"",
+    "email:build": "email build --dir \"./src/email/templates\"",
+    "email:start": "email start"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.0",
+    "@react-email/components": "0.0.21",
     "@t3-oss/env-nextjs": "^0.10.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.400.0",
     "next": "14.2.4",
     "next-auth": "5.0.0-beta.19",
-    "pnpm": "^9.5.0",
+
     "react": "^18",
     "react-dom": "^18",
+    "react-email": "2.1.5",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.8"
@@ -57,6 +62,7 @@
     "jsdom": "^24.1.0",
     "postcss": "^8",
     "prettier": "^3.3.2",
+    "prettier-plugin-tailwindcss": "^0.6.5",
     "tailwindcss": "^3.4.1",
     "typescript": "^5",
     "vitest": "^1.6.0"
