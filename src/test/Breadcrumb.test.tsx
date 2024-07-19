@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { describe, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import { Breadcrumb } from "~/components/common/Breadcrumb";
 
