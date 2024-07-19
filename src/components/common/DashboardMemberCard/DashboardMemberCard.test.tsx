@@ -66,6 +66,7 @@ describe("<DashboardMemberCard />", () => {
 
     it("has required props (profileImage)", () => {
       expect.assertions(1);
+      
       // eslint-disable-next-line testing-library/prefer-screen-queries
       expect(Card.props.profileImage).toBeDefined();
     });
