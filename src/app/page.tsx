@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import LinearGradientGenrator from "~/components/LinearGradientGenerator";
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -108,6 +110,11 @@ export default function Home() {
           </p>
         </a>
       </div>
+      <LinearGradientGenrator
+        colors={["#ff0000", "#00ff00"]}
+        direction="to bottom"
+        stops={["0%", "100%"]}
+      />
     </main>
   );
 }
