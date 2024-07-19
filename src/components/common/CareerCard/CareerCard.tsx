@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardFooter } from "~/components/ui/card";
 import { Skeleton } from "~/components/ui/skeleton";
@@ -31,7 +30,7 @@ const CareerCard: React.FC<CareerCardProperties> = ({
               data-testid="skeleton"
             />
             <div className="space-y-2">
-              <Skeleton className="h-4 w-[500px]" data-testid="skeleton" />
+              <Skeleton className="h-4  w-[250px] sm:w-[500px]" data-testid="skeleton" />
               <Skeleton
                 className="h-4 w-[250px] md:w-full"
                 data-testid="skeleton"
@@ -62,7 +61,7 @@ const CareerCard: React.FC<CareerCardProperties> = ({
             </span>
             <Button
               onClick={onViewDetails}
-              className="hover:transtion-all hover:bg-primary/300 bg-primary text-white hover:scale-[1.03] hover:duration-200"
+              className="hover:transtion-all hover:bg-careerBtn/300 bg-careerBtn text-white hover:scale-[1.03] hover:duration-400"
             >
               View Details
             </Button>

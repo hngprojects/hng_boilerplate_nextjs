@@ -1,11 +1,7 @@
-// pages/index.tsx
 "use client";
-
 import React, { useEffect, useState } from "react";
-
 import CareerCard from "./CareerCard";
 
-//The View details button function
 const handleViewDetails = () => {
   console.log("View career details!");
 };
@@ -14,7 +10,7 @@ const CareerCardParent: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading
+
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 2000);
