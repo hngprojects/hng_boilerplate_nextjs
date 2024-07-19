@@ -9,7 +9,19 @@ export default function EmailSubscription() {
     <>
       <Header />
       <main className="main">
-        <Email />
+        <Email
+          title="Subscription Renewal Reminder"
+          name="John Doe"
+          imageUrl="/pana.svg"
+          renewalDate="17th September, 2024"
+          renewalPrice="$20.89"
+          renewalPeriod="Bi-monthly"
+          reviewUrl="/"
+          renewUrl="/"
+          faqUrl="/"
+          helpUrl="/"
+          unsubscribeUrl="/"
+        />
       </main>
       <Footer />
     </>
