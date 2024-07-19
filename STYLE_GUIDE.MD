@@ -51,6 +51,7 @@ htpp://localhost:3000/guides
 - Use the global CSS variables
 - Use Tailwind CSS and shadCN exclusively.
 - UI components should be stored in `~/components/common`
+- Modal components should be stored in `~/components/modals`
 - Layout components should be stored in `~/components/layouts`
 - All tests should be stored in `~/test`
 
