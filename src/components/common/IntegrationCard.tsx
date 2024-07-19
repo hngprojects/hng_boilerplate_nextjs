@@ -7,13 +7,14 @@ type CardProps = {
   heading: string;
   description: string;
   logoURL: string;
+  isActive: boolean
 };
 export const TOGGLE_BTN_TEST_ID: string = "toggleBtn";
 export const INTEGRATION_CARD_TEST_ID: string = "integrationCard";
 export const INTEGRATION_CARD_IMAGE_TEST_ID: string = "integrationCardImage";
 
 export const IntegrationCard = (props: CardProps) => {
-  const [isActive, setisActive] = useState<boolean>(false);
+  const [isActive, setisActive] = useState<boolean>(props.isActive);
 
   const updateActiveState = () => {
     //Update the backend API to refelect if a service is active or not
@@ -37,8 +38,8 @@ export const IntegrationCard = (props: CardProps) => {
         <Image
           data-testid={INTEGRATION_CARD_IMAGE_TEST_ID}
           src={props.logoURL}
-          width={24}
-          height={24}
+          width={40}
+          height={40}
           alt={props.heading}
           className="w-8 h-8"
         />
