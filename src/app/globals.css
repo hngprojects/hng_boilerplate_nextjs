@@ -33,6 +33,10 @@
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
+
+    --stroke-colors-stroke: 213, 27%, 84%;
+
+    --primary-primary: 25, 95%, 53%;
   }
 
   .dark {
