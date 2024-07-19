@@ -27,6 +27,7 @@ const config = {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          primary: "hsl(var(--primary-primary))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -80,6 +81,9 @@ const config = {
             2: "hsl(var(--neutralColor-dark-2))",
           },
         },
+        stroke: {
+          "colors-stroke": "hsl(var(--stroke-colors-stroke))",
+        }
       },
       borderRadius: {
         lg: "var(--radius)",
