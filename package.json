@@ -18,6 +18,8 @@
     "email:start": "email start"
   },
   "dependencies": {
+    "@radix-ui/react-alert-dialog": "^1.1.1",
+    "@radix-ui/react-slot": "^1.1.0",
     "@react-email/components": "0.0.21",
     "@t3-oss/env-nextjs": "^0.10.1",
     "class-variance-authority": "^0.7.0",
