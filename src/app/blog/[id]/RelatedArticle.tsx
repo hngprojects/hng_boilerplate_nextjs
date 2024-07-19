@@ -40,7 +40,7 @@ const RelatedArticle = () => {
           throw new Error("Something went wrong");
         }
         const data = await response.json();
-        setNews(data);
+        setNews(data.slice(0, 3));
       } catch (error) {
         if (error instanceof Error) {
           setError(error.message);
@@ -54,15 +54,6 @@ const RelatedArticle = () => {
     getData();
   }, []);
 
-  const dataNews = news.slice(0, 3);
-
-  if (loading) {
-    return (
-      <div className="p-[0] sm:px-[100px]">
-        <p className="text-[24px] font-bold text-[#525252]">Loading...</p>
-      </div>
-    );
-  }
   if (errors) {
     return (
       <p className="p-[0] text-[24px] font-bold text-[#525252] sm:px-[100px]">
@@ -70,21 +61,29 @@ const RelatedArticle = () => {
       </p>
     );
   }
+
   return (
     <div className="flex w-[372px] flex-col justify-center gap-[24px] bg-[#FAFAFA] px-[0px] py-[16px] sm:w-full sm:px-[100px]">
       <h1 className="ml-[17px] text-[28px] font-bold text-[#525252] md:ml-[0px]">
         Related Articles
       </h1>
-      <div className="flex flex-wrap gap-[24px] md:flex-nowrap">
-        {dataNews.map((article, index) => (
-          <div key={article.id} role="listitem">
-            <BlogCard
-              article={article}
-              newsType={newsTypes[index % newsTypes.length]}
-            />
-          </div>
-        ))}
-      </div>
+
+      {loading ? (
+        <div className="p-[0] sm:px-[100px]">
+          <p className="text-[24px] font-bold text-[#525252]">Loading...</p>
+        </div>
+      ) : (
+        <div className="flex flex-wrap gap-[24px] md:flex-nowrap">
+          {news.map((article, index) => (
+            <div key={article.id}>
+              <BlogCard
+                article={article}
+                newsType={newsTypes[index % newsTypes.length]}
+              />
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
