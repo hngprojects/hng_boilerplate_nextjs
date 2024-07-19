@@ -20,13 +20,4 @@ describe("related Article", () => {
     expect(textElement).toBeInTheDocument();
     expect(textElement).toHaveTextContent("Related Articles");
   });
-
-  it("should render a list of news", () => {
-    expect.hasAssertions();
-    render(<RelatedArticle />);
-
-    const textElement = screen.getByRole("heading");
-    expect(textElement).toBeInTheDocument();
-    expect(textElement).toHaveTextContent("Related Articles");
-  });
 });
