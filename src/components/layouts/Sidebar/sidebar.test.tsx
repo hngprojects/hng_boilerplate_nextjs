@@ -81,12 +81,12 @@ describe("sidebar", () => {
 
     const homeLink = screen.getByRole("link", { name: /home/i });
 
-    expect(homeLink.firstChild).not.toHaveClass("bg-primary_color");
+    expect(homeLink.firstChild).not.toHaveClass("bg-primary");
     //console.debug(homeLink.outerHTML);
 
     const aboutLink = screen.getByRole("link", { name: /about us/i });
     //console.debug(aboutLink.outerHTML);
 
-    expect(aboutLink.firstChild).toHaveClass("bg-primary_color");
+    expect(aboutLink.firstChild).toHaveClass("bg-primary");
   });
 });
