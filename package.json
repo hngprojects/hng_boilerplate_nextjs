@@ -18,6 +18,7 @@
     "email:start": "email start"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.1.0",
     "@react-email/components": "0.0.21",
     "@t3-oss/env-nextjs": "^0.10.1",
     "@radix-ui/react-avatar": "^1.1.0",
@@ -64,6 +65,7 @@
     "prettier-plugin-tailwindcss": "^0.6.5",
     "tailwindcss": "^3.4.1",
     "typescript": "^5",
+    "vite-tsconfig-paths": "^4.3.2",
     "vitest": "^1.6.0"
   }
 }
