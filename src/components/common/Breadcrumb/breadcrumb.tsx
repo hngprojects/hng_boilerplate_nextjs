@@ -26,7 +26,7 @@ const BreadcrumbList = forwardRef<
   <ol
     ref={reference}
     className={cn(
-      "flex flex-wrap items-center gap-1.5 break-words text-xs text-muted-foreground sm:gap-3",
+      "flex flex-wrap items-center gap-1.5 break-words text-xs text-foreground sm:gap-3",
       className,
     )}
     {...properties}
@@ -58,7 +58,7 @@ const BreadcrumbLink = forwardRef<
     <Comp
       ref={reference}
       className={cn(
-        "capitalize transition-colors hover:text-[#0A0A0A]",
+        "text-breadcrumb-foreground hover:text-neutral-dark-2 capitalize transition-colors",
         className,
       )}
       {...properties}
@@ -76,7 +76,7 @@ const BreadcrumbPage = forwardRef<
     role="link"
     aria-disabled="true"
     aria-current="page"
-    className={cn("font-normal capitalize text-foreground", className)}
+    className={cn("text-breadcrumb-page/50 font-normal capitalize", className)}
     {...properties}
   />
 ));
@@ -90,7 +90,7 @@ const BreadcrumbSeparator = ({
   <li
     role="presentation"
     aria-hidden="true"
-    className={cn("[&>svg]:size-3.5", className)}
+    className={cn("text-breadcrumb-page [&>svg]:size-3.5", className)}
     {...properties}
   >
     {children ?? <ChevronRight />}
