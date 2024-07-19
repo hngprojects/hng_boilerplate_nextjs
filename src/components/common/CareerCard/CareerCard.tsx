@@ -26,10 +26,19 @@ const CareerCard: React.FC<CareerCardProperties> = ({
       <CardContent className="pt-6">
         {isLoading ? (
           <div className="flex flex-col space-y-3">
-            <Skeleton className="h-[125px] w-[250px] rounded-[7px] md:w-full" />
+            <Skeleton
+              className="h-[125px] w-[250px] rounded-[7px] md:w-full"
+              data-testid="skeleton"
+            />
             <div className="space-y-2">
-              <Skeleton className="h-4 w-[250px] md:w-full" />
-              <Skeleton className="h-4 w-[200px] md:w-full" />
+              <Skeleton
+                className="h-4 w-[250px] md:w-full"
+                data-testid="skeleton"
+              />
+              <Skeleton
+                className="h-4 w-[200px] md:w-full"
+                data-testid="skeleton"
+              />
             </div>
           </div>
         ) : (
@@ -45,8 +54,8 @@ const CareerCard: React.FC<CareerCardProperties> = ({
       <CardFooter className="flex items-center justify-between">
         {isLoading ? (
           <>
-            <Skeleton className="h-6 w-1/3" />
-            <Skeleton className="h-10 w-28" />
+            <Skeleton className="h-6 w-1/3" data-testid="skeleton" />
+            <Skeleton className="h-10 w-28" data-testid="skeleton" />
           </>
         ) : (
           <>
