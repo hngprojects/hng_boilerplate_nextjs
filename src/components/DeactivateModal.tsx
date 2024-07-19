@@ -1,49 +1,46 @@
+import Image from "next/image"; // Import Image component for optimization
 import { FC, useEffect, useRef } from "react";
 
 // Define the props interface
-interface DeactivateModalProps {
+interface DeactivateModalProperties {
   isOpen: boolean;
   onClose: () => void;
   onDeactivate: () => void;
 }
 
-const DeactivateModal: FC<DeactivateModalProps> = ({
+const DeactivateModal: FC<DeactivateModalProperties> = ({
   isOpen,
   onClose,
   onDeactivate,
 }) => {
   // Create a ref to the modal container
-  const modalRef = useRef<HTMLDivElement>(null);
+  const modalReference = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    // Define a function to handle clicks outside the modal
     const handleClickOutside = (event: MouseEvent) => {
       if (
-        modalRef.current &&
-        !modalRef.current.contains(event.target as Node)
+        modalReference.current &&
+        !modalReference.current.contains(event.target as Node)
       ) {
         onClose();
       }
     };
 
-    // Add event listener if the modal is open
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     }
 
-    // Clean up event listener on component unmount or when `isOpen` changes
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isOpen, onClose]);
 
-  // Do not render anything if modal is not open
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-[#FAFAFA] bg-opacity-50 z-50">
       <div
-        ref={modalRef}
+        ref={modalReference}
         role="dialog"
         className="bg-[#FFFFFF] rounded-md shadow-lg p-6 w-[424px] flex flex-col items-center relative"
       >
@@ -53,7 +50,14 @@ const DeactivateModal: FC<DeactivateModalProps> = ({
         >
           &times;
         </button>
-        <img src="/logo.png" alt="Logo" className="mb-4" />
+        <Image
+          src="/logo.png"
+          alt="Logo"
+          width={48}
+          height={48}
+          className="mb-4"
+        />{" "}
+        {/* Use Image component */}
         <h1 className="text-xl font-semibold text-center text-[#0A0A0A]">
           Deactivate Microsoft Teams?
         </h1>
