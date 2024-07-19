@@ -1,11 +1,15 @@
 import { useState } from 'react';
 
 export const useDeleteModal = () => {
-  const [isVisible, setIsVisible] = useState<boolean>(true);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
-  const closeDeleteModal = () => {
+  const openDeleteModal = () => {
     setIsVisible(!isVisible);
   };
 
-  return { isVisible, closeDeleteModal };
+  const closeDeleteModal = () => {
+    setIsVisible(false);
+  };
+
+  return { isVisible, closeDeleteModal, openDeleteModal };
 };
