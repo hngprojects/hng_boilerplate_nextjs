@@ -58,7 +58,7 @@ const Pagination = ({
     const pages = [];
     const showEllipsis = totalPages > 3;
 
-    if (!showEllipsis) {
+    if (showEllipsis === false) {
       for (let index = 1; index <= totalPages; index++) {
         pages.push(index);
       }
@@ -97,7 +97,7 @@ const Pagination = ({
             } ${
               currentPage > 1
                 ? "cursor-pointer"
-                : "cursor-not-allowed text-stroke-colors-stroke hover:text-stroke-colors-stroke hover:bg-transparent"
+                : "cursor-not-allowed text-stroke-colors-stroke hover:bg-transparent hover:text-stroke-colors-stroke"
             }`}
             href={currentPage > 1 ? `?page=${currentPage - 1}` : "#"}
           />
@@ -111,7 +111,7 @@ const Pagination = ({
                 activeVariant={activeVariant}
                 className={
                   currentPage === page && activeVariant === "default"
-                    ? "bg-primary-primary"
+                    ? "bg-primary"
                     : ""
                 }
               >
