@@ -1,9 +1,5 @@
-// __tests__/TopProductLists.test.tsx
-import { render, screen } from "@testing-library/react";
-
 import TopProductLists from "../components/TopProductLists";
-
-import "@testing-library/jest-dom";
+import { render, screen } from "../test/utils";
 
 vi.mock("next/image", () => ({
   __esModule: true,
@@ -27,11 +23,12 @@ vi.mock("next/image", () => ({
       height={height}
       data-testid={testId}
     />
-  ), // Mock next/image as standard img
+  ),
 }));
 
 describe("topProductLists", () => {
   it("renders TopProductLists component with header", () => {
+    expect.hasAssertions();
     render(<TopProductLists />);
     expect(screen.getByTestId("top-products-title")).toHaveTextContent(
       "Top Products",
@@ -42,6 +39,7 @@ describe("topProductLists", () => {
   });
 
   it("renders View All button", () => {
+    expect.hasAssertions();
     render(<TopProductLists />);
     const button = screen.getByTestId("view-all-button");
     expect(button).toBeInTheDocument();
@@ -49,6 +47,7 @@ describe("topProductLists", () => {
   });
 
   it("renders product list items", () => {
+    expect.hasAssertions();
     render(<TopProductLists />);
     expect(screen.getByText("The Lemonade blender")).toBeInTheDocument();
     expect(screen.getByText("500 sales")).toBeInTheDocument();
@@ -57,6 +56,7 @@ describe("topProductLists", () => {
   });
 
   it("renders product images with correct alt text", () => {
+    expect.hasAssertions();
     render(<TopProductLists />);
     const lemonadeImage = screen.getByTestId("product-image-1");
     const beanCakeImage = screen.getByTestId("product-image-2");

@@ -1,9 +1,5 @@
-// __tests__/ProductList.test.tsx
-import { render, screen } from "@testing-library/react";
-
 import ProductList, { ProductListProperties } from "../components/ProductList";
-
-import "@testing-library/jest-dom";
+import { render, screen } from "../test/utils";
 
 vi.mock("next/image", () => ({
   __esModule: true,
@@ -27,7 +23,7 @@ vi.mock("next/image", () => ({
       height={height}
       data-testid={testId}
     />
-  ), // Mock next/image as standard img
+  ),
 }));
 
 describe("productList", () => {
@@ -39,6 +35,7 @@ describe("productList", () => {
   };
 
   it("renders ProductList component with props", () => {
+    expect.hasAssertions();
     render(<ProductList {...productProperties} />);
     expect(screen.getByTestId("product-name")).toHaveTextContent(
       "Test Product",
@@ -47,6 +44,7 @@ describe("productList", () => {
   });
 
   it("renders product image with correct alt text", () => {
+    expect.hasAssertions();
     render(<ProductList {...productProperties} />);
     const image = screen.getByTestId("product-image-1");
     expect(image).toHaveAttribute("alt", "Test Product");
