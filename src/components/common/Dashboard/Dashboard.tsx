@@ -115,17 +115,19 @@ export default function Home() {
         </div>
         <div className="w-full bg-white p-4 rounded shadow lg:col-span-2">
           <h2 className="font-semibold">Recent Sales</h2>
-          <h1 className="text-gray-600 mb-4">You made 265 sales this month</h1>
+          <h1 className="text-gray-600 mb-6">You made 265 sales this month</h1>
           <ul>
             {data.map((item, index) => (
               <li key={index} className="flex justify-between mb-2">
-                <p
-                  className="rounded-full p-6"
-                  style={{ background: gradients[index % gradients.length] }}
-                ></p>
-                <div>
-                  <p className="font-bold">{item.name}</p>
-                  <p className="text-sm text-gray-600">{item.email}</p>
+                <div className="flex justify-start space-x-4">
+                  <p
+                    className="rounded-full p-6"
+                    style={{ background: gradients[index % gradients.length] }}
+                  ></p>
+                  <div>
+                    <p className="font-bold">{item.name}</p>
+                    <p className="text-sm text-gray-600">{item.email}</p>
+                  </div>
                 </div>
                 <p className="text-green-600">{item.amount}</p>
               </li>
