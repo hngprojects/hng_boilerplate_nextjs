@@ -3,9 +3,9 @@ import SuperAdminSideNav from "~/components/common/SuperAdminSideNav"
 
 const SuperAdmin: React.FC = () => {
     return (
-        <>
+     
         <SuperAdminSideNav />
-        </>
+    
     )
 }
 
