@@ -182,7 +182,7 @@ const Button: React.FC = () => {
             <span className="block font-mono text-sm text-white">
               import <span className="text-blue-400">CustomButton</span> from{" "}
               <span className="text-yellow-400">
-                &quot;~/components/common/Button/button&quot;
+                "~/components/common/Button/button"
               </span>
               ;
             </span>
@@ -266,9 +266,7 @@ const Button: React.FC = () => {
               <span className="text-blue-400">CustomButton</span>
               <br />
               <span className="ml-4">
-                variant=
-                <span className="text-yellow-400">&quot;subtle&quot;</span>{" "}
-                <br />
+                variant=<span className="text-yellow-400">"subtle"</span> <br />
               </span>
               <span className="ml-4">
                 icon=<span className="text-yellow-400">{"{<Plus />}"}</span>{" "}
