@@ -24,7 +24,7 @@ export function DatePickerDemo() {
           <Button
             variant={"outline"}
             className={cn(
-              "justify-start text-left font-normal border-0",
+              "justify-start text-left font-normal border-0 p-[8px]",
               !fromDate && !toDate && "text-muted-foreground",
             )}
           >
@@ -37,7 +37,7 @@ export function DatePickerDemo() {
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-auto p-4 border-0 flex gap-4">
-          <div>
+          <div className="text-[#0A0A0A] ">
             <h3 className="mb-2">From Date</h3>
             <Calendar
               mode="single"

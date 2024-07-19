@@ -30,7 +30,7 @@ const chartData = [
 const chartConfig = {
   desktop: {
     label: "Revenue",
-    color: "hsl(30, 100%, 50%)",
+    color: "#F97316",
   },
 } satisfies ChartConfig;
 
