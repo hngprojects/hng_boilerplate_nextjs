@@ -3,21 +3,27 @@
 @tailwind utilities;
 
 *{
-  transition: all .4s ease-in-out; 
+  transition: all .5s ease-in-out; 
   --pri: #F97316;
 } 
-.all-cover{
-  width: Fixed (657px)px;
-  height: Hug (775px)px;
-  top: 124px;
-  left: 392px;
-  padding: 43px 41px 43px 41px;
-  gap: 10px;
-  border-radius: 6px 0px 0px 0px;
-  border: 1px 0px 0px 0px;
+
+.img-view-cover{
+  display: flex;
+  gap: 1.5rem;
+  width: Hug (288px)px;
+  height: Hug (86px)px;
+  gap: 15px;
   opacity: 0px;
 }
-.open-add-product button, .add-product-btn{
+
+.img-view{
+  width: 86px;
+  height: 86px;
+  border-radius: 4px;
+  background: #FAFAFA;
+}
+
+.add-product-btn{
   background-color: var(--pri);
   color: #ffffff;
   padding: 8px, 16px, 8px, 16px;
