@@ -1,5 +1,10 @@
-import { Obligations } from "../../constants/constant";
-import { TermsType } from "../../types/types";
+import { Obligations } from "~/components/common/LegalTerms/Terms&Conditions/constants/constant";
+
+
+interface TermsType {
+  title: string;
+  value: string;
+}
 
 const UserObligations = () => {
   return (

@@ -1,7 +1,5 @@
-// import React from "react";
-
-import Breadcrumb from "../components/TermsAndConditions/Main";
-import Hero from "../components/TermsAndConditions/Hero";
+import Breadcrumb from "../../components/common/LegalTerms/Terms&Conditions/Main";
+import Hero from "../../components/common/LegalTerms/Terms&Conditions/Hero";
 
 const TermsConditions = () => {
   return (

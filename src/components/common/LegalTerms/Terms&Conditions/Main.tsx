@@ -1,10 +1,8 @@
-// import type { NextPage } from "next";
-
 import Link from "next/link";
 
 import AcceptableUse from "./AcceptableUse";
 import Breadcrumb from "./Breadcrumb";
-import Discclaimer from "./Discclaimer";
+import Discclaimer from "./Disclaimer";
 import GoverningLaws from "./GoverningLaws";
 import IntellectualProperty from "./IntellectualProperty";
 import TableOfContents from "./TableOfContents";
