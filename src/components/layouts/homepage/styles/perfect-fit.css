@@ -1,5 +1,4 @@
 .perfect-fit {
-  background: #FBF3F3;
   padding: 96px 0;
   text-align:center;
 }
@@ -16,14 +15,11 @@
   font-weight: 400;
   font-family: "Inter";
   margin-bottom:31px;
-color: #525252;
 }
 
 .perfect-fit button{
       padding: 12px 30px;
   border-radius: 6px;
-  background: var(--Primary-Primary-Color, #f97316);
-  color: white;
   border: none;
 }
 
