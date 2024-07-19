@@ -18,6 +18,7 @@ export default function EmailSubscription() {
           renewalPeriod="Bi-monthly"
           reviewUrl="/"
           renewUrl="/"
+          companyName="Boilerplate"
           faqUrl="/"
           helpUrl="/"
           unsubscribeUrl="/"

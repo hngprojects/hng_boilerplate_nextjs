@@ -11,6 +11,7 @@ interface Properties {
   renewalPeriod: string;
   reviewUrl: string;
   renewUrl: string;
+  companyName: string;
   faqUrl: string;
   helpUrl: string;
   unsubscribeUrl: string;
@@ -77,7 +78,9 @@ export default function Email(properties: Properties) {
         </Section>
         <Section className="px-[5.6rem]">
           <Text className="text-[#111] font-medium m-0">Regards,</Text>
-          <Text className="text-[#111] font-medium mt-0">Boilerplate</Text>
+          <Text className="text-[#111] font-medium mt-0">
+            {properties.companyName}
+          </Text>
           <Text className="text-[1.4rem] leading-[1.5] font-normal my-[5.6rem]">
             If you have questions, please visit our{" "}
             <Link href={properties.faqUrl}>
