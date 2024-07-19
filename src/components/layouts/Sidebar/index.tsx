@@ -15,7 +15,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-import { Button } from "~/components/ui/button";
+import CustomButton from "~/components/common/Button/button";
 import { cn } from "~/lib/utils";
 
 interface SidebarItem {
@@ -41,45 +41,45 @@ const Sidebar = () => {
     <>
       <div
         className={cn(
-          "flex flex-col h-screen bg-white border-r transition-all duration-300",
+          "flex h-screen flex-col border-r bg-white transition-all duration-300",
           isOpen ? "w-64" : "w-16",
         )}
       >
-        <div className="p-4 flex justify-between items-center mt-2 mb-5  mx-4 px-2">
+        <div className="mx-4 mb-5 mt-2 flex items-center justify-between p-4 px-2">
           {isOpen && (
-            <span className="text-center font-inter text-neutral-dark1 text-xl font-medium leading-[24.2px]">
+            <span className="font-inter text-center text-xl font-medium leading-[24.2px] text-neutral-dark1">
               LOGO
             </span>
           )}
 
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            onClick={() => {
-              setIsOpen((previous) => !previous);
-            }}
-            className="ml-auto"
+          <div
+            className={isOpen ? "ml-auto" : "ml-0"}
+            onClick={() => setIsOpen((previous) => !previous)}
           >
-            {isOpen ? <ArrowLeft size={20} /> : <ArrowRight size={20} />}
-          </Button>
+            <CustomButton
+              variant="ghost"
+              size="icon"
+              isIconOnly={true}
+              icon={isOpen ? <ArrowLeft size={20} /> : <ArrowRight size={20} />}
+            />
+          </div>
         </div>
-        <nav className="flex-1 mt-3">
+        <nav className="mt-3 flex-1">
           {sidebarItems.map((item) => (
             <Link
               key={item.name}
               href={item.href}
               className={cn(
-                "flex items-center my-5 py-1 mx-4 px-2 font-medium text-base leading-[19.2px] text-center font-inter text-neutral-dark1",
-                pathname === item.href && "text-white bg-primary_color",
-                !isOpen && "justify-center bg-white ",
+                "font-inter mx-4 my-5 flex items-center px-2 py-1 text-center text-base font-medium leading-[19.2px] text-neutral-dark1",
+                pathname === item.href && "bg-primary text-white",
+                !isOpen && "justify-center bg-white",
                 isOpen && "rounded",
               )}
             >
               <div
                 className={cn(
-                  "p-2  flex items-center justify-center",
-                  pathname === item.href && "rounded-full bg-primary_color",
+                  "flex items-center justify-center p-2",
+                  pathname === item.href && "rounded-full bg-primary",
                 )}
               >
                 <item.icon
