@@ -53,9 +53,7 @@ const Badge = ({ label, icon, variant }: BadgeInterface) => {
     <div
       className={`${badgeTextVariants[variant]} py-[2px] pr-2 pl-[6px] leading-[18px] md:py-[2px] md:pr-[10px] md:pl-[8px] md:text-[0.875rem] lg:py-1 lg:pr-3 lg:pl-[10px] lg:leading-[20px] capitalize flex gap-[6px] items-center rounded-[16px] max-w-max  font-[500] text-[0.75rem]`}
     >
-      <span role="img" aria-label={label}>
-        {icon && icon}
-      </span>
+      {icon && icon}
       <span>{label}</span>
     </div>
   );
