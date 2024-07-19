@@ -9,8 +9,16 @@ importers:
     dependencies:
       "@radix-ui/react-avatar":
         specifier: ^1.1.0
+<<<<<<< HEAD
         version: 1.1.0(@types/react@18.3.3)(react@18.3.1)
       "@react-email/components":
+=======
+        version: 1.1.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-slot':
+        specifier: ^1.1.0
+        version: 1.1.0(@types/react@18.3.3)(react@18.3.1)
+      '@react-email/components':
+>>>>>>> 798b3f7 (Version History)
         specifier: 0.0.21
         version: 0.0.21(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       "@t3-oss/env-nextjs":
