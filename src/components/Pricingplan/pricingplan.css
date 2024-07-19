@@ -1,0 +1,106 @@
+@font-face {
+    font-family: "Inter";
+    src: url("./Inter-VariableFont_slnt,wght.ttf");
+  }
+  
+
+
+.priceTag{
+        border: solid 1px #F97316;
+        border-radius: 12px;
+        padding: 32px 31px;
+        width: 350px;
+        font-family: "Inter", sans-serif;
+        box-sizing: border-box;
+    }
+
+.basicPriceTag{
+    border: 1px solid #CBD5E1;
+}
+
+ .innerdiv{
+ display: flex;
+ flex-direction: column;
+ gap: 1rem;
+ margin-bottom: 52px;
+ }
+
+ 
+
+ .innerdiv p{
+     font-weight: 400;
+     line-height: 23.4px;
+     font-size: 13px;
+ }
+
+ ul{
+     padding-left: 34px;
+     display: flex;
+     flex-direction: column;
+     gap: 1.25rem;
+     margin-bottom: 51px;
+     list-style: none;
+   }
+
+   .packages{
+       position: relative;
+   }
+
+   .packages::before{
+       content: url(icon.png);
+       position: absolute;
+       left: -2rem;
+   }
+
+   .greyed{
+    color: #ACACAC;
+ }
+
+ .greyed::before{
+    content: url(icon2.png);
+    position: absolute;
+    left: -2rem;
+ }
+
+ button{
+     width: 100%;
+     height: 40px;
+     font-size: 14px;
+     font-weight: 500;
+     line-height: 24px;
+     background-color: #F97316;
+     border: none;
+     color: #FAFAFA;
+     border-radius: 6px;
+     cursor: pointer;
+ }
+
+ button:hover{
+    background: transparent;
+    border: 1px solid;
+    color: #F97316;
+ }
+
+ button:active{
+    background: initial;
+    border: solid 1px;
+    color: initial;
+ }
+
+ h1{
+    font-weight: 700;
+    font-size: 39px;
+    line-height: 46.8px;
+ }
+
+ h2{
+    font-size: 25px;
+    line-height: 30px;
+    font-weight: 700;
+ }
+
+ .smalltext{
+     font-size: 20px;
+     line-height: 24px;
+     font-weight: 400;
+ }
