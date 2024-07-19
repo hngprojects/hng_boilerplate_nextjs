@@ -53,7 +53,7 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        customGray: "#434343", // Updated color for text
+        customGray: "#434343",
       },
       borderRadius: {
         lg: "var(--radius)",

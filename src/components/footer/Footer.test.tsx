@@ -72,16 +72,14 @@ describe("Footer Component", () => {
     const subscribeButton = screen.getByText(/Subscribe/i);
     expect(subscribeButton).toBeInTheDocument();
 
-    // Test input change and button click
     fireEvent.change(emailInput, { target: { value: "test@example.com" } });
     expect(emailInput).toHaveValue("test@example.com");
     fireEvent.click(subscribeButton);
-    // Add more assertions here as needed to test the functionality
   });
 
   test("renders social media icons", () => {
     const twitterIcons = screen.getAllByAltText(/twitter/i);
-    expect(twitterIcons).toHaveLength(2); // Adjust this based on the actual number of Twitter icons in your component
+    expect(twitterIcons).toHaveLength(2); 
     twitterIcons.forEach(icon => expect(icon).toBeInTheDocument());
 
     const youtubeIcon = screen.getByAltText(/youtube/i);
