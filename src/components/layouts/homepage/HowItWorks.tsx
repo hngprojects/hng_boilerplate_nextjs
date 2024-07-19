@@ -5,6 +5,7 @@ import { Easy, Prebuilt, Scalable } from './svgs'
 
 const HowItWorks = () => {
     return (
+        <div className="link">
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-10 xl:px-10">
             <div className="how-it-works">
                 <div className="how-left">
@@ -50,6 +51,7 @@ const HowItWorks = () => {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     )
 }

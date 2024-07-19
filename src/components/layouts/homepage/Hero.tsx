@@ -13,14 +13,10 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-interface Props {
 
-}
-
-
-const Hero = (props: Props) => {
+const Hero = () => {
     return (
-        <div className="hero">
+        <div className="hero bg-background">
             <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-10 xl:px-10">
                 <div className="hero-content">
                     <div className="hero-left">
@@ -32,11 +28,11 @@ const Hero = (props: Props) => {
                             <HeroLine />
                         </div>
 
-                        <p>
+                        <p className="text-foreground">
                             Streamline your processes with a boilerplate built for efficiency and optimal productivity.
                         </p>
 
-                        <button className="get-started">
+                        <button className="bg-primary text-background get-started">
                             Get Started
                         </button>
                     </div>
