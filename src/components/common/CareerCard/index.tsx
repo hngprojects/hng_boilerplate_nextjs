@@ -23,7 +23,7 @@ const CareerCardParent: React.FC = () => {
   }, []);
 
   return (
-    <div className="mx-auto flex items-center justify-center px-5">
+    <div className="flex items-center justify-center">
       <CareerCard
         isLoading={isLoading}
         jobTitle="Frontend Developer"
