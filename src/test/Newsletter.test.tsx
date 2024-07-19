@@ -68,8 +68,7 @@ describe("newsletter Component", () => {
         image={false} // assuming false means image should not be displayed
       />,
     );
-
-    // Check if the specific image is not rendered
-    expect(screen.queryByAltText("Newsletter Image")).not.toBeInTheDocument();
+    const imageElement = screen.getByAltText("Newsletter Image");
+    expect(imageElement).toHaveClass("hidden");
   });
 });
