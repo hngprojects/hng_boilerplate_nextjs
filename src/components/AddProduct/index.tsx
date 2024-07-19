@@ -1,3 +1,5 @@
+import React from 'react';
+import { useState } from 'react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "~/components/ui/dialog";
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
@@ -6,6 +8,17 @@ import { Input } from "../ui/input";
 import { DialogOverlay } from "~/components/ui/dialog";
 
 const AddProduct = () => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [imagePreview, setImagePreview] = useState(null);
+
+    const openDialog = () => {
+        setIsOpen(true);
+    };
+
+    const closeDialog = () => {
+        setIsOpen(false);
+    };
+
     return ( 
         <Dialog>
             <DialogTrigger className="open-add-product">Add Product</DialogTrigger>
