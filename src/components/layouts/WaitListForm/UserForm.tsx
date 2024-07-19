@@ -1,6 +1,6 @@
 "use client";
-
 import React, { FormEvent, useState } from "react";
+import Image from "next/image";
 
 interface FormData {
   name: string;
@@ -48,7 +48,7 @@ const UserForm: React.FC = () => {
     <div className="flex flex-col justify-center items-center mt-[81px] ">
       <div className="text-center md:w-[623px]">
         <div className="flex justify-center items-center gap-[7px] mb-[12px] md:mb-[8px]">
-          <img src="/circle 1.svg" alt="Circle with Tick" />
+          <Image layout="fit" objectFit="contain" width={23} height={21} src="/circle 1.svg" alt="Circle with Tick" />
           <h3 className="font-medium text-[18px] leading-[16.94px] md:leading-[21.78px]"
           style={{ color: "rgba(25, 26, 21, 1)" }}
           >
@@ -121,7 +121,7 @@ const UserForm: React.FC = () => {
                 className="text-white font-bold text-[16.8px] leading-[28.8px] bg-buttonColor rounded-md w-[195.6px] h-[51.78px] flex justify-between items-center py-[9.6px] px-[19.2px]"
                 type="submit"
               >
-                <img src="/icon.svg" alt="Envelope" />
+                <Image layout="fit" objectFit="contain" width={20} height={20} src="/icon.svg" alt="Envelope" />
                 Join the Waitlist
               </button>
             </div>
@@ -129,12 +129,14 @@ const UserForm: React.FC = () => {
         ) : (
           <div className="w-full flex flex-col items-center justify-center">
             <div className="relative">
-              <img
+              <Image
+                layout="fit" objectFit="contain" width={177} height={179}
                 src="/BACKGROUND.png"
                 alt="Success Background"
                 className="mb-4"
               />
-              <img
+              <Image
+              layout="fit" objectFit="contain" width={31} height={31}
                 src="/icon (1).svg"
                 alt="Success Tick"
                 className="absolute top-20 left-2 transform translate-x-[50%] translate-y-[-50%]"
