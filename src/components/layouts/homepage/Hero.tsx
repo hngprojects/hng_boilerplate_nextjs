@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import React from 'react'
-import { HeroBoilerPlate, HeroChat, HeroCheckMark, HeroLine } from '~/components/svgs'
+import { HeroBoilerPlate, HeroChat, HeroCheckMark, HeroLine } from './svgs'
 import { Pagination, Scrollbar, A11y, Autoplay } from 'swiper/modules';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
