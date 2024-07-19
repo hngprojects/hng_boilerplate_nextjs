@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import BadgeInterface from "~/components/common/Badge/BadgeInterface";
-import Badge from "./Badge";
+import Badge, { BadgeInterface } from "~/components/common/Badge/Badge";
 
 describe("the Badge component renders correctly with an icon", () => {
   it("renders the badge component correctly", () => {
