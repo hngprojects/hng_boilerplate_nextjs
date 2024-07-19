@@ -51,7 +51,7 @@ const Badge = ({ label, icon, variant }: BadgeInterface) => {
 
   return (
     <div
-      className={`${badgeTextVariants[variant]} py-[2px] pr-2 pl-[6px] leading-[18px] md:py-[2px] md:pr-[10px] md:pl-[8px] md:text-[0.875rem] lg:py-1 lg:pr-3 lg:pl-[10px] lg:leading-[20px] capitalize flex gap-[6px] items-center rounded-[16px] max-w-max  font-[500] text-[0.75rem]`}
+      className={`${badgeTextVariants[variant]} flex·max-w-max·items-center·gap-[6px]·rounded-[16px]·py-[2px]·pl-[6px]·pr-2·text-[0.75rem]·font-[500]·capitalize·leading-[18px]·md:py-[2px]·md:pl-[8px]·md:pr-[10px]·md:text-[0.875rem]·lg:py-1·lg:pl-[10px]·lg:pr-3·lg:leading-[20px]`}
     >
       {icon && icon}
       <span>{label}</span>
