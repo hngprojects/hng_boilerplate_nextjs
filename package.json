@@ -2,6 +2,7 @@
   "name": "hng_boilerplate_nextjs",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -11,7 +12,10 @@
     "shad:add": "npx shadcn-ui@latest add",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "test:ci": "vitest --coverage"
+    "test:ci": "vitest --coverage",
+    "email:dev": "email dev --dir \"./src/email/templates\"",
+    "email:build": "email build --dir \"./src/email/templates\"",
+    "email:start": "email start"
   },
   "dependencies": {
     "@react-email/components": "0.0.21",
@@ -57,6 +61,7 @@
     "jsdom": "^24.1.0",
     "postcss": "^8",
     "prettier": "^3.3.2",
+    "prettier-plugin-tailwindcss": "^0.6.5",
     "tailwindcss": "^3.4.1",
     "typescript": "^5",
     "vitest": "^1.6.0"
