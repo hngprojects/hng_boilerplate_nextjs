@@ -75,7 +75,7 @@ export default function Home() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <div className="bg-white p-4 py-8 rounded shadow-md">
           <div className="flex items-center justify-between mb-2">
-            <h2>Total Revenue</h2>
+            <h2 className="">Total Revenue</h2>
             <DollarSign />
           </div>
           <p className="text-2xl font-bold">$45,000.00</p>
@@ -83,7 +83,7 @@ export default function Home() {
         </div>
         <div className="bg-white p-4 rounded shadow-md">
           <div className="flex items-center justify-between mb-2">
-            <h2>Subscriptions</h2>
+            <h2 className="">Subscriptions</h2>
             <Users />
           </div>
           <p className="text-2xl font-bold">+2350</p>
@@ -91,7 +91,7 @@ export default function Home() {
         </div>
         <div className="bg-white p-4 rounded shadow-md">
           <div className="flex items-center justify-between mb-2">
-            <h2>Sales</h2>
+            <h2 className="">Sales</h2>
             <PanelTop />
           </div>
           <p className="text-2xl font-bold">15,000</p>
@@ -99,21 +99,21 @@ export default function Home() {
         </div>
         <div className="bg-white p-4 rounded shadow-md">
           <div className="flex items-center justify-between mb-2">
-            <h2 className="text-gray-600">Active Now</h2>
+            <h2 className="">Active Now</h2>
             <Activity className="text-gray-600" />
           </div>
           <p className="text-2xl font-bold">574</p>
           <p className="text-sm">+201 since last hour</p>
         </div>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div className="bg-white p-4 rounded shadow-md lg:col-span-2">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+        <div className="bg-white p-4 rounded shadow-md lg:col-span-3">
           <h2 className="font-semibold mb-4">Overview</h2>
           <div className="p-2  rounded">
             <Chart />
           </div>
         </div>
-        <div className="w-full bg-white p-4 rounded shadow">
+        <div className="w-full bg-white p-4 rounded shadow lg:col-span-2">
           <h2 className="font-semibold">Recent Sales</h2>
           <h1 className="text-gray-600 mb-4">You made 265 sales this month</h1>
           <ul>
