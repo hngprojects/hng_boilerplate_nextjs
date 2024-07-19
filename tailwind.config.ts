@@ -80,7 +80,7 @@ const config = {
         warning: "hsl(var(--warning))",
         neutral: {
           dark: {
-            1: "hsl(var(--neutralColor-dark-2))",
+            1: "hsl(var(--neutralColor-dark-1))",
             2: "hsl(var(--neutralColor-dark-2))",
           },
         },
