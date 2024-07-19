@@ -1,4 +1,4 @@
-// 'use client'; // Add this if using the App Router and this is a client component
+// 'use client'; // Add this if you're using the App Router and this is a client component
 
 import React from "react";
 import { useCharacterLimit } from "./useCharacterLimit";
@@ -27,8 +27,36 @@ const CharacterLimitTextarea = ({
   };
 
   return (
-    <div className="relative">
-      
+    <div className="">
+      <label
+        htmlFor={id}
+        className=""
+      >
+        {label}
+      </label>
+      <textarea
+        id={id}
+        value={value}
+        name={name}
+        onChange={handleChange}
+        aria-describedby="textarea-info textarea-error"
+        className={``}
+      />
+      {!error ? (
+        <div
+          id="textarea-info"
+          className=""
+        >
+          {charCount}/{maxLength} characters
+        </div>
+      ) : (
+        <div
+          id="textarea-error"
+          className=""
+        >
+          {error}
+        </div>
+      )}
     </div>
   );
 };
