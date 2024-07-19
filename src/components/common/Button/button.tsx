@@ -90,7 +90,15 @@ const CustomButton: React.FC<ButtonProperties> = ({
 
     if (isExternal) {
       return (
-        <a href={href} target="_blank" rel="noopener noreferrer">
+
+
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={ariaLabel}
+        >
+
           <Button
             variant={variant}
             size={size}
@@ -105,7 +113,9 @@ const CustomButton: React.FC<ButtonProperties> = ({
     }
 
     return (
-      <Link href={href} passHref>
+
+      <Link href={href} passHref aria-label={ariaLabel}>
+
         <Button
           variant={variant}
           size={size}

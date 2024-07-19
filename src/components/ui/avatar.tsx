@@ -5,9 +5,13 @@ import * as React from "react";
 
 import { cn } from "~/lib/utils";
 
+interface AvatarProperties {
+  className?: string;
+}
+
 const Avatar = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> & AvatarProperties
 >(({ className, ...properties }, reference) => (
   <AvatarPrimitive.Root
     ref={reference}
@@ -22,7 +26,8 @@ Avatar.displayName = AvatarPrimitive.Root.displayName;
 
 const AvatarImage = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Image>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image> &
+    AvatarProperties
 >(({ className, ...properties }, reference) => (
   <AvatarPrimitive.Image
     ref={reference}
@@ -34,7 +39,8 @@ AvatarImage.displayName = AvatarPrimitive.Image.displayName;
 
 const AvatarFallback = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Fallback>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback> &
+    AvatarProperties
 >(({ className, ...properties }, reference) => (
   <AvatarPrimitive.Fallback
     ref={reference}
