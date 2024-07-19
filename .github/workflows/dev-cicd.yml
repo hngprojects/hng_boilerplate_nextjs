@@ -3,7 +3,7 @@ name: Development CI/CD Pipeline
 on:
   push:
     branches:
-      - development
+      - dev
     paths-ignore:
       - .github/workflows/**
 
