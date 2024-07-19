@@ -35,7 +35,11 @@
  * ```
  */
 
-import BadgeInterface from "./BadgeInterface";
+export interface BadgeInterface {
+  label: string;
+  icon?: React.ReactNode;
+  variant: "default" | "primary" | "success" | "error";
+}
 
 const Badge = ({ label, icon, variant }: BadgeInterface) => {
   const badgeTextVariants = {
