@@ -7,7 +7,27 @@ import "@testing-library/jest-dom";
 
 vi.mock("next/image", () => ({
   __esModule: true,
-  default: (properties: any) => <img {...properties} />, // Mock next/image as standard img
+  default: ({
+    src,
+    alt,
+    width,
+    height,
+    "data-testid": testId,
+  }: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+    "data-testid": string;
+  }) => (
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      data-testid={testId}
+    />
+  ), // Mock next/image as standard img
 }));
 
 describe("topProductLists", () => {
@@ -25,7 +45,7 @@ describe("topProductLists", () => {
     render(<TopProductLists />);
     const button = screen.getByTestId("view-all-button");
     expect(button).toBeInTheDocument();
-    expect(button.closest("button")).toHaveClass("bg-[#F97316]");
+    expect(button).toHaveTextContent("View All");
   });
 
   it("renders product list items", () => {
@@ -36,7 +56,7 @@ describe("topProductLists", () => {
     expect(screen.getByText("250 sales")).toBeInTheDocument();
   });
 
-  it("renders product images", () => {
+  it("renders product images with correct alt text", () => {
     render(<TopProductLists />);
     const lemonadeImage = screen.getByTestId("product-image-1");
     const beanCakeImage = screen.getByTestId("product-image-2");

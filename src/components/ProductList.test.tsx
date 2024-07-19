@@ -1,17 +1,37 @@
 // __tests__/ProductList.test.tsx
 import { render, screen } from "@testing-library/react";
 
-import ProductList from "../components/ProductList";
+import ProductList, { ProductListProperties } from "../components/ProductList";
 
 import "@testing-library/jest-dom";
 
 vi.mock("next/image", () => ({
   __esModule: true,
-  default: (properties: any) => <img {...properties} />, // Mock next/image as standard img
+  default: ({
+    src,
+    alt,
+    width,
+    height,
+    "data-testid": testId,
+  }: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+    "data-testid": string;
+  }) => (
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      data-testid={testId}
+    />
+  ), // Mock next/image as standard img
 }));
 
 describe("productList", () => {
-  const productProperties = {
+  const productProperties: ProductListProperties = {
     id: 1,
     name: "Test Product",
     image: "/test-image.png",
