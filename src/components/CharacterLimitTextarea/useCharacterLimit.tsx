@@ -1,3 +1,4 @@
+'use client';
 import { useState, useEffect } from 'react';
 
 export function useCharacterLimit(value: string, maxLength: number, label: string) {
