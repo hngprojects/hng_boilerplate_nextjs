@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+  transition: all .4s ease-in-out; 
+  --pri: #F97316;
+} 
+.all-cover{
+  width: Fixed (657px)px;
+  height: Hug (775px)px;
+  top: 124px;
+  left: 392px;
+  padding: 43px 41px 43px 41px;
+  gap: 10px;
+  border-radius: 6px 0px 0px 0px;
+  border: 1px 0px 0px 0px;
+  opacity: 0px;
+}
+.open-add-product button, .add-product-btn{
+  background-color: var(--pri);
+  color: #ffffff;
+  padding: 8px, 16px, 8px, 16px;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
