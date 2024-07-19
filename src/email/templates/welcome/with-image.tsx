@@ -2,7 +2,6 @@ import {
   Button,
   Font,
   Head,
-  Html,
   Img,
   Preview,
   Text,
@@ -10,14 +9,15 @@ import {
 
 import Star from "~/email/templates/_components/Star";
 import Tailwindwrapper from "~/email/templates/_components/tailwindWrapper";
+import Layout from "~/email/templates/_layouts/Layout";
 
 interface IProperties {
   name: string;
   main_heading: string;
   sub_heading: string;
   description: string;
-  with_list: boolean;
-  list: {
+  with_highlights: boolean;
+  highlights: {
     title: string;
     body: {
       item: string;
@@ -34,16 +34,16 @@ export default function Email(properties: IProperties) {
     sub_heading,
     name,
     description,
-    with_list,
-    list,
+    with_highlights,
+    highlights,
     action_url,
     app_name,
   } = properties;
 
   return (
-    <Html>
+    <Tailwindwrapper>
       <Preview>{`Welcome ${name}`}</Preview>
-      <Tailwindwrapper>
+      <Layout>
         <Head>
           <Font
             fontFamily="Inter"
@@ -55,7 +55,7 @@ export default function Email(properties: IProperties) {
           />
         </Head>
         <section className="mx-auto flex max-w-[680px] flex-col items-center justify-center gap-10 self-stretch px-14 py-12 md:gap-14 md:py-14">
-          <div className="px-14 text-center">
+          <div className="p-0 text-center md:px-14">
             <Img
               src={"https://i.ibb.co/ScGZJHs/image-2-2.png"}
               alt={main_heading}
@@ -78,11 +78,13 @@ export default function Email(properties: IProperties) {
               <p className="my-0 text-sm font-normal md:text-base">
                 {description}
               </p>
-              {with_list && (
+              {with_highlights && (
                 <div className="flex flex-col gap-5">
-                  <p className="my-0 text-base font-semibold">{list.title}</p>
+                  <p className="my-0 text-base font-semibold">
+                    {highlights.title}
+                  </p>
                   <div className="flex flex-col gap-4">
-                    {list.body.map((item, index) => (
+                    {highlights.body.map((item, index) => (
                       <Text
                         key={index}
                         className="my-0 flex items-center gap-3 leading-4 md:gap-4"
@@ -116,8 +118,8 @@ export default function Email(properties: IProperties) {
             <Text className="my-0 text-sm font-medium">{app_name}</Text>
           </footer>
         </section>
-      </Tailwindwrapper>
-    </Html>
+      </Layout>
+    </Tailwindwrapper>
   );
 }
 
@@ -127,8 +129,8 @@ Email.PreviewProps = {
   sub_heading: "Get started with us today",
   description:
     "We're thrilled to have you join us. Experience quality and innovation like never before.  Our product is made to fit your needs and make your life easier.",
-  with_list: true,
-  list: {
+  with_highlights: true,
+  highlights: {
     title: "Here’s what you can look forward to",
     body: [
       {
