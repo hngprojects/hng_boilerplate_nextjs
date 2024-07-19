@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import TopProductLists from "~/components/TopProductLists";
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -108,6 +110,7 @@ export default function Home() {
           </p>
         </a>
       </div>
+      <TopProductLists />
     </main>
   );
 }
