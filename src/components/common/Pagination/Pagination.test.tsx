@@ -55,7 +55,7 @@ describe("pagination", () => {
       <Pagination {...defaultProps} currentPage={3} activeVariant="default" />,
     );
     const currentPageLink = screen.getByText("3");
-    expect(currentPageLink).toHaveClass("bg-primary");
+    expect(currentPageLink).toHaveClass("bg-primary-primary");
   });
 
   it("should call the onChange function when a page is clicked", () => {

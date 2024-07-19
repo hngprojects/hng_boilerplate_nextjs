@@ -24,13 +24,10 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        default: {
-          DEFAULT: "hsl(var(--default))",
-          foreground: "hsl(var(--default-foreground))"
-        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          primary: "hsl(var(--primary-primary))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -38,26 +35,7 @@ const config = {
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
-          hover: "hsl(var(--destructive-hover))",
           foreground: "hsl(var(--destructive-foreground))",
-        },
-        subtle: {
-          DEFAULT: "hsl(var(--subtle))",
-          hover: "hsl(var(--subtle-hover))",
-          foreground: "hsl(var(--subtle-foreground))",
-        },
-        loading: {
-          DEFAULT: "hsl(var(--loading))",
-          hover: "hsl(var(--loading-hover))",
-          foreground: "hsl(var(--loading-foreground))",
-        },
-        outline: {
-          DEFAULT: "hsl(var(--outline))",
-          hover: "hsl(var(--outline-hover))",
-          foreground: "hsl(var(--outline-foreground))",
-        },
-        link: {
-          DEFAULT: "hsl(var(--link))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
@@ -72,17 +50,8 @@ const config = {
           foreground: "hsl(var(--popover-foreground))",
         },
         card: {
-          DEFAULT: "var(--card)",
-          foreground: "var(--card-foreground)",
-        },
-        error: "hsl(var(--error))",
-        success: "hsl(var(--success))",
-        warning: "hsl(var(--warning))",
-        neutral: {
-          dark: {
-            1: "hsl(var(--neutralColor-dark-1))",
-            2: "hsl(var(--neutralColor-dark-2))",
-          },
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
         },
         stroke: {
           "colors-stroke": "hsl(var(--stroke-colors-stroke))",
