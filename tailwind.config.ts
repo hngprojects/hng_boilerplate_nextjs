@@ -20,14 +20,14 @@ const config = {
     extend: {
       colors: {
         border: "hsl(var(--border))",
-        "card-border": "#FAFAFA",
-        cardText: "#0A0A0A",
+        careerBtn:"hsl(var(--career-btn))",
+        cardText: "hsl(var(--career-text))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#F97316",
+          DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
