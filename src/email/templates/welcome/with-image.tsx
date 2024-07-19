@@ -25,6 +25,7 @@ interface IProperties {
     }[];
   };
   action_url: string;
+  cta_text: string;
   app_name: string;
 }
 
@@ -37,6 +38,7 @@ export default function Email(properties: IProperties) {
     with_highlights,
     highlights,
     action_url,
+    cta_text,
     app_name,
   } = properties;
 
@@ -109,7 +111,7 @@ export default function Email(properties: IProperties) {
                 href={action_url}
                 className="block rounded-[8px] bg-[#F97316] px-10 py-2.5 text-base text-white sm:inline"
               >
-                Learn more about us
+                {cta_text}
               </Button>
             </div>
           </main>
@@ -149,5 +151,6 @@ Email.PreviewProps = {
     ],
   },
   action_url: "https://boilerplate-weblink.com",
+  cta_text: "Learn more about us",
   app_name: "Boilerplate",
 } satisfies IProperties;
