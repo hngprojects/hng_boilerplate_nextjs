@@ -1,5 +1,3 @@
-// Tests for the Badge component
-
 import { render, screen } from "@testing-library/react";
 
 import BadgeInterface from "~/components/common/Badge/BadgeInterface";
