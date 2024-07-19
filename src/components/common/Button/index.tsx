@@ -20,7 +20,7 @@ const buttonVariants = cva(
         loading:
           "bg-loading text-loading-foreground shadow-sm hover:bg-loading-hover opacity-50 hover:opacity-100 transition-opacity duration-500 ease-out",
         outline:
-          "bg-outline text-outline-foreground shadow-sm border border-outline-border hover:bg-outline-hover",
+          "bg-outline text-outline-foreground shadow-sm border border-border hover:bg-outline-hover",
         secondary:
           "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
