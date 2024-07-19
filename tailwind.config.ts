@@ -52,7 +52,7 @@ const config = {
           DEFAULT: "var(--card)",
           foreground: "var(--card-foreground)",
         },
-        error: "var(--error)",
+        error: "hsl(var(--error))",
         neutral: {
           dark: {
             1: "hsl(var(--neutralColor-dark-2))",
