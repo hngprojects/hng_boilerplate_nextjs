@@ -146,7 +146,7 @@ Email.PreviewProps = {
       },
       {
         item: "Secure and reliable",
-        description: "Platform to keep your data safe",
+        description: "Platform to keep your products safe",
       },
     ],
   },
