@@ -27,8 +27,8 @@ const HowItWorks = () => {
                         </div>
 
                         <div>
-                            <h3>Pre-Built Sections</h3>
-                            <small>Leverage pre-built sections like "Features," "Benefits," "Pricing," and "Testimonials" to showcase your product effectively.</small>
+                            <h3 data-testid="prebuilt">Pre-Built Sections</h3>
+                            <small data-testid="section">Leverage pre-built sections like "Features," "Benefits," "Pricing," and "Testimonials" to showcase your product effectively.</small>
                         </div>
                     </div>
                     <div className="how-component">
@@ -36,8 +36,8 @@ const HowItWorks = () => {
                             <Scalable />
                         </div>
                         <div>
-                            <h3>Scalable Foundation</h3>
-                            <small>Our boilerplate is designed to grow with your product. Easily add new features and functionalities as needed.</small>
+                                <h3 data-testid="scalable">Scalable Foundation</h3>
+                                <small data-testid="boilerplate">Our boilerplate is designed to grow with your product. Easily add new features and functionalities as needed.</small>
                         </div>
                     </div>
                     <div className="how-component">
@@ -45,8 +45,8 @@ const HowItWorks = () => {
                             <Easy />
                         </div>
                         <div>
-                            <h3>Easy Customization</h3>
-                            <small>Tailor the experience to your specific needs and preferences for maximum results.</small>
+                                <h3 data-testid="easy">Easy Customization</h3>
+                                <small data-testid="tailor">Tailor the experience to your specific needs and preferences for maximum results.</small>
                         </div>
                     </div>
                 </div>
