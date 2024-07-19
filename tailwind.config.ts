@@ -21,7 +21,7 @@ const config = {
       colors: {
         border: "hsl(var(--border))",
         "card-border": "#FAFAFA",
-        "cardText": "#0A0A0A",
+        cardText: "#0A0A0A",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
