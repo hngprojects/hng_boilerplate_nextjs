@@ -35,7 +35,7 @@ describe("productList", () => {
   };
 
   it("renders ProductList component with props", () => {
-    expect.hasAssertions();
+    expect.assertions(2);
     render(<ProductList {...productProperties} />);
     expect(screen.getByTestId("product-name")).toHaveTextContent(
       "Test Product",
@@ -44,7 +44,7 @@ describe("productList", () => {
   });
 
   it("renders product image with correct alt text", () => {
-    expect.hasAssertions();
+    expect.assertions(1);
     render(<ProductList {...productProperties} />);
     const image = screen.getByTestId("product-image-1");
     expect(image).toHaveAttribute("alt", "Test Product");

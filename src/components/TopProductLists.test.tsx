@@ -28,7 +28,7 @@ vi.mock("next/image", () => ({
 
 describe("topProductLists", () => {
   it("renders TopProductLists component with header", () => {
-    expect.hasAssertions();
+    expect.assertions(2);
     render(<TopProductLists />);
     expect(screen.getByTestId("top-products-title")).toHaveTextContent(
       "Top Products",
@@ -39,7 +39,7 @@ describe("topProductLists", () => {
   });
 
   it("renders View All button", () => {
-    expect.hasAssertions();
+    expect.assertions(2);
     render(<TopProductLists />);
     const button = screen.getByTestId("view-all-button");
     expect(button).toBeInTheDocument();
@@ -47,7 +47,7 @@ describe("topProductLists", () => {
   });
 
   it("renders product list items", () => {
-    expect.hasAssertions();
+    expect.assertions(4);
     render(<TopProductLists />);
     expect(screen.getByText("The Lemonade blender")).toBeInTheDocument();
     expect(screen.getByText("500 sales")).toBeInTheDocument();
@@ -56,7 +56,7 @@ describe("topProductLists", () => {
   });
 
   it("renders product images with correct alt text", () => {
-    expect.hasAssertions();
+    expect.assertions(2);
     render(<TopProductLists />);
     const lemonadeImage = screen.getByTestId("product-image-1");
     const beanCakeImage = screen.getByTestId("product-image-2");
