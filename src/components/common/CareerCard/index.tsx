@@ -10,7 +10,6 @@ const CareerCardParent: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 2000);
