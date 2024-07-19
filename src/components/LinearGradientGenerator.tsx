@@ -1,24 +1,25 @@
-export type LinearGradientGeneratorProperties = {
+import React from "react";
+
+interface LinearGradientGeneratorProperties {
   colors: string[];
   direction: string;
   stops?: string[];
-};
+}
 
-export default function LinearGradientGenrator({
+const LinearGradientGenerator: React.FC<LinearGradientGeneratorProperties> = ({
   colors,
   direction,
   stops,
-}: LinearGradientGeneratorProperties) {
-  const gradient =
-    stops && stops.length === colors.length
-      ? `linear-gradient(${direction}, ${colors.map((color, index) => `${color} ${stops[index]}`).join(", ")})`
-      : `linear-gradient(${direction}, ${colors.join(", ")})`;
+}) => {
+  const gradientStops = stops
+    ? colors.map((color, index) => `${color} ${stops[index]}`).join(", ")
+    : colors.join(", ");
 
-  const style: React.CSSProperties = {
-    background: gradient,
-    width: "100%",
-    height: "100%",
+  const gradientStyle = {
+    backgroundImage: `linear-gradient(${direction}, ${gradientStops})`,
   };
 
-  return <div style={style} className="linear-gradient-generator"></div>;
-}
+  return <div className="w-full h-full" style={gradientStyle}></div>;
+};
+
+export default LinearGradientGenerator;
