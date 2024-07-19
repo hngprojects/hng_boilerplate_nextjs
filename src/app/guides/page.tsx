@@ -12,7 +12,7 @@ const StyleGuide: React.FC = () => {
         className="grid w-full items-start gap-4"
         style={{ gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))" }}
       >
-        <div className="bg-default flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
+        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-default px-4 py-4 text-background">
           bg-default, text-background
         </div>
         <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg border border-border bg-background px-4 py-4 text-foreground">
@@ -21,26 +21,26 @@ const StyleGuide: React.FC = () => {
         <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-primary px-4 py-4 text-background">
           bg-primary, text-background
         </div>
-        <div className="bg-subtle flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-foreground">
+        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-subtle px-4 py-4 text-foreground">
           bg-subtle, text-foreground
         </div>
-        <div className="bg-neutral-dark-1 flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
+        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-neutral-dark-1 px-4 py-4 text-background">
           bg-neutral-dark-1, text-background
         </div>
-        <div className="bg-neutral-dark-2 flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
+        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-neutral-dark-2 px-4 py-4 text-background">
           bg-neutral-dark-2, text-background
         </div>
 
-        <div className="bg-error flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
+        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-error px-4 py-4 text-background">
           bg-error, text-background
         </div>
         <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-destructive px-4 py-4 text-background">
           bg-destructive, text-background
         </div>
-        <div className="bg-warning flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
+        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-warning px-4 py-4 text-background">
           bg-warning, text-background
         </div>
-        <div className="bg-success flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
+        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-success px-4 py-4 text-background">
           bg-success, text-background
         </div>
         <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg border border-border px-4 py-4 text-foreground">
