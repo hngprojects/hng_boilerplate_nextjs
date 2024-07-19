@@ -79,11 +79,14 @@ describe("sidebar", () => {
     vi.mocked(usePathname).mockReturnValue("/about");
     render(<Sidebar />);
 
-    const aboutLink = screen.getByRole("link", { name: /about us/i });
-    console.debug(aboutLink);
-    expect(aboutLink).toHaveClass("text-white bg-primary_color");
-
     const homeLink = screen.getByRole("link", { name: /home/i });
+    console.debug(homeLink.firstChild.outerHTML);
     expect(homeLink).not.toHaveClass("text-white bg-primary_color");
+    //console.debug(homeLink.outerHTML);
+
+    const aboutLink = screen.getByRole("link", { name: /about us/i });
+    //console.debug(aboutLink.outerHTML);
+    console.debug(aboutLink.children[0].outerHTML);
+    expect(aboutLink).toHaveClass("text-white bg-primary_color");
   });
 });

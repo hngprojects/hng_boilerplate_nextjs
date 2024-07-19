@@ -15,11 +15,8 @@
     "test:ci": "vitest --coverage"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@radix-ui/react-slot": "^1.1.0",
-=======
     "@t3-oss/env-nextjs": "^0.10.1",
->>>>>>> 2a1cafdab0b67fb1a526d4f17f24a648dbd57ee0
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.400.0",
