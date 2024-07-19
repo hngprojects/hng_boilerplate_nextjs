@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import React, { useState } from "react";
+import { useState } from "react";
 import { describe, expect, it } from "vitest";
 
 import CharacterLimitTextarea from "../components/common/CharacterLimitTextarea/CharacterLimitTextarea";
@@ -20,8 +20,9 @@ const TestComponent = ({ maxLength }: { maxLength: number }) => {
   );
 };
 
-describe("CharacterLimitTextarea", () => {
+describe("characterLimitTextarea", () => {
   it("renders the component", () => {
+    expect.assertions(1);
     render(
       <CharacterLimitTextarea
         maxLength={100}
@@ -36,6 +37,7 @@ describe("CharacterLimitTextarea", () => {
   });
 
   it("displays the character count", () => {
+    expect.assertions(1);
     render(
       <CharacterLimitTextarea
         maxLength={100}
@@ -50,6 +52,7 @@ describe("CharacterLimitTextarea", () => {
   });
 
   it("updates the character count as text is entered", () => {
+    expect.assertions(1);
     render(<TestComponent maxLength={100} />);
     const textarea = screen.getByRole("textbox");
     fireEvent.change(textarea, { target: { value: "Hello" } });
@@ -57,6 +60,7 @@ describe("CharacterLimitTextarea", () => {
   });
 
   it("displays an error message when character limit is exceeded", () => {
+    expect.assertions(1);
     render(<TestComponent maxLength={5} />);
     const textarea = screen.getByRole("textbox");
     fireEvent.change(textarea, { target: { value: "Hello, world!" } });
