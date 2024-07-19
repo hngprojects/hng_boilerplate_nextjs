@@ -33,3 +33,15 @@ pnpm dev
 ## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md)
+
+## Navbar component
+
+Wrapped layout with a Provider wrapper for session handling
+
+-components
+-layout
+-Navbar
+-index.tsx
+-Navbar.test.tsx
+-index.tsx
+-Providers.tsx
