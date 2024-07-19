@@ -10,6 +10,9 @@ importers:
       "@radix-ui/react-avatar":
         specifier: ^1.1.0
         version: 1.1.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      "@radix-ui/react-slot":
+        specifier: ^1.1.0
+        version: 1.1.0(@types/react@18.3.3)(react@18.3.1)
       "@react-email/components":
         specifier: 0.0.21
         version: 0.0.21(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7298,7 +7301,7 @@ snapshots:
       "@jridgewell/gen-mapping": 0.3.5
       "@jridgewell/trace-mapping": 0.3.25
 
-  "@auth/core@0.32.0(nodemailer@6.9.14)":
+  "@auth/core@0.32.0":
     dependencies:
       "@panva/hkdf": 1.2.1
       "@types/cookie": 0.6.0
@@ -7307,8 +7310,6 @@ snapshots:
       oauth4webapi: 2.11.1
       preact: 10.11.3
       preact-render-to-string: 5.2.3(preact@10.11.3)
-    optionalDependencies:
-      nodemailer: 6.9.14
 
   "@babel/code-frame@7.24.7":
     dependencies:
