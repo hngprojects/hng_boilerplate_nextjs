@@ -5,12 +5,12 @@ import { Easy, Prebuilt, Scalable } from './svgs'
 
 const HowItWorks = () => {
     return (
-        <div className="link">
+        <div className="bg-[#ffffff]">
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-10 xl:px-10">
             <div className="how-it-works">
                 <div className="how-left">
                     <h1>
-                        <span>How It Works:</span> Experience the benefits of using our product with every step.
+                        <span className="text-primary">How It Works:</span> Experience the benefits of using our product with every step.
                     </h1>
 
                     <p>

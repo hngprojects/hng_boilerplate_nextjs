@@ -16,10 +16,6 @@
   font-weight: 700;
   line-height: normal;
   font-family: "Inter";
-
-  span {
-    color: #f97316;
-  }
 }
 
 .how-left p {
@@ -28,7 +24,6 @@
   margin-bottom: 48px;
   font-family: "Inter";
   margin-top: 25px;
-  color: #525252;
 }
 
 .how-right {

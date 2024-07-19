@@ -21,13 +21,13 @@ const Testimonials = () => {
                 <div className="testimonials-heading">
                     <div className='heading-left'>
                         <h1>Client Testimonials</h1>
-                        <p>Don't just take our word for it - see what actual users of our product have to say about their experience.</p>
+                        <p className="text-foreground">Don't just take our word for it - see what actual users of our product have to say about their experience.</p>
                     </div>
                     <div className="heading-right">
-                        <div className="custom-prev">
+                        <div className="custom-prev bg-[#ffffff] border border-border hover:border-primary">
                             <TestimonialLeftArrow />
                         </div>
-                        <div className="custom-next">
+                        <div className="custom-next bg-[#ffffff] border border-border hover:border-primary">
                             <TestimonialRightArrow />
                         </div>
                     </div>

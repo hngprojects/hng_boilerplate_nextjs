@@ -1,5 +1,4 @@
 .testimonials {
-  background: var(--error);
   padding: 113px 0;
 }
 
@@ -35,17 +34,11 @@
 .testimonials-heading .custom-prev, .custom-next{
     height:60px;
     width:60px;
-    border:1px solid #CBD5E1;
     border-radius:6px;
     display:flex;
     align-items: center;
     justify-content: center;
-    background:white;
     transition: all 0.3s linear;
-
-    &:hover{
-        border:1px solid #f97316;
-    }
 }
 
 .testimonials-box {
@@ -56,14 +49,12 @@
 }
 
 .testimonial-card {
-  background: white;
   padding: 40px 30px;
   text-align: center;
   display: flex;
   align-items: center;
     /* justify-content: center; */
   flex-direction: column;
-  border: 1px solid #f97316;
   border-radius: 6px;
 }
 
@@ -71,6 +62,7 @@
   font-size: 14px;
   font-weight: 400;
   margin-bottom: 25px;
+   font-family: 'Inter';
 }
 
 .testimonial-card .image-box {
@@ -92,11 +84,13 @@
   font-weight: 600;
   margin-top: 5px;
   margin-bottom: 5px;
+  font-family: 'Inter';
 }
 
 .testimonial-card small {
   font-size: 14px;
   font-weight: 400;
+   font-family: 'Inter';
 }
 
 
