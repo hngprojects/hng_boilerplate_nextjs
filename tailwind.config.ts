@@ -24,6 +24,10 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        default: {
+          DEFAULT: "hsl(var(--default))",
+          foreground: "hsl(var(--default-foreground))"
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -34,7 +38,27 @@ const config = {
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
+          hover: "hsl(var(--destructive-hover))",
           foreground: "hsl(var(--destructive-foreground))",
+        },
+        subtle: {
+          DEFAULT: "hsl(var(--subtle))",
+          hover: "hsl(var(--subtle-hover))",
+          foreground: "hsl(var(--subtle-foreground))",
+        },
+        loading: {
+          DEFAULT: "hsl(var(--loading))",
+          hover: "hsl(var(--loading-hover))",
+          foreground: "hsl(var(--loading-foreground))",
+        },
+        outline: {
+          DEFAULT: "hsl(var(--outline))",
+          hover: "hsl(var(--outline-hover))",
+          border:"hsl(var(--outline-border))",
+          foreground: "hsl(var(--outline-foreground))",
+        },
+        link: {
+          DEFAULT: "hsl(var(--link))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
