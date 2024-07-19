@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
+
+
+
+
+
 import "./globals.css";
+
+import SidebarNav from "./ui/SidebarNav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +24,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <header className="flex items-center justify-center py-4 text-2xl font-extrabold">
+          Header
+        </header>
+
+        <div className="flex flex-col justify-between gap-3 md:flex-row">
+          <div className="hidden items-center justify-center rounded-2xl bg-[#FAFAFA] text-2xl font-extrabold md:flex md:w-1/3">
+            SidebarNav
+          </div>
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
