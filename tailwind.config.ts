@@ -36,6 +36,25 @@ const config = {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
+        subtle: {
+          DEFAULT: "hsl(var(--subtle))",
+          hover: "hsl(var(--subtle-hover))",
+          foreground: "hsl(var(--subtle-foreground))",
+        },
+        loading: {
+          DEFAULT: "hsl(var(--loading))",
+          hover: "hsl(var(--loading-hover))",
+          foreground: "hsl(var(--loading-foreground))",
+        },
+        outline: {
+          DEFAULT: "hsl(var(--outline))",
+          hover: "hsl(var(--outline-hover))",
+          border:"hsl(var(--outline-border))",
+          foreground: "hsl(var(--outline-foreground))",
+        },
+        link: {
+          DEFAULT: "hsl(var(--link))",
+        },
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
@@ -53,6 +72,8 @@ const config = {
           foreground: "var(--card-foreground)",
         },
         error: "hsl(var(--error))",
+        success: "hsl(var(--success))",
+        warning: "hsl(var(--warning))",
         neutral: {
           dark: {
             1: "hsl(var(--neutralColor-dark-2))",
