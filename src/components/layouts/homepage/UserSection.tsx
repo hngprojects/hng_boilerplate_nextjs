@@ -8,17 +8,17 @@ const UserSection = () => {
         <div className="user-section">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h1>
-                    More than 200 <span>Users</span> make use of our Boilerplate
+                    More than 200 <span className="text-primary">Users</span> make use of our Boilerplate
                 </h1>
 
                 <div className="section-box">
-                        <div className="image-section">
-                            <UnSplash />
-                            <Notion/>
-                            <Intercom/>
-                            <Descript/>
-                            <Grammarly/>
-                        </div>
+                    <div className="image-section">
+                        <UnSplash />
+                        <Notion />
+                        <Intercom />
+                        <Descript />
+                        <Grammarly />
+                    </div>
                 </div>
 
             </div>

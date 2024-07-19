@@ -1,5 +1,4 @@
 .user-section {
-  background: #fafafa;
   padding: 103px 0;
   text-align:center;
 }
@@ -9,10 +8,6 @@
   font-weight: 700;
   font-family: "Inter";
   margin-bottom:37px;
-}
-
-.user-section h1 span{
-  color:#F97316;
 }
 
 .section-box{
