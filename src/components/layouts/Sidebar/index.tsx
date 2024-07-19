@@ -37,8 +37,6 @@ const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
   const pathname = usePathname();
 
-  console.log(isOpen);
-
   return (
     <>
       <div
@@ -59,7 +57,6 @@ const Sidebar = () => {
             variant="ghost"
             size="icon"
             onClick={() => {
-              console.log(isOpen);
               setIsOpen((previous) => !previous);
             }}
             className="ml-auto"

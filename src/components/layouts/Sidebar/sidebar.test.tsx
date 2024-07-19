@@ -84,9 +84,20 @@ describe("sidebar", () => {
     render(<Sidebar />);
 
     const homeLink = screen.getByRole("link", { name: /home/i });
+<<<<<<< HEAD
     expect(homeLink.firstChild).not.toHaveClass("bg-primary");
 
     const aboutLink = screen.getByRole("link", { name: /about us/i });
     expect(aboutLink.firstChild).toHaveClass("bg-primary");
+=======
+    console.debug(homeLink.firstChild.outerHTML);
+    expect(homeLink).not.toHaveClass("text-white bg-primary_color");
+    //console.debug(homeLink.outerHTML);
+
+    const aboutLink = screen.getByRole("link", { name: /about us/i });
+    //console.debug(aboutLink.outerHTML);
+    console.debug(aboutLink.children[0].outerHTML);
+    expect(aboutLink).toHaveClass("text-white bg-primary_color");
+>>>>>>> d9c1661 (feat: Testing for User Dashboard Sidebar)
   });
 });
