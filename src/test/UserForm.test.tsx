@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+
 import UserForm from "../../src/components/layouts/WaitListForm/UserForm";
 
 // Utility function to set window size
@@ -11,8 +12,16 @@ const setWindowSize = (width: number, height: number) => {
 describe("UserForm component", () => {
   beforeAll(() => {
     // Save original window size to restore later
-    Object.defineProperty(window, 'innerWidth', { writable: true, configurable: true, value: window.innerWidth });
-    Object.defineProperty(window, 'innerHeight', { writable: true, configurable: true, value: window.innerHeight });
+    Object.defineProperty(window, "innerWidth", {
+      writable: true,
+      configurable: true,
+      value: window.innerWidth,
+    });
+    Object.defineProperty(window, "innerHeight", {
+      writable: true,
+      configurable: true,
+      value: window.innerHeight,
+    });
   });
 
   afterAll(() => {
@@ -36,7 +45,9 @@ describe("UserForm component", () => {
       target: { value: "invalid-email" },
     });
     fireEvent.submit(screen.getByText(/join the waitlist/i));
-    expect(screen.getByText(/please enter a valid email address/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/please enter a valid email address/i),
+    ).toBeInTheDocument();
   });
 
   it("is responsive to small screen sizes", () => {

@@ -50,8 +50,6 @@ const UserForm: React.FC = () => {
       <div className="text-center md:w-[623px]">
         <div className="flex justify-center items-center gap-[7px] mb-[12px] md:mb-[8px]">
           <Image
-            layout="fit"
-            objectFit="contain"
             width={23}
             height={21}
             src="/circle 1.svg"
@@ -137,14 +135,7 @@ const UserForm: React.FC = () => {
                 className="text-white font-bold text-[16.8px] leading-[28.8px] bg-buttonColor rounded-md w-[195.6px] h-[51.78px] flex justify-between items-center py-[9.6px] px-[19.2px]"
                 type="submit"
               >
-                <Image
-                  layout="fit"
-                  objectFit="contain"
-                  width={20}
-                  height={20}
-                  src="/icon.svg"
-                  alt="Envelope"
-                />
+                <Image width={20} height={20} src="/icon.svg" alt="Envelope" />
                 Join the Waitlist
               </button>
             </div>
@@ -153,8 +144,6 @@ const UserForm: React.FC = () => {
           <div className="w-full flex flex-col items-center justify-center">
             <div className="relative">
               <Image
-                layout="fit"
-                objectFit="contain"
                 width={177}
                 height={179}
                 src="/BACKGROUND.png"
@@ -162,8 +151,6 @@ const UserForm: React.FC = () => {
                 className="mb-4"
               />
               <Image
-                layout="fit"
-                objectFit="contain"
                 width={31}
                 height={31}
                 src="/icon (1).svg"
