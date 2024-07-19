@@ -6,7 +6,6 @@ import {
   ChevronLeft,
   Database,
   Globe,
-  LucideIcon,
   User,
   UserPlus,
 } from "lucide-react";
@@ -15,8 +14,6 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { cn } from "~/lib/utils";
-
-
 
 const SETTINGS_SIDEBAR_LINKS = [
   {
