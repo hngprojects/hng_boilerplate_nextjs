@@ -74,3 +74,21 @@
     @apply bg-background text-foreground;
   }
 }
+
+/******** colours for the Badge component ********/
+.badge-default {
+  color: #344054;
+  background-color: #F2F4F7;
+}
+.badge-primary {
+  color: #B15210;
+  background-color: #FFFAF7;
+}
+.badge-success {
+  color: #0B7C17;
+  background-color: #E7F7E9;
+}
+.badge-error {
+  color: #A50909;
+  background-color: #FDE7E7;
+}
