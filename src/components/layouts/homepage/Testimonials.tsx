@@ -24,10 +24,10 @@ const Testimonials = () => {
                         <p className="text-foreground">Don't just take our word for it - see what actual users of our product have to say about their experience.</p>
                     </div>
                     <div className="heading-right">
-                        <div className="custom-prev bg-[#ffffff] border border-border hover:border-primary">
+                        <div data-testid="custom-prev" className="custom-prev bg-[#ffffff] border border-border hover:border-primary">
                             <TestimonialLeftArrow />
                         </div>
-                        <div className="custom-next bg-[#ffffff] border border-border hover:border-primary">
+                        <div data-testid="custom-next" className="custom-next bg-[#ffffff] border border-border hover:border-primary">
                             <TestimonialRightArrow />
                         </div>
                     </div>
@@ -62,9 +62,10 @@ const Testimonials = () => {
                                 spaceBetween: 30,
                             },
                         }}
+                        data-testid="swiper"
                     >
                         {testimonials?.map((item, key) => (
-                            <SwiperSlide key={key}>
+                            <SwiperSlide key={key} data-testid="testimonial-card">
                                 <TestimonialCard {...item} />
                             </SwiperSlide>
                         ))}
