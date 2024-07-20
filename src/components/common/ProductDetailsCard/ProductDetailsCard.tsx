@@ -3,7 +3,10 @@
 import Image from "next/image";
 import React from "react";
 
+// eslint-disable-next-line prettier/prettier
 import CustomButton from "../Button/button";
+// eslint-disable-next-line prettier/prettier
+import { useToast } from "~/components/ui/use-toast";
 
 interface ProductDetailsProperties {
   productName?: string;
@@ -32,25 +35,50 @@ const ProductDetailsCard: React.FC<ProductDetailsProperties> = ({
   onEdit,
   onDelete,
 }) => {
+  const { toast } = useToast();
+
   const handleEdit = () => {
     if (productID === "N/A") {
-      console.error("Product ID is missing. Cannot edit.");
+      toast({
+        title: "Error",
+        description: "Product ID is not available for editing.",
+        variant: "destructive",
+      });
     } else {
       onEdit(productID);
+      toast({
+        title: "Success",
+        description: "Product details have been updated.",
+        variant: "default",
+      });
     }
   };
 
   const handleDelete = () => {
     if (productID === "N/A") {
-      console.error("Product ID is missing. Cannot delete.");
+      toast({
+        title: "Error",
+        description: "Product ID is not available for deletion.",
+        variant: "destructive",
+      });
     } else {
       onDelete(productID);
+      toast({
+        title: "Success",
+        description: "Product has been deleted.",
+        variant: "default",
+      });
     }
   };
 
   const handleClose = (event: React.MouseEvent) => {
-    event.stopPropagation(); // Prevent event bubbling
-    onClose(); // Call onClose without arguments
+    event.stopPropagation();
+    onClose();
+    toast({
+      title: "Closed",
+      description: "Product details view has been closed.",
+      variant: "default",
+    });
   };
 
   if (
@@ -79,7 +107,7 @@ const ProductDetailsCard: React.FC<ProductDetailsProperties> = ({
         <div>{productName}</div>
         <div onClick={handleClose}>
           <Image
-            src="/icons/close.svg"
+            src="/images/productdetails/icons/close.svg"
             alt="Close Icon"
             width={24}
             height={24}
@@ -119,7 +147,7 @@ const ProductDetailsCard: React.FC<ProductDetailsProperties> = ({
           <div className="text-right text-sm text-neutral-dark-2">{stock}</div>
         </div>
         <div className="flex justify-between gap-5 whitespace-nowrap">
-          <div className="text-`sm·text-neutral-dark-1">Price</div>
+          <div className="text-sm text-neutral-dark-1">Price</div>
           <div className="text-right text-sm text-neutral-dark-2">{price}</div>
         </div>
         <div className="relative box-border h-px border-t-[1px] border-solid border-border" />
@@ -140,7 +168,7 @@ const ProductDetailsCard: React.FC<ProductDetailsProperties> = ({
         </div>
         <div
           onClick={handleEdit}
-          className="items-center justify-center rounded-md border border-solid border-slate-200 bg-white text-neutral-dark-2"
+          className="items-center justify-center rounded-md border border-solid border-input bg-white text-neutral-dark-2"
         >
           <CustomButton variant="ghost">Edit</CustomButton>
         </div>

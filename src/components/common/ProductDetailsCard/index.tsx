@@ -1,25 +1,36 @@
+/* eslint-disable prettier/prettier */
 "use client";
 
 import React, { useEffect, useState } from "react";
 
 import ProductDetailsCard from "./ProductDetailsCard";
+ 
+import { useToast } from "~/components/ui/use-toast";
 
 const ProductDetailsParent: React.FC = () => {
   const [isCardVisible, setIsCardVisible] = useState(true);
   const [isFadingOut, setIsFadingOut] = useState(false);
 
+  const { toast } = useToast(); // Initialize Radix UI Toast
+
   const handleClose = () => {
-    setIsFadingOut(true); // Start fade-out animation
+    setIsFadingOut(true);
   };
 
-  // eslint-disable-next-line unicorn/consistent-function-scoping
   const handleEdit = (productID: string) => {
     console.log(`Edit button clicked for product ID: ${productID}`);
+    toast({
+      title: "Edit Action",
+      description: `You clicked edit for product ID: ${productID}`,
+    });
   };
 
-  // eslint-disable-next-line unicorn/consistent-function-scoping
   const handleDelete = (productID: string) => {
     console.log(`Delete button clicked for product ID: ${productID}`);
+    toast({
+      title: "Delete Action",
+      description: `You clicked delete for product ID: ${productID}`,
+    });
   };
 
   useEffect(() => {
@@ -31,6 +42,7 @@ const ProductDetailsParent: React.FC = () => {
 
   return (
     <div>
+      
       {isCardVisible && (
         <div
           className={`transition-all duration-500 ${
@@ -41,7 +53,7 @@ const ProductDetailsParent: React.FC = () => {
         >
           <ProductDetailsCard
             productName="Product 2"
-            productImageSrc="/product_image.jpg"
+            productImageSrc="/images/product_image.jpg"
             productID="P002"
             category="Appetizers"
             dateAdded="2024-06-06, 12:34:56"
