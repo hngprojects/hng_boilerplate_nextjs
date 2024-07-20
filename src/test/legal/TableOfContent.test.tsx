@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import TableOfContent from "~/components/layouts/LegalTerms/TableOfContent";
+import TableOfContent from "~/components/layouts/Legal/TableOfContent";
 
 describe("tableOfContent", () => {
   const listOfContent = [

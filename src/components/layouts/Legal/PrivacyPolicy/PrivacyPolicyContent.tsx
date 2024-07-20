@@ -3,7 +3,7 @@ import Link from "next/link";
 import {
   LegalTermContentItem,
   LegalTermData,
-} from "~/components/layouts/PrivacyPolicy/constants/privacyPolicyData";
+} from "~/components/layouts/Legal/PrivacyPolicy/constants/privacyPolicyData";
 import { cn } from "~/lib/utils";
 
 type PrivacyPolicyContentProperties = {
