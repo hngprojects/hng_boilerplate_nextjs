@@ -11,7 +11,7 @@ const ProductDetailsParent: React.FC = () => {
   const [isCardVisible, setIsCardVisible] = useState(true);
   const [isFadingOut, setIsFadingOut] = useState(false);
 
-  const { toast } = useToast(); // Initialize Radix UI Toast
+  const { toast } = useToast();
 
   const handleClose = () => {
     setIsFadingOut(true);
