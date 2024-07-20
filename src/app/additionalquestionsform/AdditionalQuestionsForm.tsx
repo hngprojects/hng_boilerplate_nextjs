@@ -113,7 +113,7 @@ const AdditionalQuestionsForm = () => {
             placeholder="Enter email address"
             className="w-full rounded-md border-[1px] border-[#B2B0B0] px-[1rem] py-[.75rem] font-[400] leading-[1.35rem] text-foreground outline-none placeholder:text-[.875rem] md:px-0 md:py-[1.25rem] md:pl-[1rem] md:pr-[1.5rem] md:placeholder:text-[18px]"
           />
-          {errors.email && <span className="text-red-600">{errors.email}</span>}
+          {errors.email && <span className="text-error">{errors.email}</span>}
         </div>
         <div className="flex flex-col gap-[8px] md:gap-[.75rem]">
           <label
@@ -132,7 +132,7 @@ const AdditionalQuestionsForm = () => {
             placeholder="Enter full name"
             className="w-full rounded-md border-[1px] border-[#B2B0B0] px-[1rem] py-[.75rem] font-[400] leading-[1.35rem] text-foreground outline-none placeholder:text-[.875rem] md:px-0 md:py-[1.25rem] md:pl-[1rem] md:pr-[1.5rem] md:placeholder:text-[18px]"
           />
-          {errors.name && <span className="text-red-600">{errors.name}</span>}
+          {errors.name && <span className="text-error">{errors.name}</span>}
         </div>
         <div className="flex flex-col gap-[8px] md:gap-[.75rem]">
           <label
@@ -148,10 +148,10 @@ const AdditionalQuestionsForm = () => {
             value={formData.message}
             onChange={handleChange}
             placeholder="Message..."
-            className="h-[12.75rem] w-full rounded-md border-[1px] border-[#B2B2B2] pb-[7rem] pl-[1rem] pr-[10px] pt-[10px] text-[.8125rem] outline-none md:text-[1.125rem]"
+            className="h-[12.75rem] w-full rounded-md border-[1px] border-[#B2B0B0] pb-[7rem] pl-[1rem] pr-[10px] pt-[10px] text-[.8125rem] outline-none md:text-[1.125rem]"
           />
           {errors.message && (
-            <span className="text-red-600">{errors.message}</span>
+            <span className="text-error">{errors.message}</span>
           )}
         </div>
         <button
@@ -163,7 +163,7 @@ const AdditionalQuestionsForm = () => {
         {successMessage && (
           <div className="text-green-600">{successMessage}</div>
         )}
-        {errorMessage && <div className="text-red-600">{errorMessage}</div>}
+        {errorMessage && <div className="text-error">{errorMessage}</div>}
       </form>
     </div>
   );
