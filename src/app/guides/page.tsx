@@ -316,23 +316,27 @@ const Button: React.FC = () => {
 
       <Sidebar />
 
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold">HBP Comment Box</h2>
-        {commentsData.map((comment) => (
-          <HBPCommentBox
-            key={comment.id}
-            id={comment.id}
-            avatar={comment.avatar}
-            name={comment.name}
-            username={comment.username}
-            content={comment.content}
-            timestamp={comment.timestamp}
-            date={comment.date}
-            likes={comment.likes}
-            dislikes={comment.dislikes}
-          />
-        ))}
-        {/* Add more Comment components as needed */}
+      <div className="space-y-4 rounded-lg bg-gray-100 p-4 shadow-md">
+        <h2 className="text-2xl font-semibold text-gray-800">
+          HBP Comment Box
+        </h2>
+        <div className="flex flex-col space-y-4">
+          {commentsData.map((comment) => (
+            <HBPCommentBox
+              key={comment.id}
+              id={comment.id}
+              avatar={comment.avatar}
+              name={comment.name}
+              username={comment.username}
+              content={comment.content}
+              timestamp={comment.timestamp}
+              date={comment.date}
+              likes={comment.likes}
+              dislikes={comment.dislikes}
+              className="rounded-lg bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
+            />
+          ))}
+        </div>
       </div>
     </main>
   );
