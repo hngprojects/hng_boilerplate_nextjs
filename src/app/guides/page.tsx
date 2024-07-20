@@ -1,9 +1,12 @@
 import { Orbit, Plus } from "lucide-react";
 import React from "react";
 
+<<<<<<< HEAD
 import { Orbit, Plus } from "lucide-react";
 import React from "react";
 
+=======
+>>>>>>> 037225bd1712f0410519217bb729508be73fa612
 import CustomButton from "~/components/common/Button/button";
 
 const Btn: React.FC = () => {

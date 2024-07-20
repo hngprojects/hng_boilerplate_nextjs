@@ -22,7 +22,7 @@ const ConfirmCancelModal: React.FC<ConfirmCancelModalProps> = ({
     >
       <div
         className="flex flex-col items-start rounded-lg bg-white p-4 shadow-lg md:p-6 lg:p-8"
-        style={{ maxWidth: "90vw", width: "512px" }} // Set max width to 90% of viewport width for responsiveness
+        style={{ maxWidth: "90vw", width: "512px" }}
       >
         <h2
           data-testid="modal-title"
@@ -39,7 +39,6 @@ const ConfirmCancelModal: React.FC<ConfirmCancelModalProps> = ({
         </p>
         <div className="flex w-full justify-end">
           <div className="ml-auto flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
-            {/* Adds space to the left of the buttons */}
             <button
               data-testid="keep-button"
               onClick={onClose}

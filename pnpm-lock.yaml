@@ -45,6 +45,7 @@ importers:
         specifier: 2.1.5
         version: 2.1.5(@swc/helpers@0.5.5)(eslint@8.57.0)
 <<<<<<< HEAD
+<<<<<<< HEAD
       swiper:
         specifier: ^11.1.5
         version: 11.1.5
@@ -53,6 +54,11 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
 >>>>>>> 35b3795 (feat: implement cancel subscription confirmation prompt modal)
+=======
+      shadcn:
+        specifier: ^1.0.0
+        version: 1.0.0
+>>>>>>> 037225bd1712f0410519217bb729508be73fa612
       tailwind-merge:
         specifier: ^2.3.0
         version: 2.3.0
