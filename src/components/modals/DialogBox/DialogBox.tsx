@@ -85,7 +85,10 @@ const DialogBox = (properties: DialogBoxProperties) => {
             {headerText}
           </h2>
           {description && (
-            <p id="dialog-description" className="mt-2 text-sm text-[#64748B]">
+            <p
+              id="dialog-description"
+              className="text-description-text mt-2 text-sm"
+            >
               {description}
             </p>
           )}
