@@ -77,7 +77,6 @@ const RelatedArticle = () => {
           {news.map((article, index) => (
             <div key={article.id}>
               <BlogCard
-                data-testid="news-displayed"
                 article={article}
                 newsType={newsTypes[index % newsTypes.length]}
               />

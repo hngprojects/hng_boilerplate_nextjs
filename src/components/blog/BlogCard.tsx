@@ -2,16 +2,19 @@ import Image from "next/image";
 
 import { New } from "~/app/blog/[id]/RelatedArticle";
 
-type BlogCardProperties = {
-  article: New;
-  newsType: {
-    id: number;
-    name: string;
-    color: string;
-  };
+type newTypes = {
+  id: number;
+  name: string;
+  color: string;
 };
 
-const BlogCard = ({ article, newsType }: BlogCardProperties) => {
+const BlogCard = ({
+  article,
+  newsType,
+}: {
+  article: New;
+  newsType: newTypes;
+}) => {
   const { thumbnailUrl } = article;
   return (
     <div className="flex cursor-pointer flex-col rounded-t-lg">
@@ -24,6 +27,7 @@ const BlogCard = ({ article, newsType }: BlogCardProperties) => {
           className="h-[247px] w-[374px] rounded-t-lg"
         />
         <div
+          data-testid="news-displayed"
           key={newsType.id}
           style={{ backgroundColor: newsType.color }}
           className="absolute left-[15px] top-[15px] rounded-[16px] px-[17px] py-[5px]"
