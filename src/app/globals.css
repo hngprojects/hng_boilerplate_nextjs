@@ -16,13 +16,6 @@
   opacity: 0px;
 }
 
-.img-view{
-  width: 86px;
-  height: 86px;
-  border-radius: 4px;
-  background: #FAFAFA;
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;
