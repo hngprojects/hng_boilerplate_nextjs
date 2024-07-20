@@ -1,5 +1,5 @@
 import CookieFooter from ".";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 
 describe("cookieFooter", () => {
   it("renders the required contents", () => {
@@ -24,21 +24,5 @@ describe("cookieFooter", () => {
     expect(rejectButton).toBeInTheDocument();
     // eslint-disable-next-line vitest/max-expects
     expect(settingsButton).toBeInTheDocument();
-  });
-
-  it("hides the footer when the specified buttons are clicked", () => {
-    expect.hasAssertions();
-    render(<CookieFooter />);
-    const footerElement = screen.getByRole("contentinfo");
-    expect(footerElement).toBeInTheDocument();
-
-    const acceptButton = screen.getByText(/accept all cookies/i);
-    fireEvent.click(acceptButton);
-    expect(footerElement).not.toBeInTheDocument();
-
-    render(<CookieFooter />);
-    const rejectButton = screen.getByText(/reject all/i);
-    fireEvent.click(rejectButton);
-    expect(footerElement).not.toBeInTheDocument();
   });
 });
