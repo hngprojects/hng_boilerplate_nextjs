@@ -8,10 +8,6 @@ describe("actionButtons Component", () => {
   const mockOnDislike = vi.fn();
   const mockOnReply = vi.fn();
 
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   it('should render all buttons correctly when type is "comment"', () => {
     expect.assertions(5);
     render(
