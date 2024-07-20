@@ -6,13 +6,15 @@
 
 <!-- Github Issue Example: Closes #31 -->
 
-**Closes #issue_number_here**
+Closes #182
 
 # Changes proposed
 
+Implement a "1 Invite sent successfully" pop alert when an invitation is sent to an intending member.
+
 ## What were you told to do?
 
-<!-- Write the title of the issue/feature you are working on -->
+[FEAT] Organization settings > Manage Members page > Implement successfully sent invite pop / alert #182
 
 ## What did you do?
 
@@ -31,13 +33,13 @@
 [ ] - Not correct; marked as **not** done
 -->
 
-- [ ] My code follows the code style of this project.
-- [ ] This PR does not contain plagiarized content.
-- [ ] The title and description of the PR is clear and explains the approach.
-- [ ] I am making a pull request against the **dev branch** (left side).
-- [ ] My commit messages styles matches our requested structure.
-- [ ] My code additions will fail neither code linting checks nor unit test.
-- [ ] I am only making changes to files I was requested to.
+- [x] My code follows the code style of this project.
+- [x] This PR does not contain plagiarized content.
+- [x] The title and description of the PR is clear and explains the approach.
+- [x] I am making a pull request against the **dev branch** (left side).
+- [x] My commit messages styles matches our requested structure.
+- [x] My code additions will fail neither code linting checks nor unit test.
+- [x] I am only making changes to files I was requested to.
 
 # Screenshots/Videos
 

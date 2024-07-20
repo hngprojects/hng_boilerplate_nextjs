@@ -1,17 +1,15 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import { CustomToast } from "~/components/common/customToast/toast"; // Adjust the import path as needed
+import { CustomToast } from "~/components/common/customToast/toast";
 import * as useToastModule from "~/components/ui/use-toast";
 
-// Mock the entire useToast module
 vi.mock("~/components/ui/use-toast", () => ({
   useToast: vi.fn(),
 }));
 
 describe("CustomToast", () => {
   const mockToast = vi.fn();
-  const mockDismiss = vi.fn();
   const mockDispatch = vi.fn();
 
   let mockToasts: any[] = [];
@@ -26,21 +24,18 @@ describe("CustomToast", () => {
       toast: mockToast,
     });
 
-    // Mock the global dispatch function
     (global as any).dispatch = mockDispatch;
   });
 
   it("shows toast when button is clicked", () => {
-    // Render the component
+    console.log(mockToast);
+
     render(<CustomToast description="Test description" />);
 
-    // Find the button
     const button = screen.getByTestId("invite-members-btn");
 
-    // Click the button
     fireEvent.click(button);
 
-    // Check if the toast function was called with the correct parameters
     expect(mockToast).toHaveBeenCalledWith({
       description: "Test description",
       role: "alert",
@@ -50,8 +45,11 @@ describe("CustomToast", () => {
   });
 
   it("closes toast when close button is clicked", () => {
-    const mockDismissToast = vi.fn();
-    mockToast.mockReturnValue({ dismiss: mockDismissToast });
+    const mockDismiss = vi.fn();
+    (useToastModule.useToast as ReturnType<typeof vi.fn>).mockReturnValue({
+      toast: mockToast,
+      dismiss: mockDismiss,
+    });
 
     render(<CustomToast description="Test description" />);
     const showToastButton = screen.getByTestId("invite-members-btn");
@@ -62,14 +60,12 @@ describe("CustomToast", () => {
     const toastCallArg = mockToast.mock.calls[0][0];
     const CloseButton = toastCallArg.action;
 
-    // Render the close button
     render(<>{CloseButton}</>);
 
     const closeButton = screen.getByTestId("close-alert-btn");
     fireEvent.click(closeButton);
 
-    // Check if the dismiss function returned by mockToast was called
-    expect(mockDismissToast).toHaveBeenCalled();
+    expect(mockDismiss).toHaveBeenCalled();
   });
 
   it("automatically dismisses toast after 10 seconds", async () => {
