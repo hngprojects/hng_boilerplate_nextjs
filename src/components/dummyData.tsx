@@ -1,0 +1,47 @@
+export const detailedPayment = [
+  {
+    "name": "Free",
+    "description": "The essential to provide your best work for clients.",
+    "price": 0,
+    "features": ["10 Projects", "Up to 10 subscribers", "Advanced analytics"],
+    "projectMgt": ["Up to 5", "10gb", "1", "1"],
+    "sharing": [],
+    "support": ["one"],
+    "current_plan_description": "",
+    "btn": "Free",
+  },
+  {
+    "name": "Basic",
+    "description": "The essential to provide your best work for clients.",
+    "price": 20,
+    "features": ["100 Projects", "Up to 50 subscribers", "Advanced analytics", "24-hour support  "],
+    "projectMgt": ["Up to 5", "10gb", "1", "1"],
+    "sharing": ["one", "two", "three"],
+    "support": ["one", "two"],
+    "current_plan_description": "",
+    "btn": "Upgrade",
+  },
+  {
+    "name": "Advanced",
+    "description": "The essential to provide your best work for clients.",
+    "price": 50,
+    "features": ["200 Projects", "Up to 100 subscribers", "Advanced analytics", "24-hour support  ", "Marketing advisor"],
+    "projectMgt": ["Up to 5", "10gb", "1", "1"],
+    "sharing": ["one", "two", "three"],
+    "support": ["one", "two"],
+    "current_plan_description": "",
+    "btn": "Upgrade",
+  },
+  {
+    "name": "Premium",
+    "description": "The essential to provide your best work for clients.",
+    "price": 100,
+    "features": ["300 Projects", "Up to 500 subscribers", "Advanced analytics", "24-hour support ", "Marketing advisor"],
+    "projectMgt": ["Up to 5", "10gb", "1", "1"],
+    "sharing": ["one", "two", "three"],
+    "support": ["one", "two"],
+    "current_plan_description": "",
+    "btn": "Upgrade",
+  }
+
+]
