@@ -3,9 +3,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
-import check from "../../../public/public/check.svg";
-import icon from "../../../public/public/icon.svg";
-import CustomButton from "./Button/button";
+import CustomButton from "../../../components/common/Button/button";
 
 const PriceCard: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -46,7 +44,7 @@ const PriceCard: React.FC = () => {
                 trial ends.
               </p>
 
-              <p className="font-sans text-sm font-normal text-neutral-dark-2">
+              <p className="text-neutral-dark-2 font-sans text-sm font-normal">
                 $0/month
               </p>
             </div>
@@ -71,7 +69,7 @@ const PriceCard: React.FC = () => {
 
                   <p className="font-sans text-2xl font-medium leading-relaxed">
                     $0
-                    <span className="font-sans text-[0.8125rem] font-normal leading-normal text-neutral-dark-1">
+                    <span className="text-neutral-dark-1 font-sans text-[0.8125rem] font-normal leading-normal">
                       /month
                     </span>
                   </p>
@@ -91,13 +89,13 @@ const PriceCard: React.FC = () => {
                 </CustomButton>
 
                 <ul className="z-10 mt-12 flex h-[5.6875rem] w-40 list-disc flex-col items-start gap-4">
-                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
+                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
                     10 Projects
                   </li>
-                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
+                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
                     Up to 10 subscribers
                   </li>
-                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
+                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
                     Advanced analytics
                   </li>
                 </ul>
@@ -133,17 +131,17 @@ const PriceCard: React.FC = () => {
                 </CustomButton>
 
                 <ul className="z-10 mt-12 flex h-[5.6875rem] w-[9.1875rem] list-disc flex-col items-start gap-4">
-                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
+                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
                     100 Projects
                   </li>
-                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
+                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
                     Up to 50 subscribers
                   </li>
-                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
+                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
                     Advanced analytics
                   </li>
 
-                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
+                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
                     24-hour support
                   </li>
                 </ul>
@@ -179,21 +177,21 @@ const PriceCard: React.FC = () => {
                 </CustomButton>
 
                 <ul className="z-10 mt-12 flex h-24 w-36 list-disc flex-col items-start gap-4">
-                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
+                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
                     200 Projects
                   </li>
-                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
+                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
                     Up to 100 subscribers
                   </li>
-                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
+                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
                     Advanced analytics
                   </li>
 
-                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
+                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
                     24-hour support
                   </li>
 
-                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
+                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
                     Marketing advisor
                   </li>
                 </ul>
@@ -229,21 +227,21 @@ const PriceCard: React.FC = () => {
                 </CustomButton>
 
                 <ul className="z-10 mt-12 flex h-24 w-40 list-disc flex-col items-start gap-4">
-                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
+                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
                     300 Projects
                   </li>
-                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
+                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
                     Up to 500 subscribers
                   </li>
-                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
+                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
                     Advanced analytics
                   </li>
 
-                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
+                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
                     24-hour support
                   </li>
 
-                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
+                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
                     Marketing advisor
                   </li>
                 </ul>
@@ -264,14 +262,14 @@ const PriceCard: React.FC = () => {
 
         {/* Compare Toggle */}
         <button
-          className="mx-auto flex w-48 cursor-pointer items-center justify-center gap-1 text-neutral-dark-2"
+          className="text-neutral-dark-2 mx-auto flex w-48 cursor-pointer items-center justify-center gap-1"
           onClick={toggleVisibility}
         >
           <p className="font-sans text-base font-semibold leading-normal">
             Compare all features
           </p>
           <Image
-            src={icon}
+            src="/public/images/icon.svg"
             alt="down arrow"
             width={10}
             height={10}
@@ -285,231 +283,359 @@ const PriceCard: React.FC = () => {
           <>
             <div className="grid grid-cols-5 grid-rows-5">
               <div className="col-span-5 flex h-20 w-full items-center gap-3 bg-[#FFF8F2] pb-7 pl-3 pr-10 pt-7">
-                <p className="font-sans text-base font-bold leading-normal text-neutral-dark-2">
+                <p className="text-neutral-dark-2 font-sans text-base font-bold leading-normal">
                   Project Management
                 </p>
               </div>
-              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 Project
               </div>
 
-              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 Up to 5
               </div>
-              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 Up to 5
               </div>
-              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 Up to 5
               </div>
-              <div className="flex items-center border-y pr-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y pr-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 Unlimited
               </div>
-              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 File Upload
               </div>
-              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 10gb
               </div>
-              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 20gb
               </div>
-              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 50gb
               </div>
-              <div className="flex items-center border-y pr-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y pr-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 Unlimited
               </div>
-              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 User Account
               </div>
-              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 1
               </div>
-              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 10
               </div>
-              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 50
               </div>
-              <div className="flex items-center border-y pr-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y pr-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 Unlimited
               </div>
 
-              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 Teams
               </div>
-              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 1
               </div>
-              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 Unlimited
               </div>
-              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 Unlimited
               </div>
-              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 Unlimited
               </div>
             </div>
 
             <div className="grid grid-cols-5 grid-rows-5">
               <div className="col-span-5 flex h-20 w-full items-center gap-3 bg-[#FFF8F2] pb-7 pl-3 pr-10 pt-7">
-                <p className="font-sans text-base font-bold leading-normal text-neutral-dark-2">
+                <p className="text-neutral-dark-2 font-sans text-base font-bold leading-normal">
                   Sharing and collaboration
                 </p>
               </div>
-              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 Integration
               </div>
 
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               {/* Second row */}
-              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 Guest Access
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               {/* Third row */}
-              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 Page Analysis
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               {/* Fourth row */}
-              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 Task Mangement
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
             </div>
 
             <div className="grid grid-cols-5 grid-rows-4">
               <div className="col-span-5 flex h-20 w-full items-center gap-3 bg-[#FFF8F2] pb-7 pl-3 pr-10 pt-7">
-                <p className="font-sans text-base font-bold leading-normal text-neutral-dark-2">
+                <p className="text-neutral-dark-2 font-sans text-base font-bold leading-normal">
                   Management and security
                 </p>
               </div>
-              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 Team Security
               </div>
 
               <div className="flex items-center justify-center border-y"></div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               {/* Second row */}
-              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 Data Backup
               </div>
               <div className="flex items-center justify-center border-y"></div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               {/* Third row */}
-              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 HIPAA Compliance
               </div>
               <div className="flex items-center justify-center border-y"></div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
             </div>
 
             <div className="grid grid-cols-5 grid-rows-3">
               <div className="col-span-5 flex h-20 w-full items-center gap-3 bg-[#FFF8F2] pb-7 pl-3 pr-10 pt-7">
-                <p className="font-sans text-base font-bold leading-normal text-neutral-dark-2">
+                <p className="text-neutral-dark-2 font-sans text-base font-bold leading-normal">
                   Support
                 </p>
               </div>
-              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 Priority Support
               </div>
 
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               {/* Second row */}
-              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
+              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
                 Customer Support
               </div>
               <div className="flex items-center justify-center border-y"></div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image src={check} alt="checkmark" width={20} />
+                <Image
+                  src="/public/images/check.svg"
+                  alt="checkmark"
+                  width={20}
+                />
               </div>
             </div>
           </>

@@ -119,6 +119,7 @@ describe("custom Button Component", () => {
       "https://external-site.com",
     );
   });
+
   it("applies all props correctly", () => {
     render(
       <CustomButton

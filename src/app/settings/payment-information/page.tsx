@@ -1,5 +1,11 @@
+import PriceCard from "~/app/settings/payment-information/Payment";
+
 const page = () => {
-  return <div>page</div>;
+  return (
+    <>
+      <PriceCard />
+    </>
+  );
 };
 
 export default page;
