@@ -87,6 +87,10 @@ const config = {
         stroke: {
           "colors-stroke": "hsl(var(--stroke-colors-stroke))",
         },
+        breadcrumb: {
+          page: "hsl(var(--breadcrumb-page))",
+          foreground: "hsl(var(--breadcrumb-foreground))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
