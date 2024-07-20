@@ -36,8 +36,8 @@ describe("customToast", () => {
   };
 
   it("shows toast when button is clicked", () => {
-    setup();
     expect.assertions(1);
+    setup();
 
     render(<CustomToast description="1 Invite successfully sent" />);
 
@@ -54,8 +54,8 @@ describe("customToast", () => {
   });
 
   it("closes toast when close button is clicked", () => {
-    setup();
     expect.assertions(2);
+    setup();
 
     const mockDismiss = vi.fn();
     (useToastModule.useToast as ReturnType<typeof vi.fn>).mockReturnValue({
@@ -86,8 +86,8 @@ describe("customToast", () => {
   });
 
   it("automatically dismisses toast after 10 seconds", () => {
-    setup();
     expect.assertions(3);
+    setup();
 
     const TOAST_REMOVE_DELAY = 5000;
 
