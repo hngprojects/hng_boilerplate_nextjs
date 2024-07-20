@@ -10,12 +10,12 @@ import {
   ChartTooltipContent,
 } from "~/components/ui/chart";
 
-type ChartProps = {
+type ChartProperties = {
   chartData: { month: string; revenue: number }[];
   chartConfig: ChartConfig;
 };
 
-export function Chart({ chartData, chartConfig }: ChartProps) {
+export function Chart({ chartData, chartConfig }: ChartProperties) {
   return (
     <Card>
       <CardContent className="pl-0">

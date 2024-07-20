@@ -7,9 +7,8 @@ import { ChartConfig } from "~/components/ui/chart";
 import { DatePickerDemo } from "./Calendar";
 import { Chart } from "./Chart";
 
+const generateRandomRevenue = () => (Math.floor(Math.random() * 11) + 1) * 500;
 export default function Home() {
-  const generateRandomRevenue = () =>
-    (Math.floor(Math.random() * 11) + 1) * 500;
   const chartData = [
     { month: "January", revenue: generateRandomRevenue() },
     { month: "February", revenue: generateRandomRevenue() },
