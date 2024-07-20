@@ -158,7 +158,7 @@ const Footer = () => {
       </div>
       <div className="h-[1px] w-full bg-default"></div>
       <div className="px-4">
-        <div className="mx-auto block w-full max-w-[1200px] items-start justify-between pb-[30px] pt-4 md:pt-[27px] lg:flex">
+        <div className="mx-auto block w-full max-w-[1200px] items-center justify-between pb-[30px] pt-4 md:pt-[27px] lg:flex">
           <div className="hidden lg:block">
             <div className="flex w-full max-w-[116px] items-center justify-between gap-1 md:max-w-[212px]">
               {socialLinks.map((item, index) => {
