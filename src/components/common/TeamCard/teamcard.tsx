@@ -1,6 +1,5 @@
 import { Facebook, Instagram, Twitter } from "lucide-react";
 import Image from "next/image";
-import React from "react";
 
 import CustomButton from "../Button/button";
 
@@ -27,7 +26,7 @@ const TeamCard: React.FC<TeamCardProperties> = ({
 }) => {
   return (
     <div className="flex w-[277.35px] flex-col gap-4 bg-neutral-50">
-      <div className="relative h-[205.78px]">
+      <div className="relative h-[205.78px] bg-neutral-300">
         <Image
           src={imageSrc}
           alt={imageAlt}
@@ -37,13 +36,13 @@ const TeamCard: React.FC<TeamCardProperties> = ({
       </div>
       <div className="flex flex-col justify-between gap-5 px-[14.31px] pb-3.5">
         <div>
-          <p className="pb-1 text-lg font-semibold leading-[21.78px] text-neutral-600">
+          <p className="pb-1 text-lg font-bold leading-[21.78px] text-neutral-600 md:font-semibold">
             {name}
           </p>
           <p className="pb-[7.16px] text-[12.53px] leading-[15.16px] text-neutral-600">
             {role}
           </p>
-          <p className="font- line-clamp-3 leading-[19.36px] text-neutral-600">
+          <p className="md:text-normal line-clamp-3 text-sm font-medium leading-[19.36px] text-neutral-600 md:font-normal">
             {description}
           </p>
         </div>
