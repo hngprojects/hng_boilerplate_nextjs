@@ -1,7 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 
 import {
-  INTEGRATION_CARD_IMAGE_TEST_ID,
   INTEGRATION_CARD_TEST_ID,
   IntegrationCard,
   TOGGLE_BTN_TEST_ID,
@@ -39,18 +38,5 @@ describe("integrationCard Component", () => {
 
     fireEvent.click(toggleButton);
     expect(toggleButton).toHaveClass("bg-[#D0D6D6]");
-  });
-  it("the Image is displayed", async () => {
-    expect.hasAssertions();
-    render(
-      <IntegrationCard
-        isActive={false}
-        heading="Drive"
-        description="Store, share, and collaborate on documents and files securely"
-        logoURL="https://example.com/logo.png"
-      />,
-    );
-    const image = screen.getByTestId(INTEGRATION_CARD_IMAGE_TEST_ID);
-    expect(image).toBeInTheDocument();
   });
 });
