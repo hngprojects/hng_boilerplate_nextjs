@@ -19,7 +19,6 @@ const config = {
     },
     extend: {
       colors: {
-        primary_color: "hsl(var(--primary_color))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -85,7 +84,6 @@ const config = {
             2: "hsl(var(--neutralColor-dark-2))",
           },
         },
-        "neutral-dark1": "hsl(var(--neutral-dark1))",
       },
       borderRadius: {
         lg: "var(--radius)",
