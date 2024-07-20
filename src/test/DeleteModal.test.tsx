@@ -9,8 +9,6 @@ describe("deleteModal", () => {
     expect.assertions(2);
 
     render(<DeleteModal />);
-    const openButton = screen.getByText("Open Delete Modal");
-    fireEvent.click(openButton);
 
     const modalContainer = screen.getByTestId("modal-container");
     const modalContent = screen.getByTestId("modal-content");
@@ -23,8 +21,6 @@ describe("deleteModal", () => {
     expect.assertions(5);
 
     render(<DeleteModal />);
-    const openButton = screen.getByText("Open Delete Modal");
-    fireEvent.click(openButton);
 
     const modalContent = screen.getByTestId("modal-content");
 
@@ -39,8 +35,6 @@ describe("deleteModal", () => {
     expect.assertions(1);
 
     render(<DeleteModal />);
-    const openButton = screen.getByText("Open Delete Modal");
-    fireEvent.click(openButton);
 
     const modalContainer = screen.getByTestId("modal-container");
     fireEvent.click(modalContainer);
@@ -53,8 +47,6 @@ describe("deleteModal", () => {
     expect.assertions(3);
 
     render(<DeleteModal />);
-    const openButton = screen.getByText("Open Delete Modal");
-    fireEvent.click(openButton);
 
     const modalHeading = screen.getByTestId("modal-heading");
     const modalMessage = screen.getByTestId("modal-message");
@@ -69,8 +61,6 @@ describe("deleteModal", () => {
     expect.assertions(1);
 
     render(<DeleteModal />);
-    const openButton = screen.getByText("Open Delete Modal");
-    fireEvent.click(openButton);
 
     const cancelButton = screen.getByTestId("cancel-button");
     fireEvent.click(cancelButton);
@@ -83,8 +73,6 @@ describe("deleteModal", () => {
     expect.assertions(1);
 
     render(<DeleteModal />);
-    const openButton = screen.getByText("Open Delete Modal");
-    fireEvent.click(openButton);
 
     const deleteButton = screen.getByTestId("delete-button");
     fireEvent.click(deleteButton);
@@ -97,8 +85,6 @@ describe("deleteModal", () => {
     expect.assertions(1);
 
     render(<DeleteModal />);
-    const openButton = screen.getByText("Open Delete Modal");
-    fireEvent.click(openButton);
 
     const modalContainer = screen.getByTestId("modal-container");
 
