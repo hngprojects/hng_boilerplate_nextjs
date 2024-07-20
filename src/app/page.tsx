@@ -1,5 +1,5 @@
 import Navbar from "~/components/layouts/Navbar";
-import RenewalWithIcon from "~/components/subscriptionRenewalFailed/renewalWithIcon";
+import RenewalWithIcon from "~/components/subscriptionRenewalFailed";
 
 export default function Home() {
   return (

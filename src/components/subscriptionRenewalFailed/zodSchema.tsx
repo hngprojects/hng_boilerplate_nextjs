@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const RenewalWithIconSchema = z.object({
+export const SubscriptionRenewalFailedSchema = z.object({
   title: z.string(),
   name: z.string(),
   image: z.string(),

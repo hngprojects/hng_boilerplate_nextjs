@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import RenewalWithIcon from "~/components/subscriptionRenewalFailed/renewalWithIcon";
+import SubscriptionRenewalFailed from "~/components/subscriptionRenewalFailed";
 
 const properties = {
   title: "Subscription Renewal Failed",
@@ -17,7 +17,7 @@ const properties = {
 describe("renewalWithIcon", () => {
   it("renders the component with provided properties", () => {
     expect.assertions(5);
-    render(<RenewalWithIcon {...properties} />);
+    render(<SubscriptionRenewalFailed {...properties} />);
 
     expect(screen.getByText("Subscription Renewal Failed")).toBeInTheDocument();
     expect(screen.getByText("Hi John Doe,")).toBeInTheDocument();
@@ -32,7 +32,7 @@ describe("renewalWithIcon", () => {
 
   it("renders more texts with provided properties", () => {
     expect.assertions(5);
-    render(<RenewalWithIcon {...properties} />);
+    render(<SubscriptionRenewalFailed {...properties} />);
 
     expect(
       screen.getByText("You have insufficient funds in your account."),
@@ -51,7 +51,7 @@ describe("renewalWithIcon", () => {
 
   it("contains correct links and email", () => {
     expect.assertions(4);
-    render(<RenewalWithIcon {...properties} />);
+    render(<SubscriptionRenewalFailed {...properties} />);
 
     const faqsLink = screen.getByRole("link", { name: /faqs/i });
     expect(faqsLink).toHaveAttribute("href", "https://example.com/faqs");
@@ -78,7 +78,7 @@ describe("renewalWithIcon", () => {
 
   it("renders the image with the correct src and alt text", () => {
     expect.assertions(1);
-    render(<RenewalWithIcon {...properties} />);
+    render(<SubscriptionRenewalFailed {...properties} />);
 
     const image = screen.getByAltText("Payment Error");
     expect(image).toHaveAttribute("src", "/images/payment-error.svg");
