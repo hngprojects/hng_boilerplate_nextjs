@@ -6,12 +6,12 @@ import PasswordSuccessfulModal from "./PasswordSuccessfulModal";
 test("renders the modal when show is true", () => {
   render(<PasswordSuccessfulModal show={true} onClose={() => {}} />);
   expect(
-    screen.getByText("Password Successfully Updated!")
+    screen.getByText("Password Successfully Updated!"),
   ).toBeInTheDocument();
   expect(
     screen.getByText(
-      "Your password has been successfully updated! You can now log in with your new password."
-    )
+      "Your password has been successfully updated! You can now log in with your new password.",
+    ),
   ).toBeInTheDocument();
 });
 
