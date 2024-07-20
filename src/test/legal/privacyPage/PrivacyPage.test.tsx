@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import PrivacyPolicy from "~/app/legal/privacy-policy/page";
 
 vi.mock(
-  "../../components/layouts/PrivacyPolicy/constants/privacyPolicyData",
+  "../../../components/layouts/Legal/PrivacyPolicy/constants/privacyPolicyData",
   () => ({
     getTableOfContents: () => [
       { href: "#section1", label: "Section 1" },
@@ -20,7 +20,10 @@ describe("the Privacy Policy Page", () => {
   it("renders without crashing", () => {
     expect.hasAssertions();
     render(<PrivacyPolicy />);
-    expect(screen.getByText("sub page hero section")).toBeInTheDocument();
+    expect(screen.getByText("Privacy Policy")).toBeInTheDocument();
+    expect(
+      screen.getByText("Achieve your dreams with us today"),
+    ).toBeInTheDocument();
   });
 
   it("adds and removes CSS classes correctly", () => {
