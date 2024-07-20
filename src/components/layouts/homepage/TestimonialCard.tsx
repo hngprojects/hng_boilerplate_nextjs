@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import { Rating } from "./svgs";
 
 interface Properties {
@@ -10,7 +11,7 @@ interface Properties {
 
 const TestimonialCard = (properties: Properties) => {
   return (
-    <div className="flex flex-col items-center justify-center rounded-md border border-solid border-primary bg-white py-10 px-5 xl:px-10 h-full sm:h-[500px] md:h-[500px] lg:h-[500px] text-center">
+    <div className="flex h-full flex-col items-center justify-center rounded-md border border-solid border-primary bg-white px-5 py-10 text-center sm:h-[500px] md:h-[500px] lg:h-[500px] xl:px-10">
       <p className="font-inter mb-6 text-base font-normal">
         {properties?.content}
       </p>

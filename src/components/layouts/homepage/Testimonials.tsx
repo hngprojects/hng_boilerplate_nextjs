@@ -23,7 +23,7 @@ const Testimonials = () => {
   return (
     <div className="bg-background py-[113px]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-end md:items-center md:justify-between flex-col md:flex-row ">
+        <div className="flex flex-col items-end md:flex-row md:items-center md:justify-between">
           <div className="w-full pr-0 lg:w-2/3 lg:pr-10">
             <h1 className="font-inter mb-2 text-4xl font-bold lg:text-5xl">
               Client Testimonials
@@ -33,7 +33,7 @@ const Testimonials = () => {
             </p>
           </div>
 
-          <div className="mt-6 flex items-center space-x-4 lg:mt-0 lg:space-x-6 md:mt-4 md:ml-auto sm:ml-auto sm:justify-end">
+          <div className="mt-6 flex items-center space-x-4 sm:ml-auto sm:justify-end md:ml-auto md:mt-4 lg:mt-0 lg:space-x-6">
             <div
               data-testid="custom-prev"
               className="custom-prev lg:h-15 lg:w-15 flex h-12 w-12 items-center justify-center rounded border border-border bg-white transition-all duration-300 hover:border-primary"
@@ -48,7 +48,6 @@ const Testimonials = () => {
             </div>
           </div>
         </div>
-
 
         <div className="mt-14 flex items-center justify-between lg:mt-20">
           <Swiper
