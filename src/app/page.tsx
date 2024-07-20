@@ -1,6 +1,5 @@
 import Navbar from "../components/layouts/Navbar/index";
 import Head from "next/head";
-import Dashboard from "~/components/layouts/Dashboard";
 
 export default function Home() {
 
@@ -10,8 +9,8 @@ export default function Home() {
         <link rel="icon" href="./favicon.ico" />
       </Head>
       <Navbar />
-      <main className="flex min-h-screen pt-[110px] p-[42px]">
-        <Dashboard />
+      <main className="flex min-h-screen">
+       
       </main>
     </>
   );
