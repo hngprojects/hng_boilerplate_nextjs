@@ -31,6 +31,11 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
+
+    --stroke-colors-stroke: 213, 27%, 84%;
+
+    --neutralColor-dark-1: 0, 0%, 32%;
+    --neutralColor-dark-2: 0, 0%, 4%;
   }
 
   .dark {

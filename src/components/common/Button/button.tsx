@@ -39,6 +39,10 @@ interface ButtonProperties {
   ariaLabel?: string;
   /** Href to link button to a URL or route */
   href?: string;
+  /** Class for custom styling */
+  className?: string;
+  /** Click event handler for the button */
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 /**
@@ -47,7 +51,21 @@ interface ButtonProperties {
  * @param {ButtonProps} props - Properties to configure the button.
  * @returns {JSX.Element} The rendered button component.
  */
-const CustomButton: React.FC<ButtonProperties> = ({ variant, size, children, isLoading = false, isLeftIconVisible = false, isRightIconVisible = false, icon, isDisabled = false, isIconOnly = false, ariaLabel, href }) => {
+const CustomButton: React.FC<ButtonProperties> = ({
+  variant,
+  size,
+  children,
+  isLoading = false,
+  isLeftIconVisible = false,
+  isRightIconVisible = false,
+  icon,
+  isDisabled = false,
+  isIconOnly = false,
+  ariaLabel,
+  href,
+  className,
+  onClick,
+}) => {
   const modifiedIcon = icon ? (
     React.cloneElement(icon as React.ReactElement, {
       className: "w-[1rem] h-[1rem]",
@@ -78,12 +96,19 @@ const CustomButton: React.FC<ButtonProperties> = ({ variant, size, children, isL
 
     if (isExternal) {
       return (
-        <a href={href} target="_blank" rel="noopener noreferrer">
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={ariaLabel}
+        >
           <Button
             variant={variant}
             size={size}
             disabled={isDisabled}
             aria-label={ariaLabel}
+            className={className}
+            onClick={onClick}
             role="button"
           >
             {buttonContent}
@@ -93,12 +118,14 @@ const CustomButton: React.FC<ButtonProperties> = ({ variant, size, children, isL
     }
 
     return (
-      <Link href={href} passHref>
+      <Link href={href} passHref aria-label={ariaLabel}>
         <Button
           variant={variant}
           size={size}
           disabled={isDisabled}
           aria-label={ariaLabel}
+          className={className}
+          onClick={onClick}
           role="button"
         >
           {buttonContent}
@@ -114,13 +141,14 @@ const CustomButton: React.FC<ButtonProperties> = ({ variant, size, children, isL
         size={size}
         disabled={isDisabled}
         aria-label={ariaLabel}
+        className={className}
+        onClick={onClick}
         role="button"
       >
         {buttonContent}
       </Button>
     </>
-  ),
-
+  );
 };
 
 export default CustomButton;

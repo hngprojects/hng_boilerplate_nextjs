@@ -58,7 +58,6 @@ module.exports = {
       "error",
       { cases: { kebabCase: true, pascalCase: true, camelCase: true } },
     ],
-    "react/prop-types": [2, { ignore: ["className"] }],
   },
   settings: {
     react: { version: "detect" },
