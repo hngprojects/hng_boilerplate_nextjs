@@ -1,3 +1,4 @@
+/* eslint-disable vitest/no-standalone-expect */
 import {
   describe,
   fireEvent,
@@ -10,6 +11,7 @@ import Page from "../members/page";
 
 describe("page tests", () => {
   it("renders the search input and icon", () => {
+    expect.assertions(1);
     render(<Page />);
 
     expect(screen.getByTestId("search")).toBeInTheDocument();
@@ -18,6 +20,7 @@ describe("page tests", () => {
   });
 
   it("shows error message when link is empty and copy button is clicked", () => {
+    expect.assertions(1);
     render(<Page />);
 
     const switchButton = screen.getByRole("switch");
@@ -29,6 +32,7 @@ describe("page tests", () => {
   });
 
   it("toggles dropdown and selects an option", () => {
+    expect.assertions(1);
     render(<Page />);
 
     const dropdownButton = screen.getByText("All");
@@ -36,9 +40,6 @@ describe("page tests", () => {
 
     const option = screen.getByText("Admin");
     fireEvent.click(option);
-    expect(screen.queryByText("Admin")).not.toBeNull();
+    expect(screen.getByText("Admin")).not.toBeNull();
   });
 });
-function expect(argument0: any) {
-  throw new Error("Function not implemented.");
-}

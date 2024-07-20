@@ -17,7 +17,6 @@ const ManageMember = () => {
   const [error, setError] = useState("");
   const [selectedOption, setSelectedOption] = useState("All");
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [showDelete, setShowDelete] = useState<number | null>(null);
 
   const handleLinkChange = (event: { target: { value: string } }) => {
     setLink(event.target.value);
@@ -39,10 +38,6 @@ const ManageMember = () => {
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
-  };
-
-  const handleEllipsisClick = (index: number) => {
-    setShowDelete(showDelete === index ? null : index);
   };
 
   return (
@@ -187,19 +182,13 @@ const ManageMember = () => {
                   </select>
                 </div>
                 <div className="relative">
-                  <button
-                    className="font-bold text-gray-400"
-                    onClick={() => handleEllipsisClick(index)}
-                  >
-                    ...
-                  </button>
-                  {showDelete === index && (
-                    <div className="absolute left-4 top-5">
-                      <button className="text-nowrap text-sm text-red-500">
-                        Delete Member
-                      </button>
-                    </div>
-                  )}
+                  <button className="font-bold text-gray-400">...</button>
+
+                  <div className="absolute left-4 top-5">
+                    <button className="text-nowrap text-sm text-red-500">
+                      Delete Member
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
