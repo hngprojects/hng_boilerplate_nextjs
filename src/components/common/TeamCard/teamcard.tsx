@@ -1,6 +1,7 @@
 import { Facebook, Instagram, Twitter } from "lucide-react";
 import Image from "next/image";
 
+import { Card, CardContent, CardFooter, CardTitle } from "~/components/ui/card";
 import CustomButton from "../Button/button";
 
 interface TeamCardProperties {
@@ -25,7 +26,7 @@ const TeamCard: React.FC<TeamCardProperties> = ({
   twitterURL,
 }) => {
   return (
-    <div className="flex w-[277.35px] flex-col gap-4 bg-neutral-50">
+    <Card className="flex w-[277.35px] flex-col gap-4 border-none bg-neutral-50 shadow-none">
       <div className="relative h-[205.78px] bg-neutral-300">
         <Image
           src={imageSrc}
@@ -34,11 +35,11 @@ const TeamCard: React.FC<TeamCardProperties> = ({
           className="object-cover"
         />
       </div>
-      <div className="flex flex-col justify-between gap-5 px-[14.31px] pb-3.5">
+      <CardContent className="flex flex-col justify-between gap-5 px-[14.31px] pb-3.5">
         <div>
-          <p className="pb-1 text-lg font-bold leading-[21.78px] text-neutral-600 md:font-semibold">
+          <CardTitle className="pb-1 text-lg font-bold leading-[21.78px] text-neutral-600 md:font-semibold">
             {name}
-          </p>
+          </CardTitle>
           <p className="pb-[7.16px] text-[12.53px] leading-[15.16px] text-neutral-600">
             {role}
           </p>
@@ -46,7 +47,7 @@ const TeamCard: React.FC<TeamCardProperties> = ({
             {description}
           </p>
         </div>
-        <div className="flex h-8 gap-3.5">
+        <CardFooter className="flex h-8 gap-3.5 p-0">
           {facebookURL && (
             <CustomButton className="p-1" variant={"link"} size={"icon"}>
               <a
@@ -83,9 +84,9 @@ const TeamCard: React.FC<TeamCardProperties> = ({
               </a>
             </CustomButton>
           )}
-        </div>
-      </div>
-    </div>
+        </CardFooter>
+      </CardContent>
+    </Card>
   );
 };
 
