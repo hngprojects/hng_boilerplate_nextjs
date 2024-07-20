@@ -1,8 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 
-import "@testing-library/jest-dom";
-
-import DeleteModal from "../components/modals/DeleteModal";
+import DeleteModal from "~/components/modals/DeleteModal";
 
 describe("DeleteModal", () => {
   test("should display the modal correctly when visible", () => {
@@ -72,7 +70,6 @@ describe("DeleteModal", () => {
   test("should correctly apply overlay opacity", () => {
     render(<DeleteModal closeDeleteModal={vi.fn()} />);
     const modalContainer = screen.getByTestId("modal-container");
-
     expect(modalContainer).toHaveClass("bg-opacity-[25%]");
   });
 });
