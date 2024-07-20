@@ -5,8 +5,7 @@
  *
  * eslint@^8.57.0 @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-react-refresh eslint-plugin-unicorn eslint-plugin-unused-imports@^3.2.0 prettier eslint-config-prettier eslint-plugin-prettier @ianvs/prettier-plugin-sort-imports prettier-plugin-tailwindcss
  *
- *
- * To Replicate the vitest configuration, you need to install the following dependencies:
+ * To replicate the vitest configuration, you need to install the following dependencies:
  *
  * eslint-plugin-vitest@^0.4.1 eslint-testing-library
  *
@@ -58,6 +57,7 @@ module.exports = {
       "error",
       { cases: { kebabCase: true, pascalCase: true, camelCase: true } },
     ],
+    "react/no-unknown-property": ["error", { 'ignore': ["jsx"] }],
   },
   settings: {
     react: { version: "detect" },
