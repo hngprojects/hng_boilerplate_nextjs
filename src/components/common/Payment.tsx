@@ -19,14 +19,10 @@ const PriceCard: React.FC = () => {
   const upgradePlan = async (plan: string) => {
     setIsLoading(true);
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulated delay
-      // Perform actual API request here
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       console.log(`Upgrading to ${plan} plan`);
-      // Handle successful upgrade logic
     } catch (error) {
       console.error("Error upgrading plan:", error);
-      // Handle error logic
     } finally {
       setIsLoading(false);
     }
@@ -35,12 +31,12 @@ const PriceCard: React.FC = () => {
   return (
     <>
       <div className="pb-24">
-        <div className="mt-[1rem]">
-          <h1 className="ml-[1.06rem] font-sans text-2xl font-semibold">
+        <div className="mt-4">
+          <h1 className="ml-5 font-sans text-2xl font-semibold">
             Current Plan
           </h1>
 
-          <section className="mt-6 flex items-center self-stretch rounded-[0.75rem] bg-[#FFF8F2] pb-[1.375rem] pl-[1.0625rem] pr-[5.875rem] pt-[1.5rem]">
+          <section className="rounded- mt-6 flex items-center self-stretch bg-[#FFF8F2] pb-[1.375rem] pl-[1.0625rem] pr-[5.875rem] pt-[1.5rem]">
             <div className="flex flex-col items-start gap-2 self-stretch">
               <p className="font-sans text-xl font-semibold">Free</p>
 
@@ -50,7 +46,9 @@ const PriceCard: React.FC = () => {
                 trial ends.
               </p>
 
-              <p className="font-sans text-sm font-normal">$0/month</p>
+              <p className="font-sans text-sm font-normal text-neutral-dark-2">
+                $0/month
+              </p>
             </div>
           </section>
         </div>
@@ -58,22 +56,22 @@ const PriceCard: React.FC = () => {
         {/* The plans */}
         <div className="lg: my-6 flex w-full flex-col items-start justify-start overflow-x-scroll pb-12 lg:overflow-hidden">
           <div className="flex items-start justify-start">
-            <p className="ml-6 w-[9.5rem] font-sans text-base font-semibold leading-normal">
+            <p className="ml-6 w-40 font-sans text-base font-semibold leading-normal">
               Subscribe to your desired plan
             </p>
 
             {/* The price cards */}
             <div className="lg:gap-18 inline-flex items-center gap-2 xl:gap-20 2xl:gap-36">
               {/* Free */}
-              <div className="flex h-[13.875rem] w-[12.625rem] flex-1 flex-col items-start justify-start gap-[1.1875rem] rounded-xl px-[1.3125rem] py-[0.935rem]">
+              <div className="flex h-56 w-52 flex-1 flex-col items-start justify-start gap-7 rounded-xl px-6 py-4">
                 <div className="flex flex-col items-start gap-4 self-stretch">
                   <p className="font-sans text-base font-semibold leading-5">
                     Free
                   </p>
 
-                  <p className="font-sans text-[1.5625rem] font-medium leading-[1.875rem]">
+                  <p className="font-sans text-2xl font-medium leading-relaxed">
                     $0
-                    <span className="font-sans text-[0.8125rem] font-normal leading-normal text-[#525252]">
+                    <span className="font-sans text-[0.8125rem] font-normal leading-normal text-neutral-dark-1">
                       /month
                     </span>
                   </p>
@@ -92,27 +90,27 @@ const PriceCard: React.FC = () => {
                   {isLoading ? "Loading..." : "Get Free"}
                 </CustomButton>
 
-                <ul className="z-10 mt-12 flex h-[5.6875rem] w-[9.1875rem] list-disc flex-col items-start gap-4">
-                  <li className="font-sans text-sm font-normal leading-normal text-[#0A0A0A]">
+                <ul className="z-10 mt-12 flex h-[5.6875rem] w-40 list-disc flex-col items-start gap-4">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     10 Projects
                   </li>
-                  <li className="font-sans text-sm font-normal leading-normal text-[#0A0A0A]">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     Up to 10 subscribers
                   </li>
-                  <li className="font-sans text-sm font-normal leading-normal text-[#0A0A0A]">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     Advanced analytics
                   </li>
                 </ul>
               </div>
 
               {/* Basic */}
-              <div className="flex h-[13.875rem] w-[12.625rem] flex-1 flex-col items-start justify-start gap-[1.1875rem] rounded-xl px-[1.3125rem] py-[0.935rem]">
+              <div className="flex h-56 w-52 flex-1 flex-col items-start justify-start gap-6 rounded-xl px-[1.3125rem] py-[0.935rem]">
                 <div className="flex flex-col items-start gap-4 self-stretch">
                   <p className="font-sans text-base font-semibold leading-5">
                     Basic
                   </p>
 
-                  <p className="font-sans text-[1.5625rem] font-medium leading-[1.875rem]">
+                  <p className="font-sans text-2xl font-medium leading-7">
                     $20
                     <span className="font-sans text-[0.8125rem] font-normal leading-normal text-[#525252]">
                       /month
@@ -135,30 +133,30 @@ const PriceCard: React.FC = () => {
                 </CustomButton>
 
                 <ul className="z-10 mt-12 flex h-[5.6875rem] w-[9.1875rem] list-disc flex-col items-start gap-4">
-                  <li className="font-sans text-sm font-normal leading-normal text-[#0A0A0A]">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     100 Projects
                   </li>
-                  <li className="font-sans text-sm font-normal leading-normal text-[#0A0A0A]">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     Up to 50 subscribers
                   </li>
-                  <li className="font-sans text-sm font-normal leading-normal text-[#0A0A0A]">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     Advanced analytics
                   </li>
 
-                  <li className="font-sans text-sm font-normal leading-normal text-[#0A0A0A]">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     24-hour support
                   </li>
                 </ul>
               </div>
 
               {/* Advanced */}
-              <div className="flex h-[13.875rem] w-[12.625rem] flex-1 flex-col items-start justify-start gap-[1.1875rem] rounded-xl px-[1.3125rem] py-[0.935rem]">
+              <div className="flex h-[13.875rem] w-[12.625rem] flex-1 flex-col items-start justify-start gap-6 rounded-xl px-6 py-4">
                 <div className="flex flex-col items-start gap-4 self-stretch">
                   <p className="font-sans text-base font-semibold leading-5">
                     Advanced
                   </p>
 
-                  <p className="font-sans text-[1.5625rem] font-medium leading-[1.875rem]">
+                  <p className="font-sans text-2xl font-medium leading-relaxed">
                     $50
                     <span className="font-sans text-[0.8125rem] font-normal leading-normal text-[#525252]">
                       /month
@@ -180,35 +178,35 @@ const PriceCard: React.FC = () => {
                   {isLoading ? "Loading..." : "Upgrade"}
                 </CustomButton>
 
-                <ul className="z-10 mt-12 flex h-[5.6875rem] w-[9.1875rem] list-disc flex-col items-start gap-4">
-                  <li className="font-sans text-sm font-normal leading-normal text-[#0A0A0A]">
+                <ul className="z-10 mt-12 flex h-24 w-36 list-disc flex-col items-start gap-4">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     200 Projects
                   </li>
-                  <li className="font-sans text-sm font-normal leading-normal text-[#0A0A0A]">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     Up to 100 subscribers
                   </li>
-                  <li className="font-sans text-sm font-normal leading-normal text-[#0A0A0A]">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     Advanced analytics
                   </li>
 
-                  <li className="font-sans text-sm font-normal leading-normal text-[#0A0A0A]">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     24-hour support
                   </li>
 
-                  <li className="font-sans text-sm font-normal leading-normal text-[#0A0A0A]">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     Marketing advisor
                   </li>
                 </ul>
               </div>
 
               {/* Premium */}
-              <div className="flex h-[13.875rem] w-[12.625rem] flex-1 flex-col items-start justify-start gap-[1.1875rem] rounded-xl px-[1.3125rem] py-[0.935rem]">
+              <div className="flex h-[13.875rem] w-[12.625rem] flex-1 flex-col items-start justify-start gap-5 rounded-xl px-6 py-4">
                 <div className="flex flex-col items-start gap-4 self-stretch">
                   <p className="font-sans text-base font-semibold leading-5">
                     Premium
                   </p>
 
-                  <p className="font-sans text-[1.5625rem] font-medium leading-[1.875rem]">
+                  <p className="font-sans text-2xl font-medium leading-relaxed">
                     $100
                     <span className="font-sans text-[0.8125rem] font-normal leading-normal text-[#525252]">
                       /month
@@ -230,22 +228,22 @@ const PriceCard: React.FC = () => {
                   {isLoading ? "Loading..." : "Upgrade"}
                 </CustomButton>
 
-                <ul className="z-10 mt-12 flex h-[5.6875rem] w-[9.1875rem] list-disc flex-col items-start gap-4">
-                  <li className="font-sans text-sm font-normal leading-normal text-[#0A0A0A]">
+                <ul className="z-10 mt-12 flex h-24 w-40 list-disc flex-col items-start gap-4">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     300 Projects
                   </li>
-                  <li className="font-sans text-sm font-normal leading-normal text-[#0A0A0A]">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     Up to 500 subscribers
                   </li>
-                  <li className="font-sans text-sm font-normal leading-normal text-[#0A0A0A]">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     Advanced analytics
                   </li>
 
-                  <li className="font-sans text-sm font-normal leading-normal text-[#0A0A0A]">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     24-hour support
                   </li>
 
-                  <li className="font-sans text-sm font-normal leading-normal text-[#0A0A0A]">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     Marketing advisor
                   </li>
                 </ul>
@@ -254,10 +252,10 @@ const PriceCard: React.FC = () => {
           </div>
 
           {/* The Features */}
-          <div className="mt-7 flex h-[22rem] w-[1000px] flex-row items-start justify-start self-stretch rounded-xl bg-[#FFF8F2] pb-[6.0625rem] pl-[0.9375rem] pr-[0.875rem] pt-[1.1875rem] lg:w-full">
+          <div className="mt-7 flex h-96 w-[1000px] flex-row items-start justify-start self-stretch rounded-xl bg-[#FFF8F2] pb-24 pl-4 pr-3 pt-5 lg:w-full">
             {/* The content div */}
             <div className="flex h-48 w-full flex-row items-start justify-start gap-16">
-              <p className="mr-[3.3rem] font-sans text-base font-semibold leading-normal">
+              <p className="mr-14 font-sans text-base font-semibold leading-normal">
                 Highlights
               </p>
             </div>
