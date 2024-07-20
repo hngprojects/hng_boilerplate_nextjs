@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 "use client";
 
-import Image from "next/image";
-import React, { useCallback, useRef, useState, useEffect } from "react";
-import { Button } from "../ui/button";
 import { TrashIcon } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+
+import { Button } from "../ui/button";
 
 interface MediaUploadProperties {
   onFilesAdded: (files: File[]) => void;
@@ -26,23 +27,33 @@ const MediaUpload: React.FC<MediaUploadProperties> = ({
     event_.stopPropagation();
   }, []);
 
-  const handleFilesAdded = useCallback((newFiles: FileList) => {
-    const fileArray = Array.from(newFiles);
-    setFiles((prevFiles) => [...prevFiles, ...fileArray]);
-    onFilesAdded(fileArray);
-  }, [onFilesAdded]);
+  const handleFilesAdded = useCallback(
+    (newFiles: FileList) => {
+      // eslint-disable-next-line unicorn/prefer-spread
+      const fileArray = Array.from(newFiles);
+      setFiles((previousFiles) => [...previousFiles, ...fileArray]);
+      onFilesAdded(fileArray);
+    },
+    [onFilesAdded],
+  );
 
-  const handleDrop = useCallback((event_: React.DragEvent) => {
-    event_.preventDefault();
-    event_.stopPropagation();
-    const newFiles = event_.dataTransfer.files;
-    handleFilesAdded(newFiles);
-  }, [handleFilesAdded]);
+  const handleDrop = useCallback(
+    (event_: React.DragEvent) => {
+      event_.preventDefault();
+      event_.stopPropagation();
+      const newFiles = event_.dataTransfer.files;
+      handleFilesAdded(newFiles);
+    },
+    [handleFilesAdded],
+  );
 
-  const handleDeleteFile = useCallback((file: File) => {
-    setFiles((previousFiles) => previousFiles.filter((f) => f !== file));
-    onFileDeleted(file);
-  }, [onFileDeleted]);
+  const handleDeleteFile = useCallback(
+    (file: File) => {
+      setFiles((previousFiles) => previousFiles.filter((f) => f !== file));
+      onFileDeleted(file);
+    },
+    [onFileDeleted],
+  );
 
   const handleButtonClick = useCallback(() => {
     if (fileInputReference.current) {
@@ -52,7 +63,7 @@ const MediaUpload: React.FC<MediaUploadProperties> = ({
 
   useEffect(() => {
     return () => {
-      files.forEach((file) => URL.revokeObjectURL(URL.createObjectURL(file)));
+      for (const file of files) URL.revokeObjectURL(URL.createObjectURL(file));
     };
   }, [files]);
 
