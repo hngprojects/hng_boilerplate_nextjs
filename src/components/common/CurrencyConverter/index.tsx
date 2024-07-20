@@ -197,7 +197,7 @@ export async function fetchRates(): Promise<conversionRates | undefined> {
 
     const conversionRates: conversionRates = data.conversion_rates;
     return conversionRates;
-  } catch (error: any) {
+  } catch (error) {
     console.log(error.message);
   }
 }
@@ -208,7 +208,6 @@ export const convertCurrencyFromUSD = (
   conversionRates: conversionRates | undefined,
 ): CObject => {
   if (!conversionRates || !conversionRates[currencyCode]) {
-    console.log("error conversion rate absent");
     return {
       convertedAmount: 0,
       currencySymbol: "$",
@@ -260,7 +259,6 @@ const CurrencyConverter = ({
 
         setConvertedAmount(formattedAmount);
         setCurrencySymbol(currencySymbol);
-        console.log(currencySymbol);
       } else {
         setError("conversion failed");
       }
