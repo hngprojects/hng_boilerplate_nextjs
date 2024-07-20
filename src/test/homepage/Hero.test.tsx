@@ -6,7 +6,7 @@ import Hero from "~/components/layouts/homepage/Hero";
 
 describe("hero Component", () => {
   it("renders the hero heading", () => {
-    expect.assertions(2);
+    expect.assertions(1); // Ensure exactly one assertion
 
     render(<Hero />);
     const heading = screen.getByRole("heading", {
@@ -16,7 +16,7 @@ describe("hero Component", () => {
   });
 
   it("renders the hero paragraph", () => {
-    expect.assertions(2);
+    expect.assertions(1); // Ensure exactly one assertion
 
     render(<Hero />);
     const paragraph = screen.getByText(
@@ -26,7 +26,7 @@ describe("hero Component", () => {
   });
 
   it("renders the get started button", () => {
-    expect.assertions(2);
+    expect.assertions(1); // Ensure exactly one assertion
 
     render(<Hero />);
     const button = screen.getByRole("button", { name: /get started/i });
@@ -34,7 +34,7 @@ describe("hero Component", () => {
   });
 
   it("renders the HeroCheckMark component", () => {
-    expect.assertions(2);
+    expect.assertions(1); // Ensure exactly one assertion
 
     render(<Hero />);
     const checkMark = screen.getByTestId("hero-checkmark");
@@ -42,7 +42,7 @@ describe("hero Component", () => {
   });
 
   it("renders the HeroChat component", () => {
-    expect.assertions(2);
+    expect.assertions(1); // Ensure exactly one assertion
 
     render(<Hero />);
     const chat = screen.getByTestId("hero-chat");
@@ -50,7 +50,7 @@ describe("hero Component", () => {
   });
 
   it("renders the HeroBoilerPlate component", () => {
-    expect.assertions(2);
+    expect.assertions(1); // Ensure exactly one assertion
 
     render(<Hero />);
     const boilerPlate = screen.getByTestId("hero-boilerplate");
@@ -58,7 +58,7 @@ describe("hero Component", () => {
   });
 
   it("renders the Swiper component", () => {
-    expect.assertions(2);
+    expect.assertions(1); // Ensure exactly one assertion
 
     render(<Hero />);
     const swiper = screen.getByTestId("swiper");
@@ -66,7 +66,7 @@ describe("hero Component", () => {
   });
 
   it("renders all Swiper slides", () => {
-    expect.assertions(2);
+    expect.assertions(1); // Ensure exactly one assertion
 
     render(<Hero />);
     const slides = screen.getAllByAltText("Hero Image");

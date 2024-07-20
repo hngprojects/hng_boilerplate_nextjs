@@ -14,7 +14,7 @@ describe("testimonialCard Component", () => {
   };
 
   it("renders the testimonial content", () => {
-    expect.assertions(2);
+    expect.assertions(1);
 
     render(<TestimonialCard {...properties} />);
     const content = screen.getByText(
@@ -24,7 +24,7 @@ describe("testimonialCard Component", () => {
   });
 
   it("renders the testimonial name", () => {
-    expect.assertions(2);
+    expect.assertions(1);
 
     render(<TestimonialCard {...properties} />);
     const name = screen.getByText(properties.name);
@@ -32,7 +32,7 @@ describe("testimonialCard Component", () => {
   });
 
   it("renders the testimonial stack", () => {
-    expect.assertions(2);
+    expect.assertions(1);
 
     render(<TestimonialCard {...properties} />);
     const stack = screen.getByText(properties.stack);
@@ -49,7 +49,7 @@ describe("testimonialCard Component", () => {
   });
 
   it("renders the Rating component", () => {
-    expect.assertions(2);
+    expect.assertions(1);
 
     render(<TestimonialCard {...properties} />);
     const rating = screen.getByTestId("rating");

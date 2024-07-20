@@ -6,7 +6,7 @@ import PerfectFit from "~/components/layouts/homepage/PerfectFit";
 
 describe("perfectFit Component", () => {
   it("renders the heading", () => {
-    expect.assertions(2);
+    expect.assertions(1);
 
     render(<PerfectFit />);
     const heading = screen.getByRole("heading", {
@@ -16,7 +16,7 @@ describe("perfectFit Component", () => {
   });
 
   it("renders the paragraph", () => {
-    expect.assertions(2);
+    expect.assertions(1);
 
     render(<PerfectFit />);
     const paragraph = screen.getByText(
@@ -26,7 +26,7 @@ describe("perfectFit Component", () => {
   });
 
   it("renders the See Our Pricing Plan button", () => {
-    expect.assertions(2);
+    expect.assertions(1);
 
     render(<PerfectFit />);
     const button = screen.getByRole("button", {
@@ -36,7 +36,7 @@ describe("perfectFit Component", () => {
   });
 
   it("applies the correct text color to the paragraph", () => {
-    expect.assertions(2);
+    expect.assertions(1);
 
     render(<PerfectFit />);
     const paragraph = screen.getByText(
