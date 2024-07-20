@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import PasswordSettingsHeading from "~/components/ui/passwordSettingsHeading";
+import PasswordSettingsHeading from "~/components/passwordSettings/passwordSettingsHeading";
 
 describe("passwordSettingsHeading component", () => {
   it("should render heading with default heading level when headingLevel is not provided", () => {
