@@ -115,75 +115,88 @@ describe("custom Button Component", () => {
     expect(button).toBeInTheDocument();
     expect(screen.getByText(/internal link/i)).toBeInTheDocument();
     await userEvent.click(button);
-  });
+    it("renders external link correctly with anchor tag", () => {
+      render(
+        <CustomButton
+          href="https://external-site.com"
+          ariaLabel="external-link"
+        >
+          External Link
+        </CustomButton>,
+      );
+    });
 
-  it("renders external link correctly with anchor tag", () => {
-    expect.hasAssertions();
+    it("renders external link correctly with anchor tag", () => {
+      expect.hasAssertions();
 
-    render(
-      <CustomButton href="https://external-site.com" ariaLabel="external-link">
-        External Link
-      </CustomButton>,
-    );
-    const button = screen.getByRole("link", { name: /external-link/i });
-    expect(button).toBeInTheDocument();
-    expect(button).toHaveAttribute("href", "https://external-site.com");
-  });
+      render(
+        <CustomButton
+          href="https://external-site.com"
+          ariaLabel="external-link"
+        >
+          External Link
+        </CustomButton>,
+      );
+      const button = screen.getByRole("link", { name: /external-link/i });
+      expect(button).toBeInTheDocument();
+      expect(button).toHaveAttribute("href", "https://external-site.com");
+    });
 
-  it("applies all props correctly", () => {
-    expect.hasAssertions();
+    it("applies all props correctly", () => {
+      expect.hasAssertions();
 
-    render(
-      <CustomButton
-        variant="primary"
-        size="lg"
-        icon={<Plus />}
-        isLoading
-        isIconOnly
-        isRightIconVisible
-        isDisabled
-        ariaLabel="custom-button"
-        href="/test-page"
-      />,
-    );
+      render(
+        <CustomButton
+          variant="primary"
+          size="lg"
+          icon={<Plus />}
+          isLoading
+          isIconOnly
+          isRightIconVisible
+          isDisabled
+          ariaLabel="custom-button"
+          href="/test-page"
+        />,
+      );
 
-    const button = screen.getByRole("button", { name: /custom-button/i });
-    expect(button).toBeInTheDocument();
-    expect(button).toHaveAttribute("aria-label", "custom-button");
-  });
+      const button = screen.getByRole("button", { name: /custom-button/i });
+      expect(button).toBeInTheDocument();
+      expect(button).toHaveAttribute("aria-label", "custom-button");
+    });
 
-  it("renders icon correctly", () => {
-    expect.hasAssertions();
+    it("renders icon correctly", () => {
+      expect.hasAssertions();
 
-    render(<CustomButton icon={<Plus />} ariaLabel="icon-button" />);
+      render(<CustomButton icon={<Plus />} ariaLabel="icon-button" />);
 
-    const button = screen.getByRole("button", { name: /icon-button/i });
-    expect(button).toBeInTheDocument();
-  });
+      const button = screen.getByRole("button", { name: /icon-button/i });
+      expect(button).toBeInTheDocument();
+    });
 
-  it("renders loading spinner correctly when loading", () => {
-    expect.hasAssertions();
+    it("renders loading spinner correctly when loading", () => {
+      expect.hasAssertions();
 
-    render(<CustomButton isLoading ariaLabel="loading-button" />);
+      render(<CustomButton isLoading ariaLabel="loading-button" />);
 
-    expect(screen.getByTestId("loading-spinner")).toBeInTheDocument();
-  });
+      expect(screen.getByTestId("loading-spinner")).toBeInTheDocument();
+    });
 
-  it("renders correctly when disabled", () => {
-    expect.hasAssertions();
+    it("renders correctly when disabled", () => {
+      expect.hasAssertions();
 
-    render(<CustomButton isDisabled ariaLabel="disabled-button" />);
+      render(<CustomButton isDisabled ariaLabel="disabled-button" />);
 
-    const button = screen.getByRole("button", { name: /disabled-button/i });
-    expect(button).toBeDisabled();
-  });
+      const button = screen.getByRole("button", { name: /disabled-button/i });
+      expect(button).toBeDisabled();
+    });
 
-  it("renders internal link correctly", () => {
-    expect.hasAssertions();
+    it("renders internal link correctly", () => {
+      expect.hasAssertions();
 
-    render(<CustomButton href="/test-page" ariaLabel="internal-link" />);
+      render(<CustomButton href="/test-page" ariaLabel="internal-link" />);
 
-    const link = screen.getByRole("link");
-    expect(link).toHaveAttribute("href", "/test-page");
+      const link = screen.getByRole("link");
+      expect(link).toHaveAttribute("href", "/test-page");
+    });
   });
 });
