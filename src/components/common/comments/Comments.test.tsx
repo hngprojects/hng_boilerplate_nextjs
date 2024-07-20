@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
-import Comments from "../../components/comments/index";
+import Comments from "./index";
 
 // Mock next/image
 vi.mock("next/image", () => ({

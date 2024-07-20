@@ -4,12 +4,12 @@ import { NextPage } from "next";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
-import reply from "../../../public//assets/comment.svg";
-import avatar from "../../../public/assets/Ellipse 1.svg";
-import like from "../../../public/assets/like.svg";
-import repost from "../../../public/assets/repost.svg";
-import share from "../../../public/assets/share.svg";
-import unlike from "../../../public/assets/unlike.svg";
+import reply from "../../../../public/assets/comment.svg";
+import avatar from "../../../../public/assets/Ellipse 1.svg";
+import like from "../../../../public/assets/like.svg";
+import repost from "../../../../public/assets/repost.svg";
+import share from "../../../../public/assets/share.svg";
+import unlike from "../../../../public/assets/unlike.svg";
 
 interface Comment {
   id: number;

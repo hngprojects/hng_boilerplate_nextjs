@@ -1,9 +1,7 @@
-import Comments from "~/components/comments";
-
 export default function Home() {
   return (
     <main className="">
-      <Comments />
+      <h1>Hello</h1>
     </main>
   );
 }
