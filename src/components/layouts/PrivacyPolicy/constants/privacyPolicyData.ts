@@ -121,7 +121,7 @@ const privacyPolicyData: LegalTermData = [
     id: "security-measures",
     title: "Security Measures",
     description: {
-      text: "We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. When we make changes, we will notify you by updating the date at the top of this policy and providing a more prominent notice if the changes are significant. We encourage you to review this policy periodically to stay informed about how we are protecting your information.",
+      text: "We implement robust security measures to protect your information from unauthorized access, disclosure, alteration, and destruction. These measures include encryption, secure servers, and regular security assessments. However, no security system is completely infallible, and we cannot guarantee the absolute security of your information.",
     },
   },
   {
