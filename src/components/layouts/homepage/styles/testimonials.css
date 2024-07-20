@@ -1,0 +1,148 @@
+.testimonials {
+  padding: 113px 0;
+}
+
+.testimonials-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.testimonials-heading .heading-left {
+  width: 582px;
+}
+
+.testimonials-heading h1 {
+  font-size: 44px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-family: "Inter";
+}
+
+.testimonials-heading p {
+  font-size: 20px;
+  font-weight: 400;
+  font-family: "Inter";
+}
+
+.testimonials-heading .heading-right {
+  display: flex;
+  align-items: center;
+  column-gap: 15px;
+}
+
+.testimonials-heading .custom-prev, .custom-next{
+    height:60px;
+    width:60px;
+    border-radius:6px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s linear;
+}
+
+.testimonials-box {
+  margin-top: 54px;
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.testimonial-card {
+  padding: 40px 30px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+    justify-content: center;
+  flex-direction: column;
+  border-radius: 6px;
+  height:430px;
+}
+
+.testimonial-card p {
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 25px;
+   font-family: 'Inter';
+}
+
+.testimonial-card .image-box {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-top: 25px;
+}
+
+.testimonial-card .image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.testimonial-card h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-family: 'Inter';
+}
+
+.testimonial-card small {
+  font-size: 14px;
+  font-weight: 400;
+   font-family: 'Inter';
+}
+
+
+/* =================================== */
+/* responsiveness section */
+@media (max-width:991px){
+  .testimonials-heading h1{
+    font-size:38px;
+  }
+
+  .testimonials-heading p{
+    font-size:18px;
+  }
+
+  .testimonials-heading .custom-prev, .custom-next{
+    height:50px;
+    width:50px;
+}
+}
+
+@media (max-width:768px){
+  .testimonials-heading h1{
+    font-size:30px;
+  }
+
+  .testimonials-heading p{
+    font-size:16px;
+  }
+
+  .testimonials-heading .custom-prev, .custom-next{
+    height:40px;
+    width:40px;
+}
+}
+
+@media (max-width:575px){
+  .testimonials-heading{
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .testimonials-heading .heading-left{
+    width:100%;
+    text-align:center;
+  }
+
+  .testimonials-heading .heading-right {
+  margin-top:27px;
+  justify-content: flex-end;
+}
+
+.testimonials-box{
+  margin-top:27px;
+}
+}
