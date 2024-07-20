@@ -1,11 +1,5 @@
-/* eslint-disable vitest/no-standalone-expect */
-import {
-  describe,
-  fireEvent,
-  it,
-  render,
-  screen,
-} from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
 
 import Page from "../members/page";
 
