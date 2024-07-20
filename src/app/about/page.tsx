@@ -1,45 +1,45 @@
-"use client";
-
 import React, { useState } from "react";
 
 import ConfirmCancelModal from "../../components/cancel-sub-modal/ConfirmCancelModal";
-import { Button } from "../about/button";
 
-const AboutPage = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const AboutUs: React.FC = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
 
-  const handleModalClose = () => {
-    setIsModalOpen(false);
+  const handleOpenModal = () => {
+    setModalOpen(true);
   };
 
-  const handleModalOpen = () => {
-    setIsModalOpen(true);
+  const handleCloseModal = () => {
+    setModalOpen(false);
   };
 
   const handleCancelSubscription = () => {
-    // Add your cancel subscription logic here
+    // Perform cancellation logic here
     console.log("Subscription cancelled");
-    setIsModalOpen(false);
+    setModalOpen(false);
   };
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold">About Us</h1>
-      <p className="mt-2">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-        scelerisque leo at lorem vestibulum, sit amet auctor metus venenatis.
-        Aenean sit amet urna a libero dapibus sollicitudin.
+    <div className="flex min-h-screen flex-col items-center justify-center p-6">
+      <h1 className="mb-6 text-4xl font-bold">About Us</h1>
+      <p className="mb-6 text-lg">
+        We are a company dedicated to providing the best services to our
+        customers.
       </p>
-      <Button onClick={handleModalOpen} className="mt-4">
+      <button
+        onClick={handleOpenModal}
+        className="hover:bg-primary-dark rounded-lg bg-primary px-6 py-2 text-white"
+      >
         Cancel Subscription
-      </Button>
+      </button>
+
       <ConfirmCancelModal
         isOpen={isModalOpen}
-        onClose={handleModalClose}
+        onClose={handleCloseModal}
         onCancel={handleCancelSubscription}
       />
     </div>
   );
 };
 
-export default AboutPage;
+export default AboutUs;
