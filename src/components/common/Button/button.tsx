@@ -88,55 +88,32 @@ const CustomButton: React.FC<ButtonProperties> = ({
   if (href) {
     const isExternal = /^https?:\/\//.test(href);
 
-    if (isExternal) {
-      return (
-        <a
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={ariaLabel}
-        >
-          <Button
-            variant={variant}
-            size={size}
-            disabled={isDisabled}
-            aria-label={ariaLabel}
-            role="button"
-          >
-            {buttonContent}
-          </Button>
-        </a>
-      );
+        if (isExternal) {
+            return (
+                <a href={href} target="_blank" rel="noopener noreferrer">
+                    <Button variant={variant} size={size} disabled={isDisabled} aria-label={ariaLabel} role="button">
+                        {buttonContent}
+                    </Button>
+                </a>
+            );
+        }
+
+        return (
+            <Link href={href} passHref>
+                <Button variant={variant} size={size} disabled={isDisabled} aria-label={ariaLabel} role="button">
+                    {buttonContent}
+                </Button>
+            </Link>
+        );
     }
-
+    
     return (
-      <Link href={href} passHref aria-label={ariaLabel}>
-        <Button
-          variant={variant}
-          size={size}
-          disabled={isDisabled}
-          aria-label={ariaLabel}
-          role="button"
-        >
-          {buttonContent}
-        </Button>
-      </Link>
-    );
-  }
-
-  return (
-    <>
-      <Button
-        variant={variant}
-        size={size}
-        disabled={isDisabled}
-        aria-label={ariaLabel}
-        role="button"
-      >
-        {buttonContent}
-      </Button>
-    </>
-  );
-};
+        <>
+            <Button variant={variant} size={size} disabled={isDisabled} aria-label={ariaLabel} role="button">
+                {buttonContent}
+            </Button>
+        </>
+    )
+}
 
 export default CustomButton;
