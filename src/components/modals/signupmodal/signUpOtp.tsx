@@ -64,7 +64,7 @@ const SignupOtp: React.FC = () => {
 
   return (
     <div
-      className={`font-inter·mx-auto·flex·h-[496px]·max-w-[484px]·items-center·rounded-[8px]·border-[1px]·border-solid·border-[#CBD5E1]·bg-[#ffffff]·px-[32px]`}
+      className={`font-inter mx-auto flex h-[496px] max-w-[484px] items-center rounded-[8px] border-[1px] border-solid border-[#CBD5E1] bg-[#ffffff] px-[32px]`}
     >
       <div className="text-center">
         <div className="mx-auto mt-[24px] w-[285px]">
@@ -116,16 +116,16 @@ const SignupOtp: React.FC = () => {
           </div>
           <div className="text-4 text-[10px] font-[400] text-[#64748B]">
             We would process your data as set forth in our{" "}
-            <span className="text-[10px]·font-bold·text-[#F97316]">
+            <span className="text-[10px] font-bold text-[#F97316]">
               Terms of Use
             </span>
             ,
-            <span className="text-[10px]·font-bold·text-[#F97316]">
+            <span className="text-[10px] font-bold text-[#F97316]">
               {" "}
               Privacy Policy
             </span>{" "}
             and{" "}
-            <span className="text-[10px]·font-bold·text-[#F97316]">
+            <span className="text-[10px] font-bold text-[#F97316]">
               Data Processing Agreement
             </span>
           </div>
