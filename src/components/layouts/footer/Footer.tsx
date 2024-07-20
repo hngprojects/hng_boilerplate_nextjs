@@ -1,15 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import linkedin from "../../../assets/linkedin(2).svg";
-import instagram from "../../../assets/mdi_instagram.svg";
-import facebook from "../../../assets/ri_facebook-fill.svg";
-import twitter from "../../../assets/twitter.svg";
-import youtube from "../../../assets/youtube.svg";
+import linkedin from "../../../../public/linkedin(2).svg";
+import instagram from "../../../../public/mdi_instagram.svg";
+import facebook from "../../../../public/ri_facebook-fill.svg";
+import twitter from "../../../../public/twitter.svg";
+import youtube from "../../../../public/youtube.svg";
 
 const Footer = () => {
   return (
-    <footer className="border-t border-gray-300 bg-background bg-gray-100 py-8 text-foreground">
+    <footer className="border-t border-border bg-background py-8 text-foreground">
       <div className="px-[3%]">
         <div
           data-testid="desktop-tags"
@@ -116,7 +116,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="mt-8 flex flex-col items-center justify-between border-t border-gray-300 pt-4 sm:flex-row">
+          <div className="mt-8 flex flex-col items-center justify-between border-t border-border pt-4 text-foreground sm:flex-row">
             <div className="mb-4 flex space-x-1 sm:mb-0">
               <a
                 className="h-8 w-8 rounded-full bg-primary p-2 text-background"
@@ -182,7 +182,7 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="Enter Email"
-                className="rounded-l border border-gray-400 p-2"
+                className="rounded-l border-2 border-border bg-transparent p-2"
               />
               <button className="rounded-r bg-primary p-2 text-background">
                 Subscribe
