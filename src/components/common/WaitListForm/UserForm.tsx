@@ -80,7 +80,29 @@ const UserForm: React.FC = () => {
         className="rounded-[8px] w-[383.344px] h-auto md:w-[510px] p-[28.8px] md:p-[10px] mt-[87px] md:mt-[20px] flex items-start gap-[19.2px] shrink-0"
         style={{ border: "0.5px solid rgba(228, 228, 231, 1)" }}
       >
-        {!success ? (
+        {success ? (
+          <div className="w-full flex flex-col items-center justify-center">
+            <div className="relative">
+              <Image
+                width={177}
+                height={179}
+                src="/BACKGROUND.png"
+                alt="Success Background"
+                className="mb-4"
+              />
+              <Image
+                width={31}
+                height={31}
+                src="/icon (1).svg"
+                alt="Success Tick"
+                className="absolute top-20 left-2 transform translate-x-[50%] translate-y-[-50%]"
+              />
+            </div>
+            <p className="text-center font-medium text-successText text-[16px] md:text-[20px] leading-[19.36px] md:leading-[28px]">
+              You&apos;re all signed up!
+            </p>
+          </div>
+        ) : (
           <form onSubmit={handleSubmit} className="w-full">
             <div className="mb-[24px]">
               <div className="h-[90px] mb-[24.4px]">
@@ -140,28 +162,6 @@ const UserForm: React.FC = () => {
               </button>
             </div>
           </form>
-        ) : (
-          <div className="w-full flex flex-col items-center justify-center">
-            <div className="relative">
-              <Image
-                width={177}
-                height={179}
-                src="/BACKGROUND.png"
-                alt="Success Background"
-                className="mb-4"
-              />
-              <Image
-                width={31}
-                height={31}
-                src="/icon (1).svg"
-                alt="Success Tick"
-                className="absolute top-20 left-2 transform translate-x-[50%] translate-y-[-50%]"
-              />
-            </div>
-            <p className="text-center font-medium text-successText text-[16px] md:text-[20px] leading-[19.36px] md:leading-[28px]">
-              You&apos;re all signed up!
-            </p>
-          </div>
         )}
       </div>
     </div>
