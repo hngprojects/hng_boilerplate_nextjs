@@ -21,31 +21,36 @@ import { testimonials } from "./testimonials-data";
 
 const Testimonials = () => {
   return (
-    <div className="py-[113px] bg-background">
+    <div className="bg-background py-[113px]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          <div className="w-full lg:w-2/3 pr-0 lg:pr-10">
-            <h1 className="text-4xl lg:text-5xl font-bold font-inter mb-2">Client Testimonials</h1>
-            <p className="text-lg lg:text-xl font-normal font-inter text-foreground">
+        <div className="flex items-end md:items-center md:justify-between flex-col md:flex-row ">
+          <div className="w-full pr-0 lg:w-2/3 lg:pr-10">
+            <h1 className="font-inter mb-2 text-4xl font-bold lg:text-5xl">
+              Client Testimonials
+            </h1>
+            <p className="font-inter text-lg font-normal text-foreground lg:text-xl">
               {` Don't just take our word for it - see what actual users of our product have to say about their experience.`}
             </p>
           </div>
-          <div className="flex items-center space-x-4 lg:space-x-6 mt-6 lg:mt-0">
+
+          <div className="mt-6 flex items-center space-x-4 lg:mt-0 lg:space-x-6 md:mt-4 md:ml-auto sm:ml-auto sm:justify-end">
             <div
               data-testid="custom-prev"
-              className="custom-prev h-12 w-12 lg:h-15 lg:w-15 border border-border bg-white hover:border-primary rounded flex items-center justify-center transition-all duration-300"
+              className="custom-prev lg:h-15 lg:w-15 flex h-12 w-12 items-center justify-center rounded border border-border bg-white transition-all duration-300 hover:border-primary"
             >
               <TestimonialLeftArrow />
             </div>
             <div
               data-testid="custom-next"
-              className="custom-next h-12 w-12 lg:h-15 lg:w-15 border border-border bg-white hover:border-primary rounded flex items-center justify-center transition-all duration-300"
+              className="custom-next lg:h-15 lg:w-15 flex h-12 w-12 items-center justify-center rounded border border-border bg-white transition-all duration-300 hover:border-primary"
             >
               <TestimonialRightArrow />
             </div>
           </div>
         </div>
-        <div className="mt-14 lg:mt-20 flex items-center justify-between">
+
+
+        <div className="mt-14 flex items-center justify-between lg:mt-20">
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
             slidesPerView={1}
