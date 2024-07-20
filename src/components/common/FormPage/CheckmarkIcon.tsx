@@ -1,8 +1,4 @@
-interface CheckmarkProperties {
-  color: string;
-}
-
-const CheckmarkIcon: React.FC<CheckmarkProperties> = ({ color }) => {
+const CheckmarkIcon = ({ color }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
