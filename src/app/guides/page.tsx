@@ -3,6 +3,8 @@ import React from "react";
 
 import { Breadcrumb } from "~/components/common/Breadcrumb";
 import CustomButton from "~/components/common/Button/button";
+import HBPCommentBox from "~/components/common/Comment";
+import { commentsData } from "~/components/common/Comment/ComentData";
 import Sidebar from "~/components/layouts/Sidebar";
 
 const StyleGuide: React.FC = () => {
@@ -383,6 +385,25 @@ const StyleGuide: React.FC = () => {
       </ul>
 
       <Sidebar />
+
+      <div className="space-y-4">
+        <h2 className="text-2xl font-semibold">HBP Comment Box</h2>
+        {commentsData.map((comment) => (
+          <HBPCommentBox
+            key={comment.id}
+            id={comment.id}
+            avatar={comment.avatar}
+            name={comment.name}
+            username={comment.username}
+            content={comment.content}
+            timestamp={comment.timestamp}
+            date={comment.date}
+            likes={comment.likes}
+            dislikes={comment.dislikes}
+          />
+        ))}
+        {/* Add more Comment components as needed */}
+      </div>
     </main>
   );
 };
