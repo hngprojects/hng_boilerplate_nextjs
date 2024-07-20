@@ -15,7 +15,4 @@ jobs:
         with:
           version: 9
       - run: pnpm install
-      - uses: reviewdog/action-eslint@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          eslint_flags: ". --ext js,jsx,ts,tsx --ignore-path=.gitignore"
+      - run: pnpm lint
