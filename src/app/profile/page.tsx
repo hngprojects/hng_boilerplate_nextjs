@@ -1,14 +1,15 @@
 import Profile from "~/components/layouts/Profile/index";
-// import Navbar from "~/components/layouts/Navbar/Navbar";
+import Sidebar from "~/components/layouts/Sidebar/index";
 
 const page = () => {
-  return (
-    <div className="max-w-screen-2xl 2xl:mx-auto">
-      {/* <Navbar /> */}
-      {/* Side Nav to go here */}
-      <Profile />
-    </div>
-  );
+    return (
+        <div className="max-w-screen-2xl 2xl:mx-auto">
+            <div className="flex">
+                <Sidebar />
+                <Profile />
+            </div>
+        </div>
+    );
 };
 
 export default page;
