@@ -42,14 +42,14 @@ const AddProduct = () => {
                         <Label htmlFor="images">Upload images</Label>
                         <Input name="images" id="images" type="file" />
                     </div>
-                    <div className="grid w-full max-w-sm items-center gap-1.5 img-view-cover">
+                    <div className="flex w-288 h-86 opacity-1 gap-3">
                         <div className='w-86 h-86 rounded-4 bg-customGray'></div>
                         <div className='w-86 h-86 rounded-4 bg-customGray'></div>
                         <div className='w-86 h-86 rounded-4 bg-customGray'></div>
                     </div>
                     <DialogFooter>
                         {/* Submit Button */}
-                        <Button type="submit" className="add-product-btn">Add Product</Button>
+                        <Button type="submit" className="bg-customOrange text-white px-4 py-2 rounded hover:bg-orange-600">Add Product</Button>
                     </DialogFooter>
                 </DialogContent>
             </DialogOverlay>
