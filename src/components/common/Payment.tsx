@@ -3,9 +3,9 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
-import check from "../../public/public/check.svg";
-import icon from "../../public/public/icon.svg";
-import CustomButton from "./common/Button/button";
+import check from "../../../public/public/check.svg";
+import icon from "../../../public/public/icon.svg";
+import CustomButton from "./Button/button";
 
 const PriceCard: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -129,6 +129,7 @@ const PriceCard: React.FC = () => {
                   size="lg"
                   onClick={() => upgradePlan("Basic")}
                   isDisabled={isLoading}
+                  ariaLabel="upgrade-button-1"
                 >
                   {isLoading ? "Loading..." : "Upgrade"}
                 </CustomButton>
@@ -174,6 +175,7 @@ const PriceCard: React.FC = () => {
                   size="lg"
                   onClick={() => upgradePlan("Advanced")}
                   isDisabled={isLoading}
+                  ariaLabel="upgrade-button-2"
                 >
                   {isLoading ? "Loading..." : "Upgrade"}
                 </CustomButton>
@@ -223,6 +225,7 @@ const PriceCard: React.FC = () => {
                   size="lg"
                   onClick={() => upgradePlan("Premium")}
                   isDisabled={isLoading}
+                  ariaLabel="upgrade-button-3"
                 >
                   {isLoading ? "Loading..." : "Upgrade"}
                 </CustomButton>
@@ -266,12 +269,14 @@ const PriceCard: React.FC = () => {
           className="mx-auto flex w-48 cursor-pointer items-center justify-center gap-1 text-neutral-dark-2"
           onClick={toggleVisibility}
         >
-          <p className="font-sans text-base font-normal leading-normal">
+          <p className="font-sans text-base font-semibold leading-normal">
             Compare all features
           </p>
           <Image
             src={icon}
             alt="down arrow"
+            width={10}
+            height={10}
             className={`transition-transform duration-300 ${isVisible ? "rotate-180" : ""}`}
           />
         </button>

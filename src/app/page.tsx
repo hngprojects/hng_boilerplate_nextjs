@@ -1,10 +1,8 @@
-import Header from "~/components/layouts/Navbar/Header";
-import Payment from "~/components/Payment";
+import Payment from "~/components/common/Payment";
 
 export default function Home() {
   return (
     <main>
-      <Header />
       <Payment />
     </main>
   );

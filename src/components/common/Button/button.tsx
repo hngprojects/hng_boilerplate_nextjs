@@ -39,10 +39,6 @@ interface ButtonProperties {
   ariaLabel?: string;
   /** Href to link button to a URL or route */
   href?: string;
-<<<<<<< HEAD
-  onClick?: () => void;
-=======
->>>>>>> upstream/dev
 }
 
 /**
@@ -63,10 +59,6 @@ const CustomButton: React.FC<ButtonProperties> = ({
   isIconOnly = false,
   ariaLabel,
   href,
-<<<<<<< HEAD
-  onClick,
-=======
->>>>>>> upstream/dev
 }) => {
   const modifiedIcon = icon ? (
     React.cloneElement(icon as React.ReactElement, {
@@ -98,26 +90,18 @@ const CustomButton: React.FC<ButtonProperties> = ({
 
     if (isExternal) {
       return (
-<<<<<<< HEAD
-        <a href={href} target="_blank" rel="noopener noreferrer">
-=======
         <a
           href={href}
           target="_blank"
           rel="noopener noreferrer"
           aria-label={ariaLabel}
         >
->>>>>>> upstream/dev
           <Button
             variant={variant}
             size={size}
             disabled={isDisabled}
             aria-label={ariaLabel}
             role="button"
-<<<<<<< HEAD
-            onClick={onClick}
-=======
->>>>>>> upstream/dev
           >
             {buttonContent}
           </Button>
@@ -126,21 +110,13 @@ const CustomButton: React.FC<ButtonProperties> = ({
     }
 
     return (
-<<<<<<< HEAD
-      <Link href={href} passHref>
-=======
       <Link href={href} passHref aria-label={ariaLabel}>
->>>>>>> upstream/dev
         <Button
           variant={variant}
           size={size}
           disabled={isDisabled}
           aria-label={ariaLabel}
           role="button"
-<<<<<<< HEAD
-          onClick={onClick}
-=======
->>>>>>> upstream/dev
         >
           {buttonContent}
         </Button>
@@ -156,10 +132,6 @@ const CustomButton: React.FC<ButtonProperties> = ({
         disabled={isDisabled}
         aria-label={ariaLabel}
         role="button"
-<<<<<<< HEAD
-        onClick={onClick}
-=======
->>>>>>> upstream/dev
       >
         {buttonContent}
       </Button>
