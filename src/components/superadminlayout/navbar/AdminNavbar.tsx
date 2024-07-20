@@ -20,17 +20,17 @@ const AdminNavbar = () => {
         <div className="relative">
           <BellIcon
             data-testid="bell"
-            className="h-6 w-6 text-neutral-dark-2"
+            className="h-6 w-6 text-neutral-dark-2 transition-colors duration-300 hover:cursor-pointer hover:text-neutral-dark-1"
           />
           <span className="absolute right-1 top-0 h-[6px] w-[6px] rounded-full bg-error"></span>
         </div>
         <div>
           <HelpCircle
             data-testid="help"
-            className="h-6 w-6 text-neutral-dark-2"
+            className="h-6 w-6 text-neutral-dark-2 transition-colors duration-300 hover:cursor-pointer hover:text-neutral-dark-1"
           />
         </div>
-        <div className="flex w-full max-w-[64px] items-center justify-between gap-2">
+        <div className="hover:bg-black-1 flex w-full max-w-[64px] cursor-pointer items-center justify-between gap-2">
           <Avatar data-testid="avatar" className="h-10 w-10">
             <AvatarImage src="https://github.com/shadcn.png" />
             <AvatarFallback>CN</AvatarFallback>
