@@ -26,10 +26,10 @@ const Newsletter: React.FC<NewsletterProperties> = ({
   image = true,
 }) => {
   return (
-    <Container className="-ml-0 flex w-full flex-col">
+    <Container className="-ml-0 flex w-full flex-col overflow-x-hidden">
       <Section className="mt-16 flex flex-col items-center justify-center md:mt-20">
         <Image
-          src="/images/newsletter.svg"
+          src="/images/newletter-email-template/Newsletter-Banner.svg"
           alt="Newsletter Image"
           className={`w-40 md:w-80 ${image ? "" : "hidden"}`}
           width={1000}
