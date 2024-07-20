@@ -44,6 +44,7 @@ module.exports = {
     "testing-library",
   ],
   rules: {
+    'react/prop-types': 'off',
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [
       "warn",
