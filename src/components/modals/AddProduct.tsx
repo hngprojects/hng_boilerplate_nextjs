@@ -8,10 +8,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "~/components/ui/dialog";
-import { Input } from "~/components/ui/input";
-import { Label } from "~/components/ui/label";
-import { Textarea } from "~/components/ui/textarea";
 import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import { Textarea } from "../ui/textarea";
 
 const AddProduct = () => {
   return (
@@ -76,7 +76,6 @@ const AddProduct = () => {
             {/* Submit Button */}
             <Button
               type="submit"
-              name="addProduct"
               className="rounded bg-customOrange px-4 py-2 text-white hover:bg-orange-600"
             >
               Add Product
