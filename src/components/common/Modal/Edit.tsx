@@ -1,82 +1,33 @@
 "use client";
 
-import { Button } from "~/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "~/components/ui/dialog";
+import TableForm from "../Form";
 
 function Edit() {
-  //   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className="hover:bg-accent hover:text-accent-foreground inline-block w-full text-left">
+        <button className="inline-block w-full text-left hover:bg-accent hover:text-accent-foreground">
           Edit
         </button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>
-            Are you sure you want to delete this product?
-          </DialogTitle>
-          <DialogDescription>
-            This action cannot be undone. This will permanently delete this
-            product from the database.
+      <DialogContent className="px-[41px] py-[43px] sm:max-w-[657px]">
+        <DialogHeader className="space-y-0">
+          <DialogTitle className="text-[18px]">Add new product </DialogTitle>
+          <DialogDescription className="mt-[3px] text-xs">
+            Create a new product.
           </DialogDescription>
         </DialogHeader>
-
-        <DialogFooter>
-          {/* <DialogClose asChild>
-            <Button type="button" variant="secondary">
-              Cancel
-            </Button>
-          </DialogClose> */}
-          <Button type="button">Delete</Button>
-        </DialogFooter>
+        <TableForm />
       </DialogContent>
     </Dialog>
-
-    // <Dialog>
-    //   <div onClick={() => setIsOpen(true)}>Share</div>
-
-    //   <DialogContent className="sm:max-w-md">
-    //     <DialogHeader>
-    //       <DialogTitle>Share link</DialogTitle>
-    //       <DialogDescription>
-    //         Anyone who has this link will be able to view this.
-    //       </DialogDescription>
-    //     </DialogHeader>
-    //     <div className="flex items-center space-x-2" >
-    //       <div className="grid flex-1 gap-2">
-    //         {/* <Label htmlFor="link" className="sr-only">
-    //           Link
-    //         </Label> */}
-    //         {/* <Input
-    //           id="link"
-    //           defaultValue="https://ui.shadcn.com/docs/installation"
-    //           readOnly
-    //         /> */}
-    //       </div>
-    //       <Button type="submit" size="sm" className="px-3">
-    //         <span className="sr-only">Copy</span>
-    //         {/* <Copy className="h-4 w-4" /> */}
-    //       </Button>
-    //     </div>
-    //     <DialogFooter className="sm:justify-start">
-    //       <DialogClose asChild>
-    //         <Button type="button" variant="secondary">
-    //           Close
-    //         </Button>
-    //       </DialogClose>
-    //     </DialogFooter>
-    //   </DialogContent>
-    // </Dialog>
   );
 }
 

@@ -17,13 +17,13 @@ function Delete() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className="hover:bg-accent hover:text-accent-foreground inline-block w-full text-left">
+        <button className="inline-block w-full text-left hover:bg-accent hover:text-accent-foreground">
           Delete
         </button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[512px] bg-[#FFFF] border border-solid border-[#CBD5E1]">
+      <DialogContent className="border border-solid border-[#CBD5E1] bg-[#FFFF] sm:max-w-[512px]">
         <DialogHeader>
-          <DialogTitle className="text-lg font-semibold tex-[#0F172A]">
+          <DialogTitle className="tex-[#0F172A] text-lg font-semibold">
             Are you sure you want to delete this product?
           </DialogTitle>
           <DialogDescription className="text-sm font-normal text-[#64748B]">
@@ -42,7 +42,7 @@ function Delete() {
               Cancel
             </Button>
           </DialogClose>
-          <Button type="button" className="text-white bg-[#F81404]">
+          <Button type="button" className="bg-[#F81404] text-white">
             Delete
           </Button>
         </DialogFooter>

@@ -7,6 +7,7 @@ import {
   TableRow,
 } from "~/components/ui/table";
 import Action from "../Action";
+import CreatedAt from "../CreatedAt";
 
 const data: {
   id: number;
@@ -60,7 +61,9 @@ function TableData() {
           <TableHead className="text-center">Price</TableHead>
           <TableHead className="text-center">Total sales</TableHead>
           <TableHead className="text-center">Status</TableHead>
-          <TableHead className="text-center">Created at</TableHead>
+          <TableHead className="text-center">
+            <CreatedAt />
+          </TableHead>
           <TableHead className="text-center">Action</TableHead>
         </TableRow>
       </TableHeader>
@@ -70,15 +73,15 @@ function TableData() {
             key={data.id}
             className="p-4 text-sm font-medium text-black"
           >
-            <TableCell className="font-medium max-w-[300px] flex items-center justify-between">
-              <div className="w-[67px] border rounded h-[67px] bg-gradient-to-t from-acent-300 to-stroke-200"></div>
+            <TableCell className="flex max-w-[300px] items-center justify-between font-medium">
+              <div className="h-[67px] w-[67px] rounded border bg-gradient-to-t from-acent-300 to-stroke-200"></div>
               <span>{data.name}</span>
             </TableCell>
             <TableCell className="text-center">{data.price}</TableCell>
             <TableCell className="text-center">{data.totalSales}</TableCell>
             <TableCell className="text-center">
               <span
-                className={`border rounded-[88px] text-xs font-normal py-[6px] px-[14px] ${data.status === "Active" ? "text-[#6DC347] border-[#6DC347]" : "border-natural-200"}`}
+                className={`rounded-[88px] border px-[14px] py-[6px] text-xs font-normal ${data.status === "Active" ? "border-[#6DC347] text-[#6DC347]" : "border-natural-200"}`}
               >
                 {data.status}
               </span>
