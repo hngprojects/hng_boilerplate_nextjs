@@ -1,4 +1,6 @@
 import { Img, Link, Section, Text } from "@react-email/components";
+import Header from "./Header";
+import Footer from "./Footer";
 
 import Tailwindwrapper from "~/email/templates/_components/tailwindWrapper";
 
@@ -19,7 +21,10 @@ interface Properties {
 
 export default function Email(properties: Properties) {
   return (
+    <>
+    <Header/>
     <Tailwindwrapper>
+      <div className="flex justify-center">
       <div className="w-[70rem]">
         <div className="px-[5.6rem]">
           <Section>
@@ -36,7 +41,7 @@ export default function Email(properties: Properties) {
             <Text className="text-[#111] text-[1.8rem] font-semibold mb-[1.5rem]">
               Hi {properties.name},
             </Text>
-            <Text className="text-[1.4rem] leading-[1.5] font-normal mb-[2.8rem]">
+            <Text className="text-[1.6rem] leading-[1.5] font-normal mb-[2.8rem]">
               We hope you are enjoying your subscription, which will renew soon.
             </Text>
           </Section>
@@ -53,7 +58,7 @@ export default function Email(properties: Properties) {
 
         <div className="px-[5.6rem]">
           <Section>
-            <Text className="text-[1.4rem] leading-[1.5] font-normal mt-[2.8rem]">
+            <Text className="text-[1.6rem] leading-[1.5] font-normal mt-[2.8rem]">
               Your subscription for{" "}
               <span className="font-semibold">
                 {properties.renewalPrice}/{properties.renewalPeriod} features
@@ -68,7 +73,7 @@ export default function Email(properties: Properties) {
                 review subscription.
               </Link>
             </Text>
-            <Text className="text-[1.4rem] leading-[1.5] font-normal">
+            <Text className="text-[1.6rem] leading-[1.5] font-normal">
               To keep your subscription, you can renew your plan for the next
               month.
             </Text>
@@ -89,7 +94,7 @@ export default function Email(properties: Properties) {
             <Text className="text-[#111] font-medium mt-0">
               {properties.companyName}
             </Text>
-            <Text className="text-[1.4rem] leading-[1.5] font-normal my-[5.6rem]">
+            <Text className="text-[1.6rem] leading-[1.5] font-normal my-[5.6rem]">
               If you have questions, please visit our{" "}
               <Link href={properties.faqUrl}>
                 <strong className="text-[#F97316] font-semibold">FAQs</strong>
@@ -111,6 +116,9 @@ export default function Email(properties: Properties) {
           </Section>
         </div>
       </div>
+      </div>
     </Tailwindwrapper>
+    <Footer/>
+    </>
   );
 }

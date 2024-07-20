@@ -1,12 +1,10 @@
-import "./Footer.css";
-
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="footer">
-      <div className="footer__icons">
+    <footer className="flex flex-col items-center bg-gray-100 py-14">
+      <div className="flex justify-center items-center gap-14">
         <Link href="/">
           <Image
             className="footer__icon"
@@ -55,26 +53,26 @@ export default function Footer() {
         </Link>
       </div>
 
-      <div className="footer__text-container">
-        <p className="footer__paragraph footer__paragraph--1">
+      <div className="px-[5.6rem] mt-12">
+        <p className="text-[1.4rem] text-gray-600 my-12">
           Thank you for choosing Boilerplate.com Need help?{" "}
-          <Link className="footer__support" href="/">
+          <Link className="text-black font-semibold underline" href="/">
             <strong>Contact our customer support</strong>
           </Link>
         </p>
 
-        <p className="footer__paragraph">
+        <p className="text-[1.4rem] text-gray-600">
           You are receiving this email because you signed up at Boilerplate.com.
           Want to change how you receive these emails?
         </p>
 
-        <p className="footer__paragraph">
+        <p className="text-[1.4rem] text-gray-600 mt-2">
           You can{" "}
-          <Link className="footer__link" href="/">
+          <Link className="text-black font-semibold" href="/">
             <strong>update your preferences</strong>
           </Link>{" "}
           or{" "}
-          <Link className="footer__link" href="/">
+          <Link className="text-black font-semibold" href="/">
             <strong>unsubscribe from this list.</strong>
           </Link>
         </p>
@@ -82,3 +80,4 @@ export default function Footer() {
     </footer>
   );
 }
+
