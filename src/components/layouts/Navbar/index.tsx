@@ -13,7 +13,7 @@ const navlinks = [
 const Navbar = () => {
   return (
     <nav className="px-4">
-      <div className="flex items-center justify-between gap-2 py-9">
+      <div className="max-auto flex w-full max-w-[1200px] items-center justify-between gap-2 py-9">
         <div className="md:hidden">
           <Menu className="text-nuetral-black-1 h-6 w-6 cursor-pointer transition-colors duration-300 hover:text-neutral-dark-1/50" />
         </div>
