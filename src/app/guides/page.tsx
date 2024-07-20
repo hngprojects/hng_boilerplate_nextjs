@@ -1,6 +1,9 @@
 import { Orbit, Plus } from "lucide-react";
 import React from "react";
 
+import { Orbit, Plus } from "lucide-react";
+import React from "react";
+
 import CustomButton from "~/components/common/Button/button";
 
 const Button: React.FC = () => {
@@ -297,5 +300,7 @@ const Button: React.FC = () => {
     </main>
   );
 };
+
+export default Button;
 
 export default Button;

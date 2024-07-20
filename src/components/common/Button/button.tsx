@@ -1,9 +1,23 @@
 import { LoaderCircle, Plus } from "lucide-react";
+import { LoaderCircle, Plus } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
 import { Button } from "~/components/common/Button";
+import React from "react";
 
+import { Button } from "~/components/common/Button";
+
+type Variant =
+  | "default"
+  | "primary"
+  | "destructive"
+  | "subtle"
+  | "loading"
+  | "outline"
+  | "secondary"
+  | "ghost"
+  | "link";
 type Variant =
   | "default"
   | "primary"
@@ -84,7 +98,24 @@ const CustomButton: React.FC<ButtonProperties> = ({
       {isRightIconVisible && !isLoading && modifiedIcon}
     </>
   );
+  const buttonContent = (
+    <>
+      {isLeftIconVisible && !isLoading && modifiedIcon}
+      {isLoading && (
+        <LoaderCircle
+          className="h-[1rem] w-[1rem] animate-spin"
+          data-testid="loading-spinner"
+        />
+      )}
+      {isIconOnly && !isLoading && modifiedIcon}
+      {!isIconOnly && children}
+      {!isIconOnly && !children && isLoading && "Loading"}
+      {isRightIconVisible && !isLoading && modifiedIcon}
+    </>
+  );
 
+  if (href) {
+    const isExternal = /^https?:\/\//.test(href);
   if (href) {
     const isExternal = /^https?:\/\//.test(href);
 
@@ -133,5 +164,7 @@ const CustomButton: React.FC<ButtonProperties> = ({
     </>
   );
 };
+
+export default CustomButton;
 
 export default CustomButton;

@@ -4,6 +4,12 @@ import { Plus } from "lucide-react";
 import { describe, expect, it, vi } from "vitest";
 
 import CustomButton from "~/components/common/Button/button";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { Plus } from "lucide-react";
+import { describe, expect, it, vi } from "vitest";
+
+import CustomButton from "~/components/common/Button/button";
 
 describe("custom Button Component", () => {
   it("renders correctly with left icon", () => {
@@ -21,6 +27,7 @@ describe("custom Button Component", () => {
     ).toBeInTheDocument();
     expect(screen.getByText(/left icon/i)).toBeInTheDocument();
     expect(screen.getAllByTestId("icon")).toHaveLength(1);
+    expect(screen.getAllByTestId("icon")).toHaveLength(1);
   });
 
   it("renders correctly with right icon", () => {
@@ -37,6 +44,7 @@ describe("custom Button Component", () => {
       screen.getByRole("button", { name: /button-with-right-icon/i }),
     ).toBeInTheDocument();
     expect(screen.getByText(/right icon/i)).toBeInTheDocument();
+    expect(screen.getAllByTestId("icon")).toHaveLength(1);
     expect(screen.getAllByTestId("icon")).toHaveLength(1);
   });
 
@@ -76,6 +84,7 @@ describe("custom Button Component", () => {
     const button = screen.getByRole("button", { name: /accessible-button/i });
     button.focus();
     expect(button).toHaveFocus();
+    await userEvent.keyboard("[Enter]");
     await userEvent.keyboard("[Enter]");
   });
 
@@ -126,11 +135,10 @@ describe("custom Button Component", () => {
         variant="primary"
         size="lg"
         icon={<Plus />}
-        isLoading={true}
-        isIconOnly={true}
-        isLeftIconVisible={false}
-        isRightIconVisible={true}
-        isDisabled={true}
+        isLoading
+        isIconOnly
+        isRightIconVisible
+        isDisabled
         ariaLabel="custom-button"
         href="/test-page"
       >
@@ -160,3 +168,4 @@ describe("custom Button Component", () => {
     }
   });
 });
+
