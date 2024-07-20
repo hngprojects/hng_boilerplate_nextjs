@@ -4,11 +4,11 @@ import { useEffect } from "react";
 
 import { Breadcrumb } from "~/components/common/Breadcrumb";
 import SubPageHero from "~/components/external_static_page/SubPageHero";
-import TableOfContent from "~/components/layouts/LegalTerms/TableOfContent";
-import PrivacyPolicyContent from "~/components/layouts/PrivacyPolicy/PrivacyPolicyContent";
+import PrivacyPolicyContent from "~/components/layouts/Legal/PrivacyPolicy/PrivacyPolicyContent";
+import TableOfContent from "~/components/layouts/Legal/TableOfContent";
 import privacyPolicyData, {
   getTableOfContents,
-} from "../../../components/layouts/PrivacyPolicy/constants/privacyPolicyData";
+} from "../../../components/layouts/Legal/PrivacyPolicy/constants/privacyPolicyData";
 
 export default function PrivacyPolicy() {
   const tableOfContents = getTableOfContents(privacyPolicyData);

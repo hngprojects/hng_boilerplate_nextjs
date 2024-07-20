@@ -1,6 +1,6 @@
 import privacyPolicyData, {
   getTableOfContents,
-} from "~/components/layouts/PrivacyPolicy/constants/privacyPolicyData";
+} from "~/components/layouts/Legal/PrivacyPolicy/constants/privacyPolicyData";
 
 describe("the Data for the Privacy Policy Page", () => {
   it("contains the expected number of sections", () => {

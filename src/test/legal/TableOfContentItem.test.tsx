@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import TableOfContentItem from "~/components/layouts/LegalTerms/TableOfContentItem";
+import TableOfContentItem from "~/components/layouts/Legal/TableOfContentItem";
 
 describe("tableOfContentItem", () => {
   const href = "/example";
