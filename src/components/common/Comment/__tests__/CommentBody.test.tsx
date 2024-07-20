@@ -3,96 +3,133 @@ import { describe, expect, it, vi } from "vitest";
 
 import { CommentBody } from "../CommentBody";
 
-// Mock the ActionButtons component
-vi.mock("./ActionButtons", () => ({
-  default: () => <div data-testid="action-buttons">Action Buttons</div>,
-}));
-
-describe("commentBody", () => {
-  const defaultProps = {
-    type: "comment" as const,
-    id: "1",
-    avatar: "https://example.com/avatar.jpg",
-    name: "John Doe",
-    username: "johndoe",
-    content: "This is a comment",
-    timestamp: "2 hours ago",
-    likes: 10,
-    dislikes: 2,
-    onLike: vi.fn(),
-    onDislike: vi.fn(),
-    onReply: vi.fn(),
-  };
-
-  it("renders the main structure correctly", () => {
-    expect.assertions(3);
-    render(<CommentBody {...defaultProps} />);
-
+describe("commentBody Component", () => {
+  it("should render without crashing", () => {
+    expect.assertions(5); // Expecting five assertions to be called
+    render(
+      <CommentBody
+        type="comment"
+        id="1"
+        avatar="https://example.com/avatar.jpg"
+        name="John Doe"
+        username="johndoe"
+        content="This is a comment."
+        timestamp="2024-07-20T00:00:00Z"
+        likes={10}
+        dislikes={2}
+        onLike={vi.fn()}
+        onDislike={vi.fn()}
+      />,
+    );
     expect(screen.getByTestId("comment-body")).toBeInTheDocument();
     expect(screen.getByTestId("avatar")).toBeInTheDocument();
-    expect(screen.getByTestId("action-buttons")).toBeInTheDocument();
-  });
-
-  it("renders the avatar correctly", () => {
-    render(<CommentBody {...defaultProps} />);
-    const avatarImage = screen.queryByTestId("avatar-image");
-    if (avatarImage) {
-      expect(avatarImage).toHaveAttribute("src", defaultProps.avatar);
-      expect(avatarImage).toHaveAttribute("alt", defaultProps.name);
-    }
-  });
-
-  it("renders the avatar fallback correctly when the image fails to load", () => {
-    render(<CommentBody {...defaultProps} />);
-    const avatarImage = screen.queryByTestId("avatar-image");
-
-    // Simulate image load error
-    if (avatarImage) {
-      fireEvent.error(avatarImage);
-    }
-
-    expect(screen.getByTestId("avatar-fallback")).toBeInTheDocument();
-    expect(screen.queryByTestId("avatar-fallback")).toHaveTextContent(
-      defaultProps.name.charAt(0),
+    expect(screen.getByTestId("avatar-image")).toHaveAttribute(
+      "src",
+      "https://example.com/avatar.jpg",
     );
-  });
-
-  it("renders the user information correctly", () => {
-    expect.assertions(4);
-    render(<CommentBody {...defaultProps} />);
-
-    expect(screen.getByTestId("comment-name")).toHaveTextContent(
-      defaultProps.name,
-    );
+    expect(screen.getByTestId("comment-name")).toHaveTextContent("John Doe");
     expect(screen.getByTestId("comment-username")).toHaveTextContent(
-      `@${defaultProps.username}`,
+      "@johndoe",
+    );
+  });
+
+  it("should display content, timestamp, and action buttons correctly", () => {
+    expect.assertions(3); // Expecting three assertions to be called
+    render(
+      <CommentBody
+        type="reply"
+        id="2"
+        avatar="https://example.com/avatar2.jpg"
+        name="Jane Doe"
+        username="janedoe"
+        content="This is a reply."
+        timestamp="2024-07-20T01:00:00Z"
+        likes={5}
+        dislikes={1}
+        onLike={vi.fn()}
+        onDislike={vi.fn()}
+        onReply={vi.fn()}
+      />,
     );
     expect(screen.getByTestId("comment-text")).toHaveTextContent(
-      defaultProps.content,
+      "This is a reply.",
     );
     expect(screen.getByTestId("comment-timestamp")).toHaveTextContent(
-      defaultProps.timestamp,
+      "2024-07-20T01:00:00Z",
     );
+    expect(screen.getByTestId("action-buttons-container")).toBeInTheDocument();
   });
 
-  it("renders avatar fallback when image fails to load", () => {
-    expect.assertions(1);
-    render(<CommentBody {...defaultProps} />);
-    const avatarImage = screen.getByTestId("avatar");
-    fireEvent.error(avatarImage);
-    expect(screen.getByTestId("avatar-fallback")).toHaveTextContent(
-      defaultProps.name[0],
+  it("should call onLike and onDislike functions when buttons are clicked", () => {
+    expect.assertions(2); // Expecting two assertions to be called
+    const mockOnLike = vi.fn();
+    const mockOnDislike = vi.fn();
+    render(
+      <CommentBody
+        type="comment"
+        id="3"
+        avatar="https://example.com/avatar3.jpg"
+        name="Alex Smith"
+        username="alexsmith"
+        content="Another comment."
+        timestamp="2024-07-20T02:00:00Z"
+        likes={3}
+        dislikes={0}
+        onLike={mockOnLike}
+        onDislike={mockOnDislike}
+      />,
     );
+
+    const likeButton = screen.getByRole("button", { name: /like/i });
+    const dislikeButton = screen.getByRole("button", { name: /dislike/i });
+
+    fireEvent.click(likeButton);
+    fireEvent.click(dislikeButton);
+
+    expect(mockOnLike).toHaveBeenCalledTimes(1);
+    expect(mockOnDislike).toHaveBeenCalledTimes(1);
   });
 
-  it("renders as a reply", () => {
-    expect.assertions(1);
-    const replyProperties = {
-      ...defaultProps,
-      type: "reply" as const,
-      onReply: undefined,
-    };
-    render(<CommentBody {...replyProperties} />);
-    expect(screen.getByTestId("comment-body")).toBeInTheDocument();
+  it("should not display reply button if onReply is not provided", () => {
+    expect.assertions(1); // Expecting one assertion to be called
+    render(
+      <CommentBody
+        type="comment"
+        id="4"
+        avatar="https://example.com/avatar4.jpg"
+        name="Emily Davis"
+        username="emilydavis"
+        content="Comment without reply."
+        timestamp="2024-07-20T03:00:00Z"
+        likes={7}
+        dislikes={3}
+        onLike={vi.fn()}
+        onDislike={vi.fn()}
+      />,
+    );
+
+    expect(screen.queryByRole("button")).not.toBeInTheDocument();
+  });
+
+  it("should display reply button if onReply is provided", () => {
+    expect.assertions(1); // Expecting one assertion to be called
+    render(
+      <CommentBody
+        type="reply"
+        id="5"
+        avatar="https://example.com/avatar5.jpg"
+        name="Michael Johnson"
+        username="michaeljohnson"
+        content="Reply with reply button."
+        timestamp="2024-07-20T04:00:00Z"
+        likes={6}
+        dislikes={4}
+        onLike={vi.fn()}
+        onDislike={vi.fn()}
+        onReply={vi.fn()}
+      />,
+    );
+
+    expect(screen.getByRole("button", { name: /reply/i })).toBeInTheDocument();
   });
 });

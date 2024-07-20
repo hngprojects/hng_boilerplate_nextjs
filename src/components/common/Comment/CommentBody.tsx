@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
 import ActionButtons from "./ActionButtons";
 
-type CommentBodyProperties = {
+export type CommentBodyProperties = {
   type: "comment" | "reply";
   id: string;
   avatar: string;
@@ -43,7 +43,7 @@ export function CommentBody({
           {name.charAt(0)}
         </AvatarFallback>
       </Avatar>
-      <div className="w-full·flex-1" data-testid="comment-content">
+      <div className="w-full flex-1" data-testid="comment-content">
         <div className="flex flex-col items-start">
           <span
             className="font-inter text-base font-semibold leading-normal sm:text-2xl sm:font-medium"

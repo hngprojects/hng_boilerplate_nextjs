@@ -3,9 +3,9 @@ import { useState } from "react";
 
 import { Card, CardContent } from "../../ui/card";
 import { Textarea } from "../../ui/textarea";
-import { Button } from "../Button";
+import CustomButton from "../Button/button";
 
-type ReplyFormProperties = {
+export type ReplyFormProperties = {
   onSubmit: (content: string) => void;
 };
 
@@ -47,24 +47,21 @@ export function ReplyForm({ onSubmit }: ReplyFormProperties) {
               className={`w-full text-sm text-[#656565] sm:text-base ${
                 error
                   ? "border-red-500 focus:border-red-500 focus:ring-red-500"
-                  : "border-gray-200 focus:border-[#F97316] focus:ring-[#F97316]"
+                  : "focus:border-bg-primary focus:ring-bg-primary border-gray-200"
               } focus:ring-1`}
               value={replyContent}
               onChange={handleChange}
               rows={3}
             />
             {error && (
-              <p className="text-red-500·sm:text-sm·mt-1·text-xs">
+              <p className="mt-1 text-xs text-red-500 sm:text-sm">
                 Please enter a reply before submitting.
               </p>
             )}
             <div className="mt-2 flex justify-end">
-              <Button
-                className="px-3·py-1·text-sm·text-[#F8FAFC]·hover:bg-[#F97316]/90·sm:px-4·sm:py-2·sm:text-base·bg-[#F97316]"
-                onClick={handleSubmit}
-              >
+              <CustomButton variant="primary" onClick={handleSubmit}>
                 Reply
-              </Button>
+              </CustomButton>
             </div>
           </div>
         </div>
