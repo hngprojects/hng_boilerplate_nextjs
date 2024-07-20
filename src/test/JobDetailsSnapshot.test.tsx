@@ -1,6 +1,7 @@
-import { render, screen } from "@testing-library/react";
 
-import JobDetailsSnapshot from "../components/Dynamic-pages/joblisting";
+import { render, screen } from '@testing-library/react';
+import React from "react";
+import JobDetailsSnapshot from "../components/Dynamic-pages/joblisting";  
 
 const job = {
   applicationDeadline: "July 19th 2024",
@@ -14,36 +15,23 @@ const job = {
     "Opportunities for personal growth and development",
     "A collaborative and inclusive work environment",
   ],
-  applicationInstructions:
-    "Send your CV and cover letter to hng1232@gmail.com.",
+  applicationInstructions: "Send your CV and cover letter to hng1232@gmail.com.",
 };
 
-describe("jobDetailsSnapshot", () => {
-  it("renders job details correctly", () => {
-    expect.assertions(5);
+test('renders job details', () => {
+  expect.assertions(10); 
 
-    render(<JobDetailsSnapshot job={job} />);
+  render(<JobDetailsSnapshot job={job} />);
 
-    expect(screen.getByText("About the Job")).toBeInTheDocument();
-    expect(screen.getByText(/Application Deadline:/)).toBeInTheDocument();
-    expect(screen.getByText(/Work Mode:/)).toBeInTheDocument();
-    expect(screen.getByText(/Job Type:/)).toBeInTheDocument();
-    expect(screen.getByText(/Experience Level:/)).toBeInTheDocument();
-  });
 
-  it("renders benefits correctly", () => {
-    expect.assertions(1); // Ensure that 1 assertion is made
-
-    render(<JobDetailsSnapshot job={job} />);
-
-    expect(screen.getByText("What We Offer")).toBeInTheDocument();
-  });
-
-  it("renders application instructions correctly", () => {
-    expect.assertions(1); // Ensure that 1 assertion is made
-
-    render(<JobDetailsSnapshot job={job} />);
-
-    expect(screen.getByText("How to Apply")).toBeInTheDocument();
-  });
+  expect(screen.getByText(/Application Deadline:/)).toBeInTheDocument();
+  expect(screen.getByText(/July 19th 2024/)).toBeInTheDocument();
+  expect(screen.getByText(/Work Mode:/)).toBeInTheDocument();
+  expect(screen.getByText(/On-site/)).toBeInTheDocument();
+  expect(screen.getByText(/Job Type:/)).toBeInTheDocument();
+  expect(screen.getByText(/internship/)).toBeInTheDocument();
+  expect(screen.getByText(/Experience Level:/)).toBeInTheDocument();
+  expect(screen.getByText(/2-3 years/)).toBeInTheDocument();
+  expect(screen.getByText(/Salary Range:/)).toBeInTheDocument();
+  expect(screen.getByText(/\$500,000 - \$900,000/)).toBeInTheDocument();
 });
