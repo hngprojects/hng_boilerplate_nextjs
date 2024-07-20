@@ -3,7 +3,7 @@
 import { Button } from "~/components/common/Button";
 import { useToast } from "~/components/ui/use-toast";
 
-export function ToastSimple() {
+export function ToastWithTitle() {
   const { toast } = useToast();
 
   return (
@@ -11,7 +11,8 @@ export function ToastSimple() {
       variant="outline"
       onClick={() => {
         toast({
-          description: "Your message has been sent.",
+          title: "Uh oh! Something went wrong.",
+          description: "There was a problem with your request.",
         });
       }}
     >
