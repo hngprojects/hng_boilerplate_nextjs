@@ -1,6 +1,6 @@
 import React from "react";
 
-import JobDetailsSnapshot from "./components/joblisting";
+import JobDetailsSnapshot from "../components/Dynamic-pages/joblisting";
 
 const job = {
   applicationDeadline: "July 19th 2024",
