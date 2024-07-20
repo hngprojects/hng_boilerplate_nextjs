@@ -6,13 +6,22 @@
 import PasswordCheck from "~/components/common/PasswordCheck/index";
 ```
 
-### PasswordCheck Props
+### password Props
+
+```
+"password"
+"minLength"
+"onStrengthChange"
+```
 
 ### Example
 
 ```tsx
 return (
-         <PasswordCheck data="Password1" />
-
+<PasswordCheck
+        password="Password1@"
+        minLength={8}
+        onStrengthChange={handleStrengthChange}
+      />
 );
 ```
