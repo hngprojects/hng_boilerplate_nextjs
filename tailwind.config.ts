@@ -26,7 +26,7 @@ const config = {
         foreground: "hsl(var(--foreground))",
         default: {
           DEFAULT: "hsl(var(--default))",
-          foreground: "hsl(var(--default-foreground))"
+          foreground: "hsl(var(--default-foreground))",
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",
@@ -72,8 +72,8 @@ const config = {
           foreground: "hsl(var(--popover-foreground))",
         },
         card: {
-          DEFAULT: "var(--card)",
-          foreground: "var(--card-foreground)",
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
         },
         error: "hsl(var(--error))",
         success: "hsl(var(--success))",
@@ -83,6 +83,13 @@ const config = {
             1: "hsl(var(--neutralColor-dark-1))",
             2: "hsl(var(--neutralColor-dark-2))",
           },
+        },
+        stroke: {
+          "colors-stroke": "hsl(var(--stroke-colors-stroke))",
+        },
+        breadcrumb: {
+          page: "hsl(var(--breadcrumb-page))",
+          foreground: "hsl(var(--breadcrumb-foreground))",
         },
       },
       borderRadius: {

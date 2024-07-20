@@ -44,6 +44,8 @@ module.exports = {
     "testing-library",
   ],
   rules: {
+    "react/prop-types": "off",
+    "vitest/max-expects": "off",
     "unused-imports/no-unused-imports": "error",
     "prettier/prettier": "error",
     "unused-imports/no-unused-vars": [
@@ -59,7 +61,6 @@ module.exports = {
       "error",
       { cases: { kebabCase: true, pascalCase: true, camelCase: true } },
     ],
-    "react/prop-types": [2, { ignore: ["className"] }],
   },
   settings: {
     react: { version: "detect" },
