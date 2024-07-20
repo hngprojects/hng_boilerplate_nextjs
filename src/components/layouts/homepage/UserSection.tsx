@@ -13,11 +13,24 @@ const UserSection = () => {
 
                 <div className="section-box">
                     <div className="image-section">
+                        <div data-testid="unsplash-logo">
                         <UnSplash />
+                        </div>
+
+                        <div data-testid="notion-logo">
                         <Notion />
+                        </div>
+
+                        <div data-testid="intercom-logo">
                         <Intercom />
+                        </div>
+
+                        <div data-testid="descript-logo">
                         <Descript />
+                        </div>
+                        <div data-testid="grammarly-logo">
                         <Grammarly />
+                        </div>
                     </div>
                 </div>
 
