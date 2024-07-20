@@ -1,6 +1,9 @@
 import { Orbit, Plus } from "lucide-react";
 import React from "react";
 
+import { Orbit, Plus } from "lucide-react";
+import React from "react";
+
 import CustomButton from "~/components/common/Button/button";
 
 const Button: React.FC = () => {
@@ -11,7 +14,7 @@ const Button: React.FC = () => {
         className="grid w-full items-start gap-4"
         style={{ gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))" }}
       >
-        <div className="bg-default flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
+        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-default px-4 py-4 text-background">
           bg-default, text-background
         </div>
         <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg border border-border bg-background px-4 py-4 text-foreground">
@@ -23,23 +26,23 @@ const Button: React.FC = () => {
         <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-subtle px-4 py-4 text-foreground">
           bg-subtle, text-foreground
         </div>
-        <div className="bg-neutral-dark-1 flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
+        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-neutral-dark-1 px-4 py-4 text-background">
           bg-neutral-dark-1, text-background
         </div>
-        <div className="bg-neutral-dark-2 flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
+        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-neutral-dark-2 px-4 py-4 text-background">
           bg-neutral-dark-2, text-background
         </div>
 
-        <div className="bg-error flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
+        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-error px-4 py-4 text-background">
           bg-error, text-background
         </div>
         <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-destructive px-4 py-4 text-background">
           bg-destructive, text-background
         </div>
-        <div className="bg-warning flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
+        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-warning px-4 py-4 text-background">
           bg-warning, text-background
         </div>
-        <div className="bg-success flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
+        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-success px-4 py-4 text-background">
           bg-success, text-background
         </div>
         <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg border border-border px-4 py-4 text-foreground">
@@ -182,7 +185,7 @@ const Button: React.FC = () => {
             <span className="block font-mono text-sm text-white">
               import <span className="text-blue-400">CustomButton</span> from{" "}
               <span className="text-yellow-400">
-                &quot;~/components/common/Button/button&quot;
+                "~/components/common/Button/button"
               </span>
               ;
             </span>
@@ -266,9 +269,7 @@ const Button: React.FC = () => {
               <span className="text-blue-400">CustomButton</span>
               <br />
               <span className="ml-4">
-                variant=
-                <span className="text-yellow-400">&quot;subtle&quot;</span>{" "}
-                <br />
+                variant=<span className="text-yellow-400">"subtle"</span> <br />
               </span>
               <span className="ml-4">
                 icon=<span className="text-yellow-400">{"{<Plus />}"}</span>{" "}
@@ -299,5 +300,7 @@ const Button: React.FC = () => {
     </main>
   );
 };
+
+export default Button;
 
 export default Button;
