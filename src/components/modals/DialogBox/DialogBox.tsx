@@ -1,5 +1,3 @@
-
-
 interface DialogBoxProperties {
   headerText: string;
   description?: string;
