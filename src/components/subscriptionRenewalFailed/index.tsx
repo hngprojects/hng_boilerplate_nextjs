@@ -1,7 +1,6 @@
 import Image from "next/image";
-import React from "react";
 
-import Button from "../common/Button";
+import { Button } from "~/components/common/Button";
 import { SubscriptionRenewalFailedSchema } from "./zodSchema";
 
 interface SubscriptionRenewalFailedProperties {
@@ -36,7 +35,7 @@ const SubscriptionRenewalFailed: React.FC<
   } = result.data;
 
   return (
-    <div className="renewal-with-icon text-neutral-dark-1 box-border flex w-full max-w-full flex-col items-center justify-start gap-[40px] bg-background px-14 pb-[53px] pt-14 text-left font-inter text-4xl font-semibold md:gap-[56px]">
+    <div className="renewal-with-icon box-border flex w-full max-w-full flex-col items-center justify-start gap-[40px] bg-background px-14 pb-[53px] pt-14 text-left font-inter text-4xl font-semibold text-neutral-dark-1 md:gap-[56px]">
       <Image
         className="renewal-with-icon-image relative h-[142px] w-[142px] shrink-0 overflow-hidden object-contain md:h-[178px] md:w-[178px]"
         loading="lazy"
@@ -46,18 +45,18 @@ const SubscriptionRenewalFailed: React.FC<
         height={500}
       />
       <div className="renewal-with-icon-title-container flex flex-col items-center justify-center self-stretch text-center">
-        <h3 className="renewal-with-icon-title text-neutral-dark-1 relative m-0 self-stretch text-[20px] font-semibold md:text-[20px]">
+        <h3 className="renewal-with-icon-title relative m-0 self-stretch text-[20px] font-semibold text-neutral-dark-1 md:text-[20px]">
           {title}
         </h3>
       </div>
       <section className="renewal-with-icon-section flex max-w-full flex-col items-center justify-center gap-[32px] self-stretch text-left text-lg font-normal">
         <div className="renewal-with-icon-greeting flex flex-col items-start justify-start self-stretch">
-          <div className="renewal-with-icon-greeting-text text-neutral-dark-2 relative self-stretch text-[16px] font-semibold leading-normal">
+          <div className="renewal-with-icon-greeting-text relative self-stretch text-[16px] font-semibold leading-normal text-neutral-dark-2">
             Hi {name},
           </div>
         </div>
         <div className="renewal-with-icon-details flex max-w-full flex-col items-center justify-start gap-[28px] self-stretch text-[14px] text-base md:text-[16px]">
-          <div className="renewal-with-icon-details-text text-neutral-dark-2 relative self-stretch font-normal leading-normal">
+          <div className="renewal-with-icon-details-text relative self-stretch font-normal leading-normal text-neutral-dark-2">
             <span>
               We are having some trouble processing your subscription renewal
               payment for your{" "}
@@ -69,7 +68,7 @@ const SubscriptionRenewalFailed: React.FC<
               . This could be because of either of the following reasons:
             </span>
           </div>
-          <div className="renewal-with-icon-reasons text-neutral-dark-1 flex max-w-full flex-col items-start justify-start gap-[16px] self-stretch font-normal">
+          <div className="renewal-with-icon-reasons flex max-w-full flex-col items-start justify-start gap-[16px] self-stretch font-normal text-neutral-dark-1">
             <div className="renewal-with-icon-reason flex max-w-full flex-row items-center justify-start gap-[16px] self-stretch">
               <Image
                 className="renewal-with-icon-reason-icon relative h-6 w-6"
@@ -110,7 +109,7 @@ const SubscriptionRenewalFailed: React.FC<
               </div>
             </div>
           </div>
-          <div className="renewal-with-icon-update text-neutral-dark-2 relative self-stretch font-normal">
+          <div className="renewal-with-icon-update relative self-stretch font-normal text-neutral-dark-2">
             To keep enjoying your {renewalPeriod} Features, please check your
             bank or update your payment details.
           </div>
@@ -119,10 +118,12 @@ const SubscriptionRenewalFailed: React.FC<
           href={updatePaymentLink}
           className="renewal-with-icon-button-link flex self-stretch md:self-center"
         >
-          <Button />
+          <Button variant="primary" className="renewal-button">
+            Update Payment Details
+          </Button>
         </a>
       </section>
-      <div className="renewal-with-icon-regards text-neutral-dark-2 flex flex-col items-start justify-center gap-[8px] self-stretch text-sm">
+      <div className="renewal-with-icon-regards flex flex-col items-start justify-center gap-[8px] self-stretch text-sm text-neutral-dark-2">
         <div className="renewal-with-icon-regards-text relative self-stretch font-semibold leading-normal">
           Regards,
         </div>
@@ -130,27 +131,27 @@ const SubscriptionRenewalFailed: React.FC<
           Boilerplate
         </div>
       </div>
-      <div className="renewal-with-icon-contact text-neutral-dark-2 relative self-stretch text-[14px] font-normal leading-normal md:text-[16px]">
-        <span className="renewal-with-icon-contact-text text-neutral-dark-2 font-normal">
+      <div className="renewal-with-icon-contact relative self-stretch text-[14px] font-normal leading-normal text-neutral-dark-2 md:text-[16px]">
+        <span className="renewal-with-icon-contact-text font-normal text-neutral-dark-2">
           If you have questions, please visit our{" "}
         </span>
         <span className="renewal-with-icon-faqs-link font-semibold text-orange-400">
           <a href={faqsLink}>FAQs</a>
         </span>
-        <span className="renewal-with-icon-contact-text text-neutral-dark-2 font-normal">
+        <span className="renewal-with-icon-contact-text font-normal text-neutral-dark-2">
           , or email us at{" "}
         </span>
         <span className="renewal-with-icon-email-link text-orange-400">
           <a href={`mailto:${supportEmail}`}>{supportEmail}</a>
         </span>
-        <span className="renewal-with-icon-contact-text text-neutral-dark-2 font-normal">
+        <span className="renewal-with-icon-contact-text font-normal text-neutral-dark-2">
           . Our team can answer questions about your subscription status. To
           unsubscribe from future subscription renewal reminders,{" "}
         </span>
         <span className="renewal-with-icon-unsubscribe-link cursor-pointer font-semibold underline">
           <a href={unsubscribeLink}>click here</a>
         </span>
-        <span className="renewal-with-icon-contact-text text-neutral-dark-2 font-normal">
+        <span className="renewal-with-icon-contact-text font-normal text-neutral-dark-2">
           .
         </span>
       </div>

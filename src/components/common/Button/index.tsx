@@ -1,6 +1,9 @@
-const Button = () => {
-  return <div>Button</div>;
-};
+import { Slot } from "@radix-ui/react-slot";
+import { VariantProps } from "class-variance-authority";
+import React from "react";
+
+import { buttonVariants } from "~/components/ui/button";
+import { cn } from "~/lib/utils";
 
 export interface ButtonProperties
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -22,4 +25,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProperties>(
 );
 Button.displayName = "Button";
 
-export { Button, buttonVariants };
+export { Button };
+
+export { buttonVariants } from "~/components/ui/button";
