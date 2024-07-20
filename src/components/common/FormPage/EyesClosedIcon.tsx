@@ -1,4 +1,3 @@
-
 const EyesClosedIcon = () => {
   return (
     <svg
