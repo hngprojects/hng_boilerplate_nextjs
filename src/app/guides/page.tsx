@@ -180,7 +180,7 @@ const Button: React.FC = () => {
         <div className="flex flex-col gap-2">
           <span>Import the custom button component</span>
           <div className="rounded-lg bg-zinc-950 p-4">
-            <span className="block font-mono text-sm text-white">
+            <span className="font-mono block text-sm text-white">
               import <span className="text-blue-400">CustomButton</span> from{" "}
               <span className="text-yellow-400">
                 &quot;~/components/common/Button/button&quot;
@@ -192,10 +192,10 @@ const Button: React.FC = () => {
         <div className="flex flex-col gap-2">
           <span>Variant Types</span>
           <div className="rounded-lg bg-zinc-950 p-4">
-            <span className="block font-mono text-sm text-gray-100">
+            <span className="font-mono block text-sm text-gray-100">
               <span className="text-pink-400">type Variant</span> {"{"}
             </span>
-            <span className="ml-4 block font-mono text-sm text-gray-100">
+            <span className="font-mono ml-4 block text-sm text-gray-100">
               default <br />
               primary <br />
               destructive <br />
@@ -204,16 +204,16 @@ const Button: React.FC = () => {
               outline <br />
               link
             </span>
-            <span className="block font-mono text-sm text-gray-100">{"}"}</span>
+            <span className="font-mono block text-sm text-gray-100">{"}"}</span>
           </div>
         </div>
         <div className="flex flex-col gap-2">
           <span>Size Types</span>
           <div className="rounded-lg bg-zinc-950 p-4">
-            <span className="block font-mono text-sm text-gray-100">
+            <span className="font-mono block text-sm text-gray-100">
               <span className="text-pink-400">type Size</span> {"{"}
             </span>
-            <span className="ml-4 block font-mono text-sm text-gray-100">
+            <span className="font-mono ml-4 block text-sm text-gray-100">
               default <br />
               sm <br />
               lg <br />
@@ -221,16 +221,16 @@ const Button: React.FC = () => {
               icon <br />
               circle
             </span>
-            <span className="block font-mono text-sm text-gray-100">{"}"}</span>
+            <span className="font-mono block text-sm text-gray-100">{"}"}</span>
           </div>
         </div>
         <div className="flex flex-col gap-2">
           <span>Accepted Custom Button Props</span>
           <div className="rounded-lg bg-zinc-950 p-4">
-            <span className="block font-mono text-sm text-gray-100">
+            <span className="font-mono block text-sm text-gray-100">
               <span className="text-pink-400">ButtonProps</span> {"{"}
             </span>
-            <span className="ml-4 block font-mono text-sm text-gray-100">
+            <span className="font-mono ml-4 block text-sm text-gray-100">
               variant<span className="text-pink-400">?: </span>Variant;
               <br />
               size<span className="text-pink-400">?: </span>Size;
@@ -253,16 +253,16 @@ const Button: React.FC = () => {
               <br />
               ariaLabel<span className="text-pink-400">?: </span>string;
             </span>
-            <span className="block font-mono text-sm text-gray-100">{"}"}</span>
+            <span className="font-mono block text-sm text-gray-100">{"}"}</span>
           </div>
         </div>
         <div className="flex flex-col gap-2">
           <span>Example</span>
           <div className="rounded-lg bg-zinc-950 p-4">
-            <span className="block font-mono text-sm text-gray-100">
+            <span className="font-mono block text-sm text-gray-100">
               return (
             </span>
-            <span className="ml-4 block font-mono text-sm text-gray-100">
+            <span className="font-mono ml-4 block text-sm text-gray-100">
               <span className="text-green-400">{"<"}</span>
               <span className="text-blue-400">CustomButton</span>
               <br />
@@ -293,7 +293,7 @@ const Button: React.FC = () => {
               <span className="text-blue-400">CustomButton</span>
               <span className="text-green-400">{">"}</span>
             </span>
-            <span className="block font-mono text-sm text-gray-100">);</span>
+            <span className="font-mono block text-sm text-gray-100">);</span>
           </div>
         </div>
       </div>

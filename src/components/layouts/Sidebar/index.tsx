@@ -48,7 +48,7 @@ const Sidebar = () => {
         <div className="mx-4 mb-5 mt-2 flex items-center justify-between p-4 px-2">
           <span
             className={cn(
-              "font-inter text-neutralColor-dark-1 text-center text-xl font-medium leading-[24.2px] dark:text-white",
+              "text-neutralColor-dark-1 text-center font-inter text-xl font-medium leading-[24.2px] dark:text-white",
               !isOpen && "cursor-pointer",
             )}
             onClick={() => !isOpen && setIsOpen(true)}
@@ -81,7 +81,7 @@ const Sidebar = () => {
               key={item.name}
               href={item.href}
               className={cn(
-                "font-inter text-neutralColor-dark-1 mx-2 my-5 flex items-center py-1 text-center text-base font-medium leading-[19.2px] dark:text-white",
+                "text-neutralColor-dark-1 mx-2 my-5 flex items-center py-1 text-center font-inter text-base font-medium leading-[19.2px] dark:text-white",
                 pathname === item.href && "text-white",
                 !isOpen && "justify-center",
                 isOpen && "rounded-lg",
