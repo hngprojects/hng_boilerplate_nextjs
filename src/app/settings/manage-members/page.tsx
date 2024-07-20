@@ -16,10 +16,7 @@ const MockPage = () => {
                 </h2>
                 <p>Click the button below to see an important message.</p>
                 <div className="pt-6">
-                  <CustomToast
-                    message="Scheduled: Catch up"
-                    description="1 Invitation sent succesfully"
-                  />
+                  <CustomToast description="1 Invitation sent succesfully" />
                 </div>
               </div>
             </div>
