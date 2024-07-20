@@ -8,6 +8,15 @@ import { Breadcrumb } from "~/components/common/Breadcrumb";
 import CustomButton from "~/components/common/Button/button";
 import HBPCommentBox from "~/components/common/Comment";
 import { commentsData } from "~/components/common/Comment/ComentData";
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+import CustomInput from "~/components/common/Input/input";
+=======
+import HBPCommentBox from "~/components/common/Comment";
+import { commentsData } from "~/components/common/Comment/ComentData";
+>>>>>>> a66c77a (ComentBox Display)
+>>>>>>> 0b6f045 (ComentBox Display)
 import Sidebar from "~/components/layouts/Sidebar";
 import CharacterLimitTextarea from "../../components/common/CharacterLimitTextarea";
 
@@ -37,23 +46,23 @@ const StyleGuide: React.FC = () => {
         <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-subtle px-4 py-4 text-foreground">
           bg-subtle, text-foreground
         </div>
-        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-neutral-dark-1 px-4 py-4 text-background">
+        <div className="bg-neutral-dark-1 flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
           bg-neutral-dark-1, text-background
         </div>
-        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-neutral-dark-2 px-4 py-4 text-background">
+        <div className="bg-neutral-dark-2 flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
           bg-neutral-dark-2, text-background
         </div>
 
-        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-error px-4 py-4 text-background">
+        <div className="bg-error flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
           bg-error, text-background
         </div>
         <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-destructive px-4 py-4 text-background">
           bg-destructive, text-background
         </div>
-        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-warning px-4 py-4 text-background">
+        <div className="bg-warning flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
           bg-warning, text-background
         </div>
-        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-success px-4 py-4 text-background">
+        <div className="bg-success flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
           bg-success, text-background
         </div>
         <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg border border-border px-4 py-4 text-foreground">
@@ -446,27 +455,23 @@ const StyleGuide: React.FC = () => {
         </div>
       </div>
 
-      <div className="space-y-4 rounded-lg bg-gray-100 p-4 shadow-md">
-        <h2 className="text-2xl font-semibold text-gray-800">
-          HBP Comment Box
-        </h2>
-        <div className="flex flex-col space-y-4">
-          {commentsData.map((comment) => (
-            <HBPCommentBox
-              key={comment.id}
-              id={comment.id}
-              avatar={comment.avatar}
-              name={comment.name}
-              username={comment.username}
-              content={comment.content}
-              timestamp={comment.timestamp}
-              date={comment.date}
-              likes={comment.likes}
-              dislikes={comment.dislikes}
-              className="rounded-lg bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
-            />
-          ))}
-        </div>
+      <div className="space-y-4">
+        <h2 className="text-2xl font-semibold">HBP Comment Box</h2>
+        {commentsData.map((comment) => (
+          <HBPCommentBox
+            key={comment.id}
+            id={comment.id}
+            avatar={comment.avatar}
+            name={comment.name}
+            username={comment.username}
+            content={comment.content}
+            timestamp={comment.timestamp}
+            date={comment.date}
+            likes={comment.likes}
+            dislikes={comment.dislikes}
+          />
+        ))}
+        {/* Add more Comment components as needed */}
       </div>
 
       <div className="w-full">
