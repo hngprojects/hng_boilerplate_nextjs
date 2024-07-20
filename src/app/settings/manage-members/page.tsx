@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 
-import { ToastWithTitle } from "~/components/common/Toast/toast";
+import { CustomToast } from "~/components/common/customToast/toast";
 import { useToast } from "~/components/ui/use-toast";
 
 const MockPage = () => {
@@ -20,7 +20,6 @@ const MockPage = () => {
 
   return (
     <div className="flex min-h-screen flex-col justify-center bg-gray-100 py-6 sm:py-12">
-      {alertVisibility ? <ToastWithTitle /> : null}
       <div className="relative py-3 sm:mx-auto sm:max-w-xl">
         <div className="to-light-blue-500 absolute inset-0 -skew-y-6 transform bg-gradient-to-r from-cyan-400 shadow-lg sm:-rotate-6 sm:skew-y-0 sm:rounded-3xl"></div>
         <div className="relative bg-white px-4 py-10 shadow-lg sm:rounded-3xl sm:p-20">
@@ -32,17 +31,10 @@ const MockPage = () => {
                 </h2>
                 <p>Click the button below to see an important message.</p>
                 <div className="pt-6">
-                  <button
-                    onClick={() => {
-                      toast({
-                        title: "Uh oh! Something went wrong.",
-                        description: "There was a problem with your request.",
-                      });
-                    }}
-                    className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:shadow-outline focus:outline-none"
-                  >
-                    Show Alert
-                  </button>
+                  <CustomToast
+                    message="Scheduled: Catch up"
+                    description="Friday, February 10, 2023 at 5:57 PM"
+                  />
                 </div>
               </div>
             </div>
