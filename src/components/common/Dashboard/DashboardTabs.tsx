@@ -2,7 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 
 const index = () => {
   return (
-    <div className="flex  flex-col gap-6">
+    <div className="flex flex-col gap-6">
       <h1 data-testid="tab" className="text-3xl font-semibold">
         Dashboard
       </h1>
