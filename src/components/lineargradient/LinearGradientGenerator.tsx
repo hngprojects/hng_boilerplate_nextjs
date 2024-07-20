@@ -19,7 +19,7 @@ const LinearGradientGenerator: React.FC<LinearGradientGeneratorProperties> = ({
     backgroundImage: `linear-gradient(${direction}, ${gradientStops})`,
   };
 
-  return <div className="w-full h-full" style={gradientStyle}></div>;
+  return <div className="h-full w-full" style={gradientStyle}></div>;
 };
 
 export default LinearGradientGenerator;

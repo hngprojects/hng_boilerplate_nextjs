@@ -1,5 +1,5 @@
-import LinearGradientGenerator from "../components/LinearGradientGenerator";
-import { render } from "../test/utils";
+import { render } from "../../test/utils";
+import LinearGradientGenerator from "./LinearGradientGenerator";
 
 describe("linearGradientGenerator Component", () => {
   it("should render with gradient based on colors and direction", () => {

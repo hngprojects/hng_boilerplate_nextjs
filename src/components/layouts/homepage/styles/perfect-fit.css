@@ -1,0 +1,59 @@
+.perfect-fit {
+  padding: 96px 0;
+  text-align:center;
+}
+
+.perfect-fit h1 {
+  font-size: 44px;
+  font-weight: 700;
+  font-family: "Inter";
+  margin-bottom:16px;
+}
+
+.perfect-fit p {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: "Inter";
+  margin-bottom:31px;
+}
+
+.perfect-fit button{
+      padding: 12px 30px;
+  border-radius: 6px;
+  border: none;
+}
+
+
+/* ======================================= */
+/* responsiveness section */
+@media (min-width:1000px){
+    .perfect-fit p{
+      padding:0 200px;
+    }
+}
+
+
+@media (max-width:991px){
+  .perfect-fit h1{
+    font-size:38px;
+  }
+
+}
+
+@media (max-width:768px){
+  .perfect-fit h1{
+    font-size:30px;
+  }
+
+}
+
+@media (max-width:575px){
+  .perfect-fit h1{
+    font-size:25px;
+  }
+
+  .perfect-fit p{
+    font-size:16px;
+  }
+
+}
