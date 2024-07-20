@@ -25,8 +25,7 @@ describe('DeleteModal', () => {
     expect(modalContent).toHaveClass('top-[300px]');
     expect(modalContent).toHaveClass('lg:w-[512px]');
     expect(modalContent).toHaveClass('w-[95%]');
-    expect(modalContent).toHaveClass('left-3');
-    expect(modalContent).toHaveClass('md:left-5');
+    expect(modalContent).toHaveClass('left-[50%]');
     expect(modalContent).toHaveClass('lg:right-0');
   });
 
