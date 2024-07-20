@@ -21,14 +21,14 @@ export default function TableOfContentItem({
   return (
     <li
       className={cn(
-        "list-inside list-disc text-base font-normal leading-[16.94px] text-[hsl(0,0%,32%)] md:leading-[19.36px]",
+        "text-neutral-dark-1 list-inside list-disc text-base font-normal leading-[16.94px] md:leading-[19.36px]",
         className,
       )}
       {...rest}
     >
       <Link
         href={href}
-        className="decoration-[hsl(0,0%,32%)] decoration-2 hover:underline"
+        className="decoration-neutral-dark-1 decoration-2 hover:underline"
       >
         {children}
       </Link>
