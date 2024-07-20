@@ -7,10 +7,10 @@ services:
       - 3200:3000
     restart: always
 
-  next-staging-frontend-2:
-    build:
-      context: ../../
-      dockerfile: docker/staging/Dockerfile
-    ports:
-      - 3230:3000
-    restart: always
+  # next-staging-frontend-2:
+  #   build:
+  #     context: ../../
+  #     dockerfile: docker/staging/Dockerfile
+  #   ports:
+  #     - 3230:3000
+  #   restart: always
