@@ -1,22 +1,9 @@
-"use client";
-
 import { Orbit, Plus } from "lucide-react";
-import React, { useState } from "react";
+import React from "react";
 
 import CustomButton from "~/components/common/Button/button";
-import PasswordSuccessfulModal from "~/components/modal/PasswordSuccessfulModal/PasswordSuccessfulModal";
 
 const Button: React.FC = () => {
-  const [showModal, setShowModal] = useState(false);
-
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
   return (
     <main className="flex min-h-screen flex-col items-start gap-7 overflow-hidden p-6 sm:p-12 md:p-24">
       <h2 className="text-2xl font-semibold">Color Guides</h2>

@@ -9,7 +9,10 @@ interface ModalProperties {
   onClose: () => void;
 }
 
-const PasswordSuccessfulModal: React.FC<ModalProperties> = ({ show, onClose }) => {
+const PasswordSuccessfulModal: React.FC<ModalProperties> = ({
+  show,
+  onClose,
+}) => {
   if (!show) return null;
 
   const handleClose = (event: React.MouseEvent) => {
