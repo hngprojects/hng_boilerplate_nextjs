@@ -2,10 +2,6 @@
 // import { Button } from "~/components/ui/button";
 import AddProduct from "~/components/AddProduct";
 
-
-
 export default function Home() {
-  return (
-    <AddProduct />
-  );
+  return <AddProduct />;
 }
