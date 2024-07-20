@@ -73,12 +73,12 @@ const SettingsSidebar = () => {
     setActiveLink(currentPath);
   }, [currentPath]);
   return (
-    <section className="bg-[#FAFAFA] z-[50] w-[0px] md:w-[96px] min-[1140px]:w-[270px] hover:w-[270px] hover:p-4 transition-all duration-300 py-6 min-[1140px]:p-4 hidden md:flex flex-col gap-y-4 items-center  fixed h-screen left-0 top-0 overflow-hidden group select-none rounded-t-[16px]">
+    <section className="group fixed left-0 top-0 z-[50] hidden h-screen w-[0px] select-none flex-col items-center gap-y-4 overflow-hidden rounded-t-[16px] bg-[#FAFAFA] py-6 transition-all duration-300 hover:w-[270px] hover:p-4 md:flex md:w-[96px] min-[1140px]:w-[270px] min-[1140px]:p-4">
       <ul className="flex flex-col gap-y-4 pt-8">
         <div className="items-center">
           <button
             className={cn(
-              "flex gap-x-3 py-2 px-3 h-[52px] font-medium transition-colors duration-300 cursor-pointer rounded-md justify-center items-center text-2xl",
+              "flex h-[52px] cursor-pointer items-center justify-center gap-x-3 rounded-md px-3 py-2 text-2xl font-medium transition-colors duration-300",
             )}
             onClick={() => router.back()}
           >
@@ -98,15 +98,15 @@ const SettingsSidebar = () => {
             }}
             aria-label={link.label}
             className={cn(
-              "flex items-center gap-x-3 py-2 px-3 h-[52px] text-[#3a3a3a] font-medium text-base transition-colors duration-300 cursor-pointer rounded-md",
+              "flex h-[52px] cursor-pointer items-center gap-x-3 rounded-md px-3 py-2 text-base font-medium text-[#3a3a3a] transition-colors duration-300",
               activeLink === link.link
-                ? "bg-[#f97316] text-white rounded outline-none"
-                : "hover:bg-[#f97316]/30 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light",
+                ? "rounded bg-[#f97316] text-white outline-none"
+                : "focus-visible:outline-primary-light hover:bg-[#f97316]/30 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2",
             )}
           >
             <link.icon size={24} aria-hidden />
 
-            <span className=" max-[1139px]:hidden group-hover:block w-[185px]">
+            <span className="w-[185px] group-hover:block max-[1139px]:hidden">
               {link.label}
             </span>
           </Link>
