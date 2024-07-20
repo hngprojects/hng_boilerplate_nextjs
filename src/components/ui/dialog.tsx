@@ -102,19 +102,6 @@ const DialogTitle = React.forwardRef<
 ));
 DialogTitle.displayName = DialogPrimitive.Title.displayName;
 
-// const DialogDescription = React.forwardRef<
-//   React.ElementRef<typeof DialogPrimitive.Description>,
-//   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description> & {
-//     className?: string;
-//   }
-//   >(({ className, ...properties }, reference) => (
-// >(({ className, ...properties }: any, reference: React.LegacyRef<HTMLParagraphElement> | undefined) => (
-//   <DialogPrimitive.Description
-//     ref={reference}
-//     className={cn("text-sm text-muted-foreground", className)}
-//     {...properties}
-//   />
-// ));
 const DialogDescription = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Description>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description> & {
