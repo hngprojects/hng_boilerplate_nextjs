@@ -34,7 +34,7 @@ const passwordSchema = z
       .string()
       .min(8, "Password must be at least 8 characters")
       .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
-      .regex(/[0-9]/, "Password must contain at least one number"),
+      .regex(/\d/, "Password must contain at least one number"),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
@@ -61,19 +61,21 @@ const PasswordForm: React.FC = () => {
     },
   });
 
-  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-    setShowChecks(e.target.value.length > 0);
+  const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+    setShowChecks(event.target.value.length > 0);
   };
 
-  const handleConfirmPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const newConfirmPassword = e.target.value;
+  const handleConfirmPasswordChange = (
+    event: ChangeEvent<HTMLInputElement>,
+  ) => {
+    const newConfirmPassword = event.target.value;
     setConfirmPassword(newConfirmPassword);
     setPasswordsMatch(newConfirmPassword === password);
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
     const result = passwordSchema.safeParse({ password, confirmPassword });
     if (!result.success) {
@@ -87,12 +89,12 @@ const PasswordForm: React.FC = () => {
   };
 
   const togglePasswordVisibility = () => {
-    setIsPasswordVisible((prev) => !prev);
+    setIsPasswordVisible((previous) => !previous);
   };
 
   const checks = {
     uppercase: /[A-Z]/.test(password),
-    number: /[0-9]/.test(password),
+    number: /\d/.test(password),
     length: password.length >= 8,
   };
 
@@ -120,7 +122,7 @@ const PasswordForm: React.FC = () => {
                   onClick={togglePasswordVisibility}
                   className="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3"
                 >
-                  {isPasswordVisible ? <EyesOpenIcon /> : <EyesClosedIcon />}
+                  {isPasswordVisible ? <EyesClosedIcon /> : <EyesOpenIcon />}
                 </span>
               </div>
             </FormControl>
