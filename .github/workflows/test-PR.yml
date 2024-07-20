@@ -15,6 +15,7 @@ jobs:
         with:
           version: 9
       - run: pnpm install
+      - run: pnpm build
       - name: "Test"
         run: pnpm run test:ci
       - name: "Upload Coverage"
