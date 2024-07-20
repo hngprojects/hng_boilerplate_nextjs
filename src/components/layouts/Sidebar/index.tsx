@@ -14,7 +14,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-import { Button } from "~/components/ui/button";
+import CustomButton from "~/components/common/Button/button";
 import { cn } from "~/lib/utils";
 
 interface SidebarItem {
@@ -56,14 +56,9 @@ const Sidebar = () => {
             LOGO
           </span>
 
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            onClick={() => {
-              setIsOpen((previous) => !previous);
-            }}
-            className="ml-auto"
+          <div
+            className={isOpen ? "ml-auto" : "ml-0"}
+            onClick={() => setIsOpen((previous) => !previous)}
           >
             {isOpen && (
               <CustomButton
