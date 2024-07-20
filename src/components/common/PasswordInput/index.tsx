@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 
-import { Input } from "../../ui/input";
+
 import { EyeClose, EyeOpen } from "../../../../public/assets/svg";
+import { Input } from "~/components/ui/input";
 
 interface PasswordToggleProps {
   password: string;
