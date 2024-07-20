@@ -9,11 +9,13 @@ import React, {
   useState,
 } from "react";
 
+import CustomButton from "~/components/common/Button/button";
+import { Input } from "~/components/ui/input";
+
 const SignupOtp: React.FC = () => {
   const inputReferences = useRef<(HTMLInputElement | null)[]>([]);
-  const [otp, setOtp] = useState<string[]>(
-    Array.from({ length: 6 }, () => "") as string[],
-  );
+  const [otp, setOtp] = useState<string[]>(Array.from({ length: 6 }, () => ""));
+
   useEffect(() => {
     inputReferences.current[0]?.focus();
   }, []);
@@ -63,24 +65,22 @@ const SignupOtp: React.FC = () => {
   };
 
   return (
-    <div
-      className={`font-inter mx-auto flex h-[496px] max-w-[484px] items-center rounded-[8px] border-[1px] border-solid border-[#CBD5E1] bg-[#ffffff] px-[32px]`}
-    >
+    <div className="font-inter mx-auto flex h-[496px] max-w-[484px] items-center rounded-lg border border-solid border-gray-300 bg-white px-8">
       <div className="text-center">
-        <div className="mx-auto mt-[24px] w-[285px]">
-          <h2 className="text-[32px] font-semibold leading-[36px] text-[#0F172A]">
+        <div className="mx-auto mt-6 w-72">
+          <h2 className="text-2xl font-semibold leading-9 text-gray-900">
             Sign Up
           </h2>
-          <p className="pt-[1rem] text-[14px] text-[#64748B]">
+          <p className="pt-4 text-sm text-gray-500">
             We sent a temporary sign-in code to your mail
           </p>
         </div>
-        <p className="my-[32px] text-[14px] text-[#0F172A]">
+        <p className="my-8 text-sm text-gray-900">
           Please paste (or type) your 6-digit code:
         </p>
-        <div className="mb-[32px] flex gap-[12px]">
+        <div className="mb-8 flex gap-3">
           {otp.map((value, index) => (
-            <input
+            <Input
               key={index}
               ref={(input) => {
                 if (input) {
@@ -89,7 +89,9 @@ const SignupOtp: React.FC = () => {
               }}
               type="text"
               maxLength={1}
-              className={`h-[60px] max-w-[60px] rounded-lg border text-center text-[18px] font-semibold outline-none ${value ? "border-[#EF4444]" : "border-[#CBD5E1]"}`}
+              className={`h-15 w-15 rounded-lg border text-center text-lg font-semibold outline-none ${
+                value ? "border-red-500" : "border-gray-300"
+              }`}
               value={value}
               onChange={(event) => handleOtpChange(index, event)}
               onClick={() => handleClick(index)}
@@ -99,35 +101,28 @@ const SignupOtp: React.FC = () => {
           ))}
         </div>
         <div className="flex items-center justify-center">
-          <button
-            className={`font-inter mb-[32px] flex w-full items-center justify-center rounded-lg bg-[#F97316] px-5 py-3 font-medium text-[#FAF8F8]`}
-          >
+          <CustomButton variant="default" className="mb-8 w-full">
             Continue
-          </button>
+          </CustomButton>
         </div>
-        <div className="mx-[68px] pb-[1rem]">
-          <div className="pb-[12px]">
-            <p className="text-[12px] text-[#64748B]">
+        <div className="mx-16 pb-4">
+          <div className="pb-3">
+            <p className="text-xs text-gray-500">
               Would you rather use email and password?
             </p>
-            <button className={`text-[12px] font-bold text-[#F97316]`}>
+            <CustomButton variant="link" className="text-xs">
               Continue with email and password
-            </button>
+            </CustomButton>
           </div>
-          <div className="text-4 text-[10px] font-[400] text-[#64748B]">
+          <div className="text-xs font-normal text-gray-500">
             We would process your data as set forth in our{" "}
-            <span className="text-[10px] font-bold text-[#F97316]">
-              Terms of Use
-            </span>
-            ,
-            <span className="text-[10px] font-bold text-[#F97316]">
-              {" "}
-              Privacy Policy
-            </span>{" "}
+            <span className="font-bold text-orange-500">Terms of Use</span>,{" "}
+            <span className="font-bold text-orange-500">Privacy Policy</span>{" "}
             and{" "}
-            <span className="text-[10px] font-bold text-[#F97316]">
+            <span className="font-bold text-orange-500">
               Data Processing Agreement
             </span>
+            .
           </div>
         </div>
       </div>
