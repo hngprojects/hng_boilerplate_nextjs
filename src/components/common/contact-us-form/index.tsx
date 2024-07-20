@@ -1,36 +1,76 @@
+"use client";
 
-"use client"
-// components/ContactForm.tsx
-import React, { useState } from 'react';
-import InputField from './inputfield';
-import axios from 'axios';
-import naver from 'next-auth/providers/naver';
+import { useEffect, useState } from "react";
+
+import InputField from "./inputfield";
 
 interface FormData {
-  name: string;
-  email: string;
-  phone: string;
-  message: string;
+  [key: string]: string;
 }
 
+const validationRules: { [key: string]: (value: string) => string | null } = {
+  name: (value) => (!value ? "Name is required" : null),
+  email: (value) => {
+    if (!value) return "Email is required";
+    if (!/\S+@\S+\.\S+/.test(value)) return "Email is invalid";
+    return null;
+  },
+  phone: (value) => {
+    if (!value) return "Phone number is required"; // Phone number is optional
+    if (!/^\+?[0-9]{10,15}$/.test(value)) return "Phone number is invalid";
+    return null;
+  },
+  message: (value) => (!value ? "Message is required" : null),
+};
+
+const initialFormData: FormData = {
+  name: "",
+  email: "",
+  phone: "",
+  message: "",
+};
+
 const ContactForm: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({ name: '', email: '', phone: '', message: '' });
+  const [formData, setFormData] = useState<FormData>({ ...initialFormData });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const [status, setStatus] = useState<string | null>(null);
+  const [status, setStatus] = useState<boolean | null>(null);
+  const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (status !== null) {
+      // clear existing timer
+      if (timer != null) {
+        clearTimeout(timer);
+      }
+      const newTimer = setTimeout(() => {
+        setStatus(null);
+      }, 3000);
+      setTimer(newTimer);
+    }
+
+    return () => {
+      // clear timer on unmount
+      if (timer != null) {
+        clearTimeout(timer);
+      }
+    };
+  }, [status]);
 
   const validate = () => {
     const errors: { [key: string]: string } = {};
-    if (!formData.name) errors.name = 'Name is required';
-    if (!formData.email) {
-      errors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      errors.email = 'Email is invalid';
-    }
-    if (!formData.message) errors.message = 'Message is required';
+    Object.keys(formData).forEach((key) => {
+      const error = validationRules[key]?.(formData[key]);
+      if (error) {
+        errors[key] = error;
+      }
+    });
     return errors;
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
@@ -43,62 +83,131 @@ const ContactForm: React.FC = () => {
       return;
     }
     try {
-      await axios.post('https://your-backend-api.com/submit', formData);
-      setStatus('Form submitted successfully!');
-      setFormData({ name: '', email: '', phone: '', message: '' });
+      const response = await fetch(
+        "https://test.gracefilledcollege.com/public/api/v1/contact",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        },
+      );
+
+      // Parse the response body as JSON
+      const responseData = await response.json();
+
+      // Check if response is not OK
+      if (!response.ok) {
+        // Use the error message from the response, if available
+        throw new Error(responseData.message || "Failed to submit the form.");
+      }
+
+      // Set success status and message
+      setStatus(true);
+      setMessage(responseData.message || "Form submitted successfully!");
+      setFormData({ ...initialFormData });
+      setErrors({});  // Clear errors
     } catch (error) {
-      naver
-      setStatus('Failed to submit the form. Please try again.');
+      setStatus(false);
+      setMessage(
+        (error as Error).message ||
+          "Failed to submit the form. Please try again.",
+      );
     }
   };
 
   const inputFields = [
-    { label: 'Name', name: 'name', type: 'text', placeholder: 'Enter full name', required: true },
-    { label: 'Email', name: 'email', type: 'email', placeholder: 'Enter email address', required: true },
-    { label: 'Phone Number', name: 'phone', type: 'tel', placeholder: 'Enter phone number', required: false }
+    {
+      label: "Name",
+      name: "name",
+      type: "text",
+      placeholder: "Enter full name",
+      required: true,
+    },
+    {
+      label: "Email",
+      name: "email",
+      type: "email",
+      placeholder: "Enter email address",
+      required: true,
+    },
+    {
+      label: "Phone Number",
+      name: "phone",
+      type: "tel",
+      placeholder: "Enter phone number",
+      required: false,
+    },
   ];
 
   return (
-    <div className="w-full max-w-[80%] mx-auto p-8 ">
-      <form onSubmit={handleSubmit} className="rounded px-8 pt-6 pb-8 mb-4 bg-[#FAFAFA]">
-        {inputFields.map((field) => (
-          <InputField
-            key={field.name}
-            value={formData[field.name as keyof FormData]}
-            type={field.type}
-            onChange={handleChange}
-            placeholder={field.placeholder}
-            id={field.name}
-            name={field.name}
-            label={field.label}
-          />
-        ))}
-        {errors.name && <p className="text-red-500 text-xs italic">{errors.name}</p>}
-        {errors.email && <p className="text-red-500 text-xs italic">{errors.email}</p>}
-        <div className="mb-4">
-          <label htmlFor="message" className="block text-gray-700 text-sm mb-2 ">Message</label>
-          <input
-            id="message"
-            name="message"
-            placeholder="Message..."
-            value={formData.message}
-            onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 pb-[112px] bg-[#FAFAFA] leading-tight focus:outline-none focus:shadow-outline"
-          />
-          {errors.message && <p className="text-red-500 text-xs italic">{errors.message}</p>}
-        </div>
-        <button
-          type="submit"
-          className="bg-[#F97316]  text-white py-3 px-4 w-full gap-2 flex items-center justify-center rounded focus:outline-none focus:shadow-outline text-[0.65rem] font-normal"
+    <>
+      <div className="mx-auto w-full max-w-[80%] p-8">
+        <form
+          onSubmit={handleSubmit}
+          className="mb-4 w-full max-w-[80%] rounded bg-[#FAFAFA] px-8 pb-8 pt-6"
+          role="form"
         >
-        <img src='/mail.svg' alt="mail" />
-          Send
-        </button>
-        {status && <p className={`text-xs italic ${status.includes('successfully') ? 'text-green-500' : 'text-red-500'}`}>{status}</p>}
-      </form>
-    </div>
+          {inputFields.map((field) => (
+            <div key={field.name} className="mb-4">
+              <InputField
+                key={field.name}
+                value={formData[field.name as keyof FormData]}
+                type={field.type}
+                onChange={handleChange}
+                placeholder={field.placeholder}
+                id={field.name}
+                name={field.name}
+                label={field.label}
+              />
+              {errors[field.name] && (
+                <p className="text-xs italic text-red-500">
+                  {errors[field.name]}
+                </p>
+              )}
+            </div>
+          ))}
+          <div className="mb-4">
+            <label
+              htmlFor="message"
+              className="mb-2 block text-sm text-gray-700"
+            >
+              Message
+            </label>
+            <input
+              id="message"
+              name="message"
+              placeholder="Message..."
+              value={formData.message}
+              onChange={handleChange}
+              className="w-full appearance-none rounded border-2 bg-[#FAFAFA] px-3 py-2 pb-[112px] leading-tight text-gray-700"
+            />
+            {errors.message && (
+              <p className="text-xs italic text-red-500">{errors.message}</p>
+            )}
+          </div>
+          <button
+            type="submit"
+            className="focus:shadow-outline flex w-full items-center justify-center gap-2 rounded bg-[#F97316] px-4 py-3 text-[0.65rem] font-normal text-white focus:outline-none"
+          >
+            <img src="/mail.svg" alt="mail" />
+            Send
+          </button>
+          {status && (
+            <p className={`text-xs italic text-green-500`}>
+              {message}
+            </p>
+          )}
+          {status == false && (
+            <p className={`text-xs italic text-red-500`}>
+              {message}
+            </p>
+          )}
+        </form>
+      </div>
+    </>
   );
 };
 
 export default ContactForm;
-
