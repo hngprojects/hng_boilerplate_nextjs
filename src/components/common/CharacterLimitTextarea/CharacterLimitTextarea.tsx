@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-
 import { useCharacterLimit } from "./useCharacterLimit";
 
 interface CharacterLimitTextareaProperties {
@@ -32,7 +30,7 @@ const CharacterLimitTextarea = ({
       <div className="flex flex-col">
         <label
           htmlFor={id}
-          className="text-[#0F172A] mb-[3px] font-medium text-sm"
+          className="mb-[3px] text-sm font-medium text-[#0F172A]"
         >
           {label}
         </label>
@@ -42,9 +40,9 @@ const CharacterLimitTextarea = ({
           name={name}
           onChange={handleChange}
           aria-describedby="textarea-info textarea-error"
-          className={`text-[#0F172A] font-normal text-sm resize-none rounded-md w-full max-w-[826px] focus:outline-none ${
+          className={`w-full max-w-[826px] resize-none rounded-md text-sm font-normal text-[#0F172A] focus:outline-none ${
             error ? "border-[#DC2626]" : "border-[#CBD5E1]"
-          } bg-white box-border h-20 py-[8px] px-[12px] border border-solid ${
+          } box-border h-20 border border-solid bg-white px-[12px] py-[8px] ${
             error ? "focus:border-[#DC2626]" : "focus:border-[#0F172A]"
           }`}
         />
@@ -52,14 +50,14 @@ const CharacterLimitTextarea = ({
       {error ? (
         <div
           id="textarea-error"
-          className="mt-[6px] font-normal text-sm text-[#DC2626]"
+          className="mt-[6px] text-sm font-normal text-[#DC2626]"
         >
           {error}
         </div>
       ) : (
         <div
           id="textarea-info"
-          className="mt-[6px] font-normal text-sm text-gray-500"
+          className="mt-[6px] text-sm font-normal text-gray-500"
         >
           {charCount}/{maxLength} characters
         </div>
