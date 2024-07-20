@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 interface ConfirmCancelModalProperties {
@@ -26,13 +28,13 @@ const ConfirmCancelModal: React.FC<ConfirmCancelModalProperties> = ({
         <div className="flex justify-end space-x-4">
           <button
             onClick={onClose}
-            className="flex h-10 w-full items-center justify-center whitespace-nowrap rounded-lg border border-border bg-background px-4 py-4 text-sm font-medium text-foreground ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+            className="flex w-full items-center justify-center whitespace-nowrap rounded-lg border border-border px-4 py-4 text-foreground"
           >
             Keep Subscription
           </button>
           <button
             onClick={onCancel}
-            className="flex h-10 w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white ring-offset-background transition-colors hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+            className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-primary px-4 py-4 text-background"
           >
             Cancel Subscription
           </button>
