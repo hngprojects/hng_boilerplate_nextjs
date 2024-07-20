@@ -57,7 +57,7 @@ describe("characterLimitTextarea", () => {
     render(<TestComponent maxLength={100} />);
     const textarea = screen.getByRole("textbox");
 
-    userEvent.type(textarea, "Hello");
+    await userEvent.type(textarea, "Hello");
 
     await waitFor(() => {
       expect(screen.getByText(/5\/100 characters/)).toBeInTheDocument();
@@ -68,7 +68,8 @@ describe("characterLimitTextarea", () => {
     expect.assertions(1);
     render(<TestComponent maxLength={5} />);
     const textarea = screen.getByRole("textbox");
-    userEvent.type(textarea, "Hello, world!");
+
+    await userEvent.type(textarea, "Hello, world!");
 
     await waitFor(() => {
       const errorMessage = screen.getByText(/cannot exceed/i);

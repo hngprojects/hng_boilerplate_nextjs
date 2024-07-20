@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { useCharacterLimit } from "./useCharacterLimit";
+import { useCharacterLimit } from "./UseCharacterLimit";
 
 interface CharacterLimitTextareaProperties {
   maxLength: number;
