@@ -25,11 +25,12 @@ export default function Email(properties: IProperties) {
 
     return (
         <Html>
-            <Head />
+            
             <Preview>{`Incoming Account Deactivation for ${name}`}</Preview>
 
             <Tailwindwrapper>
-                <div className=" flex flex-col justify-center items-center ">
+                <Head />
+                <div className="container flex flex-col justify-center items-center ">
                     <Img src="cat.jpg" alt="Deactivation logo" className="w-[16.7%] " />
                     <Heading className="text-center">Account Deactivation In  <span className="">Two Days!</span></Heading>
                     <main>
