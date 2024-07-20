@@ -60,6 +60,8 @@
 
     --breadcrumb-page: 0 0% 42%;
     --breadcrumb-foreground: 0 0% 13%;
+
+    --stroke-colors-stroke: 213 27% 84%;
   }
 
   .dark {
