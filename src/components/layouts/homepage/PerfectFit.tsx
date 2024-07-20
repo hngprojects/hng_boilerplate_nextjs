@@ -1,14 +1,14 @@
 const PerfectFit = () => {
   return (
-    <div className="perfect-fit bg-[#FBF3F3]">
+    <div className="perfect-fit bg-[#FBF3F3] py-24 text-center">
       <div className="mx-auto max-w-7xl px-5 md:px-10 lg:px-10 xl:px-10">
-        <h1>Find The Perfect Fit</h1>
-        <p className="text-[#525252]">
+        <h1 className="text-4xl font-bold mb-4">Find The Perfect Fit</h1>
+        <p className="text-lg font-normal text-[#525252] mb-8 md:px-48 lg:px-48 xl:px-48">
           Choose the boilerplate plan that best suits your project needs and
           budget. All plans include access to our comprehensive library of
           pre-built sections, drag-and-drop customization.
         </p>
-        <button className="bg-primary text-background">
+        <button className="bg-primary text-background py-3 px-7 rounded-md border-none">
           See Our Pricing Plan
         </button>
       </div>

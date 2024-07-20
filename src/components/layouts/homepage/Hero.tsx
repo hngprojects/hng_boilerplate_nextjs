@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { A11y, Autoplay, Pagination, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import { HeroBoilerPlate, HeroChat, HeroCheckMark, HeroLine } from "./svgs";
 // Import Swiper styles
 import "swiper/css";
@@ -13,39 +12,39 @@ import "swiper/css/scrollbar";
 
 const Hero = () => {
   return (
-    <div className="hero bg-background">
-      <div className="mx-auto max-w-7xl px-5 md:px-10 lg:px-10 xl:px-10">
-        <div className="hero-content">
-          <div className="hero-left">
-            <h1>
-              {`Focus on What Matters. We've Got the Foundation Covered`}.
+    <div className="py-20 bg-background">
+      <div className="mx-auto max-w-7xl px-5 md:px-10">
+        <div className="flex flex-col lg:flex-row items-center">
+          <div className="w-full lg:w-1/2">
+            <h1 className="text-5xl md:text-6xl font-bold mb-2 leading-snug md:leading-tight">
+              Focus on What Matters. We've Got the Foundation Covered.
             </h1>
 
             <div>
               <HeroLine />
             </div>
 
-            <p className="text-foreground">
+            <p className="text-lg md:text-xl text-foreground mt-7 mb-12">
               Streamline your processes with a boilerplate built for efficiency
               and optimal productivity.
             </p>
 
-            <button className="get-started bg-primary text-background">
+            <button className="px-8 py-4 bg-primary text-background rounded">
               Get Started
             </button>
           </div>
 
-          <div className="hero-right">
-            <div className="image-container">
-              <div data-testid="hero-checkmark" className="hero-checkmark">
+          <div className="w-full lg:w-1/2 flex justify-end mt-14 lg:mt-0 rounded-lg">
+            <div className="bg-primary relative md:h-[300px] lg:h-[526px] lg:w-[418px] w-[90%] md:w-[95%] rounded-lg">
+              <div data-testid="hero-checkmark" className="absolute left-[-3.5rem] top-1/3 transform -translate-y-1/2 z-10">
                 <HeroCheckMark />
               </div>
 
-              <div data-testid="hero-chat" className="hero-chat">
+              <div data-testid="hero-chat" className="absolute right-8 bottom-[-1.25rem] z-20">
                 <HeroChat />
               </div>
 
-              <div data-testid="hero-boilerplate" className="hero-boilerplate">
+              <div data-testid="hero-boilerplate" className="absolute left-[-3.75rem] bottom-8 z-30">
                 <HeroBoilerPlate />
               </div>
 
@@ -53,7 +52,6 @@ const Hero = () => {
                 modules={[Pagination, Scrollbar, A11y, Autoplay]}
                 spaceBetween={1}
                 slidesPerView={1}
-                // onSwiper={(swiper) => console.log("")}
                 autoplay={{
                   delay: 3000,
                   disableOnInteraction: false,
@@ -69,6 +67,7 @@ const Hero = () => {
                     width={100}
                     height={100}
                     unoptimized
+                    className="lg:object-contain w-full h-[300px] lg:h-[526px] object-cover"
                   />
                 </SwiperSlide>
 
@@ -79,6 +78,7 @@ const Hero = () => {
                     width={100}
                     height={100}
                     unoptimized
+                    className="lg:object-contain w-full h-[300px] lg:h-[526px] object-cover"
                   />
                 </SwiperSlide>
 
@@ -89,6 +89,7 @@ const Hero = () => {
                     width={100}
                     height={100}
                     unoptimized
+                    className="lg:object-contain w-full h-[300px] lg:h-[526px] object-cover"
                   />
                 </SwiperSlide>
 
@@ -99,6 +100,7 @@ const Hero = () => {
                     width={100}
                     height={100}
                     unoptimized
+                    className="lg:object-contain w-full h-[300px] lg:h-[526px] object-cover"
                   />
                 </SwiperSlide>
               </Swiper>
