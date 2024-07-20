@@ -2,7 +2,7 @@ import CustomButton from "~/components/common/Button/button";
 
 const CookieFooter: React.FC = () => {
   return (
-    <footer className="text-neutral-dark-1 fixed bottom-0 left-0 right-0 z-50 w-[100vw] bg-background text-start md:text-foreground">
+    <footer className="fixed bottom-0 left-0 right-0 z-50 w-[100vw] bg-background text-start text-neutral-dark-1 md:text-foreground">
       <div className="mx-auto flex max-w-[1200px] flex-col gap-x-[25px] gap-y-4 px-6 py-5 md:py-10 lg:flex-row lg:justify-center xl:px-0">
         <p className="flex flex-col gap-y-2 text-sm font-bold leading-normal md:text-xl md:font-semibold lg:max-w-[693px]">
           We Value your Privacy{" "}
@@ -13,20 +13,20 @@ const CookieFooter: React.FC = () => {
           </span>
         </p>
         <ul className="flex flex-row flex-wrap items-end gap-x-4 gap-y-2">
-          <li className="text-primary md:order-3">
-            <CustomButton size="default" variant="outline">
+          <li className="md:order-3">
+            <CustomButton size="default" variant="primary">
               Accept All Cookies
             </CustomButton>
           </li>
-          <li>
+          <li className="md:order-2">
             <CustomButton variant="primary" size="default">
               Reject All
             </CustomButton>
           </li>
           <li className="md:order-1">
-            <CustomButton size="default" variant="primary">
-              Cookie Settings
-            </CustomButton>
+            <button className="rounded-[6px] border border-primary px-4 py-2 text-sm text-primary md:bg-secondary">
+              Cookies Settings
+            </button>
           </li>
         </ul>
       </div>
