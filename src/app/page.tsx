@@ -1,17 +1,14 @@
-import Hero from "~/components/layouts/homepage/Hero";
-import HowItWorks from "~/components/layouts/homepage/HowItWorks";
-import PerfectFit from "~/components/layouts/homepage/PerfectFit";
-import Testimonials from "~/components/layouts/homepage/Testimonials";
-import UserSection from "~/components/layouts/homepage/UserSection";
+import AboutUsPage from "~/components/layouts/AboutUs/AboutUs";
 
 export default function Home() {
   return (
     <>
-      <Hero />
+      {/* <Hero />
       <UserSection />
       <HowItWorks />
       <Testimonials />
-      <PerfectFit />
+      <PerfectFit /> */}
+      <AboutUsPage />
     </>
   );
 }

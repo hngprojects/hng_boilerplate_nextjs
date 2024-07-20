@@ -4,11 +4,11 @@ import { Button } from "~/components/common/Button";
 
 const Join = () => {
   return (
-    <div className="mx-auto mb-[80px] flex h-[185px] w-[948px] flex-col items-center justify-between">
-      <h3 className="text-center text-[44px] font-[600] text-[#525252]">
+    <div className="mx-auto mb-[80px] flex h-[185px] flex-col items-center justify-between md:w-[948px]">
+      <h3 className="text-center text-[32px] font-[700] text-[#525252] md:text-[44px] md:font-[600]">
         Join Our Team
       </h3>
-      <p className="w-[729px] text-center text-[18px] leading-[22px] text-[#525252]">
+      <p className="w-[381px] text-center text-[16px] leading-[19px] text-[#525252] md:w-[729px] md:text-[18px] md:leading-[22px]">
         Interested in joining out team? View our Job Listing page for openings
         and apply with an equal chance of working with us!
       </p>

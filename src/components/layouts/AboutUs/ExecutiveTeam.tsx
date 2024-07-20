@@ -10,18 +10,19 @@ import Twitter from "../../../../public/AboutUs/X.png";
 
 const ExecutiveTeam = () => {
   return (
-    <div className="mt-[80px] flex h-[610px] w-full flex-col">
-      <div className="mx-auto flex w-[630px] flex-col">
-        <h3 className="text-center text-[44px] font-[600] text-[#525252]">
+    <div className="mt-[80px] flex h-[1831px] flex-col md:h-[610px] md:w-full">
+      <div className="mx-auto flex w-[382px] flex-col items-center justify-center max-sm:px-[5px] md:w-[630px]">
+        <h3 className="text-center text-[32px] font-[600] text-[#525252] md:text-[44px]">
           The Executive Team
         </h3>
-        <p className="text-center text-[18px] leading-[22px] text-[#525252]">
+        <p className="text-center text-[16px] leading-[19px] text-[#525252] md:text-[18px] md:leading-[22px]">
           Meet Our Exclusive team that have been trained to meet your needs.
         </p>
       </div>
-      <div className="mx-auto mt-[20px] grid h-[3px] w-[1200px] grid-cols-4 gap-[27px]">
+
+      <div className="mx-auto mt-[20px] grid h-[1692px] grid-cols-1 gap-[27px] md:h-[3px] md:w-[1200px] md:grid-cols-4">
         <div
-          className="flex w-[280px] flex-col gap-[20px] bg-[#FAFAFA] pb-[14px]"
+          className="flex w-[280px] flex-col gap-[20px] bg-[#f4f2f299] pb-[14px]"
           data-testid="johnSection"
         >
           <Image
@@ -75,7 +76,7 @@ const ExecutiveTeam = () => {
         </div>
 
         <div
-          className="flex w-[280px] flex-col gap-[20px] bg-[#FAFAFA] pb-[14px]"
+          className="flex w-[280px] flex-col gap-[20px] bg-[#f4f2f299] pb-[14px]"
           data-testid="addisonSection"
         >
           <Image
@@ -129,7 +130,7 @@ const ExecutiveTeam = () => {
         </div>
 
         <div
-          className="flex w-[280px] flex-col gap-[20px] bg-[#FAFAFA] pb-[14px]"
+          className="flex w-[280px] flex-col gap-[20px] bg-[#f4f2f299] pb-[14px]"
           data-testid="joySection"
         >
           <Image
@@ -186,7 +187,7 @@ const ExecutiveTeam = () => {
         </div>
 
         <div
-          className="flex w-[280px] flex-col gap-[20px] bg-[#FAFAFA] pb-[14px]"
+          className="flex w-[280px] flex-col gap-[20px] bg-[#f4f2f299] pb-[14px]"
           data-testid="philipSection"
         >
           <Image
