@@ -38,3 +38,6 @@ next-env.d.ts
 
 # react email
 /.react-email
+
+# lock-yaml
+.pnpm-lock.yaml
