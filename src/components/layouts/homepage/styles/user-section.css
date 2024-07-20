@@ -1,0 +1,59 @@
+.user-section {
+  padding: 103px 0;
+  text-align:center;
+}
+
+.user-section h1 {
+  font-size: 36px;
+  font-weight: 700;
+  font-family: "Inter";
+  margin-bottom:37px;
+}
+
+.section-box{
+  width:85%;
+  margin:0 auto;
+}
+
+.image-section{
+  display:flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* ============================================= */
+/* responsiveness */
+
+@media (max-width:1200px ){
+  .section-box{
+    width:100%;
+  }
+}
+
+@media (max-width:991px){
+  .user-section{
+    padding-top: 50px ;
+  }
+    .section-box{
+    overflow:auto; 
+  }
+  .section-box::-webkit-scrollbar {
+    display: none;
+}
+
+  .image-section{
+        width:1100px;
+  }
+}
+
+@media (max-width:768px){
+  .user-section h1{
+    font-size:30px;
+  }
+}
+
+@media (max-width:575px){
+  .user-section h1{
+    font-size:25px;
+  }
+}
