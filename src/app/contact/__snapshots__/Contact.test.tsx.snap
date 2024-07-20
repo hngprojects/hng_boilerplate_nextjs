@@ -1,0 +1,228 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`contact > matches the snapshot 1`] = `
+<DocumentFragment>
+  <main>
+    <section
+      class="mx-auto bg-white pb-20 text-neutral-dark-1 transition-all lg:container lg:pb-44 lg:pt-9"
+    >
+      <div
+        class="grid justify-center gap-2.5 pt-24 *:text-center lg:gap-3 lg:pb-11 lg:pt-24"
+      >
+        <h1
+          class="text-3xl font-bold lg:text-6xl"
+        >
+          Contact Our Team
+        </h1>
+        <p
+          class="text-lg max-sm:hidden lg:text-2xl"
+        >
+          Let's Build Your Product Together
+        </p>
+        <p
+          class="text-lg font-medium sm:hidden"
+        >
+          Achieve your dreams with us today
+        </p>
+      </div>
+      <div
+        class="items-start justify-between gap-4 max-lg:mx-8 lg:flex"
+      >
+        <div
+          class="lg:w-7/12"
+        />
+        <div
+          class="mx-auto grid gap-6 max-lg:container *:rounded-md *:border *:bg-background *:p-6 max-lg:mt-5 lg:mt-8 lg:w-4/12 lg:p-8"
+        >
+          <div
+            class="grid lg:gap-8"
+          >
+            <h2
+              class="text-lg font-bold lg:text-3xl"
+            >
+              United Kingdom
+            </h2>
+            <h3
+              class="text-sm font-bold max-lg:pb-6 max-lg:pt-4 lg:text-base"
+            >
+              Business hours : 8am - 6pm
+            </h3>
+            <div
+              class="grid gap-5 lg:gap-4"
+            >
+              <div
+                class="flex items-center gap-4"
+              >
+                <div
+                  class="rounded-sm bg-neutral-dark-1 p-2.5"
+                >
+                  <img
+                    alt="map icon"
+                    data-nimg="1"
+                    decoding="async"
+                    height="24"
+                    loading="lazy"
+                    src="/public/contact-icons/map.svg"
+                    style="color: transparent;"
+                    width="24"
+                  />
+                </div>
+                <p
+                  class="text-lg leading-5"
+                >
+                  10111, hornchurch, london, United kingdom
+                </p>
+              </div>
+              <div
+                class="flex items-center gap-4"
+              >
+                <div
+                  class="rounded-sm bg-neutral-dark-1 p-2.5"
+                >
+                  <img
+                    alt="phone icon"
+                    data-nimg="1"
+                    decoding="async"
+                    height="24"
+                    loading="lazy"
+                    src="/public/contact-icons/phone.svg"
+                    style="color: transparent;"
+                    width="24"
+                  />
+                </div>
+                <p
+                  class="text-lg leading-5"
+                >
+                  +4403989898787
+                </p>
+              </div>
+              <div
+                class="flex items-center gap-4"
+              >
+                <div
+                  class="rounded-sm bg-neutral-dark-1 p-2.5"
+                >
+                  <img
+                    alt="mail icon"
+                    data-nimg="1"
+                    decoding="async"
+                    height="24"
+                    loading="lazy"
+                    src="/public/contact-icons/mail.svg"
+                    style="color: transparent;"
+                    width="24"
+                  />
+                </div>
+                <p
+                  class="text-lg leading-5"
+                >
+                  Email: supportteam@gmail.com
+                </p>
+              </div>
+              <div
+                class="flex items-center gap-4"
+              >
+                <div
+                  class="rounded-sm bg-neutral-dark-1 p-2.5"
+                >
+                  <img
+                    alt="twitter icon"
+                    data-nimg="1"
+                    decoding="async"
+                    height="24"
+                    loading="lazy"
+                    src="/public/contact-icons/twitter.svg"
+                    style="color: transparent;"
+                    width="24"
+                  />
+                </div>
+                <p
+                  class="text-lg leading-5"
+                >
+                  Twitter @boilerplate23
+                </p>
+              </div>
+              <div
+                class="flex items-center gap-4"
+              >
+                <div
+                  class="rounded-sm bg-neutral-dark-1 p-2.5"
+                >
+                  <img
+                    alt="instagram icon"
+                    data-nimg="1"
+                    decoding="async"
+                    height="24"
+                    loading="lazy"
+                    src="/public/contact-icons/instagram.svg"
+                    style="color: transparent;"
+                    width="24"
+                  />
+                </div>
+                <p
+                  class="text-lg leading-5"
+                >
+                  Instagram @boilerplate234
+                </p>
+              </div>
+              <div
+                class="flex items-center gap-4"
+              >
+                <div
+                  class="rounded-sm bg-neutral-dark-1 p-2.5"
+                >
+                  <img
+                    alt="linkedin icon"
+                    data-nimg="1"
+                    decoding="async"
+                    height="24"
+                    loading="lazy"
+                    src="/public/contact-icons/linkedin.svg"
+                    style="color: transparent;"
+                    width="24"
+                  />
+                </div>
+                <p
+                  class="text-lg leading-5"
+                >
+                  Linkedin @boilerplate34
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="gap-4 max-lg:grid"
+          >
+            <div
+              class="flex justify-between"
+            >
+              <h2
+                class="text-xl font-semibold text-primary underline underline-offset-2"
+              >
+                FAQ
+              </h2>
+              <div>
+                <img
+                  alt="arrow_right"
+                  data-nimg="1"
+                  decoding="async"
+                  height="20"
+                  loading="lazy"
+                  src="/public/contact-icons/arrow-right.svg"
+                  style="color: transparent;"
+                  width="20"
+                />
+              </div>
+            </div>
+            <p
+              class="texl-lg"
+            >
+              See and get answers to the most frequent asked questions
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</DocumentFragment>
+`;

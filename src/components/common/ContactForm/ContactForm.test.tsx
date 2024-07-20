@@ -1,8 +1,8 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import axios from "axios";
-import { describe, expect, it, vi } from "vitest"; // Correctly importing `vi`
+import { describe, expect, it, vi } from "vitest";
 
-import ContactForm from "./index";
+import ContactForm from "./index"; // ContactForm section is in index.tsx in the parent directory
 
 vi.mock("axios");
 
@@ -26,15 +26,17 @@ describe("contactForm", () => {
     render(<ContactForm />);
     fireEvent.click(screen.getByText(/send/i));
 
-    await expect(
-      screen.findByText(/name is required/i),
-    ).resolves.toBeInTheDocument();
-    await expect(
-      screen.findByText(/email is required/i),
-    ).resolves.toBeInTheDocument();
-    await expect(
-      screen.findByText(/message is required/i),
-    ).resolves.toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText(/name is required/i)).toBeInTheDocument();
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText(/email is required/i)).toBeInTheDocument();
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText(/message is required/i)).toBeInTheDocument();
+    });
   });
 
   it("shows invalid email error", async () => {
@@ -45,9 +47,9 @@ describe("contactForm", () => {
     });
     fireEvent.click(screen.getByText(/send/i));
 
-    await expect(
-      screen.findByText(/email is invalid/i),
-    ).resolves.toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText(/email is invalid/i)).toBeInTheDocument();
+    });
   });
 
   it("submits form successfully", async () => {
@@ -66,9 +68,11 @@ describe("contactForm", () => {
     });
     fireEvent.click(screen.getByText(/send/i));
 
-    await expect(
-      screen.findByText(/form submitted successfully!/i),
-    ).resolves.toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        screen.getByText(/form submitted successfully!/i),
+      ).toBeInTheDocument();
+    });
   });
 
   it("shows error message when submission fails", async () => {
@@ -87,8 +91,10 @@ describe("contactForm", () => {
     });
     fireEvent.click(screen.getByText(/send/i));
 
-    await expect(
-      screen.findByText(/failed to submit the form/i),
-    ).resolves.toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        screen.getByText(/failed to submit the form/i),
+      ).toBeInTheDocument();
+    });
   });
 });

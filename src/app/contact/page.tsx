@@ -47,7 +47,12 @@ const Contact = () => {
                   FAQ
                 </h2>
                 <div>
-                  <Image src={arrow_right} alt="arrow_right" />
+                  <Image
+                    width={20}
+                    height={20}
+                    src={arrow_right}
+                    alt="arrow_right"
+                  />
                 </div>
               </div>
               <p className="texl-lg">
