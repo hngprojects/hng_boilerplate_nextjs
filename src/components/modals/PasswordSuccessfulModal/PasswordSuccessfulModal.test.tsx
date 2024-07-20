@@ -3,7 +3,10 @@ import userEvent from "@testing-library/user-event";
 
 import PasswordSuccessfulModal from "./PasswordSuccessfulModal";
 
+describe("testimonials Component", () => {
 test("renders the modal when show is true", () => {
+   expect.assertions(2);
+   
   render(<PasswordSuccessfulModal show={true} onClose={() => {}} />);
   expect(
     screen.getByText("Password Successfully Updated!"),
@@ -16,6 +19,7 @@ test("renders the modal when show is true", () => {
 });
 
 test("close the modal when continue is clicked", async () => {
+   expect.assertions(1);
   const user = userEvent.setup();
   let modalClosed = false;
   const handleClose = () => {
@@ -29,6 +33,7 @@ test("close the modal when continue is clicked", async () => {
 });
 
 test("close the modal when outside the modal is clicked", async () => {
+   expect.assertions(1);
   const user = userEvent.setup();
   let modalClosed = false;
   const handleClose = () => {
@@ -39,4 +44,6 @@ test("close the modal when outside the modal is clicked", async () => {
   await user.click(screen.getByTestId("overlay"));
 
   expect(modalClosed).toBeTruthy();
-});
+})
+
+})
