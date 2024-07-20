@@ -8,63 +8,73 @@ import IntellectualProperty from "./IntellectualProperty";
 import TableOfContents from "./TableOfContents";
 import UserObligations from "./UserObligations";
 
+const dateSuffix = (day: number) => {
+  if (day > 3 && day < 21) return "th";
+  switch (day % 10) {
+    case 1: {
+      return "st";
+    }
+    case 2: {
+      return "nd";
+    }
+    case 3: {
+      return "rd";
+    }
+    default: {
+      return "th";
+    }
+  }
+};
+
 const formattedDate = (date: Date) => {
   const day = date.getDate();
-  const month = date.toLocaleString('default', { month: 'long' });
+  const month = date.toLocaleString("default", { month: "long" });
   const year = date.getFullYear();
 
-  const dateSuffix = (day: number) => {
-    if (day > 3 && day < 21) return 'th';
-    switch (day % 10) {
-        case 1: return 'st';
-        case 2: return 'nd';
-        case 3: return 'rd';
-        default: return 'th';
-      }
-    }
-
-    return `${day}${dateSuffix(day)} ${month}, ${year}`;
-}
+  return `${day}${dateSuffix(day)} ${month}, ${year}`;
+};
 
 const Main = () => {
-  const lastUpdate = new Date('2024-07-20');
+  const lastUpdate = new Date("2024-07-20");
   return (
-    <section className=" max-w-full text-left mx-[222px] max-sm:mx-6 max-lg:mx-12 max-xl:mx-20 my-[64px]">
-
-      <Breadcrumb /> {/*Breadcrumb component to be replaced*/} 
-      <div className="flex lg:flex-row flex-col-reverse items-start justify-between pb-10 max-w-full">
-        <div className="lg:w-[612px] text-neutral-dark-1">
+    <section className="mx-[222px] my-[64px] max-w-full text-left max-xl:mx-20 max-lg:mx-12 max-sm:mx-6">
+      <Breadcrumb /> {/*Breadcrumb component to be replaced*/}
+      <div className="flex max-w-full flex-col-reverse items-start justify-between pb-10 lg:flex-row">
+        <div className="text-neutral-dark-1 lg:w-[612px]">
           <div
-            className="self-stretch max-w-full xl:w-[612px]"
+            className="`max-w-full self-stretch xl:w-[612px]"
             id="introduction"
           >
-            <div className="mb-[10px] self-stretch relative font-bold sm:text-[28px] text-2xl">
+            <div className="relative mb-[10px] self-stretch text-2xl font-bold sm:text-[28px]">
               Introduction
             </div>
-            <div className="self-stretch relative text-base inline-block">
+            <div className="relative inline-block self-stretch text-base">
               Welcome to Boilerplate Hng. These Terms and Conditions govern your
               use of our website and services. By accessing or using our site,
               you agree to comply with and be bound by these terms. If you do
               not agree, please do not use our website..
             </div>
           </div>
-          <div id="user-obligations" className="text-neutral-dark-1 mb-6">
+          <div id="user-obligations" className="`mb-6 text-neutral-dark-1">
             <UserObligations />
           </div>
-          <div id="acceptable-use-policy" className="text-neutral-dark-1 mb-6">
+          <div id="acceptable-use-policy" className="`mb-6 text-neutral-dark-1">
             <AcceptableUse />
           </div>
-          <div id="intellectual-property" className="text-neutral-dark-1 mb-6">
+          <div id="intellectual-property" className="`mb-6 text-neutral-dark-1">
             <IntellectualProperty />
           </div>
-          <div id="disclaimer" className="text-neutral-dark-1 mb-6">
+          <div id="disclaimer" className="`mb-6 text-neutral-dark-1">
             <Discclaimer />
           </div>
-          <div id="governing-law" className="text-neutral-dark-1 mb-6">
+          <div id="governing-law" className="`mb-6 text-neutral-dark-1">
             <GoverningLaws />
           </div>
-          <div className="self-stretch text-neutral-dark-1 mb-6" id="changes-to-terms">
-            <h2 className="mt-0 self-stretch relative text-inherit font-bold font-inherit sm:text-[28px] text-2xl">
+          <div
+            className="mb-6 self-stretch text-neutral-dark-1"
+            id="changes-to-terms"
+          >
+            <h2 className="font-inherit relative mt-0 self-stretch text-2xl font-bold text-inherit sm:text-[28px]">
               Changes to Terms
             </h2>
             <div className="mb-[10px] text-base">
@@ -76,10 +86,10 @@ const Main = () => {
             </div>
           </div>
           <div
-            className="self-stretch flex flex-col items-start justify-start gap-[10px] text-neutral-dark-1 mb-6"
+            className="`mb-6 flex flex-col items-start justify-start gap-[10px] self-stretch text-neutral-dark-1"
             id="contact-information"
           >
-            <h2 className="mt-0 self-stretch relative text-inherit font-bold font-inherit sm:text-[28px] text-2xl">
+            <h2 className="font-inherit relative mt-0 self-stretch text-2xl font-bold text-inherit sm:text-[28px]">
               Contact Information
             </h2>
             <div className="mb-[10px] text-base">
@@ -89,15 +99,16 @@ const Main = () => {
             </div>
           </div>
           <div
-            className="self-stretch flex flex-col items-start justify-start gap-[10px] text-neutral-dark-1"
+            className="flex flex-col items-start justify-start gap-[10px] self-stretch text-neutral-dark-1"
             id="last-updated"
           >
-            <h2 className="mt-0 self-stretch relative text-inherit font-bold font-inherit sm:text-[28px] text-2xl">
+            <h2 className="font-inherit relative mt-0 self-stretch text-2xl font-bold text-inherit sm:text-[28px]">
               Last Updated
             </h2>
             <div className="mb-[10px] text-base">
-              These Terms and Conditions were last updated on [{formattedDate(lastUpdate)}]. Please
-              review them periodically for any changes.
+              These Terms and Conditions were last updated on [
+              {formattedDate(lastUpdate)}]. Please review them periodically for
+              any changes.
             </div>
           </div>
           <div className="mb-[10px] text-base text-neutral-dark-1">

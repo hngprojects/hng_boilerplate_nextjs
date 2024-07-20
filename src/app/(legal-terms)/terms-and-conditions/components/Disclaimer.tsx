@@ -1,4 +1,4 @@
-import { Disclaimers } from "~/components/common/LegalTerms/Terms&Conditions/constants/constant";
+import { Disclaimers } from "~/app/(legal-terms)/terms-and-conditions/constants/constant";
 
 interface TermsType {
   title: string;
@@ -7,19 +7,19 @@ interface TermsType {
 
 const Disclaimer = () => {
   return (
-    <div className="self-stretch flex flex-col items-start justify-start gap-[10px]">
-      <h2 className="mt-0 self-stretch relative text-inherit font-bold font-inherit sm:text-[28px] text-2xl">
+    <div className="flex flex-col items-start justify-start gap-[10px] self-stretch">
+      <h2 className="font-inherit relative mt-0 self-stretch text-2xl font-bold text-inherit sm:text-[28px]">
         Disclaimers and Limitations of Liability
       </h2>
-      <div className="self-stretch relative inline-block text-base">
+      <div className="relative inline-block self-stretch text-base">
         <div className="mb-[10px]">
           To ensure clarity regarding our responsibilities and your
           expectations, the following disclaimers and limitations of liability
           apply:
         </div>
-        <ul className=" pl-[21px]">
+        <ul className="pl-[21px]">
           {Disclaimers.map((list: TermsType) => (
-            <li className="list-disc mb-[10px]" key={list.title}>
+            <li className="mb-[10px] list-disc" key={list.title}>
               <span>{list.title}</span> <span>{list.value}</span>
             </li>
           ))}
