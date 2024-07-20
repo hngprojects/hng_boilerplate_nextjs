@@ -2,6 +2,7 @@
 
 import {
   ArrowLeft,
+  ArrowRight,
   Bell,
   Briefcase,
   Building2,
@@ -14,7 +15,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-import CustomButton from "~/components/common/Button/button";
+import { Button } from "~/components/ui/button";
 import { cn } from "~/lib/utils";
 
 interface SidebarItem {
@@ -36,44 +37,35 @@ const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
   const pathname = usePathname();
 
+  console.log(isOpen);
+
   return (
     <>
       <div
         className={cn(
           "flex h-screen flex-col border-r bg-white transition-all duration-300",
-          "dark:bg-neutralColor-dark-1",
-          isOpen ? "w-64" : "w-24",
+          isOpen ? "w-64" : "w-16",
         )}
       >
         <div className="mx-4 mb-5 mt-2 flex items-center justify-between p-4 px-2">
-          <span
-            className={cn(
-              "font-inter text-neutralColor-dark-1 text-center text-xl font-medium leading-[24.2px] dark:text-white",
-              !isOpen && "cursor-pointer",
-            )}
-            onClick={() => !isOpen && setIsOpen(true)}
-          >
-            LOGO
-          </span>
+          {isOpen && (
+            <span className="font-inter text-neutral-dark1 text-center text-xl font-medium leading-[24.2px]">
+              LOGO
+            </span>
+          )}
 
-          <div
-            className={isOpen ? "ml-auto" : "ml-0"}
-            onClick={() => setIsOpen((previous) => !previous)}
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            onClick={() => {
+              console.log(isOpen);
+              setIsOpen((previous) => !previous);
+            }}
+            className="ml-auto"
           >
-            {isOpen && (
-              <CustomButton
-                variant="ghost"
-                size="icon"
-                isIconOnly={true}
-                icon={
-                  <ArrowLeft
-                    size={20}
-                    className="text-neutralColor-dark-1 dark:text-white"
-                  />
-                }
-              />
-            )}
-          </div>
+            {isOpen ? <ArrowLeft size={20} /> : <ArrowRight size={20} />}
+          </Button>
         </div>
         <nav className="mt-3 flex-1">
           {sidebarItems.map((item) => (
@@ -81,18 +73,16 @@ const Sidebar = () => {
               key={item.name}
               href={item.href}
               className={cn(
-                "font-inter text-neutralColor-dark-1 mx-2 my-5 flex items-center py-1 text-center text-base font-medium leading-[19.2px] dark:text-white",
-                pathname === item.href && "text-white",
-                !isOpen && "justify-center",
-                isOpen && "rounded-lg",
+                "font-inter text-neutral-dark1 mx-4 my-5 flex items-center px-2 py-1 text-center text-base font-medium leading-[19.2px]",
+                pathname === item.href && "bg-primary_color text-white",
+                !isOpen && "justify-center bg-white",
+                isOpen && "rounded",
               )}
             >
               <div
                 className={cn(
                   "flex items-center justify-center p-2",
-                  pathname === item.href && "bg-primary",
-                  isOpen && "rounded-lg px-5",
-                  !isOpen && "rounded-full",
+                  pathname === item.href && "bg-primary_color rounded-full",
                 )}
               >
                 <item.icon
@@ -102,9 +92,9 @@ const Sidebar = () => {
                     pathname === item.href && "text-white",
                   )}
                 />
-
-                {isOpen && <span className="ml-3">{item.name}</span>}
               </div>
+
+              {isOpen && <span className="ml-3">{item.name}</span>}
             </Link>
           ))}
         </nav>
