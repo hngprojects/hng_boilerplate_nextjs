@@ -75,7 +75,7 @@ interface DialogBoxProperties {
 const DialogBox = (properties: DialogBoxProperties) => {
   const { headerText, description, buttons } = properties;
   return (
-    <div>
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
       <div
         role="dialog"
         aria-labelledby="dialog-header"
