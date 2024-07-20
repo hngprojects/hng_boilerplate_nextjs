@@ -16,6 +16,7 @@ const properties = {
 
 describe("renewalWithIcon", () => {
   it("renders the component with provided properties", () => {
+    expect.assertions(5);
     render(<RenewalWithIcon {...properties} />);
 
     expect(screen.getByText("Subscription Renewal Failed")).toBeInTheDocument();
@@ -27,6 +28,12 @@ describe("renewalWithIcon", () => {
     expect(
       screen.getByText("Your payment card has expired."),
     ).toBeInTheDocument();
+  });
+
+  it("renders more texts with provided properties", () => {
+    expect.assertions(5);
+    render(<RenewalWithIcon {...properties} />);
+
     expect(
       screen.getByText("You have insufficient funds in your account."),
     ).toBeInTheDocument();
@@ -40,59 +47,40 @@ describe("renewalWithIcon", () => {
     expect(
       screen.getByText(/if you have questions, please visit our/i),
     ).toBeInTheDocument();
-    expect(screen.getByText(/faqs/i).closest("a")).toHaveAttribute(
-      "href",
-      "https://example.com/faqs",
-    );
-    expect(screen.getByText(/email us at/i)).toBeInTheDocument();
-    expect(
-      screen.getByText(/help@boilerplate.com/i).closest("a"),
-    ).toHaveAttribute("href", "mailto:help@boilerplate.com");
-    expect(
-      screen.getByText(
-        /to unsubscribe from future subscription renewal reminders,/i,
-      ),
-    ).toBeInTheDocument();
-    expect(screen.getByText(/click here/i).closest("a")).toHaveAttribute(
-      "href",
-      "https://example.com/unsubscribe",
-    );
   });
 
-  it("renders the image with the correct src and alt text", () => {
+  it("contains correct links and email", () => {
+    expect.assertions(4);
     render(<RenewalWithIcon {...properties} />);
 
-    const image = screen.getByAltText("Payment Error");
-    expect(image).toHaveAttribute("src", "/images/payment-error.svg");
-  });
+    const faqsLink = screen.getByRole("link", { name: /faqs/i });
+    expect(faqsLink).toHaveAttribute("href", "https://example.com/faqs");
 
-  it("contains a link to update payment details", () => {
-    render(<RenewalWithIcon {...properties} />);
+    const emailLink = screen.getByRole("link", {
+      name: /help@boilerplate.com/i,
+    });
+    expect(emailLink).toHaveAttribute("href", "mailto:help@boilerplate.com");
 
-    const link = screen.getByText("Update Payment Details").closest("a");
-    expect(link).toHaveAttribute("href", "https://example.com/update-payment");
-  });
-
-  it("contains a link to FAQs", () => {
-    render(<RenewalWithIcon {...properties} />);
-
-    const link = screen.getByText("FAQs").closest("a");
-    expect(link).toHaveAttribute("href", "https://example.com/faqs");
-  });
-
-  it("contains a malito link to the support email", () => {
-    render(<RenewalWithIcon {...properties} />);
-
-    const link = screen.getByText("help@boilerplate.com").closest("a");
-    expect(link).toHaveAttribute("href", "mailto:help@boilerplate.com");
-  });
-
-  it("contains an unsubscribe link", () => {
-    render(<RenewalWithIcon {...properties} />);
-    const unsubscribeLink = screen.getByText("click here").closest("a");
+    const unsubscribeLink = screen.getByRole("link", { name: /click here/i });
     expect(unsubscribeLink).toHaveAttribute(
       "href",
       "https://example.com/unsubscribe",
     );
+
+    const updatePaymentLink = screen.getByRole("link", {
+      name: /update payment details/i,
+    });
+    expect(updatePaymentLink).toHaveAttribute(
+      "href",
+      "https://example.com/update-payment",
+    );
+  });
+
+  it("renders the image with the correct src and alt text", () => {
+    expect.assertions(1);
+    render(<RenewalWithIcon {...properties} />);
+
+    const image = screen.getByAltText("Payment Error");
+    expect(image).toHaveAttribute("src", "/images/payment-error.svg");
   });
 });

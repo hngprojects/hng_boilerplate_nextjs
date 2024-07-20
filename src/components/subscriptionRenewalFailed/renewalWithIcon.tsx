@@ -34,7 +34,7 @@ const RenewalWithIcon: React.FC<RenewalWithIconProperties> = (properties) => {
   } = result.data;
 
   return (
-    <div className="w-full bg-white max-w-full flex flex-col items-center justify-start pt-14 px-14 pb-[53px] box-border gap-[40px] md:gap-[56px] text-left text-4xl text-[#0A0A0A] font-semibold">
+    <div className="w-full bg-white max-w-full flex flex-col items-center justify-start pt-14 px-14 pb-[53px] box-border gap-[40px] md:gap-[56px] text-left text-4xl text-[#0A0A0A] font-inter font-semibold">
       <Image
         className="w-[142px] h-[142px] md:w-[178px] md:h-[178px] relative overflow-hidden shrink-0 object-contain"
         loading="lazy"
