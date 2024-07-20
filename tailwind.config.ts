@@ -18,11 +18,15 @@ const config = {
       },
     },
     extend: {
+      spacing: {
+        '86': '86px',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         customOrange: '#F97316',
+        customGray: '#FAFAFA',
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
@@ -58,6 +62,7 @@ const config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        '4': '4px',
       },
       keyframes: {
         "accordion-down": {
