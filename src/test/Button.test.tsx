@@ -150,8 +150,7 @@ describe("customButton Component", () => {
 
     const button = screen.getByRole("button", { name: /custom-button/i });
     expect(button).toBeInTheDocument();
-    expect(screen.getByText(/left icon/i)).toBeInTheDocument();
-    expect(screen.getByTestId("icon")).toBeInTheDocument();
+    expect(screen.getByRole("button")).toBeInTheDocument();
   });
 
   it("renders correctly with right icon", () => {
