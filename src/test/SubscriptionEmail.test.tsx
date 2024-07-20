@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 
 import "@testing-library/jest-dom";
 
-import SubscriptionEmail from "./SubscriptionEmail";
+import SubscriptionEmail from "../email/templates/subscription-renewal/SubscriptionEmail";
 
 describe("subscriptionEmail Component", () => {
   const properties = {
