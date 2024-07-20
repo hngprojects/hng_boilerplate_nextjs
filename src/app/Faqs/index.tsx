@@ -49,7 +49,7 @@ export default function Faqs() {
       ) : filteredAccordions.length > 0 ? (
         filteredAccordions
       ) : (
-        <p className="text-center mt-4">No results found.</p>
+        <p className="mt-4 text-center">No results found.</p>
       )}
     </div>
   );
