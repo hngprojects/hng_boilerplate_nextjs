@@ -1,11 +1,9 @@
 import React from "react";
 
-interface IProperties {
+export default function AdminLayout({
+  children,
+}: {
   children: React.ReactNode;
+}) {
+  return <div>{children}</div>;
 }
-
-const layout: React.FC<IProperties> = ({ children }) => {
-  return <body>{children}</body>;
-};
-
-export default layout;
