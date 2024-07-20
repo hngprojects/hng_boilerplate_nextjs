@@ -39,7 +39,7 @@ const Navbar = () => {
         className={`${scrolling ? "py-2" : "py-4 md:py-9"} mx-auto flex w-full max-w-[1200px] items-center justify-between gap-2 transition-all duration-500`}
       >
         <div className="md:hidden">
-          <Menu className="text-nuetral-black-1 hover:text-neutral-dark-1/50 h-6 w-6 cursor-pointer transition-colors duration-300" />
+          <Menu className="text-nuetral-black-1 h-6 w-6 cursor-pointer transition-colors duration-300 hover:text-neutral-dark-1/50" />
         </div>
         <Logo />
         <div className="hidden w-full max-w-[330px] items-center justify-between gap-2 md:flex">
@@ -48,7 +48,7 @@ const Navbar = () => {
               <Link
                 key={index}
                 href={item.link}
-                className="text-neutral-dark-1 p-3 text-[16px] font-medium transition-all duration-300 hover:text-primary"
+                className="p-3 text-[16px] font-medium text-neutral-dark-1 transition-all duration-300 hover:text-primary"
               >
                 {item.route}
               </Link>
@@ -67,8 +67,8 @@ const Navbar = () => {
           </CustomButton>
         </div>
         <div className="flex w-full max-w-[80px] items-center justify-between gap-2 md:hidden">
-          <BellIcon className="text-nuetral-black-1 hover:text-neutral-dark-1/50 h-5 w-5 cursor-pointer transition-colors duration-300" />
-          <User className="text-nuetral-black-1 hover:text-neutral-dark-1/50 h-5 w-5 cursor-pointer transition-colors duration-300" />
+          <BellIcon className="text-nuetral-black-1 h-5 w-5 cursor-pointer transition-colors duration-300 hover:text-neutral-dark-1/50" />
+          <User className="text-nuetral-black-1 h-5 w-5 cursor-pointer transition-colors duration-300 hover:text-neutral-dark-1/50" />
         </div>
       </div>
     </nav>
