@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
+import CustomButton from "~/components/common/Button/button";
 import {
   Dialog,
   DialogContent,
@@ -78,17 +79,12 @@ const RoleCreation = () => {
         onOpenChange={setIsRoleCreationModalOpen}
       >
         <DialogTrigger>
-          <button
-            className="rounded-md bg-[#f97316] px-4 py-2 text-sm font-medium text-white"
-            onClick={() => setIsRoleCreationModalOpen(true)}
-          >
-            Create
-          </button>
+          <CustomButton variant="primary">Create Role</CustomButton>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>
-              <h2 className="mb-2 text-left text-lg font-semibold text-[#0A0A0A]">
+              <h2 className="mb-2 text-left text-lg font-semibold text-[#0f0e0e]">
                 Create Role
               </h2>
             </DialogTitle>
@@ -128,19 +124,13 @@ const RoleCreation = () => {
                 )}
               </div>
               <div className="mt-8 flex items-center justify-end gap-4">
-                <button
-                  className="rounded-md border border-[#E2E8F0] bg-[#F1F5F9] px-4 py-2 text-sm font-medium text-[#0F172A]"
-                  onClick={() => setIsRoleCreationModalOpen(false)}
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="rounded-md bg-[#F97316] px-4 py-2 text-sm font-medium text-white"
-                  onClick={handleSubmit}
-                >
-                  Create Role
-                </button>
+                <div onClick={() => setIsRoleCreationModalOpen(false)}>
+                  <CustomButton variant="subtle">Cancel</CustomButton>
+                </div>
+
+                <div onClick={() => handleSubmit()}>
+                  <CustomButton variant="primary">Create Role</CustomButton>
+                </div>
               </div>
             </DialogDescription>
           </DialogHeader>
@@ -162,15 +152,15 @@ const RoleCreation = () => {
                 <h2 className="text-lg font-semibold text-[#0a0a0a]">
                   Success
                 </h2>
-                <p className="text-sm font-normal text-[#475569]">
+                <p className="mb-4 text-sm font-normal text-[#475569]">
                   You have created a new role successfully!
                 </p>
-                <button
-                  className="mt-4 w-full rounded-md bg-[#F97316] px-4 py-2 text-sm font-medium text-white"
+                <div
+                  className="w-full"
                   onClick={() => setIsSuccessModalOpen(false)}
                 >
-                  Continue
-                </button>
+                  <CustomButton variant="primary">Continue</CustomButton>
+                </div>
               </DialogDescription>
             </DialogHeader>
           </DialogContent>
