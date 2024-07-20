@@ -41,24 +41,6 @@ const config = {
           hover: "hsl(var(--destructive-hover))",
           foreground: "hsl(var(--destructive-foreground))",
         },
-        subtle: {
-          DEFAULT: "hsl(var(--subtle))",
-          hover: "hsl(var(--subtle-hover))",
-          foreground: "hsl(var(--subtle-foreground))",
-        },
-        loading: {
-          DEFAULT: "hsl(var(--loading))",
-          hover: "hsl(var(--loading-hover))",
-          foreground: "hsl(var(--loading-foreground))",
-        },
-        outline: {
-          DEFAULT: "hsl(var(--outline))",
-          hover: "hsl(var(--outline-hover))",
-          foreground: "hsl(var(--outline-foreground))",
-        },
-        link: {
-          DEFAULT: "hsl(var(--link))",
-        },
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",

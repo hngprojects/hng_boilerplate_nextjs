@@ -31,6 +31,24 @@
     --destructive: 0 84% 60%;
     --destructive-hover: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
+<<<<<<< HEAD
+=======
+
+    --subtle: 210, 40%, 96%;
+    --subtle-hover: 214, 32%, 91%;
+    --subtle-foreground: 222, 47%, 11%;
+
+    --loading: 222, 47%, 11%;
+    --loading-hover: 215, 25%, 27%;
+    --loading-foreground: 0, 0%, 100%;
+
+    --outline: 0, 0%, 100%;
+    --outline-hover: 210, 40%, 96%;
+    --outline-border: 214, 32%, 91%;
+    --outline-foreground: 222, 47%, 11%;
+
+    --link: 222, 47%, 11%;
+>>>>>>> e87d8f5 (chore: merge file)
 
     --subtle: 210, 40%, 96%;
     --subtle-hover: 214, 32%, 91%;
