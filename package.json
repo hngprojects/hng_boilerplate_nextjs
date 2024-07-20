@@ -36,12 +36,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-email": "2.1.5",
-<<<<<<< HEAD
-    "shadcn": "^1.0.0",
-=======
     "react-hook-form": "^7.52.1",
     "swiper": "^11.1.5",
->>>>>>> e4389d7503efcee5821c853fb5287d76c8424393
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.8"
