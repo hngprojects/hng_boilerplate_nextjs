@@ -2,11 +2,11 @@ import Image from "next/image";
 
 const Navbar = () => {
   return (
-    <div className="renewal-navbar w-full h-[90px] md:h-[108px] bg-[#E1D6D6] max-w-full overflow-hidden shrink-0 flex flex-row items-center justify-center py-[39.5px] px-5 box-border leading-normal tracking-normal text-left text-[24px] text-[#121A26]">
+    <div className="renewal-navbar box-border flex h-[90px] w-full max-w-full shrink-0 flex-row items-center justify-center overflow-hidden bg-[#E1D6D6] px-5 py-[39.5px] text-left text-[24px] leading-normal tracking-normal text-[#121A26] md:h-[108px]">
       <div className="renewal-navbar-brand flex flex-row items-start justify-start gap-[10px]">
-        <div className="renewal-navbar-logo flex flex-col items-start justify-start pt-[5.5px] px-0 pb-0">
+        <div className="renewal-navbar-logo flex flex-col items-start justify-start px-0 pb-0 pt-[5.5px]">
           <Image
-            className="w-[18px] h-[18px] relative"
+            className="relative h-[18px] w-[18px]"
             loading="lazy"
             alt=""
             src="/images/boiler-logo.svg"
@@ -14,7 +14,7 @@ const Navbar = () => {
             height={500}
           />
         </div>
-        <a className="renewal-navbar-brand-text no-underline relative font-semibold text-neutral-dark-2 text-[24px]">
+        <a className="renewal-navbar-brand-text relative text-[24px] font-semibold text-neutral-dark-2 no-underline">
           Boilerplate.
         </a>
       </div>

@@ -1,14 +1,25 @@
 const Button = () => {
-  return (
-    <button
-      className="renewal-button cursor-pointer border-none py-[8px] px-[16px] md:px-10 bg-orange-500 h-[44px] gap-[10px] rounded-lg flex flex-row items-center justify-center self-stretch md:self-center whitespace-nowrap"
-      style={{ flex: 1 }}
-    >
-      <div className="renewal-button-text relative text-base font-medium text-background text-center">
-        Update Payment Details
-      </div>
-    </button>
-  );
+  return <div>Button</div>;
 };
 
-export default Button;
+export interface ButtonProperties
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
+}
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProperties>(
+  ({ className, variant, size, asChild = false, ...properties }, reference) => {
+    const Comp = asChild ? Slot : "button";
+    return (
+      <Comp
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={reference}
+        {...properties}
+      />
+    );
+  },
+);
+Button.displayName = "Button";
+
+export { Button, buttonVariants };

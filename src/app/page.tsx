@@ -1,20 +1,17 @@
-import Navbar from "~/components/layouts/Navbar";
-import RenewalWithIcon from "~/components/subscriptionRenewalFailed";
+import Hero from "~/components/layouts/homepage/Hero";
+import HowItWorks from "~/components/layouts/homepage/HowItWorks";
+import PerfectFit from "~/components/layouts/homepage/PerfectFit";
+import Testimonials from "~/components/layouts/homepage/Testimonials";
+import UserSection from "~/components/layouts/homepage/UserSection";
 
 export default function Home() {
   return (
-    <main>
-      <Navbar />
-      <RenewalWithIcon
-        title="Subscription Renewal Failed"
-        name="John Doe"
-        image="/images/payment-error.svg"
-        renewalPeriod="Bi-monthly"
-        updatePaymentLink="https://example.com/update-payment"
-        faqsLink="https://example.com/faqs"
-        supportEmail="help@boilerplate.com"
-        unsubscribeLink="https://example.com/unsubscribe"
-      />
-    </main>
+    <>
+      <Hero />
+      <UserSection />
+      <HowItWorks />
+      <Testimonials />
+      <PerfectFit />
+    </>
   );
 }
