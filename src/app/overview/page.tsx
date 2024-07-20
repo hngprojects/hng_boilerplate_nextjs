@@ -39,7 +39,7 @@ const Dashboard: React.FC = () => {
                     {tab == 1 && <div className='flex flex-col gap-[16px]'>
                         <div className="flex flex-col md:flex-row gap-[16px]">
                             <div className="flex-1 flex-col md:flex-row gap-[16px]">
-                                <div className="flex-1 flex flex-col p-[24px] rounded-lg border border-solid border-stroke pb-[40px] shadow-custom-light">
+                                <div className="flex-1 flex flex-col p-[24px] rounded-lg border border-solid border-stroke_dashboard pb-[40px] shadow-custom-light">
                                     <div className="flex justify-between items-center">
                                         <p className="text-sm font-[500]">{totalRevenue.name}</p>
                                         <Dollar />
@@ -49,7 +49,7 @@ const Dashboard: React.FC = () => {
                                         <p className="text-xs">{`+${totalRevenue.percentage}% from last month`}</p>
                                     </div>
                                 </div>
-                                <div className="flex-1 flex flex-col p-[24px] rounded-lg border border-solid border-stroke pb-[40px] shadow-custom-light">
+                                <div className="flex-1 flex flex-col p-[24px] rounded-lg border border-solid border-stroke_dashboard pb-[40px] shadow-custom-light">
                                     <div className="flex justify-between items-center">
                                         <p className="text-sm font-[500]">{subscriptions.name}</p>
                                         <People />
@@ -62,7 +62,7 @@ const Dashboard: React.FC = () => {
                             </div>
 
                             <div className="flex-1 flex-col md:flex-row gap-[16px]">
-                                <div className="flex-1 flex flex-col p-[24px] rounded-lg border border-solid border-stroke pb-[40px] shadow-custom-light">
+                                <div className="flex-1 flex flex-col p-[24px] rounded-lg border border-solid border-stroke_dashboard pb-[40px] shadow-custom-light">
                                     <div className="flex justify-between items-center">
                                         <p className="text-sm font-[500]">{sales.name}</p>
                                         <Card />
@@ -72,7 +72,7 @@ const Dashboard: React.FC = () => {
                                         <p className="text-xs">{`+${sales.percentage}% from last month`}</p>
                                     </div>
                                 </div>
-                                <div className="flex-1 flex flex-col p-[24px] rounded-lg border border-solid border-stroke pb-[40px] shadow-custom-light">
+                                <div className="flex-1 flex flex-col p-[24px] rounded-lg border border-solid border-stroke_dashboard pb-[40px] shadow-custom-light">
                                     <div className="flex justify-between items-center">
                                         <p className="text-sm font-[500]">{activeNow.name}</p>
                                         <Growth />
@@ -86,7 +86,7 @@ const Dashboard: React.FC = () => {
 
                         </div>
                         <div className="flex flex-col md:flex-row gap-[16px]">
-                            <div className="flex flex-col flex-[6] p-[24px] rounded-lg border border-solid border-stroke pb-[40px] shadow-custom-light">
+                            <div className="flex flex-col flex-[6] p-[24px] rounded-lg border border-solid border-stroke_dashboard pb-[40px] shadow-custom-light">
                                 <div className="flex-[1]">
                                     <h1 className="text-base font-bold">Overview</h1>
                                 </div>
@@ -94,7 +94,7 @@ const Dashboard: React.FC = () => {
                                     <Chart data={chartData} />
                                 </div>
                             </div>
-                            <div className="flex flex-col gap-[24px] flex-[4] p-[24px] rounded-lg border border-solid border-stroke pb-[40px] shadow-custom-light">
+                            <div className="flex flex-col gap-[24px] flex-[4] p-[24px] rounded-lg border border-solid border-stroke_dashboard pb-[40px] shadow-custom-light">
                                 <div className="">
                                     <h1 className="text-base font-bold">Recent Sales</h1>
                                     <p className="text-base text-black_300">You made 265 sales this month</p>

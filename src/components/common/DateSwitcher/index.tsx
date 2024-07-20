@@ -12,7 +12,7 @@ export default function DateSwitcher() {
 
     return (
         <div className="relative">
-            <div className={`flex items-center gap-[4px] p-[8px] rounded-sm border border-solid border-stroke ${styles.datepickerContainer}`}>
+            <div className={`flex items-center gap-[4px] p-[8px] rounded-sm border border-solid border-stroke_dashboard ${styles.datepickerContainer}`}>
                 <CalenderIcon />
                 <DatePicker
                     value={dates}
