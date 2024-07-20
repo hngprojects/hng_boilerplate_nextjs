@@ -670,27 +670,24 @@ const StyleGuide: FC = () => {
         </div>
       </div>
 
-      <div className="space-y-4 rounded-lg bg-gray-100 p-4 shadow-md">
-        <h2 className="text-2xl font-semibold text-gray-800">
-          HBP Comment Box
-        </h2>
-        <div className="flex flex-col space-y-4">
-          {commentsData.map((comment) => (
-            <HBPCommentBox
-              key={comment.id}
-              id={comment.id}
-              avatar={comment.avatar}
-              name={comment.name}
-              username={comment.username}
-              content={comment.content}
-              timestamp={comment.timestamp}
-              date={comment.date}
-              likes={comment.likes}
-              dislikes={comment.dislikes}
-              className="rounded-lg bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
-            />
-          ))}
-        </div>
+      <div className="space-y-4">
+        <h2 className="text-2xl font-semibold">HBP Comment Box</h2>
+        {commentsData.map((comment) => (
+          <HBPCommentBox
+            key={comment.id}
+            id={comment.id}
+            avatar={comment.avatar}
+            name={comment.name}
+            username={comment.username}
+            content={comment.content}
+            timestamp={comment.timestamp}
+            date={comment.date}
+            likes={comment.likes}
+            dislikes={comment.dislikes}
+          />
+        ))}
+        {/* Add more Comment components as needed */}
+<<<<<<< HEAD
       </div>
 
       <div className="w-full">
@@ -721,34 +718,8 @@ const StyleGuide: FC = () => {
           name="message"
           onChange={handleTextChange}
         />
-      </div>
-      <div className="w-full">
-        <h2 className="mb-3 text-2xl font-semibold text-gray-800">
-          Email Template Paginated Table List
-        </h2>
-
-        <div className="rounded-lg bg-zinc-950 p-4">
-          <span className="block font-mono text-sm text-gray-100">
-            <span className="text-pink-400">PaginatedTemplateList</span> {"{"}
-          </span>
-          <span className="ml-4 block font-mono text-sm text-gray-100">
-            itemsPerPage<span className="text-pink-400">: </span>number;
-            <br />
-            onPreview<span className="text-pink-400">: </span>() =&gt; void;
-            <br />
-            templates: [];
-            <br />
-            activePreview<span className="text-pink-400">: </span>number;
-            <br />
-          </span>
-          <span className="block font-mono text-sm text-gray-100">{"}"}</span>
-        </div>
-        <PaginatedTemplateList
-          itemsPerPage={5}
-          onPreview={(id) => setActivePreview(id)}
-          templates={templateTableList}
-          activePreview={activePreview}
-        />
+=======
+>>>>>>> 1a8e0f3 (ComentBox Display)
       </div>
     </main>
   );
