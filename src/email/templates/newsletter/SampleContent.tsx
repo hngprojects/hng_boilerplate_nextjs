@@ -23,7 +23,7 @@ const SampleContent: React.FC<SampleContentProperties> = ({ imageState }) => {
       </Heading>
       <Text className="flex flex-row items-center gap-4 text-sm text-neutral-dark-2 md:gap-5">
         <Image
-          src="/images/Newsletter-Star.svg"
+          src="/images/newletter-email-template/Newsletter-Star.svg"
           alt="Star"
           className="w-6 md:w-6"
           width={1000}
@@ -36,7 +36,7 @@ const SampleContent: React.FC<SampleContentProperties> = ({ imageState }) => {
       </Text>
       <Text className="flex flex-row items-center gap-5 text-neutral-dark-2">
         <Image
-          src="/images/Newsletter-Star.svg"
+          src="/images/newletter-email-template/Newsletter-Star.svg"
           alt="Star"
           className="w-6 md:w-6"
           width={1000}
@@ -49,7 +49,7 @@ const SampleContent: React.FC<SampleContentProperties> = ({ imageState }) => {
       </Text>
       <Text className="flex flex-row items-center gap-5 text-neutral-dark-2">
         <Image
-          src="/images/Newsletter-Star.svg"
+          src="/images/newletter-email-template/Newsletter-Star.svg"
           alt="Star"
           className="w-6 md:w-6"
           width={1000}
@@ -78,7 +78,7 @@ const SampleContent: React.FC<SampleContentProperties> = ({ imageState }) => {
       </Heading>
       <Text className="flex flex-row items-center gap-5 text-neutral-dark-2">
         <Image
-          src="/images/Newsletter-Star.svg"
+          src="/images/newletter-email-template/Newsletter-Star.svg"
           alt="Star"
           className="w-6 md:w-6"
           width={1000}
@@ -91,7 +91,7 @@ const SampleContent: React.FC<SampleContentProperties> = ({ imageState }) => {
       </Text>
       <Text className="flex flex-row items-center gap-5 text-neutral-dark-2">
         <Image
-          src="/images/Newsletter-Star.svg"
+          src="/images/newletter-email-template/Newsletter-Star.svg"
           alt="Star"
           className="w-6 md:w-6"
           width={1000}
@@ -104,7 +104,7 @@ const SampleContent: React.FC<SampleContentProperties> = ({ imageState }) => {
       </Text>
       <Text className="flex flex-row items-center gap-5 text-foreground">
         <Image
-          src="/images/Newsletter-Star.svg"
+          src="/images/newletter-email-template/Newsletter-Star.svg"
           alt="Star"
           className="w-6 md:w-6"
           width={1000}
@@ -127,7 +127,7 @@ const SampleContent: React.FC<SampleContentProperties> = ({ imageState }) => {
         className={`${imageState ? "mt-16 md:mt-20" : "mt-0"} flex flex-col items-center justify-center`}
       >
         <Image
-          src="/images/Newsletter-Discount.svg"
+          src="/images//newletter-email-template/Newsletter-Discount.svg"
           alt="Newsletter"
           className={`w-40 md:w-80 ${imageState ? "" : "hidden"}`}
           width={1000}
