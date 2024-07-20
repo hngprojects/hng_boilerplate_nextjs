@@ -2,8 +2,6 @@
 
 import React, { useEffect, useRef, useState } from "react";
 
-import "./Accordion.css";
-
 type AccordionItem = {
   header: string;
   content: string;
@@ -42,40 +40,40 @@ const Accordion: React.FC<AccordionProperties> = ({ items }) => {
   return (
     <div className="accordion">
       {items.map((item, index) => (
-        <div key={index} className="accordion-item">
+        <div key={index} className="border-b border-border">
           <div
-            className="accordion-header"
+            className={`accordion-header cursor-pointer p-4 flex justify-between items-center ${activeIndex === index ? "text-primary" : "text-foreground"
+              }`}
             onClick={() => handleClick(index)}
             aria-expanded={index === activeIndex ? "true" : "false"}
           >
             <span>{item.header}</span>
             <svg
-              className={`accordion-icon ${index === activeIndex ? "open" : ""}`}
+              className={`accordion-icon transform transition-transform duration-300 ${index === activeIndex ? "rotate-180" : ""
+                }`}
               width="16"
               height="16"
               viewBox="0 0 16 16"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <g id="chevron-down">
-                <path
-                  id="Vector"
-                  d="M4 6L8 10L12 6"
-                  stroke="#0A0A0A"
-                  strokeWidth="1.33333"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </g>
+              <path
+                d="M4 6L8 10L12 6"
+                stroke="currentColor"
+                strokeWidth="1.33333"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </div>
           <div
             ref={(element) => {
               contentReferences.current[index] = element;
             }}
-            className={`accordion-content ${index === activeIndex ? "open" : ""}`}
+            className={`accordion-content overflow-hidden transition-max-height duration-300 ease-in-out ${index === activeIndex ? "max-h-screen visible opacity-100" : "max-h-0 invisible opacity-0"
+              }`}
           >
-            <p>{item.content}</p>
+            <p className="p-4">{item.content}</p>
           </div>
         </div>
       ))}
@@ -84,3 +82,4 @@ const Accordion: React.FC<AccordionProperties> = ({ items }) => {
 };
 
 export default Accordion;
+
