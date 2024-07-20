@@ -16,11 +16,19 @@ Implement a "1 Invite sent successfully" pop alert when an invitation is sent to
 
 [FEAT] Organization settings > Manage Members page > Implement successfully sent invite pop / alert #182
 
+Create a "1 Invite sent successfully" pop alert with the specified message and close (X) button.
+Ensure the alert appears at the top of the page when an invitation is sent.
+Implement functionality to dismiss the alert by clicking the close (X) button.
+Ensure the alert automatically disappears after a few seconds.
+Ensure the alert follows brand colors and design.
+Ensure the alert is responsive.
+
+Figma link: https://www.figma.com/design/VEItfX6St5NSAqqNHImcxD/HNG-Boilerplate-Designs?node-id=1698-13834&m=dev
+
 ## What did you do?
 
 - Created a CustomToast component to display toast notifications with a custom message and description.
 - Included a button on a dummy page to trigger the toast display with an optional close button to dismiss the toast.
-
 - Added comprehensive tests for showing and dismissing the toast using @testing-library/react and vitest.
 - Mocked the useToast module to ensure proper testing of the toast and dismiss functions.
 
@@ -40,8 +48,11 @@ Implement a "1 Invite sent successfully" pop alert when an invitation is sent to
 
 Tests
 
-![alt text](image.png)
+![vitest tests](image.png)
+
+Lint Test
+![lint tests](image-2.png)
 
 Implementation
 
-![alt text](image-1.png)
+![alert-toast image](image-1.png)
