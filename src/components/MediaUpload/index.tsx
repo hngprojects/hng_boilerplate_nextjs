@@ -1,6 +1,7 @@
 "use client";
 
 import { TrashIcon } from "lucide-react";
+import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { Button } from "../ui/button";
@@ -114,10 +115,17 @@ const MediaUpload: React.FC<MediaUploadProperties> = ({
                 className="image-container group relative mb-2 h-[125px] w-full"
               >
                 {URL.createObjectURL && (
-                  <img
+                  // <img
+                  //   src={URL.createObjectURL(file)}
+                  //   alt={file.name}
+                  //   className="h-full w-full rounded-[6px] object-cover"
+                  // />
+                  <Image
                     src={URL.createObjectURL(file)}
                     alt={file.name}
-                    className="h-full w-full rounded-[6px] object-cover"
+                    layout="fill"
+                    objectFit="cover"
+                    className="rounded-[6px]"
                   />
                 )}
                 <div className="absolute left-0 top-0 h-full w-full rounded-[6px] bg-[rgba(10,10,10,0.75)] opacity-0 group-hover:opacity-100"></div>
