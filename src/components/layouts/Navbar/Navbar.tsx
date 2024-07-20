@@ -15,7 +15,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="hidden items-center justify-between bg-white px-[7.5rem] py-8 xl:flex">
+      <header className="hidden items-center justify-between bg-background px-[7.5rem] py-8 xl:flex">
         <Link href={"/"}>
           <div className="flex cursor-pointer items-center gap-2.5">
             <Logo size="big" />
