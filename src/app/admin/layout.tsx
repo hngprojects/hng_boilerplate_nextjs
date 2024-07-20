@@ -1,8 +1,10 @@
 import AdminNavbar from "~/components/superadminlayout/navbar/AdminNavbar";
 
-
-
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+export default function AdminLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[252px_1fr] lg:grid-cols-[252px_1fr]">
       <div className="hidden border-r bg-muted/40 md:block"></div>
@@ -11,5 +13,5 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {children}
       </div>
     </div>
-  )
+  );
 }
