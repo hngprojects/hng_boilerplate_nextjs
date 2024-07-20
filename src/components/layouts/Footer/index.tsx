@@ -69,7 +69,7 @@ const Footer = () => {
     { route: "Terms of Use", link: "/" },
   ];
   return (
-    <footer className="px-4">
+    <footer className="bg-white px-4">
       <div className="items-start justify-between gap-[60px] border-b-[1px] border-neutral-dark-2 pb-[130px] pt-[28px] sm:grid-cols-2 md:flex md:gap-4 md:pb-[46px] md:pt-[72px]">
         <div className="mb-[100px] md:mb-0">
           <div className="mb-[47px] flex w-full flex-col items-center justify-center sm:mb-[60px] md:block md:max-w-[254px] lg:mb-0">
