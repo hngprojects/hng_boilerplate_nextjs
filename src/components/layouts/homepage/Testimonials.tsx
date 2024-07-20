@@ -20,35 +20,32 @@ import TestimonialCard from "./TestimonialCard";
 import { testimonials } from "./testimonials-data";
 
 const Testimonials = () => {
-  //
-
   return (
-    <div className="testimonials">
+    <div className="py-[113px] bg-background">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="testimonials-heading">
-          <div className="heading-left">
-            <h1>Client Testimonials</h1>
-            <p className="text-foreground">
-              {` Don't just take our word for it - see what actual users of our
-              product have to say about their experience.`}
+        <div className="flex items-center justify-between">
+          <div className="w-full lg:w-2/3 pr-0 lg:pr-10">
+            <h1 className="text-4xl lg:text-5xl font-bold font-inter mb-2">Client Testimonials</h1>
+            <p className="text-lg lg:text-xl font-normal font-inter text-foreground">
+              {` Don't just take our word for it - see what actual users of our product have to say about their experience.`}
             </p>
           </div>
-          <div className="heading-right">
+          <div className="flex items-center space-x-4 lg:space-x-6 mt-6 lg:mt-0">
             <div
               data-testid="custom-prev"
-              className="custom-prev border border-border bg-[#ffffff] hover:border-primary"
+              className="h-12 w-12 lg:h-15 lg:w-15 border border-border bg-white hover:border-primary rounded flex items-center justify-center transition-all duration-300"
             >
               <TestimonialLeftArrow />
             </div>
             <div
               data-testid="custom-next"
-              className="custom-next border border-border bg-[#ffffff] hover:border-primary"
+              className="h-12 w-12 lg:h-15 lg:w-15 border border-border bg-white hover:border-primary rounded flex items-center justify-center transition-all duration-300"
             >
               <TestimonialRightArrow />
             </div>
           </div>
         </div>
-        <div className="testimonials-box">
+        <div className="mt-14 lg:mt-20 flex items-center justify-between">
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
             slidesPerView={1}
