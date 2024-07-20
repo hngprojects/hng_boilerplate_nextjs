@@ -1,16 +1,16 @@
 services:
-  prod-frontend-1:
+  next-prod-frontend-1:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ../../
+      dockerfile: docker/prod/Dockerfile
     ports:
       - 3000:3000
     restart: always
 
-  prod-frontend-2:
+  next-prod-frontend-2:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ../../
+      dockerfile: docker/prod/Dockerfile
     ports:
       - 3030:3000
     restart: always
