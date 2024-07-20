@@ -91,6 +91,8 @@ const config = {
           page: "hsl(var(--breadcrumb-page))",
           foreground: "hsl(var(--breadcrumb-foreground))",
         },
+        desaturatedBlue: "hsl(var(--desaturated-blue))",
+        grey50: "hsl(var(--grey50))",
       },
       borderRadius: {
         lg: "var(--radius)",
