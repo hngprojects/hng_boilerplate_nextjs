@@ -1,13 +1,12 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { signIn, useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
 
-import Navbar from "../components/layouts/Navbar/index";
+import Navbar from "../components/layouts/Navbar/Navbar";
 
 import "@testing-library/jest-dom";
 
-// Mock the necessary modules
 vi.mock("next-auth/react", () => ({
   useSession: vi.fn(),
   signIn: vi.fn(),
@@ -28,13 +27,6 @@ vi.mock("next/link", () => ({
   }) => <a href={href}>{children}</a>,
 }));
 
-// vi.mock("next/image", () => ({
-//   __esModule: true,
-//   default: ({ src, alt }: { src: string; alt: string }) => (
-//     <img src={src} alt={alt} />
-//   ),
-// }));
-
 describe("navbar component", () => {
   afterEach(() => {
     vi.clearAllMocks();
@@ -43,21 +35,18 @@ describe("navbar component", () => {
   it("renders desktop navbar correctly when user is not signed in", () => {
     expect.assertions(5);
 
-    (useSession as vi.Mock).mockReturnValue({ data: null });
+    (useSession as vi.Mock).mockReturnValue({ data: undefined });
     (usePathname as vi.Mock).mockReturnValue("/home");
 
     render(<Navbar />);
 
-    // Assertions for logo and title
     const headings = screen.getAllByText("HNG Boilerplate");
-    expect(headings[0]).toBeInTheDocument(); // Adjust based on your requirements
+    expect(headings[0]).toBeInTheDocument();
 
-    // Assertions for navigation links
     expect(screen.getByText("Home")).toHaveClass("text-primary");
     expect(screen.getByText("Pricing")).toHaveClass("text-neutral-dark-2");
     expect(screen.getByText("Career")).toHaveClass("text-neutral-dark-2");
 
-    // Additional assertion for login button
     expect(screen.getByText("Log in")).toBeInTheDocument();
   });
 
@@ -71,21 +60,19 @@ describe("navbar component", () => {
 
     render(<Navbar />);
 
-    // Assertions for notification icon and profile button
     expect(screen.getByText("Profile")).toBeInTheDocument();
   });
 
   it("renders tablet navbar correctly when user is not signed in", () => {
     expect.assertions(1);
 
-    (useSession as vi.Mock).mockReturnValue({ data: null });
+    (useSession as vi.Mock).mockReturnValue({ data: undefined });
     (usePathname as vi.Mock).mockReturnValue("/home");
 
     render(<Navbar />);
 
-    // Assertions for logo and title
     const headings = screen.getAllByText("HNG Boilerplate");
-    expect(headings[0]).toBeInTheDocument(); // Adjust based on your requirements
+    expect(headings[0]).toBeInTheDocument();
   });
 
   it("renders tablet navbar correctly when user is signed in", () => {
@@ -102,14 +89,13 @@ describe("navbar component", () => {
   it("renders mobile navbar correctly when user is not signed in", () => {
     expect.assertions(1);
 
-    (useSession as vi.Mock).mockReturnValue({ data: null });
+    (useSession as vi.Mock).mockReturnValue({ data: undefined });
     (usePathname as vi.Mock).mockReturnValue("/home");
 
     render(<Navbar />);
 
-    // Assertions for logo and title
     const headings = screen.getAllByText("HNG Boilerplate");
-    expect(headings[0]).toBeInTheDocument(); // Adjust based on your requirements
+    expect(headings[0]).toBeInTheDocument();
   });
 
   it("renders mobile navbar correctly when user is signed in", () => {
@@ -126,7 +112,7 @@ describe("navbar component", () => {
   it("calls signIn function when Log in button is clicked", () => {
     expect.assertions(1);
 
-    (useSession as vi.Mock).mockReturnValue({ data: null });
+    (useSession as vi.Mock).mockReturnValue({ data: undefined });
     render(<Navbar />);
 
     const loginButton = screen.getByText("Log in");
