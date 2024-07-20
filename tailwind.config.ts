@@ -20,15 +20,13 @@ const config = {
     extend: {
       colors: {
         border: "hsl(var(--border))",
-        careerBtn:"hsl(var(--career-btn))",
-        cardText: "hsl(var(--career-text))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         default: {
           DEFAULT: "hsl(var(--default))",
-          foreground: "hsl(var(--default-foreground))"
+          foreground: "hsl(var(--default-foreground))",
         },
         primary: {
           DEFAULT: "#F97316",
