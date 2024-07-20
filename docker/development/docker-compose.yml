@@ -1,16 +1,16 @@
 services:
-  dev-frontend-1:
+  next-dev-frontend-1:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ../../
+      dockerfile: docker/development/Dockerfile
     ports:
       - 3100:3000
     restart: always
 
-  dev-frontend-2:
+  next-dev-frontend-2:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ../../
+      dockerfile: docker/development/Dockerfile
     ports:
       - 3130:3000
     restart: always
