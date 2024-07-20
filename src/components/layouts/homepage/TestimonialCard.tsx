@@ -1,31 +1,36 @@
-import React from 'react'
-import Image from 'next/image'
-import { Rating } from './svgs'
+import Image from "next/image";
 
-interface Props {
-    image: string,
-    content: string,
-    name: string,
-    stack: string
+import { Rating } from "./svgs";
+
+interface Properties {
+  image: string;
+  content: string;
+  name: string;
+  stack: string;
 }
 
-const TestimonialCard = (props: Props) => {
-    return (
-        <div className="testimonial-card bg-[#ffffff] border border-primary border-solid ">
-            <p>“I've been using this web hosting service for over a year and I'm really impressed with the uptime and support. The website has never gone down and the customer service is always quick to help with any issues I have. Highly recommend!”</p>
+const TestimonialCard = (properties: Properties) => {
+  return (
+    <div className="testimonial-card border border-solid border-primary bg-[#ffffff]">
+      <p>{properties?.content}</p>
 
-            <div data-testid="rating">
-                <Rating />
-            </div>
+      <div data-testid="rating">
+        <Rating />
+      </div>
 
-            <div className="image-box">
-                <Image src={props?.image} alt="testimonial-image" width={100} height={100} />
-            </div>
+      <div className="image-box">
+        <Image
+          src={properties?.image}
+          alt="testimonial-image"
+          width={100}
+          height={100}
+        />
+      </div>
 
-            <h4>{props?.name}</h4>
-            <small>{props?.stack}</small>
-        </div>
-    )
-}
+      <h4>{properties?.name}</h4>
+      <small>{properties?.stack}</small>
+    </div>
+  );
+};
 
-export default TestimonialCard
+export default TestimonialCard;
