@@ -6,7 +6,7 @@ import UserSection from "~/components/layouts/homepage/UserSection";
 
 describe("userSection Component", () => {
   it("renders the heading with the correct text", () => {
-    expect.assertions(2);
+    expect.assertions(1);
 
     render(<UserSection />);
     const heading = screen.getByRole("heading", {
@@ -16,7 +16,7 @@ describe("userSection Component", () => {
   });
 
   it("renders the Unsplash logo", () => {
-    expect.assertions(2);
+    expect.assertions(1);
 
     render(<UserSection />);
     const unsplash = screen.getByTestId("unsplash-logo");
@@ -24,7 +24,7 @@ describe("userSection Component", () => {
   });
 
   it("renders the Notion logo", () => {
-    expect.assertions(2);
+    expect.assertions(1);
 
     render(<UserSection />);
     const notion = screen.getByTestId("notion-logo");
@@ -32,7 +32,7 @@ describe("userSection Component", () => {
   });
 
   it("renders the Intercom logo", () => {
-    expect.assertions(2);
+    expect.assertions(1);
 
     render(<UserSection />);
     const intercom = screen.getByTestId("intercom-logo");
@@ -40,7 +40,7 @@ describe("userSection Component", () => {
   });
 
   it("renders the Descript logo", () => {
-    expect.assertions(2);
+    expect.assertions(1);
 
     render(<UserSection />);
     const descript = screen.getByTestId("descript-logo");
@@ -48,7 +48,7 @@ describe("userSection Component", () => {
   });
 
   it("renders the Grammarly logo", () => {
-    expect.assertions(2);
+    expect.assertions(1);
 
     render(<UserSection />);
     const grammarly = screen.getByTestId("grammarly-logo");

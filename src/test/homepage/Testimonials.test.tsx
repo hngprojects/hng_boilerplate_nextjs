@@ -7,7 +7,7 @@ import { testimonials } from "~/components/layouts/homepage/testimonials-data";
 
 describe("testimonials Component", () => {
   it("renders the testimonials heading", () => {
-    expect.assertions(2);
+    expect.assertions(1);
 
     render(<Testimonials />);
     const heading = screen.getByRole("heading", {
@@ -17,7 +17,7 @@ describe("testimonials Component", () => {
   });
 
   it("renders the testimonials paragraph", () => {
-    expect.assertions(2);
+    expect.assertions(1);
 
     render(<Testimonials />);
     const paragraph = screen.getByText(
@@ -37,7 +37,7 @@ describe("testimonials Component", () => {
   });
 
   it("renders the Swiper component with testimonials", () => {
-    expect.assertions(2);
+    expect.assertions(1);
 
     render(<Testimonials />);
     const testimonialCards = screen.getAllByTestId("testimonial-card");
@@ -45,7 +45,7 @@ describe("testimonials Component", () => {
   });
 
   it("renders the correct number of Swiper slides", () => {
-    expect.assertions(2);
+    expect.assertions(1);
 
     render(<Testimonials />);
     const slides = screen.getAllByRole("group");
