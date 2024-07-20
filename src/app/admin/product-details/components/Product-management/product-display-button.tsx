@@ -1,8 +1,6 @@
 import Image from "next/image";
 
 import CustomButton from "~/components/common/Button/button";
-import GridIconSVG from "../../assets/svgs/grid-icon.svg";
-import ListIconSVG from "../../assets/svgs/list-icon.svg";
 
 interface ComponentPropertyTypes {
   listDisplayFunction: () => void;
@@ -20,8 +18,10 @@ const ProductDisplayButton = ({
   const GridIcon = () => {
     return (
       <Image
-        src={GridIconSVG}
+        src="/images/user-product-details/grid-icon.svg"
         className={`h-[20px] w-[20px] ${gridDisplay ? "invert" : undefined}`}
+        height={20}
+        width={20}
         alt="grid svg icon"
       />
     );
@@ -30,8 +30,10 @@ const ProductDisplayButton = ({
   const ListIcon = () => {
     return (
       <Image
-        src={ListIconSVG}
+        src="/images/user-product-details/list-icon.svg"
         className={`h-[20px] w-[20px] ${listDisplay ? undefined : "invert"}`}
+        height={20}
+        width={20}
         alt="list svg icon"
       />
     );

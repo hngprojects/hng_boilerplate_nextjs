@@ -1,12 +1,12 @@
 import Image from "next/image";
 
-import SearchIconSVG from "../../assets/svgs/magnifying-glass.svg";
-
 const SearchIcon = () => {
   return (
     <Image
-      src={SearchIconSVG}
+      src="/images/user-product-details/magnifying-glass.svg"
       className="h-[16px] w-[16px]"
+      width={16}
+      height={16}
       alt="search svg icon"
     />
   );

@@ -17,7 +17,7 @@ const ProductTableHead = () => {
             return (
               <th
                 key={index}
-                className="h-[55.36px] w-[234px] px-[16px] py-[12px] text-sm font-[500] leading-[16.94px] text-neutral-dark-2"
+                className={`h-[55.36px] ${data === "Actions" ? "w-[101px]" : "w-[234px]"} whitespace-nowrap px-[16px] py-[12px] text-left text-sm font-[500] leading-[16.94px] text-neutral-dark-2`}
               >
                 {data}
               </th>

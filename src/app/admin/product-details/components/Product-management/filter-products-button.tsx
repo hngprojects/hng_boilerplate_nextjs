@@ -4,15 +4,15 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 import CustomButton from "~/components/common/Button/button";
-import CheckIconSVG from "../../assets/svgs/check-icon.svg";
-import FilterIconSVG from "../../assets/svgs/filter-icon.svg";
 import DropdownMenu from "./dropdown-menu";
 
 const FilterIcon = () => {
   return (
     <Image
-      src={FilterIconSVG}
+      src="/images/user-product-details/filter-icon.svg"
       className="h-[20px] w-[20px]"
+      height={20}
+      width={20}
       alt="filter svg icon"
     />
   );
@@ -21,8 +21,10 @@ const FilterIcon = () => {
 const CheckIcon = () => {
   return (
     <Image
-      src={CheckIconSVG}
+      src="/images/user-product-details/check-icon.svg"
       className="h-[16px] w-[16px]"
+      height={16}
+      width={16}
       alt="check svg icon"
     />
   );

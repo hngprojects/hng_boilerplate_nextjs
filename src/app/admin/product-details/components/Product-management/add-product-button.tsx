@@ -1,14 +1,15 @@
 import Image from "next/image";
 
 import CustomButton from "~/components/common/Button/button";
-import PlusIconSVG from "../../assets/svgs/plus-icon.svg";
 
 // svg plus icon
 const PlusIcon = () => {
   return (
     <Image
-      src={PlusIconSVG}
+      src="/images/user-product-details/plus-icon.svg"
       className="h-[16px] w-[16px]"
+      width={16}
+      height={16}
       alt="plus svg icon"
     />
   );
