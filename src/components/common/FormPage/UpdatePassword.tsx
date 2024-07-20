@@ -5,11 +5,20 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "~/components/ui/alert-dialog";
 import { Button } from "~/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormItem,
   FormLabel,
   FormMessage,
@@ -18,7 +27,6 @@ import { Input } from "~/components/ui/input";
 import EyesClosedIcon from "./EyesClosedIcon";
 import EyesOpenIcon from "./EyesOpenIcon";
 import PasswordChecks from "./PasswordChecks";
-import SuccessModal from "./SuccessModal";
 
 const passwordSchema = z
   .object({
@@ -39,7 +47,6 @@ const PasswordForm: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [showChecks, setShowChecks] = useState<boolean>(false);
   const [passwordsMatch, setPasswordsMatch] = useState<boolean>(true);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
   const [formErrors, setFormErrors] = useState<{
     password: string;
@@ -77,8 +84,6 @@ const PasswordForm: React.FC = () => {
       });
       return;
     }
-
-    setIsModalOpen(true);
   };
 
   const togglePasswordVisibility = () => {
@@ -96,7 +101,10 @@ const PasswordForm: React.FC = () => {
       <Form {...form}>
         <form onSubmit={handleSubmit} className="w-full space-y-5">
           <FormItem>
-            <FormLabel htmlFor="password" className="capitalize text-[#434343]">
+            <FormLabel
+              htmlFor="password"
+              className="font-normal capitalize opacity-80"
+            >
               Current Password
             </FormLabel>
             <FormControl>
@@ -106,7 +114,7 @@ const PasswordForm: React.FC = () => {
                   type={isPasswordVisible ? "text" : "password"}
                   placeholder="Enter current password"
                   required
-                  className="w-full py-2 text-sm font-medium text-[#939393]"
+                  className="w-full py-2 text-sm font-medium opacity-60"
                 />
                 <span
                   onClick={togglePasswordVisibility}
@@ -122,7 +130,7 @@ const PasswordForm: React.FC = () => {
           <FormItem>
             <FormLabel
               htmlFor="new-password"
-              className="capitalize text-[#434343]"
+              className="font-normal capitalize opacity-80"
             >
               New Password
             </FormLabel>
@@ -134,7 +142,7 @@ const PasswordForm: React.FC = () => {
                   placeholder="Enter new password"
                   value={password}
                   required
-                  className="w-full py-2 text-sm font-medium text-[#939393]"
+                  className="w-full py-2 text-sm font-medium opacity-60"
                   onChange={handlePasswordChange}
                 />
                 <span
@@ -146,7 +154,7 @@ const PasswordForm: React.FC = () => {
               </div>
             </FormControl>
 
-           {showChecks && <PasswordChecks checks={checks} />}
+            {showChecks && <PasswordChecks checks={checks} />}
 
             <FormMessage>{formErrors.password}</FormMessage>
           </FormItem>
@@ -154,7 +162,7 @@ const PasswordForm: React.FC = () => {
           <FormItem>
             <FormLabel
               htmlFor="confirm-password"
-              className="capitalize text-[#434343]"
+              className="font-normal capitalize opacity-80"
             >
               Confirm New Password
             </FormLabel>
@@ -166,7 +174,7 @@ const PasswordForm: React.FC = () => {
                   placeholder="Confirm new password"
                   value={confirmPassword}
                   required
-                  className="w-full py-2 text-sm font-medium text-[#939393]"
+                  className="w-full py-2 text-sm font-medium opacity-60"
                   onChange={handleConfirmPasswordChange}
                 />
                 <span
@@ -186,21 +194,39 @@ const PasswordForm: React.FC = () => {
           <div className="mt-2 flex space-x-6">
             <Button
               type="button"
-              className="rounded-md border border-[#E2E8F0] bg-white capitalize text-[#0F172A]"
+              className="rounded-md border border-border bg-white capitalize text-foreground"
             >
               Cancel
             </Button>
-            <Button
-              type="submit"
-              className="rounded-md bg-[#F97316] text-sm font-medium capitalize text-white"
-            >
-              Update Password
-            </Button>
+
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button
+                  variant="outline"
+                  className="rounded-md bg-primary text-sm font-medium capitalize text-background"
+                >
+                  Show Dialog
+                </Button>
+              </AlertDialogTrigger>
+
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>
+                    Password Successfully Updated!
+                  </AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Your password has been successfully updated! You can now log
+                    in with your new password.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogAction>Continue</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </div>
         </form>
       </Form>
-
-      {isModalOpen && <SuccessModal setIsModalOpen={setIsModalOpen} />}
     </>
   );
 };
