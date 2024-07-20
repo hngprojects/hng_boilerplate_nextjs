@@ -1,5 +1,5 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import { CustomToast } from "~/components/common/customToast/toast";
 import * as useToastModule from "~/components/ui/use-toast";
@@ -8,36 +8,45 @@ vi.mock("~/components/ui/use-toast", () => ({
   useToast: vi.fn(),
 }));
 
-describe("CustomToast", () => {
+describe("customToast", () => {
   const mockToast = vi.fn();
   const mockDispatch = vi.fn();
 
-  let mockToasts: any[] = [];
+  interface Toast {
+    id: string;
+    description: string;
+    role: string;
+    className: string;
+    action: React.ReactNode;
+  }
 
-  console.log(mockDispatch);
+  let mockToasts: Toast[] = [];
 
   vi.useFakeTimers();
-  beforeEach(() => {
+
+  const setup = () => {
     vi.clearAllMocks();
     mockToasts = [];
     (useToastModule.useToast as ReturnType<typeof vi.fn>).mockReturnValue({
       toast: mockToast,
     });
 
-    (global as any).dispatch = mockDispatch;
-  });
+    (global as unknown as { dispatch: typeof mockDispatch }).dispatch =
+      mockDispatch;
+  };
 
   it("shows toast when button is clicked", () => {
-    console.log(mockToast);
+    setup();
+    expect.assertions(1);
 
-    render(<CustomToast description="Test description" />);
+    render(<CustomToast description="1 Invite successfully sent" />);
 
     const button = screen.getByTestId("invite-members-btn");
 
     fireEvent.click(button);
 
     expect(mockToast).toHaveBeenCalledWith({
-      description: "Test description",
+      description: "1 Invite successfully sent",
       role: "alert",
       className: expect.stringContaining("custom-toast-invite"),
       action: expect.any(Object),
@@ -45,6 +54,9 @@ describe("CustomToast", () => {
   });
 
   it("closes toast when close button is clicked", () => {
+    setup();
+    expect.assertions(2);
+
     const mockDismiss = vi.fn();
     (useToastModule.useToast as ReturnType<typeof vi.fn>).mockReturnValue({
       toast: mockToast,
@@ -55,42 +67,53 @@ describe("CustomToast", () => {
     const showToastButton = screen.getByTestId("invite-members-btn");
     fireEvent.click(showToastButton);
 
-    expect(mockToast).toHaveBeenCalled();
+    expect(mockToast).toHaveBeenCalledWith({
+      description: "Test description",
+      role: "alert",
+      className: expect.stringContaining("custom-toast-invite"),
+      action: expect.any(Object),
+    });
 
-    const toastCallArg = mockToast.mock.calls[0][0];
-    const CloseButton = toastCallArg.action;
+    const toastCallArgument = mockToast.mock.calls[0][0];
+    const CloseButton = toastCallArgument.action;
 
     render(<>{CloseButton}</>);
 
     const closeButton = screen.getByTestId("close-alert-btn");
     fireEvent.click(closeButton);
 
-    expect(mockDismiss).toHaveBeenCalled();
+    expect(mockDismiss).toHaveBeenCalledWith();
   });
 
-  it("automatically dismisses toast after 10 seconds", async () => {
-    const TOAST_REMOVE_DELAY = 1500;
+  it("automatically dismisses toast after 10 seconds", () => {
+    setup();
+    expect.assertions(3);
+
+    const TOAST_REMOVE_DELAY = 5000;
+
     render(<CustomToast description="Test description" />);
     const showToastButton = screen.getByTestId("invite-members-btn");
-    act(() => {
-      fireEvent.click(showToastButton);
-    });
 
-    expect(mockToast).toHaveBeenCalled();
+    fireEvent.click(showToastButton);
+
+    expect(mockToast).toHaveBeenCalledWith({
+      description: "Test description",
+      role: "alert",
+      className: expect.stringContaining("custom-toast-invite"),
+      action: expect.any(Object),
+    });
 
     const toastCall = mockToast.mock.calls[0][0];
     const toastId = "mock-toast-id";
 
     mockToasts.push({ id: toastId, ...toastCall });
 
-    act(() => {
-      const timeout = setTimeout(() => {
-        mockDispatch({
-          type: "REMOVE_TOAST",
-          toastId: toastId,
-        });
-      }, TOAST_REMOVE_DELAY);
-    });
+    setTimeout(() => {
+      mockDispatch({
+        type: "REMOVE_TOAST",
+        toastId: toastId,
+      });
+    }, TOAST_REMOVE_DELAY);
 
     act(() => {
       vi.advanceTimersByTime(TOAST_REMOVE_DELAY - 1);
@@ -107,8 +130,6 @@ describe("CustomToast", () => {
       toastId: toastId,
     });
   });
-
-  afterAll(() => {
-    vi.useRealTimers();
-  });
 });
+
+vi.useRealTimers();

@@ -18,20 +18,15 @@ Implement a "1 Invite sent successfully" pop alert when an invitation is sent to
 
 ## What did you do?
 
-<!-- Talk about the things you did eg. files changes, dependencies installed e.t.c -->
+- Created a CustomToast component to display toast notifications with a custom message and description.
+- Included a button on a dummy page to trigger the toast display with an optional close button to dismiss the toast.
+
+- Added comprehensive tests for showing and dismissing the toast using @testing-library/react and vitest.
+- Mocked the useToast module to ensure proper testing of the toast and dismiss functions.
 
 # Check List (Check all the applicable boxes)
 
 🚨Please review the [contribution guideline](CONTRIBUTING.md) for this repository.
-
-<!-- Mark all the applicable boxes. To mark the box as done follow the following conventions -->
-
-<!--
-[x] - Correct; marked as done
-[X] - Correct; marked as done
-
-[ ] - Not correct; marked as **not** done
--->
 
 - [x] My code follows the code style of this project.
 - [x] This PR does not contain plagiarized content.
@@ -43,7 +38,10 @@ Implement a "1 Invite sent successfully" pop alert when an invitation is sent to
 
 # Screenshots/Videos
 
-<!-- If the changes are static page changes or UI changes add screenshots -->
-<!-- If the changes involve implementing a functionality or working with apis, include a video
-detailing how to implement the functionality and the request to the api and responses from the api endpoint-->
-<!-- Add all the screenshots/videos which support your changes i.e before your change and after your change -->
+Tests
+
+![alt text](image.png)
+
+Implementation
+
+![alt text](image-1.png)
