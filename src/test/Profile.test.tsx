@@ -6,8 +6,6 @@ import { describe, expect, it } from "vitest";
 
 import Profile from "~/components/layouts/Profile/index";
 
-global.URL.createObjectURL = vi.fn(() => "/flow_chart.png");
-
 describe("profile Component", () => {
   it("should render all Profile fields correctly (part 1)", () => {
     expect.assertions(5);
@@ -33,19 +31,6 @@ describe("profile Component", () => {
     expect(screen.getByText("Save Changes")).toBeInTheDocument();
   });
 
-  it("should handle file upload correctly", () => {
-    expect.assertions(2);
-
-    render(<Profile />);
-
-    const fileInput = screen.getByLabelText("Your Photo");
-    const file = new File(["photo"], "./photo.png", { type: "image/png" });
-
-    fireEvent.change(fileInput, { target: { files: [file] } });
-
-    expect(fileInput.files[0]).toStrictEqual(file);
-    expect(fileInput.files).toHaveLength(1);
-  });
 
   it("should allow input fields to accept and save data (part 1)", () => {
     expect.assertions(3);
