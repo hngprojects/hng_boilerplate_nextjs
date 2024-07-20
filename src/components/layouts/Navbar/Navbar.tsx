@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
 import { AlignJustify, BellIcon, User } from "lucide-react";
@@ -9,7 +8,7 @@ import { usePathname } from "next/navigation";
 import { Button } from "~/components/common/Button";
 import Logo from "~/components/common/Logo/logo";
 
-const test = () => {
+const Navbar = () => {
   const { data: session } = useSession();
 
   const pathname = usePathname();
@@ -20,7 +19,7 @@ const test = () => {
         <Link href={"/"}>
           <div className="flex cursor-pointer items-center gap-2.5">
             <Logo size="big" />
-            <h2 className="text-[28px] font-semibold text-neutral-dark-2">
+            <h2 className="text-neutral-dark-2 text-[28px] font-semibold">
               HNG Boilerplate
             </h2>
           </div>
@@ -49,13 +48,13 @@ const test = () => {
           </Link>
         </nav>
         {session ? (
-          <div className="flex items-center gap-8 text-neutral-dark-2">
+          <div className="text-neutral-dark-2 flex items-center gap-8">
             <div className="flex h-10 w-10 items-center justify-center">
               <BellIcon size={16} className="text-[16px] font-bold" />
             </div>
             <Button
               variant={"outline"}
-              className="flex gap-2.5 border border-neutral-dark-2 hover:border-background hover:bg-primary hover:text-background"
+              className="border-neutral-dark-2 flex gap-2.5 border hover:border-background hover:bg-primary hover:text-background"
             >
               Profile
               <User size={"16"} className="font-semibold" />
@@ -71,7 +70,7 @@ const test = () => {
               Log in
             </Button>
             <Button
-              className="bg-primary text-background hover:bg-background hover:text-neutral-dark-2"
+              className="hover:text-neutral-dark-2 bg-primary text-background hover:bg-background"
               variant="secondary"
             >
               Get Started
@@ -86,7 +85,7 @@ const test = () => {
           </div>
           <div className="flex items-center gap-2.5">
             <Logo size="big" />
-            <h2 className="text-[28px] font-semibold text-neutral-dark-2">
+            <h2 className="text-neutral-dark-2 text-[28px] font-semibold">
               HNG Boilerplate
             </h2>
           </div>
@@ -94,12 +93,12 @@ const test = () => {
         {session ? (
           <div className="flex items-center gap-2">
             <div className="flex h-[62.4px] w-[62.4px] items-center justify-center">
-              <BellIcon className="text-[24.96px] font-semibold text-neutral-dark-2" />
+              <BellIcon className="text-neutral-dark-2 text-[24.96px] font-semibold" />
             </div>
             <div className="flex h-[68.64px] w-[68.64px] items-center justify-center">
               <User
                 size={"24.96"}
-                className="text-[24.96px] text-neutral-dark-2"
+                className="text-neutral-dark-2 text-[24.96px]"
               />
             </div>
           </div>
@@ -114,7 +113,7 @@ const test = () => {
           </div>
           <div className="flex items-center gap-[7px] px-4">
             <Logo size={"small"} />
-            <h2 className="xsm:tex-[14px] font-semibold text-neutral-dark-2 sm:text-[19.6px]">
+            <h2 className="xsm:tex-[14px] text-neutral-dark-2 font-semibold sm:text-[19.6px]">
               HNG Boilerplate
             </h2>
           </div>
@@ -124,7 +123,7 @@ const test = () => {
             <div className="flex h-[44px] w-10 items-center justify-center">
               <BellIcon
                 size={20}
-                className="text-[20px] font-semibold text-neutral-dark-2"
+                className="text-neutral-dark-2 text-[20px] font-semibold"
               />
             </div>
             <div className="flex h-[44px] w-[44px] items-center justify-center">
@@ -139,4 +138,4 @@ const test = () => {
   );
 };
 
-export default test;
+export default Navbar;

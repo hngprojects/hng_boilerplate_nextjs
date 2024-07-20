@@ -83,6 +83,7 @@ const ProfileSettings = () => {
       username: "",
     },
   });
+  console.log(form.getValues());
 
   const handleFileChange = (entry: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = entry.target.files?.[0];
