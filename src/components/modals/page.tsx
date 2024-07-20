@@ -1,11 +1,5 @@
-import RoleCreation from "~/components/modals/RoleCreation";
-
 const Modal: React.FC = () => {
-  return (
-    <>
-      <RoleCreation />
-    </>
-  );
+  return <div>Modal</div>;
 };
 
 export default Modal;
