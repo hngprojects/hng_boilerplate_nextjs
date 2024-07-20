@@ -20,8 +20,9 @@ const Hero = () => {
               Focus on What Matters. We've Got the Foundation Covered.
             </h1>
 
-
-              <HeroLine />
+            <div className="">
+              <Image src="/images/hero-line.svg" width={100} height={100} className="w-full" alt=""/>
+            </div>
 
             <p className="text-lg md:text-xl text-foreground md:mt-7 mt-5 md:mb-12 mb-8">
               Streamline your processes with a boilerplate built for efficiency
