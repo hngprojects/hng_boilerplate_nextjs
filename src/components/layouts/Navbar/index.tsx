@@ -14,7 +14,7 @@ const Navbar = () => {
             height={500}
           />
         </div>
-        <a className="renewal-navbar-brand-text no-underline relative font-semibold text-[#121A26] text-[24px]">
+        <a className="renewal-navbar-brand-text no-underline relative font-semibold text-neutral-dark-2 text-[24px]">
           Boilerplate.
         </a>
       </div>
