@@ -39,7 +39,7 @@ export const IntegrationCard = (properties: CardProperties) => {
         <button
           onClick={handleToogle}
           data-testid={TOGGLE_BTN_TEST_ID}
-          className={`h-[22px] w-11 ${isActive ? "bg-primary" : "bg-[#D0D6D6]"} relative rounded-full`}
+          className={`h-[22px] w-11 ${isActive ? "bg-[#F97316]" : "bg-[#D0D6D6]"} relative rounded-full`}
         >
           <span
             className={`absolute top-[2px] h-[18px] w-[18px] rounded-full bg-[#F9F9F9] ${isActive ? "right-[2px]" : "left-[2px]"}`}
