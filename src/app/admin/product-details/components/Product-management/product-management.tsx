@@ -3,7 +3,9 @@
 import { useState } from "react";
 
 import AddProductButton from "./add-product-button";
+import FilterProductsButton from "./filter-products-button";
 import ProductDisplayButton from "./product-display-button";
+import ProductTable from "./product-table";
 import SearchProductInput from "./search-product-input";
 
 const ProductManagement = () => {
@@ -53,7 +55,13 @@ const ProductManagement = () => {
             />
 
             <div className="h-[36px] w-[1px] bg-border"></div>
+
+            <FilterProductsButton />
           </div>
+        </div>
+
+        <div className="mt-[16px]">
+          <ProductTable />
         </div>
       </main>
     </>

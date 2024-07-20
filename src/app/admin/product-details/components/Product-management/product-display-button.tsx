@@ -21,7 +21,7 @@ const ProductDisplayButton = ({
     return (
       <Image
         src={GridIconSVG}
-        className={`h-[20px] w-[20px] ${gridDisplay ? undefined : "invert"}`}
+        className={`h-[20px] w-[20px] ${gridDisplay ? "invert" : undefined}`}
         alt="grid svg icon"
       />
     );
@@ -31,7 +31,7 @@ const ProductDisplayButton = ({
     return (
       <Image
         src={ListIconSVG}
-        className={`h-[20px] w-[20px] ${listDisplay ? "invert" : undefined}`}
+        className={`h-[20px] w-[20px] ${listDisplay ? undefined : "invert"}`}
         alt="list svg icon"
       />
     );

@@ -15,7 +15,7 @@ const SearchIcon = () => {
 const SearchProductInput = () => {
   return (
     <>
-      <form className="flex h-[36px] w-[266px] items-center gap-[8px] rounded-[6px] px-[12px] py-0 ring-1 ring-border">
+      <form className="flex h-[36px] w-[266px] items-center gap-[8px] rounded-[6px] bg-white px-[12px] py-0 ring-1 ring-border">
         <SearchIcon />
 
         <input
