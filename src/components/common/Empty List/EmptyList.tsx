@@ -17,10 +17,10 @@ const EmptyList = ({ image, mainText, subText }: EmptyListProperties) => {
           height={1000}
         />
       </aside>
-      <h5 className="mx-auto w-[324px] text-center text-[20px] font-semibold leading-normal text-neutral-dark-2 sm:w-full sm:text-[28px]">
+      <h5 className="text-neutral-dark-2 mx-auto w-[324px] text-center text-[20px] font-semibold leading-normal sm:w-full sm:text-[28px]">
         {mainText}
       </h5>
-          <h6 className="mx-auto w-[315px] text-center text-[18px] font-normal leading-normal text-neutral-dark-2 sm:w-full sm:text-[20px]">
+      <h6 className="text-neutral-dark-2 mx-auto w-[315px] text-center text-[18px] font-normal leading-normal sm:w-full sm:text-[20px]">
         {subText}
       </h6>
     </section>
