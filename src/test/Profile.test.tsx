@@ -6,9 +6,7 @@ import { describe, expect, it } from "vitest";
 
 import Profile from "~/components/layouts/Profile/index";
 
-vi.spyOn(global.URL, "createObjectURL").mockImplementation(
-  () => "/flow_chart.png",
-);
+global.URL.createObjectURL = vi.fn(() => "/flow_chart.png");
 
 describe("profile Component", () => {
   it("should render all Profile fields correctly (part 1)", () => {
