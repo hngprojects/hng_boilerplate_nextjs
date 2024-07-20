@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest/dist";
+
 import { render } from "../test/utils";
 import Page from "./page";
 
