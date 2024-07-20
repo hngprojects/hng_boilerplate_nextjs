@@ -37,7 +37,7 @@ const ReusableTemplateEditorBlock: React.FC<BlockProperties> = ({
       ref={blockReference}
       onClick={handleClick}
       onBlur={handleBlur}
-      className={`relative mb-4 cursor-pointer rounded border px-12 py-20 transition-all duration-300 ${isActive ? "border:--primary shadow-xl" : "border-none shadow-md"} `}
+      className={`relative mb-4 cursor-pointer rounded border px-12 py-20 transition-all duration-300 ${isActive ? "border-primary shadow-xl" : "border-none shadow-md"} `}
       tabIndex={0}
     >
       <div dangerouslySetInnerHTML={{ __html: content }} />
