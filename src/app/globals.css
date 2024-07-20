@@ -23,12 +23,6 @@
   background: #FAFAFA;
 }
 
-.add-product-btn{
-  background-color: var(--pri);
-  color: #ffffff;
-  padding: 8px, 16px, 8px, 16px;
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;
