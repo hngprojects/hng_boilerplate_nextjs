@@ -1,31 +1,6 @@
 import { render, screen } from "../../test/utils";
 import TopProductLists from "./TopProductLists";
 
-vi.mock("next/image", () => ({
-  __esModule: true,
-  default: ({
-    src,
-    alt,
-    width,
-    height,
-    "data-testid": testId,
-  }: {
-    src: string;
-    alt: string;
-    width: number;
-    height: number;
-    "data-testid": string;
-  }) => (
-    <img
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      data-testid={testId}
-    />
-  ),
-}));
-
 describe("topProductLists", () => {
   it("renders TopProductLists component with header", () => {
     expect.assertions(2);
@@ -41,7 +16,7 @@ describe("topProductLists", () => {
   it("renders View All button", () => {
     expect.assertions(2);
     render(<TopProductLists />);
-    const button = screen.getByTestId("view-all-button");
+    const button = screen.getByRole("button");
     expect(button).toBeInTheDocument();
     expect(button).toHaveTextContent("View All");
   });

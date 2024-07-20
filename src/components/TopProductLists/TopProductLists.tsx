@@ -1,6 +1,6 @@
-import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 
-import { Button } from "../ui/Button";
+import CustomButton from "../common/Button/button";
 import {
   Card,
   CardContent,
@@ -50,20 +50,14 @@ export default function TopProductLists() {
           </CardDescription>
         </div>
         <div>
-          <Button
-            className="gap-x-2 rounded-md bg-[#F97316] text-xs"
+          <CustomButton
+            variant="primary"
             size="sm"
-            data-testid="view-all-button"
+            isRightIconVisible={true}
+            icon={<ArrowUpRight />}
           >
-            <span>View All</span>
-            <Image
-              src="/images/arrow-up-right.svg"
-              alt="View All Icon"
-              width={16}
-              height={16}
-              data-testid="view-all-icon"
-            />
-          </Button>
+            View All
+          </CustomButton>
         </div>
       </CardHeader>
       <CardContent className="space-y-6" data-testid="top-products-content">

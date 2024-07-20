@@ -15,7 +15,7 @@ export default function ProductList({
 }: ProductListProperties) {
   return (
     <div
-      className="flex justify-between items-center"
+      className="flex items-center justify-between"
       data-testid="product-list-item"
     >
       <div className="span-col-8 flex items-center gap-4">
@@ -27,11 +27,11 @@ export default function ProductList({
           className="h-10 w-10"
           data-testid={`product-image-${id}`}
         />
-        <p className="font-medium text-base" data-testid="product-name">
+        <p className="text-base font-medium" data-testid="product-name">
           {name}
         </p>
       </div>
-      <div className="font-semibold text-base" data-testid="product-total">
+      <div className="text-base font-semibold" data-testid="product-total">
         {total} sales
       </div>
     </div>

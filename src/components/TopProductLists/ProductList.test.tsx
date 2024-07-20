@@ -1,31 +1,6 @@
 import { render, screen } from "../../test/utils";
 import ProductList, { ProductListProperties } from "./ProductList";
 
-vi.mock("next/image", () => ({
-  __esModule: true,
-  default: ({
-    src,
-    alt,
-    width,
-    height,
-    "data-testid": testId,
-  }: {
-    src: string;
-    alt: string;
-    width: number;
-    height: number;
-    "data-testid": string;
-  }) => (
-    <img
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      data-testid={testId}
-    />
-  ),
-}));
-
 describe("productList", () => {
   const productProperties: ProductListProperties = {
     id: 1,
