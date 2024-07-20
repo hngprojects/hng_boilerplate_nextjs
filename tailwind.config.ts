@@ -84,6 +84,9 @@ const config = {
             2: "hsl(var(--neutralColor-dark-2))",
           },
         },
+        stroke: {
+          "colors-stroke": "hsl(var(--stroke-colors-stroke))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
