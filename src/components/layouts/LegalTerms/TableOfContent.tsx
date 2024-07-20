@@ -12,7 +12,7 @@ export default function TableOfContent({
 }: TableOfContentProperties) {
   return (
     <aside className={cn("space-y-2", className)}>
-      <h3 className="text-neutral-dark-1 text-2xl font-bold leading-[29.05px] md:text-[28px] md:leading-[33.89px]">
+      <h3 className="text-2xl font-bold leading-[29.05px] text-neutral-dark-1 md:text-[28px] md:leading-[33.89px]">
         Table of Content
       </h3>
 

@@ -21,7 +21,7 @@ export default function TableOfContentItem({
   return (
     <li
       className={cn(
-        "text-neutral-dark-1 list-inside list-disc text-base font-normal leading-[16.94px] md:leading-[19.36px]",
+        "list-inside list-disc text-base font-normal leading-[16.94px] text-neutral-dark-1 md:leading-[19.36px]",
         className,
       )}
       {...rest}

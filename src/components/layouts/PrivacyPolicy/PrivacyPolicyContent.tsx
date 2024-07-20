@@ -18,7 +18,7 @@ export default function PrivacyPolicyContent({
   const renderContent = (content: LegalTermContentItem) => {
     return content.list ? (
       <div className="space-y-6">
-        <p className="text-neutral-dark-1 text-base font-normal leading-[19.36px]">
+        <p className="text-base font-normal leading-[19.36px] text-neutral-dark-1">
           {content.text}
         </p>
 
@@ -26,7 +26,7 @@ export default function PrivacyPolicyContent({
           {content.list.map((item, index) => (
             <li
               key={index}
-              className="text-neutral-dark-1 text-base font-normal leading-[19.36px]"
+              className="text-base font-normal leading-[19.36px] text-neutral-dark-1"
             >
               <strong>{item.title}</strong> {item.body}
             </li>
@@ -34,7 +34,7 @@ export default function PrivacyPolicyContent({
         </ul>
       </div>
     ) : (
-      <p className="text-neutral-dark-1 text-base font-normal leading-[19.36px]">
+      <p className="text-base font-normal leading-[19.36px] text-neutral-dark-1">
         {content.text}
       </p>
     );
@@ -45,7 +45,7 @@ export default function PrivacyPolicyContent({
       {content.map((section) => (
         <div key={section.id} className="space-y-[10px]">
           <h4
-            className="text-neutral-dark-1 text-2xl font-bold leading-[29.05px] md:text-[28px] md:leading-[33.89px]"
+            className="text-2xl font-bold leading-[29.05px] text-neutral-dark-1 md:text-[28px] md:leading-[33.89px]"
             id={section.id}
           >
             {section.title}
@@ -53,7 +53,7 @@ export default function PrivacyPolicyContent({
           {renderContent(section.description)}
         </div>
       ))}
-      <p className="text-neutral-dark-1 text-base font-normal leading-[19.36px]">
+      <p className="text-base font-normal leading-[19.36px] text-neutral-dark-1">
         For more information about our terms and conditions, please visit
         our&nbsp;
         <Link href="/" className="text-primary">
