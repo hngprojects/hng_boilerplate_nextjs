@@ -1,11 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { z, ZodError } from "zod";
 
 import InputField from "~/components/common/contact-us-form/inputfield";
 import CustomButton from "../Button/button";
-import Image from "next/image";
 
 const schema = z.object({
   name: z.string().min(5, "Name is required"),
@@ -191,7 +191,7 @@ const ContactForm: React.FC = () => {
             isLoading={loading}
             className="w-full px-4 py-3"
           >
-           <Image src={"/mail.svg"} width={20} height={10} alt="send icon"/>
+            <Image src={"/mail.svg"} width={20} height={10} alt="send icon" />
             Send
           </CustomButton>
 
