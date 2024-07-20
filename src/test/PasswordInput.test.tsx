@@ -1,8 +1,7 @@
-
 import { PasswordInput } from "~/components/common/PasswordInput";
 import { fireEvent, render, screen } from "./utils";
 
-describe("PasswordInput Component", () => {
+describe("passwordInput Component", () => {
   const mockOnPasswordChange = vi.fn();
 
   const setup = () => {
@@ -28,15 +27,12 @@ describe("PasswordInput Component", () => {
     const toggleButton = screen.getByRole("button", { name: /show password/i });
     const input = screen.getByPlaceholderText("Enter your password");
 
-    // Password should be hidden initially
     expect(input).toHaveAttribute("type", "password");
 
-    // Click to show the password
     fireEvent.click(toggleButton);
     expect(input).toHaveAttribute("type", "text");
     expect(toggleButton).toHaveAttribute("aria-label", "Hide password");
 
-    // Click to hide the password again
     fireEvent.click(toggleButton);
     expect(input).toHaveAttribute("type", "password");
     expect(toggleButton).toHaveAttribute("aria-label", "Show password");
