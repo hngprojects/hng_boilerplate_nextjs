@@ -1,10 +1,4 @@
-// Need to use this as SVG because I'm manipulating some values based on state
-
-interface CheckmarkProperties {
-  color: string;
-}
-
-const CheckmarkIcon: React.FC<CheckmarkProperties> = ({ color }) => {
+const CheckmarkIcon = ({ color }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
