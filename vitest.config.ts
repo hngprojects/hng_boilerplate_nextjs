@@ -1,3 +1,4 @@
+import path from "node:path";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vitest/config";
 import magicalSvg from 'vite-plugin-magical-svg'
@@ -32,6 +33,7 @@ export default defineConfig({
     restoreMissingViewBox: true,
   })
   ],
+ 
   test: {
     globals: true,
     environment: "jsdom",
@@ -44,6 +46,11 @@ export default defineConfig({
       provider: "istanbul",
       reporter: ["text", "json-summary", "json", "html"],
       reportOnFailure: true,
+    },
+  },
+  resolve: {
+    alias: {
+      "~": path.resolve(import.meta.dirname, "./src"),
     },
   },
 });

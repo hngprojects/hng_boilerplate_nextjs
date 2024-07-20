@@ -3,7 +3,7 @@
 /**
  * To use this configuration, you need to install the following dependencies:
  *
- * eslint@^8.57.0 @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-react-refresh eslint-plugin-unicorn eslint-plugin-unused-imports@^3.2.0 prettier eslint-config-prettier eslint-plugin-prettier @ianvs/prettier-plugin-sort-imports
+ * eslint@^8.57.0 @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-react-refresh eslint-plugin-unicorn eslint-plugin-unused-imports@^3.2.0 prettier eslint-config-prettier eslint-plugin-prettier @ianvs/prettier-plugin-sort-imports prettier-plugin-tailwindcss
  *
  *
  * To Replicate the vitest configuration, you need to install the following dependencies:
@@ -44,6 +44,9 @@ module.exports = {
     "testing-library",
   ],
   rules: {
+    'no-console': 'error',
+    "react/prop-types": "off",
+    "vitest/max-expects": "off",
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [
       "warn",
@@ -78,6 +81,10 @@ module.exports = {
       files: ["!*.test.(js|jsx|ts|tsx)"],
       rules: {
         "vitest/require-hook": "off",
+        "testing-library/no-node-access": [
+          "error",
+          { allowContainerFirstChild: true },
+        ],
       },
     },
   ],
