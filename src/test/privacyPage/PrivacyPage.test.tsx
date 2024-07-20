@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import PrivacyPolicy from "~/app/privacy-policy/page";
+import PrivacyPolicy from "~/app/legal/privacy-policy/page";
 
 vi.mock(
   "../../components/layouts/PrivacyPolicy/constants/privacyPolicyData",
