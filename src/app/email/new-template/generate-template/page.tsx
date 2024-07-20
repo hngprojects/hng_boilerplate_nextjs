@@ -109,17 +109,21 @@ export default function Page() {
                   <textarea
                     {...register("htmlContent", {
                       required: "This field is required",
+                      pattern: {
+                        value: /<\/?[a-z][\S\s]*>/i,
+                        message: "Only valid HTML content is allowed",
+                      },
                     })}
                     id="html-content"
                     className={`h-9 w-full rounded-[6px] px-3 py-2 md:min-w-[540] ${
                       errors.htmlContent
-                        ? "border-error text-error focus:outline-none"
+                        ? "border-red-500 text-red-500 focus:outline-none"
                         : "border-[#CBD5E1] text-slate-400 focus:outline-[#CBD5E1]"
                     } overflow-hidden border outline-none focus:outline-[1.5px] focus:outline-offset-0`}
-                    placeholder="Enter your link here"
+                    placeholder="Enter your HTML content here"
                   />
                   {errors.htmlContent && (
-                    <p className="text-error mt-1 text-xs">
+                    <p className="mt-1 text-xs text-red-500">
                       {errors.htmlContent?.message as string}
                     </p>
                   )}
@@ -159,7 +163,7 @@ export default function Page() {
         </div>
       )}
       {error && (
-        <div className="text-error mt-6">
+        <div className="mt-6 text-red-500">
           <p>{error}</p>
         </div>
       )}
