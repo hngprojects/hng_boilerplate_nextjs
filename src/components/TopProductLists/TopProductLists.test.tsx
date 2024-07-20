@@ -1,5 +1,5 @@
-import TopProductLists from "../components/TopProductLists";
-import { render, screen } from "../test/utils";
+import { render, screen } from "../../test/utils";
+import TopProductLists from "./TopProductLists";
 
 vi.mock("next/image", () => ({
   __esModule: true,

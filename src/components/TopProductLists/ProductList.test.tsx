@@ -1,5 +1,5 @@
-import ProductList, { ProductListProperties } from "../components/ProductList";
-import { render, screen } from "../test/utils";
+import { render, screen } from "../../test/utils";
+import ProductList, { ProductListProperties } from "./ProductList";
 
 vi.mock("next/image", () => ({
   __esModule: true,

@@ -1,14 +1,14 @@
 import Image from "next/image";
 
-import ProductList from "./ProductList";
-import { Button } from "./ui/Button";
+import { Button } from "../ui/Button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "./ui/card";
+} from "../ui/card";
+import ProductList from "./ProductList";
 
 export default function TopProductLists() {
   const products = [
@@ -25,6 +25,7 @@ export default function TopProductLists() {
       total: 250,
     },
   ];
+
   return (
     <Card
       className="w-[25.687rem] gap-6 rounded-xl"
