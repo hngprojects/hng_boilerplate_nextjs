@@ -3,6 +3,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
+import icon from "../../../../public/images/icon.svg";
 import CustomButton from "../../../components/common/Button/button";
 
 const PriceCard: React.FC = () => {
@@ -264,16 +265,18 @@ const PriceCard: React.FC = () => {
         <button
           className="mx-auto flex w-48 cursor-pointer items-center justify-center gap-1 text-neutral-dark-2"
           onClick={toggleVisibility}
+          role="button"
         >
           <p className="font-sans text-base font-semibold leading-normal">
             Compare all features
           </p>
           <Image
-            src="/public/images/icon.svg"
-            alt="down arrow"
+            src={icon}
+            alt="icon"
             width={10}
             height={10}
             className={`transition-transform duration-300 ${isVisible ? "rotate-180" : ""}`}
+            data-testid="icon"
           />
         </button>
 
