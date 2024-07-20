@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { PasswordInput } from ".";
+import { useState } from "react";
 
 const PasswordInputDemo = () => {
   const [password, setPassword] = useState("");
@@ -10,7 +10,7 @@ const PasswordInputDemo = () => {
 
   return (
     <div className="flex h-screen w-full flex-col items-center justify-center gap-16 p-12 px-4 lg:p-24">
-      PasswordInputDemo
+      Password Input Demo
       <form className="flex w-full flex-col gap-[24px] lg:max-w-xl">
         <span className="flex flex-col gap-[8px]">
           <label
