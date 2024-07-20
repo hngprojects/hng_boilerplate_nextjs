@@ -1,93 +1,78 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 
-import "@testing-library/jest-dom";
-
-import DeleteModal from "../components/modals/DeleteModal";
+import DeleteModal from "~/components/modals/DeleteModal";
 
 describe("deleteModal", () => {
-  it("should display the modal correctly when visible", () => {
+  it("renders the modal when isVisible is true", () => {
+    expect.assertions(4);
+    render(<DeleteModal isVisible={true} onClose={() => {}} />);
+
+    expect(screen.getByTestId("modal-container")).toBeInTheDocument();
+    expect(screen.getByTestId("modal-content")).toBeInTheDocument();
+    expect(screen.getByTestId("modal-heading")).toHaveTextContent(
+      "Delete Member",
+    );
+    expect(screen.getByTestId("modal-message")).toHaveTextContent(
+      "Are you sure you want to delete Chad Bosewick? All of your data will be permanently removed. This action cannot be undone.",
+    );
+  });
+
+  it("does not render the modal when isVisible is false", () => {
+    expect.assertions(1);
+    render(<DeleteModal isVisible={false} onClose={() => {}} />);
+    expect(screen.queryByTestId("modal-container")).not.toBeInTheDocument();
+  });
+
+  it("closes the modal when clicking the overlay", () => {
+    expect.assertions(1);
+    const onClickMock = vi.fn();
+    render(<DeleteModal isVisible={true} onClose={onClickMock} />);
+    fireEvent.click(screen.getByTestId("modal-container"));
+    expect(onClickMock).toHaveBeenCalledWith();
+  });
+
+  it("closes the modal when clicking the Cancel button", () => {
+    expect.assertions(1);
+    const onClickMock = vi.fn();
+    render(<DeleteModal isVisible={true} onClose={onClickMock} />);
+
+    fireEvent.click(screen.getByTestId("cancel-button"));
+    expect(onClickMock).toHaveBeenCalledWith();
+  });
+
+  it("closes the modal when clicking the Delete button", () => {
+    expect.assertions(1);
+    const onClickMock = vi.fn();
+    render(<DeleteModal isVisible={true} onClose={onClickMock} />);
+
+    fireEvent.click(screen.getByTestId("delete-button"));
+    expect(onClickMock).toHaveBeenCalledWith();
+  });
+
+  it("renders correctly on different screen sizes", () => {
     expect.assertions(2);
+    const { rerender } = render(
+      <DeleteModal isVisible={true} onClose={() => {}} />,
+    );
 
-    render(<DeleteModal />);
+    window.innerWidth = 500;
+    window.dispatchEvent(new Event("resize"));
+    rerender(<DeleteModal isVisible={true} onClose={() => {}} />);
+    expect(screen.getByTestId("modal-content")).toHaveClass("left-[50%]");
 
+    window.innerWidth = 1200;
+    window.dispatchEvent(new Event("resize"));
+    rerender(<DeleteModal isVisible={true} onClose={() => {}} />);
+    expect(screen.getByTestId("modal-content")).toHaveClass("lg:left-[40%]");
+
+    window.innerWidth = 1024;
+    window.dispatchEvent(new Event("resize"));
+  });
+
+  it("has correct overlay opacity", () => {
+    expect.assertions(1);
+    render(<DeleteModal isVisible={true} onClose={() => {}} />);
     const modalContainer = screen.getByTestId("modal-container");
-    const modalContent = screen.getByTestId("modal-content");
-
-    expect(modalContainer).toBeVisible();
-    expect(modalContent).toBeVisible();
-  });
-
-  it("should be responsive across all screens", () => {
-    expect.assertions(5);
-
-    render(<DeleteModal />);
-
-    const modalContent = screen.getByTestId("modal-content");
-
-    expect(modalContent).toHaveClass("max-w-[1440px]");
-    expect(modalContent).toHaveClass("lg:left-[40%]");
-    expect(modalContent).toHaveClass("top-[300px]");
-    expect(modalContent).toHaveClass("w-[95%]");
-    expect(modalContent).toHaveClass("left-[50%]");
-  });
-
-  it("should close the modal when clicking outside of the modal content", () => {
-    expect.assertions(1);
-
-    render(<DeleteModal />);
-
-    const modalContainer = screen.getByTestId("modal-container");
-    fireEvent.click(modalContainer);
-
-    const modalContent = screen.queryByTestId("modal-content");
-    expect(modalContent).not.toBeInTheDocument();
-  });
-
-  it("should properly align heading, message, and buttons", () => {
-    expect.assertions(3);
-
-    render(<DeleteModal />);
-
-    const modalHeading = screen.getByTestId("modal-heading");
-    const modalMessage = screen.getByTestId("modal-message");
-    const modalButtons = screen.getByTestId("modal-buttons");
-
-    expect(modalHeading).toBeInTheDocument();
-    expect(modalMessage).toBeInTheDocument();
-    expect(modalButtons).toBeInTheDocument();
-  });
-
-  it("should close the modal when clicking the Cancel button", () => {
-    expect.assertions(1);
-
-    render(<DeleteModal />);
-
-    const cancelButton = screen.getByTestId("cancel-button");
-    fireEvent.click(cancelButton);
-
-    const modalContent = screen.queryByTestId("modal-content");
-    expect(modalContent).not.toBeInTheDocument();
-  });
-
-  it("should close the modal when clicking the Delete button", () => {
-    expect.assertions(1);
-
-    render(<DeleteModal />);
-
-    const deleteButton = screen.getByTestId("delete-button");
-    fireEvent.click(deleteButton);
-
-    const modalContent = screen.queryByTestId("modal-content");
-    expect(modalContent).not.toBeInTheDocument();
-  });
-
-  it("should correctly apply overlay opacity", () => {
-    expect.assertions(1);
-
-    render(<DeleteModal />);
-
-    const modalContainer = screen.getByTestId("modal-container");
-
     expect(modalContainer).toHaveClass("bg-opacity-[25%]");
   });
 });
