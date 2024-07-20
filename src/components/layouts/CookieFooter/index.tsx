@@ -15,12 +15,12 @@ const CookieFooter: React.FC = () => {
           </span>
         </p>
         <ul className="flex flex-row flex-wrap items-end gap-x-4 gap-y-2">
-          <li className="md:order-3">
+          <li onClick={handleCloseFooter} className="md:order-3">
             <CustomButton size="default" variant="primary">
               Accept All Cookies
             </CustomButton>
           </li>
-          <li className="md:order-2">
+          <li onClick={handleCloseFooter} className="md:order-2">
             <CustomButton variant="primary" size="default">
               Reject All
             </CustomButton>
