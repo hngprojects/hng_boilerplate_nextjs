@@ -1,6 +1,5 @@
 import {
   Button,
-  Container,
   Head,
   Html,
   Preview,
@@ -8,7 +7,8 @@ import {
   Text,
 } from "@react-email/components";
 
-import Tailwindwrapper from "~/email/templates/_components/tailwindWrapper";
+// import CustomButton from "~/components/common/Button/button";
+import EmailResetPasswordLayout from "~/components/layouts/EmailResetPassword/emailresetpasswordlayout";
 
 interface IProperties {
   name: string;
@@ -23,33 +23,33 @@ export default function ResetPasswordEmail(properties: IProperties) {
       <Head />
       <Preview>Reset Your Password</Preview>
 
-      <Tailwindwrapper>
-        <Container className="mx-auto max-w-[600px] rounded bg-white p-8">
-          <Text className="mb-4 text-2xl font-bold">Reset Your Password</Text>
-          <Text className="mb-4">Hi {name},</Text>
-          <Text className="mb-4">
-            You recently requested to reset your password. Use the button below
-            to reset it.
-          </Text>
-          <Section className="text-center">
-            <Button
-              href={resetLink}
-              className="rounded bg-blue-500 px-6 py-3 font-bold text-white"
-            >
-              Reset Password
-            </Button>
-          </Section>
-          <Text className="mt-4">
-            If you did not request a password reset, you can safely ignore this
-            email.
-          </Text>
-          <Text className="mt-8">
-            Regards,
-            <br />
-            Boilerplate Team
-          </Text>
-        </Container>
-      </Tailwindwrapper>
+      <EmailResetPasswordLayout>
+        <Text className="my-14 text-center text-2xl font-bold">
+          Reset Your Password
+        </Text>
+        <Text className="mb-4">Hi {name},</Text>
+        <Text className="mb-4">
+          You recently requested to reset your password. If you did not make
+          this request, you can ignore this email.
+        </Text>
+        <Text className="mt-4">
+          To reset your password, please click the button below.
+        </Text>
+        <Section className="text-center">
+          <Button
+            href={resetLink}
+            className="w-56 rounded bg-[#F97316] px-4 py-2 font-medium text-background text-white"
+          >
+            Reset Password
+          </Button>
+        </Section>
+
+        <Text className="mt-8">
+          Regards,
+          <br />
+          Boilerplate Team
+        </Text>
+      </EmailResetPasswordLayout>
     </Html>
   );
 }
