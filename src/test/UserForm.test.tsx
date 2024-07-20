@@ -10,25 +10,6 @@ const setWindowSize = (width: number, height: number) => {
 };
 
 describe("userForm component", () => {
-  beforeAll(() => {
-    // Save original window size to restore later
-    Object.defineProperty(window, "innerWidth", {
-      writable: true,
-      configurable: true,
-      value: window.innerWidth,
-    });
-    Object.defineProperty(window, "innerHeight", {
-      writable: true,
-      configurable: true,
-      value: window.innerHeight,
-    });
-  });
-
-  afterAll(() => {
-    // Restore original window size
-    setWindowSize(1024, 768); // Or your original size
-  });
-
   it("renders the form with initial state", () => {
     expect.assertions(3);
     render(<UserForm />);
@@ -38,6 +19,7 @@ describe("userForm component", () => {
   });
 
   it("validates form inputs and shows error messages", () => {
+    expect.assertions(2);
     render(<UserForm />);
     fireEvent.submit(screen.getByText(/join the waitlist/i));
     expect(screen.getByText(/your name is required here/i)).toBeInTheDocument();
@@ -51,11 +33,9 @@ describe("userForm component", () => {
   });
 
   it("is responsive to small screen sizes", () => {
+    expect.assertions(3);
     setWindowSize(375, 667); // iPhone 6/7/8 size
-
     render(<UserForm />);
-
-    // Check for mobile specific elements or styles
     expect(screen.getByText(/name/i)).toBeInTheDocument();
     expect(screen.getByText(/email/i)).toBeInTheDocument();
     expect(screen.getByText(/join the waitlist/i)).toBeInTheDocument();
@@ -63,11 +43,9 @@ describe("userForm component", () => {
   });
 
   it("is responsive to large screen sizes", () => {
+    expect.assertions(3);
     setWindowSize(1440, 900); // Desktop size
-
     render(<UserForm />);
-
-    // Check for desktop specific elements or styles
     expect(screen.getByText(/name/i)).toBeInTheDocument();
     expect(screen.getByText(/email/i)).toBeInTheDocument();
     expect(screen.getByText(/join the waitlist/i)).toBeInTheDocument();

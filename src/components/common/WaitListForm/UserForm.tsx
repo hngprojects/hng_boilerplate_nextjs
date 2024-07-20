@@ -154,7 +154,7 @@ const UserForm: React.FC = () => {
 
             <div className="flex items-center justify-center">
               <button
-                className="flex h-[51.78px] w-[195.6px] items-center justify-between rounded-md bg-buttonColor px-[19.2px] py-[9.6px] text-[16.8px] font-bold leading-[28.8px] text-white"
+                className="bg-buttonColor flex h-[51.78px] w-[195.6px] items-center justify-between rounded-md px-[19.2px] py-[9.6px] text-[16.8px] font-bold leading-[28.8px] text-white"
                 type="submit"
               >
                 <Image width={20} height={20} src="/icon.svg" alt="Envelope" />
