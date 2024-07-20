@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import PasswordSuccessfulModal from "./PasswordSuccessfulModal";
+import PasswordSuccessfulModal from "~/components/modals/PasswordSuccessfulModal";
 
 describe("testimonials Component", () => {
   it("renders the modal when show is true", () => {
