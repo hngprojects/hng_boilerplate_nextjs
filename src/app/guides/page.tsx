@@ -472,6 +472,7 @@ const StyleGuide: React.FC = () => {
           />
         ))}
         {/* Add more Comment components as needed */}
+<<<<<<< HEAD
       </div>
 
       <div className="w-full">
@@ -502,6 +503,8 @@ const StyleGuide: React.FC = () => {
           name="message"
           onChange={handleTextChange}
         />
+=======
+>>>>>>> 1a8e0f3 (ComentBox Display)
       </div>
     </main>
   );
