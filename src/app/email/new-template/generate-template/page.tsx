@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 
 import BreadCrumbs from "~/components/common/BreadCrumbs";
@@ -22,23 +22,31 @@ export default function Page() {
     formState: { errors },
   } = useForm<FieldValues>({ mode: "all" });
 
-  // const [htmlContent, setHtmlContent] = useState<string | undefined>();
   const [error, setError] = useState<string | null>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [htmlContent, setHtmlContent] = useState<string | undefined>();
 
   const searchParameter = useSearchParams();
   const contentPreview = searchParameter.get("htmlContent");
 
   const router = useRouter();
-  const htmlContent = localStorage.getItem("htmlContent") || undefined;
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedHtmlContent = localStorage.getItem("htmlContent");
+      setHtmlContent(storedHtmlContent || undefined);
+    }
+  }, []);
 
   const onSubmit = (data: FieldValues) => {
     const htmlContent = data.htmlContent;
     setError(undefined);
     setIsLoading(true);
     setTimeout(() => {
-      localStorage.setItem("htmlContent", htmlContent);
-      router.push("?htmlContent=true");
+      if (typeof window !== "undefined") {
+        localStorage.setItem("htmlContent", htmlContent);
+        router.push("?htmlContent=true");
+      }
       setIsLoading(false);
     }, 2000);
   };
@@ -55,7 +63,7 @@ export default function Page() {
               <h1 className="mb-2 flex flex-col text-2xl font-bold sm:flex-row sm:items-center">
                 Preview Your Generated Template
               </h1>
-              <p className="max-w-[80%] text-neutral-dark-1">
+              <p className="text-neutral-dark-1 max-w-[80%]">
                 Review the layout and look of your email template generated from
                 the pasted HTML code to ensure you have pasted the right
                 template.
@@ -63,7 +71,7 @@ export default function Page() {
             </div>
             <Link
               href={"/email/new-template/generate-template"}
-              className="mt-4 h-10 w-fit whitespace-nowrap rounded-[6px] border-none bg-neutral-dark-2 px-4 py-2 text-sm font-medium text-white hover:opacity-90 sm:mt-0"
+              className="mt-4 h-10 w-fit whitespace-nowrap rounded-[6px] border-none bg-neutral-900 px-4 py-2 text-sm font-medium text-white hover:opacity-90 sm:mt-0"
             >
               Edit content
             </Link>
@@ -73,7 +81,7 @@ export default function Page() {
               <iframe
                 srcDoc={htmlContent}
                 title="Generated Email Template"
-                className="h-[500px] w-full rounded-[7px] sm:w-[382px] sm:border sm:border-[#CBD5E180]"
+                className="sm:w-fi h-[500px] w-full rounded-[7px] sm:mx-5 sm:border sm:border-[#CBD5E180]"
               ></iframe>
             </div>
           </div>
@@ -107,21 +115,15 @@ export default function Page() {
                       errors.htmlContent
                         ? "border-error text-error focus:outline-none"
                         : "border-[#CBD5E1] text-slate-400 focus:outline-[#CBD5E1]"
-                    } border outline-none focus:outline-[1.5px] focus:outline-offset-0`}
+                    } overflow-hidden border outline-none focus:outline-[1.5px] focus:outline-offset-0`}
                     placeholder="Enter your link here"
                   />
                   {errors.htmlContent && (
-                    <p className="mt-1 text-xs text-error">
+                    <p className="text-error mt-1 text-xs">
                       {errors.htmlContent?.message as string}
                     </p>
                   )}
                 </div>
-                {/* <button
-                  type="submit"
-                  className="h-10 w-fit rounded-[6px] border-none bg-primary px-4 py-2 text-sm font-medium text-white hover:opacity-90"
-                >
-                  {isLoading ? "Generating..." : "Generate"}
-                </button> */}
                 <CustomButton
                   variant="primary"
                   isLeftIconVisible={false}
@@ -157,7 +159,7 @@ export default function Page() {
         </div>
       )}
       {error && (
-        <div className="mt-6 text-error">
+        <div className="text-error mt-6">
           <p>{error}</p>
         </div>
       )}
