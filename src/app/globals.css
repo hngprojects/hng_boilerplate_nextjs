@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
-  transition: all .5s ease-in-out; 
-  --pri: #F97316;
-} 
-
 @layer base {
   :root {
     --background: 0 0% 100%;
