@@ -1,23 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-
 import { CustomToast } from "~/components/common/customToast/toast";
-import { useToast } from "~/components/ui/use-toast";
 
 const MockPage = () => {
-  const [alertVisibility, setAlertVisibility] = useState<boolean>(false);
-  const { toast } = useToast();
-
-  const closeAlert = (): void => {
-    setAlertVisibility(false);
-  };
-
-  const handleAlertClick = (): void => {
-    setAlertVisibility(true);
-    // ToastWithTitle();
-  };
-
   return (
     <div className="flex min-h-screen flex-col justify-center bg-gray-100 py-6 sm:py-12">
       <div className="relative py-3 sm:mx-auto sm:max-w-xl">
@@ -33,7 +18,7 @@ const MockPage = () => {
                 <div className="pt-6">
                   <CustomToast
                     message="Scheduled: Catch up"
-                    description="Friday, February 10, 2023 at 5:57 PM"
+                    description="1 Invitation sent succesfully"
                   />
                 </div>
               </div>
