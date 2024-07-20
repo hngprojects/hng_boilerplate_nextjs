@@ -44,12 +44,11 @@ importers:
       react-email:
         specifier: 2.1.5
         version: 2.1.5(@swc/helpers@0.5.5)(eslint@8.57.0)
-<<<<<<< HEAD
-<<<<<<< HEAD
+
       swiper:
         specifier: ^11.1.5
         version: 11.1.5
-=======
+
       shadcn:
         specifier: ^1.0.0
         version: 1.0.0

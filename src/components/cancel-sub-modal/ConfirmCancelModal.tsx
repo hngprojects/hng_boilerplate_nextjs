@@ -22,7 +22,7 @@ const ConfirmCancelModal: React.FC<ConfirmCancelModalProps> = ({
     >
       <div
         className="flex flex-col items-start rounded-lg bg-white p-4 shadow-lg md:p-6 lg:p-8"
-        style={{ maxWidth: "90vw", width: "512px" }}
+        style={{ maxWidth: "90vw", width: "660px" }}
       >
         <h2
           data-testid="modal-title"
@@ -42,14 +42,14 @@ const ConfirmCancelModal: React.FC<ConfirmCancelModalProps> = ({
             <button
               data-testid="keep-button"
               onClick={onClose}
-              className="flex items-center justify-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 font-semibold text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="text-foregroundpx-4 flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg rounded-md border border-border px-4 py-2 py-4 font-semibold text-default text-foreground hover:bg-background focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
               Keep Subscription
             </button>
             <button
               data-testid="cancel-button"
               onClick={onCancel}
-              className="flex items-center justify-center gap-2 rounded-md bg-orange-500 px-4 py-2 font-semibold text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+              className="flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg rounded-md bg-primary px-4 py-2 font-semibold text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
             >
               Cancel Subscription
             </button>
