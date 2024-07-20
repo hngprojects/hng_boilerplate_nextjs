@@ -1,9 +1,12 @@
 import { Orbit, Plus } from "lucide-react";
 import React from "react";
 
+import { Orbit, Plus } from "lucide-react";
+import React from "react";
+
 import CustomButton from "~/components/common/Button/button";
 
-const Button: React.FC = () => {
+const Btn: React.FC = () => {
   return (
     <main className="flex min-h-screen flex-col items-start gap-7 overflow-hidden p-6 sm:p-12 md:p-24">
       <h2 className="text-2xl font-semibold">Color Guides</h2>
@@ -182,7 +185,7 @@ const Button: React.FC = () => {
             <span className="block font-mono text-sm text-white">
               import <span className="text-blue-400">CustomButton</span> from{" "}
               <span className="text-yellow-400">
-                &quot;~/components/common/Button/button&quot;
+                "~/components/common/Button/button"
               </span>
               ;
             </span>
@@ -266,9 +269,7 @@ const Button: React.FC = () => {
               <span className="text-blue-400">CustomButton</span>
               <br />
               <span className="ml-4">
-                variant=
-                <span className="text-yellow-400">&quot;subtle&quot;</span>{" "}
-                <br />
+                variant=<span className="text-yellow-400">"subtle"</span> <br />
               </span>
               <span className="ml-4">
                 icon=<span className="text-yellow-400">{"{<Plus />}"}</span>{" "}
@@ -300,4 +301,4 @@ const Button: React.FC = () => {
   );
 };
 
-export default Button;
+export default Btn;
