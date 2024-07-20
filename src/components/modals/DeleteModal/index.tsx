@@ -15,10 +15,6 @@ import {
 const DeleteModal: React.FC = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
-  const openDeleteModal = () => {
-    setIsVisible(true);
-  };
-
   const closeDeleteModal = () => {
     setIsVisible(false);
   };
