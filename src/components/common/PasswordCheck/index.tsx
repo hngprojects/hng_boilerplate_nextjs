@@ -1,15 +1,16 @@
-"use client"
-import React, { useState, useEffect } from "react";
-import { CircleCheck } from "lucide-react";
+"use client";
 
-interface PasswordCheckProperties{
-  data:string
+import { CircleCheck } from "lucide-react";
+import React, { useEffect, useState } from "react";
+
+interface PasswordCheckProperties {
+  data: string;
 }
 
-interface PasswordCheck{
-  moreThan7:boolean;
-  containsUppercase:boolean;
-  containNumber:boolean;
+interface PasswordCheck {
+  moreThan7: boolean;
+  containsUppercase: boolean;
+  containNumber: boolean;
 }
 
 const handlerContainsNumber = (value: string) => {
@@ -23,20 +24,16 @@ const handleContainsUpperCase = (value: string) => {
 };
 
 const PasswordCheck: React.FC<PasswordCheckProperties> = ({ data }) => {
-
   const [checkPassword, setCheckPassword] = useState<PasswordCheck>({
     moreThan7: false,
     containsUppercase: false,
     containNumber: false,
   });
 
- 
-
   const handleCheckPassword = (data: string) => {
     const containsUpperCase = handleContainsUpperCase(data);
     const containsNumber = handlerContainsNumber(data);
     if (containsUpperCase) {
-
       setCheckPassword((previousData) => {
         return { ...previousData, containsUppercase: true };
       });
@@ -73,24 +70,45 @@ const PasswordCheck: React.FC<PasswordCheckProperties> = ({ data }) => {
   }, [data]);
 
   return (
-    <div className="mt-[8px] l-4">
+    <div className="l-4 mt-[8px]">
       <div className="flex items-center gap-[16px]">
-        <div className={`w-[100px] border-[3px] border-solid ${checkPassword.moreThan7 || checkPassword.containNumber || checkPassword.containsUppercase ? "border-[#6DC347]" : "border-[#B6B6B6]"}`}></div>
-        <div className={`w-[100px] border-[3px] border-solid ${checkPassword.moreThan7 && checkPassword.containNumber || checkPassword.containNumber && checkPassword.containsUppercase || checkPassword.moreThan7 && checkPassword.containsUppercase ? "border-[#6DC347]" : "border-[#B6B6B6]"}`}></div>
-        <div className={`w-[100px] border-[3px] border-solid ${checkPassword.moreThan7 && checkPassword.containNumber && checkPassword.containsUppercase ? "border-[#6DC347]" : "border-[#B6B6B6]"}`}></div>
+        <div
+          className={`w-[100px] border-[3px] border-solid ${checkPassword.moreThan7 || checkPassword.containNumber || checkPassword.containsUppercase ? "border-[#6DC347]" : "border-[#B6B6B6]"}`}
+        ></div>
+        <div
+          className={`w-[100px] border-[3px] border-solid ${(checkPassword.moreThan7 && checkPassword.containNumber) || (checkPassword.containNumber && checkPassword.containsUppercase) || (checkPassword.moreThan7 && checkPassword.containsUppercase) ? "border-[#6DC347]" : "border-[#B6B6B6]"}`}
+        ></div>
+        <div
+          className={`w-[100px] border-[3px] border-solid ${checkPassword.moreThan7 && checkPassword.containNumber && checkPassword.containsUppercase ? "border-[#6DC347]" : "border-[#B6B6B6]"}`}
+        ></div>
       </div>
       <div>
         <p className="mt-[24px]">Weak password. Must contains;</p>
         <div className="mt-[12px] flex items-center gap-[8px]">
-          {checkPassword.containsUppercase ? <CircleCheck data-testid="circle-check-icon" color="#6DC347" /> : <CircleCheck data-testid="circle-check-icon" />}
+          <CircleCheck
+            data-testid="circle-check-icon"
+            style={{
+              color: checkPassword.containsUppercase ? "#6DC347" : "#B6B6B6",
+            }}
+          />
+
           <p className="">At least 1 uppercase</p>
         </div>
-        <div className="flex items-center gap-[8px] mt-[8px]">
-          {checkPassword.containNumber ? <CircleCheck data-testid="circle-check-icon" color="#6DC347" /> : <CircleCheck data-testid="circle-check-icon" />}
+        <div className="mt-[8px] flex items-center gap-[8px]">
+          <CircleCheck
+            data-testid="circle-check-icon"
+            style={{
+              color: checkPassword.containNumber ? "#6DC347" : "#B6B6B6",
+            }}
+          />
+
           <p>At least 1 number</p>
         </div>
-        <div className="flex items-center gap-[8px] mt-[8px]">
-          {checkPassword.moreThan7 ? <CircleCheck data-testid="circle-check-icon" color="#6DC347" /> : <CircleCheck data-testid="circle-check-icon" />}
+        <div className="mt-[8px] flex items-center gap-[8px]">
+          <CircleCheck
+            data-testid="circle-check-icon"
+            style={{ color: checkPassword.moreThan7 ? "#6DC347" : "#B6B6B6" }}
+          />
           <p>At least 8 characters</p>
         </div>
       </div>

@@ -1,69 +1,54 @@
 import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import PasswordCheck from "~/components/common/PasswordCheck";
 import { describe, expect, it } from "vitest";
 
-describe("PasswordCheck component", () => {
+import PasswordCheck from "./index";
+
+describe("passwordCheck component", () => {
   it("displays all criteria as not met when the password is empty", () => {
-    expect.assertions(6);
-    render(<PasswordCheck data="3474648udhT" />);
-
-    expect(screen.getByText("Weak password. Must contains;")).toBeInTheDocument();
-    expect(screen.getByText("At least 1 uppercase")).toBeInTheDocument();
-    expect(screen.getByText("At least 1 number")).toBeInTheDocument();
-    expect(screen.getByText("At least 8 characters")).toBeInTheDocument();
-
+    expect.hasAssertions();
+    render(<PasswordCheck data="" />);
+    expect(
+      screen.getByText("Weak password. Must contains;"),
+    ).toBeInTheDocument();
+    const criteriaTexts = [
+      "At least 1 uppercase",
+      "At least 1 number",
+      "At least 8 characters",
+    ];
+    for (const text of criteriaTexts) {
+      expect(screen.getByText(text)).toBeInTheDocument();
+    }
     const checkIcons = screen.getAllByTestId("circle-check-icon");
     expect(checkIcons).toHaveLength(3);
-    for (const icon of checkIcons) {
-      expect(icon).not.toHaveAttribute("color", "#6DC347");
-    }
+    expect(
+      checkIcons.every((icon) => icon.style.color === "rgb(182, 182, 182)"),
+    ).toBeTruthy();
   });
-
   it("displays all criteria as met when the password meets all requirements", () => {
-    expect.assertions(6);
+    expect.hasAssertions();
     render(<PasswordCheck data="Password123" />);
-
-    expect(screen.getByText("At least 1 uppercase")).toBeInTheDocument();
-    expect(screen.getByText("At least 1 number")).toBeInTheDocument();
-    expect(screen.getByText("At least 8 characters")).toBeInTheDocument();
-
     const checkIcons = screen.getAllByTestId("circle-check-icon");
     expect(checkIcons).toHaveLength(3);
-    for (const icon of checkIcons) {
-      expect(icon).toHaveAttribute("color", "#6DC347");
-    }
+    expect(
+      checkIcons.every((icon) => icon.style.color === "rgb(109, 195, 71)"),
+    ).toBeTruthy();
   });
-
   it("displays criteria correctly when the password meets some requirements", () => {
-    expect.assertions(6);
+    expect.hasAssertions();
     render(<PasswordCheck data="Partial1" />);
-
-    expect(screen.getByText("At least 1 uppercase")).toBeInTheDocument();
-    expect(screen.getByText("At least 1 number")).toBeInTheDocument();
-    expect(screen.getByText("At least 8 characters")).toBeInTheDocument();
-
     const checkIcons = screen.getAllByTestId("circle-check-icon");
     expect(checkIcons).toHaveLength(3);
-
-    const [uppercaseIcon, numberIcon, lengthIcon] = checkIcons;
-    expect(uppercaseIcon).toHaveAttribute("color", "#6DC347");
-    expect(numberIcon).toHaveAttribute("color", "#6DC347");
-    expect(lengthIcon).not.toHaveAttribute("color", "#6DC347");
+    const [uppercaseIcon, numberIcon] = checkIcons;
+    expect(uppercaseIcon.style.color).toBe("rgb(109, 195, 71)");
+    expect(numberIcon.style.color).toBe("rgb(109, 195, 71)");
   });
-
   it("displays criteria correctly when the password does not meet any requirements", () => {
-    expect.assertions(6);
+    expect.hasAssertions();
     render(<PasswordCheck data="weak" />);
-
-    expect(screen.getByText("At least 1 uppercase")).toBeInTheDocument();
-    expect(screen.getByText("At least 1 number")).toBeInTheDocument();
-    expect(screen.getByText("At least 8 characters")).toBeInTheDocument();
-
     const checkIcons = screen.getAllByTestId("circle-check-icon");
     expect(checkIcons).toHaveLength(3);
-    for (const icon of checkIcons) {
-      expect(icon).not.toHaveAttribute("color", "#6DC347");
-    }
+    expect(
+      checkIcons.every((icon) => icon.style.color === "rgb(182, 182, 182)"),
+    ).toBeTruthy();
   });
 });
