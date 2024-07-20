@@ -130,7 +130,7 @@ const Profile = () => {
 
       setShowSuccessMessage(true);
       setTimeout(() => setShowSuccessMessage(false), 3000);
-    } catch (error) {
+    } catch (error: any) {
       if (error instanceof ZodError) {
         const validationErrors: Record<string, string> = {};
         for (const errorItem of error.errors) {
