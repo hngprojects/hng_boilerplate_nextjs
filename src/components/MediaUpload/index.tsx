@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import React, { useCallback, useRef, useState, useEffect } from "react";
-import { Button } from "../../ui/button";
+import { Button } from "../ui/button";
 import { TrashIcon } from "lucide-react";
 
 interface MediaUploadProperties {
@@ -21,20 +21,17 @@ const MediaUpload: React.FC<MediaUploadProperties> = ({
   const [files, setFiles] = useState<File[]>([]);
   const fileInputReference = useRef<HTMLInputElement | null>(null);
 
-  // Handle drag over event
   const handleDragOver = useCallback((event_: React.DragEvent) => {
     event_.preventDefault();
     event_.stopPropagation();
   }, []);
 
-  // Handle files added
   const handleFilesAdded = useCallback((newFiles: FileList) => {
     const fileArray = Array.from(newFiles);
     setFiles((prevFiles) => [...prevFiles, ...fileArray]);
     onFilesAdded(fileArray);
   }, [onFilesAdded]);
 
-  // Handle file drop
   const handleDrop = useCallback((event_: React.DragEvent) => {
     event_.preventDefault();
     event_.stopPropagation();
@@ -42,20 +39,17 @@ const MediaUpload: React.FC<MediaUploadProperties> = ({
     handleFilesAdded(newFiles);
   }, [handleFilesAdded]);
 
-  // Handle file deletion
   const handleDeleteFile = useCallback((file: File) => {
     setFiles((previousFiles) => previousFiles.filter((f) => f !== file));
     onFileDeleted(file);
   }, [onFileDeleted]);
 
-  // Handle custom button click
   const handleButtonClick = useCallback(() => {
     if (fileInputReference.current) {
       fileInputReference.current.click();
     }
   }, []);
 
-  // Clean up object URLs
   useEffect(() => {
     return () => {
       files.forEach((file) => URL.revokeObjectURL(URL.createObjectURL(file)));
@@ -109,12 +103,6 @@ const MediaUpload: React.FC<MediaUploadProperties> = ({
                 key={index}
                 className="image-container group relative mb-2 h-[125px] w-full"
               >
-                {/* <img
-                  src={URL.createObjectURL(file)}
-                  alt={file.name}
-                  className="h-full w-full rounded-[6px] object-cover"
-                /> */}
-
                 {URL.createObjectURL && (
                   <img
                     src={URL.createObjectURL(file)}

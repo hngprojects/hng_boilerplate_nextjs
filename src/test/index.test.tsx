@@ -5,7 +5,7 @@ global.URL.revokeObjectURL = vi.fn();
 
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import MediaUpload from './index';
+import MediaUpload from '../components/MediaUpload/index';
 
 describe('MediaUpload', () => {
   it('renders and allows files to be added', async () => {
