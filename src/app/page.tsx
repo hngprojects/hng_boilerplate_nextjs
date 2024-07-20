@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import Payment from "~/components/common/Payment";
-
-export default function Home() {
-  return (
-    <main>
-      <Payment />
-    </main>
-=======
 import Hero from "~/components/layouts/homepage/Hero";
 import HowItWorks from "~/components/layouts/homepage/HowItWorks";
 import PerfectFit from "~/components/layouts/homepage/PerfectFit";
@@ -22,6 +13,5 @@ export default function Home() {
       <Testimonials />
       <PerfectFit />
     </>
->>>>>>> upstream/dev
   );
 }

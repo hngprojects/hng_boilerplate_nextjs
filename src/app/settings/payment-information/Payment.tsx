@@ -44,7 +44,7 @@ const PriceCard: React.FC = () => {
                 trial ends.
               </p>
 
-              <p className="text-neutral-dark-2 font-sans text-sm font-normal">
+              <p className="font-sans text-sm font-normal text-neutral-dark-2">
                 $0/month
               </p>
             </div>
@@ -69,7 +69,7 @@ const PriceCard: React.FC = () => {
 
                   <p className="font-sans text-2xl font-medium leading-relaxed">
                     $0
-                    <span className="text-neutral-dark-1 font-sans text-[0.8125rem] font-normal leading-normal">
+                    <span className="font-sans text-[0.8125rem] font-normal leading-normal text-neutral-dark-1">
                       /month
                     </span>
                   </p>
@@ -89,13 +89,13 @@ const PriceCard: React.FC = () => {
                 </CustomButton>
 
                 <ul className="z-10 mt-12 flex h-[5.6875rem] w-40 list-disc flex-col items-start gap-4">
-                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     10 Projects
                   </li>
-                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     Up to 10 subscribers
                   </li>
-                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     Advanced analytics
                   </li>
                 </ul>
@@ -131,17 +131,17 @@ const PriceCard: React.FC = () => {
                 </CustomButton>
 
                 <ul className="z-10 mt-12 flex h-[5.6875rem] w-[9.1875rem] list-disc flex-col items-start gap-4">
-                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     100 Projects
                   </li>
-                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     Up to 50 subscribers
                   </li>
-                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     Advanced analytics
                   </li>
 
-                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     24-hour support
                   </li>
                 </ul>
@@ -177,21 +177,21 @@ const PriceCard: React.FC = () => {
                 </CustomButton>
 
                 <ul className="z-10 mt-12 flex h-24 w-36 list-disc flex-col items-start gap-4">
-                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     200 Projects
                   </li>
-                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     Up to 100 subscribers
                   </li>
-                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     Advanced analytics
                   </li>
 
-                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     24-hour support
                   </li>
 
-                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     Marketing advisor
                   </li>
                 </ul>
@@ -227,21 +227,21 @@ const PriceCard: React.FC = () => {
                 </CustomButton>
 
                 <ul className="z-10 mt-12 flex h-24 w-40 list-disc flex-col items-start gap-4">
-                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     300 Projects
                   </li>
-                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     Up to 500 subscribers
                   </li>
-                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     Advanced analytics
                   </li>
 
-                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     24-hour support
                   </li>
 
-                  <li className="text-neutral-dark-2 font-sans text-sm font-normal leading-normal">
+                  <li className="font-sans text-sm font-normal leading-normal text-neutral-dark-2">
                     Marketing advisor
                   </li>
                 </ul>
@@ -262,7 +262,7 @@ const PriceCard: React.FC = () => {
 
         {/* Compare Toggle */}
         <button
-          className="text-neutral-dark-2 mx-auto flex w-48 cursor-pointer items-center justify-center gap-1"
+          className="mx-auto flex w-48 cursor-pointer items-center justify-center gap-1 text-neutral-dark-2"
           onClick={toggleVisibility}
         >
           <p className="font-sans text-base font-semibold leading-normal">
@@ -283,81 +283,81 @@ const PriceCard: React.FC = () => {
           <>
             <div className="grid grid-cols-5 grid-rows-5">
               <div className="col-span-5 flex h-20 w-full items-center gap-3 bg-[#FFF8F2] pb-7 pl-3 pr-10 pt-7">
-                <p className="text-neutral-dark-2 font-sans text-base font-bold leading-normal">
+                <p className="font-sans text-base font-bold leading-normal text-neutral-dark-2">
                   Project Management
                 </p>
               </div>
-              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 Project
               </div>
 
-              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 Up to 5
               </div>
-              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 Up to 5
               </div>
-              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 Up to 5
               </div>
-              <div className="text-neutral-dark-2 flex items-center border-y pr-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y pr-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 Unlimited
               </div>
-              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 File Upload
               </div>
-              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 10gb
               </div>
-              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 20gb
               </div>
-              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 50gb
               </div>
-              <div className="text-neutral-dark-2 flex items-center border-y pr-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y pr-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 Unlimited
               </div>
-              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 User Account
               </div>
-              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 1
               </div>
-              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 10
               </div>
-              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 50
               </div>
-              <div className="text-neutral-dark-2 flex items-center border-y pr-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y pr-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 Unlimited
               </div>
 
-              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 Teams
               </div>
-              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 1
               </div>
-              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 Unlimited
               </div>
-              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 Unlimited
               </div>
-              <div className="text-neutral-dark-2 flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 Unlimited
               </div>
             </div>
 
             <div className="grid grid-cols-5 grid-rows-5">
               <div className="col-span-5 flex h-20 w-full items-center gap-3 bg-[#FFF8F2] pb-7 pl-3 pr-10 pt-7">
-                <p className="text-neutral-dark-2 font-sans text-base font-bold leading-normal">
+                <p className="font-sans text-base font-bold leading-normal text-neutral-dark-2">
                   Sharing and collaboration
                 </p>
               </div>
-              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 Integration
               </div>
 
@@ -390,7 +390,7 @@ const PriceCard: React.FC = () => {
                 />
               </div>
               {/* Second row */}
-              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 Guest Access
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
@@ -422,7 +422,7 @@ const PriceCard: React.FC = () => {
                 />
               </div>
               {/* Third row */}
-              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 Page Analysis
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
@@ -454,7 +454,7 @@ const PriceCard: React.FC = () => {
                 />
               </div>
               {/* Fourth row */}
-              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 Task Mangement
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
@@ -489,11 +489,11 @@ const PriceCard: React.FC = () => {
 
             <div className="grid grid-cols-5 grid-rows-4">
               <div className="col-span-5 flex h-20 w-full items-center gap-3 bg-[#FFF8F2] pb-7 pl-3 pr-10 pt-7">
-                <p className="text-neutral-dark-2 font-sans text-base font-bold leading-normal">
+                <p className="font-sans text-base font-bold leading-normal text-neutral-dark-2">
                   Management and security
                 </p>
               </div>
-              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 Team Security
               </div>
 
@@ -520,7 +520,7 @@ const PriceCard: React.FC = () => {
                 />
               </div>
               {/* Second row */}
-              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 Data Backup
               </div>
               <div className="flex items-center justify-center border-y"></div>
@@ -546,7 +546,7 @@ const PriceCard: React.FC = () => {
                 />
               </div>
               {/* Third row */}
-              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 HIPAA Compliance
               </div>
               <div className="flex items-center justify-center border-y"></div>
@@ -575,11 +575,11 @@ const PriceCard: React.FC = () => {
 
             <div className="grid grid-cols-5 grid-rows-3">
               <div className="col-span-5 flex h-20 w-full items-center gap-3 bg-[#FFF8F2] pb-7 pl-3 pr-10 pt-7">
-                <p className="text-neutral-dark-2 font-sans text-base font-bold leading-normal">
+                <p className="font-sans text-base font-bold leading-normal text-neutral-dark-2">
                   Support
                 </p>
               </div>
-              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 Priority Support
               </div>
 
@@ -612,7 +612,7 @@ const PriceCard: React.FC = () => {
                 />
               </div>
               {/* Second row */}
-              <div className="text-neutral-dark-2 flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 sm:text-base">
+              <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 Customer Support
               </div>
               <div className="flex items-center justify-center border-y"></div>
