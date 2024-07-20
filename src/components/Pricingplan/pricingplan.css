@@ -104,3 +104,9 @@
      line-height: 24px;
      font-weight: 400;
  }
+
+ @media (max-width: 360px) {
+    .ghgh{
+        width: min(98%, 350px);
+    }
+ }
