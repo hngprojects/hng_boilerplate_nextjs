@@ -18,17 +18,17 @@ const Search = (properties: SearchProperties) => {
     }
   };
   return (
-    <div className="relative w-[470px] h-[44px] m-auto mt-4">
+    <div className="relative m-auto mt-4 h-[44px] w-[470px]">
       <input
         type="search"
         name="search"
         placeholder={value}
         style={{ borderColor: "#CBD5E1" }}
-        className=" h-10 px-5 pr-10 w-full rounded-full border outline-none text-sm"
+        className="h-10 w-full rounded-full border px-5 pr-10 text-sm outline-none"
         onChange={handleOnChange}
         onKeyDown={handleKeyDown}
       />
-      <button type="submit" className="absolute right-0 top-0 mt-3 mr-4">
+      <button type="submit" className="absolute right-0 top-0 mr-4 mt-3">
         <svg
           className="h-4 w-4 fill-current"
           xmlns="http://www.w3.org/2000/svg"
