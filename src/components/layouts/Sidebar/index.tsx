@@ -2,7 +2,6 @@
 
 import {
   ArrowLeft,
-  ArrowRight,
   Bell,
   Briefcase,
   Building2,
@@ -15,7 +14,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-import { Button } from "~/components/ui/button";
+import CustomButton from "~/components/common/Button/button";
 import { cn } from "~/lib/utils";
 
 interface SidebarItem {
@@ -41,45 +40,59 @@ const Sidebar = () => {
     <>
       <div
         className={cn(
-          "flex flex-col h-screen bg-white border-r transition-all duration-300",
-          isOpen ? "w-64" : "w-16",
+          "flex h-screen flex-col border-r bg-white transition-all duration-300",
+          "dark:bg-neutralColor-dark-1",
+          isOpen ? "w-64" : "w-24",
         )}
       >
-        <div className="p-4 flex justify-between items-center mt-2 mb-5  mx-4 px-2">
-          {isOpen && (
-            <span className="text-center font-inter text-neutral-dark1 text-xl font-medium leading-[24.2px]">
-              LOGO
-            </span>
-          )}
-
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            onClick={() => {
-              setIsOpen((previous) => !previous);
-            }}
-            className="ml-auto"
+        <div className="mx-4 mb-5 mt-2 flex items-center justify-between p-4 px-2">
+          <span
+            className={cn(
+              "font-inter text-neutralColor-dark-1 text-center text-xl font-medium leading-[24.2px] dark:text-white",
+              !isOpen && "cursor-pointer",
+            )}
+            onClick={() => !isOpen && setIsOpen(true)}
           >
-            {isOpen ? <ArrowLeft size={20} /> : <ArrowRight size={20} />}
-          </Button>
+            LOGO
+          </span>
+
+          <div
+            className={isOpen ? "ml-auto" : "ml-0"}
+            onClick={() => setIsOpen((previous) => !previous)}
+          >
+            {isOpen && (
+              <CustomButton
+                variant="ghost"
+                size="icon"
+                isIconOnly={true}
+                icon={
+                  <ArrowLeft
+                    size={20}
+                    className="text-neutralColor-dark-1 dark:text-white"
+                  />
+                }
+              />
+            )}
+          </div>
         </div>
-        <nav className="flex-1 mt-3">
+        <nav className="mt-3 flex-1">
           {sidebarItems.map((item) => (
             <Link
               key={item.name}
               href={item.href}
               className={cn(
-                "flex items-center my-5 py-1 mx-4 px-2 font-medium text-base leading-[19.2px] text-center font-inter text-neutral-dark1",
-                pathname === item.href && "text-white bg-primary_color",
-                !isOpen && "justify-center bg-white ",
-                isOpen && "rounded",
+                "font-inter text-neutralColor-dark-1 mx-2 my-5 flex items-center py-1 text-center text-base font-medium leading-[19.2px] dark:text-white",
+                pathname === item.href && "text-white",
+                !isOpen && "justify-center",
+                isOpen && "rounded-lg",
               )}
             >
               <div
                 className={cn(
-                  "p-2  flex items-center justify-center",
-                  pathname === item.href && "rounded-full bg-primary_color",
+                  "flex items-center justify-center p-2",
+                  pathname === item.href && "bg-primary",
+                  isOpen && "rounded-lg px-5",
+                  !isOpen && "rounded-full",
                 )}
               >
                 <item.icon
@@ -89,9 +102,9 @@ const Sidebar = () => {
                     pathname === item.href && "text-white",
                   )}
                 />
-              </div>
 
-              {isOpen && <span className="ml-3">{item.name}</span>}
+                {isOpen && <span className="ml-3">{item.name}</span>}
+              </div>
             </Link>
           ))}
         </nav>

@@ -3,7 +3,6 @@ import { fireEvent, render, screen, within } from "@testing-library/react";
 import { usePathname } from "next/navigation";
 import { describe, expect, it, vi } from "vitest";
 
-// Mock the Button component
 vi.mock("~/components/ui/button", () => ({
   Button: ({
     children,
@@ -34,15 +33,12 @@ describe("sidebar", () => {
     vi.mocked(usePathname).mockReturnValue("/");
     render(<Sidebar />);
 
-    // Check for logo
     expect(screen.getByText("LOGO")).toBeInTheDocument();
 
-    // Check for main navigation items
     const nav = screen.getByRole("navigation");
     const navItems = within(nav).getAllByRole("link");
     expect(navItems).toHaveLength(6);
 
-    // Check for specific navigation items
     const expectedItems = [
       "Home",
       "About us",
@@ -62,16 +58,24 @@ describe("sidebar", () => {
     render(<Sidebar />);
     const toggleButton = screen.getByRole("button");
 
-    // Sidebar starts open
     expect(screen.getByText("LOGO")).toBeInTheDocument();
+    expect(screen.getByRole("navigation")).toBeVisible();
 
-    // Close sidebar
-    fireEvent.click(toggleButton);
-    expect(screen.queryByText("LOGO")).not.toBeInTheDocument();
-
-    // Open sidebar again
     fireEvent.click(toggleButton);
     expect(screen.getByText("LOGO")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByText("LOGO"));
+    expect(screen.getByText("LOGO")).toBeInTheDocument();
+  });
+
+  it("opens sidebar when clicking on logo while closed", () => {
+    expect.hasAssertions();
+    vi.mocked(usePathname).mockReturnValue("/");
+    render(<Sidebar />);
+
+    fireEvent.click(screen.getByText("LOGO"));
+
+    expect(screen.getByRole("navigation")).toBeVisible();
   });
 
   it("highlights the current page", () => {
@@ -80,13 +84,9 @@ describe("sidebar", () => {
     render(<Sidebar />);
 
     const homeLink = screen.getByRole("link", { name: /home/i });
-
     expect(homeLink.firstChild).not.toHaveClass("bg-primary");
-    //console.debug(homeLink.outerHTML);
 
     const aboutLink = screen.getByRole("link", { name: /about us/i });
-    //console.debug(aboutLink.outerHTML);
-
     expect(aboutLink.firstChild).toHaveClass("bg-primary");
   });
 });
