@@ -3,10 +3,8 @@
 import Image from "next/image";
 import React from "react";
 
-// eslint-disable-next-line prettier/prettier
-import CustomButton from "../Button/button";
-// eslint-disable-next-line prettier/prettier
 import { useToast } from "~/components/ui/use-toast";
+import CustomButton from "../Button/button";
 
 interface ProductDetailsProperties {
   productName?: string;

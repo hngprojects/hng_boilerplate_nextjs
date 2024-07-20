@@ -23,24 +23,24 @@ describe("productDetailsCard", () => {
     render(<ProductDetailsCard {...defaultProps} />);
 
     expect(screen.getByText("Test Product")).not.toBeNull();
-    const productImage = screen.queryByAltText("Product Test Product Image");
-    expect(productImage).not.toBeNull();
-    // eslint-disable-next-line vitest/no-conditional-in-test
-    if (productImage) {
-      // eslint-disable-next-line vitest/no-conditional-expect
-      expect(productImage.getAttribute("src")).toContain("test-image.jpg");
-    }
     expect(screen.getByText("Product ID")).not.toBeNull();
     expect(screen.getByText("T123")).not.toBeNull();
-    // eslint-disable-next-line vitest/max-expects
+  });
+
+  it("renders product metadata correctly", () => {
+    expect.hasAssertions();
+    render(<ProductDetailsCard {...defaultProps} />);
+
     expect(screen.getByText("Category Test")).not.toBeNull();
-    // eslint-disable-next-line vitest/max-expects
     expect(screen.getByText("2024-01-01, 12:00:00")).not.toBeNull();
-    // eslint-disable-next-line vitest/max-expects
     expect(screen.getByText("20pcs")).not.toBeNull();
-    // eslint-disable-next-line vitest/max-expects
+  });
+
+  it("renders product price and description correctly", () => {
+    expect.hasAssertions();
+    render(<ProductDetailsCard {...defaultProps} />);
+
     expect(screen.getByText("$100.00")).not.toBeNull();
-    // eslint-disable-next-line vitest/max-expects
     expect(
       screen.getByText("This is a test product description."),
     ).not.toBeNull();
@@ -101,10 +101,6 @@ describe("productDetailsCard", () => {
 
     const image = screen.getByAltText("Product Test Product Image");
     expect(image).not.toBeNull();
-    // eslint-disable-next-line vitest/no-conditional-in-test
-    if (image) {
-      // eslint-disable-next-line vitest/no-conditional-expect
-      expect(image.getAttribute("src")).toContain("test-image.jpg");
-    }
+    expect(image.getAttribute("src")).toContain("test-image.jpg");
   });
 });
