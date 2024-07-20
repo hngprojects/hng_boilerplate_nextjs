@@ -1,4 +1,3 @@
-// components/OtpInput.tsx
 import React, { useEffect, useRef, useState } from "react";
 
 interface OTPInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -18,8 +17,7 @@ const OtpInput: React.FC<OTPInputProps> = ({
     index: number,
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
-    const { value } = event.target as HTMLInputElement;
-    if (/[^0-9]/.test(value)) return; // Only allow numeric input
+    const value = event.target.value.slice(0, 1); // Restrict to one character
     const newOtp = [...otp];
     newOtp[index] = value;
     setOtp(newOtp);
@@ -30,16 +28,23 @@ const OtpInput: React.FC<OTPInputProps> = ({
     }
   };
 
-  const handleKeyDown = (
-    event: React.KeyboardEvent<HTMLInputElement>,
-    index: number,
-  ) => {
-    if (event.key === "Backspace" && otp[index] === "") {
-      if (index > 0) {
-        inputRefs.current[index - 1]?.focus();
-      }
-    }
-  };
+  //   const handleKeyDown = (
+  //     event: React.KeyboardEvent<HTMLInputElement>,
+  //     index: number,
+  //   ) => {
+  //     if (event.key === "Backspace") {
+  //       if (otp[index] === "") {
+  //         if (index > 0) {
+  //           inputRefs.current[index - 1]?.focus();
+  //         }
+  //       } else {
+  //         const newOtp = [...otp];
+  //         newOtp[index] = "";
+  //         setOtp(newOtp);
+  //         onInputChange(newOtp.join(""));
+  //       }
+  //     }
+  //   };
 
   useEffect(() => {
     inputRefs.current[0]?.focus();
@@ -57,8 +62,8 @@ const OtpInput: React.FC<OTPInputProps> = ({
           maxLength={1}
           value={otp[index]}
           onChange={(e) => handleChange(index, e)}
-          onKeyDown={(e) => handleKeyDown(e, index)}
-          className={`w-15 h-15 border text-center ${otp[index] ? "border-red-500" : "border-gray-300"} rounded-md focus:outline-none`}
+          //   onKeyDown={(e) => handleKeyDown(e, index)}
+          className={`h-[60px] w-[60px] border text-center ${otp[index] ? "border-[#EF4444]" : "border-[#CBD5E1]"} rounded-md focus:outline-none`}
           {...props}
         />
       ))}
