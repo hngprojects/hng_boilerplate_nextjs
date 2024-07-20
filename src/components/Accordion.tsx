@@ -47,7 +47,7 @@ const Accordion: React.FC<AccordionProperties> = ({ items }) => {
             onClick={() => handleClick(index)}
             aria-expanded={index === activeIndex ? "true" : "false"}
           >
-            <span>{item.header}</span>
+            <span style={{fontWeight: "500"}} >{item.header}</span>
             <svg
               className={`accordion-icon transform transition-transform duration-300 ${index === activeIndex ? "rotate-180" : ""
                 }`}
