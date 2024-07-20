@@ -3,12 +3,12 @@ import AboutUsPage from "~/components/layouts/AboutUs/AboutUs";
 export default function Home() {
   return (
     <>
-      {/* <Hero />
+      <Hero />
       <UserSection />
       <HowItWorks />
       <Testimonials />
-      <PerfectFit /> */}
-      <AboutUsPage />
+      <PerfectFit />
+      
     </>
   );
 }
