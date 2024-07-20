@@ -123,7 +123,7 @@ export const GoverningLaw = [
 ];
 
 export const Contents = [
- { id: "introduction", text: "Introduction" },
+  { id: "introduction", text: "Introduction" },
   { id: "user-obligations", text: "User Obligations" },
   { id: "acceptable-use-policy", text: "Acceptable Use Policy" },
   { id: "intellectual-property", text: "Intellectual Property Right" },
