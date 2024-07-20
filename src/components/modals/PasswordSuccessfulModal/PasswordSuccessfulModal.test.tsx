@@ -1,84 +1,48 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import PasswordSuccessfulModal from "~/components/modals/PasswordSuccessfulModal/PasswordSuccessfulModal";
+import PasswordSuccessfulModal from "./PasswordSuccessfulModal";
 
-test("renders the modal when show is true", () => {
-  render(<PasswordSuccessfulModal show={true} onClose={() => {}} />);
-  expect(
-    screen.getByText("Password Successfully Updated!"),
-  ).toBeInTheDocument();
-  expect(
-    screen.getByText(
-      "Your password has been successfully updated! You can now log in with your new password.",
-    ),
-  ).toBeInTheDocument();
-});
+describe("testimonials Component", () => {
+  it("renders the modal when show is true", () => {
+    expect.assertions(2);
 
-test("close the modal when continue is clicked", async () => {
-  const user = userEvent.setup();
-  let modalClosed = false;
-  const handleClose = () => {
-    modalClosed = true;
-  };
-  render(<PasswordSuccessfulModal show={true} onClose={handleClose} />);
+    render(<PasswordSuccessfulModal show={true} onClose={() => {}} />);
+    expect(
+      screen.getByText("Password Successfully Updated!"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "Your password has been successfully updated! You can now log in with your new password.",
+      ),
+    ).toBeInTheDocument();
+  });
 
-  await user.click(screen.getByText("Continue"));
+  it("close the modal when continue is clicked", async () => {
+    expect.assertions(1);
+    const user = userEvent.setup();
+    let modalClosed = false;
+    const handleClose = () => {
+      modalClosed = true;
+    };
+    render(<PasswordSuccessfulModal show={true} onClose={handleClose} />);
 
-  expect(modalClosed).toBeTruthy();
-});
+    await user.click(screen.getByText("Continue"));
 
-test("close the modal when outside the modal is clicked", async () => {
-  const user = userEvent.setup();
-  let modalClosed = false;
-  const handleClose = () => {
-    modalClosed = true;
-  };
-  render(<PasswordSuccessfulModal show={true} onClose={handleClose} />);
+    expect(modalClosed).toBeTruthy();
+  });
 
-  await user.click(screen.getByTestId("overlay"));
+  it("close the modal when outside the modal is clicked", async () => {
+    expect.assertions(1);
+    const user = userEvent.setup();
+    let modalClosed = false;
+    const handleClose = () => {
+      modalClosed = true;
+    };
+    render(<PasswordSuccessfulModal show={true} onClose={handleClose} />);
 
-  expect(modalClosed).toBeTruthy();
-  describe("password successful modal", () => {
-    it("renders the modal when show is true", () => {
-      expect.assertions(2);
-      render(<PasswordSuccessfulModal show={true} onClose={() => {}} />);
-      expect(
-        screen.getByText("Password Successfully Updated!"),
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText(
-          "Your password has been successfully updated! You can now log in with your new password.",
-        ),
-      ).toBeInTheDocument();
-    });
+    await user.click(screen.getByTestId("overlay"));
 
-    it("close the modal when continue is clicked", async () => {
-      expect.assertions(1);
-      const user = userEvent.setup();
-      let modalClosed = false;
-      const handleClose = () => {
-        modalClosed = true;
-      };
-      render(<PasswordSuccessfulModal show={true} onClose={handleClose} />);
-
-      await user.click(screen.getByText("Continue"));
-
-      expect(modalClosed).toBeTruthy();
-    });
-
-    it("close the modal when outside the modal is clicked", async () => {
-      expect.assertions(1);
-      const user = userEvent.setup();
-      let modalClosed = false;
-      const handleClose = () => {
-        modalClosed = true;
-      };
-      render(<PasswordSuccessfulModal show={true} onClose={handleClose} />);
-
-      await user.click(screen.getByTestId("overlay"));
-
-      expect(modalClosed).toBeTruthy();
-    });
+    expect(modalClosed).toBeTruthy();
   });
 });
