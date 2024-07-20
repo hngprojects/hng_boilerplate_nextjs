@@ -6,7 +6,7 @@ const BlogDetailsPage = () => {
   return (
     <div>
       <div className="flex flex-col pl-[30px] md:pl-[0]">
-        red
+        Blog Details Section
         <RelatedArticle />
       </div>
     </div>
