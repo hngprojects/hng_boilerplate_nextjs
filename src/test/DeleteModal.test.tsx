@@ -17,7 +17,7 @@ describe('DeleteModal', () => {
     render(<DeleteModal closeDeleteModal={vi.fn()} />);
     const modalContent = screen.getByTestId('modal-content');
 
-    
+    // Check for the specific classes instead of the entire class name string
     expect(modalContent).toHaveClass('absolute');
     expect(modalContent).toHaveClass('max-w-[1440px]');
     expect(modalContent).toHaveClass('lg:left-[33%]');
