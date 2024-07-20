@@ -7,7 +7,7 @@ const index = () => {
         Dashboard
       </h1>
       <Tabs defaultValue="overview" className="w-[400px]">
-        <TabsList data-testid="tab" className="bg-white">
+        <TabsList data-testid="tab" className="bg-white px-[5px] py-[4px]">
           <TabsTrigger aria-label="tab 1" role="tab" value="overview">
             Overview
           </TabsTrigger>
