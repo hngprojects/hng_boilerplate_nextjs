@@ -27,7 +27,7 @@ export default function TopProductLists() {
   ];
   return (
     <Card
-      className="gap-6 rounded-xl w-[25.687rem]"
+      className="w-[25.687rem] gap-6 rounded-xl"
       data-testid="top-products-card"
     >
       <CardHeader
@@ -36,13 +36,13 @@ export default function TopProductLists() {
       >
         <div className="flex-col gap-y-2">
           <CardTitle
-            className="font-semibold text-2xl"
+            className="text-2xl font-semibold"
             data-testid="top-products-title"
           >
             Top Products
           </CardTitle>
           <CardDescription
-            className="font-normal text-xs"
+            className="text-xs font-normal"
             data-testid="top-products-description"
           >
             Your top selling products appear here.
@@ -50,7 +50,7 @@ export default function TopProductLists() {
         </div>
         <div>
           <Button
-            className="gap-x-2 rounded-md text-xs bg-[#F97316]"
+            className="gap-x-2 rounded-md bg-[#F97316] text-xs"
             size="sm"
             data-testid="view-all-button"
           >
