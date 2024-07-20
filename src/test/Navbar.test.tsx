@@ -1,7 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { signIn, useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
-import { afterEach, describe, expect, it, vi } from "vitest";
 
 import Navbar from "../components/layouts/Navbar/index";
 
@@ -36,9 +35,8 @@ vi.mock("next/link", () => ({
 // }));
 
 describe("navbar component", () => {
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
+  // afterEach(() => {
+  // });
 
   it("renders desktop navbar correctly when user is not signed in", () => {
     expect.assertions(5);
@@ -52,7 +50,8 @@ describe("navbar component", () => {
     const headings = screen.getAllByText("HNG Boilerplate");
     expect(headings[0]).toBeInTheDocument(); // Adjust based on your requirements
 
-    // Assertions for navigation links
+    vi.clearAllMocks();
+
     expect(screen.getByText("Home")).toHaveClass("text-primary");
     expect(screen.getByText("Pricing")).toHaveClass("text-neutral-dark-2");
     expect(screen.getByText("Career")).toHaveClass("text-neutral-dark-2");
