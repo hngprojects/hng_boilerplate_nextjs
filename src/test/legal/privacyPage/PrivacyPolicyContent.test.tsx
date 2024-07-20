@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 
-import privacyPolicyData from "~/components/layouts/PrivacyPolicy/constants/privacyPolicyData";
-import PrivacyPolicyContent from "~/components/layouts/PrivacyPolicy/PrivacyPolicyContent";
+import privacyPolicyData from "~/components/layouts/Legal/PrivacyPolicy/constants/privacyPolicyData";
+import PrivacyPolicyContent from "~/components/layouts/Legal/PrivacyPolicy/PrivacyPolicyContent";
 
 describe("privacyPolicyContent", () => {
   it("renders all sections with correct titles and content", () => {
