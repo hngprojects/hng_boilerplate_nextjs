@@ -83,11 +83,11 @@ const HBPCommentBox = ({
 
   return (
     <div
-      className="max-w-full·space-y-3·sm:max-w-[780px]·sm:space-y-4"
+      className="max-w-full space-y-3 sm:max-w-[780px] sm:space-y-4"
       data-testid="comment-box-container"
     >
       <Card
-        className={cn("w-full·border·border-gray-200", className)}
+        className={cn("w-full border border-gray-200", className)}
         {...properties}
         data-testid="comment-card"
       >
@@ -111,10 +111,10 @@ const HBPCommentBox = ({
 
       {showReply && (
         <div
-          className="relative·ml-4·sm:ml-12"
+          className="relative ml-4 sm:ml-12"
           data-testid="reply-form-container"
         >
-          <div className="bottom-0·left-0·top·absolute w-px bg-gray-200" />
+          <div className="absolute bottom-0 left-0 top-0 w-px bg-gray-200" />
           <ReplyForm onSubmit={handleReplySubmit} />
         </div>
       )}
@@ -122,10 +122,10 @@ const HBPCommentBox = ({
       {replies.map((reply) => (
         <div
           key={reply.id}
-          className="relative·ml-4·sm:ml-12"
+          className="relative ml-4 sm:ml-12"
           data-testid={`reply-${reply.id}`}
         >
-          <div className="lbottom-0·left-0·top·absolute w-px bg-gray-200" />
+          <div className="lbottom-0 top absolute left-0 w-px bg-gray-200" />
           <Card className="w-full">
             <CardContent className="p-3 sm:p-4">
               <CommentBody

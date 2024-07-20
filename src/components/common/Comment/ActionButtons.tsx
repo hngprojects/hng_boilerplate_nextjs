@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
-import { Button } from "../Button";
+import CustomButton from "../Button/button";
 
 type ActionButtonsProperties = {
   type: "comment" | "reply";
@@ -33,58 +33,67 @@ const ActionButtons = ({
     onReply?.();
   };
 
-  const buttonClass =
-    "flex items-center space-x-1 border border-[#E4E4E7] bg-[#FAFAFA] text-[#525252] hover:bg-[#F97316] hover:text-white active:bg-[#F97316] active:text-white px-2 py-2 transition duration-150 ease-in-out";
-
   return (
     <div
-      className="mt-2 flex items-center space-x-4 text-sm"
-      data-testid="action-buttons"
+      className="mt-2 flex items-center space-x-2 text-sm sm:space-x-4"
+      aria-label="Action Buttons"
     >
-      <Button
-        size="sm"
-        className={buttonClass}
+      <CustomButton
+        variant="outline"
+        className="h-auto p-1 hover:bg-primary hover:text-white"
         onClick={onLike}
-        data-testid="like-button"
+        aria-label="Like Button"
+        isLeftIconVisible={true}
+        icon={<ThumbsUp className="h-4 w-4" aria-label="Thumbs Up Icon" />}
       >
-        <ThumbsUp className="h-4 w-4" data-testid="thumbs-up-icon" />
-        <span className="text-[#525252]" data-testid="likes-count">
+        <span className="text-bg-subtle" aria-label="Likes Count">
           {likes}
         </span>
-      </Button>
-      <Button
-        size="sm"
-        className={buttonClass}
+      </CustomButton>
+      <CustomButton
+        variant="outline"
+        className="h-auto p-1 hover:bg-primary hover:text-white"
         onClick={onDislike}
-        data-testid="dislike-button"
+        aria-label="Dislike Button"
+        isLeftIconVisible={true}
+        icon={<ThumbsDown className="h-4 w-4" aria-label="Thumbs Down Icon" />}
       >
-        <ThumbsDown className="h-4 w-4" data-testid="thumbs-down-icon" />
-        <span className="text-[#525252]" data-testid="dislikes-count">
+        <span className="text-bg-subtle" aria-label="Dislikes Count">
           {dislikes}
         </span>
-      </Button>
-      <Button size="sm" className={buttonClass} data-testid="share-button">
-        <Share2 className="h-4 w-4" data-testid="share-icon" />
-      </Button>
-      <Button size="sm" className={buttonClass} data-testid="forward-button">
-        <Forward className="h-4 w-4" data-testid="forward-icon" />
-      </Button>
+      </CustomButton>
+      <CustomButton
+        className="p-1 hover:bg-primary hover:text-white"
+        variant="outline"
+        size="icon"
+        isIconOnly={true}
+        icon={<Share2 className="h-4 w-4" aria-label="Share Icon" />}
+        aria-label="Share Button"
+      />
+      <CustomButton
+        className="p-1 hover:bg-primary hover:text-white"
+        variant="outline"
+        size="icon"
+        isIconOnly={true}
+        icon={<Forward className="h-4 w-4" aria-label="Forward Icon" />}
+        aria-label="Forward Button"
+      />
+
       {type === "comment" && onReply && (
-        <Button
-          size="sm"
-          className={`${buttonClass} ${
-            isActive
-              ? "bg-[#F97316] text-white"
-              : "bg-[#FAFAFA] text-[#525252] hover:bg-[#F97316] hover:text-white"
-          }`}
+        <CustomButton
+          className="p-1 hover:bg-primary hover:text-white focus:bg-primary focus:text-white active:bg-primary active:text-white"
           onClick={handleClick}
-          data-testid="reply-button"
-        >
-          <MessageSquare
-            className="h-4 w-4"
-            data-testid="message-square-icon"
-          />
-        </Button>
+          aria-label="Reply Button"
+          variant="outline"
+          size="icon"
+          isIconOnly={true}
+          icon={
+            <MessageSquare
+              className="h-4 w-4"
+              aria-label="Message Square Icon"
+            />
+          }
+        />
       )}
     </div>
   );
