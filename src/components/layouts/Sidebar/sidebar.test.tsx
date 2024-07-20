@@ -84,6 +84,7 @@ describe("sidebar", () => {
     render(<Sidebar />);
 
     const homeLink = screen.getByRole("link", { name: /home/i });
+<<<<<<< HEAD
     expect(homeLink.firstChild).not.toHaveClass("bg-primary");
 
     const aboutLink = screen.getByRole("link", { name: /about us/i });
@@ -91,14 +92,18 @@ describe("sidebar", () => {
     console.debug(homeLink.firstChild.outerHTML);
     expect(homeLink).not.toHaveClass("text-white bg-primary_color");
 
+=======
+>>>>>>> 0286da5 (feat: Added Dark mode class and fixed active nav-link width)
     expect(homeLink.firstChild).not.toHaveClass("bg-primary");
-    //console.debug(homeLink.outerHTML);
 
     const aboutLink = screen.getByRole("link", { name: /about us/i });
+<<<<<<< HEAD
     //console.debug(aboutLink.outerHTML);
     console.debug(aboutLink.children[0].outerHTML);
     expect(aboutLink).toHaveClass("text-white bg-primary_color");
 
+=======
+>>>>>>> 0286da5 (feat: Added Dark mode class and fixed active nav-link width)
     expect(aboutLink.firstChild).toHaveClass("bg-primary");
   });
 });
