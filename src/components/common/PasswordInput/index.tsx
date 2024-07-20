@@ -5,7 +5,6 @@ import { useState } from "react";
 
 import { Input } from "~/components/ui/input";
 
-
 interface PasswordToggleProperties {
   password: string;
   onPasswordChange: (password: string) => void;
@@ -23,8 +22,8 @@ const PasswordInput: React.FC<PasswordToggleProperties> = ({
 }) => {
   const [isPasswordHidden, setPasswordHidden] = useState(true);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onPasswordChange(e.target.value);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onPasswordChange(event.target.value);
   };
 
   return (
