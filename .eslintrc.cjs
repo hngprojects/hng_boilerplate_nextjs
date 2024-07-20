@@ -45,6 +45,7 @@ module.exports = {
   ],
   rules: {
     "unused-imports/no-unused-imports": "error",
+    "prettier/prettier": "error",
     "unused-imports/no-unused-vars": [
       "warn",
       {
