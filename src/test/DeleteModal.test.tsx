@@ -1,6 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, test, expect, vi } from 'vitest';
-import DeleteModal from '../components/common/DeleteModal'; 
+import DeleteModal from '../components/modals/DeleteModal'; 
 import { useDeleteModal } from '~/hooks/useDeleteModal';
 
 vi.mock('~/hooks/useDeleteModal', () => ({
