@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
 import { AlignJustify, BellIcon, User } from "lucide-react";
@@ -8,7 +9,7 @@ import { usePathname } from "next/navigation";
 import { Button } from "~/components/common/Button";
 import Logo from "~/components/common/Logo/logo";
 
-const Navbar = () => {
+const test = () => {
   const { data: session } = useSession();
 
   const pathname = usePathname();
@@ -138,4 +139,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default test;
