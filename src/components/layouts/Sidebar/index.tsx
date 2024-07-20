@@ -65,10 +65,6 @@ const Sidebar = () => {
             }}
             className="ml-auto"
           >
-<<<<<<< HEAD
-            {isOpen ? <ArrowLeft size={20} /> : <ArrowRight size={20} />}
-          </Button>
-=======
             {isOpen && (
               <CustomButton
                 variant="ghost"
@@ -83,7 +79,6 @@ const Sidebar = () => {
               />
             )}
           </div>
->>>>>>> 0286da5 (feat: Added Dark mode class and fixed active nav-link width)
         </div>
         <nav className="mt-3 flex-1">
           {sidebarItems.map((item) => (
@@ -91,29 +86,18 @@ const Sidebar = () => {
               key={item.name}
               href={item.href}
               className={cn(
-<<<<<<< HEAD
-                "font-inter text-neutral-dark1 mx-4 my-5 flex items-center px-2 py-1 text-center text-base font-medium leading-[19.2px]",
-                pathname === item.href && "bg-primary_color text-white",
-                !isOpen && "justify-center bg-white",
-                isOpen && "rounded",
-=======
                 "font-inter text-neutralColor-dark-1 mx-2 my-5 flex items-center py-1 text-center text-base font-medium leading-[19.2px] dark:text-white",
                 pathname === item.href && "text-white",
                 !isOpen && "justify-center",
                 isOpen && "rounded-lg",
->>>>>>> 0286da5 (feat: Added Dark mode class and fixed active nav-link width)
               )}
             >
               <div
                 className={cn(
                   "flex items-center justify-center p-2",
-<<<<<<< HEAD
-                  pathname === item.href && "bg-primary_color rounded-full",
-=======
                   pathname === item.href && "bg-primary",
                   isOpen && "rounded-lg px-5",
                   !isOpen && "rounded-full",
->>>>>>> 0286da5 (feat: Added Dark mode class and fixed active nav-link width)
                 )}
               >
                 <item.icon
