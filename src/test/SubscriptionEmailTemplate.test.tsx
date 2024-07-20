@@ -1,5 +1,7 @@
 import "./setup";
+
 import { render, screen } from "@testing-library/react";
+
 import SubscriptionRenewalEmail from "~/email/templates/subscription-renewal-reminder/Subscription";
 
 describe("subscriptionEmail Component", () => {
@@ -24,7 +26,11 @@ describe("subscriptionEmail Component", () => {
     expect(screen.getByText(properties.title)).toBeInTheDocument();
     expect(screen.getByText(`Hi ${properties.name},`)).toBeInTheDocument();
     expect(screen.getByText(properties.renewalDate)).toBeInTheDocument();
-    expect(screen.getByText(`${properties.renewalPrice}/${properties.renewalPeriod} features`)).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        `${properties.renewalPrice}/${properties.renewalPeriod} features`,
+      ),
+    ).toBeInTheDocument();
     expect(screen.getByText(properties.companyName)).toBeInTheDocument();
   });
 
@@ -39,7 +45,9 @@ describe("subscriptionEmail Component", () => {
       { name: "click here", url: properties.unsubscribeUrl },
     ];
     for (const link of links) {
-      expect(screen.getByRole("link", { name: link.name }).getAttribute("href")).toBe(link.url);
+      expect(
+        screen.getByRole("link", { name: link.name }).getAttribute("href"),
+      ).toBe(link.url);
     }
   });
 });
