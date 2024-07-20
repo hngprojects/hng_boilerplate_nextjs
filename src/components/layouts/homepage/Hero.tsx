@@ -17,7 +17,7 @@ const Hero = () => {
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <div className="flex flex-col items-center lg:flex-row">
           <div className="w-full lg:w-1/2">
-            <h1 className="mb-2 text-4xl font-bold leading-snug md:text-5xl lg:leading-tight lg:text-6xl">
+            <h1 className="mb-2 text-4xl font-bold leading-snug md:text-5xl lg:text-6xl lg:leading-tight">
               {`Focus on What Matters. We've Got the Foundation Covered.`}
             </h1>
 
