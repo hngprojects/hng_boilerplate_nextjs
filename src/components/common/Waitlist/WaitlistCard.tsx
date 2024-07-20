@@ -10,7 +10,7 @@ import { cn } from "~/lib/utils";
 
 type CardProperties = React.ComponentProps<typeof Card>;
 
-export type WaitlistCardProps = CardProperties & {
+export type WaitlistCardProperties = CardProperties & {
   cardTitle: string;
   cardDescription: string;
   cardIcon: string;
@@ -26,7 +26,7 @@ const WaitlistCard = ({
   cardDescription,
   cardIcon,
   ...properties
-}: WaitlistCardProps) => {
+}: WaitlistCardProperties) => {
   return (
     <Card
       className={cn(
