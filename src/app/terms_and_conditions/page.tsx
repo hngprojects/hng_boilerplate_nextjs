@@ -1,11 +1,11 @@
-import Breadcrumb from "../../components/common/LegalTerms/Terms&Conditions/Main";
 import Hero from "../../components/common/LegalTerms/Terms&Conditions/Hero";
+import Main from "../../components/common/LegalTerms/Terms&Conditions/Main";
 
 const TermsConditions = () => {
   return (
-    <div>
-      <Hero />
-      <Breadcrumb />
+    <div className="">
+      <Hero /> {/*Hero component to be replaced*/} 
+      <Main />
     </div>
   );
 };
