@@ -40,7 +40,7 @@ const Main = () => {
       <div className="flex max-w-full flex-col-reverse items-start justify-between pb-10 lg:flex-row">
         <div className="text-neutral-dark-1 lg:w-[612px]">
           <div
-            className="`max-w-full self-stretch xl:w-[612px]"
+            className="max-w-full self-stretch xl:w-[612px]"
             id="introduction"
           >
             <div className="relative mb-[10px] self-stretch text-2xl font-bold sm:text-[28px]">
@@ -53,19 +53,19 @@ const Main = () => {
               not agree, please do not use our website..
             </div>
           </div>
-          <div id="user-obligations" className="`mb-6 text-neutral-dark-1">
+          <div id="user-obligations" className="mb-6 text-neutral-dark-1">
             <UserObligations />
           </div>
-          <div id="acceptable-use-policy" className="`mb-6 text-neutral-dark-1">
+          <div id="acceptable-use-policy" className="mb-6 text-neutral-dark-1">
             <AcceptableUse />
           </div>
-          <div id="intellectual-property" className="`mb-6 text-neutral-dark-1">
+          <div id="intellectual-property" className="mb-6 text-neutral-dark-1">
             <IntellectualProperty />
           </div>
-          <div id="disclaimer" className="`mb-6 text-neutral-dark-1">
+          <div id="disclaimer" className="mb-6 text-neutral-dark-1">
             <Discclaimer />
           </div>
-          <div id="governing-law" className="`mb-6 text-neutral-dark-1">
+          <div id="governing-law" className="mb-6 text-neutral-dark-1">
             <GoverningLaws />
           </div>
           <div
@@ -84,7 +84,7 @@ const Main = () => {
             </div>
           </div>
           <div
-            className="`mb-6 flex flex-col items-start justify-start gap-[10px] self-stretch text-neutral-dark-1"
+            className="mb-6 flex flex-col items-start justify-start gap-[10px] self-stretch text-neutral-dark-1"
             id="contact-information"
           >
             <h2 className="font-inherit relative mt-0 self-stretch text-2xl font-bold text-inherit sm:text-[28px]">
@@ -111,7 +111,7 @@ const Main = () => {
           </div>
           <div className="mb-[10px] text-base text-neutral-dark-1">
             For more information about our privacy practices, please visit our{" "}
-            <Link href={"/privacy_policy"} className="text-primary underline">
+            <Link href={"/privacy-policy"} className="text-primary underline">
               Privacy Policy page.{" "}
             </Link>
           </div>
