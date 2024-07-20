@@ -14,19 +14,13 @@ export default function PrivacyPolicy() {
   const tableOfContents = getTableOfContents(privacyPolicyData);
 
   useEffect(() => {
+    const scrollClasses = "scroll-smooth scroll-pt-6 md:scroll-pt-10";
+
     const htmlElement = document.documentElement;
-    htmlElement.classList.add(
-      "scroll-smooth",
-      "scroll-pt-6",
-      "md:scroll-pt-10",
-    );
+    htmlElement.classList.add(scrollClasses);
 
     return () => {
-      htmlElement.classList.remove(
-        "scroll-smooth",
-        "scroll-pt-6",
-        "md:scroll-pt-10",
-      );
+      htmlElement.classList.remove(scrollClasses);
     };
   }, []);
 
