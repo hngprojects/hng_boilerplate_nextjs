@@ -43,9 +43,9 @@ const AddProduct = () => {
                         <Input name="images" id="images" type="file" />
                     </div>
                     <div className="grid w-full max-w-sm items-center gap-1.5 img-view-cover">
-                        <div className='img-view'></div>
-                        <div className='img-view'></div>
-                        <div className='img-view'></div>
+                        <div className='w-86 h-86 rounded-4 bg-customGray'></div>
+                        <div className='w-86 h-86 rounded-4 bg-customGray'></div>
+                        <div className='w-86 h-86 rounded-4 bg-customGray'></div>
                     </div>
                     <DialogFooter>
                         {/* Submit Button */}
