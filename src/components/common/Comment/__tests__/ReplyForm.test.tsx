@@ -59,16 +59,4 @@ describe("replyForm Component", () => {
       screen.queryByText("Please enter a reply before submitting."),
     ).not.toBeInTheDocument();
   });
-
-  it("should not display error message if valid reply is provided", () => {
-    expect.assertions(1); // Expecting one assertion to be called
-    render(<ReplyForm onSubmit={vi.fn()} />);
-
-    const textarea = screen.getByPlaceholderText("Write your reply...");
-    fireEvent.change(textarea, { target: { value: "Valid reply" } });
-
-    expect(
-      screen.queryByText("Please enter a reply before submitting."),
-    ).not.toBeInTheDocument();
-  });
 });

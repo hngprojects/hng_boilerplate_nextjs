@@ -56,7 +56,8 @@ export function CommentBody({
             className="font-inter text-xs font-medium text-[#525252] sm:text-sm"
             data-testid="comment-username"
           >
-            @{username}
+            <span>@</span>
+            <span>{username}</span>
           </span>
         </div>
         <p className="text-sm sm:text-base" data-testid="comment-text">

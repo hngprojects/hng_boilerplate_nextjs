@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Card, CardContent } from "../../ui/card";
 import { Textarea } from "../../ui/textarea";
 import CustomButton from "../Button/button";
+import ButtonWrapper from "./ButtonWrapper";
 
 export type ReplyFormProperties = {
   onSubmit: (content: string) => void;
@@ -43,6 +44,7 @@ export function ReplyForm({ onSubmit }: ReplyFormProperties) {
           </Avatar>
           <div className="w-full flex-1">
             <Textarea
+              data-testid="reply-input"
               placeholder="Write your reply..."
               className={`w-full text-sm text-[#656565] sm:text-base ${
                 error
@@ -59,9 +61,12 @@ export function ReplyForm({ onSubmit }: ReplyFormProperties) {
               </p>
             )}
             <div className="mt-2 flex justify-end">
-              <CustomButton variant="primary" onClick={handleSubmit}>
-                Reply
-              </CustomButton>
+              <ButtonWrapper
+                data-testid="reply-button-2"
+                onClick={handleSubmit}
+              >
+                <CustomButton variant="primary">Reply</CustomButton>
+              </ButtonWrapper>
             </div>
           </div>
         </div>

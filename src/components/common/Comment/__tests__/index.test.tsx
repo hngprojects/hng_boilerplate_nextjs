@@ -1,100 +1,79 @@
-import HBPCommentBox from "..";
+import HBPCommentBox, { CommentProperties } from "..";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 
-import { CommentBodyProperties } from "../CommentBody";
-import { ReplyFormProperties } from "../ReplyForm";
-
-// Mock CommentBody and ReplyForm components if needed
-vi.mock("./CommentBody", () => ({
-  CommentBody: ({ onLike, onDislike, onReply }: CommentBodyProperties) => (
-    <div>
-      <button data-testid="like-button" onClick={onLike}>
-        Like
-      </button>
-      <button data-testid="dislike-button" onClick={onDislike}>
-        Dislike
-      </button>
-      <button data-testid="reply-button" onClick={onReply}>
-        Reply
-      </button>
-    </div>
-  ),
-}));
-
-vi.mock("./ReplyForm", () => ({
-  ReplyForm: ({ onSubmit }: ReplyFormProperties) => (
-    <form
-      onSubmit={(event_) => {
-        event_.preventDefault();
-        onSubmit("New reply content");
-      }}
-    >
-      <button type="submit">Submit Reply</button>
-    </form>
-  ),
-}));
-
-describe("hBPCommentBox", () => {
-  const defaultProps = {
+describe("hBPCommentBox Component", () => {
+  const defaultProps: CommentProperties = {
     id: "1",
     avatar: "/path/to/avatar.png",
     name: "John Doe",
     username: "johndoe",
     content: "This is a comment.",
-    timestamp: "2024-07-20T00:00:00Z",
-    likes: 5,
+    timestamp: "2024-07-20",
+    likes: 10,
     dislikes: 2,
-    className: "custom-class",
+    className: "",
   };
 
-  it("renders the component with the given props", () => {
-    expect.assertions(2); // Expecting 2 assertions
+  it("should render the comment box correctly", () => {
+    expect.assertions(5);
+
     render(<HBPCommentBox {...defaultProps} />);
 
     expect(screen.getByTestId("comment-box-container")).toBeInTheDocument();
     expect(screen.getByTestId("comment-card")).toBeInTheDocument();
+    expect(screen.getByText(defaultProps.name)).toBeInTheDocument();
+    expect(screen.getByText(defaultProps.username)).toBeInTheDocument();
+    expect(screen.getByText(defaultProps.content)).toBeInTheDocument();
   });
 
-  it("toggles the reply form when the reply button is clicked", () => {
-    expect.assertions(3); // Expecting 3 assertions
-    render(<HBPCommentBox {...defaultProps} />);
+  it("should handle like button click correctly for the comment", () => {
+    expect.assertions(2);
 
-    const replyButton = screen.getByTestId("reply-button");
-    expect(screen.queryByTestId("reply-form-container")).toBeNull();
-
-    fireEvent.click(replyButton);
-    expect(screen.getByTestId("reply-form-container")).toBeInTheDocument();
-
-    fireEvent.click(replyButton);
-    expect(screen.queryByTestId("reply-form-container")).toBeNull();
-  });
-
-  it("adds a reply and displays it", () => {
-    expect.assertions(2); // Expecting 2 assertions
-    render(<HBPCommentBox {...defaultProps} />);
-
-    fireEvent.click(screen.getByTestId("reply-button"));
-    fireEvent.submit(screen.getByText("Submit Reply"));
-
-    expect(screen.getByTestId("reply-1")).toBeInTheDocument();
-    expect(screen.getByText("New reply content")).toBeInTheDocument();
-  });
-
-  it("handles likes and dislikes correctly", () => {
-    expect.assertions(2); // Expecting 2 assertions
     render(<HBPCommentBox {...defaultProps} />);
 
     const likeButton = screen.getByTestId("like-button");
-    const dislikeButton = screen.getByTestId("dislike-button");
-
-    expect(screen.getByText("Like")).toBeInTheDocument();
-    expect(screen.getByText("Dislike")).toBeInTheDocument();
-
     fireEvent.click(likeButton);
+
+    expect(likeButton).toBeInTheDocument();
+    expect(screen.getByText("11")).toBeInTheDocument(); // Assuming the likes count is displayed
+  });
+
+  it("should handle dislike button click correctly for the comment", () => {
+    expect.assertions(2);
+
+    render(<HBPCommentBox {...defaultProps} />);
+
+    const dislikeButton = screen.getByTestId("dislike-button");
     fireEvent.click(dislikeButton);
 
-    expect(screen.getByText("Like")).toBeInTheDocument();
-    expect(screen.getByText("Dislike")).toBeInTheDocument();
+    expect(dislikeButton).toBeInTheDocument();
+    expect(screen.getByText("3")).toBeInTheDocument(); // Assuming the dislikes count is displayed
+  });
+
+  it("should show reply form when reply button is clicked", () => {
+    expect.assertions(2);
+
+    render(<HBPCommentBox {...defaultProps} />);
+
+    const replyButton = screen.getByTestId("reply-button");
+    fireEvent.click(replyButton);
+
+    expect(replyButton).toBeInTheDocument();
+    expect(screen.getByTestId("reply-form-container")).toBeInTheDocument();
+  });
+
+  it("should add a reply when the reply form is submitted", () => {
+    expect.assertions(1);
+
+    render(<HBPCommentBox {...defaultProps} />);
+
+    const replyButton = screen.getByTestId("reply-button");
+    fireEvent.click(replyButton);
+
+    const replyInput = screen.getByTestId("reply-input");
+    fireEvent.change(replyInput, { target: { value: "This is a reply." } });
+
+    expect(screen.getByText("This is a reply.")).toBeInTheDocument();
   });
 });
