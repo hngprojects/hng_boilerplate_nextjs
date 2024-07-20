@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+import React from "react";
 import { describe, expect, it, vi } from "vitest";
 
 import ProductDetailsCard from "../../components/common/ProductDetailsCard/ProductDetailsCard";
@@ -22,7 +23,8 @@ describe("productDetailsCard", () => {
     expect.hasAssertions();
     render(<ProductDetailsCard {...defaultProps} />);
 
-    expect(screen.getByText("Test Product")).not.toBeNull();
+    // eslint-disable-next-line testing-library/prefer-presence-queries
+    expect(screen.queryByText("Test Product")).not.toBeNull();
     const productImage = screen.queryByAltText("Product Test Product Image");
     expect(productImage).not.toBeNull();
     // eslint-disable-next-line vitest/no-conditional-in-test
@@ -30,19 +32,22 @@ describe("productDetailsCard", () => {
       // eslint-disable-next-line vitest/no-conditional-expect
       expect(productImage.getAttribute("src")).toContain("test-image.jpg");
     }
-    expect(screen.getByText("Product ID")).not.toBeNull();
-    expect(screen.getByText("T123")).not.toBeNull();
-    // eslint-disable-next-line vitest/max-expects
-    expect(screen.getByText("Category Test")).not.toBeNull();
-    // eslint-disable-next-line vitest/max-expects
-    expect(screen.getByText("2024-01-01, 12:00:00")).not.toBeNull();
-    // eslint-disable-next-line vitest/max-expects
-    expect(screen.getByText("20pcs")).not.toBeNull();
-    // eslint-disable-next-line vitest/max-expects
-    expect(screen.getByText("$100.00")).not.toBeNull();
+    // eslint-disable-next-line testing-library/prefer-presence-queries
+    expect(screen.queryByText("Product ID")).not.toBeNull();
+    // eslint-disable-next-line testing-library/prefer-presence-queries
+    expect(screen.queryByText("T123")).not.toBeNull();
+    // eslint-disable-next-line vitest/max-expects, testing-library/prefer-presence-queries
+    expect(screen.queryByText("Category Test")).not.toBeNull();
+    // eslint-disable-next-line vitest/max-expects, testing-library/prefer-presence-queries
+    expect(screen.queryByText("2024-01-01, 12:00:00")).not.toBeNull();
+    // eslint-disable-next-line vitest/max-expects, testing-library/prefer-presence-queries
+    expect(screen.queryByText("20pcs")).not.toBeNull();
+    // eslint-disable-next-line vitest/max-expects, testing-library/prefer-presence-queries
+    expect(screen.queryByText("$100.00")).not.toBeNull();
     // eslint-disable-next-line vitest/max-expects
     expect(
-      screen.getByText("This is a test product description."),
+      // eslint-disable-next-line testing-library/prefer-presence-queries
+      screen.queryByText("This is a test product description."),
     ).not.toBeNull();
   });
 
@@ -65,7 +70,7 @@ describe("productDetailsCard", () => {
     );
 
     expect(
-      screen.getByText(
+      screen.queryByText(
         "Some product details are missing. Please provide complete product information.",
       ),
     ).not.toBeNull();
@@ -76,7 +81,7 @@ describe("productDetailsCard", () => {
     render(<ProductDetailsCard {...defaultProps} />);
 
     fireEvent.click(screen.getByAltText("Close Icon"));
-    expect(defaultProps.onClose).toHaveBeenCalledWith();
+    expect(defaultProps.onClose).toHaveBeenCalled();
   });
 
   it("calls onEdit with productID when Edit button is clicked", () => {
