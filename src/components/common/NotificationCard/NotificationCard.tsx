@@ -1,8 +1,6 @@
-import { BellRing, Check } from "lucide-react";
+import { BellRing } from "lucide-react";
 import { FC } from "react";
 
-import { cn } from "~/lib/utils";
-import { Button } from "../ui/button";
 import {
   Card,
   CardContent,
@@ -10,10 +8,17 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../ui/card";
-import { Switch } from "../ui/switch";
+} from "~/components/ui/card";
+import { Switch } from "~/components/ui/switch";
+import { cn } from "~/lib/utils";
+import CustomButton from "../Button/button";
 
-//
+// const preview = [
+//   { header: "Your call has been confirmed", time: "1 hour ago" },
+//   { header: "Your have a new message!", time: "1 hour ago" },
+//   { header: "Your subscription is expiring soon", time: "2 hours ago" },
+// ];
+
 interface NotificationPreview {
   header: string;
   time: string;
@@ -34,18 +39,18 @@ const NotificationCard: FC<CardProperties> = ({
   return (
     <Card
       data-testid="cardContainer"
-      className={cn("w-fit sm:w-[380px] h-fit  ", className)}
+      className={cn("h-fit w-fit sm:w-[380px]", className)}
       {...properties}
     >
-      <CardHeader className=" px-4 sm:p-6">
+      <CardHeader className="px-4 sm:p-6">
         <CardTitle>Notifications</CardTitle>
         <CardDescription data-testid="unreadMessageCount">
           You have {unreadCount === 0 ? 0 : unreadCount} unread message
           {unreadCount === 1 ? "" : "s"}.
         </CardDescription>
       </CardHeader>
-      <CardContent className="grid gap-4 p-4 pt-0 sm:p-6 sm:pt-0 ">
-        <div className=" flex items-center space-x-4 rounded-md border p-2 sm:p-4  ">
+      <CardContent className="grid gap-4 p-4 pt-0 sm:p-6 sm:pt-0">
+        <div className="flex items-center space-x-4 rounded-md border p-2 sm:p-4">
           <BellRing />
           <div className="flex-1 space-y-1">
             <p className="text-sm font-medium leading-none">
@@ -61,7 +66,7 @@ const NotificationCard: FC<CardProperties> = ({
           {notificationsPreview.map((preview, index) => (
             <div
               key={index}
-              className="mb-2 sm:mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
+              className="mb-2 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0 sm:mb-4"
             >
               <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
               <div className="space-y-1">
@@ -82,18 +87,15 @@ const NotificationCard: FC<CardProperties> = ({
           ))}
         </div>
       </CardContent>
-      <CardFooter className=" px-4 sm:px-6">
-        <div
-          className={`${unreadCount === 0 ? "cursor-not-allowed" : "cursor-pointer"} w-full`}
-        >
-          <Button
-            variant="default"
-            data-testid="CTAButton"
-            disabled={unreadCount === 0}
-            className="w-full bg-[#F97316] hover:bg-[#F97316] hover:opacity-90"
+      <CardFooter className="px-4 sm:px-6">
+        <div className="item-center flex w-full">
+          <CustomButton
+            variant="primary"
+            isDisabled={unreadCount === 0}
+            className="w-full"
           >
-            <Check className="mr-2 h-4 w-4" /> Mark all as read
-          </Button>
+            Mark all as read
+          </CustomButton>
         </div>
       </CardFooter>
     </Card>
