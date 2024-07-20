@@ -11,7 +11,6 @@ type CardProperties = {
 };
 export const TOGGLE_BTN_TEST_ID: string = "toggleBtn";
 export const INTEGRATION_CARD_TEST_ID: string = "integrationCard";
-export const INTEGRATION_CARD_IMAGE_TEST_ID: string = "integrationCardImage";
 export const IntegrationCard = (properties: CardProperties) => {
   const [isActive, setisActive] = useState<boolean>(properties.isActive);
   const handleToogle = () => {
@@ -25,11 +24,10 @@ export const IntegrationCard = (properties: CardProperties) => {
   return (
     <div
       data-testid={INTEGRATION_CARD_TEST_ID}
-      className="flex h-[159.29px] w-[341px] flex-col gap-6 rounded-lg border-[1px] border-border px-4 py-6 text-foreground"
+      className="flex h-[159.29px] w-full max-w-[341px] flex-col gap-6 rounded-lg border-[1px] border-border px-4 py-6 text-foreground"
     >
       <div className="flex w-full items-center justify-between">
         <Image
-          data-testid={INTEGRATION_CARD_IMAGE_TEST_ID}
           src={properties.logoURL}
           width={40}
           height={40}
