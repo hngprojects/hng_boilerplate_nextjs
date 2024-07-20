@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 0, 0%, 98%;
     --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
@@ -13,8 +13,11 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --default: 222, 47%, 11%;
+    --default-foreground: 0, 0%, 100%;
+
+    --primary: 25, 95%, 53%;
+    --primary-foreground: 0, 0%, 100%;
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -25,14 +28,35 @@
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-hover: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
+    --subtle: 210, 40%, 96%;
+    --subtle-hover: 214, 32%, 91%;
+    --subtle-foreground: 222, 47%, 11%;
+
+    --loading: 222, 47%, 11%;
+    --loading-hover: 215, 25%, 27%;
+    --loading-foreground: 0, 0%, 100%;
+
+    --outline: 0, 0%, 100%;
+    --outline-hover: 210, 40%, 96%;
+    --outline-foreground: 222, 47%, 11%;
+
+    --link: 222, 47%, 11%;
+
+    --error: 0, 72%, 51%;
+    --success: 102, 51%, 52%;
+    --warning: 45, 93%, 47%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
+    --neutralColor-dark-1: 0, 0%, 32%;
+    --neutralColor-dark-2: 0, 0%, 4%;
   }
 
   .dark {
