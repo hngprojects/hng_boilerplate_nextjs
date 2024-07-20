@@ -25,7 +25,6 @@ function renderComponents(preview: NotificationPreview[] = []) {
   };
 }
 
-// TESTS WHEN THERE ARE NO NOTIFICATIONS
 describe("notificationCard", () => {
   it("should display notification title", () => {
     expect.assertions(2);
@@ -69,7 +68,6 @@ describe("notificationCard", () => {
   });
 });
 
-// TESTING WHEN THERE ARE NOTIFICATIONS
 describe("notificationCard Messages", () => {
   const previewMessages: NotificationPreview[] = [
     { header: "Check mail", time: "1 hour ago" },
@@ -137,7 +135,6 @@ describe("notificationCard Messages", () => {
   });
 });
 
-// TEST FOR PRESENCE OF REQUIRED ELEMENTS ON SMALLER SCREEN SIZE WITH OR WITHOUT NOTIFICATIONS
 describe("notificationCard responsiveness", () => {
   const previewMessages: NotificationPreview[] = [
     { header: "Check mail", time: "1 hour ago" },
@@ -188,7 +185,6 @@ describe("notificationCard responsiveness", () => {
   });
 });
 
-// TEST FOR BRAND STYLE ACCURACY
 describe("notificationCard style ", () => {
   it("should have the correct card style ", () => {
     expect.assertions(1);

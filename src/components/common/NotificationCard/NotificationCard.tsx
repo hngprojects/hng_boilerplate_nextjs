@@ -13,12 +13,6 @@ import { Switch } from "~/components/ui/switch";
 import { cn } from "~/lib/utils";
 import CustomButton from "../Button/button";
 
-// const preview = [
-//   { header: "Your call has been confirmed", time: "1 hour ago" },
-//   { header: "Your have a new message!", time: "1 hour ago" },
-//   { header: "Your subscription is expiring soon", time: "2 hours ago" },
-// ];
-
 interface NotificationPreview {
   header: string;
   time: string;
@@ -29,7 +23,6 @@ interface CardProperties extends React.ComponentProps<typeof Card> {
   unreadCount: number;
 }
 
-// NotificationCard should always recieve a notificationsPreview array of objects and the unreadCount prop
 const NotificationCard: FC<CardProperties> = ({
   className,
   notificationsPreview = [],
@@ -92,7 +85,7 @@ const NotificationCard: FC<CardProperties> = ({
           <CustomButton
             variant="primary"
             isDisabled={unreadCount === 0}
-            className="w-full"
+            className="w-full bg-primary"
           >
             Mark all as read
           </CustomButton>
@@ -101,7 +94,5 @@ const NotificationCard: FC<CardProperties> = ({
     </Card>
   );
 };
-
-// bg-[#F97316]
 
 export default NotificationCard;
