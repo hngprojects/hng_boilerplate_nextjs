@@ -23,7 +23,8 @@ const Card = (
 describe("<DashboardMemberCard />", () => {
   it("renders DashboardMemberCard", () => {
     expect.assertions(1);
-    render(Card);
+
+    expect(render(Card));
   });
 
   it("has required props (changeRole)", () => {
