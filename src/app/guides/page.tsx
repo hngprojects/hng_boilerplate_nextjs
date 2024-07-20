@@ -2,6 +2,7 @@ import { Orbit, Plus } from "lucide-react";
 import React from "react";
 
 import CustomButton from "~/components/common/Button/button";
+import Sidebar from "~/components/layouts/Sidebar";
 
 const Button: React.FC = () => {
   return (
@@ -296,6 +297,22 @@ const Button: React.FC = () => {
           </div>
         </div>
       </div>
+
+      <h2 className="text-2xl font-semibold">User Dashboard Sidebar</h2>
+      <p>How to Use:</p>
+      <ul className="list-disc">
+        <li>Import: Import Sidebar from the components/layouts/sidebar.tsx</li>
+        <li>
+          This component uses next/navigation&apos;s usePathname hook,
+          compatible with Next.js app router.
+        </li>
+        <li>
+          Customization: Customize the sidebarItems array in the Sidebar
+          component to match your navigation structure.
+        </li>
+      </ul>
+
+      <Sidebar />
     </main>
   );
 };
