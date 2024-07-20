@@ -137,10 +137,8 @@ const Profile = () => {
           validationErrors[errorItem.path.join(".")] = errorItem.message;
         }
         setErrors(validationErrors);
-        console.log("errors", errors);
       } else {
-        // Handle unexpected errors if needed
-        console.error("An unexpected error occurred:", error);
+        // console.error(error);
       }
     }
   };
