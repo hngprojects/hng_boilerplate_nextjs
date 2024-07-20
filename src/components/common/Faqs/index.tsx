@@ -60,9 +60,9 @@ export default function Faqs() {
   return (
     <div>
       <Search onSearch={handleSearch} />
-      <div className="mx-32 my-11 bg-background">
+      <div className="bg-[#FAFAFA] px-32 py-11 max-md:px-0 max-md:py-0">
         {searchValue.trim() === "" ? (
-          <div className="grid grid-cols-3 max-md:grid-cols-1">
+          <div className="grid grid-cols-3 gap-y-4 max-md:grid-cols-1">
             {accordions}
           </div>
         ) : filteredAccordions.length > 0 ? (

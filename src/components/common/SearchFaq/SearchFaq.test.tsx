@@ -1,4 +1,4 @@
-import { render } from "../../test/utils";
+import { render } from "~/test/utils";
 import Search from "./index";
 
 describe("search tests", () => {
