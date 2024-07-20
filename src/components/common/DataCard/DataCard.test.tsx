@@ -31,7 +31,6 @@ describe("dataCard component", () => {
 
     render(<DataCard heading={mockHeading} content={mockContent} />);
 
-    // Simulate viewport size changes and rerender the component
     global.innerWidth = 600;
     global.dispatchEvent(new Event("resize"));
 
