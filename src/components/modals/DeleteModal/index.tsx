@@ -12,11 +12,17 @@ import {
   DialogTitle,
 } from "../../ui/dialog";
 
-interface DeleteModalProps {
-  closeDeleteModal: () => void;
-}
+const DeleteModal: React.FC = () => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
-const DeleteModal: React.FC<DeleteModalProps> = ({ closeDeleteModal }) => {
+  const openDeleteModal = () => {
+    setIsVisible(true);
+  };
+
+  const closeDeleteModal = () => {
+    setIsVisible(false);
+  };
+
   return (
     <Dialog open={true} onOpenChange={closeDeleteModal}>
       <DialogOverlay
