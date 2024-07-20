@@ -19,7 +19,7 @@ const config = {
     },
     extend: {
       colors: {
-        neutral_dark1: "hsl(var(--neutral-dark1))",
+    
         primary_color: "hsl(var(--primary_color))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
