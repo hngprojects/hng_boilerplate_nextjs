@@ -21,7 +21,7 @@ const DataCard = ({ heading, content }: DataCardProperties) => {
     <>
       <Card
         className={cn(
-          "flex·w-[325px]·flex-col·gap-1·rounded-[0.75rem]·border-[0.5px]·border-border·bg-card·px-6·pb-10·pt-[1.4rem]·text-neutral-dark-2",
+          "text-neutral-dark-2 flex w-[325px] flex-col gap-1 rounded-[0.75rem] border-[0.5px] border-border bg-card px-6 pb-10 pt-[1.4rem] shadow-[0px_1px_18px_0px_#0A39B01F]",
         )}
         aria-labelledby="card-title"
       >
