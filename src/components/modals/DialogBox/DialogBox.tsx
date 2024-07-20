@@ -19,6 +19,12 @@ interface DialogBoxProperties {
  *
  * const [variant, setVariant] = useState<Variant>();
  *
+ *
+ * <button
+ * className=""
+ * onClick={() => setVariant("error")}>
+ * </button>
+ *
  <DialogBox
  *   headerText={
  *     variant === "success"
@@ -74,7 +80,7 @@ const DialogBox = (properties: DialogBoxProperties) => {
         role="dialog"
         aria-labelledby="dialog-header"
         aria-describedby="dialog-description"
-        className="h-auto w-full max-w-xs rounded-md bg-background p-6 sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl"
+        className="m-auto h-auto w-[512px] max-w-xs rounded-md bg-background p-6 shadow-md sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl"
       >
         <header className="">
           <h2 id="dialog-header" className="text-lg font-semibold">
