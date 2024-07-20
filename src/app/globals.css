@@ -61,6 +61,8 @@
     --neutralColor-dark-1: 0 0% 32%;
     --neutralColor-dark-2: 0 0% 4%;
     --description-text: 215 16% 47%;
+    --breadcrumb-page: 0 0% 42%;
+    --breadcrumb-foreground: 0 0% 13%;
   }
 
   .dark {
