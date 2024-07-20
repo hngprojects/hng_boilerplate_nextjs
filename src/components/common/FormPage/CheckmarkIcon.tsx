@@ -1,5 +1,5 @@
 interface CheckmarkProperties {
-  color: any;
+  color: string;
 }
 
 const CheckmarkIcon: React.FC<CheckmarkProperties> = ({ color }) => {
