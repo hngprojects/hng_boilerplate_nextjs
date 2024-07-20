@@ -70,7 +70,7 @@ const Footer = () => {
   ];
   return (
     <footer className="bg-white px-4 dark:bg-white">
-      <div className="items-start justify-between gap-[60px] border-b-[1px] border-neutral-dark-2 pb-[130px] pt-[28px] sm:grid-cols-2 md:gap-4 md:pb-[46px] md:pt-[72px] lg:flex">
+      <div className="mx-auto w-full max-w-[1200px] items-start justify-between gap-[60px] border-b-[1px] border-neutral-dark-2 pb-[130px] pt-[28px] sm:grid-cols-2 md:gap-4 md:pb-[46px] md:pt-[72px] lg:flex">
         <div className="mb-[100px] lg:mb-0">
           <div className="mb-[47px] flex w-full flex-col items-center justify-center sm:mb-[60px] md:block md:max-w-[254px] lg:mb-0">
             <h5 className="text-nuetral-dark-2 mb-[34px] text-center text-xl font-bold sm:text-left">
@@ -152,7 +152,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="block items-start justify-between pb-[30px] pt-4 md:pt-[27px] lg:flex">
+      <div className="mx-auto block w-full max-w-[1200px] items-start justify-between pb-[30px] pt-4 md:pt-[27px] lg:flex">
         <div className="hidden lg:block">
           <div className="flex w-full max-w-[116px] items-center justify-between gap-1 md:max-w-[212px]">
             {socialLinks.map((item, index) => {

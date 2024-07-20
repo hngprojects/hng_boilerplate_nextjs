@@ -6,7 +6,7 @@ import Layout from "~/components/layouts";
 import "./globals.css";
 import "~/components/layouts/homepage/styles/styles.css";
 
-import Sidebar from "~/components/layouts/Sidebar";
+import Providers from "~/components/Providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Layout>{children}</Layout>
+        <Providers>
+          <Layout>{children}</Layout>
+        </Providers>
+        <Toaster />
       </body>
     </html>
   );
