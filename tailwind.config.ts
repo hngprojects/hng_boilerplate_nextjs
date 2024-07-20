@@ -72,8 +72,8 @@ const config = {
           foreground: "hsl(var(--popover-foreground))",
         },
         card: {
-          DEFAULT: "var(--card)",
-          foreground: "var(--card-foreground)",
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
         },
         error: "hsl(var(--error))",
         success: "hsl(var(--success))",
@@ -83,6 +83,9 @@ const config = {
             1: "hsl(var(--neutralColor-dark-1))",
             2: "hsl(var(--neutralColor-dark-2))",
           },
+        },
+        stroke: {
+          "colors-stroke": "hsl(var(--stroke-colors-stroke))",
         },
       },
       borderRadius: {
