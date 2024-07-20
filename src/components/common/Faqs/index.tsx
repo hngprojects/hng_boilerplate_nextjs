@@ -38,6 +38,17 @@ export default function Faqs() {
       question="What is a boilerplate"
       answer="A boilerplate is a program ..."
     />,
+    <FaqAccordion
+      key="7"
+      question="What is an accordion"
+      answer="Accordion is ..."
+    />,
+    <FaqAccordion key="8" question="What is a bar" answer="Bar is ..." />,
+    <FaqAccordion
+      key="9"
+      question="What is search"
+      answer="Search is a term ..."
+    />,
   ];
 
   const handleSearch = (value: string) => {
@@ -58,11 +69,11 @@ export default function Faqs() {
   };
 
   return (
-    <div>
+    <div className="flex flex-col gap-6 max-md:gap-16">
       <Search onSearch={handleSearch} />
-      <div className="bg-[#FAFAFA] px-32 py-11 max-md:px-0 max-md:py-0">
+      <div className="bg-[#FAFAFA] py-11 max-md:px-0 max-md:py-0">
         {searchValue.trim() === "" ? (
-          <div className="grid grid-cols-3 gap-y-4 max-md:grid-cols-1">
+          <div className="grid grid-cols-3 gap-x-8 gap-y-6 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-x-4">
             {accordions}
           </div>
         ) : filteredAccordions.length > 0 ? (
