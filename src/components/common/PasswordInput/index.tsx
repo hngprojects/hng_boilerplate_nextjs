@@ -1,13 +1,12 @@
 "use client";
 
+import { EyeIcon, EyeOff } from "lucide-react";
 import { useState } from "react";
 
-
-
 import { Input } from "~/components/ui/input";
-import { EyeClose, EyeOpen } from "../../../../public/svg";
 
-interface PasswordToggleProps {
+
+interface PasswordToggleProperties {
   password: string;
   onPasswordChange: (password: string) => void;
   name: string;
@@ -15,7 +14,7 @@ interface PasswordToggleProps {
   id: string;
 }
 
-const PasswordInput: React.FC<PasswordToggleProps> = ({
+const PasswordInput: React.FC<PasswordToggleProperties> = ({
   password,
   onPasswordChange,
   name,
@@ -33,16 +32,12 @@ const PasswordInput: React.FC<PasswordToggleProps> = ({
       <div className="relative w-full">
         <button
           type="button"
-          className="text-[#939393] active:text-[#434343] absolute right-3 inset-y-0 my-auto"
+          className="absolute inset-y-0 right-3 my-auto text-[#939393] active:text-[#434343]"
           onClick={() => setPasswordHidden(!isPasswordHidden)}
           aria-label={isPasswordHidden ? "Show password" : "Hide password"}
           title={isPasswordHidden ? "Show password" : "Hide password"}
         >
-          {isPasswordHidden ? (
-            <EyeOpen/>
-          ) : (
-            <EyeClose/>
-          )}
+          {isPasswordHidden ? <EyeIcon /> : <EyeOff />}
         </button>
 
         <Input
@@ -53,7 +48,7 @@ const PasswordInput: React.FC<PasswordToggleProps> = ({
           placeholder={placeholder}
           value={password}
           onChange={handleChange}
-          className="w-full px-[16px] pr-[48px] py-[12px] h-[48px] text-[#939393] placeholder:text-[14px] placeholder:text-[#939393] bg-transparent outline-none focus-visible:ring-0 focus-visible:ring-transparent shadow-none border border-[#B2B0B0] focus:border-primary rounded-[8px]"
+          className="h-[48px] w-full rounded-[8px] border border-[#B2B0B0] bg-transparent px-[16px] py-[12px] pr-[48px] text-[#939393] shadow-none outline-none placeholder:text-[14px] placeholder:text-[#939393] focus:border-primary focus-visible:ring-0 focus-visible:ring-transparent"
         />
       </div>
     </div>
