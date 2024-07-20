@@ -1,8 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { LogoImg } from "~/assets";
-
 const Logo = () => {
   return (
     <Link
@@ -11,7 +9,7 @@ const Logo = () => {
       data-testid="logo"
     >
       <Image
-        src={LogoImg}
+        src="/images/HNG Boilerplate-Logo.png"
         alt="Hgn boiler plate logo"
         height={52}
         width={283}
