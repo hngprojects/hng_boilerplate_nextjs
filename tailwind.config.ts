@@ -27,7 +27,7 @@ const config: Config = {
         foreground: "hsl(var(--foreground))",
         default: {
           DEFAULT: "hsl(var(--default))",
-          foreground: "hsl(var(--default-foreground))"
+          foreground: "hsl(var(--default-foreground))",
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",
@@ -85,7 +85,6 @@ const config: Config = {
             2: "hsl(var(--neutralColor-dark-2))",
           },
         },
-        customGray: "#434343",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -105,9 +104,6 @@ const config: Config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-      },
-      gridTemplateColumns: {
-        custom: "2fr 1fr 1fr 1fr 2fr",
       },
     },
   },
