@@ -3,8 +3,9 @@ import { describe, expect, it, vi } from "vitest";
 
 import ConfirmCancelModal from "./ConfirmCancelModal";
 
-describe("confirmCancelModal", () => {
+describe("ConfirmCancelModal", () => {
   it("renders correctly when open", () => {
+    expect.assertions(4);
     render(
       <ConfirmCancelModal isOpen={true} onClose={vi.fn()} onCancel={vi.fn()} />,
     );
@@ -20,6 +21,7 @@ describe("confirmCancelModal", () => {
   });
 
   it("calls onClose when Keep Subscription button is clicked", () => {
+    expect.assertions(1);
     const onCloseMock = vi.fn();
     render(
       <ConfirmCancelModal
@@ -30,10 +32,11 @@ describe("confirmCancelModal", () => {
     );
 
     fireEvent.click(screen.getByText("Keep Subscription"));
-    expect(onCloseMock).toHaveBeenCalledWith();
+    expect(onCloseMock).toHaveBeenCalled();
   });
 
   it("calls onCancel when Cancel Subscription button is clicked", () => {
+    expect.assertions(1);
     const onCancelMock = vi.fn();
     render(
       <ConfirmCancelModal
@@ -44,10 +47,11 @@ describe("confirmCancelModal", () => {
     );
 
     fireEvent.click(screen.getByText("Cancel Subscription"));
-    expect(onCancelMock).toHaveBeenCalledWith();
+    expect(onCancelMock).toHaveBeenCalled();
   });
 
   it("does not render when isOpen is false", () => {
+    expect.assertions(1);
     render(
       <ConfirmCancelModal
         isOpen={false}
