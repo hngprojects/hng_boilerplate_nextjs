@@ -19,14 +19,14 @@ describe("cookieFooter", () => {
 
     const acceptButton = screen.getByText(/accept all cookies/i);
     const rejectButton = screen.getByText(/reject all/i);
-    const settingsButton = screen.getByText(/cookie settings/i);
+    const settingsButton = screen.getByText(/cookies settings/i);
     expect(acceptButton).toBeInTheDocument();
     expect(rejectButton).toBeInTheDocument();
     // eslint-disable-next-line vitest/max-expects
     expect(settingsButton).toBeInTheDocument();
   });
 
-  it("hides the footer when any button is clicked", () => {
+  it("hides the footer when the specified buttons are clicked", () => {
     expect.hasAssertions();
     render(<CookieFooter />);
     const footerElement = screen.getByRole("contentinfo");
