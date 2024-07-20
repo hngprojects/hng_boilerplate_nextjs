@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 
-import ContactForm from "~/components/common/contact-us-form"; // Adjust the import path as needed
+import ContactForm from "~/components/common/contact-us-form";
 
 describe("contactForm Component", () => {
   const mockFetch = vi.fn();
@@ -123,6 +123,7 @@ describe("contactForm Component", () => {
   });
 
   it("should be responsive", async () => {
+    expect.assertions(2);
     const { container } = setup();
 
     // Check mobile responsiveness
