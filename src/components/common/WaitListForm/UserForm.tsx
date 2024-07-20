@@ -32,8 +32,6 @@ const UserForm: React.FC = () => {
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
-      console.log("Form data submitted:", formData);
-      // Clear form and show success message
       setFormData({ name: "", email: "" });
       setErrors({});
       setSuccess(true);
