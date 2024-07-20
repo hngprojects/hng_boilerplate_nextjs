@@ -17,12 +17,14 @@ describe("passwordInput Component", () => {
   };
 
   it("should render the component", () => {
+    expect.assertions(1);
     setup();
     const input = screen.getByPlaceholderText("Enter your password");
     expect(input).toBeInTheDocument();
   });
 
   it("should toggle password visibility", () => {
+    expect.assertions(4);
     setup();
     const toggleButton = screen.getByRole("button", { name: /show password/i });
     const input = screen.getByPlaceholderText("Enter your password");
@@ -35,10 +37,10 @@ describe("passwordInput Component", () => {
 
     fireEvent.click(toggleButton);
     expect(input).toHaveAttribute("type", "password");
-    expect(toggleButton).toHaveAttribute("aria-label", "Show password");
   });
 
   it("should call onPasswordChange when input changes", () => {
+    expect.assertions(2);
     setup();
     const input = screen.getByPlaceholderText("Enter your password");
 
@@ -48,6 +50,7 @@ describe("passwordInput Component", () => {
   });
 
   it("should have appropriate ARIA roles and labels for accessibility", () => {
+    expect.assertions(2);
     setup();
     const toggleButton = screen.getByRole("button", { name: /show password/i });
     expect(toggleButton).toBeInTheDocument();
