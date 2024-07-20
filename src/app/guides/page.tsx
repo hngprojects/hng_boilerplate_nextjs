@@ -2,6 +2,7 @@ import { Orbit, Plus } from "lucide-react";
 import React from "react";
 
 import CustomButton from "~/components/common/Button/button";
+import Sidebar from "~/components/layouts/Sidebar";
 
 const Button: React.FC = () => {
   return (
@@ -23,23 +24,23 @@ const Button: React.FC = () => {
         <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-subtle px-4 py-4 text-foreground">
           bg-subtle, text-foreground
         </div>
-        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-neutral-dark-1 px-4 py-4 text-background">
+        <div className="bg-neutral-dark-1 flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
           bg-neutral-dark-1, text-background
         </div>
-        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-neutral-dark-2 px-4 py-4 text-background">
+        <div className="bg-neutral-dark-2 flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
           bg-neutral-dark-2, text-background
         </div>
 
-        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-error px-4 py-4 text-background">
+        <div className="bg-error flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
           bg-error, text-background
         </div>
         <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-destructive px-4 py-4 text-background">
           bg-destructive, text-background
         </div>
-        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-warning px-4 py-4 text-background">
+        <div className="bg-warning flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
           bg-warning, text-background
         </div>
-        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-success px-4 py-4 text-background">
+        <div className="bg-success flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
           bg-success, text-background
         </div>
         <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg border border-border px-4 py-4 text-foreground">
@@ -296,6 +297,22 @@ const Button: React.FC = () => {
           </div>
         </div>
       </div>
+
+      <h2 className="text-2xl font-semibold">User Dashboard Sidebar</h2>
+      <p>How to Use:</p>
+      <ul className="list-disc">
+        <li>Import: Import Sidebar from the components/layouts/sidebar.tsx</li>
+        <li>
+          This component uses next/navigation&apos;s usePathname hook,
+          compatible with Next.js app router.
+        </li>
+        <li>
+          Customization: Customize the sidebarItems array in the Sidebar
+          component to match your navigation structure.
+        </li>
+      </ul>
+
+      <Sidebar />
     </main>
   );
 };
