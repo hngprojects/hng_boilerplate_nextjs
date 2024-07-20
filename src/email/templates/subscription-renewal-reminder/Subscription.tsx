@@ -1,6 +1,5 @@
-import { Img, Link, Section, Text } from "@react-email/components";
+import { Img, Link, Section, Tailwind, Text } from "@react-email/components";
 
-import Tailwindwrapper from "~/email/templates/_components/tailwindWrapper";
 import Footer from "./Footer";
 import Header from "./Header";
 
@@ -23,43 +22,45 @@ export default function SubscriptionRenewalEmail(properties: Properties) {
   return (
     <>
       <Header />
-      <Tailwindwrapper>
+      <Tailwind>
         <div className="flex justify-center">
           <div className="w-[70rem]">
             <div className="px-[5.6rem]">
               <Section>
                 <Img
-                  className="mx-auto my-[5.6rem] block"
+                  className="mx-auto my-[5rem] block"
                   src={properties.imageUrl}
                   alt="Reminder Image"
                   width={200}
                   height={178}
                 />
-                <Text className="mb-[5.6rem] text-center text-[2.4rem] font-semibold text-[#0A0A0A]">
+                <Text className="mb-[4.5rem] text-center text-[2rem] font-semibold leading-[2.5rem] text-foreground">
                   {properties.title}
                 </Text>
-                <Text className="mb-[1.5rem] text-[1.8rem] font-semibold text-[#111]">
+                <Text className="mb-[2.5rem] text-[1.5rem] font-semibold text-foreground">
                   Hi {properties.name},
                 </Text>
-                <Text className="mb-[2.8rem] text-[1.6rem] font-normal leading-[1.5]">
+                <Text className="mb-[2.8rem] text-[1.2rem] font-normal leading-[1.3]">
                   We hope you are enjoying your subscription, which will renew
                   soon.
                 </Text>
               </Section>
             </div>
 
-            <Section className="bg-[#F97316] py-[2.5rem] text-[#FFFFFF]">
-              <Text className="mb-[1.5rem] text-center text-[2.4rem] font-medium">
-                Your Renewal Date
-              </Text>
-              <Text className="text-center text-[3.5rem] font-bold leading-[1.3]">
-                {properties.renewalDate}
-              </Text>
+            <Section className="bg-primary text-background">
+              <div className="py-[2rem]">
+                <Text className="mb-[.5rem] text-center text-[1.6rem]">
+                  Your Renewal Date
+                </Text>
+                <h1 className="text-center text-[3.7rem] font-bold leading-[1.3]">
+                  {properties.renewalDate}
+                </h1>
+              </div>
             </Section>
 
             <div className="px-[5.6rem]">
               <Section>
-                <Text className="mt-[2.8rem] text-[1.6rem] font-normal leading-[1.5]">
+                <Text className="mt-[2.8rem] text-[1.2rem] font-normal leading-[1.3]">
                   Your subscription for{" "}
                   <span className="font-semibold">
                     {properties.renewalPrice}/{properties.renewalPeriod}{" "}
@@ -68,23 +69,20 @@ export default function SubscriptionRenewalEmail(properties: Properties) {
                   will automatically renew on {properties.renewalDate}. To avoid
                   being charged, you should cancel at least a day before the
                   renewal date. To learn more or cancel,{" "}
-                  <Link
-                    href={properties.reviewUrl}
-                    className="font-semibold text-[#F97316]"
-                  >
-                    review subscription.
+                  <Link href={properties.reviewUrl} className="font-semibold">
+                    <span className="text-primary">review subscription.</span>
                   </Link>
                 </Text>
-                <Text className="text-[1.6rem] font-normal leading-[1.5]">
+                <Text className="mt-[2.8rem] text-[1.2rem] font-normal leading-[1.3]">
                   To keep your subscription, you can renew your plan for the
                   next month.
                 </Text>
                 <div className="flex justify-center">
                   <Link
                     href={properties.renewUrl}
-                    className="mb-[5.6rem] mt-[1.5rem] cursor-pointer rounded-[0.8rem] bg-[#F97316] px-[3.5rem] py-[1rem] text-center text-[1.4rem] text-[#FFFFFF]"
+                    className="mb-[5.6rem] mt-[2rem] cursor-pointer rounded-[0.8rem] bg-primary px-[3.5rem] py-[1rem] text-center text-[1.2rem]"
                   >
-                    Renew Subscription
+                    <span className="text-background">Renew Subscription</span>
                   </Link>
                 </div>
               </Section>
@@ -92,29 +90,31 @@ export default function SubscriptionRenewalEmail(properties: Properties) {
 
             <div className="px-[5.6rem]">
               <Section>
-                <Text className="m-0 font-medium text-[#111]">Regards,</Text>
-                <Text className="mt-0 font-medium text-[#111]">
+                <Text className="m-0 text-[1.1rem] font-bold text-foreground">
+                  Regards,
+                </Text>
+                <Text className="mt-[.8rem] text-[1.1rem] font-medium text-foreground">
                   {properties.companyName}
                 </Text>
-                <Text className="my-[5.6rem] text-[1.6rem] font-normal leading-[1.5]">
+                <Text className="my-[5.6rem] text-[1.2rem] font-normal leading-[1.3]">
                   If you have questions, please visit our{" "}
                   <Link href={properties.faqUrl}>
-                    <strong className="font-semibold text-[#F97316]">
-                      FAQs
-                    </strong>
+                    <strong className="font-semibold text-primary">FAQs</strong>
                   </Link>
                   , or email us at{" "}
                   <Link href={properties.helpUrl}>
-                    <span className="text-[#F97316]">help@boilerplate.com</span>
+                    <span className="text-primary">help@boilerplate.com</span>
                   </Link>
                   . Our team can answer questions about your subscription
                   status. To unsubscribe from future subscription renewal
                   reminders,{" "}
                   <Link
                     href={properties.unsubscribeUrl}
-                    className="font-semibold text-[#000] underline"
+                    className="font-semibold"
                   >
-                    click here
+                    <span className="text-foreground underline">
+                      click here
+                    </span>
                   </Link>
                   .
                 </Text>
@@ -122,7 +122,7 @@ export default function SubscriptionRenewalEmail(properties: Properties) {
             </div>
           </div>
         </div>
-      </Tailwindwrapper>
+      </Tailwind>
       <Footer />
     </>
   );
