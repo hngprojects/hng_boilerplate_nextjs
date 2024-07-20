@@ -44,6 +44,7 @@ module.exports = {
     "testing-library",
   ],
   rules: {
+    'no-console': 'error',
     "react/prop-types": "off",
     "vitest/max-expects": "off",
     "unused-imports/no-unused-imports": "error",
