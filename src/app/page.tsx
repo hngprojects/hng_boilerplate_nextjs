@@ -1,13 +1,17 @@
-import Image from "next/image";
-import Navbar from "~/components/layouts/Navbar";
-
+import Navbar from "../components/layouts/Navbar/index";
+import Head from "next/head";
+import Dashboard from "~/components/layouts/Dashboard";
 
 export default function Home() {
+
   return (
     <>
-      <Navbar/>
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-
+      <Head>
+        <link rel="icon" href="./favicon.ico" />
+      </Head>
+      <Navbar />
+      <main className="flex min-h-screen pt-[110px] p-[42px]">
+        <Dashboard />
       </main>
     </>
   );

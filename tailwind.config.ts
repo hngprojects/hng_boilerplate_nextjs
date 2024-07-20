@@ -32,10 +32,13 @@ const config = {
         black_900: "#080808",
         black_300: "#626262",
         slate_900: "#0F172A",
+        slate_100: "#F1F5F9",
+        stroke: "#CBD5E1"
       },
       borderRadius: {
-        md: "12px",
-        sm: "6px",
+        lg: "12px",
+        md: "6px",
+        sm: "4px",
       },
       keyframes: {
         "accordion-down": {
@@ -50,6 +53,9 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      boxShadow: {
+        'custom-light': '0px 1px 18px 0px rgba(10, 57, 176, 0.12)',
       },
     }
   },

@@ -28,7 +28,7 @@ const Navbar = () => {
       </div>
 
       <div className="flex gap-[20px] items-center">
-        <div className="h-[35px] w-[250px] flex gap-[10px] rounded-md border border-solid border-gray-500 items-center px-[12px] text-sm">
+        <div className="py-[7px] x-[25px] flex gap-[10px] rounded-sm border border-solid border-gray-500 items-center px-[12px] text-sm">
           <Search />
           <input type="text" className="text-sm outline-none" placeholder="Search Option..." />
         </div>
@@ -36,7 +36,7 @@ const Navbar = () => {
         <Help />
         <div className="flex items-center gap-[5px] cursor-pointer">
           <div className="h-[35px] w-[35px] bg-gray-400 rounded-full bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: `url(${userImg})` }}
+            style={{ backgroundImage: `url(${userImg.src})` }}
           ></div>
           <ArrowDown />
         </div>
