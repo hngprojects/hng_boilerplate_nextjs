@@ -18,9 +18,12 @@
     "email:start": "email start"
   },
   "dependencies": {
+    "@radix-ui/react-tabs": "^1.1.0",
+    "@radix-ui/react-avatar": "^1.1.0",
+    "@radix-ui/react-dialog": "^1.1.1",
+    "@radix-ui/react-slot": "^1.1.0",
     "@react-email/components": "0.0.21",
     "@t3-oss/env-nextjs": "^0.10.1",
-    "@radix-ui/react-avatar": "^1.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.400.0",
@@ -29,6 +32,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-email": "2.1.5",
+    "swiper": "^11.1.5",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.8"
