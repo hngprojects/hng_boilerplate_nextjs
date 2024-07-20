@@ -24,8 +24,10 @@ describe("DeleteModal", () => {
     expect(modalContent).toHaveClass("lg:left-[33%]");
     expect(modalContent).toHaveClass("lg:top-[425px]");
     expect(modalContent).toHaveClass("top-[300px]");
+    expect(modalContent).toHaveClass("lg:w-[512px]");
     expect(modalContent).toHaveClass("w-[95%]");
     expect(modalContent).toHaveClass("left-[50%]");
+    expect(modalContent).toHaveClass("lg:right-0");
   });
 
   test("should close the modal when clicking outside of the modal content", () => {
