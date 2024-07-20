@@ -10,7 +10,7 @@ import {
   DialogHeader,
   DialogOverlay,
   DialogTitle,
-} from "../../ui/dialog";
+} from "../ui/dialog";
 
 interface DeleteModalProperties {
   isVisible: boolean;
