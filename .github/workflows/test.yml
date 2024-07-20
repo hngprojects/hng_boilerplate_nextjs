@@ -18,4 +18,4 @@ jobs:
           version: 9
       - run: pnpm install
       - name: "Test"
-        run: pnpm run test:ci
+        run: pnpm run test:ci -- --max-warnings 0

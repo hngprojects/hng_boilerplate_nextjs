@@ -3,6 +3,8 @@ import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 
 import ContactForm from "~/components/common/contact-us-form";
 
+/* eslint-disable vitest/no-hooks */
+
 describe("contactForm Component", () => {
   const mockFetch = vi.fn();
 
@@ -33,6 +35,7 @@ describe("contactForm Component", () => {
   };
 
   it("should validate all required form fields", async () => {
+    expect.assertions(1); // Add this line
     const { submitButton } = setup();
     fireEvent.click(submitButton);
 
@@ -41,6 +44,7 @@ describe("contactForm Component", () => {
   });
 
   it("should validate email format", async () => {
+    expect.assertions(1); // Add this line
     const { emailInput, submitButton } = setup();
     fireEvent.change(emailInput, { target: { value: "invalid-email@kkk" } });
     fireEvent.click(submitButton);
@@ -49,6 +53,7 @@ describe("contactForm Component", () => {
   });
 
   it("should validate phone number format", async () => {
+    expect.assertions(1); // Add this line
     const { phoneInput, submitButton } = setup();
     fireEvent.change(phoneInput, { target: { value: "123" } });
     fireEvent.click(submitButton);
@@ -57,6 +62,7 @@ describe("contactForm Component", () => {
   });
 
   it("should submit the form successfully", async () => {
+    expect.assertions(2); // Add this line
     const { nameInput, emailInput, phoneInput, messageInput, submitButton } =
       setup();
     mockFetch.mockResolvedValueOnce({
@@ -78,6 +84,7 @@ describe("contactForm Component", () => {
   });
 
   it("should handle form submission error", async () => {
+    expect.assertions(2); // Add this line
     const { nameInput, emailInput, phoneInput, messageInput, submitButton } =
       setup();
     mockFetch.mockResolvedValueOnce({
@@ -97,6 +104,7 @@ describe("contactForm Component", () => {
   });
 
   it("should reset status and message after 3 seconds", async () => {
+    expect.assertions(2); // Add this line
     const { nameInput, emailInput, phoneInput, messageInput, submitButton } =
       setup();
     mockFetch.mockResolvedValueOnce({
