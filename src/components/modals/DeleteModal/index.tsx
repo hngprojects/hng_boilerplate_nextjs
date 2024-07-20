@@ -15,19 +15,12 @@ import {
 const DeleteModal: React.FC = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
-  const openDeleteModal = () => {
-    setIsVisible(true);
-  };
-
   const closeDeleteModal = () => {
     setIsVisible(false);
   };
 
   return (
     <>
-      <CustomButton onClick={openDeleteModal} variant="primary">
-        Open Delete Modal
-      </CustomButton>
       <Dialog open={isVisible} onOpenChange={closeDeleteModal}>
         <DialogOverlay
           data-testid="modal-container"
