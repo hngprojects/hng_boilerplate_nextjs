@@ -8,7 +8,7 @@ import { DialogOverlay } from "~/components/ui/dialog";
 const AddProduct = () => {
     return ( 
         <Dialog>
-            <DialogTrigger className="open-add-product">Add Product</DialogTrigger>
+            <DialogTrigger className="bg-customOrange text-white px-4 py-2 rounded hover:bg-orange-600">Add Product</DialogTrigger>
             <DialogOverlay className="bg-blackA6 data-[state=open]:animate-overlayShow fixed inset-0">
                 <DialogContent>
                     <DialogHeader>
