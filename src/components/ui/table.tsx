@@ -2,24 +2,18 @@ import * as React from "react";
 
 import { cn } from "~/lib/utils";
 
-type DivProperties = {
-  divClassName?: string;
-};
-
-// Combine DivProperties with HTMLTableElement attributes
-type TableProperties = DivProperties & React.HTMLAttributes<HTMLTableElement>;
-
-const Table = React.forwardRef<HTMLTableElement, TableProperties>(
-  ({ divClassName, className, ...properties }, reference) => (
-    <div className={cn("relative w-auto overflow-auto", divClassName)}>
-      <table
-        ref={reference}
-        className={cn("w-full caption-bottom text-sm", className)}
-        {...properties}
-      />
-    </div>
-  ),
-);
+const Table = React.forwardRef<
+  HTMLTableElement,
+  React.HTMLAttributes<HTMLTableElement>
+>(({ className, ...properties }, reference) => (
+  <div className="relative w-full overflow-auto">
+    <table
+      ref={reference}
+      className={cn("w-full caption-bottom text-sm", className)}
+      {...properties}
+    />
+  </div>
+));
 Table.displayName = "Table";
 
 const TableHeader = React.forwardRef<
@@ -83,7 +77,7 @@ const TableHead = React.forwardRef<
   <th
     ref={reference}
     className={cn(
-      "h-12 px-4 text-left align-middle font-medium text-neutral-dark-2 [&:has([role=checkbox])]:pr-0",
+      "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
       className,
     )}
     {...properties}
@@ -97,10 +91,7 @@ const TableCell = React.forwardRef<
 >(({ className, ...properties }, reference) => (
   <td
     ref={reference}
-    className={cn(
-      "p-4 align-middle text-neutral-dark-1 [&:has([role=checkbox])]:pr-0",
-      className,
-    )}
+    className={cn("p-4 align-middle [&:has([role=checkbox])]:pr-0", className)}
     {...properties}
   />
 ));
