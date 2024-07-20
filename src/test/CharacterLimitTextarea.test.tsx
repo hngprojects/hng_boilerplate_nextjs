@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { useState } from "react";
 import { describe, expect, it } from "vitest";
 
@@ -51,7 +52,7 @@ describe("characterLimitTextarea", () => {
     expect(screen.getByText("0/100 characters")).toBeInTheDocument();
   });
 
-  it("updates the character count as text is entered", () => {
+  it("updates the character count as text is entered", async () => {
     expect.assertions(1);
     render(<TestComponent maxLength={100} />);
     const textarea = screen.getByRole("textbox");
@@ -63,14 +64,16 @@ describe("characterLimitTextarea", () => {
     });
   });
 
-  it("displays an error message when character limit is exceeded", () => {
+  it("displays an error message when character limit is exceeded", async () => {
     expect.assertions(1);
     render(<TestComponent maxLength={5} />);
     const textarea = screen.getByRole("textbox");
 
     await userEvent.type(textarea, "Hello, world!");
 
-    const errorMessage = screen.getByText(/cannot exceed/);
-    expect(errorMessage).toBeInTheDocument();
+    await waitFor(() => {
+      const errorMessage = screen.getByText(/cannot exceed/i);
+      expect(errorMessage).toBeInTheDocument();
+    });
   });
 });
