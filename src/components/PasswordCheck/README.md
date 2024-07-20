@@ -17,6 +17,10 @@ import PasswordCheck from "~/components/common/PasswordCheck/index";
 ### Example
 
 ```tsx
+const handleStrengthChange = (strength: PasswordCheck) => {
+    console.log("Password strength changed:", strength);
+  };
+
 return (
 <PasswordCheck
         password="Password1@"
