@@ -32,8 +32,15 @@ const Navbar = () => {
           })}
         </div>
         <div className="hidden w-full max-w-[280px] items-center justify-between gap-2 md:flex">
-          <CustomButton variant="outline">Log in</CustomButton>
-          <CustomButton variant="primary">Get Started</CustomButton>
+          <CustomButton
+            variant="outline"
+            className="h-[44px] w-[105px] border-primary text-primary"
+          >
+            Log in
+          </CustomButton>
+          <CustomButton variant="primary" className="h-[44px] w-[142px]">
+            Get Started
+          </CustomButton>
         </div>
         <div className="flex w-full max-w-[80px] items-center justify-between gap-2 md:hidden">
           <BellIcon className="text-nuetral-black-1 h-5 w-5 cursor-pointer transition-colors duration-300 hover:text-neutral-dark-1/50" />
