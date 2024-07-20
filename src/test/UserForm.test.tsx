@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 
-import UserForm from "../../src/components/layouts/WaitListForm/UserForm";
+import UserForm from "../components/common/WaitListForm/UserForm";
 
 // Utility function to set window size
 const setWindowSize = (width: number, height: number) => {
