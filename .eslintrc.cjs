@@ -66,7 +66,7 @@ module.exports = {
   overrides: [
     {
       files: [".eslintrc.*js", ".vite(|st).(js|ts)"],
-      env: { node: true},
+      env: { node: true },
     },
     {
       files: ["*.d.ts"],
