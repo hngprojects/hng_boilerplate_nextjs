@@ -12,19 +12,18 @@ import "swiper/css/scrollbar";
 
 const Hero = () => {
   return (
-    <div className="py-20 bg-background">
+    <div className="py-20">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <div className="flex flex-col lg:flex-row items-center">
           <div className="w-full lg:w-1/2">
-            <h1 className="text-5xl md:text-6xl font-bold mb-2 leading-snug md:leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl  font-bold mb-2 leading-snug md:leading-tight">
               Focus on What Matters. We've Got the Foundation Covered.
             </h1>
 
-            <div>
-              <HeroLine />
-            </div>
 
-            <p className="text-lg md:text-xl text-foreground mt-7 mb-12">
+              <HeroLine />
+
+            <p className="text-lg md:text-xl text-foreground md:mt-7 mt-5 md:mb-12 mb-8">
               Streamline your processes with a boilerplate built for efficiency
               and optimal productivity.
             </p>
@@ -35,8 +34,8 @@ const Hero = () => {
           </div>
 
           <div className="w-full lg:w-1/2 flex justify-end mt-14 lg:mt-0 rounded-lg">
-            <div className="bg-primary relative md:h-[300px] lg:h-[526px] lg:w-[418px] w-[90%] md:w-[95%] rounded-lg">
-              <div data-testid="hero-checkmark" className="absolute left-[-3.5rem] top-1/3 transform -translate-y-1/2 z-10">
+            <div className="relative md:h-[300px] lg:h-[526px] lg:w-[418px] w-full sm:w-[90%] md:w-[95%] rounded-lg">
+              <div data-testid="hero-checkmark" className="absolute md:left-[-3.5rem] sm:left-[-2.2rem] top-1/3 transform -translate-y-1/2 z-10">
                 <HeroCheckMark />
               </div>
 
@@ -44,7 +43,7 @@ const Hero = () => {
                 <HeroChat />
               </div>
 
-              <div data-testid="hero-boilerplate" className="absolute left-[-3.75rem] bottom-8 z-30">
+              <div data-testid="hero-boilerplate" className="absolute md:left-[-3.75rem] sm:left-[-0.75rem]  bottom-8 z-30">
                 <HeroBoilerPlate />
               </div>
 

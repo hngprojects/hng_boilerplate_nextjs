@@ -33,13 +33,13 @@ const Testimonials = () => {
           <div className="flex items-center space-x-4 lg:space-x-6 mt-6 lg:mt-0">
             <div
               data-testid="custom-prev"
-              className="h-12 w-12 lg:h-15 lg:w-15 border border-border bg-white hover:border-primary rounded flex items-center justify-center transition-all duration-300"
+              className="custom-prev h-12 w-12 lg:h-15 lg:w-15 border border-border bg-white hover:border-primary rounded flex items-center justify-center transition-all duration-300"
             >
               <TestimonialLeftArrow />
             </div>
             <div
               data-testid="custom-next"
-              className="h-12 w-12 lg:h-15 lg:w-15 border border-border bg-white hover:border-primary rounded flex items-center justify-center transition-all duration-300"
+              className="custom-next h-12 w-12 lg:h-15 lg:w-15 border border-border bg-white hover:border-primary rounded flex items-center justify-center transition-all duration-300"
             >
               <TestimonialRightArrow />
             </div>
