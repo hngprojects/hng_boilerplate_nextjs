@@ -1,0 +1,113 @@
+
+.how-it-works {
+  padding: 60px 0;
+  display:flex;
+  align-items: center;
+}
+
+.how-left{
+  width:60%;
+  padding-right:50px;
+
+}
+
+.how-left h1 {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: normal;
+  font-family: "Inter";
+}
+
+.how-left p {
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 48px;
+  font-family: "Inter";
+  margin-top: 25px;
+}
+
+.how-right {
+width:40%;
+display:flex;
+flex-direction: column;
+align-items: flex-end;
+
+}
+
+.how-right .how-component {
+  display:flex;
+  column-gap:23px;
+  margin-bottom:36px;
+
+  
+}
+
+.how-component h3{
+  font-size:24px;
+  font-weight:700;
+  font-family:"Inter";
+  margin-bottom:10px;
+}
+
+.how-component small{
+   font-size:16px;
+  font-weight:400;
+  font-family:"Inter"
+}
+
+/* =================================== */
+/* responsiveness section */
+
+@media (min-width:1300px){
+  .how-left{
+    padding-right:150px;
+  }
+}
+
+@media (max-width:991px){
+  .how-it-works{
+    flex-direction: column;
+  }
+
+  .how-left{
+    width:100%;
+    padding-right:0;
+  }
+
+  .how-right{
+    width:100%;
+    align-items: flex-start;
+  }
+}
+
+
+@media (max-width:768px){
+  .how-left h1{
+    font-size:38px;
+  }
+
+   .how-right h3{
+    font-size:20px;
+  }
+
+ .how-right .how-component{
+    column-gap:5px;
+  }
+}
+
+@media (max-width:575px){
+  .how-left h1{
+    font-size:25px;
+    text-align:center;
+  }
+
+  .how-left p{
+    font-size:16px;
+    text-align:center;
+  }
+
+  .how-right h3{
+    font-size:18px;
+  }
+}
+  
