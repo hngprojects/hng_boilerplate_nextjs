@@ -19,8 +19,6 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 
-import "./index.css";
-
 type DashboardMemberCardProperties = {
   profileImage: string;
   fullName: string;
