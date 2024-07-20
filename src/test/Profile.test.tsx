@@ -31,7 +31,6 @@ describe("profile Component", () => {
     expect(screen.getByText("Save Changes")).toBeInTheDocument();
   });
 
-
   it("should allow input fields to accept and save data (part 1)", () => {
     expect.assertions(3);
 
