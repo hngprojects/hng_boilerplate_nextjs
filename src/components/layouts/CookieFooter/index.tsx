@@ -1,6 +1,18 @@
+/* eslint-disable react/no-unescaped-entities */
+"use client";
+
+import { useState } from "react";
+
 import CustomButton from "~/components/common/Button/button";
 
 const CookieFooter: React.FC = () => {
+  const [isCookieFooterOpen, setIsCookieFooterOpen] = useState(true);
+
+  const handleCloseFooter = () => {
+    setIsCookieFooterOpen(false);
+  };
+
+  if (!isCookieFooterOpen) return;
   return (
     <footer className="fixed bottom-0 left-0 right-0 z-50 w-[100vw] bg-background text-start text-neutral-dark-1 md:text-foreground">
       <div className="mx-auto flex max-w-[1200px] flex-col gap-x-[25px] gap-y-4 px-6 py-5 md:py-10 lg:flex-row lg:justify-center xl:px-0">
@@ -9,16 +21,16 @@ const CookieFooter: React.FC = () => {
           <span className="text-xs font-normal md:text-base">
             Our website uses cookies to enhance your browsing experience,
             provide personalized content, and analyze site traffic. By clicking
-            &quot;Accept All&quot;, you consent to our use of cookies.
+            "Accept All", you consent to our use of cookies.
           </span>
         </p>
         <ul className="flex flex-row flex-wrap items-end gap-x-4 gap-y-2">
-          <li className="md:order-3">
+          <li onClick={handleCloseFooter} className="md:order-3">
             <CustomButton size="default" variant="primary">
               Accept All Cookies
             </CustomButton>
           </li>
-          <li className="md:order-2">
+          <li onClick={handleCloseFooter} className="md:order-2">
             <CustomButton variant="primary" size="default">
               Reject All
             </CustomButton>
