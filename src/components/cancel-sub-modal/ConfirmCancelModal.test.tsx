@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 
 import ConfirmCancelModal from "./ConfirmCancelModal";
 
-describe("ConfirmCancelModal", () => {
+describe("confirmCancelModal", () => {
   it("renders correctly when open", () => {
     render(
       <ConfirmCancelModal isOpen={true} onClose={vi.fn()} onCancel={vi.fn()} />,
@@ -30,7 +30,7 @@ describe("ConfirmCancelModal", () => {
     );
 
     fireEvent.click(screen.getByText("Keep Subscription"));
-    expect(onCloseMock).toHaveBeenCalled();
+    expect(onCloseMock).toHaveBeenCalledWith();
   });
 
   it("calls onCancel when Cancel Subscription button is clicked", () => {
@@ -44,7 +44,7 @@ describe("ConfirmCancelModal", () => {
     );
 
     fireEvent.click(screen.getByText("Cancel Subscription"));
-    expect(onCancelMock).toHaveBeenCalled();
+    expect(onCancelMock).toHaveBeenCalledWith();
   });
 
   it("does not render when isOpen is false", () => {
