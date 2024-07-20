@@ -1,22 +1,18 @@
-import BlogPostHeader from '../components/BlogPostHeader/BlogPostHeader';
+import Hero from "~/components/layouts/homepage/Hero";
+import HowItWorks from "~/components/layouts/homepage/HowItWorks";
+import PerfectFit from "~/components/layouts/homepage/PerfectFit";
+import Testimonials from "~/components/layouts/homepage/Testimonials";
+import UserSection from "~/components/layouts/homepage/UserSection";
 
 const HomePage = () => {
   return (
-    <div>
-      <BlogPostHeader
-        title="The Untold Story of the First Computer"
-        subtitle="Exploring the history and impact of early computing machines."
-        date="July 12, 2024"
-        authorName="Nora Nora"
-        authorProfilePicture="/author.svg"
-        tag="BUSINESS"
-        readingTime="5 min"
-        blogImage="/blog-image.jpg"
-        excerpt="This is an example excerpt of the blog post."
-        commentsCount={44}
-        likesCount={77}
-      />
-    </div>
+    <>
+      <Hero />
+      <UserSection />
+      <HowItWorks />
+      <Testimonials />
+      <PerfectFit />
+    </>
   );
 };
 
