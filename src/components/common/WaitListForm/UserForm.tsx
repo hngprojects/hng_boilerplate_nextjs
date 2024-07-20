@@ -52,7 +52,7 @@ const UserForm: React.FC = () => {
           <Image
             width={23}
             height={21}
-            src="/circle 1.svg"
+            src="/images/WaitListForm/circle 1.svg"
             alt="Circle with Tick"
           />
           <h3
@@ -86,14 +86,14 @@ const UserForm: React.FC = () => {
               <Image
                 width={177}
                 height={179}
-                src="/BACKGROUND.png"
+                src="/images/WaitListForm/BACKGROUND.png"
                 alt="Success Background"
                 className="mb-4"
               />
               <Image
                 width={31}
                 height={31}
-                src="/icon (1).svg"
+                src="/images/WaitListForm/icon (1).svg"
                 alt="Success Tick"
                 className="absolute left-2 top-20 translate-x-[50%] translate-y-[-50%] transform"
               />
@@ -154,10 +154,15 @@ const UserForm: React.FC = () => {
 
             <div className="flex items-center justify-center">
               <button
-                className="bg-buttonColor flex h-[51.78px] w-[195.6px] items-center justify-between rounded-md px-[19.2px] py-[9.6px] text-[16.8px] font-bold leading-[28.8px] text-white"
+                className="flex h-[51.78px] w-[195.6px] items-center justify-between rounded-md bg-primary px-[19.2px] py-[9.6px] text-[16.8px] font-bold leading-[28.8px] text-white"
                 type="submit"
               >
-                <Image width={20} height={20} src="/icon.svg" alt="Envelope" />
+                <Image
+                  width={20}
+                  height={20}
+                  src="/images/WaitListForm/icon.svg"
+                  alt="Envelope"
+                />
                 Join the Waitlist
               </button>
             </div>

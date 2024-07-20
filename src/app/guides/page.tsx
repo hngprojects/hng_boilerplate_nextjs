@@ -12,7 +12,7 @@ const Button: React.FC = () => {
         className="grid w-full items-start gap-4"
         style={{ gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))" }}
       >
-        <div className="bg-default flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
+        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-default px-4 py-4 text-background">
           bg-default, text-background
         </div>
         <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg border border-border bg-background px-4 py-4 text-foreground">
