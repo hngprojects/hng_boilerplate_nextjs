@@ -77,6 +77,9 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        stroke: {
+          "colors-stroke": "hsl(var(--stroke-colors-stroke))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
