@@ -1,17 +1,20 @@
 import React from "react";
 
-import Navbar from "./Navbar/Navbar";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 interface IProperties {
   children: React.ReactNode;
 }
-const Layout: React.FC<IProperties> = ({ children }) => {
+
+const index: React.FC<IProperties> = ({ children }) => {
   return (
-    <div>
+    <div className="flex min-h-screen flex-col justify-between">
       <Navbar />
-      {children}
+      <div className="flex-1">{children}</div>
+      <Footer />
     </div>
   );
 };
 
-export default Layout;
+export default index;
