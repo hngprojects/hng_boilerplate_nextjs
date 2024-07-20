@@ -19,7 +19,6 @@ const config = {
     },
     extend: {
       colors: {
-    
         primary_color: "hsl(var(--primary_color))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -28,7 +27,7 @@ const config = {
         foreground: "hsl(var(--foreground))",
         default: {
           DEFAULT: "hsl(var(--default))",
-          foreground: "hsl(var(--default-foreground))"
+          foreground: "hsl(var(--default-foreground))",
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",
