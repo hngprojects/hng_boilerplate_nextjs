@@ -3,9 +3,10 @@ import userEvent from "@testing-library/user-event";
 
 import PasswordSuccessfulModal from "./PasswordSuccessfulModal";
 
-describe("password successful modal", () => {
+describe("testimonials Component", () => {
   it("renders the modal when show is true", () => {
     expect.assertions(2);
+
     render(<PasswordSuccessfulModal show={true} onClose={() => {}} />);
     expect(
       screen.getByText("Password Successfully Updated!"),

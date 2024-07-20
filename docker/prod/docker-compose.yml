@@ -14,4 +14,3 @@ services:
     ports:
       - 3030:3000
     restart: always
-
