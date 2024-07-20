@@ -7,6 +7,7 @@ export default function Page() {
       <ProductFilter />
       <TableData />
 
+      {/* <Paginations /> */}
     </main>
   );
 }
