@@ -5,9 +5,14 @@ import * as React from "react";
 
 import { cn } from "~/lib/utils";
 
+interface SwitchProperties
+  extends React.ComponentPropsWithoutRef<typeof SwitchPrimitives.Root> {
+  className?: string;
+}
+
 const Switch = React.forwardRef<
   React.ElementRef<typeof SwitchPrimitives.Root>,
-  React.ComponentPropsWithoutRef<typeof SwitchPrimitives.Root>
+  SwitchProperties
 >(({ className, ...properties }, reference) => (
   <SwitchPrimitives.Root
     className={cn(
