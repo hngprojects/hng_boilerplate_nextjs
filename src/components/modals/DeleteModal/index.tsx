@@ -12,7 +12,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ closeDeleteModal }) => {
     <Dialog open={true} onOpenChange={closeDeleteModal}> 
     <DialogOverlay data-testid="modal-container" className="absolute bg-subtle bg-opacity-[25%] w-full top-0 bottom-0 h-[1024px] z-[999] cursor-pointer" onClick={closeDeleteModal}>
       <DialogContent data-testid="modal-content"
-        className="absolute max-w-[1440px] lg:left-[33%] lg:top-[425px] top-[300px] lg:w-[512px] w-[95%] left-3 md:left-5 lg:right-0 bg-background p-[24px] rounded-[6px]">
+        className="absolute max-w-[1440px] lg:left-[40%] lg:top-[425px] top-[300px] lg:w-[512px] w-[95%] left-[50%] lg:right-0 bg-background p-[24px] rounded-[6px]">
         <DialogHeader>
           <DialogTitle data-testid="modal-heading" className="text-[18px] font-[600] leading-[28px] text-foreground">Delete Member</DialogTitle>
         </DialogHeader>
