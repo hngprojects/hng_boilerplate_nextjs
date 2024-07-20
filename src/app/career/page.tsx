@@ -1,4 +1,3 @@
-import React from "react";
 import CareerCardParent from "../../components/common/CareerCard";
 
 export default function Career() {
