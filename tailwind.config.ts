@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      lineHeight: {
+        'custom-58': '58.09px',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
