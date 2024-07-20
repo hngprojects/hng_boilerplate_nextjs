@@ -6,6 +6,7 @@ import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 
 import BreadCrumbs from "~/components/common/BreadCrumbs";
+import CustomButton from "~/components/common/Button/button";
 import * as alert from "~/components/ui/alert";
 
 const breadcrumbItems = [
@@ -50,11 +51,11 @@ export default function Page() {
       {contentPreview === "true" ? (
         <div className="mt-6 sm:max-w-[90%]">
           <div className="mb-9 mt-6 flex flex-col sm:flex-row sm:items-center">
-            <div>
-              <h1 className="mb-9 mt-6 flex flex-col sm:flex-row sm:items-center">
+            <div className="mb-9 mt-6">
+              <h1 className="mb-2 flex flex-col text-2xl font-bold sm:flex-row sm:items-center">
                 Preview Your Generated Template
               </h1>
-              <p className="text-[#0A0A0A]/60">
+              <p className="max-w-[80%] text-neutral-dark-1">
                 Review the layout and look of your email template generated from
                 the pasted HTML code to ensure you have pasted the right
                 template.
@@ -62,13 +63,13 @@ export default function Page() {
             </div>
             <Link
               href={"/email/new-template/generate-template"}
-              className="mt-4 h-10 w-fit whitespace-nowrap rounded-[6px] border-none bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:opacity-90 sm:mt-0"
+              className="mt-4 h-10 w-fit whitespace-nowrap rounded-[6px] border-none bg-neutral-dark-2 px-4 py-2 text-sm font-medium text-white hover:opacity-90 sm:mt-0"
             >
               Edit content
             </Link>
           </div>
           <div className="rounded-[19px] border border-[#CBD5E180] bg-white p-5">
-            <div className="h-[500px] w-full rounded-[7px] sm:w-[382px] sm:border sm:border-[#CBD5E180]">
+            <div className="flex w-full justify-center rounded-[7px] py-12 sm:border sm:border-[#CBD5E180]">
               <iframe
                 srcDoc={htmlContent}
                 title="Generated Email Template"
@@ -80,10 +81,10 @@ export default function Page() {
       ) : (
         <div>
           <div className="mb-9 mt-6">
-            <h1 className="mb-2 text-2xl font-bold text-[#0A0A0A]">
+            <h1 className="mb-2 text-2xl font-bold text-default">
               Generate Template with HTML
             </h1>
-            <p className="text-[#0A0A0A]/60">
+            <p className="text-default/60">
               Paste your HTML code below to generate your email template.
             </p>
           </div>
@@ -102,41 +103,49 @@ export default function Page() {
                       required: "This field is required",
                     })}
                     id="html-content"
-                    className={`h-10 w-full rounded-[6px] px-3 py-2 md:min-w-[540] ${
+                    className={`h-9 w-full rounded-[6px] px-3 py-2 md:min-w-[540] ${
                       errors.htmlContent
-                        ? "border-red-500 text-red-500 focus:outline-none"
+                        ? "border-error text-error focus:outline-none"
                         : "border-[#CBD5E1] text-slate-400 focus:outline-[#CBD5E1]"
                     } border outline-none focus:outline-[1.5px] focus:outline-offset-0`}
                     placeholder="Enter your link here"
                   />
                   {errors.htmlContent && (
-                    <p className="mt-1 text-xs text-red-500">
+                    <p className="mt-1 text-xs text-error">
                       {errors.htmlContent?.message as string}
                     </p>
                   )}
                 </div>
-                <button
+                {/* <button
                   type="submit"
-                  className="h-10 w-fit rounded-[6px] border-none bg-[#F97316] px-4 py-2 text-sm font-medium text-white hover:opacity-90"
+                  className="h-10 w-fit rounded-[6px] border-none bg-primary px-4 py-2 text-sm font-medium text-white hover:opacity-90"
                 >
                   {isLoading ? "Generating..." : "Generate"}
-                </button>
+                </button> */}
+                <CustomButton
+                  variant="primary"
+                  isLeftIconVisible={false}
+                  isLoading={isLoading}
+                  isDisabled={false}
+                >
+                  {isLoading ? "" : "Generate"}
+                </CustomButton>
               </div>
               <div className="mt-6 text-sm">
                 <alert.Alert className="border-[#F9731666] bg-[#F973161A]">
-                  <alert.AlertTitle className="mb-3 font-semibold text-[#F97113]">
+                  <alert.AlertTitle className="mb-3 font-semibold text-primary">
                     Tips on Acceptable HTML Content
                   </alert.AlertTitle>
                   <alert.AlertDescription>
                     <ul className="ml-4 flex list-disc flex-col gap-3">
-                      <li className="text-[#0A0A0A] opacity-60">
+                      <li className="text-default opacity-60">
                         Ensure the HTML contains the complete email template.
                       </li>
-                      <li className="text-[#0A0A0A] opacity-60">
+                      <li className="text-default opacity-60">
                         Use static HTML that does not include dynamic content or
                         scripts.
                       </li>
-                      <li className="text-[#0A0A0A] opacity-60">
+                      <li className="text-default opacity-60">
                         Ensure the HTML content is well-structured and valid.
                       </li>
                     </ul>
@@ -148,7 +157,7 @@ export default function Page() {
         </div>
       )}
       {error && (
-        <div className="mt-6 text-red-500">
+        <div className="mt-6 text-error">
           <p>{error}</p>
         </div>
       )}
