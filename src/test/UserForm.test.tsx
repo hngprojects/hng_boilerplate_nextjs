@@ -9,7 +9,7 @@ const setWindowSize = (width: number, height: number) => {
   window.dispatchEvent(new Event("resize"));
 };
 
-describe("UserForm component", () => {
+describe("userForm component", () => {
   beforeAll(() => {
     // Save original window size to restore later
     Object.defineProperty(window, "innerWidth", {

@@ -46,9 +46,9 @@ const UserForm: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center mt-[81px]">
+    <div className="mt-[81px] flex flex-col items-center justify-center">
       <div className="text-center md:w-[623px]">
-        <div className="flex justify-center items-center gap-[7px] mb-[12px] md:mb-[8px]">
+        <div className="mb-[12px] flex items-center justify-center gap-[7px] md:mb-[8px]">
           <Image
             width={23}
             height={21}
@@ -56,20 +56,20 @@ const UserForm: React.FC = () => {
             alt="Circle with Tick"
           />
           <h3
-            className="font-medium text-[18px] leading-[16.94px] md:leading-[21.78px]"
+            className="text-[18px] font-medium leading-[16.94px] md:leading-[21.78px]"
             style={{ color: "rgba(25, 26, 21, 1)" }}
           >
             Deployment made easy
           </h3>
         </div>
         <h1
-          className="font-bold mb-[10px] md:w-[623px] text-[24px] md:text-[36px] leading-[29.05px] md:leading-[43.57px]"
+          className="mb-[10px] text-[24px] font-bold leading-[29.05px] md:w-[623px] md:text-[36px] md:leading-[43.57px]"
           style={{ color: "rgba(82, 82, 82, 1)" }}
         >
           You can level up your SaaS production today
         </h1>
         <p
-          className="text-center font-medium text-[16px] md:text-[20px] leading-[19.36px] md:leading-[28px]"
+          className="text-center text-[16px] font-medium leading-[19.36px] md:text-[20px] md:leading-[28px]"
           style={{ color: "rgba(82, 82, 82, 1)" }}
         >
           Join our waitlist and get early access to our boilerplates
@@ -77,11 +77,11 @@ const UserForm: React.FC = () => {
       </div>
 
       <div
-        className="rounded-[8px] w-[383.344px] h-auto md:w-[510px] p-[28.8px] md:p-[10px] mt-[87px] md:mt-[20px] flex items-start gap-[19.2px] shrink-0"
+        className="mt-[87px] flex h-auto w-[383.344px] shrink-0 items-start gap-[19.2px] rounded-[8px] p-[28.8px] md:mt-[20px] md:w-[510px] md:p-[10px]"
         style={{ border: "0.5px solid rgba(228, 228, 231, 1)" }}
       >
         {success ? (
-          <div className="w-full flex flex-col items-center justify-center">
+          <div className="flex w-full flex-col items-center justify-center">
             <div className="relative">
               <Image
                 width={177}
@@ -95,20 +95,20 @@ const UserForm: React.FC = () => {
                 height={31}
                 src="/icon (1).svg"
                 alt="Success Tick"
-                className="absolute top-20 left-2 transform translate-x-[50%] translate-y-[-50%]"
+                className="absolute left-2 top-20 translate-x-[50%] translate-y-[-50%] transform"
               />
             </div>
-            <p className="text-center font-medium text-successText text-[16px] md:text-[20px] leading-[19.36px] md:leading-[28px]">
+            <p className="text-successText text-center text-[16px] font-medium leading-[19.36px] md:text-[20px] md:leading-[28px]">
               You&apos;re all signed up!
             </p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="w-full">
             <div className="mb-[24px]">
-              <div className="h-[90px] mb-[24.4px]">
+              <div className="mb-[24.4px] h-[90px]">
                 <label
                   htmlFor="name"
-                  className="block font-normal text-[19.2px] leading-[23.24px] text-left mb-[20px]"
+                  className="mb-[20px] block text-left text-[19.2px] font-normal leading-[23.24px]"
                 >
                   Name
                 </label>
@@ -119,7 +119,7 @@ const UserForm: React.FC = () => {
                   placeholder="Meghan Grace"
                   value={formData.name}
                   onChange={handleChange}
-                  className="border-[1.2px] border-[rgba(82, 82, 82, 0.3)] w-full pt-[14.4px] pr-[67.2px] pb-[14.4px] pl-[14.4px] rounded-md font-normal text-[16.8px] leading-[23.24px] text-left"
+                  className="border-[rgba(82, 82, 82, 0.3)] w-full rounded-md border-[1.2px] pb-[14.4px] pl-[14.4px] pr-[67.2px] pt-[14.4px] text-left text-[16.8px] font-normal leading-[23.24px]"
                   style={{
                     borderColor: errors.name ? "red" : "black",
                     color: "rgba(100, 116, 139, 1)",
@@ -128,10 +128,10 @@ const UserForm: React.FC = () => {
                 {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
               </div>
 
-              <div className="h-[90px] mb-[36px] md:mb-[25px]">
+              <div className="mb-[36px] h-[90px] md:mb-[25px]">
                 <label
                   htmlFor="email"
-                  className="block font-normal text-[19.2px] leading-[23.24px] text-left mb-[14.4px]"
+                  className="mb-[14.4px] block text-left text-[19.2px] font-normal leading-[23.24px]"
                 >
                   Email
                 </label>
@@ -142,7 +142,7 @@ const UserForm: React.FC = () => {
                   placeholder="Enter email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="border-[1.2px] border-[rgba(82, 82, 82, 0.3)] w-full pt-[14.4px] pr-[67.2px] pb-[14.4px] pl-[14.4px] rounded-md font-normal text-[16.8px] leading-[23.24px] text-left"
+                  className="border-[rgba(82, 82, 82, 0.3)] w-full rounded-md border-[1.2px] pb-[14.4px] pl-[14.4px] pr-[67.2px] pt-[14.4px] text-left text-[16.8px] font-normal leading-[23.24px]"
                   style={{
                     borderColor: errors.email ? "red" : "black",
                     color: "rgba(100, 116, 139, 1)",
@@ -152,9 +152,9 @@ const UserForm: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex justify-center items-center">
+            <div className="flex items-center justify-center">
               <button
-                className="text-white font-bold text-[16.8px] leading-[28.8px] bg-buttonColor rounded-md w-[195.6px] h-[51.78px] flex justify-between items-center py-[9.6px] px-[19.2px]"
+                className="flex h-[51.78px] w-[195.6px] items-center justify-between rounded-md bg-buttonColor px-[19.2px] py-[9.6px] text-[16.8px] font-bold leading-[28.8px] text-white"
                 type="submit"
               >
                 <Image width={20} height={20} src="/icon.svg" alt="Envelope" />
