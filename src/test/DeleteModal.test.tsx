@@ -1,13 +1,9 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-
 import "@testing-library/jest-dom";
-
 import DeleteModal from "../components/modals/DeleteModal";
 
 describe("deleteModal", () => {
   it("should display the modal correctly when visible", () => {
-    expect.assertions(2);
-
     render(<DeleteModal />);
     const openButton = screen.getByText("Open Delete Modal");
     fireEvent.click(openButton);
@@ -20,24 +16,24 @@ describe("deleteModal", () => {
   });
 
   it("should be responsive across all screens", () => {
-    expect.assertions(5);
-
     render(<DeleteModal />);
     const openButton = screen.getByText("Open Delete Modal");
     fireEvent.click(openButton);
 
     const modalContent = screen.getByTestId("modal-content");
 
+    expect(modalContent).toHaveClass("absolute");
     expect(modalContent).toHaveClass("max-w-[1440px]");
     expect(modalContent).toHaveClass("lg:left-[40%]");
+    expect(modalContent).toHaveClass("lg:top-[425px]");
     expect(modalContent).toHaveClass("top-[300px]");
+    expect(modalContent).toHaveClass("lg:w-[512px]");
     expect(modalContent).toHaveClass("w-[95%]");
     expect(modalContent).toHaveClass("left-[50%]");
+    expect(modalContent).toHaveClass("lg:right-0");
   });
 
   it("should close the modal when clicking outside of the modal content", () => {
-    expect.assertions(1);
-
     render(<DeleteModal />);
     const openButton = screen.getByText("Open Delete Modal");
     fireEvent.click(openButton);
@@ -50,11 +46,9 @@ describe("deleteModal", () => {
   });
 
   it("should properly align heading, message, and buttons", () => {
-    expect.assertions(3);
-
     render(<DeleteModal />);
     const openButton = screen.getByText("Open Delete Modal");
-    fireEvent.click(openButton);
+    fireEvent.click(openButton); // Open the modal
 
     const modalHeading = screen.getByTestId("modal-heading");
     const modalMessage = screen.getByTestId("modal-message");
@@ -66,8 +60,6 @@ describe("deleteModal", () => {
   });
 
   it("should close the modal when clicking the Cancel button", () => {
-    expect.assertions(1);
-
     render(<DeleteModal />);
     const openButton = screen.getByText("Open Delete Modal");
     fireEvent.click(openButton);
@@ -80,8 +72,6 @@ describe("deleteModal", () => {
   });
 
   it("should close the modal when clicking the Delete button", () => {
-    expect.assertions(1);
-
     render(<DeleteModal />);
     const openButton = screen.getByText("Open Delete Modal");
     fireEvent.click(openButton);
@@ -94,8 +84,6 @@ describe("deleteModal", () => {
   });
 
   it("should correctly apply overlay opacity", () => {
-    expect.assertions(1);
-
     render(<DeleteModal />);
     const openButton = screen.getByText("Open Delete Modal");
     fireEvent.click(openButton);
