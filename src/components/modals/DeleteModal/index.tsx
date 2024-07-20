@@ -28,7 +28,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ closeDeleteModal }) => {
           <DeleteModalButton
             data-testid="cancel-button"
             title="Cancel"
-            className="bg-[#ffff] text-[#0F172A] border border-[#e2e8f0] hover:bg-gray-400 hover:text-white"
+            className="bg-[#ffff] text-[#0F172A] border border-border hover:bg-gray-400 hover:text-white"
             onClick={closeDeleteModal}
           />
           <DeleteModalButton
