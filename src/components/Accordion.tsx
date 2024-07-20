@@ -1,5 +1,6 @@
 "use client";
 
+
 import React, { useEffect, useRef, useState } from "react";
 
 type AccordionItem = {
@@ -20,7 +21,7 @@ const Accordion: React.FC<AccordionProperties> = ({ items }) => {
   };
 
   useEffect(() => {
-    for (const [index, content] of contentReferences.current.entries()) {
+    for (const [index, content] of Array.from(contentReferences.current.entries())) {
       if (content) {
         if (index === activeIndex) {
           content.style.maxHeight = `${content.scrollHeight}px`;
@@ -47,7 +48,7 @@ const Accordion: React.FC<AccordionProperties> = ({ items }) => {
             onClick={() => handleClick(index)}
             aria-expanded={index === activeIndex ? "true" : "false"}
           >
-            <span style={{fontWeight: "500"}} >{item.header}</span>
+            <span>{item.header}</span>
             <svg
               className={`accordion-icon transform transition-transform duration-300 ${index === activeIndex ? "rotate-180" : ""
                 }`}
