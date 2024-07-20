@@ -10,7 +10,7 @@ const HowItWorks = () => {
               <span className="text-primary">How It Works:</span> Experience the
               benefits of using our product with every step.
             </h1>
-            <p className="font-inter mb-12 mt-6 text-lg font-normal md:text-xl">
+            <p className="mb-12 mt-6 font-inter text-lg font-normal md:text-xl">
               {` We designed our product to simplify your life. It offers a comprehensive solution. Here's how it works and how it benefits you at each stage.`}
             </p>
           </div>
@@ -22,7 +22,7 @@ const HowItWorks = () => {
               </div>
               <div>
                 <h3
-                  className="md-text-2xl font-inter mb-2 text-xl font-bold"
+                  className="md-text-2xl mb-2 font-inter text-xl font-bold"
                   data-testid="prebuilt"
                 >
                   Pre-Built Sections
@@ -42,7 +42,7 @@ const HowItWorks = () => {
               </div>
               <div>
                 <h3
-                  className="md-text-2xl font-inter mb-2 text-xl font-bold"
+                  className="md-text-2xl mb-2 font-inter text-xl font-bold"
                   data-testid="scalable"
                 >
                   Scalable Foundation
@@ -63,7 +63,7 @@ const HowItWorks = () => {
               </div>
               <div>
                 <h3
-                  className="md-text-2xl font-inter mb-2 text-xl font-bold"
+                  className="md-text-2xl mb-2 font-inter text-xl font-bold"
                   data-testid="easy"
                 >
                   Easy Customization

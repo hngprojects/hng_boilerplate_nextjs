@@ -12,7 +12,7 @@ interface Properties {
 const TestimonialCard = (properties: Properties) => {
   return (
     <div className="flex h-full flex-col items-center justify-center rounded-md border border-solid border-primary bg-white px-5 py-10 text-center sm:h-[500px] md:h-[500px] lg:h-[500px] xl:px-10">
-      <p className="font-inter mb-6 text-base font-normal">
+      <p className="mb-6 font-inter text-base font-normal">
         {properties?.content}
       </p>
 
@@ -30,7 +30,7 @@ const TestimonialCard = (properties: Properties) => {
         />
       </div>
 
-      <h4 className="font-inter mb-2 mt-2 text-lg font-semibold">
+      <h4 className="mb-2 mt-2 font-inter text-lg font-semibold">
         {properties?.name}
       </h4>
       <small className="font-inter text-base font-normal">

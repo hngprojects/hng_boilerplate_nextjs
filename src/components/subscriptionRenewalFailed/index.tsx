@@ -1,3 +1,4 @@
+import { error } from "node:console";
 import Image from "next/image";
 
 import { Button } from "~/components/common/Button";
@@ -19,7 +20,7 @@ const SubscriptionRenewalFailed: React.FC<
 > = (properties) => {
   const result = SubscriptionRenewalFailedSchema.safeParse(properties);
   if (!result.success) {
-    console.error("Invalid props:", result.error.format());
+    error("Invalid props:", result.error.format());
     return;
   }
 

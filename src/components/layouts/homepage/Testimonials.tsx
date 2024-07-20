@@ -25,7 +25,7 @@ const Testimonials = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-end md:flex-row md:items-center md:justify-between">
           <div className="w-full pr-0 lg:w-2/3 lg:pr-10">
-            <h1 className="font-inter mb-2 text-4xl font-bold lg:text-5xl">
+            <h1 className="mb-2 font-inter text-4xl font-bold lg:text-5xl">
               Client Testimonials
             </h1>
             <p className="font-inter text-lg font-normal text-foreground lg:text-xl">
