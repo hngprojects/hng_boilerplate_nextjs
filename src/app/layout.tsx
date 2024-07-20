@@ -6,6 +6,8 @@ import { Toaster } from "~/components/ui/toaster";
 import "./globals.css";
 import "~/components/layouts/homepage/styles/styles.css";
 
+import Providers from "~/components/Providers";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -21,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {children}
+        <Providers>{children}</Providers>
         <Toaster />
       </body>
     </html>
