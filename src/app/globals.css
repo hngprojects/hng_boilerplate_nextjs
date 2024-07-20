@@ -7,10 +7,10 @@
     --background: 0 0% 98%;
     --foreground: 0 0 32%;
 
-    --card: 0 0% 98%;
+    --card: 0 0% 100%;
     --card-foreground: 0 0 32%;
 
-    --popover: 0 0% 98%;
+    --popover: 0 0% 100%;
     --popover-foreground: 0 0 32%;
 
     --default: 222 47% 11%;
@@ -52,7 +52,7 @@
 
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 0 0 32%;
+    --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
     --neutralColor-dark-1: 0 0% 32%;

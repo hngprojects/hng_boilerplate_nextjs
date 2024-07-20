@@ -16,14 +16,20 @@ import {
 import { cn } from "~/lib/utils";
 
 type PagesList = {
+  /** Specifies the page name */
   name: string;
+  /** Specifies the page URL */
   href: string;
+  /** Specifies if the page is the current page */
   isCurrent?: boolean;
 };
 
 export type BreadcrumbProperties = {
+  /** Specifies the pages to display in the breadcrumb */
   pages?: PagesList[];
+  /** Specifies the maximum number of pages to display in the breadcrumb */
   maxPages?: number;
+  /** Specifies the breadcrumb style variant */
   variant?: "primary" | "default";
 };
 

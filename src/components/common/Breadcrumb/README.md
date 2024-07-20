@@ -11,8 +11,11 @@ import { Breadcrumb } from "~/components/common/Breadcrumb";
 ### Accepted Custom Breadcrumb Props
 
 ```ts
+/** Specifies the pages to display in the breadcrumb */
 - pages?: { name: string; href: string; isCurrent?: boolean }[]
+/** Specifies the maximum number of pages to display in the breadcrumb */
 - maxPages?: number
+/** Specifies the button style variant */
 - variant?: 'default' | 'primary'
 ```
 
@@ -25,7 +28,7 @@ import { Breadcrumb } from "~/components/common/Breadcrumb";
 
 ### Example Usage
 
-- Breadcrumb with static pages url
+- Breadcrumb with static pages url and current page
 
 ```tsx
 return (
@@ -47,7 +50,8 @@ return (
 );
 ```
 
-- Breadcrumb with ellipsis
+- **Breadcrumb with ellipsis enabled:**
+To display ellipsis, the `maxPages` prop should be lesser than the number of pages
 
 ```tsx
 return (
@@ -63,7 +67,7 @@ return (
 );
 ```
 
-- Breadcrumb with variant `primary`
+- Breadcrumb with `primary` variant
 
 ```tsx
 return (
