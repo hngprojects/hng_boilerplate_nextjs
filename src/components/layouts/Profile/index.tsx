@@ -311,7 +311,7 @@ const Profile = () => {
           style={{ resize: "none" }}
           placeholder="Type your message here"
         ></textarea>
-        <p className="text-sm text-[#64748B]">Maximum of 64 character</p>
+        <p className="text-sm text-muted-foreground">Maximum of 64 character</p>
         {errors.bio && (
           <span className="text-sm text-red-500">{errors.bio}</span>
         )}
