@@ -1,5 +1,8 @@
+"use client";
+
 import { BellIcon, Menu, User } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 import CustomButton from "~/components/common/Button/button";
 import Logo from "~/components/common/Logo";
@@ -11,9 +14,30 @@ const navlinks = [
 ];
 
 const Navbar = () => {
+  const [scrolling, setIsScrolling] = useState<boolean>(false);
+
+  const handleScrollEvent = () => {
+    if (window.scrollY > 1) {
+      setIsScrolling(true);
+    } else {
+      setIsScrolling(false);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScrollEvent);
+    console.log(scrolling);
+
+    return () => {
+      window.removeEventListener("scroll", handleScrollEvent);
+    };
+  });
   return (
-    <nav className="px-4">
-      <div className="max-auto flex w-full max-w-[1200px] items-center justify-between gap-2 py-9">
+    <nav
+      className={`${scrolling ? "shadow-md" : "shadow-none"} sticky left-0 right-0 top-0 z-[10000000000000] bg-background px-4`}
+    >
+      <div
+        className={`${scrolling ? "py-2" : "py-9"} mx-auto flex w-full max-w-[1200px] items-center justify-between gap-2 transition-all duration-500`}
+      >
         <div className="md:hidden">
           <Menu className="text-nuetral-black-1 h-6 w-6 cursor-pointer transition-colors duration-300 hover:text-neutral-dark-1/50" />
         </div>
