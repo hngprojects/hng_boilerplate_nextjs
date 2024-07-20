@@ -51,7 +51,7 @@ return (
 ```
 
 - **Breadcrumb with ellipsis enabled:**
-To display ellipsis, the `maxPages` prop should be lesser than the number of pages
+  To display ellipsis, the `maxPages` prop should be lesser than the number of pages
 
 ```tsx
 return (
