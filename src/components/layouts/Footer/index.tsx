@@ -88,7 +88,7 @@ const Footer = () => {
               <div className="item flex h-[46px] w-full items-center justify-start md:max-w-[283px]">
                 <input
                   placeholder="Enter email"
-                  className="rounded-tr-0 rounded-br-0 h-full w-full rounded-bl-[5px] rounded-tl-[5px] border-b-[1px] border-l-[1px] border-t-[1px] border-neutral-dark-1 bg-transparent px-[10px] outline-none"
+                  className="rounded-tr-0 rounded-br-0 border-neutral-dark-1 h-full w-full rounded-bl-[5px] rounded-tl-[5px] border-b-[1px] border-l-[1px] border-t-[1px] bg-transparent px-[10px] outline-none"
                   type="text"
                 />
                 <CustomButton variant="primary" className="h-full">
@@ -110,7 +110,7 @@ const Footer = () => {
                         <li key={index}>
                           <Link
                             href={item.link}
-                            className="cursor-pointer text-lg text-neutral-dark-2 transition-colors duration-300 hover:text-primary hover:underline dark:text-white"
+                            className="text-neutral-dark-2 cursor-pointer text-lg transition-colors duration-300 hover:text-primary hover:underline dark:text-white"
                           >
                             {item.route}
                           </Link>
@@ -128,7 +128,7 @@ const Footer = () => {
               <div className="item flex h-[46px] w-full max-w-[283px] items-center justify-start">
                 <input
                   placeholder="Enter email"
-                  className="rounded-tr-0 rounded-br-0 h-full w-full rounded-bl-[5px] rounded-tl-[5px] border-b-[1px] border-l-[1px] border-t-[1px] border-neutral-dark-1 bg-transparent px-[10px] outline-none"
+                  className="rounded-tr-0 rounded-br-0 border-neutral-dark-1 h-full w-full rounded-bl-[5px] rounded-tl-[5px] border-b-[1px] border-l-[1px] border-t-[1px] bg-transparent px-[10px] outline-none"
                   type="text"
                 />
                 <CustomButton variant="primary" className="h-full">
@@ -173,8 +173,8 @@ const Footer = () => {
               })}
             </div>
           </div>
-          <span className="text-stroke-colors-stroke flex items-center justify-center text-center text-xs font-semibold">
-            <Copyright className="text-stroke-colors-stroke h-5 w-5" />
+          <span className="flex items-center justify-center text-center text-xs font-semibold text-stroke-colors-stroke">
+            <Copyright className="h-5 w-5 text-stroke-colors-stroke" />
             2024 All Rights Reserved
           </span>
           <div className="hidden lg:block">
@@ -184,7 +184,7 @@ const Footer = () => {
                   <li key={index}>
                     <Link
                       href={item.link}
-                      className="cursor-pointer text-sm text-neutral-dark-2 transition-colors duration-300 hover:text-primary hover:underline"
+                      className="text-neutral-dark-2 cursor-pointer text-sm transition-colors duration-300 hover:text-primary hover:underline"
                     >
                       {item.route}
                     </Link>
