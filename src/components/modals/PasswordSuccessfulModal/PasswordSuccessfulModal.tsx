@@ -1,14 +1,15 @@
 "use client";
 
 import React from "react";
+
+import CustomButton from "~/components/common/Button/button";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogOverlay,
   DialogTitle,
-  DialogDescription,
 } from "../../ui/dialog";
-import CustomButton from "~/components/common/Button/button";
 
 interface ModalProperties {
   show: boolean;
