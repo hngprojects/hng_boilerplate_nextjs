@@ -5,7 +5,7 @@ const CookieFooter: React.FC = () => {
 
   return (
     <footer className="fixed bottom-0 left-0 right-0 z-50 w-[100vw] bg-background text-start text-neutral-dark-1 md:text-foreground">
-      <div className="mx-auto flex max-w-[1200px] flex-col gap-x-[25px] gap-y-4 px-6 py-5 md:py-10 lg:flex-row lg:justify-center xl:px-0">
+      <div className="mx-auto flex max-w-[1280px] flex-col gap-x-[25px] gap-y-4 px-6 py-5 md:py-10 lg:flex-row lg:justify-center">
         <p className="flex flex-col gap-y-2 text-sm font-bold leading-normal md:text-xl md:font-semibold lg:max-w-[693px]">
           We Value your Privacy{" "}
           <span className="text-xs font-normal md:text-base">
