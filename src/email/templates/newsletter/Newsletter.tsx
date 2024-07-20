@@ -26,18 +26,18 @@ const Newsletter: React.FC<NewsletterProperties> = ({
   image = true,
 }) => {
   return (
-    <Container className="flex w-[100vw] flex-col overflow-x-hidden">
-      <Section className="mt-[60px] flex flex-col items-center justify-center md:mt-[80px]">
+    <Container className="-ml-0 flex w-full flex-col">
+      <Section className="mt-16 flex flex-col items-center justify-center md:mt-20">
         <Image
           src="/images/newsletter.svg"
           alt="Newsletter Image"
-          className={`w-[39.2vw] ${image ? "" : "hidden"}`}
+          className={`w-40 md:w-80 ${image ? "" : "hidden"}`}
           width={1000}
           height={1000}
         />
       </Section>
       <Section
-        className={`${image ? "mt-[48px] md:mt-14" : "mt-[14px]"} flex w-[100vw] flex-col gap-[56px] px-12 lg:px-[10vw]`}
+        className={`${image ? "mt-12 md:mt-14" : "mt-3.5"} flex w-screen flex-col gap-14 px-12 lg:px-[10vw]`}
       >
         <Heading
           as="h2"
@@ -46,27 +46,27 @@ const Newsletter: React.FC<NewsletterProperties> = ({
         >
           {title}
         </Heading>
-        <Heading className="mt-[40px] text-base font-semibold md:mt-14 md:text-lg">
+        <Heading className="mt-10 text-base font-semibold md:mt-14 md:text-lg">
           Hi {name},
         </Heading>
         <ContentComponent imageState={image} />
 
         <Section className="mt-8 flex flex-col items-center justify-center">
           <Link href={learnMoreUrl}>
-            <Text className="flex w-[79vw] justify-center rounded-[8px] bg-primary py-[8px] text-[16px] text-white md:w-[240px]">
+            <Text className="flex w-4/5 justify-center rounded-lg bg-primary py-2 text-lg text-white md:w-60">
               Learn More
             </Text>
           </Link>
         </Section>
         <Heading
           as="h4"
-          className="mt-[56px] text-[14px] font-medium md:text-[16px] md:font-semibold"
+          className="mt-14 text-sm font-medium md:text-base md:font-semibold"
         >
           Regards,
         </Heading>
         <Heading
           as="h4"
-          className="mb-8 mt-[16px] text-[14px] font-medium md:mt-[32px] md:text-[16px] md:font-semibold"
+          className="mb-8 mt-4 text-sm font-medium md:mt-8 md:text-base md:font-semibold"
         >
           Boilerplate
         </Heading>
