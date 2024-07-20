@@ -1,22 +1,9 @@
-"use client";
-
 import { Orbit, Plus } from "lucide-react";
-import React, { useState } from "react";
+import React from "react";
 
 import CustomButton from "~/components/common/Button/button";
-import PasswordSuccessfulModal from "~/components/modal/PasswordSuccessfulModal/PasswordSuccessfulModal";
 
 const Button: React.FC = () => {
-  const [showModal, setShowModal] = useState(false);
-
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
   return (
     <main className="flex min-h-screen flex-col items-start gap-7 overflow-hidden p-6 sm:p-12 md:p-24">
       <h2 className="text-2xl font-semibold">Color Guides</h2>
@@ -301,79 +288,6 @@ const Button: React.FC = () => {
               <span className="ml-4">Click Me</span> <br />
               <span className="text-green-400">{"<"}</span>/
               <span className="text-blue-400">CustomButton</span>
-              <span className="text-green-400">{">"}</span>
-            </span>
-            <span className="block font-mono text-sm text-gray-100">);</span>
-          </div>
-        </div>
-      </div>
-      <h2 className="text-2xl font-semibold">Password Modal Preview</h2>
-      <div className="flex flex-col gap-4">
-        <div className="flex flex-col gap-2">
-          <span>Click the button to preview the modal</span>
-          <div onClick={handleOpenModal}>
-            <CustomButton>Show Modal</CustomButton>
-          </div>
-        </div>
-
-        <PasswordSuccessfulModal show={showModal} onClose={handleCloseModal} />
-      </div>
-      <h2 className="text-2xl font-semibold">Modal Usage</h2>
-      <div className="flex flex-col gap-4">
-        <div className="flex flex-col gap-2">
-          <span>Import the modal component</span>
-          <div className="rounded-lg bg-zinc-950 p-4">
-            <span className="block font-mono text-sm text-white">
-              import{" "}
-              <span className="text-blue-400">PasswordSuccessfulModal</span>{" "}
-              from{" "}
-              <span className="text-yellow-400">
-                &quot;~/components/PasswordSuccessfulModal&quot;
-              </span>
-              ;
-            </span>
-          </div>
-        </div>
-        <div className="flex flex-col gap-2">
-          <span>Example Usage</span>
-          <div className="rounded-lg bg-zinc-950 p-4">
-            <span className="block font-mono text-sm text-gray-100">
-              const [showModal, setShowModal] = useState(false); <br />
-              const handleOpenModal = () = &gt; setShowModal(true); <br />
-              const handleCloseModal = () = &gt; setShowModal(false); <br />
-              <br />
-              return (
-            </span>
-            <span className="ml-4 block font-mono text-sm text-gray-100">
-              <span className="text-green-400">{"<"}</span>
-              <span className="text-blue-400">CustomButton</span> <br />
-              <span className="ml-4">
-                onClick=
-                <span className="text-yellow-400">{"handleOpenModal"}</span>&quot; &quot;
-                <br />
-              </span>
-              <span className="text-green-400">{">"}</span> Show Modal{" "}
-              <span className="text-green-400">{"<"}</span>/
-              <span className="text-blue-400">CustomButton</span>
-              <span className="text-green-400">{">"}</span>
-              <br />
-              <span className="text-green-400">{"<"}</span>
-              <span className="text-blue-400">
-                PasswordSuccessfulModal
-              </span>{" "}
-              <br />
-              <span className="ml-4">
-                show=<span className="text-yellow-400">{"showModal"}</span>{" "}
-                <br />
-              </span>
-              <span className="ml-4">
-                onClose=
-                <span className="text-yellow-400">{"handleCloseModal"}</span>{" "}
-                <br />
-              </span>
-              <span className="text-green-400">{">"}</span> <br />
-              <span className="text-green-400">{"<"}</span>/
-              <span className="text-blue-400">PasswordSuccessfulModal</span>
               <span className="text-green-400">{">"}</span>
             </span>
             <span className="block font-mono text-sm text-gray-100">);</span>
