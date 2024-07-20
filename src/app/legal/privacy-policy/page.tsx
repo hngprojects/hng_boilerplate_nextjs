@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 
 import { Breadcrumb } from "~/components/common/Breadcrumb";
+import SubPageHero from "~/components/external_static_page/SubPageHero";
 import TableOfContent from "~/components/layouts/LegalTerms/TableOfContent";
 import PrivacyPolicyContent from "~/components/layouts/PrivacyPolicy/PrivacyPolicyContent";
 import privacyPolicyData, {
@@ -31,10 +32,11 @@ export default function PrivacyPolicy() {
 
   return (
     <main className="min-h-svh">
-      {/* hero-sections */}
-      <p>sub page hero section</p>
+      <SubPageHero
+        heading="Privacy Policy"
+        description="Achieve your dreams with us today"
+      />
       <div className="mx-auto my-10 w-[min(100%-32px_,_996px)] md:my-16">
-        {/* breadcrumbs */}
         <Breadcrumb variant="primary" />
         <section className="mt-14 grid grid-cols-1 gap-20 md:mt-[86px] md:grid-cols-[1fr,306px] md:gap-[73px]">
           <TableOfContent
