@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 import { Button } from "~/components/common/Button";
-import { SubscriptionRenewalFailedSchema } from "./zodSchema";
+import { SubscriptionRenewalFailedSchema } from "~/components/subscriptionRenewalFailed/zodSchema";
 
 interface SubscriptionRenewalFailedProperties {
   title: string;
