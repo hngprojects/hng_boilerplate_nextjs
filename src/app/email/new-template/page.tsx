@@ -43,15 +43,15 @@ export default function Page() {
   };
 
   return (
-    <section className="bg-white px-4 md:px-8 py-8 min-h-screen">
+    <section className="min-h-screen bg-white px-4 py-8 md:px-8">
       <div>
         <BreadCrumbs items={breadcrumbItems} />
       </div>
       {contentPreview === "true" ? (
         <div className="mt-6 sm:max-w-[90%]">
-          <div className="flex flex-col sm:flex-row sm:items-center mt-6 mb-9">
+          <div className="mb-9 mt-6 flex flex-col sm:flex-row sm:items-center">
             <div>
-              <h1 className="text-2xl text-[#0A0A0A] mb-2 font-bold">
+              <h1 className="mb-9 mt-6 flex flex-col sm:flex-row sm:items-center">
                 Preview Your Generated Template
               </h1>
               <p className="text-[#0A0A0A]/60">
@@ -62,25 +62,25 @@ export default function Page() {
             </div>
             <Link
               href={"/email/new-template/generate-template"}
-              className="bg-slate-900 w-fit h-10 mt-4 sm:mt-0 border-none text-white text-sm whitespace-nowrap font-medium rounded-[6px] py-2 px-4 hover:opacity-90"
+              className="mt-4 h-10 w-fit whitespace-nowrap rounded-[6px] border-none bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:opacity-90 sm:mt-0"
             >
               Edit content
             </Link>
           </div>
-          <div className="mt-4 p-5 border border-[#CBD5E180] rounded-[19px] bg-white">
-            <div className="flex justify-center border border-[#CBD5E180] rounded-[10px] py-4 sm:py-12">
+          <div className="rounded-[19px] border border-[#CBD5E180] bg-white p-5">
+            <div className="h-[500px] w-full rounded-[7px] sm:w-[382px] sm:border sm:border-[#CBD5E180]">
               <iframe
                 srcDoc={htmlContent}
                 title="Generated Email Template"
-                className="w-full sm:w-[382px] h-[500px] sm:border sm:border-[#CBD5E180] rounded-[7px]"
+                className="h-[500px] w-full rounded-[7px] sm:w-[382px] sm:border sm:border-[#CBD5E180]"
               ></iframe>
             </div>
           </div>
         </div>
       ) : (
         <div>
-          <div className="mt-6 mb-9">
-            <h1 className="text-2xl text-[#0A0A0A] mb-2 font-bold">
+          <div className="mb-9 mt-6">
+            <h1 className="mb-2 text-2xl font-bold text-[#0A0A0A]">
               Generate Template with HTML
             </h1>
             <p className="text-[#0A0A0A]/60">
@@ -91,44 +91,44 @@ export default function Page() {
             <div className="w-full">
               <label
                 htmlFor="html-content"
-                className="text-sm text-[#0F172A] mb-[6px]"
+                className="mb-[6px] text-sm text-[#0F172A]"
               >
                 HTML Content
               </label>
-              <div className="flex flex-col sm:flex-row gap-2">
+              <div className="flex flex-col gap-2 sm:flex-row">
                 <div className="w-full">
                   <textarea
                     {...register("htmlContent", {
                       required: "This field is required",
                     })}
                     id="html-content"
-                    className={`w-full md:min-w-[540px] h-10 py-2 px-3 rounded-[6px] ${
+                    className={`h-10 w-full rounded-[6px] px-3 py-2 md:min-w-[540] ${
                       errors.htmlContent
-                        ? "text-red-500 border-red-500 focus:outline-none"
-                        : "text-slate-400 border-[#CBD5E1] focus:outline-[#CBD5E1]"
+                        ? "border-red-500 text-red-500 focus:outline-none"
+                        : "border-[#CBD5E1] text-slate-400 focus:outline-[#CBD5E1]"
                     } border outline-none focus:outline-[1.5px] focus:outline-offset-0`}
                     placeholder="Enter your link here"
                   />
                   {errors.htmlContent && (
-                    <p className="text-xs text-red-500 mt-1 mb-">
+                    <p className="mt-1 text-xs text-red-500">
                       {errors.htmlContent?.message as string}
                     </p>
                   )}
                 </div>
                 <button
                   type="submit"
-                  className="bg-[#F97316] w-fit h-10 border-none text-white text-sm font-medium rounded-[6px] py-2 px-4 hover:opacity-90"
+                  className="h-10 w-fit rounded-[6px] border-none bg-[#F97316] px-4 py-2 text-sm font-medium text-white hover:opacity-90"
                 >
                   {isLoading ? "Generating..." : "Generate"}
                 </button>
               </div>
               <div className="mt-6 text-sm">
-                <alert.Alert className="bg-[#F973161A] border-[#F9731666]">
-                  <alert.AlertTitle className="text-[#F97113] font-semibold mb-3">
+                <alert.Alert className="border-[#F9731666] bg-[#F973161A]">
+                  <alert.AlertTitle className="mb-3 font-semibold text-[#F97113]">
                     Tips on Acceptable HTML Content
                   </alert.AlertTitle>
                   <alert.AlertDescription>
-                    <ul className="flex flex-col gap-3 list-disc ml-4">
+                    <ul className="ml-4 flex list-disc flex-col gap-3">
                       <li className="text-[#0A0A0A] opacity-60">
                         Ensure the HTML contains the complete email template.
                       </li>
