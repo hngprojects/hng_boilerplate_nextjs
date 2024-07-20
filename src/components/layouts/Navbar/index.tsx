@@ -1,15 +1,30 @@
+"use client"
+
 import Menu from "../../../../public/menu.svg"
 import Logo from "../../../../public/logo.svg"
 import Boilerplate from "../../../../public/Boilerplate.svg"
 import Search from "../../../../public/search.svg"
-import Notification from "../../../../public/notification-icon.svg"
-import Help from "../../../../public/help.svg"
-import ArrowDown from "../../../../public/arrow-down.svg"
-import userImg from "../../../../public/user-img.png"
 import Navigation from "../components/Navigation"
+import { useState } from "react"
+import UserDropdown from "./UserDropdown"
+import HelpDropdown from "./HelpDropdown"
+import NotificationDropdown from "./NotificationDropdown"
+
+const Navbar: React.FC = () => {
+
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+
+  const handleDropdown = (dropdown: string) => {
+    if (openDropdown === dropdown) {
+      setOpenDropdown(null);
+    } else {
+      setOpenDropdown(dropdown);
+    }
+  };
 
 
-const Navbar = () => {
+
+
 
   return (
     <div className="absolute w-full top-0 z-[1000] bg-white py-[16px] px-[40px] flex justify-between items-center">
@@ -18,7 +33,7 @@ const Navbar = () => {
           <Menu />
           <div className="flex gap-[20px] items-center">
             <Logo />
-            <Boilerplate className="mt-[4px]"/>
+            <Boilerplate className="mt-[4px]" />
           </div>
         </div>
 
@@ -28,19 +43,22 @@ const Navbar = () => {
       </div>
 
       <div className="flex gap-[20px] items-center">
-        <div className="py-[7px] x-[25px] flex gap-[10px] rounded-sm border border-solid border-gray-500 items-center px-[12px] text-sm">
+        <div className="py-[7px] hidden md:flex x-[25px] gap-[10px] rounded-sm border border-solid border-gray-500 items-center px-[12px] text-sm">
           <Search />
           <input type="text" className="text-sm outline-none" placeholder="Search Option..." />
         </div>
-        <Notification />
-        <Help />
-        <div className="flex items-center gap-[5px] cursor-pointer">
-          <div className="h-[35px] w-[35px] bg-gray-400 rounded-full bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: `url(${userImg.src})` }}
-          ></div>
-          <ArrowDown />
-        </div>
-
+        <UserDropdown
+          isOpen={openDropdown === 'user'}
+          toggleDropdown={() => handleDropdown('user')}
+        />
+        <NotificationDropdown
+          isOpen={openDropdown === 'notification'}
+          toggleDropdown={() => handleDropdown('notification')}
+        />
+        <HelpDropdown
+          isOpen={openDropdown === 'help'}
+          toggleDropdown={() => handleDropdown('help')}
+        />
       </div>
 
     </div>
