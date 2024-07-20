@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { CircleCheck } from "lucide-react";
 
-interface PasswordCheckProps{
+interface PasswordCheckProperties{
   data:string
 }
 
@@ -12,7 +12,17 @@ interface PasswordCheck{
   containNumber:boolean;
 }
 
-const PasswordCheck: React.FC<PasswordCheckProps> = ({ data }) => {
+const handlerContainsNumber = (value: string) => {
+  const regex = /\d/;
+  return regex.test(value);
+};
+
+const handleContainsUpperCase = (value: string) => {
+  const regex = /[A-Z]/;
+  return regex.test(value);
+};
+
+const PasswordCheck: React.FC<PasswordCheckProperties> = ({ data }) => {
 
   const [checkPassword, setCheckPassword] = useState<PasswordCheck>({
     moreThan7: false,
@@ -20,15 +30,7 @@ const PasswordCheck: React.FC<PasswordCheckProps> = ({ data }) => {
     containNumber: false,
   });
 
-  const handlerContainsNumber = (str: string) => {
-    const regex = /\d/;
-    return regex.test(str);
-  };
-
-  const handleContainsUpperCase = (str: string) => {
-    const regex = /[A-Z]/;
-    return regex.test(str);
-  };
+ 
 
   const handleCheckPassword = (data: string) => {
     const containsUpperCase = handleContainsUpperCase(data);
@@ -71,7 +73,7 @@ const PasswordCheck: React.FC<PasswordCheckProps> = ({ data }) => {
   }, [data]);
 
   return (
-    <div className="mt-[8px] ml-4">
+    <div className="mt-[8px] l-4">
       <div className="flex items-center gap-[16px]">
         <div className={`w-[100px] border-[3px] border-solid ${checkPassword.moreThan7 || checkPassword.containNumber || checkPassword.containsUppercase ? "border-[#6DC347]" : "border-[#B6B6B6]"}`}></div>
         <div className={`w-[100px] border-[3px] border-solid ${checkPassword.moreThan7 && checkPassword.containNumber || checkPassword.containNumber && checkPassword.containsUppercase || checkPassword.moreThan7 && checkPassword.containsUppercase ? "border-[#6DC347]" : "border-[#B6B6B6]"}`}></div>
