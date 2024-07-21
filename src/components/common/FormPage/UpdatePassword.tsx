@@ -41,7 +41,7 @@ const passwordSchema = z
       .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
       .regex(/\d/, "Password must contain at least one number")
       .regex(
-        /[!@#$%^&*(),.?":{}|<>]/,
+        /[!"#$%&()*,.:<>?@^{|}]/,
         "Password must contain at least one special character",
       ),
     confirmPassword: z.string(),
@@ -138,7 +138,7 @@ const PasswordForm: React.FC = () => {
                   onClick={() => togglePasswordVisibility("currentPassword")}
                   className="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3"
                 >
-                  {isPasswordVisible.currentPassword ?  <Eye />: <EyeOff />}
+                  {isPasswordVisible.currentPassword ? <Eye /> : <EyeOff />}
                 </span>
               </div>
             </FormControl>
@@ -157,7 +157,6 @@ const PasswordForm: React.FC = () => {
                 <Input
                   id="new-password"
                   type={isPasswordVisible.newPassword ? "text" : "password"}
-
                   placeholder="Enter new password"
                   value={password}
                   required

@@ -1,4 +1,4 @@
-import {FC} from "react";
+import { FC } from "react";
 
 import { EditorProvider } from "../../../components/common/context/editor-context";
 import ReusableTemplateEditorBlock from "../../../components/common/template/templateEditorBlock";
