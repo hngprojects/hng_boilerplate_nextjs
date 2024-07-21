@@ -13,16 +13,22 @@ import "swiper/css/scrollbar";
 
 const Hero = () => {
   return (
-    <div className="hero bg-background">
-      <div className="mx-auto max-w-7xl px-5 md:px-10 lg:px-10 xl:px-10">
-        <div className="hero-content">
-          <div className="hero-left">
-            <h1>
-              {`Focus on What Matters. We've Got the Foundation Covered`}.
+    <div className="py-14 sm:py-20">
+      <div className="mx-auto max-w-7xl px-5 md:px-10">
+        <div className="flex flex-col items-center lg:flex-row">
+          <div className="w-full text-center sm:text-left lg:w-1/2">
+            <h1 className="mb-2 text-4xl font-bold leading-snug lg:text-5xl lg:leading-tight xl:text-6xl">
+              {`Focus on What Matters. We've Got the Foundation Covered.`}
             </h1>
 
-            <div>
-              <HeroLine />
+            <div className="">
+              <Image
+                src="/images/hero-line.svg"
+                width={100}
+                height={100}
+                className="h-[50px] w-full"
+                alt=""
+              />
             </div>
 
             <p className="text-foreground">
@@ -35,9 +41,12 @@ const Hero = () => {
             </button>
           </div>
 
-          <div className="hero-right">
-            <div className="image-container">
-              <div data-testid="hero-checkmark" className="hero-checkmark">
+          <div className="mt-14 flex w-full justify-end rounded-lg lg:mt-0 lg:w-1/2">
+            <div className="relative w-full rounded-lg bg-subtle sm:w-[90%] md:h-[300px] md:w-[95%] lg:h-[526px] lg:w-[418px]">
+              <div
+                data-testid="hero-checkmark"
+                className="absolute top-1/3 z-10 -translate-y-1/2 transform sm:left-[-2.2rem] md:left-[-3.5rem]"
+              >
                 <HeroCheckMark />
               </div>
 
@@ -69,12 +78,13 @@ const Hero = () => {
                     width={100}
                     height={100}
                     unoptimized
+                    className="h-[300px] w-full object-cover lg:h-[526px] lg:object-contain"
                   />
                 </SwiperSlide>
 
                 <SwiperSlide>
                   <Image
-                    src="/images/hero-image.svg"
+                    src="/images/hero-image2.svg"
                     alt="Hero Image"
                     width={100}
                     height={100}
@@ -84,17 +94,47 @@ const Hero = () => {
 
                 <SwiperSlide>
                   <Image
-                    src="/images/hero-image.svg"
+                    src="/images/hero-image3.svg"
                     alt="Hero Image"
                     width={100}
                     height={100}
                     unoptimized
+                    className="h-[300px] w-full object-cover lg:h-[526px] lg:object-contain"
                   />
                 </SwiperSlide>
-
                 <SwiperSlide>
                   <Image
-                    src="/images/hero-image.svg"
+                    src="/images/hero-image4.svg"
+                    alt="Hero Image"
+                    width={100}
+                    height={100}
+                    unoptimized
+                    className="h-[300px] w-full object-cover lg:h-[526px] lg:object-contain"
+                  />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <Image
+                    src="/images/hero-image5.svg"
+                    alt="Hero Image"
+                    width={100}
+                    height={100}
+                    unoptimized
+                    className="h-[300px] w-full object-cover lg:h-[526px] lg:object-contain"
+                  />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <Image
+                    src="/images/hero-image6.svg"
+                    alt="Hero Image"
+                    width={100}
+                    height={100}
+                    unoptimized
+                    className="h-[300px] w-full object-cover lg:h-[526px] lg:object-contain"
+                  />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <Image
+                    src="/images/hero-image6.svg"
                     alt="Hero Image"
                     width={100}
                     height={100}
