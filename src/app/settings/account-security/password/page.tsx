@@ -19,18 +19,18 @@ const passwordSchema = z
       .string()
       .min(8, "New password must be at least 8 characters long")
       .refine(
-        (val) => /[A-Z]/.test(val),
+        (value) => /[A-Z]/.test(value),
         "New password must contain at least one uppercase letter",
       )
       .refine(
-        (val) => /\d/.test(val),
+        (value) => /\d/.test(value),
         "New password must contain at least one number",
       ),
     confirmPassword: z.string().min(1, "Confirm password is required"),
   })
-  .superRefine((data, ctx) => {
+  .superRefine((data, context) => {
     if (data.newPassword !== data.confirmPassword) {
-      ctx.addIssue({
+      context.addIssue({
         code: z.ZodIssueCode.custom,
         message: "Passwords must match",
         path: ["confirmPassword"],
@@ -44,7 +44,6 @@ const PasswordSettings = () => {
     handleSubmit,
     formState: { errors },
     watch,
-    setValue,
   } = useForm<FormData>({
     resolver: zodResolver(passwordSchema),
   });
@@ -53,8 +52,7 @@ const PasswordSettings = () => {
   const newPasswordValue = watch("newPassword");
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-  const onSubmit = (data: FormData) => {
-    console.log(data);
+  const onSubmit = () => {
     openModal();
   };
   return (
