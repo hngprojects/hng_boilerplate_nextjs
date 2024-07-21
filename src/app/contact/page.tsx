@@ -1,8 +1,33 @@
-import { ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  Instagram,
+  Linkedin,
+  Mail,
+  MapPin,
+  Phone,
+  Twitter,
+} from "lucide-react";
 
 import Layout from "~/app/(home)/layout";
-import { bizTime, contactInfo } from "~/app/contact/constants";
 import ContactForm from "~/components/common/contact-us-form";
+
+const bizTime = ["8am", "6pm"];
+const contactInfo = [
+  {
+    alt: "map icon",
+    Icon: MapPin,
+    text: "10111, hornchurch, london, United kingdom",
+  },
+  { alt: "phone icon", Icon: Phone, text: "+4403989898787" },
+  { alt: "mail icon", Icon: Mail, text: "Email: supportteam@gmail.com" },
+  { alt: "twitter icon", Icon: Twitter, text: "Twitter @boilerplate23" },
+  {
+    alt: "instagram icon",
+    Icon: Instagram,
+    text: "Instagram @boilerplate234",
+  },
+  { alt: "linkedin icon", Icon: Linkedin, text: "Linkedin @boilerplate34" },
+];
 
 const Contact = () => {
   return (
