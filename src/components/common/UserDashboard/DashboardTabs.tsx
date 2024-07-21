@@ -12,7 +12,7 @@ const index = () => {
           className="border-2 border-border bg-transparent px-[5px] py-[4px] text-foreground"
         >
           <TabsTrigger
-            className="text-foreground data-[state=active]:bg-subtle"
+            className="data-[state=active]:bg-subtle text-foreground"
             aria-label="tab 1"
             role="tab"
             value="overview"
@@ -20,7 +20,7 @@ const index = () => {
             Overview
           </TabsTrigger>
           <TabsTrigger
-            className="text-foreground data-[state=active]:bg-subtle"
+            className="data-[state=active]:bg-subtle text-foreground"
             aria-label="tab 2"
             role="tab"
             value="analytics"
@@ -28,7 +28,7 @@ const index = () => {
             Analytics
           </TabsTrigger>
           <TabsTrigger
-            className="text-foreground data-[state=active]:bg-subtle"
+            className="data-[state=active]:bg-subtle text-foreground"
             aria-label="tab 3"
             role="tab"
             value="reports"

@@ -118,7 +118,7 @@ const ProductListFilter: FC<ProductListFilterProperties> = ({
               role="option"
               tabIndex={-1}
               aria-selected={filter.isActive}
-              className="flex w-full cursor-pointer items-center gap-2 rounded bg-card px-1.5 py-2 hover:bg-subtle"
+              className="hover:bg-subtle flex w-full cursor-pointer items-center gap-2 rounded bg-card px-1.5 py-2"
               onClick={() => {
                 handleFilterActiveState(filter.label);
                 setIsOpen(false);

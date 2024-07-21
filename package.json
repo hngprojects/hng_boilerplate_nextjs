@@ -54,13 +54,8 @@
     "swiper": "^11.1.5",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
-<<<<<<< HEAD
-    "zlib": "^1.0.5",
-    "zod": "^3.23.8"
-=======
     "zod": "^3.23.8",
     "zustand": "^4.5.4"
->>>>>>> upstream/dev
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.3.0",

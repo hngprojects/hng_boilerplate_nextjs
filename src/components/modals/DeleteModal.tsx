@@ -29,7 +29,7 @@ const DeleteModal: React.FC<DeleteModalProperties> = ({
       <Dialog open={isVisible} onOpenChange={closeDeleteModal}>
         <DialogOverlay
           data-testid="modal-container"
-          className="absolute bottom-0 top-0 z-[999] h-[1024px] w-full cursor-pointer bg-subtle bg-opacity-[25%]"
+          className="bg-subtle absolute bottom-0 top-0 z-[999] h-[1024px] w-full cursor-pointer bg-opacity-[25%]"
           onClick={closeDeleteModal}
         >
           <DialogContent
