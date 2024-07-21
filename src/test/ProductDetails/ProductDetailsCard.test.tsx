@@ -75,8 +75,8 @@ describe("productDetailsCard", () => {
     expect.hasAssertions();
     render(<ProductDetailsCard {...defaultProps} />);
 
-    fireEvent.click(screen.getByAltText("Close Icon"));
-    expect(defaultProps.onClose).toHaveBeenCalledWith(); // Expect it to be called without arguments
+    fireEvent.click(screen.getByRole("button", { name: "close" }));
+    expect(defaultProps.onClose).toHaveBeenCalledWith();
   });
 
   it("calls onEdit with productID when Edit button is clicked", () => {
