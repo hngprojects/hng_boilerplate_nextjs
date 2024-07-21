@@ -35,7 +35,7 @@ const Dashboard: React.FC = () => {
                     <DateSwitcher />
                     <button className='bg-primary py-[9.5px] px-[16px] rounded-sm text-sm text-white'>Download</button>
                 </div>
-        </div>
+          </div>
 
           <div className="">
             {tab == 1 && (
