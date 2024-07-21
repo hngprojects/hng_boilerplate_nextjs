@@ -20,7 +20,7 @@ const IntellectualProperty = () => {
         <ul className="pl-[21px]">
           {IntellectualPropertyRight.map((list: TermsType) => (
             <li className="mb-[10px] list-disc" key={list.title}>
-              <span>{list.title}</span> <span>{list.value}</span>
+              <span className="font-[700]">{list.title}</span> <span>{list.value}</span>
             </li>
           ))}
         </ul>

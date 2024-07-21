@@ -1,8 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
+
 import Main from "~/components/layouts/Legal/Terms&Conditions/Main";
-
-
 
 vi.mock("~/components/layouts/Legal/Terms&Conditions/UserObligations", () => ({
   default: () => <div data-testid="mock-user-obligations">UserObligations</div>,
@@ -10,11 +9,14 @@ vi.mock("~/components/layouts/Legal/Terms&Conditions/UserObligations", () => ({
 vi.mock("~/components/layouts/Legal/Terms&Conditions/AcceptableUse", () => ({
   default: () => <div data-testid="mock-acceptable-use">AcceptableUse</div>,
 }));
-vi.mock("~/components/layouts/Legal/Terms&Conditions/IntellectualProperty", () => ({
-  default: () => (
-    <div data-testid="mock-intellectual-property">IntellectualProperty</div>
-  ),
-}));
+vi.mock(
+  "~/components/layouts/Legal/Terms&Conditions/IntellectualProperty",
+  () => ({
+    default: () => (
+      <div data-testid="mock-intellectual-property">IntellectualProperty</div>
+    ),
+  }),
+);
 vi.mock("~/components/layouts/Legal/Terms&Conditions/Disclaimer", () => ({
   default: () => <div data-testid="mock-disclaimer">Disclaimer</div>,
 }));
@@ -105,6 +107,6 @@ describe("main component", () => {
     render(<Main />);
     const link = screen.getByTestId("mock-link");
     expect(link).toHaveTextContent("Privacy Policy page.");
-    expect(link).toHaveAttribute("href", "/privacy-policy");
+    expect(link).toHaveAttribute("href", "/legal/privacy-policy");
   });
 });

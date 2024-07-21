@@ -2,7 +2,6 @@ import { Breadcrumb } from "~/components/common/Breadcrumb";
 import SubPageHero from "~/components/external_static_page/SubPageHero";
 import Main from "~/components/layouts/Legal/Terms&Conditions/Main";
 
-
 const TermsConditions = () => {
   return (
     <div className="">

@@ -3,13 +3,12 @@
 import Link from "next/link";
 import { useEffect } from "react";
 
-
+import AcceptableUse from "./AcceptableUse";
 import Discclaimer from "./Disclaimer";
 import GoverningLaws from "./GoverningLaws";
 import IntellectualProperty from "./IntellectualProperty";
 import TableOfContents from "./TableOfContents";
 import UserObligations from "./UserObligations";
-import AcceptableUse from "./AcceptableUse";
 
 const dateSuffix = (day: number) => {
   if (day > 3 && day < 21) return "th";
@@ -84,7 +83,7 @@ const Main = () => {
             className="mb-6 self-stretch text-neutral-dark-1"
             id="changes-to-terms"
           >
-            <h2 className="font-inherit relative mt-0 self-stretch text-2xl font-bold text-inherit sm:text-[28px]">
+            <h2 className="font-inherit relative mt-0 self-stretch text-2xl font-bold text-inherit sm:text-[28px] mb-2">
               Changes to Terms
             </h2>
             <div className="mb-[10px] text-base">
@@ -123,7 +122,10 @@ const Main = () => {
           </div>
           <div className="mb-[10px] text-base text-neutral-dark-1">
             For more information about our privacy practices, please visit our{" "}
-            <Link href={"/privacy-policy"} className="text-primary underline">
+            <Link
+              href={"/legal/privacy-policy"}
+              className="text-primary underline"
+            >
               Privacy Policy page.{" "}
             </Link>
           </div>
