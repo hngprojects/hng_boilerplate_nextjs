@@ -1,5 +1,11 @@
 import { BellIcon, ChevronDown, HelpCircle, SearchIcon } from "lucide-react";
 
+import UnreadNotificationCard from "~/components/common/UnreadNotificationCard/UnreadNotificationCard";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "~/components/ui/popover";
 import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
 
 const AdminNavbar = () => {
@@ -18,10 +24,27 @@ const AdminNavbar = () => {
       </div>
       <div className="flex w-full max-w-[152px] items-center justify-between gap-1">
         <div className="relative">
-          <BellIcon
-            data-testid="bell"
-            className="h-6 w-6 text-neutral-dark-2 transition-colors duration-300 hover:cursor-pointer hover:text-neutral-dark-1"
-          />
+          <Popover>
+            <PopoverTrigger>
+              <BellIcon
+                data-testid="bell"
+                className="h-6 w-6 text-neutral-dark-2 transition-colors duration-300 hover:cursor-pointer hover:text-neutral-dark-1"
+              />
+            </PopoverTrigger>
+            <PopoverContent
+              align="end"
+              className="w-[380px] border-none p-0 shadow-none"
+            >
+              <UnreadNotificationCard
+                notificationsPreview={[
+                  { header: "Check mail", time: "1 hour ago" },
+                  { header: "Sign up for offer", time: "2 hours ago" },
+                  { header: "Register for event", time: "1 hour ago" },
+                ]}
+                unreadCount={30}
+              />
+            </PopoverContent>
+          </Popover>
           <span className="absolute right-1 top-0 h-[6px] w-[6px] rounded-full bg-error"></span>
         </div>
         <div>
