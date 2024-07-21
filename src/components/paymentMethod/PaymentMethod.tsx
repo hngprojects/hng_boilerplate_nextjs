@@ -1,16 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import React, { ReactNode } from "react";
 
 import CustomRadioButton from "./CustomRadioButton";
 
 interface PaymentMethodProperties {
   image: string;
   header: string;
+  width: number;
+  height: number;
   active: boolean;
   onClick: () => void;
-  forms: ReactNode;
+  forms: React.ReactNode;
 }
 
 const PaymentMethod: React.FC<PaymentMethodProperties> = ({
@@ -19,6 +20,8 @@ const PaymentMethod: React.FC<PaymentMethodProperties> = ({
   active,
   onClick,
   forms,
+  height,
+  width,
 }) => {
   return (
     <div className="w-full">
@@ -37,13 +40,13 @@ const PaymentMethod: React.FC<PaymentMethodProperties> = ({
           <Image
             src={image}
             alt="MasterCard Symbol"
-            width={40}
-            height={40}
-            className="mt-2 h-10 w-10"
+            className="mt-2 h-auto w-auto"
+            height={height}
+            width={width}
           />
         </div>
       </div>
-      {forms}
+      {forms && <div>{forms}</div>}
     </div>
   );
 };
