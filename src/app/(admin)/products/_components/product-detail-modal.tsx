@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Loader2, X } from "lucide-react";
-import { useEffect, useTransition } from "react";
+import { useEffect, useState } from "react";
 
 import BlurImage from "~/components/miscellaneous/blur-image";
 import { Button } from "~/components/ui/button";
@@ -18,7 +18,7 @@ const variantProperties = {
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const ProductDetailModal = () => {
   const { products, deleteProduct } = useProducts();
-  const [isLoading, startTransition] = useTransition();
+  const [isLoading, setIsLoading] = useState(false);
   const { winWidth } = useWindowWidth();
   const {
     product_id,
@@ -33,11 +33,14 @@ const ProductDetailModal = () => {
     (product) => product.product_id === product_id,
   );
 
-  const handleDelete = (id: string) => {
-    startTransition(async () => {
-      await delay(3000); // Simulate a 3-second delay
-      deleteProduct(id);
-    });
+  const handleDelete = async (id: string) => {
+    setIsLoading(true);
+    await delay(3000);
+    deleteProduct(id);
+    updateOpen(false);
+    updateProductId("null");
+    setIsLoading(false);
+    setIsDelete(false);
   };
 
   useEffect(() => {
