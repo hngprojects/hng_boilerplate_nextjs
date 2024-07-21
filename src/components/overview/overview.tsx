@@ -106,25 +106,25 @@ export default function Home() {
         <DataCard
           heading={{
             title: "Total Revenue",
-            icon: <DollarSign />,
+            icon: <DollarSign className="h-[24px]" />,
           }}
           content={{ amount: "$45,000.00", subtext: "+20% from last month" }}
         />
         <DataCard
           heading={{
             title: "Subscriptions",
-            icon: <Users />,
+            icon: <Users className="h-[24px]" />,
           }}
           content={{ amount: "+2350", subtext: "+150% from last month" }}
         />
         <DataCard
-          heading={{ title: "Sales", icon: <PanelTop /> }}
+          heading={{ title: "Sales", icon: <PanelTop className="h-[24px]" /> }}
           content={{ amount: "15,000", subtext: "+10% from last month" }}
         />
         <DataCard
           heading={{
             title: "Active Now",
-            icon: <Activity />,
+            icon: <Activity className="h-[24px]" />,
           }}
           content={{ amount: "574", subtext: "+201 since last hour" }}
         />
@@ -140,7 +140,7 @@ export default function Home() {
         </div>
         <div className="w-full rounded bg-card p-4 shadow lg:col-span-2">
           <h2 className="font-semibold text-foreground">Recent Sales</h2>
-          <h1 className="mb-6·text-breadcrumb-page">
+          <h1 className="mb-6 text-breadcrumb-page">
             You made 265 sales this month
           </h1>
           <ul>
