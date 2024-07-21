@@ -1,11 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { z, ZodError } from "zod";
 
 import InputField from "~/components/common/contact-us-form/inputfield";
 import CustomButton from "../Button/button";
-import Image from "next/image";
 
 const schema = z.object({
   name: z.string().min(5, "Name is required"),
@@ -17,7 +17,6 @@ const schema = z.object({
   message: z.string().min(1, "Message is required"),
 });
 
-// Define the FormData interface
 type FormData = z.infer<typeof schema>;
 
 const initialFormData: FormData = {
@@ -31,27 +30,17 @@ const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({ ...initialFormData });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [status, setStatus] = useState<boolean | undefined>();
-  const [timer, setTimer] = useState<NodeJS.Timeout | undefined>();
   const [message, setMessage] = useState<string | undefined>();
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (status !== undefined) {
-      if (timer != undefined) {
-        clearTimeout(timer);
-      }
-      const newTimer = setTimeout(() => {
+      const timer = setTimeout(() => {
         setStatus(undefined);
       }, 3000);
-      setTimer(newTimer);
+      return () => clearTimeout(timer);
     }
-
-    return () => {
-      if (timer != undefined) {
-        clearTimeout(timer);
-      }
-    };
-  }, [status, timer]);
+  }, [status]);
 
   const validate = () => {
     try {
@@ -106,14 +95,14 @@ const ContactForm: React.FC = () => {
       setMessage(responseData?.message || "Form submitted successfully!");
       setFormData({ ...initialFormData });
       setErrors({});
-      setLoading(false);
     } catch (error) {
       setStatus(false);
-      setLoading(false);
       setMessage(
         (error as Error).message ||
           "Failed to submit the form. Please try again.",
       );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -191,13 +180,16 @@ const ContactForm: React.FC = () => {
             isLoading={loading}
             className="w-full px-4 py-3"
           >
-           <Image src={"/mail.svg"} width={20} height={10} alt="send icon"/>
+            <Image src={"/mail.svg"} width={20} height={10} alt="send icon" />
             Send
           </CustomButton>
 
-          {status && <p className={`text-xs italic text-default`}>{message}</p>}
-          {status === false && (
-            <p className={`text-xs italic text-destructive`}>{message}</p>
+          {status !== undefined && (
+            <p
+              className={`text-xs italic ${status ? "text-default" : "text-destructive"}`}
+            >
+              {message}
+            </p>
           )}
         </form>
       </div>
