@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 
 import { InputOtp } from "~/components/common/Input-otp/page";
 
-describe("InputOtp Component", () => {
+describe("inputOtp Component", () => {
   it("renders correctly with 6 input slots", () => {
     expect.assertions(1);
     render(<InputOtp />);
@@ -15,7 +15,6 @@ describe("InputOtp Component", () => {
     expect.assertions(6);
     render(<InputOtp />);
     const inputs = screen.getAllByRole("textbox");
-    
     let index = 0;
     for (const input of inputs) {
       fireEvent.change(input, { target: { value: (index + 1).toString() } });
