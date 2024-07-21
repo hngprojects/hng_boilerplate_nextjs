@@ -1,11 +1,12 @@
+import { SVGProps } from "react";
 
-const SearchIcon = (props:any) => (
+const SearchIcon = (properties: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={16}
     height={16}
     fill="none"
-    {...props}
+    {...properties}
   >
     <path
       fill="#0A0A0A"
@@ -14,5 +15,5 @@ const SearchIcon = (props:any) => (
       opacity={0.5}
     />
   </svg>
-)
-export default SearchIcon
+);
+export default SearchIcon;

@@ -1,11 +1,12 @@
+import { SVGProps } from "react";
 
-const NotifBell = (props:any) => (
+const NotifBell = (properties: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={24}
     height={24}
     fill="none"
-    {...props}
+    {...properties}
   >
     <path
       stroke="#0A0A0A"
@@ -16,5 +17,5 @@ const NotifBell = (props:any) => (
     />
     <circle cx={16} cy={3} r={3} fill="#F81404" />
   </svg>
-)
-export default NotifBell
+);
+export default NotifBell;

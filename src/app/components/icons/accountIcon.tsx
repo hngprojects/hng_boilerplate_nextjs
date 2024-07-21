@@ -1,11 +1,12 @@
+import { SVGProps } from "react";
 
-const AccountIcon = (props:any) => (
+const AccountIcon = (properties: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={20}
     height={20}
     fill="none"
-    {...props}
+    {...properties}
   >
     <path
       stroke="#525252"
@@ -21,5 +22,5 @@ const AccountIcon = (props:any) => (
       d="M15.833 10.833a1.667 1.667 0 1 0 0-3.333 1.667 1.667 0 0 0 0 3.333ZM15.833 6.667V7.5M15.833 10.834v.833M18 7.917l-.725.416M14.392 10l-.725.417M18 10.417 17.275 10M14.392 8.333l-.725-.417"
     />
   </svg>
-)
-export default AccountIcon
+);
+export default AccountIcon;
