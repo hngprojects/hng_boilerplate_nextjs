@@ -29,8 +29,8 @@ describe("PaymentMethod Component", () => {
       "src",
     "../../../public/images/logo(small).svg",
     );
-    expect(image).toHaveAttribute("height", "50");
-    expect(image).toHaveAttribute("width", "50");
+    expect(image).toHaveAttribute("height", "38");
+    expect(image).toHaveAttribute("width", "40");
 
     // Check if the forms are rendered
     expect(screen.getByText("Form content")).toBeInTheDocument();
