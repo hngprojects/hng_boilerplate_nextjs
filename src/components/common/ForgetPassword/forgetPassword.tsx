@@ -12,6 +12,10 @@ const handleSubmit = (event: React.FormEvent, email: string): void => {
 
   // Log the email submission (replace this with actual submission logic)
   console.log(`Submitting email: ${email}`);
+
+  // Display a message or simulate submission (this will affect the test)
+  // You can add logic to update state or trigger a notification
+  alert(`Submitting email: ${email}`); // Optional: This is just for visual confirmation
 };
 
 /**
