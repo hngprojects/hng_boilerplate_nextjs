@@ -1,5 +1,9 @@
+import Preferences from "~/components/preferenceSettings/Preferences";
+
 const page = () => {
-  return <div>page</div>;
+  return <div>
+    <Preferences/>
+  </div>;
 };
 
 export default page;
