@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 
 import DateSwitcher from "~/components/common/DateSwitcher";
-import TabSwitcher from "~/components/common/TabSwitcher"
+import TabSwitcher from "~/components/common/TabSwitcher";
 import { totalRevenue } from "~/data/overview"
 import { subscriptions } from "~/data/overview"
 import { sales } from "~/data/overview"
