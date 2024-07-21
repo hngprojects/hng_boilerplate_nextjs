@@ -1,11 +1,5 @@
-<<<<<<< HEAD
 import { ArrowRight } from "lucide-react";
 
-=======
-import Image from "next/image";
-
-import { arrow_right } from "~/../public/contact-icons";
->>>>>>> d462194 (feat: integrate ContactForm into Contact page, ensure responsive layout, and add unit tests)
 import Layout from "~/app/(home)/layout";
 import { bizTime, contactInfo } from "~/app/contact/constants";
 import ContactForm from "~/components/common/contact-us-form";
@@ -35,16 +29,7 @@ const Contact = () => {
                 {contactInfo.map((info) => (
                   <div key={info.alt} className="flex items-center gap-4">
                     <div className="rounded-sm bg-neutral-dark-1 p-2.5">
-<<<<<<< HEAD
                       <info.Icon color="white" size={24} />
-=======
-                      <Image
-                        src={info.image}
-                        width={24}
-                        height={24}
-                        alt={info.alt}
-                      />
->>>>>>> d462194 (feat: integrate ContactForm into Contact page, ensure responsive layout, and add unit tests)
                     </div>
                     <p className="text-lg leading-5">{info.text}</p>
                   </div>
@@ -57,16 +42,7 @@ const Contact = () => {
                   FAQ
                 </h2>
                 <div>
-<<<<<<< HEAD
                   <ArrowRight className="text-primary" />
-=======
-                  <Image
-                    width={20}
-                    height={20}
-                    src={arrow_right}
-                    alt="arrow_right"
-                  />
->>>>>>> d462194 (feat: integrate ContactForm into Contact page, ensure responsive layout, and add unit tests)
                 </div>
               </div>
               <p className="texl-lg">
