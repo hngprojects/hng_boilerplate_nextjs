@@ -1,6 +1,6 @@
 const EmailHeader = () => {
   return (
-    <header className="flex h-[122px] items-center justify-center bg-subtle">
+    <header className="bg-subtle flex h-[122px] items-center justify-center">
       <div className="flex items-center gap-[8px] md:gap-[10px]">
         <div
           className="grid grid-cols-2 gap-[2px]"

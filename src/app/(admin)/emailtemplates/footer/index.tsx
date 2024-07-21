@@ -5,7 +5,7 @@ import Tiktok from "~/../public/images/tiktok.svg";
 
 const EmailFooter = () => {
   return (
-    <footer className="w-full bg-subtle">
+    <footer className="bg-subtle w-full">
       <div className="px-12 py-8">
         <div className="flex justify-center gap-[33px]">
           <a

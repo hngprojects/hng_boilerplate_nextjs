@@ -51,7 +51,7 @@ const Modal = ({
               <DialogTitle className="text-start text-lg font-semibold text-foreground">
                 {heading}
               </DialogTitle>
-              <DialogDescription className="text-start text-sm text-subtle-foreground">
+              <DialogDescription className="text-subtle-foreground text-start text-sm">
                 {description}
               </DialogDescription>
             </DialogHeader>
@@ -75,7 +75,7 @@ const Modal = ({
               <DialogTitle className="text-start text-lg font-semibold text-foreground">
                 {heading}
               </DialogTitle>
-              <DialogDescription className="text-start text-sm text-subtle-foreground">
+              <DialogDescription className="text-subtle-foreground text-start text-sm">
                 {description}
               </DialogDescription>
             </DialogHeader>
@@ -90,7 +90,7 @@ const Modal = ({
               <DialogClose
                 asChild
                 onClick={cancel}
-                className="w-full text-subtle-foreground sm:w-1/3"
+                className="text-subtle-foreground w-full sm:w-1/3"
               >
                 <CustomButton variant="ghost">No, thanks</CustomButton>
               </DialogClose>
@@ -110,7 +110,7 @@ const Modal = ({
               <DialogTitle className="text-start text-lg font-semibold text-foreground">
                 {heading}
               </DialogTitle>
-              <DialogDescription className="text-start text-sm text-subtle-foreground">
+              <DialogDescription className="text-subtle-foreground text-start text-sm">
                 {description}
               </DialogDescription>
             </DialogHeader>
@@ -127,7 +127,7 @@ const Modal = ({
               <DialogClose
                 asChild
                 onClick={cancel}
-                className="w-full text-subtle-foreground sm:w-1/3"
+                className="text-subtle-foreground w-full sm:w-1/3"
               >
                 <CustomButton variant="ghost">No, thanks</CustomButton>
               </DialogClose>
@@ -153,7 +153,7 @@ const Modal = ({
               <DialogTitle className="text-center text-lg font-semibold text-foreground">
                 {heading}
               </DialogTitle>
-              <DialogDescription className="text-center text-sm text-subtle-foreground">
+              <DialogDescription className="text-subtle-foreground text-center text-sm">
                 {description}
               </DialogDescription>
             </DialogHeader>
@@ -183,7 +183,7 @@ const Modal = ({
               <DialogTitle className="text-center text-lg font-semibold text-foreground">
                 {heading}
               </DialogTitle>
-              <DialogDescription className="text-center text-sm text-subtle-foreground">
+              <DialogDescription className="text-subtle-foreground text-center text-sm">
                 {description}
               </DialogDescription>
             </DialogHeader>

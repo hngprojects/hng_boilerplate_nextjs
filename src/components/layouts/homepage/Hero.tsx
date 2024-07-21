@@ -42,7 +42,7 @@ const Hero = () => {
           </div>
 
           <div className="mt-14 flex w-full justify-end rounded-lg lg:mt-0 lg:w-1/2">
-            <div className="relative w-full rounded-lg bg-subtle sm:w-[90%] md:h-[300px] md:w-[95%] lg:h-[526px] lg:w-[418px]">
+            <div className="bg-subtle relative w-full rounded-lg sm:w-[90%] md:h-[300px] md:w-[95%] lg:h-[526px] lg:w-[418px]">
               <div
                 data-testid="hero-checkmark"
                 className="absolute top-1/3 z-10 -translate-y-1/2 transform sm:left-[-2.2rem] md:left-[-3.5rem]"

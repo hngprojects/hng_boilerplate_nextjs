@@ -84,7 +84,7 @@ export default function BlogCommentSection() {
             value={commentInput}
             onChange={(event) => setCommentInput(event.target.value)}
             placeholder="Type your comment here"
-            className="mt-[12px] h-fit min-h-[120px] w-full rounded-[6px] border-[1px] border-border bg-outline px-[12px] py-[8px] text-[14px] font-[400] leading-[20px] text-black shadow-[0px_3px_14px_3px_rgba(10,57,176,0.12)] outline-none"
+            className="bg-outline mt-[12px] h-fit min-h-[120px] w-full rounded-[6px] border-[1px] border-border px-[12px] py-[8px] text-[14px] font-[400] leading-[20px] text-black shadow-[0px_3px_14px_3px_rgba(10,57,176,0.12)] outline-none"
           ></textarea>
           <div onClick={sendMessage} className="mt-[20px] w-fit">
             <CustomButton variant="primary" size="lg">
