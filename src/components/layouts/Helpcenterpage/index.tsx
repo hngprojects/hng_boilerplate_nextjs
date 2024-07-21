@@ -2,7 +2,7 @@
 
 import Button from "~/components/common/Button/button";
 import { Input } from "~/components/ui/input";
-import TopicsAccordions from "./TopicsAccordions";
+import TopicsAccordions from "./_components/TopicsAccordions/TopicsAccordions";
 
 const handleButtonClickTest = () => {
   alert("Contact Button Click Test");

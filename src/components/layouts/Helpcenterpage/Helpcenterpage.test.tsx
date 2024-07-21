@@ -3,10 +3,10 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import HelpCenterPage from "../../../app/help-center/page";
-import TopicsAccordions from "./TopicsAccordions";
+import TopicsAccordions from "./_components/TopicsAccordions/TopicsAccordions";
 
-// Mock FAQ data
-const faqs = [
+// Mock Topic data
+const topics = [
   {
     id: "item-1",
     question: "What is EcoClean?",
@@ -25,7 +25,7 @@ describe("topicsAccordions Component", () => {
     expect.hasAssertions();
     render(<TopicsAccordions />);
 
-    for (const faq of faqs) {
+    for (const faq of topics) {
       const trigger = screen.getByText(faq.question);
       expect(trigger).toBeInTheDocument();
       expect(screen.queryByText(faq.answer)).not.toBeInTheDocument();
@@ -36,7 +36,7 @@ describe("topicsAccordions Component", () => {
     expect.hasAssertions();
     render(<TopicsAccordions />);
 
-    for (const faq of faqs) {
+    for (const faq of topics) {
       const trigger = screen.getByText(faq.question);
       fireEvent.click(trigger);
       expect(screen.getByText(faq.answer)).toBeInTheDocument();
