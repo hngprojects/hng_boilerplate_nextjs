@@ -53,7 +53,7 @@ const ProductDetailsParent: React.FC = () => {
         >
           <ProductDetailsCard
             productName="Product 2"
-            productImageSrc="/images/product_image.jpg"
+            productImageSrc="/images/productdetails/product_image.jpg"
             productID="P002"
             category="Appetizers"
             dateAdded="2024-06-06, 12:34:56"

@@ -1,7 +1,7 @@
 "use client";
 
+import { X } from "lucide-react";
 import Image from "next/image";
-import React from "react";
 
 import { useToast } from "~/components/ui/use-toast";
 import CustomButton from "../Button/button";
@@ -104,11 +104,8 @@ const ProductDetailsCard: React.FC<ProductDetailsProperties> = ({
       <header className="flex justify-between gap-5 px-px text-xl font-semibold text-neutral-dark-2">
         <div>{productName}</div>
         <div onClick={handleClose}>
-          <Image
-            src="/images/productdetails/icons/close.svg"
-            alt="Close Icon"
-            width={24}
-            height={24}
+          <X
+            size={24}
             className="aspect-square h-6 w-6 shrink-0 cursor-pointer"
           />
         </div>
