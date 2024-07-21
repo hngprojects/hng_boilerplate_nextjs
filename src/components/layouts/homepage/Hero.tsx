@@ -16,8 +16,8 @@ const Hero = () => {
     <div className="py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <div className="flex flex-col items-center lg:flex-row">
-          <div className="w-full lg:w-1/2 text-center sm:text-left">
-            <h1 className="mb-2 text-4xl font-bold leading-snug lg:text-5xl xl:text-6xl lg:leading-tight">
+          <div className="w-full text-center sm:text-left lg:w-1/2">
+            <h1 className="mb-2 text-4xl font-bold leading-snug lg:text-5xl lg:leading-tight xl:text-6xl">
               {`Focus on What Matters. We've Got the Foundation Covered.`}
             </h1>
 
@@ -26,7 +26,7 @@ const Hero = () => {
                 src="/images/hero-line.svg"
                 width={100}
                 height={100}
-                className="w-full h-[50px]"
+                className="h-[50px] w-full"
                 alt=""
               />
             </div>
@@ -42,7 +42,7 @@ const Hero = () => {
           </div>
 
           <div className="mt-14 flex w-full justify-end rounded-lg lg:mt-0 lg:w-1/2">
-            <div className="relative w-full rounded-lg sm:w-[90%] md:h-[300px] md:w-[95%] lg:h-[526px] lg:w-[418px] bg-subtle">
+            <div className="relative w-full rounded-lg bg-subtle sm:w-[90%] md:h-[300px] md:w-[95%] lg:h-[526px] lg:w-[418px]">
               <div
                 data-testid="hero-checkmark"
                 className="absolute top-1/3 z-10 -translate-y-1/2 transform sm:left-[-2.2rem] md:left-[-3.5rem]"
