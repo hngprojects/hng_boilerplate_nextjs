@@ -27,21 +27,34 @@ const highlights = {
   ],
 };
 
+const ComponentProperties = {
+  name: "John Doe",
+  main_heading: "Welcome to Boilerplate",
+  sub_heading: "Get started with us today",
+  description:
+    "We're thrilled to have you join us. Experience quality and innovation like never before.  Our product is made to fit your needs and make your life easier.",
+  action_url: "https://boilerplate-weblink.com",
+  tracking_parameters:
+    "?utm_source=email&utm_medium=welcome&utm_campaign=onboarding",
+  cta_text: "Learn more about us",
+  app_name: "Boilerplate",
+};
+
 describe("email Template For Welcome With Image", () => {
   it("renders email template", async () => {
     expect.hasAssertions();
     render(
       <WelcomeWithImage
-        name="John Doe"
-        main_heading="Welcome to Boilerplate"
-        sub_heading="Get started with us today"
-        description="We're thrilled to have you join us. Experience quality and innovation like never before.  Our product is made to fit your needs and make your life easier."
+        name={ComponentProperties.name}
+        main_heading={ComponentProperties.main_heading}
+        sub_heading={ComponentProperties.sub_heading}
+        description={ComponentProperties.description}
         with_highlights={true}
         highlights={highlights}
-        action_url="https://boilerplate-weblink.com"
-        tracking_parameters="?utm_source=email&utm_medium=welcome&utm_campaign=onboarding"
-        cta_text="Learn more about us"
-        app_name="Boilerplate"
+        action_url={ComponentProperties.action_url}
+        tracking_parameters={ComponentProperties.tracking_parameters}
+        cta_text={ComponentProperties.cta_text}
+        app_name={ComponentProperties.app_name}
       />,
     );
 
@@ -55,7 +68,10 @@ describe("email Template For Welcome With Image", () => {
 
     //Ensure the functionality of the CTA.
     const button = screen.getByTestId(BUTTON_TEST_ID);
-    expect(button).toHaveAttribute("href", "https://boilerplate-weblink.com");
+    expect(button).toHaveAttribute(
+      "href",
+      `${ComponentProperties.action_url}${ComponentProperties.tracking_parameters}`,
+    );
 
     //Asserts that the personalized name is rendered correctly.
     const element = screen.getByTestId(PERSONALIZED_NAME_TEST_ID);
