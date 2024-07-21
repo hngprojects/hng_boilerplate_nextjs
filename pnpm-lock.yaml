@@ -52,7 +52,7 @@ importers:
       "@t3-oss/env-nextjs":
         specifier: ^0.10.1
         version: 0.10.1(typescript@5.5.3)(zod@3.23.8)
-      '@types/jest-axe':
+      "@types/jest-axe":
         specifier: ^3.5.9
         version: 3.5.9
       class-variance-authority:
@@ -9874,7 +9874,7 @@ snapshots:
       lodash: 4.17.21
       redent: 3.0.0
     optionalDependencies:
-      '@types/jest': 29.5.12
+      "@types/jest": 29.5.12
       vitest: 1.6.0(@types/node@20.14.9)(@vitest/ui@1.6.0)(jsdom@24.1.0)(terser@5.31.3)
 
   "@testing-library/react@16.0.0(@testing-library/dom@10.3.2)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)":
@@ -11939,7 +11939,7 @@ snapshots:
 
   expect@29.7.0:
     dependencies:
-      '@jest/expect-utils': 29.7.0
+      "@jest/expect-utils": 29.7.0
       jest-get-type: 29.6.3
       jest-matcher-utils: 29.7.0
       jest-message-util: 29.7.0
