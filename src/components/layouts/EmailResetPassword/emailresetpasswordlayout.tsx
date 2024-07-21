@@ -1,8 +1,8 @@
 import { Container, Section } from "@react-email/components";
 import { ReactNode } from "react";
 
-import EmailFooter from "~/email/templates/_components/resetpasswordemail/emailfooter";
-import EmailHeader from "~/email/templates/_components/resetpasswordemail/EmailHeader";
+import EmailFooter from "~/components/common/resetpasswordemail/emailfooter";
+import EmailHeader from "~/components/common/resetpasswordemail/EmailHeader";
 import Tailwindwrapper from "~/email/templates/_components/tailwindWrapper";
 
 interface EmailResetPasswordLayoutProperties {
