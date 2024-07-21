@@ -6,6 +6,9 @@ type newTypes = {
   id: number;
   name: string;
   color: string;
+  title: string;
+  date: string;
+  timeRead: string;
 };
 
 const BlogCard = ({
@@ -39,14 +42,16 @@ const BlogCard = ({
       </div>
       <div className="flex h-[147px] w-[372px] flex-col gap-[24px] p-[16px] md:h-[137px] md:w-[354px]">
         <p className="w-[320px] text-[20px] font-bold text-[#525252]">
-          The Power of Networking: How to Build Meaningful Connections
+          {newsType.title}
         </p>
         <div className="flex items-center justify-between">
           <p className="text-[14px] font-normal text-[#525252]">
-            July 12, 2024
+            {newsType.date}
           </p>
           <div className="rounded-[16px] bg-[#F3F4F6] p-[8px]">
-            <p className="text-[14px] font-normal text-[#525252]">5 min read</p>
+            <p className="text-[14px] font-normal text-[#525252]">
+              {newsType.timeRead}
+            </p>
           </div>
         </div>
       </div>

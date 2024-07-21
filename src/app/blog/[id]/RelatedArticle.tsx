@@ -12,16 +12,25 @@ const newsTypes = [
     id: 0,
     name: "Business",
     color: "#F97316",
+    title: "The Power of Networking: How to Build Meaningful Connections",
+    date: "July 12, 2024",
+    timeRead: "5 min read",
   },
   {
     id: 1,
     name: "Lifestyle",
     color: "#7F0682",
+    title: "The Power of Networking: How to Build Meaningful Connections",
+    date: "July 12, 2024",
+    timeRead: "5 min read",
   },
   {
     id: 2,
     name: "World News",
     color: "#EAB308",
+    title: "The Power of Networking: How to Build Meaningful Connections",
+    date: "July 12, 2024",
+    timeRead: "5 min read",
   },
 ];
 
