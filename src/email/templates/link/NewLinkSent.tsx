@@ -72,7 +72,7 @@ const NewLinkSentPage: React.FC = () => {
     title: "New Activation Link Sent",
     name: "John Doe",
     image: "/new-link-sent-icon.svg",
-    activationLink: "https://github.com",
+    activationLink: "https://example.com/activate",
   };
 
   return <NewLinkSent {...properties} />;
