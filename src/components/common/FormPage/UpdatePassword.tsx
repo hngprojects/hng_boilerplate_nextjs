@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
-import { useState, FormEvent, ChangeEvent,FC  } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -26,11 +26,13 @@ import {
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
 import PasswordChecks from "./PasswordChecks";
+
 interface VisibilityState {
   currentPassword: boolean;
   newPassword: boolean;
   confirmPassword: boolean;
 }
+
 const passwordSchema = z
   .object({
     password: z
@@ -49,7 +51,7 @@ const passwordSchema = z
     path: ["confirmPassword"],
   });
 
-const PasswordForm: FC = () => {
+const PasswordForm: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [showChecks, setShowChecks] = useState<boolean>(false);
@@ -63,6 +65,7 @@ const PasswordForm: FC = () => {
     password: string;
     confirmPassword: string;
   }>({ password: "", confirmPassword: "" });
+
   const form = useForm<z.infer<typeof passwordSchema>>({
     resolver: zodResolver(passwordSchema),
     defaultValues: {
@@ -96,7 +99,6 @@ const PasswordForm: FC = () => {
       });
       return;
     }
-
   };
 
   const togglePasswordVisibility = (field: keyof VisibilityState) => {
