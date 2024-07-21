@@ -3,6 +3,7 @@
 import { Orbit, Plus } from "lucide-react";
 import React, { useState } from "react";
 
+import Badge from "~/components/common/Badge/Badge";
 import { Breadcrumb } from "~/components/common/Breadcrumb";
 import CustomButton from "~/components/common/Button/button";
 import HBPCommentBox from "~/components/common/Comment";
@@ -614,6 +615,56 @@ const StyleGuide: React.FC = () => {
       </ul>
 
       <Sidebar />
+      <div className="my-4 flex max-w-lg flex-col flex-wrap gap-6 border border-dashed border-stone-700 p-12">
+        <div>
+          <h4 className="mb-2 text-2xl font-extrabold text-slate-700">
+            The Badge component
+          </h4>
+          <p className="mb-1 text-sm font-light">
+            It accepts 2 mandatory &quot;label&quot; (string) and
+            &quot;variant&quot; (any of the 4 variants) arguments, and 1
+            optional &quot;icon&quot; (r) argument as props.
+          </p>
+          <div className="text-sm font-light">
+            <ul>
+              <li>- Label: string</li>
+              <li>
+                - Variant: &quot;default&quot; | &quot;primary&quot; |
+                &quot;success&quot; | &quot;error&quot;
+              </li>
+              <li> - Icon?: React.ReactNode</li>
+            </ul>
+          </div>
+          <p className="mb-1 text-sm font-bold text-slate-700">
+            Refer to the component for more information
+            &quot;~/components/common/Badge/Badge&quot;
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-4">
+          <Badge variant="success" label="success" />
+          <Badge variant="primary" label="primary" />
+          <Badge variant="default" label="default" />
+          <Badge variant="error" label="error" />
+        </div>
+        <div className="flex flex-wrap gap-4">
+          <Badge
+            variant="success"
+            label="success"
+            icon={<span>&#11042;</span>}
+          />
+          <Badge
+            variant="primary"
+            label="primary"
+            icon={<span>&#11042;</span>}
+          />
+          <Badge
+            variant="default"
+            label="default"
+            icon={<span>&#11042;</span>}
+          />
+          <Badge variant="error" label="error" icon={<span>&#11042;</span>} />
+        </div>
+      </div>
 
       <div className="space-y-4 rounded-lg bg-gray-100 p-4 shadow-md">
         <h2 className="text-2xl font-semibold text-gray-800">
