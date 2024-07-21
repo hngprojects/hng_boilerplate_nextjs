@@ -49,7 +49,7 @@ export function DatePickerWithRange({ className, data }: DataProperties) {
     if (date) {
       filterDateRanges(data, date);
     }
-  }, [date]);
+  }, [data, date]);
 
   return (
     <div className="">
