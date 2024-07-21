@@ -92,7 +92,6 @@ function TableData() {
                 alt="action button"
                 className="mx-auto"
               />
-              {/* <Action /> */}
             </TableCell>
           </TableRow>
         ))}
