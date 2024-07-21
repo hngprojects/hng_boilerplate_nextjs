@@ -1,6 +1,5 @@
-import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 
-import { arrow_right } from "~/../public/contact-icons";
 import Layout from "~/app/(home)/layout";
 import { bizTime, contactInfo } from "~/app/contact/constant";
 import ContactForm from "~/components/common/contact-us-form";
@@ -30,12 +29,7 @@ const Contact = () => {
                 {contactInfo.map((info) => (
                   <div key={info.alt} className="flex items-center gap-4">
                     <div className="rounded-sm bg-neutral-dark-1 p-2.5">
-                      <Image
-                        src={info.image}
-                        width={24}
-                        height={24}
-                        alt={info.alt}
-                      />
+                      <info.Icon color="white" size={24} />
                     </div>
                     <p className="text-lg leading-5">{info.text}</p>
                   </div>
@@ -48,12 +42,7 @@ const Contact = () => {
                   FAQ
                 </h2>
                 <div>
-                  <Image
-                    width={20}
-                    height={20}
-                    src={arrow_right}
-                    alt="arrow_right"
-                  />
+                  <ArrowRight className="text-primary" />
                 </div>
               </div>
               <p className="texl-lg">
