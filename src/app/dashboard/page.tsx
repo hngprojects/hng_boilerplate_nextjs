@@ -46,7 +46,7 @@ const Dashboard: React.FC = () => {
                                         <p className="text-sm font-[500]">{totalRevenue.name}</p>
                                         <Dollar />
                                     </div>
-                                    <div className="">
+                      <div className="">
                         <h1 className="text-lg font-bold">
                           {formatPrice(
                             totalRevenue.overview_stats,
