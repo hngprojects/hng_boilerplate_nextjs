@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // contact.test.tsx
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
@@ -5,6 +6,30 @@ import { describe, expect, it, vi } from "vitest";
 import Contact from "./page"; // Adjust the import based on your actual file structure
 
 describe("contact Page tests", () => {
+=======
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
+
+import Contact from "./page"; // Adjust the import based on your actual file structure
+
+// Define the type for global object
+declare const global: {
+  fetch: typeof fetch;
+};
+
+describe("contact Page tests", () => {
+  // Create a fetch mock
+  const fetchMock = vi.fn();
+
+  beforeAll(() => {
+    global.fetch = fetchMock;
+  });
+
+  afterAll(() => {
+    vi.restoreAllMocks();
+  });
+
+>>>>>>> d462194 (feat: integrate ContactForm into Contact page, ensure responsive layout, and add unit tests)
   // Test for rendering the Contact Us form and content card
   it("should render the Contact Us form and content card correctly", () => {
     expect.assertions(4); // Ensure the test has at least 4 assertions
@@ -44,10 +69,13 @@ describe("contact Page tests", () => {
   it("should handle API integration correctly", async () => {
     expect.assertions(1); // Ensure the test has at least 1 assertion
 
+<<<<<<< HEAD
     // Create a fetch mock within the test case
     const fetchMock = vi.fn();
     global.fetch = fetchMock;
 
+=======
+>>>>>>> d462194 (feat: integrate ContactForm into Contact page, ensure responsive layout, and add unit tests)
     // Set up fetch mock to resolve with a success response
     fetchMock.mockResolvedValueOnce(
       new Response(
