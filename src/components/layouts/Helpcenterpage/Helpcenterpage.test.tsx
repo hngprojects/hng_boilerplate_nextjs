@@ -10,12 +10,12 @@ const faqs = [
   {
     id: "item-1",
     question: "What is EcoClean?",
-    answer: "Yes. It adheres to the WAI-ARIA design pattern.",
+    answer: "Lorem ipsum dolor sit amet, consectetur elit.",
   },
   {
     id: "item-2",
     question: "How does EcoClean work?",
-    answer: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    answer: "Lorem ipsum dolor sit amet consectetur elit.",
   },
 ];
 

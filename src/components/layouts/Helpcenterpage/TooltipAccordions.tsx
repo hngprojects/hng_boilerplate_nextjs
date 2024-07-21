@@ -14,7 +14,7 @@ const TooltipAccordions = () => {
       {faqs.map((faq, index) => (
         <AccordionItem
           key={index}
-          className="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+          className="flex w-full flex-col border-b-0 bg-white px-6 py-6"
           value={`faq-${index}`}
         >
           <AccordionTrigger
@@ -44,47 +44,46 @@ const faqs = [
   {
     id: "item-1",
     question: "What is EcoClean?",
-    answer: "Yes. It adheres to the WAI-ARIA design pattern.",
+    answer: "Lorem ipsum dolor sit amet, consectetur elit.",
   },
   {
     id: "item-2",
     question: "How does EcoClean work?",
-    answer: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    answer: "Lorem ipsum dolor sit amet consectetur elit.",
   },
   {
     id: "item-3",
     question: "What are the key features of EcoClean?",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum repellendus doloribus deserunt totam doloremque, quia quaerat veniam harum.",
+    answer: "Lorem ipsum dolor sit amet, consectetur elit.",
   },
   {
     id: "item-4",
     question: "Who can benefit from using EcoClean?",
-    answer: "Yes. It adheres to the WAI-ARIA design pattern.",
+    answer: "Lorem ipsum dolor sit amet consectetur elit.",
   },
   {
     id: "item-5",
     question: "What are the system requirements for EcoClean?",
-    answer: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    answer: "Lorem ipsum dolor sit amet consectetur elit.",
   },
   {
     id: "item-6",
     question: "How do I use EcoClean?",
-    answer: "Yes. It adheres to the WAI-ARIA design pattern.",
+    answer: "Lorem ipsum dolor sit amet, consectetur elit.",
   },
   {
     id: "item-7",
     question: "How do I store EcoClean?",
-    answer: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    answer: "Lorem ipsum dolor sit amet, consectetur elit.",
   },
   {
     id: "item-8",
     question: "How much does EcoClean cost?",
-    answer: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    answer: "Lorem ipsum dolor sit amet, consectetur elit.",
   },
   {
     id: "item-9",
     question: "Are there any discounts available?",
-    answer: "Yes. It adheres to the WAI-ARIA design pattern.",
+    answer: "Lorem ipsum dolor sit amet, consectetur elit.",
   },
 ];
