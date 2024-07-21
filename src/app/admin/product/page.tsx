@@ -6,8 +6,6 @@ export default function Page() {
     <main className="">
       <ProductFilter />
       <TableData />
-
-      {/* <Paginations /> */}
     </main>
   );
 }

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import {
   Table,
   TableBody,
@@ -6,8 +8,6 @@ import {
   TableHeader,
   TableRow,
 } from "~/components/ui/table";
-import Action from "../Action";
-import CreatedAt from "../CreatedAt";
 
 const data: {
   id: number;
@@ -60,9 +60,7 @@ function TableData() {
           <TableHead className="text-center">Price</TableHead>
           <TableHead className="text-center">Total sales</TableHead>
           <TableHead className="text-center">Status</TableHead>
-          <TableHead className="text-center">
-            <CreatedAt />
-          </TableHead>
+          <TableHead className="text-center">Created at</TableHead>
           <TableHead className="text-center">Action</TableHead>
         </TableRow>
       </TableHeader>
@@ -87,7 +85,14 @@ function TableData() {
             </TableCell>
             <TableCell className="text-center">{data.createdAt}</TableCell>
             <TableCell className="text-center">
-              <Action />
+              <Image
+                src="/images/action.svg"
+                width={24}
+                height={24}
+                alt="action button"
+                className="mx-auto"
+              />
+              {/* <Action /> */}
             </TableCell>
           </TableRow>
         ))}
