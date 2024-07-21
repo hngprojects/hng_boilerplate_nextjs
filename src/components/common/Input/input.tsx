@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import { Input } from "~/components/common/Input";
 
 interface CustomInputProperties {
@@ -21,7 +22,7 @@ const CustomInput: React.FC<CustomInputProperties> = ({
   label,
   placeholder,
   type = "text",
-  value: propValue,
+  value: propertyValue,
   onChange,
   onFocus,
   isButtonVisible = false,
@@ -32,21 +33,26 @@ const CustomInput: React.FC<CustomInputProperties> = ({
   labelPosition = "top",
   variant = "primary",
 }) => {
-  const [inputValue, setInputValue] = useState(propValue || "");
+  const [inputValue, setInputValue] = useState(propertyValue || "");
   const [isValid, setIsValid] = useState(true);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
     setInputValue(value);
-    if (onChange) onChange(e);
+    if (onChange) onChange(event);
 
+    if (type === "email") {
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      setIsValid(emailPattern.test(value));
+    }
   };
 
-  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    if (onFocus) onFocus(e);
+  const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+    if (onFocus) onFocus(event);
   };
 
-  const inputState = !isValid && inputValue ? "invalid" : inputValue ? "active" : "default";
+  const inputState =
+    !isValid && inputValue ? "invalid" : inputValue ? "active" : "default";
 
   return (
     <Input
