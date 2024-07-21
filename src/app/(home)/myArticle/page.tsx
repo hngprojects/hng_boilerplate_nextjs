@@ -3,7 +3,6 @@
 import { useState } from "react";
 
 import { mainBlog } from "../../../data/articledata";
-import ArtcleCard from "~/components/articleCard/ArtcleCard";
 
 const Page = () => {
   const [visible, setVisible] = useState(5);
@@ -28,20 +27,35 @@ const Page = () => {
           return (
             <div
               key={blog.id}
-              className="flex flex-col items-start justify-center md:flex-row md:gap-[24px] md:p-[24px]"
+              className="flex flex-col items-start justify-center border-b border-[#525252] md:flex-row md:gap-[24px] md:p-[24px]"
               data-testid="card-list"
             >
-              <ArtcleCard
-                id={blog.id}
-                accountImgMobile={blog.accountImgMobile.src}
-                date={blog.date}
-                description={blog.description}
-                header={blog.header}
-                image={blog.image.src}
-                name={blog.name}
-                occupation={blog.occupation}
-                readTime={blog.readTime}
-              />
+              <div className="">
+                <span className="left-2 rounded-[16px] bg-[#F97316] px-[12px] py-[4px] text-center text-[12px] font-bold text-[#525252]">
+                  {blog.occupation}
+                </span>
+                <h1 className="text-[20px] font-bold leading-normal">
+                  {blog.header}
+                </h1>
+                <p className="text-[14px] font-normal leading-normal">
+                  {blog.description}
+                </p>
+                <div className="flex items-center gap-[6px]">
+                  <img width={24} src={blog.accountImgMobile.src} alt="image" />
+                  <p className="text-[14px] font-medium leading-normal">
+                    {blog.name}
+                  </p>
+                  <p className="text-[14px] font-normal leading-normal">
+                    {blog.readTime}
+                  </p>
+                  <p className="text-[14px] font-normal leading-normal">
+                    {blog.date}
+                  </p>
+                </div>
+              </div>
+              <div className="relative">
+                <img src={blog.image.src} alt="picture"></img>
+              </div>
             </div>
           );
         })}
