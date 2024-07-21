@@ -37,6 +37,7 @@
     "@t3-oss/env-nextjs": "^0.10.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "date-fns": "^3.6.0",
     "framer-motion": "^11.3.8",
     "input-otp": "^1.2.4",
     "lucide-react": "^0.400.0",
