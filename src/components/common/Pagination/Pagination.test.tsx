@@ -33,7 +33,6 @@ describe("pagination Component", () => {
     expect.hasAssertions();
     renderPagination(3, 10);
     const buttons = screen.getAllByRole("button");
-    console.log(buttons.length);
     expect(buttons).toHaveLength(9);
     expect(screen.getByText("1")).toBeInTheDocument();
     expect(screen.getByText("2")).toBeInTheDocument();
