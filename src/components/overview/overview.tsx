@@ -146,7 +146,7 @@ export default function Home() {
         </div>
         <div className="w-full rounded bg-card p-4 shadow lg:col-span-2">
           <h2 className="font-semibold text-foreground">Recent Sales</h2>
-          <h1 className="mb-6 text-breadcrumb-page">
+          <h1 className="text-breadcrumb-page mb-6">
             You made 265 sales this month
           </h1>
           <ul>

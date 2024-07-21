@@ -11,7 +11,6 @@ globalThis.ResizeObserver = class ResizeObserver {
 };
 
 describe("home Component", () => {
-  // eslint-disable-next-line vitest/no-hooks
   beforeEach(() => {
     // eslint-disable-next-line testing-library/no-render-in-lifecycle
     render(<Dashboard />);
