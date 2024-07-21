@@ -34,7 +34,7 @@ const Dashboard: React.FC = () => {
                     <div className="flex gap-[8px] items-center">
                     <DateSwitcher />
                     <button className='bg-primary py-[9.5px] px-[16px] rounded-sm text-sm text-white'>Download</button>
-                </div>
+            </div>
           </div>
 
           <div className="">
