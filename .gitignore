@@ -8,6 +8,7 @@
 
 # testing
 /coverage
+/html
 
 # next.js
 /.next/
@@ -34,3 +35,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# react email
+/.react-email
