@@ -12,7 +12,7 @@ const SampleContent: React.FC<SampleContentProperties> = ({ imageState }) => {
         We’re excited to bring you an exclusive offer that will keep you ahead
         of the curve! At Boilerplate, we pride ourselves on providing the latest
         and greatest in technology, and this time, we have something truly
-        special for you.
+        special for you. 
       </Text>
 
       <Heading
