@@ -53,7 +53,7 @@ const data: {
 
 function TableData() {
   return (
-    <Table className="overflow-x-auto">
+    <Table className="">
       <TableHeader>
         <TableRow className="border border-none text-base font-normal text-[#0A0A0A]">
           <TableHead className="text-center">Name</TableHead>
