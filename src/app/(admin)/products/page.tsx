@@ -9,11 +9,13 @@ import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { useProducts } from "~/hooks/admin-product/use-products.persistence";
 import ProductDetailModal from "./_components/product-detail-modal";
 import ProductDetailView from "./_components/product-detail-view";
-import ProductFilter from "./_components/product-filter";
 import ProductHeader from "./_components/product-header";
 import { PRODUCT_TABLE } from "./data/product.mock";
 
 const ProductContent = dynamic(() => import("./_components/product-content"), {
+  ssr: false,
+});
+const ProductFilter = dynamic(() => import("./_components/product-filter"), {
   ssr: false,
 });
 
