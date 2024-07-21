@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
@@ -20,7 +21,7 @@ const ProductPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [view, setView] = useState<"list" | "grid">("list");
   const { addProducts } = useProducts();
-  const { isOpen } = useProductModal();
+  const { isOpen, updateProductId, updateOpen } = useProductModal();
 
   useEffect(() => {
     const is_saved = localStorage.getItem("admin_products");
@@ -31,10 +32,19 @@ const ProductPage = () => {
         addProducts(PRODUCT_TABLE);
       }, 5000);
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        updateOpen(false);
+        updateProductId("null");
+      }
+    };
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, []);
   return (
     <div className="flex w-full flex-col gap-y-8">
       <ProductHeader />
@@ -43,6 +53,7 @@ const ProductPage = () => {
           <motion.div
             layout
             layoutId="products_table"
+            transition={{ duration: 0.2 }}
             className="flex w-full flex-col gap-y-8"
           >
             <ProductFilter
