@@ -115,16 +115,11 @@ const MediaUpload: React.FC<MediaUploadProperties> = ({
                 className="image-container group relative mb-2 h-[125px] w-full"
               >
                 {URL.createObjectURL && (
-                  // <img
-                  //   src={URL.createObjectURL(file)}
-                  //   alt={file.name}
-                  //   className="h-full w-full rounded-[6px] object-cover"
-                  // />
                   <Image
                     src={URL.createObjectURL(file)}
                     alt={file.name}
-                    layout="fill"
-                    objectFit="cover"
+                    width={125}
+                    height={125}
                     className="rounded-[6px]"
                   />
                 )}
