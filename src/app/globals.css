@@ -65,6 +65,14 @@
     --breadcrumb-foreground: 0 0% 13%;
     --desaturated-blue: 212.73 26.83% 83.92%;
     --grey50: 0 0% 85.1%;
+
+    --toast-bg: 128, 50%, 94%;
+    --toast-border: 126, 50%, 58%;
+
+    --default-badge-bg: 222, 47%, 11%, 0.1;
+    --primary-badge-bg: 25, 95%, 53%, 0.1;
+    --success-badge-bg: 102, 51%, 52%, 0.1;
+    --error-badge-bg: 0, 72%, 51%, 0.1;
   }
 
   .dark {
@@ -107,8 +115,43 @@
   }
 }
 
+.spinner_V8m1 {
+  transform-origin: center;
+  animation: spinner_zKoa 2s linear infinite;
+}
+.spinner_V8m1 circle {
+  stroke-linecap: round;
+  animation: spinner_YpZS 1.5s ease-in-out infinite;
+}
+@keyframes spinner_zKoa {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner_YpZS {
+  0% {
+    stroke-dasharray: 0 150;
+    stroke-dashoffset: 0;
+  }
+  47.5% {
+    stroke-dasharray: 42 150;
+    stroke-dashoffset: -16;
+  }
+  95%,
+  100% {
+    stroke-dasharray: 42 150;
+    stroke-dashoffset: -59;
+  }
+}
 ::-webkit-scrollbar {
   width: 8px;
+}
+.show_scrollbar::-webkit-scrollbar {
+  height: 8px;
+}
+.hide_scrollbar::-webkit-scrollbar {
+  height: 0.1px;
+  width: 0.1px;
 }
 
 ::-webkit-scrollbar-thumb {
