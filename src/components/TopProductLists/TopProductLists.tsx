@@ -28,7 +28,7 @@ export default function TopProductLists() {
 
   return (
     <Card
-      className="w-[25.687rem] gap-6 rounded-xl"
+      className="max-w-[25.687rem] gap-6 rounded-xl"
       data-testid="top-products-card"
     >
       <CardHeader
