@@ -46,34 +46,34 @@ export default function InviteLink() {
   };
 
   return (
-    <div className=" mx-auto flex w-[894px] flex-col items-center  gap-30">
-      <div className="flex items-center justify-between w-full">
+    <div className="gap-30 mx-auto flex w-[894px] flex-col items-center">
+      <div className="flex w-full items-center justify-between">
         <div className="flex flex-col">
-          <p className="text-lg font-bond"> Invite Link</p>
-          <p className="text-sm mt-[8px]">
+          <p className="font-bond text-lg"> Invite Link</p>
+          <p className="mt-[8px] text-sm">
             {" "}
             This provides a unique URL that allows anyone to join your workspace
           </p>{" "}
         </div>
-        <label className="inline-flex items-center cursor-pointer">
+        <label className="inline-flex cursor-pointer items-center">
           <input
             type="checkbox"
             value=""
-            className="sr-only peer"
+            className="peer sr-only"
             checked={isEnabled}
             onChange={handleToggle}
           />
-          <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none  dark:peer-focus:ring-[#F97316] rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#F97316]"></div>
+          <div className="peer relative h-6 w-11 rounded-full bg-gray-200 after:absolute after:start-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:bg-white after:transition-all after:content-[''] peer-checked:bg-[#F97316] peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none dark:peer-focus:ring-[#F97316] rtl:peer-checked:after:-translate-x-full"></div>
         </label>
       </div>
       {isEnabled && (
-        <div className="flex  w-full px-[8px] py-[16px] items-center justify-between ">
-          <div className="flex border-[1px] rounded-md justify-between flex-shrink-0 border-slate-300">
+        <div className="flex w-full items-center justify-between px-[8px] py-[16px]">
+          <div className="flex flex-shrink-0 justify-between rounded-md border-[1px] border-slate-300">
             <input
               type="text"
               value={link}
               readOnly
-              className="flex w-[703px] outline-0 border-0 hover:outline-0 hover:border-0 focus:outline-0 focus:border-0"
+              className="flex w-[703px] border-0 outline-0 hover:border-0 hover:outline-0 focus:border-0 focus:outline-0"
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +114,7 @@ export default function InviteLink() {
             </svg>
           </div>
           <button
-            className="flex w-[105px] gap-[4px] px-[8px] py-[8px] rounded-xl items-start text-[#ffffff] bg-[#F97316]"
+            className="flex w-[105px] items-start gap-[4px] rounded-xl bg-[#F97316] px-[8px] py-[8px] text-[#ffffff]"
             onClick={handleCopy}
             disabled={!link}
           >
