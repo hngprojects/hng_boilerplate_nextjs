@@ -1,7 +1,7 @@
 import { error } from "node:console";
 import Image from "next/image";
 
-import { Button } from "~/components/common/Button";
+import CustomButton from "~/components/common/Button/button";
 import { SubscriptionRenewalFailedSchema } from "./zodSchema";
 
 interface SubscriptionRenewalFailedProperties {
@@ -120,12 +120,12 @@ const SubscriptionRenewalFailed: React.FC<
           className="renewal-with-icon-button-link flex items-center self-stretch md:self-center"
           style={{ flex: 1 }}
         >
-          <Button
+          <CustomButton
             variant="primary"
             className="renewal-button h-[44px] w-full px-4 py-2 text-base md:w-auto md:px-10"
           >
             Update Payment Details
-          </Button>
+          </CustomButton>
         </a>
       </section>
       <div className="renewal-with-icon-regards flex flex-col items-start justify-center gap-[8px] self-stretch text-sm text-neutral-dark-2">
