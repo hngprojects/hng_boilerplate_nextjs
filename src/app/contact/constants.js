@@ -7,6 +7,8 @@ import {
   Twitter,
 } from "lucide-react";
 
+export { ArrowRight } from "lucide-react";
+
 export const bizTime = ["8am", "6pm"];
 export const contactInfo = [
   {

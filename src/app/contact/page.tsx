@@ -1,7 +1,5 @@
-import { ArrowRight } from "lucide-react";
-
 import Layout from "~/app/(home)/layout";
-import { bizTime, contactInfo } from "~/app/contact/constants";
+import { ArrowRight, bizTime, contactInfo } from "~/app/contact/constants";
 import ContactForm from "~/components/common/contact-us-form";
 
 const Contact = () => {
