@@ -19,4 +19,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           fail_on_error: true
-          eslint_flags: ". --ext js,jsx,ts,tsx --ignore-path=.gitignore"
+          eslint_flags: ". --ext js,jsx,ts,tsx --ignore-path=.gitignore --max-warnings 0"
