@@ -14,7 +14,7 @@ function ProductFilter() {
         </p>
       </div>
       <div className="flex gap-[10px]">
-        <Button className="flex items-center gap-[10px] rounded border-[.5px] border-[#CBD5E1] bg-[#FFF] text-base font-normal text-[#525252]">
+        <Button className="flex items-center gap-[10px] rounded border-[.5px] border-[#CBD5E1] bg-[#FFF] p-[10px] text-base font-normal text-[#525252]">
           <Image
             src="/images/filter.svg"
             width={20}
@@ -24,7 +24,7 @@ function ProductFilter() {
           />
           <span>Filter</span>
         </Button>
-        <Button className="flex items-center gap-2 rounded bg-[#F97316] text-white hover:bg-[#F97316]">
+        <Button className="flex items-center gap-2 rounded bg-[#F97316] px-[16px] py-[8px] text-white hover:bg-[#F97316]">
           <Image src="/images/add.svg" width={16} height={16} alt="" />
           <span>Add Product</span>
         </Button>
