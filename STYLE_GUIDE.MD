@@ -1,6 +1,7 @@
 # Style Guides
 
 ## Getting Started
+
 In order to run this app locally, you should have the following programs installed on your computer:
 
 - [Node.js](https://nodejs.org/) version 20.0.0 or higher
@@ -27,27 +28,31 @@ pnpm run dev
 
 ## Colors
 
-##### Navigate to 
+##### Navigate to
+
 ```
 htpp://localhost:3000/guides
 ```
 
 ## Components
-##### Navigate to 
+
+##### Navigate to
+
 ```
 htpp://localhost:3000/guides
 ```
 
 ## Prerequisites
+
 - Follow all folder and file structure formats
 - Use the provided global alias for all imports, `~/*` representing `./src/*`
-    ```
-    "paths": {
-      "~/*": [
-        "./src/*"
-      ]
-    },
-    ```
+  ```
+  "paths": {
+    "~/*": [
+      "./src/*"
+    ]
+  },
+  ```
 - Use the global CSS variables
 - Use Tailwind CSS and shadCN exclusively.
 - UI components should be stored in `~/components/common`
