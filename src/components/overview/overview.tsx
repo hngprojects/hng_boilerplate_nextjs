@@ -75,7 +75,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="p-4 md:p-8">
+    <div className="mx-12 p-4 md:p-8">
       <div className="mb-6 flex flex-col items-center justify-between md:flex-row">
         <div className="mb-4 md:mb-0">
           <h1 className="text-2xl font-bold md:text-3xl">Dashboard</h1>
