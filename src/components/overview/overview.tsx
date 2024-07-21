@@ -102,7 +102,7 @@ export default function Home() {
           </button>
         </div>
       </div>
-      <div className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="gap:4 mb-6 grid grid-cols-1 md:grid-cols-2 md:gap-12 lg:grid-cols-4">
         <DataCard
           heading={{
             title: "Total Revenue",
