@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-module */
 import type { Config } from "tailwindcss";
 
 const config = {
@@ -87,6 +88,12 @@ const config = {
         stroke: {
           "colors-stroke": "hsl(var(--stroke-colors-stroke))",
         },
+        breadcrumb: {
+          page: "hsl(var(--breadcrumb-page))",
+          foreground: "hsl(var(--breadcrumb-foreground))",
+        },
+        desaturatedBlue: "hsl(var(--desaturated-blue))",
+        grey50: "hsl(var(--grey50))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -109,8 +116,11 @@ const config = {
       },
     },
   },
-  // eslint-disable-next-line unicorn/prefer-module
-  plugins: [require("tailwindcss-animate")],
+
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@mertasan/tailwindcss-variables"),
+  ],
 } satisfies Config;
 
 export default config;
