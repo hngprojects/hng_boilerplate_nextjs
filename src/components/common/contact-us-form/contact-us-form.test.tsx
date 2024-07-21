@@ -3,8 +3,6 @@ import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 
 import ContactForm from "~/components/common/contact-us-form";
 
-/* eslint-disable vitest/no-hooks */
-
 describe("contactForm Component", () => {
   const mockFetch = vi.fn();
 
