@@ -16,7 +16,6 @@ interface FormErrors {
 const UserForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({ name: "", email: "" });
   const [errors, setErrors] = useState<FormErrors>({});
-  const [success, setSuccess] = useState<boolean>(false);
 
   type FormErrorKey = keyof FormErrors;
 
@@ -34,13 +33,13 @@ const UserForm: React.FC = () => {
         message: "Your name is required here",
       },
       {
-        check: formData.email.trim() === "", // Ensure check is a boolean
+        check: formData.email.trim() === "",
         field: "email",
         message: "Please enter a valid email address",
       },
       {
         check:
-          formData.email.trim() !== "" && !/\S+@\S+\.\S+/.test(formData.email), // Ensure check is a boolean
+          formData.email.trim() !== "" && !/\S+@\S+\.\S+/.test(formData.email),
         field: "email",
         message: "Please enter a valid email address",
       },
@@ -63,7 +62,6 @@ const UserForm: React.FC = () => {
     } else {
       setFormData({ name: "", email: "" });
       setErrors({});
-      setSuccess(true);
     }
   };
 
@@ -107,94 +105,70 @@ const UserForm: React.FC = () => {
         className="mt-[87px] flex h-auto w-[383.344px] shrink-0 items-start gap-[19.2px] rounded-[8px] p-[28.8px] md:mt-[20px] md:w-[510px] md:p-[10px]"
         style={{ border: "0.5px solid rgba(228, 228, 231, 1)" }}
       >
-        {success ? (
-          <div className="flex w-full flex-col items-center justify-center">
-            <div className="relative">
-              <Image
-                width={177}
-                height={179}
-                src="/images/WaitListForm/BACKGROUND.png"
-                alt="Success Background"
-                className="mb-4"
-              />
-              <Image
-                width={31}
-                height={31}
-                src="/images/WaitListForm/icon (1).svg"
-                alt="Success Tick"
-                className="absolute left-2 top-20 translate-x-[50%] translate-y-[-50%] transform"
-              />
-            </div>
-            <p className="text-successText text-center text-[16px] font-medium leading-[19.36px] md:text-[20px] md:leading-[28px]">
-              You&apos;re all signed up!
-            </p>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="w-full">
-            <div className="mb-[24px]">
-              <div className="mb-[24.4px] h-[90px]">
-                <label
-                  htmlFor="name"
-                  className="mb-[20px] block text-left text-[19.2px] font-normal leading-[23.24px]"
-                >
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="Meghan Grace"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="border-[rgba(82, 82, 82, 0.3)] w-full rounded-md border-[1.2px] pb-[14.4px] pl-[14.4px] pr-[67.2px] pt-[14.4px] text-left text-[16.8px] font-normal leading-[23.24px]"
-                  style={{
-                    borderColor: errors.name ? "red" : "black",
-                    color: "rgba(100, 116, 139, 1)",
-                  }}
-                />
-                {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
-              </div>
-
-              <div className="mb-[36px] h-[90px] md:mb-[25px]">
-                <label
-                  htmlFor="email"
-                  className="mb-[14.4px] block text-left text-[19.2px] font-normal leading-[23.24px]"
-                >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Enter email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="border-[rgba(82, 82, 82, 0.3)] w-full rounded-md border-[1.2px] pb-[14.4px] pl-[14.4px] pr-[67.2px] pt-[14.4px] text-left text-[16.8px] font-normal leading-[23.24px]"
-                  style={{
-                    borderColor: errors.email ? "red" : "black",
-                    color: "rgba(100, 116, 139, 1)",
-                  }}
-                />
-                {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
-              </div>
-            </div>
-
-            <div className="flex items-center justify-center">
-              <button
-                className="flex h-[51.78px] w-[195.6px] items-center justify-between rounded-md bg-primary px-[19.2px] py-[9.6px] text-[16.8px] font-bold leading-[28.8px] text-white"
-                type="submit"
+        <form onSubmit={handleSubmit} className="w-full">
+          <div className="mb-[24px]">
+            <div className="mb-[24.4px] h-[90px]">
+              <label
+                htmlFor="name"
+                className="mb-[20px] block text-left text-[19.2px] font-normal leading-[23.24px]"
               >
-                <Image
-                  width={20}
-                  height={20}
-                  src="/images/WaitListForm/icon.svg"
-                  alt="Envelope"
-                />
-                Join the Waitlist
-              </button>
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Meghan Grace"
+                value={formData.name}
+                onChange={handleChange}
+                className="border-[rgba(82, 82, 82, 0.3)] w-full rounded-md border-[1.2px] pb-[14.4px] pl-[14.4px] pr-[67.2px] pt-[14.4px] text-left text-[16.8px] font-normal leading-[23.24px]"
+                style={{
+                  borderColor: errors.name ? "red" : "black",
+                  color: "rgba(100, 116, 139, 1)",
+                }}
+              />
+              {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
             </div>
-          </form>
-        )}
+
+            <div className="mb-[36px] h-[90px] md:mb-[25px]">
+              <label
+                htmlFor="email"
+                className="mb-[14.4px] block text-left text-[19.2px] font-normal leading-[23.24px]"
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter email"
+                value={formData.email}
+                onChange={handleChange}
+                className="border-[rgba(82, 82, 82, 0.3)] w-full rounded-md border-[1.2px] pb-[14.4px] pl-[14.4px] pr-[67.2px] pt-[14.4px] text-left text-[16.8px] font-normal leading-[23.24px]"
+                style={{
+                  borderColor: errors.email ? "red" : "black",
+                  color: "rgba(100, 116, 139, 1)",
+                }}
+              />
+              {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
+            </div>
+          </div>
+
+          <div className="flex items-center justify-center">
+            <button
+              className="flex h-[51.78px] w-[195.6px] items-center justify-between rounded-md bg-primary px-[19.2px] py-[9.6px] text-[16.8px] font-bold leading-[28.8px] text-white"
+              type="submit"
+            >
+              <Image
+                width={20}
+                height={20}
+                src="/images/WaitListForm/icon.svg"
+                alt="Envelope"
+              />
+              Join the Waitlist
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
