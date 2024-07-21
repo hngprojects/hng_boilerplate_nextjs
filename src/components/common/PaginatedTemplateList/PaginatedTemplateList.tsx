@@ -23,7 +23,9 @@ const PaginatedTemplateList = ({
   activePreview,
 }: PaginatedTemplateListProperties) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(templates.length / itemsPerPage);
+
+  const validTemplates = Array.isArray(templates) ? templates : [];
+  const totalPages = Math.ceil(validTemplates.length / itemsPerPage);
 
   const onPageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
@@ -41,7 +43,7 @@ const PaginatedTemplateList = ({
     }
   };
 
-  const currentTemplates = templates.slice(
+  const currentTemplates = validTemplates.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage,
   );
@@ -50,23 +52,31 @@ const PaginatedTemplateList = ({
     <div className="w-full overflow-x-auto">
       <table className="min-w-full border-collapse">
         <tbody>
-          {currentTemplates.map((template) => (
-            <TemplateListItem
-              key={template.id}
-              template={template}
-              onPreview={onPreview}
-              activePreview={template.id === activePreview ? true : false}
-            />
-          ))}
+          {currentTemplates && currentTemplates.length > 0 ? (
+            currentTemplates.map((template) => (
+              <TemplateListItem
+                key={template.id}
+                template={template}
+                onPreview={onPreview}
+                activePreview={template.id === activePreview}
+              />
+            ))
+          ) : (
+            <tr>
+              <td colSpan={3}>No templates available</td>
+            </tr>
+          )}
         </tbody>
       </table>
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={onPageChange}
-        nextPage={nextPage}
-        previousPage={previousPage}
-      />
+      {validTemplates.length > 0 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={onPageChange}
+          nextPage={nextPage}
+          previousPage={previousPage}
+        />
+      )}
     </div>
   );
 };
