@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { Database, User, Users, Menu, ChevronDown, ChevronLeft, ChevronRight, Banknote, Bell, Globe, CircleHelp } from 'lucide-react';
@@ -12,6 +12,24 @@ import profile from '../../../public/images/avatar.png'
 const SideMenu = ({ children, }: { children: React.ReactNode }) => {
     const [sideBarOpen, setSideBarOpen] = useState<boolean>(false)
 
+    const [hasShadow, setHasShadow] = useState(false);
+
+    const handleScroll = () => {
+        if (window.scrollY > 10) {
+            setHasShadow(true);
+        } else {
+            setHasShadow(false);
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     const pathname = usePathname()
 
     const handleSideBar = () => {
@@ -20,7 +38,7 @@ const SideMenu = ({ children, }: { children: React.ReactNode }) => {
 
     return (
         <div className='w-full h-screen flex flex-col'>
-            <div className='fixed w-full h-[60px] flex items-center justify-between px-4 md:px-[2rem] bg-white z-10'>
+            <div className={`fixed w-full h-[60px] flex items-center justify-between px-4 md:px-[2rem] bg-white z-10 ${hasShadow ? 'shadow-md' : ''}`}>
                 <div className='flex items-center gap-x-12'>
                     <div className='flex items-center gap-x-4'>
                         <Menu className='stroke-[1px] size-4 md:size-7 cursor-pointer' onClick={handleSideBar} role="button"
@@ -88,7 +106,7 @@ const SideMenu = ({ children, }: { children: React.ReactNode }) => {
                                 <li className='flex gap-x-2 items-center'><Bell className='stroke-[1.5px] size-5' />Roles and permissions</li>
                                 <ChevronRight className='stroke-[1.5px] size-5' />
                             </div>
-                            <div className={`${pathname === '/' ? 'bg-[#F97316] text-white' : ''} flex items-center justify-between rounded-md py-2 w-full -px-6`}>
+                            <div className={`${pathname === '/' ? 'bg-[#F97316] text-white -pl-2' : ''} flex items-center justify-between rounded-md py-2 w-full`}>
                                 <li className='flex gap-x-2 items-center'><Banknote className='stroke-[1.5px] size-5' />Integrations</li>
                                 <ChevronRight className='stroke-[1.5px] size-5' />
                             </div>

@@ -28,7 +28,7 @@ const Integration = () => {
       <div className='w-full'>
         <p className='text-xl font-semibold'>Integration</p>
         <p className='text-sm mt-2'>Supercharge your workflow and handle repetitive tasks with apps you use everyday</p>
-        <div className='w-full flex flex-col md:flex-row gap-x-2 md:gap-x-4 justify-between mt-8'>
+        <div className='w-full flex flex-col md:flex-row gap-x-2 md:gap-x-4 gap-y-2 justify-between mt-8'>
           <ul className='flex items-center justify-center gap-x-4 py-1 text-xs border border-[#CBD5E1] w-[9.5rem] rounded-md'>
             <li
               className={`cursor-pointer px-2 py-1 rounded-md ${filter === 'All' ? 'bg-gray-300' : ''}`}
