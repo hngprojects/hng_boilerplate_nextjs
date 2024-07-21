@@ -5,6 +5,12 @@ interface BenefitPlan {
   type: string;
   price: string;
   isActive: boolean;
+  lists: List[];
+}
+
+interface List {
+  benefitTitle: string;
+  isAddedBenefit: boolean;
 }
 
 export default function PricePlanCard(properties: BenefitPlan) {
@@ -12,33 +18,10 @@ export default function PricePlanCard(properties: BenefitPlan) {
     type,
     price,
     isActive,
-  }: { type: string; price: string; isActive: boolean } = properties;
-  const lists = [
-    {
-      benefitTitle: "2 Projects",
-      isAddedBenefit: true,
-    },
-    {
-      benefitTitle: "Up to 100 subscribers",
-      isAddedBenefit: true,
-    },
-    {
-      benefitTitle: "Basic analytics",
-      isAddedBenefit: true,
-    },
-    {
-      benefitTitle: "24-hour support response time",
-      isAddedBenefit: true,
-    },
-    {
-      benefitTitle: "Marketing advisor",
-      isAddedBenefit: false,
-    },
-    {
-      benefitTitle: "Custom integration",
-      isAddedBenefit: false,
-    },
-  ];
+    lists,
+  }: { type: string; price: string; isActive: boolean; lists: List[] } =
+    properties;
+
   return (
     <div
       className={`flex w-full max-w-[24rem] flex-col gap-[51px] rounded-xl border ${isActive ? "border-primary" : "border-border"} px-[32px] py-[31px]`}
