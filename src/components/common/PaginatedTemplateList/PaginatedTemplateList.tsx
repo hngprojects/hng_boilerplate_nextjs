@@ -9,6 +9,7 @@ interface PaginatedTemplateListProperties {
   templates: {
     id: number;
     name: string;
+    image: string;
   }[];
   onPreview: (id: number) => void;
   itemsPerPage: number;
@@ -52,6 +53,7 @@ const PaginatedTemplateList = ({
               key={template.id}
               template={template}
               onPreview={onPreview}
+              activePreview={template.id === 1 ? true : false}
             />
           ))}
         </tbody>
