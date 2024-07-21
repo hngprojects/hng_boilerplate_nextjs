@@ -15,7 +15,7 @@ interface CustomInputProperties {
   isDisabled?: boolean;
   gap?: "sm" | "md" | "lg";
   labelPosition?: "top" | "side";
-  variant?: "primary" | "border" | "outline";
+  variant?: "primary" | "border";
 }
 
 const CustomInput: React.FC<CustomInputProperties> = ({
