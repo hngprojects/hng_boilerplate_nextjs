@@ -152,3 +152,37 @@
 ::-webkit-scrollbar-thumb {
   @apply bg-primary;
 }
+
+/* Custom Scrollbar Styling */
+/* For Webkit Browsers */
+::-webkit-scrollbar {
+  width: 14px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary;
+  border: 4px solid transparent;
+  border-radius: 10px;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-track {
+  background: hsla(0, 0%, 0%, 0.06); /* Color of the track */
+  border-radius: 10px; /* Rounded corners of the track */
+}
+
+/* For Firefox */
+.html {
+  @apply bg-primary;
+  scrollbar-width: thin; /* Options are 'auto', 'thin', 'none' */
+}
+
+/* For Internet Explorer and Legacy Edge */
+body {
+  -ms-overflow-style: scrollbar; /* Standard scrollbar */
+}
