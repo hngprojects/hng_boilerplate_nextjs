@@ -10,7 +10,9 @@ export default function PricePlanBenefit(properties: { list: List }) {
   return (
     <div className="flex items-center gap-3">
       <PricePlanCheckMark isAddedBenefit={isAddedBenefit} />
-      <p>{benefitTitle}</p>
+      <p className={isAddedBenefit ? "" : "text-muted-foreground"}>
+        {benefitTitle}
+      </p>
     </div>
   );
 }
