@@ -54,7 +54,6 @@ const Testimonials = () => {
             modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
             slidesPerView={1}
             spaceBetween={30}
-            onSlideChange={(item) => console.log(item.realIndex)}
             navigation={{
               nextEl: ".custom-next",
               prevEl: ".custom-prev",
