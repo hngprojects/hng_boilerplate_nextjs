@@ -24,6 +24,7 @@ const ProductListFilter: FC<ProductListFilterProperties> = ({
     setIsOpen((previous) => !previous);
   };
 
+  // handle escape and keydown keys events on the dropdown button
   const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === "Escape") {
       setIsOpen(false);
@@ -41,6 +42,7 @@ const ProductListFilter: FC<ProductListFilterProperties> = ({
     }
   };
 
+  // handle accessibility interactions for keyboard navigation on the menu items (filter items)
   const handleMenuItemKeyDown = (event: KeyboardEvent, index: number) => {
     switch (event.key) {
       case "ArrowDown": {
@@ -92,6 +94,7 @@ const ProductListFilter: FC<ProductListFilterProperties> = ({
         <span className="text-base text-neutral-dark-2">Filter</span>
       </button>
       {isOpen && (
+        // drop down content
         <div
           ref={menuReference}
           role="listbox"
@@ -104,7 +107,10 @@ const ProductListFilter: FC<ProductListFilterProperties> = ({
               Filter by
             </p>
           </div>
+
+          {/* filter items (menu items) */}
           <div className="border-t border-border" />
+
           {filters.map((filter, index) => (
             <button
               key={filter.label}
