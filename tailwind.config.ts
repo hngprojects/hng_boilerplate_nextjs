@@ -1,4 +1,5 @@
-import type { Config } from "tailwindcss"
+/* eslint-disable unicorn/prefer-module */
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
@@ -22,6 +23,12 @@ const config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
+        toastBg: "hsl(var(--toast-bg))",
+        toastBorder: "hsl(var(--toast-border))",
+        defaultBadgeBg: "hsl(var(--default-badge-bg))",
+        primaryBadgeBg: "hsl(var(--primary-badge-bg))",
+        successBadgeBg: "hsl(var(--success-badge-bg))",
+        errorBadgeBg: "hsl(var(--red-badge-bg))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         default: {
@@ -91,6 +98,8 @@ const config = {
           page: "hsl(var(--breadcrumb-page))",
           foreground: "hsl(var(--breadcrumb-foreground))",
         },
+        desaturatedBlue: "hsl(var(--desaturated-blue))",
+        grey50: "hsl(var(--grey50))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -113,7 +122,11 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@mertasan/tailwindcss-variables"),
+  ],
 } satisfies Config;
 
 export default config;
