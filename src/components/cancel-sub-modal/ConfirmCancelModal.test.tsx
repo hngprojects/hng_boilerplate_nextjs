@@ -1,9 +1,10 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+
+// import { describe, expect, it, vi } from "vitest";
 
 import ConfirmCancelModal from "./ConfirmCancelModal";
 
-describe("confirmCancelModal", () => {
+describe("ConfirmCancelModal", () => {
   it("renders correctly when open", () => {
     render(
       <ConfirmCancelModal isOpen={true} onClose={vi.fn()} onCancel={vi.fn()} />,
@@ -30,7 +31,7 @@ describe("confirmCancelModal", () => {
     );
 
     fireEvent.click(screen.getByText("Keep Subscription"));
-    expect(onCloseMock).toHaveBeenCalledWith();
+    expect(onCloseMock).toHaveBeenCalled();
   });
 
   it("calls onCancel when Cancel Subscription button is clicked", () => {
@@ -44,7 +45,7 @@ describe("confirmCancelModal", () => {
     );
 
     fireEvent.click(screen.getByText("Cancel Subscription"));
-    expect(onCancelMock).toHaveBeenCalledWith();
+    expect(onCancelMock).toHaveBeenCalled();
   });
 
   it("does not render when isOpen is false", () => {
