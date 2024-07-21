@@ -1,7 +1,18 @@
 import CustomButton from "~/components/common/Button/button";
 import PricePlanBenefit from "./PricePlanBenefit";
 
-export default function PricePlanCard() {
+interface BenefitPlan {
+  type: string;
+  price: string;
+  isActive: boolean;
+}
+
+export default function PricePlanCard(properties: BenefitPlan) {
+  const {
+    type,
+    price,
+    isActive,
+  }: { type: string; price: string; isActive: boolean } = properties;
   const lists = [
     {
       benefitTitle: "2 Projects",
@@ -29,11 +40,14 @@ export default function PricePlanCard() {
     },
   ];
   return (
-    <div className="flex w-full max-w-[24rem] flex-col gap-[51px] rounded-xl border border-[#CBD5E1] px-[32px] py-[31px] text-[#0A0A0A]">
+    <div
+      className={`flex w-full max-w-[24rem] flex-col gap-[51px] rounded-xl border ${isActive ? "border-primary" : "border-border"} px-[32px] py-[31px]`}
+    >
       <section className="flex flex-col gap-4">
-        <h1 className="text-[25px] font-bold">Basic</h1>
+        <h1 className="text-[25px] font-bold">{type}</h1>
         <h1 className="text-[39px] font-bold">
-          $800<span className="text-xl font-normal"> /month</span>
+          {price}
+          <span className="text-xl font-normal"> /month</span>
         </h1>
         <p className="text-[13px]">
           The essensitals to provide your best work for clients.
