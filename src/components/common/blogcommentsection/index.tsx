@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 import CustomButton from "~/components/common/Button/button";
-import BlogComment from "~/components/ui/blogcomment";
+import BlogComment from "./blogcomment";
 
 interface Comment {
   name: string;

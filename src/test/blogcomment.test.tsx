@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import BlogComment from "~/components/ui/blogcomment";
+import BlogComment from "~/components/common/blogcommentsection/blogcomment";
 
 describe("blogComment Component", () => {
   it("renders comment data correctly", () => {

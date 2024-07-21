@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
 
 interface Comment {
   name: string;
