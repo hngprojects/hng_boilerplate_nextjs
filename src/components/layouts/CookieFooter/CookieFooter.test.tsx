@@ -22,7 +22,6 @@ describe("cookieFooter", () => {
     const settingsButton = screen.getByText(/cookies settings/i);
     expect(acceptButton).toBeInTheDocument();
     expect(rejectButton).toBeInTheDocument();
-    // eslint-disable-next-line vitest/max-expects
     expect(settingsButton).toBeInTheDocument();
   });
 });
