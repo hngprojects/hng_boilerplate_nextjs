@@ -19,7 +19,7 @@ interface blogCardProperties {
 const BlogCard = (properties: blogCardProperties) => {
   return (
     <>
-      <div className="flex h-screen items-center justify-center">
+      <div className="flex items-center justify-center">
         <Card
           data-testid="mobile-element"
           className="flex w-[100%] flex-col-reverse items-center border-none shadow-none sm:w-[484px] md:w-[890px] md:flex-row"
