@@ -1,7 +1,7 @@
 "use client";
 
 import { Orbit, Plus } from "lucide-react";
-import  { FC, useState } from "react";
+import { FC, useState } from "react";
 
 import { Breadcrumb } from "~/components/common/Breadcrumb";
 import CustomButton from "~/components/common/Button/button";

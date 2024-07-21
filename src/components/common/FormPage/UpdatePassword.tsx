@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Eye, EyeOff } from "lucide-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -24,9 +25,13 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
-import EyesClosedIcon from "./EyesClosedIcon";
-import EyesOpenIcon from "./EyesOpenIcon";
 import PasswordChecks from "./PasswordChecks";
+
+interface VisibilityState {
+  currentPassword: boolean;
+  newPassword: boolean;
+  confirmPassword: boolean;
+}
 
 const passwordSchema = z
   .object({
@@ -34,7 +39,11 @@ const passwordSchema = z
       .string()
       .min(8, "Password must be at least 8 characters")
       .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
-      .regex(/\d/, "Password must contain at least one number"),
+      .regex(/\d/, "Password must contain at least one number")
+      .regex(
+        /[!"#$%&()*,.:<>?@^{|}]/,
+        "Password must contain at least one special character",
+      ),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
@@ -47,7 +56,11 @@ const PasswordForm: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [showChecks, setShowChecks] = useState<boolean>(false);
   const [passwordsMatch, setPasswordsMatch] = useState<boolean>(true);
-  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState<VisibilityState>({
+    currentPassword: false,
+    newPassword: false,
+    confirmPassword: false,
+  });
   const [formErrors, setFormErrors] = useState<{
     password: string;
     confirmPassword: string;
@@ -88,8 +101,11 @@ const PasswordForm: React.FC = () => {
     }
   };
 
-  const togglePasswordVisibility = () => {
-    setIsPasswordVisible((previous) => !previous);
+  const togglePasswordVisibility = (field: keyof VisibilityState) => {
+    setIsPasswordVisible((previous) => ({
+      ...previous,
+      [field]: !previous[field],
+    }));
   };
 
   const checks = {
@@ -113,16 +129,16 @@ const PasswordForm: React.FC = () => {
               <div className="relative">
                 <Input
                   id="password"
-                  type={isPasswordVisible ? "text" : "password"}
+                  type={isPasswordVisible.currentPassword ? "text" : "password"}
                   placeholder="Enter current password"
                   required
                   className="w-full py-2 text-sm font-medium opacity-60"
                 />
                 <span
-                  onClick={togglePasswordVisibility}
+                  onClick={() => togglePasswordVisibility("currentPassword")}
                   className="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3"
                 >
-                  {isPasswordVisible ? <EyesClosedIcon /> : <EyesOpenIcon />}
+                  {isPasswordVisible.currentPassword ? <Eye /> : <EyeOff />}
                 </span>
               </div>
             </FormControl>
@@ -140,7 +156,7 @@ const PasswordForm: React.FC = () => {
               <div className="relative">
                 <Input
                   id="new-password"
-                  type={isPasswordVisible ? "text" : "password"}
+                  type={isPasswordVisible.newPassword ? "text" : "password"}
                   placeholder="Enter new password"
                   value={password}
                   required
@@ -148,10 +164,10 @@ const PasswordForm: React.FC = () => {
                   onChange={handlePasswordChange}
                 />
                 <span
-                  onClick={togglePasswordVisibility}
+                  onClick={() => togglePasswordVisibility("newPassword")}
                   className="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3"
                 >
-                  {isPasswordVisible ? <EyesOpenIcon /> : <EyesClosedIcon />}
+                  {isPasswordVisible.newPassword ? <Eye /> : <EyeOff />}
                 </span>
               </div>
             </FormControl>
@@ -172,7 +188,7 @@ const PasswordForm: React.FC = () => {
               <div className="relative">
                 <Input
                   id="confirm-password"
-                  type={isPasswordVisible ? "text" : "password"}
+                  type={isPasswordVisible.confirmPassword ? "text" : "password"}
                   placeholder="Confirm new password"
                   value={confirmPassword}
                   required
@@ -180,10 +196,10 @@ const PasswordForm: React.FC = () => {
                   onChange={handleConfirmPasswordChange}
                 />
                 <span
-                  onClick={togglePasswordVisibility}
+                  onClick={() => togglePasswordVisibility("confirmPassword")}
                   className="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3"
                 >
-                  {isPasswordVisible ? <EyesOpenIcon /> : <EyesClosedIcon />}
+                  {isPasswordVisible.confirmPassword ? <Eye /> : <EyeOff />}
                 </span>
               </div>
             </FormControl>
