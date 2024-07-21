@@ -7,7 +7,8 @@ export const detailedPayment = [
     projectMgt: ["Up to 5", "10gb", "1", "1"],
     sharing: [],
     support: ["one"],
-    current_plan_description: "Your account is on a free 90-day trial of our free plan, through September 27th. Upgrade anytime to stay on this plan when your trial ends.",
+    current_plan_description:
+      "Your account is on a free 90-day trial of our free plan, through September 27th. Upgrade anytime to stay on this plan when your trial ends.",
     btn: "Free",
   },
   {
@@ -20,10 +21,11 @@ export const detailedPayment = [
       "Advanced analytics",
       "24-hour support  ",
     ],
-    projectMgt: ["Up to 5", "10gb", "1", "1"],
+    projectMgt: ["Up to 5", "20gb", "10", "Unlimited"],
     sharing: ["one", "two", "three"],
     support: ["one", "two"],
-    current_plan_description: "Your account is on a basic 90-day trial of our free plan, through September 27th. Upgrade anytime to stay on this plan when your trial ends.",
+    current_plan_description:
+      "Your account is on a basic 90-day trial of our free plan, through September 27th. Upgrade anytime to stay on this plan when your trial ends.",
     btn: "Upgrade",
   },
   {
@@ -37,10 +39,11 @@ export const detailedPayment = [
       "24-hour support  ",
       "Marketing advisor",
     ],
-    projectMgt: ["Up to 5", "10gb", "1", "1"],
+    projectMgt: ["Up to 5", "50gb", "50", "Unlimited"],
     sharing: ["one", "two", "three"],
     support: ["one", "two"],
-    current_plan_description: "Your account is on a advanced 180-day trial of our free plan, through September 27th. Upgrade anytime to stay on this plan.",
+    current_plan_description:
+      "Your account is on a advanced 180-day trial of our free plan, through September 27th. Upgrade anytime to stay on this plan.",
     btn: "Upgrade",
   },
   {
@@ -54,10 +57,11 @@ export const detailedPayment = [
       "24-hour support ",
       "Marketing advisor",
     ],
-    projectMgt: ["Up to 5", "10gb", "1", "1"],
+    projectMgt: ["Unlimited", "Unlimited", "Unlimited", "Unlimited"],
     sharing: ["one", "two", "three"],
     support: ["one", "two"],
-    current_plan_description: "Your account is on a free 90-day trial of our unlimited plan, through September 27th.",
+    current_plan_description:
+      "Your account is on a free 90-day trial of our unlimited plan, through September 27th.",
     btn: "Upgrade",
   },
 ];

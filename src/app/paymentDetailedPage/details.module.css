@@ -1,0 +1,88 @@
+.main {
+  @apply w-full pb-[211px];
+
+  @media (max-width: 800px) {
+    padding: 0 20px;
+    margin-bottom: 211px;
+  }
+
+  @media (max-width: 600px) {
+    padding: 0 10px;
+    margin-bottom: 211px;
+  }
+}
+
+.paymentCards {
+  @apply py-[15px] px-[21px] bg-white rounded-md flex flex-col justify-between h-full;
+
+  @media (max-w-600px) {
+    font-size: 12px;
+    flex-wrap: wrap;
+  }
+}
+
+.paymentBtn {
+  @apply mt-5 sm:px-[49px] sm:py-[8px] text-white bg-[#F97316] rounded-[6px] max-w-[156px] h-10;
+
+  @media (max-width: 600px) {
+    font-size: 14px;
+    height: 40px;
+  }
+}
+
+.highlightTitle {
+  @apply pl-[15px] text-[16px] font-[600] font-normal mt-[15px] pt-[19px] pb-[97px] bg-[#FFF8F2] pr-[84px] mb-[24px] rounded-tl-[12px] rounded-bl-[12px];
+}
+
+.highlight {
+  @apply mt-[15px] pt-[19px] pb-[97px] w-full bg-[#FFF8F2] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 leading-[19.36px] mb-[24px] rounded-tr-[12px] rounded-br-[12px];
+}
+
+.highlightPlans {
+  @apply whitespace-nowrap list-disc flex flex-col gap-[16px] font-normal font-[400] text-[14px] w-[150px] ml-[17px] leading-[16.94px];
+}
+
+.prodMgt {
+  @apply grid grid-cols-5 border-[0.5px] border-[#CBD5E1];
+
+  @media (max-width: 500px) {
+    max-width: 414px;
+    font-size: 12px;
+  }
+
+  @media (max-width: 800px) {
+    margin: 0 auto;
+  }
+}
+
+.prodMgtPlan {
+  @apply flex flex-col text-center w-full;
+}
+
+.prodMgtPlan p {
+  @apply w-full py-[26px] border-b-[0.5px] border-b-[#CBD5E1];
+}
+
+.prodMgtPlanTitle {
+  @apply flex flex-col
+}
+
+.prodMgtPlanTitle p {
+  @apply w-full py-[26px] pl-[6.75px] border-b-[0.5px] border-b-[#CBD5E1];
+}
+
+.paymentCtn {
+  @apply grid lg:grid-cols-4 sm:grid-cols-2 gap-4 w-full;
+
+  @media (max-width: 800px) {
+    margin: 0 auto;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 500px) {
+    padding: 0 10px;
+    max-width: 414px;
+    font-size: 12px;
+    grid-template-columns: 1fr;
+  }
+}
