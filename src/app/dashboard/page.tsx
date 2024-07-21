@@ -28,7 +28,7 @@ const Dashboard: React.FC = () => {
         <div className="flex w-full flex-col gap-[24px]">
                 <div className="flex flex-col md:flex-row justify-between items-center w-full">
             <div className="flex flex-col gap-[24px]">
-                        <h1 className="text-xl font-bold">Dashboard</h1>
+              <h1 className="text-xl font-bold">Dashboard</h1>
                         <TabSwitcher tab={tab} setTab={setTab} />
                     </div>
                     <div className="flex gap-[8px] items-center">
