@@ -9,7 +9,7 @@ export function BackAngleBracket() {
     >
       <path
         d="M10 12L6 8L10 4"
-        stroke="#CBD5E1"
+        stroke="inherit"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -28,7 +28,7 @@ export function ForwardAngleBracket() {
     >
       <path
         d="M6 12L10 8L6 4"
-        stroke="#0A0A0A"
+        stroke="inherit"
         strokeLinecap="round"
         strokeLinejoin="round"
       />

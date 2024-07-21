@@ -41,7 +41,7 @@ const CareerCard: React.FC<CareerCardProperties> = ({
           </>
         )}
       </CardContent>
-      <CardFooter className="flex items-center justify-between">
+      <CardFooter className="flex items-center justify-between gap-4">
         {isLoading ? (
           <>
             <Skeleton className="h-6 w-1/3" data-testid="skeleton" />
