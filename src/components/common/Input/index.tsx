@@ -97,7 +97,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProperties>(
                 variant={`${buttonDisabled ? "subtle" : "primary"}`}
                 isLeftIconVisible={false}
                 isLoading={false}
-                isDisabled={false}
+                isDisabled={buttonDisabled}
                 className={`ml-2 border ${buttonDisabled ? "cursor-not-allowed" : "cursor-pointer"}`}
                 onClick={onButtonClick}
               >
