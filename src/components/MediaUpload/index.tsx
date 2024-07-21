@@ -133,7 +133,7 @@ const MediaUpload: React.FC<MediaUploadProperties> = ({
                   variant={"outline"}
                   onClick={() => handleDeleteFile(file)}
                   className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-white p-2 text-white opacity-0 group-hover:opacity-100"
-                  aria-label="Delete file"
+                  aria-label="delete file"
                 >
                   <TrashIcon color="red" />
                 </Button>
