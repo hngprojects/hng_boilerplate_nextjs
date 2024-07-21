@@ -2,7 +2,6 @@ import Image from "next/image";
 import styles from '~/app/globals.module.css';
 import { error } from "console";
 import { detailedPayment } from "~/app/dummyData";
-import { promises } from "dns";
 import Checked from '~/components/images/checked.svg'
 
 export interface detailedPaymentPlan {
@@ -30,7 +29,6 @@ export const fetchPaymentPlan = async (): Promise<detailedPaymentPlan[]> => {
   } catch (error) {
     return detailedPayment
   }
-
 }
 
 export default async function PaymentPlan() {
@@ -47,19 +45,20 @@ export default async function PaymentPlan() {
           <p className="text-[#525252] text-[14px] font-[400]">$0/month</p>
         </div>
 
-        <div className="flex pl-[17px] w-full sm:flex sm:flex-cols">
+        <div className="pl-[17px] flex w-full sm:flex-row gap-4 min-h-[222px]">
           <p className="text-[16px] font-[600] mt-[15px] max-w-[130px]">Subscribe to your desired plan</p>
-          <div className="grid grid-cols-4 w-full sm:flex sm:flex-cols">
+          <div className="grid grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
             {paymentPlan.map((plan, index) => (
               <div key={index} className={styles.paymentCards}>
                 <p className="text-[16px] font-[600]">{plan.name}</p>
-                <p className="text-[25px] font-[500]">{`$${plan.price}`} <span className="text-[14px] font-[400] text-[#525252]">/month</span></p>
-                <p className="text-[14px] font-[400] text-[#525252] w-[160px]">{plan.description}</p>
-                <button className={styles.paymentBtn}>{plan.btn}</button>
+                <p className="text-[25px] font-[500] py-4">{`$${plan.price}`} <span className="text-[14px] font-[400] text-[#525252]">/month</span></p>
+                <p className="text-[14px] font-[400] text-[#525252] max-w-[160px]">{plan.description}</p>
+                <button className={`${styles.paymentBtn} sm:px-4 sm:py-2`}>{plan.btn}</button>
               </div>
             ))}
           </div>
         </div>
+
         <div className="flex w-full sm:flex sm:flex-cols">
           <p className={styles.highlightTitle}>Highlights</p>
           <div className={styles.highlight}>
@@ -106,7 +105,7 @@ export default async function PaymentPlan() {
             <div key={index}>
               <div className={styles.prodMgtPlanb}>
                 {plan.projectMgt.map((projectMt, projectMtIndex) => (
-                  <div className="py-[26px] flex justify-center">
+                  <div key={projectMtIndex} className="py-[26px] flex justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                       <path d="M20 6L9 17L4 12" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>

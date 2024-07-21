@@ -1,4 +1,3 @@
-// fetchPaymentPlan.test.ts
 import { describe, expect, it, vi } from "vitest";
 
 import { detailedPayment } from "~/app/dummyData";

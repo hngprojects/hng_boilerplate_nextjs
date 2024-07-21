@@ -7,13 +7,12 @@ export const detailedPayment = [
     projectMgt: ["Up to 5", "10gb", "1", "1"],
     sharing: [],
     support: ["one"],
-    current_plan_description:
-      "Your account is on a free 90-day trial of our free plan, through September 27th. Upgrade anytime to stay on this plan when your trial ends.",
+    current_plan_description: "Your account is on a free 90-day trial of our free plan, through September 27th. Upgrade anytime to stay on this plan when your trial ends.",
     btn: "Free",
   },
   {
     name: "Basic",
-    description: " Ideal for growing needs who want more features.",
+    description: "Ideal for growing needs who want more features.",
     price: 20,
     features: [
       "100 Projects",
@@ -24,13 +23,12 @@ export const detailedPayment = [
     projectMgt: ["Up to 5", "10gb", "1", "1"],
     sharing: ["one", "two", "three"],
     support: ["one", "two"],
-    current_plan_description:
-      "Your account is on a basic 90-day trial of our free plan, through September 27th. Upgrade anytime to stay on this plan when your trial ends.",
+    current_plan_description: "Your account is on a basic 90-day trial of our free plan, through September 27th. Upgrade anytime to stay on this plan when your trial ends.",
     btn: "Upgrade",
   },
   {
     name: "Advanced",
-    description: "Designed for power users and maximum functionalities.",
+    description: "Designed for users and maximum functionalities.",
     price: 50,
     features: [
       "200 Projects",
@@ -42,8 +40,7 @@ export const detailedPayment = [
     projectMgt: ["Up to 5", "10gb", "1", "1"],
     sharing: ["one", "two", "three"],
     support: ["one", "two"],
-    current_plan_description:
-      "Your account is on a advanced 180-day trial of our free plan, through September 27th. Upgrade anytime to stay on this plan.",
+    current_plan_description: "Your account is on a advanced 180-day trial of our free plan, through September 27th. Upgrade anytime to stay on this plan.",
     btn: "Upgrade",
   },
   {
@@ -60,8 +57,7 @@ export const detailedPayment = [
     projectMgt: ["Up to 5", "10gb", "1", "1"],
     sharing: ["one", "two", "three"],
     support: ["one", "two"],
-    current_plan_description:
-      "Your account is on a free 90-day trial of our unlimited plan, through September 27th.",
+    current_plan_description: "Your account is on a free 90-day trial of our unlimited plan, through September 27th.",
     btn: "Upgrade",
   },
 ];
