@@ -70,6 +70,6 @@ describe("hero Component", () => {
 
     render(<Hero />);
     const slides = screen.getAllByAltText("Hero Image");
-    expect(slides).toHaveLength(4);
+    expect(slides).toHaveLength(6);
   });
 });
