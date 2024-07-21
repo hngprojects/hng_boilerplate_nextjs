@@ -16,6 +16,10 @@ vi.mock(
   }),
 );
 
+vi.mock("next/navigation", () => ({
+  usePathname: () => "/legal/privacy-policy",
+}));
+
 describe("the Privacy Policy Page", () => {
   it("renders without crashing", () => {
     expect.hasAssertions();
@@ -49,16 +53,14 @@ describe("the Privacy Policy Page", () => {
     render(<PrivacyPolicy />);
 
     const sections = screen.getAllByRole("listitem");
-    expect(sections).toHaveLength(2);
+    expect(sections).toHaveLength(5);
 
-    // Check the link in the Table of Content
     const tocLinkSection1 = screen.getByRole("link", { name: "Section 1" });
     expect(tocLinkSection1).toBeInTheDocument();
 
     const tocLinkSection2 = screen.getByRole("link", { name: "Section 2" });
     expect(tocLinkSection2).toBeInTheDocument();
 
-    // Check the header in the content section
     const contentHeaderSection1 = screen.getByRole("heading", {
       name: "Section 1",
     });
@@ -74,7 +76,6 @@ describe("the Privacy Policy Page", () => {
     expect.hasAssertions();
     render(<PrivacyPolicy />);
 
-    // Check if PrivacyPolicyContent is rendered
     const contentSections = screen.getAllByText(/Text/);
     expect(contentSections).toHaveLength(2);
     expect(screen.getByText("Text 1")).toBeInTheDocument();
