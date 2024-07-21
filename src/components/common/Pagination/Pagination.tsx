@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import Button from "../Button/button";
 
@@ -79,24 +79,14 @@ const Pagination = ({
           onClick={previousPage}
           isDisabled={currentPage === 1}
         >
-          <Image
-            src={"/images/leftIcon.svg"}
-            alt="left icon"
-            width={16}
-            height={16}
-          />
+          <ChevronLeft data-testid="prev-button" />
         </Button>
         <Button
           variant="outline"
           onClick={nextPage}
           isDisabled={currentPage === totalPages}
         >
-          <Image
-            src={"/images/rightIcon.svg"}
-            alt="right icon"
-            width={16}
-            height={16}
-          />
+          <ChevronRight data-testid="next-button" />
         </Button>
       </div>
     </div>

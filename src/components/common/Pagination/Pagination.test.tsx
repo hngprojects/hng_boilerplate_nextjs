@@ -52,7 +52,7 @@ describe("pagination Component", () => {
   it("should call nextPage when the next button is clicked", () => {
     expect.hasAssertions();
     renderPagination(3, 10);
-    const nextButton = screen.getByAltText("right icon");
+    const nextButton = screen.getAllByTestId("next-button")[0];
     fireEvent.click(nextButton);
     expect(nextPageMock).toHaveBeenCalledWith(expect.any(Object));
   });
@@ -60,7 +60,7 @@ describe("pagination Component", () => {
   it("should call previousPage when the previous button is clicked", () => {
     expect.hasAssertions();
     renderPagination(3, 10);
-    const previousButton = screen.getByAltText("left icon");
+    const previousButton = screen.getAllByTestId("prev-button")[0];
     fireEvent.click(previousButton);
     expect(nextPageMock).toHaveBeenCalledWith(expect.any(Object));
   });
