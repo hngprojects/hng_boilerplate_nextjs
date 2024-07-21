@@ -50,14 +50,14 @@ import CustomButton from "~/components/common/Button/button";
 
 ```tsx
 return (
-    <CustomButton
-        variant="subtle"
-        icon={<Plus />}
-        isLeftIconVisible={true}
-        isLoading={false}
-        isDisabled={false}
-    >
-        Click Me
-    </CustomButton>
+  <CustomButton
+    variant="subtle"
+    icon={<Plus />}
+    isLeftIconVisible={true}
+    isLoading={false}
+    isDisabled={false}
+  >
+    Click Me
+  </CustomButton>
 );
 ```
