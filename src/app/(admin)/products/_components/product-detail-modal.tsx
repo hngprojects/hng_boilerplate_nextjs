@@ -6,6 +6,7 @@ import BlurImage from "~/components/miscellaneous/blur-image";
 import { Button } from "~/components/ui/button";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { useProducts } from "~/hooks/admin-product/use-products.persistence";
+import useWindowWidth from "~/hooks/use-window-width";
 import { cn, formatPrice } from "~/lib/utils";
 
 const variantProperties = {
@@ -18,6 +19,7 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const ProductDetailModal = () => {
   const { products, deleteProduct } = useProducts();
   const [isLoading, startTransition] = useTransition();
+  const { winWidth } = useWindowWidth();
   const {
     product_id,
     updateProductId,
@@ -39,8 +41,9 @@ const ProductDetailModal = () => {
   };
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "unset";
-  }, [isOpen]);
+    document.body.style.overflow =
+      isOpen && winWidth < 1280 ? "hidden" : "unset";
+  }, [isOpen, winWidth]);
 
   return (
     <>
