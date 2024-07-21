@@ -345,6 +345,24 @@ export const mockConversionRates: conversionRates = {
   ZWL: 365,
 };
 
+export async function fetchRates(
+  url: string,
+): Promise<conversionRates | undefined> {
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+    });
+    if (!response.ok) {
+      return mockConversionRates;
+    }
+    const data = await response.json();
+    const conversionRates: conversionRates = data.conversion_rates;
+    return conversionRates;
+  } catch {
+    return mockConversionRates;
+  }
+}
+
 export const convertCurrencyFromUSD = (
   totalAmount: number = 0,
   currencyCode: string = "USD",
@@ -382,13 +400,15 @@ const CurrencyConverter = ({
   const [error, setError] = useState<string | undefined>();
 
   useEffect(() => {
-    const fetchRateAndConvert = () => {
+    const fetchRateAndConvert = async () => {
       setIsLoading(true);
       setError(undefined);
 
-      const exchangerate = mockConversionRates;
+      const exchangerate = await fetchRates(
+        "sorry we will be keeping it static and be using some mock rates",
+      );
 
-      if (!exchangerate[currencyCode]) {
+      if (!exchangerate || !exchangerate[currencyCode]) {
         setError("conversion failed");
         setIsLoading(false);
         return;
