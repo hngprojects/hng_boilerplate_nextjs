@@ -14,13 +14,13 @@ export default function PrivacyPolicy() {
   const tableOfContents = getTableOfContents(privacyPolicyData);
 
   useEffect(() => {
-    const scrollClasses = "scroll-smooth scroll-pt-6 md:scroll-pt-10";
+    const scrollClasses = ["scroll-smooth", "scroll-pt-6", "md:scroll-pt-10"];
 
     const htmlElement = document.documentElement;
-    htmlElement.classList.add(scrollClasses);
+    htmlElement.classList.add(...scrollClasses);
 
     return () => {
-      htmlElement.classList.remove(scrollClasses);
+      htmlElement.classList.remove(...scrollClasses);
     };
   }, []);
 
@@ -35,7 +35,7 @@ export default function PrivacyPolicy() {
         <section className="mt-14 grid grid-cols-1 gap-20 md:mt-[86px] md:grid-cols-[1fr,306px] md:gap-[73px]">
           <TableOfContent
             listOfContent={tableOfContents}
-            className="top-10 max-w-[306px] md:sticky md:col-start-3 md:h-svh"
+            className="top-28 max-w-[306px] md:sticky md:col-start-3 md:h-svh"
           />
           <PrivacyPolicyContent
             content={privacyPolicyData}
