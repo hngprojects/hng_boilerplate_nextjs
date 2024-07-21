@@ -9,7 +9,7 @@ import NewLinkSent from "../link/NewLinkSent";
 const properties = {
   title: "New Activation Link Sent",
   name: "John Doe",
-  image: "/new-link-sent-icon.svg",
+  image: "/images/link-sent.png",
   activationLink: "https://example.com/activate",
 };
 
