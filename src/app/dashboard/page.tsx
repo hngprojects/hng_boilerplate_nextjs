@@ -47,7 +47,12 @@ const Dashboard: React.FC = () => {
                                         <Dollar />
                                     </div>
                                     <div className="">
-                                        <h1 className="text-lg font-bold">{formatPrice(totalRevenue.overview_stats, 'en-US', 'USD')}</h1>
+                        <h1 className="text-lg font-bold">
+                          {formatPrice(
+                            totalRevenue.overview_stats,
+                            "en-US",
+                            "USD",
+                          )}
                         </h1>
                         <p className="text-xs">{`+${totalRevenue.percentage}% from last month`}</p>
                       </div>
