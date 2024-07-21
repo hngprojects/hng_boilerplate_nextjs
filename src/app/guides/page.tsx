@@ -1,10 +1,19 @@
+"use client";
+
 import { Orbit, Plus } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 
 import CustomButton from "~/components/common/Button/button";
 import Sidebar from "~/components/layouts/Sidebar";
+import CharacterLimitTextarea from "../../components/common/CharacterLimitTextarea";
 
-const Button: React.FC = () => {
+const StyleGuide: React.FC = () => {
+  const [text, setText] = useState("");
+
+  const handleTextChange = (newValue: string) => {
+    setText(newValue);
+  };
+
   return (
     <main className="flex min-h-screen flex-col items-start gap-7 overflow-hidden p-6 sm:p-12 md:p-24">
       <h2 className="text-2xl font-semibold">Color Guides</h2>
@@ -313,6 +322,59 @@ const Button: React.FC = () => {
       </ul>
 
       <Sidebar />
+
+      <div className="space-y-4 rounded-lg bg-gray-100 p-4 shadow-md">
+        <h2 className="text-2xl font-semibold text-gray-800">
+          HBP Comment Box
+        </h2>
+        <div className="flex flex-col space-y-4">
+          {commentsData.map((comment) => (
+            <HBPCommentBox
+              key={comment.id}
+              id={comment.id}
+              avatar={comment.avatar}
+              name={comment.name}
+              username={comment.username}
+              content={comment.content}
+              timestamp={comment.timestamp}
+              date={comment.date}
+              likes={comment.likes}
+              dislikes={comment.dislikes}
+              className="rounded-lg bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="w-full">
+        <h2 className="mb-3 text-2xl font-semibold text-gray-800">
+          A Textarea with Character Limit
+        </h2>
+
+        <p>
+          To use: Import CharacterLimitTextarea from the
+          components/common/CharacterLimitTextarea <br />
+          The component should receive the following properties:
+        </p>
+        <ul className="mb-7 list-disc">
+          <li>maxLength: The maximum number of characters allowed.</li>
+          <li>value: The current value of the textarea.</li>
+          <li>
+            onChange: A callback function that is triggered when the textarea
+            value changes.
+          </li>
+          <li>the label, id and name.</li>
+        </ul>
+
+        <CharacterLimitTextarea
+          maxLength={25}
+          value={text}
+          label="Bio"
+          id="message"
+          name="message"
+          onChange={handleTextChange}
+        />
+      </div>
     </main>
   );
 };
