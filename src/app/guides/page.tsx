@@ -1,13 +1,12 @@
 "use client";
 
 import { useState } from "react";
+
 import CharacterLimitTextarea from "../../components/common/CharacterLimitTextarea";
 
 export default function Home() {
-  // create state to handle text
   const [text, setText] = useState("");
 
-  // create function to handleChange
   const handleTextChange = (newValue: string) => {
     setText(newValue);
   };
