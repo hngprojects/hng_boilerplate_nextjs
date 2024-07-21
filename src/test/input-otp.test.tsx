@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 
 import { InputOtp } from "~/components/common/Input-otp/page";
 
-describe("inputOtp Component", () => {
+describe("InputOtp Component", () => {
   it("renders correctly with 6 input slots", () => {
     expect.assertions(1);
     render(<InputOtp />);
@@ -15,11 +15,12 @@ describe("inputOtp Component", () => {
     expect.assertions(6);
     render(<InputOtp />);
     const inputs = screen.getAllByRole("textbox");
-
-    for (let index = 0; index < inputs.length; index++) {
-      const input = inputs[index];
+    
+    let index = 0;
+    for (const input of inputs) {
       fireEvent.change(input, { target: { value: (index + 1).toString() } });
       expect((input as HTMLInputElement).value).toBe((index + 1).toString());
+      index++;
     }
   });
 
@@ -28,8 +29,7 @@ describe("inputOtp Component", () => {
     render(<InputOtp />);
     const inputs = screen.getAllByRole("textbox");
 
-    for (let index = 0; index < inputs.length; index++) {
-      const input = inputs[index];
+    for (const input of inputs) {
       fireEvent.focus(input);
       expect(input).toHaveClass("ring-2 ring-[#F97316] ring-offset-background");
     }
@@ -40,10 +40,11 @@ describe("inputOtp Component", () => {
     render(<InputOtp />);
     const inputs = screen.getAllByRole("textbox");
 
-    for (let index = 0; index < inputs.length; index++) {
-      const input = inputs[index];
+    let index = 0;
+    for (const input of inputs) {
       fireEvent.change(input, { target: { value: (index + 1).toString() } });
       expect((input as HTMLInputElement).value).toBe((index + 1).toString());
+      index++;
     }
   });
 });
