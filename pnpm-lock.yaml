@@ -134,11 +134,7 @@ importers:
         version: 10.3.2
       '@testing-library/jest-dom':
         specifier: ^6.4.6
-<<<<<<< HEAD
-        version: 6.4.6(@types/jest@29.5.12)(vitest@1.6.0(@types/node@20.14.11)(@vitest/ui@1.6.0)(jsdom@24.1.0)(terser@5.31.3))
-=======
         version: 6.4.6(@types/jest@29.5.12)(vitest@1.6.0(@types/node@20.0.0)(@vitest/ui@1.6.0)(jsdom@24.1.0)(terser@5.31.3))
->>>>>>> upstream/dev
         version: 6.4.6(@types/jest@29.5.12)(vitest@1.6.0(@types/node@20.14.11)(@vitest/ui@1.6.0)(jsdom@24.1.0)(terser@5.31.3))
       '@testing-library/react':
         specifier: ^16.0.0
