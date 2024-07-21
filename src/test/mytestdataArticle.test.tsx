@@ -1,4 +1,4 @@
-import Page from "../app/(home)/myArticle/page";
+import Page from "../app/(home)/latestArticles/page";
 import { fireEvent, render, screen, waitFor } from "./utils";
 
 describe("page tests", () => {
