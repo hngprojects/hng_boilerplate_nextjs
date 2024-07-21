@@ -1,18 +1,17 @@
-// import networking from '../../public/images/Networking.png'
-// import recipe from '../../public/images/Recipe.png'
-
-// import climate from '../../public/images/Climate.png'
-// import mental from '../../public/images/Mental.png'
-// import noraDextop from '../../public/Nora dextop.png'
-// import noraMobile from '../../src/assets/'
 import climate from "../../public/images/ArticleImages/Climate.png";
+import climateDextop from "../../public/images/ArticleImages/ClimateDextop.png";
 import future from "../../public/images/ArticleImages/Future Picture.png";
+import futureDextop from "../../public/images/ArticleImages/FutureDextop.png";
 import mental from "../../public/images/ArticleImages/Mental.png";
+import mentalDextop from "../../public/images/ArticleImages/MentalDextop.png";
 import networking from "../../public/images/ArticleImages/Networking.png";
+import networkingDextop from "../../public/images/ArticleImages/NetworkingDextop.png";
 import noraDextop from "../../public/images/ArticleImages/Nora dextop.png";
 import noraMobile from "../../public/images/ArticleImages/Nora mobile.png";
 import recipe from "../../public/images/ArticleImages/Recipe.png";
+import recipeDextop from "../../public/images/ArticleImages/RecipeDextop.png";
 import styling from "../../public/images/ArticleImages/Styling.png";
+import stylingDextop from "../../public/images/ArticleImages/StylingDextop.png";
 
 export const mainBlog = [
   {
@@ -22,6 +21,7 @@ export const mainBlog = [
     date: "Jul 12, 2024",
     readTime: "5 mins read",
     image: networking,
+    imageDextop: networkingDextop,
     description:
       "We often hear about the ENIAC, hailed as the first computer, but its story is just one thread in a rich tapestry woven by brilliant",
     name: "Nora Nora",
@@ -35,6 +35,7 @@ export const mainBlog = [
     date: "Jul 12, 2024",
     readTime: "5 mins read",
     image: climate,
+    imageDextop: climateDextop,
     description:
       "We often hear about the ENIAC, hailed as the first computer, but its story is just one thread in a rich tapestry woven by brilliant",
     name: "Nora Nora",
@@ -48,6 +49,7 @@ export const mainBlog = [
     date: "Jul 12, 2024",
     readTime: "5 mins read",
     image: recipe,
+    imageDextop: recipeDextop,
     description:
       "We often hear about the ENIAC, hailed as the first computer, but its story is just one thread in a rich tapestry woven by brilliant",
     name: "Nora Nora",
@@ -61,6 +63,7 @@ export const mainBlog = [
     date: "Jul 12, 2024",
     readTime: "5 mins read",
     image: mental,
+    imageDextop: mentalDextop,
     description:
       "We often hear about the ENIAC, hailed as the first computer, but its story is just one thread in a rich tapestry woven by brilliant",
     name: "Nora Nora",
@@ -74,6 +77,7 @@ export const mainBlog = [
     date: "Jul 12, 2024",
     readTime: "5 mins read",
     image: styling,
+    imageDextop: stylingDextop,
     description:
       "We often hear about the ENIAC, hailed as the first computer, but its story is just one thread in a rich tapestry woven by brilliant",
     name: "Nora Nora",
@@ -87,6 +91,7 @@ export const mainBlog = [
     date: "Jul 12, 2024",
     readTime: "5 mins read",
     image: future,
+    imageDextop: futureDextop,
     description:
       "We often hear about the ENIAC, hailed as the first computer, but its story is just one thread in a rich tapestry woven by brilliant",
     name: "Nora Nora",
