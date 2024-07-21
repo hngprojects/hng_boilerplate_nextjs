@@ -6,8 +6,10 @@ const page = () => {
   return (
     <div>
       <Navbar />
-      <Sidebar />
-      <Overview />
+      <div className="flex items-center">
+        <Sidebar />
+        <Overview />
+      </div>
     </div>
   );
 };
