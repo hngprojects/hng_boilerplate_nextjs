@@ -1,5 +1,11 @@
+"use client";
+
 import Button from "~/components/common/Button/button";
 import { Input } from "~/components/ui/input";
+
+const handleButtonClickTest = () => {
+  alert("Contact Button Click Test");
+};
 
 const HelpCenterPage = () => {
   return (
@@ -102,7 +108,12 @@ const HelpCenterPage = () => {
               <p className="self-stretch text-2xl font-normal text-neutral-600">
                 We couldn’t answer your question?
               </p>
-              <Button variant="outline" className="h-8 w-28" size="sm">
+              <Button
+                onClick={handleButtonClickTest}
+                variant="outline"
+                className="h-8 w-28"
+                size="sm"
+              >
                 Contact us
               </Button>
             </div>
@@ -121,7 +132,11 @@ const HelpCenterPage = () => {
                 Contact us for more inquiries and information about our
                 services.
               </p>
-              <Button variant="primary" size="lg">
+              <Button
+                onClick={handleButtonClickTest}
+                variant="primary"
+                size="lg"
+              >
                 Contact Us
               </Button>
             </div>
