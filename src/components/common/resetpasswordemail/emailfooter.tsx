@@ -1,4 +1,4 @@
-import { Link, Text } from "@react-email/components";
+import { Link } from "@react-email/components";
 
 const EmailFooter: React.FC = () => {
   return (
@@ -102,7 +102,7 @@ const EmailFooter: React.FC = () => {
             </svg>
           </Link>
         </section>
-        <Text className="mb-2 text-left font-normal text-[#5B5B5D]">
+        <div className="mb-2 text-left font-normal text-[#5B5B5D]">
           Thank you for choosing Boilerplate. Need help?{" "}
           <Link
             href="https://nextjs.boilerplate.hng.tech/"
@@ -111,8 +111,8 @@ const EmailFooter: React.FC = () => {
             Contact our customer support
           </Link>
           <div className="my-3 border border-dashed border-[#5B5B5D] border-opacity-10"></div>
-        </Text>
-        <Text className="mb-2 text-left font-normal text-[#5B5B5D]">
+        </div>
+        <div className="mb-2 text-left font-normal text-[#5B5B5D]">
           You are receiving this email because you signed up at{" "}
           <Link
             href="https://nextjs.boilerplate.hng.tech/"
@@ -121,8 +121,8 @@ const EmailFooter: React.FC = () => {
             Boilerplate.com
           </Link>
           . Want to change how you receive these emails?
-        </Text>
-        <Text className="text-left font-normal text-[#5B5B5D]">
+        </div>
+        <div className="text-left font-normal text-[#5B5B5D]">
           You can{" "}
           <Link
             href="https://nextjs.boilerplate.hng.tech/"
@@ -138,7 +138,7 @@ const EmailFooter: React.FC = () => {
             unsubscribe from this list
           </Link>
           .
-        </Text>
+        </div>
       </div>
     </footer>
   );

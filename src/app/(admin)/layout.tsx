@@ -6,11 +6,11 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="md:grid-cols-[252px_1fr]x lg:grid-cols-[252px_1fr]x grid min-h-[100dvh] grid-rows-[auto_1fr] overflow-hidden">
+    <div className="grid min-h-screen w-full md:grid-cols-[252px_1fr] lg:grid-cols-[252px_1fr]">
       <div className="hidden border-r bg-muted/40 md:block"></div>
-      <div className="flex w-full flex-col gap-y-4 px-2 lg:gap-y-8 lg:px-4">
+      <div className="flex flex-col">
         <AdminNavbar />
-        <div className="relative w-full">{children}</div>
+        {children}
       </div>
     </div>
   );

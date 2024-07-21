@@ -1,22 +1,15 @@
 "use client";
 
 import { Orbit, Plus } from "lucide-react";
-import React, { useState } from "react";
+import React from "react";
 
 import { Breadcrumb } from "~/components/common/Breadcrumb";
 import CustomButton from "~/components/common/Button/button";
 import HBPCommentBox from "~/components/common/Comment";
 import { commentsData } from "~/components/common/Comment/ComentData";
 import Sidebar from "~/components/layouts/Sidebar";
-import CharacterLimitTextarea from "../../components/common/CharacterLimitTextarea";
 
 const StyleGuide: React.FC = () => {
-  const [text, setText] = useState("");
-
-  const handleTextChange = (newValue: string) => {
-    setText(newValue);
-  };
-
   return (
     <main className="flex min-h-screen flex-col items-start gap-7 overflow-hidden p-6 sm:p-12 md:p-24">
       <h2 className="text-2xl font-semibold">Color Guides</h2>
@@ -416,36 +409,6 @@ const StyleGuide: React.FC = () => {
             />
           ))}
         </div>
-      </div>
-
-      <div className="w-full">
-        <h2 className="mb-3 text-2xl font-semibold text-gray-800">
-          A Textarea with Character Limit
-        </h2>
-
-        <p>
-          To use: Import CharacterLimitTextarea from the
-          components/common/CharacterLimitTextarea <br />
-          The component should receive the following properties:
-        </p>
-        <ul className="mb-7 list-disc">
-          <li>maxLength: The maximum number of characters allowed.</li>
-          <li>value: The current value of the textarea.</li>
-          <li>
-            onChange: A callback function that is triggered when the textarea
-            value changes.
-          </li>
-          <li>the label, id and name.</li>
-        </ul>
-
-        <CharacterLimitTextarea
-          maxLength={25}
-          value={text}
-          label="Bio"
-          id="message"
-          name="message"
-          onChange={handleTextChange}
-        />
       </div>
     </main>
   );

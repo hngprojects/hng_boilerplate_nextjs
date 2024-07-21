@@ -58,7 +58,7 @@ const BreadcrumbLink = forwardRef<
     <Comp
       ref={reference}
       className={cn(
-        "capitalize text-breadcrumb-foreground transition-colors hover:text-neutral-dark-2",
+        "text-breadcrumb-foreground capitalize transition-colors hover:text-neutral-dark-2",
         className,
       )}
       {...properties}
@@ -76,7 +76,7 @@ const BreadcrumbPage = forwardRef<
     role="link"
     aria-disabled="true"
     aria-current="page"
-    className={cn("font-normal capitalize text-breadcrumb-page/50", className)}
+    className={cn("text-breadcrumb-page/50 font-normal capitalize", className)}
     {...properties}
   />
 ));
