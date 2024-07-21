@@ -26,7 +26,7 @@ const config = {
         foreground: "hsl(var(--foreground))",
         default: {
           DEFAULT: "hsl(var(--default))",
-          foreground: "hsl(var(--default-foreground))"
+          foreground: "hsl(var(--default-foreground))",
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",
@@ -84,6 +84,12 @@ const config = {
             2: "hsl(var(--neutralColor-dark-2))",
           },
         },
+        ForgotPassword: {
+          hblack: "#0A0A0A",
+          pGray: "#525252",
+          sendBtn: "#F97316",
+          Rcol: "#525252",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -103,6 +109,16 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      lineHeight: {
+        h3height: "33.6px",
+        pheight: "24px",
+      },
+      fontSize: {
+        h3font: "28px",
+      },
+      fontFamily: {
+        inter: ["Inter", "sans-serif"],
       },
     },
   },
