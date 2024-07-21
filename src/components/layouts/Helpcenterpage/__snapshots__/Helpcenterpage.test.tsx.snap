@@ -88,7 +88,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
           data-orientation="vertical"
         >
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -105,7 +105,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-0"
+                id="topic-heading-0"
                 role="heading"
                 type="button"
               >
@@ -129,7 +129,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-0"
+              aria-labelledby="topic-heading-0"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -140,7 +140,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
             />
           </div>
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -157,7 +157,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-1"
+                id="topic-heading-1"
                 role="heading"
                 type="button"
               >
@@ -181,7 +181,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-1"
+              aria-labelledby="topic-heading-1"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -192,7 +192,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
             />
           </div>
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -209,7 +209,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-2"
+                id="topic-heading-2"
                 role="heading"
                 type="button"
               >
@@ -233,7 +233,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-2"
+              aria-labelledby="topic-heading-2"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -244,7 +244,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
             />
           </div>
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -261,7 +261,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-3"
+                id="topic-heading-3"
                 role="heading"
                 type="button"
               >
@@ -285,7 +285,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-3"
+              aria-labelledby="topic-heading-3"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -296,7 +296,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
             />
           </div>
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -313,7 +313,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-4"
+                id="topic-heading-4"
                 role="heading"
                 type="button"
               >
@@ -337,7 +337,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-4"
+              aria-labelledby="topic-heading-4"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -348,7 +348,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
             />
           </div>
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -365,7 +365,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-5"
+                id="topic-heading-5"
                 role="heading"
                 type="button"
               >
@@ -389,7 +389,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-5"
+              aria-labelledby="topic-heading-5"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -400,7 +400,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
             />
           </div>
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -417,7 +417,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-6"
+                id="topic-heading-6"
                 role="heading"
                 type="button"
               >
@@ -441,7 +441,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-6"
+              aria-labelledby="topic-heading-6"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -452,7 +452,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
             />
           </div>
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -469,7 +469,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-7"
+                id="topic-heading-7"
                 role="heading"
                 type="button"
               >
@@ -493,7 +493,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-7"
+              aria-labelledby="topic-heading-7"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -504,7 +504,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
             />
           </div>
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -521,7 +521,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-8"
+                id="topic-heading-8"
                 role="heading"
                 type="button"
               >
@@ -545,7 +545,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-8"
+              aria-labelledby="topic-heading-8"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -713,7 +713,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
           data-orientation="vertical"
         >
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -730,7 +730,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-0"
+                id="topic-heading-0"
                 role="heading"
                 type="button"
               >
@@ -754,7 +754,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-0"
+              aria-labelledby="topic-heading-0"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -765,7 +765,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
             />
           </div>
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -782,7 +782,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-1"
+                id="topic-heading-1"
                 role="heading"
                 type="button"
               >
@@ -806,7 +806,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-1"
+              aria-labelledby="topic-heading-1"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -817,7 +817,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
             />
           </div>
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -834,7 +834,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-2"
+                id="topic-heading-2"
                 role="heading"
                 type="button"
               >
@@ -858,7 +858,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-2"
+              aria-labelledby="topic-heading-2"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -869,7 +869,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
             />
           </div>
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -886,7 +886,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-3"
+                id="topic-heading-3"
                 role="heading"
                 type="button"
               >
@@ -910,7 +910,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-3"
+              aria-labelledby="topic-heading-3"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -921,7 +921,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
             />
           </div>
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -938,7 +938,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-4"
+                id="topic-heading-4"
                 role="heading"
                 type="button"
               >
@@ -962,7 +962,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-4"
+              aria-labelledby="topic-heading-4"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -973,7 +973,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
             />
           </div>
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -990,7 +990,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-5"
+                id="topic-heading-5"
                 role="heading"
                 type="button"
               >
@@ -1014,7 +1014,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-5"
+              aria-labelledby="topic-heading-5"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -1025,7 +1025,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
             />
           </div>
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -1042,7 +1042,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-6"
+                id="topic-heading-6"
                 role="heading"
                 type="button"
               >
@@ -1066,7 +1066,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-6"
+              aria-labelledby="topic-heading-6"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -1077,7 +1077,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
             />
           </div>
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -1094,7 +1094,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-7"
+                id="topic-heading-7"
                 role="heading"
                 type="button"
               >
@@ -1118,7 +1118,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-7"
+              aria-labelledby="topic-heading-7"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -1129,7 +1129,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
             />
           </div>
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -1146,7 +1146,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-8"
+                id="topic-heading-8"
                 role="heading"
                 type="button"
               >
@@ -1170,7 +1170,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-8"
+              aria-labelledby="topic-heading-8"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -1338,7 +1338,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
           data-orientation="vertical"
         >
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -1355,7 +1355,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-0"
+                id="topic-heading-0"
                 role="heading"
                 type="button"
               >
@@ -1379,7 +1379,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-0"
+              aria-labelledby="topic-heading-0"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -1390,7 +1390,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
             />
           </div>
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -1407,7 +1407,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-1"
+                id="topic-heading-1"
                 role="heading"
                 type="button"
               >
@@ -1431,7 +1431,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-1"
+              aria-labelledby="topic-heading-1"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -1442,7 +1442,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
             />
           </div>
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -1459,7 +1459,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-2"
+                id="topic-heading-2"
                 role="heading"
                 type="button"
               >
@@ -1483,7 +1483,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-2"
+              aria-labelledby="topic-heading-2"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -1494,7 +1494,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
             />
           </div>
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -1511,7 +1511,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-3"
+                id="topic-heading-3"
                 role="heading"
                 type="button"
               >
@@ -1535,7 +1535,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-3"
+              aria-labelledby="topic-heading-3"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -1546,7 +1546,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
             />
           </div>
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -1563,7 +1563,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-4"
+                id="topic-heading-4"
                 role="heading"
                 type="button"
               >
@@ -1587,7 +1587,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-4"
+              aria-labelledby="topic-heading-4"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -1598,7 +1598,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
             />
           </div>
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -1615,7 +1615,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-5"
+                id="topic-heading-5"
                 role="heading"
                 type="button"
               >
@@ -1639,7 +1639,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-5"
+              aria-labelledby="topic-heading-5"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -1650,7 +1650,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
             />
           </div>
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -1667,7 +1667,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-6"
+                id="topic-heading-6"
                 role="heading"
                 type="button"
               >
@@ -1691,7 +1691,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-6"
+              aria-labelledby="topic-heading-6"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -1702,7 +1702,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
             />
           </div>
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -1719,7 +1719,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-7"
+                id="topic-heading-7"
                 role="heading"
                 type="button"
               >
@@ -1743,7 +1743,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-7"
+              aria-labelledby="topic-heading-7"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
@@ -1754,7 +1754,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
             />
           </div>
           <div
-            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            class="flex w-full flex-col border-b-0 bg-white px-6 py-6"
             data-orientation="vertical"
             data-state="closed"
           >
@@ -1771,7 +1771,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
                 data-orientation="vertical"
                 data-radix-collection-item=""
                 data-state="closed"
-                id="faq-heading-8"
+                id="topic-heading-8"
                 role="heading"
                 type="button"
               >
@@ -1795,7 +1795,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               </button>
             </h3>
             <div
-              aria-labelledby="faq-heading-8"
+              aria-labelledby="topic-heading-8"
               class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
               data-orientation="vertical"
               data-state="closed"
