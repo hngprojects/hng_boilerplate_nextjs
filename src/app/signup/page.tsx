@@ -1,27 +1,16 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { Eye, EyeOff } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { z } from "zod";
+import { z, ZodType } from "zod";
 
-// import Navbar from "~/components/layouts/Navbar/Navbar";
+import CustomButton from "~/components/common/Button/button";
+import Footer from "~/components/layouts/Footer";
+import Navbar from "~/components/layouts/Navbar";
 import FacebookIcon from "../../../public/bi_facebook.svg";
 import GoogleIcon from "../../../public/flat-color-icons_google.svg";
-
-type FormDataType = {
-  fullName: string;
-  email: string;
-  password: string;
-};
-
-type FormErrors = {
-  fullName?: string;
-  email?: string;
-  password?: string;
-};
 
 interface TestFormProperties {
   onSubmit: (data: {
@@ -48,32 +37,42 @@ const schemaRegister = z.object({
     }),
 });
 
+type SchemaRegisterType = z.infer<typeof schemaRegister>;
+
+type ErrorsType = Partial<Record<keyof SchemaRegisterType, string>>;
+
 export const Form = ({ onSubmit }: TestFormProperties) => {
-  const [formData, setFormData] = useState<FormDataType>({
+  const [formData, setFormData] = useState<SchemaRegisterType>({
     fullName: "",
     email: "",
     password: "",
   });
-  const [errors, setErrors] = useState<FormErrors>({});
+  const [errors, setErrors] = useState<ErrorsType>({});
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
 
-    const fieldSchema = schemaRegister.shape[name];
-    const result = fieldSchema.safeParse(value);
+    if (name in schemaRegister.shape) {
+      setFormData({ ...formData, [name]: value });
 
-    if (result.success) {
-      setErrors((previousErrors) => {
-        const { [name]: _, ...remainingErrors } = previousErrors;
-        return remainingErrors;
-      });
-    } else {
-      setErrors((previousErrors) => ({
-        ...previousErrors,
-        [name]: result.error.errors[0].message,
-      }));
+      const fieldSchema = schemaRegister.shape[
+        name as keyof typeof schemaRegister.shape
+      ] as ZodType<string>;
+      const result = fieldSchema.safeParse(value);
+
+      if (result.success) {
+        setErrors((previousErrors) => {
+          const remainingErrors = { ...previousErrors };
+          delete remainingErrors[name as keyof SchemaRegisterType];
+          return remainingErrors;
+        });
+      } else {
+        setErrors((previousErrors) => ({
+          ...previousErrors,
+          [name]: result.error.errors[0].message,
+        }));
+      }
     }
   };
 
@@ -85,9 +84,9 @@ export const Form = ({ onSubmit }: TestFormProperties) => {
       setErrors({});
       onSubmit(formData);
     } else {
-      const newErrors: FormErrors = {};
+      const newErrors: ErrorsType = {};
       for (const error of result.error.errors) {
-        const fieldName = error.path[0] as keyof FormDataType;
+        const fieldName = error.path[0] as keyof SchemaRegisterType;
         newErrors[fieldName] = error.message;
       }
       setErrors(newErrors);
@@ -203,9 +202,12 @@ export const Form = ({ onSubmit }: TestFormProperties) => {
           </span>
         )}
       </div>
-      <button className="rounded-lg bg-primary px-4 py-2 text-base font-bold text-[#FAF8F8] lg:h-16">
+      <CustomButton
+        variant="primary"
+        className="px-4 py-2 text-base font-bold lg:h-16"
+      >
         Create Account
-      </button>
+      </CustomButton>
     </form>
   );
 };
@@ -213,7 +215,7 @@ export const Form = ({ onSubmit }: TestFormProperties) => {
 const page = () => {
   return (
     <section>
-      {/* <Navbar /> */}
+      <Navbar />
       <div className="flex w-full items-center justify-center">
         <div className="mx-6 mb-[9rem] mt-[5.3125rem] text-center md:mx-0">
           <h3 className="text-[1.75rem] font-semibold leading-[120%] text-[#141414]">
@@ -246,16 +248,7 @@ const page = () => {
               </p>
             </button>
           </div>
-          <Form
-            // eslint-disable-next-line unused-imports/no-unused-vars
-            onSubmit={function (data: {
-              fullName: string;
-              email: string;
-              password: string;
-            }): void {
-              throw new Error("Function not implemented.");
-            }}
-          />
+          <Form onSubmit={function (): void {}} />
           <p className="mt-4 text-center text-[13px]">
             Already Have An Account?{" "}
             <Link href="" className="text-primary">
@@ -264,6 +257,7 @@ const page = () => {
           </p>
         </div>
       </div>
+      <Footer />
     </section>
   );
 };
