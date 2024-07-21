@@ -1,4 +1,4 @@
-import { AcceptableUsePolicy } from "~/app/(legal-terms)/terms-and-conditions/constants/constant";
+import { AcceptableUsePolicy } from "./constants/constant";
 
 interface TermsType {
   title: string;
@@ -19,7 +19,8 @@ const AcceptableUse = () => {
         <ul className="m-0 pl-[21px]">
           {AcceptableUsePolicy.map((list: TermsType) => (
             <li className="`mb-[10px] list-disc" key={list.title}>
-              <span>{list.title}</span> <span>{list.value}</span>
+              <span className="font-[700]">{list.title}</span>{" "}
+              <span>{list.value}</span>
             </li>
           ))}
         </ul>

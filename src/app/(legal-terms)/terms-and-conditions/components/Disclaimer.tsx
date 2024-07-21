@@ -1,4 +1,4 @@
-import { Disclaimers } from "~/app/(legal-terms)/terms-and-conditions/constants/constant";
+import { Disclaimers } from "./constants/constant";
 
 interface TermsType {
   title: string;
@@ -20,7 +20,8 @@ const Disclaimer = () => {
         <ul className="pl-[21px]">
           {Disclaimers.map((list: TermsType) => (
             <li className="mb-[10px] list-disc" key={list.title}>
-              <span>{list.title}</span> <span>{list.value}</span>
+              <span className="font-[700]">{list.title}</span>{" "}
+              <span>{list.value}</span>
             </li>
           ))}
         </ul>
