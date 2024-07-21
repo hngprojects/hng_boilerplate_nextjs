@@ -12,7 +12,7 @@ export default function ResetPasswordEmail(properties: IProperties) {
 
   return (
     <EmailResetPasswordLayout>
-      <Text className="my-14 text-center text-2xl font-bold">
+      <Text className="text-center text-2xl font-bold">
         Reset Your Password
       </Text>
       <Text className="mb-4">Hi {name},</Text>
@@ -32,7 +32,7 @@ export default function ResetPasswordEmail(properties: IProperties) {
         </Button>
       </Section>
 
-      <Text className="mt-8">
+      <Text className="mb-6 mt-8">
         Regards,
         <br />
         Boilerplate Team
