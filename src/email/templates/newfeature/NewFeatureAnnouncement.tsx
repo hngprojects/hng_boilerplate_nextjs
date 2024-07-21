@@ -67,13 +67,13 @@ export const NewFeatureAnnouncement = ({
               />
             </Section>
 
-            {/* <Section className="mx-auto my-[40px] flex w-full items-center justify-center">
+            <Section className="mx-auto my-[40px] flex w-full items-center justify-center">
               <Img
                 src={image}
                 alt="marketing"
                 className="h-[178px] w-[178px] md:h-[120px] md:w-[120px]"
               />
-            </Section> */}
+            </Section>
 
             <Section className="flex flex-col items-center justify-center px-[16px] md:px-[48px]">
               <Heading
