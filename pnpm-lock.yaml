@@ -105,7 +105,7 @@ importers:
         version: 3.23.8
       zustand:
         specifier: ^4.5.4
-        version: 4.5.4(@types/react@18.3.3)(react@18.3.1)
+        version: 4.5.4(@types/react@18.0.0)(react@18.0.0)
     devDependencies:
       "@ianvs/prettier-plugin-sort-imports":
         specifier: ^4.3.0
@@ -8742,9 +8742,9 @@ snapshots:
 
   "@mertasan/tailwindcss-variables@2.7.0(autoprefixer@10.4.14(postcss@8.4.39))(postcss@8.4.39)":
     dependencies:
-      autoprefixer: 10.4.14(postcss@8.4.39)
+      autoprefixer: 10.4.14(postcss@8.0.0)
       lodash: 4.17.21
-      postcss: 8.4.39
+      postcss: 8.0.0
 
   "@next/env@14.1.4": {}
 
@@ -10604,18 +10604,18 @@ snapshots:
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.0.1
-      postcss: 8.4.38
+      postcss: 8.0.0
       postcss-value-parser: 4.2.0
     dev: false
 
-  autoprefixer@10.4.14(postcss@8.4.39):
+  autoprefixer@10.4.14(postcss@8.4.38):
     dependencies:
       browserslist: 4.23.2
       caniuse-lite: 1.0.30001642
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.0.1
-      postcss: 8.4.39
+      postcss: 8.4.38
       postcss-value-parser: 4.2.0
 
   available-typed-arrays@1.0.7:
@@ -14899,7 +14899,7 @@ snapshots:
     optionalDependencies:
       "@types/react": 18.2.47
 
-  use-callback-ref@1.3.2(@types/react@18.3.3)(react@18.3.1):
+  use-sidecar@1.1.2(@types/react@18.0.0)(react@18.0.0):
     dependencies:
       react: 18.3.1
       tslib: 2.6.3
@@ -14922,7 +14922,7 @@ snapshots:
     optionalDependencies:
       "@types/react": 18.2.47
 
-  use-sidecar@1.1.2(@types/react@18.3.3)(react@18.3.1):
+  use-sync-external-store@1.2.0(react@18.0.0):
     dependencies:
       detect-node-es: 1.1.0
       react: 18.3.1
@@ -15239,9 +15239,9 @@ snapshots:
 
   zod@3.23.8: {}
 
-  zustand@4.5.4(@types/react@18.3.3)(react@18.3.1):
+  zustand@4.5.4(@types/react@18.0.0)(react@18.0.0):
     dependencies:
-      use-sync-external-store: 1.2.0(react@18.3.1)
+      use-sync-external-store: 1.2.0(react@18.0.0)
     optionalDependencies:
       "@types/react": 18.3.3
       react: 18.3.1
