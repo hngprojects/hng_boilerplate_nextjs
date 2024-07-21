@@ -55,7 +55,7 @@ function TableData() {
   return (
     <Table className="">
       <TableHeader>
-        <TableRow className="border border-none text-base font-normal text-[#0A0A0A]">
+        <TableRow className="border border-none bg-[#FFF7F2] text-base font-normal text-[#0A0A0A]">
           <TableHead className="text-center">Name</TableHead>
           <TableHead className="text-center">Price</TableHead>
           <TableHead className="text-center">Total sales</TableHead>
