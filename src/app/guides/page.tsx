@@ -240,7 +240,8 @@ const StyleGuide: React.FC = () => {
               <br />
               icon<span className="text-pink-400">?: </span>React.ReactNode;
               <br />
-              children<span className="text-pink-400">?: </span>React.ReactNode;
+              children<span className="text-pink-400">?: </span>
+              React.ReactNode;
               <br />
               isLoading<span className="text-pink-400">?: </span>boolean;
               <br />
