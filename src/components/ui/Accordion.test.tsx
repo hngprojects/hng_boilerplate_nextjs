@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 
 import "@testing-library/jest-dom";
 
-import { AccordionDemo } from "./Accordion";
+import { AccordionDemo } from "../Accordion";
 
 describe("accordion Component", () => {
   it("renders the headers correctly", () => {
