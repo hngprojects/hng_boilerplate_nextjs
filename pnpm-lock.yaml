@@ -52,6 +52,9 @@ importers:
       "@t3-oss/env-nextjs":
         specifier: ^0.10.1
         version: 0.10.1(typescript@5.5.3)(zod@3.23.8)
+      '@types/jest-axe':
+        specifier: ^3.5.9
+        version: 3.5.9
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -3276,6 +3279,13 @@ packages:
       }
     engines: { node: ">=4" }
 
+  axe-core@4.9.1:
+    resolution:
+      {
+        integrity: sha512-QbUdXJVTpvUTHU7871ppZkdOLBeGUKBQWHkHrvN2V9IQWGMt61zf3B45BtzjxEJzYuj0JBjBZP/hmYS/R9pmAw==,
+      }
+    engines: { node: ">=4" }
+
   axobject-query@3.1.1:
     resolution:
       {
@@ -3455,6 +3465,13 @@ packages:
         integrity: sha512-rNjApaLzuwaOTjCiT8lSDdGN1APCiqkChLMJxJPWLunPAt5fy8xgU9/jNOchV84wfIxrA0lRQB7oCT8jrn/wrQ==,
       }
     engines: { node: ">=6.0" }
+
+  ci-info@4.0.0:
+    resolution:
+      {
+        integrity: sha512-TdHqgGf9odd8SXNuxtUBVx8Nv+qZOejE6qyqiy5NtbYYQOeFa6zmHkxlPzmaLxWWHsU6nJmB7AETdVPi+2NBUg==,
+      }
+    engines: { node: ">=8" }
 
   ci-info@4.0.0:
     resolution:
@@ -9494,6 +9511,7 @@ snapshots:
       lodash: 4.17.21
       redent: 3.0.0
     optionalDependencies:
+      '@types/jest': 29.5.12
       vitest: 1.6.0(@types/node@20.14.11)(@vitest/ui@1.6.0)(jsdom@24.1.0)(terser@5.31.3)
 
   "@testing-library/react@16.0.0(@testing-library/dom@10.3.2)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)":
@@ -10131,6 +10149,8 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.0.0
 
+  axe-core@3.5.6: {}
+
   axe-core@4.9.1: {}
 
   axobject-query@3.1.1:
@@ -10255,6 +10275,8 @@ snapshots:
       fsevents: 2.3.3
 
   chrome-trace-event@1.0.4: {}
+
+  ci-info@3.9.0: {}
 
   ci-info@4.0.0: {}
 
@@ -10744,6 +10766,8 @@ snapshots:
 
   escape-string-regexp@1.0.5: {}
 
+  escape-string-regexp@2.0.0: {}
+
   escape-string-regexp@4.0.0: {}
 
   eslint-config-next@14.2.4(eslint@8.57.0)(typescript@5.5.3):
@@ -11064,6 +11088,14 @@ snapshots:
       onetime: 6.0.0
       signal-exit: 4.1.0
       strip-final-newline: 3.0.0
+
+  expect@29.7.0:
+    dependencies:
+      '@jest/expect-utils': 29.7.0
+      jest-get-type: 29.6.3
+      jest-matcher-utils: 29.7.0
+      jest-message-util: 29.7.0
+      jest-util: 29.7.0
 
   fast-deep-equal@2.0.1: {}
 
@@ -12613,6 +12645,10 @@ snapshots:
       spdx-license-ids: 3.0.18
 
   spdx-license-ids@3.0.18: {}
+
+  stack-utils@2.0.6:
+    dependencies:
+      escape-string-regexp: 2.0.0
 
   stackback@0.0.2: {}
 
