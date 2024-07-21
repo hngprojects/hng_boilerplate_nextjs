@@ -106,15 +106,12 @@ describe("custom Button Component", () => {
   it("renders internal link correctly with Next.js Link component", async () => {
     expect.hasAssertions();
 
-<<<<<<< Updated upstream
-=======
   it('renders external link correctly with anchor tag', () => {
     render(<CustomButton href="https://external-site.com" ariaLabel="external-link">External Link</CustomButton>);
     
   });
 
   it('applies all props correctly', () => {
->>>>>>> Stashed changes
     render(
       <CustomButton href="/internal-page" ariaLabel="internal-link">
         Internal Link
@@ -199,7 +196,7 @@ describe("custom Button Component", () => {
       expect(button).toBeDisabled();
     });
 
-    it("renders internal link correctly", () => {
+    it("renders internal link correctly", () => {expect.hasAssertions();
       expect.hasAssertions();
 
       render(<CustomButton href="/test-page" ariaLabel="internal-link" />);
@@ -209,3 +206,4 @@ describe("custom Button Component", () => {
     });
   });
 });
+})

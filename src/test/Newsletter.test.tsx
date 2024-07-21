@@ -6,8 +6,14 @@ import Newsletter from "../email/templates/newsletter/Newsletter";
 describe("newsletter Component", () => {
   it("renders with default props", () => {
     expect.assertions(4); // Number of assertions in this test
+    const properties = {
+      title: "Stay Ahead: Exclusive Offer on Cutting-Edge Tech!",
+      learnMoreUrl: "www.example.com",
+      image: true,
+      name: "John Doe",
+    };
 
-    render(<Newsletter />);
+    render(<Newsletter {...properties} />);
 
     // Check if the default title is rendered
     expect(

@@ -7,13 +7,13 @@ import {
 } from "@react-email/components";
 import Image from "next/image";
 import React from "react";
-import SampleContent from "./SampleContent";
 
+import SampleContent from "./SampleContent";
 
 interface NewsletterProperties {
   title: string;
   name: string;
-  content: React.ElementType;
+  content?: React.ElementType;
   learnMoreUrl?: string;
   image: boolean;
 }

@@ -5,13 +5,14 @@ import Email from "~/email/templates/activationFailed/activation-failed";
 
 describe("email component", () => {
   it("renders with correct props", () => {
+    expect.assertions(4);
     const properties = {
       name: "John Doe",
       title: "Activation Link Expired",
       image: "https://i.postimg.cc/1XY1dBhq/404-page-not-found-1-24-1.jpg",
     };
 
-    const { getByText } = render(<Email {...properties} />);
+    render(<Email {...properties} />);
 
     expect(screen.getByText(`Welcome ${properties.name}`)).toBeInTheDocument();
 
@@ -22,16 +23,16 @@ describe("email component", () => {
       screen.getByText("Send Another Activation Link"),
     ).toBeInTheDocument();
 
-    expect(getByText("Contact our customer support")).toHaveAttribute(
+    expect(screen.getByText("Contact our customer support")).toHaveAttribute(
       "href",
       "https://example.com",
     );
 
-    expect(getByText("update your preferences")).toHaveAttribute(
+    expect(screen.getByText("update your preferences")).toHaveAttribute(
       "href",
       "https://example.com",
     );
-    expect(getByText("unsubscribe from this list.")).toHaveAttribute(
+    expect(screen.getByText("unsubscribe from this list.")).toHaveAttribute(
       "href",
       "https://example.com",
     );
