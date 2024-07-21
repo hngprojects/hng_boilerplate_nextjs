@@ -2,7 +2,32 @@ import CustomButton from "~/components/common/Button/button";
 import PricePlanBenefit from "./PricePlanBenefit";
 
 export default function PricePlanCard() {
-  const lists = [1, 1, 1, 1, 1, 1];
+  const lists = [
+    {
+      benefitTitle: "2 Projects",
+      isAddedBenefit: true,
+    },
+    {
+      benefitTitle: "Up to 100 subscribers",
+      isAddedBenefit: true,
+    },
+    {
+      benefitTitle: "Basic analytics",
+      isAddedBenefit: true,
+    },
+    {
+      benefitTitle: "24-hour support response time",
+      isAddedBenefit: true,
+    },
+    {
+      benefitTitle: "Marketing advisor",
+      isAddedBenefit: false,
+    },
+    {
+      benefitTitle: "Custom integration",
+      isAddedBenefit: false,
+    },
+  ];
   return (
     <div className="flex w-[24rem] max-w-[24rem] flex-col gap-[51px] rounded-xl border border-[#CBD5E1] px-[32px] py-[31px] text-[#0A0A0A]">
       <section className="flex flex-col gap-4">
@@ -17,7 +42,7 @@ export default function PricePlanCard() {
 
       <section className="flex flex-col gap-5">
         {lists.map((list, index) => (
-          <PricePlanBenefit key={index} />
+          <PricePlanBenefit key={index} list={list} />
         ))}
       </section>
       <CustomButton variant="primary" size="lg" className="w-full">

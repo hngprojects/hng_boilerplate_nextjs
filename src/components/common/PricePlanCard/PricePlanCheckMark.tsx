@@ -1,5 +1,7 @@
-export default function PricePlanCheckMark() {
-  const isAddedBenefit = true;
+export default function PricePlanCheckMark(properties: {
+  isAddedBenefit: boolean;
+}) {
+  const { isAddedBenefit } = properties;
   return isAddedBenefit ? (
     <svg
       width="22"
