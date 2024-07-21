@@ -39,7 +39,7 @@ const Dashboard: React.FC = () => {
 
         <div className="">
                 {tab == 1 && <div className='flex flex-col gap-[16px]'>
-                    <div className="flex flex-col md:flex-row gap-[16px]">
+                <div className="flex flex-col gap-[16px] md:flex-row">
                   <div className="flex flex-1 flex-col gap-[16px] md:flex-row">
                     <div className="flex flex-1 flex-col rounded-lg border border-solid border-stroke_dashboard p-[24px] pb-[40px] shadow-custom-light">
                       <div className="flex items-center justify-between">
