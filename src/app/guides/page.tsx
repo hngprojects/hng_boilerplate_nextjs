@@ -7,11 +7,18 @@ import { Breadcrumb } from "~/components/common/Breadcrumb";
 import CustomButton from "~/components/common/Button/button";
 import HBPCommentBox from "~/components/common/Comment";
 import { commentsData } from "~/components/common/Comment/ComentData";
+import PaginatedTemplateList from "~/components/common/PaginatedTemplateList/PaginatedTemplateList";
 import Sidebar from "~/components/layouts/Sidebar";
+import templateTableList from "~/constants/templateList";
 import CharacterLimitTextarea from "../../components/common/CharacterLimitTextarea";
 
 const StyleGuide: React.FC = () => {
   const [text, setText] = useState("");
+  const [activePreview, setAcivePreview] = useState<number>(1);
+
+  const onPreview = (id: number) => {
+    setAcivePreview(id);
+  };
 
   const handleTextChange = (newValue: string) => {
     setText(newValue);
@@ -445,6 +452,34 @@ const StyleGuide: React.FC = () => {
           id="message"
           name="message"
           onChange={handleTextChange}
+        />
+      </div>
+      <div className="w-full">
+        <h2 className="mb-3 text-2xl font-semibold text-gray-800">
+          Email Template Paginated Table List
+        </h2>
+
+        <div className="rounded-lg bg-zinc-950 p-4">
+          <span className="block font-mono text-sm text-gray-100">
+            <span className="text-pink-400">PaginatedTemplateList</span> {"{"}
+          </span>
+          <span className="ml-4 block font-mono text-sm text-gray-100">
+            itemsPerPage<span className="text-pink-400">: </span>number;
+            <br />
+            onPreview<span className="text-pink-400">: </span>() =&gt; void;
+            <br />
+            templates: [];
+            <br />
+            activePreview<span className="text-pink-400">: </span>number;
+            <br />
+          </span>
+          <span className="block font-mono text-sm text-gray-100">{"}"}</span>
+        </div>
+        <PaginatedTemplateList
+          itemsPerPage={5}
+          onPreview={onPreview}
+          templates={templateTableList}
+          activePreview={activePreview}
         />
       </div>
     </main>

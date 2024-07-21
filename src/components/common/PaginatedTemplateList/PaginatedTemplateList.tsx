@@ -13,12 +13,14 @@ interface PaginatedTemplateListProperties {
   }[];
   onPreview: (id: number) => void;
   itemsPerPage: number;
+  activePreview: number;
 }
 
 const PaginatedTemplateList = ({
   templates,
   onPreview,
   itemsPerPage,
+  activePreview,
 }: PaginatedTemplateListProperties) => {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(templates.length / itemsPerPage);
@@ -53,7 +55,7 @@ const PaginatedTemplateList = ({
               key={template.id}
               template={template}
               onPreview={onPreview}
-              activePreview={template.id === 1 ? true : false}
+              activePreview={template.id === activePreview ? true : false}
             />
           ))}
         </tbody>
