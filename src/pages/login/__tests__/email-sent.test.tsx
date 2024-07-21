@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 
 import EmailSentPage from "~/pages/login/email-sent";
 
-describe("home Component", () => {
+describe("Email Sent Component", () => {
   it("renders the header text", () => {
     expect.assertions(1);
     render(<EmailSentPage />);
