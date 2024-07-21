@@ -43,6 +43,9 @@ jobs:
       - name: Lint code
         run: pnpm lint
 
+      - name: Build email
+        run: pnpm email:build
+
       - name: Build project
         run: pnpm build
 
