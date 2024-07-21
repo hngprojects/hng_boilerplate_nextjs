@@ -336,7 +336,7 @@ const ContactForm: React.FC = () => {
       <div className=" lg:w-4/5 lg:mr-24  p-8">
         <form
           onSubmit={handleSubmit}
-          className="mb-4 w-full rounded bg-subtle px-8 pb-8 pt-6"
+          className="mb-4 w-full rounded bg-background px-8 pb-8 pt-6"
           role="form"
         >
           {inputFields.map((field) => (
@@ -367,7 +367,7 @@ const ContactForm: React.FC = () => {
               placeholder="Message..."
               value={formData.message}
               onChange={handleChange}
-              className="w-full appearance-none rounded border-2 bg-subtle px-3 py-2 pb-[112px] leading-tight"
+              className="w-full appearance-none rounded border-2 bg-background px-3 py-2 pb-[112px] leading-tight"
             />
             {errors.message && (
               <p className="text-xs italic text-destructive">
