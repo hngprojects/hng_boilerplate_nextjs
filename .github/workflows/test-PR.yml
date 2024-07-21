@@ -16,7 +16,9 @@ jobs:
           version: 9
       - run: pnpm install
       - name: "Test"
-        run: pnpm run test:ci
+        run: pnpm run test:ci -- --max-warnings 0
+      - name: "Lint Check"
+        run: pnpm lint:fix --max-warnings 0
       - name: "Upload Coverage"
         uses: actions/upload-artifact@v4
         with:
