@@ -1,4 +1,4 @@
-import { render } from "../../../test/utils";
+import { render } from "~/test/utils";
 import Page from "./page";
 
 describe("page tests", () => {
