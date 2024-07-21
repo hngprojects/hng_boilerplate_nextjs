@@ -37,7 +37,7 @@ const Dashboard: React.FC = () => {
                 </div>
         </div>
 
-        <div className="">
+          <div className="">
             {tab == 1 && (
               <div className="flex flex-col gap-[16px]">
                 <div className="flex flex-col gap-[16px] md:flex-row">
