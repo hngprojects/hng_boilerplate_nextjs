@@ -1,4 +1,5 @@
 import CareerCardParent from "~/components/common/CareerCard";
+import EmptyList from "~/components/common/Empty List/EmptyList";
 import CareerListPagination from "~/components/common/PaginationButton/CareerListPagination";
 
 type JobListingsProperties = {
@@ -42,27 +43,37 @@ export default async function JobListings({ page }: JobListingsProperties) {
 
   // simulate data fetching
   const jobsData = await getData({ page, limit });
-  return jobsData.jobs ? (
-    <div className="flex flex-col items-center gap-6 pb-[134px]">
-      <div className="flex flex-col items-center gap-8">
-        <div
-          data-testid="job-listings"
-          className="grid grid-cols-1 gap-y-5 md:grid-cols-2"
-        >
-          {jobsData.jobs.map((_, index) => (
-            <CareerCardParent key={index} />
-          ))}
+  return (
+    <>
+      {!jobsData ||
+      !jobsData.jobs ||
+      !Array.isArray(jobsData.jobs) ||
+      jobsData.jobs.length === 0 ? (
+        <EmptyList
+          image="/images/no-jobs.svg"
+          mainText="No available Jobs at the moment"
+          subText="Come back later!"
+        />
+      ) : (
+        <div className="flex flex-col items-center gap-6 pb-[134px]">
+          <div className="flex flex-col items-center gap-8">
+            <div
+              data-testid="job-listings"
+              className="grid grid-cols-1 gap-y-5 md:grid-cols-2"
+            >
+              {jobsData.jobs.map((_, index) => (
+                <CareerCardParent key={index} />
+              ))}
+            </div>
+            <div className="flex w-full items-center justify-end px-5">
+              <p className="text-lg">{`Showing ${limit} of ${jobsData.total} jobs`}</p>
+            </div>
+          </div>
+          <div className="flex w-full items-center justify-center">
+            <CareerListPagination page={page} total={jobsData.total} />
+          </div>
         </div>
-        <div className="flex w-full items-center justify-end px-5">
-          <p className="text-lg">{`Showing ${limit} of ${jobsData.total} jobs`}</p>
-        </div>
-      </div>
-      <div className="flex w-full items-center justify-center">
-        <CareerListPagination page={page} total={jobsData.total} />
-      </div>
-    </div>
-  ) : (
-    // career page error component will go here
-    <></>
+      )}
+    </>
   );
 }
