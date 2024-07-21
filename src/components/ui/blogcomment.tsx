@@ -23,7 +23,7 @@ const BlogComment: React.FC<BlogCommentProperties> = ({ data }) => {
           <Image
             width={30}
             height={30}
-            src="/images/person.svg"
+            src="/images/blogcommentsection/person.svg"
             alt="profile image"
           />
         </div>
