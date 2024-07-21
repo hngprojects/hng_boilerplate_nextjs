@@ -16,9 +16,9 @@ export type WaitlistCardProperties = CardProperties & {
   cardIcon: string;
 };
 
-const waitlistBorderStyle = "border-[1px] border-[#525252] border-solid";
+const waitlistBorderStyle = "border-[1px] border-neutral-dark-1 border-solid";
 const ellipse =
-  "inline bg-[#F97316] h-[53px] w-[53px] rounded-[9999px] flex justify-center items-center mb-[12px]";
+  "inline bg-primary h-[53px] w-[53px] rounded-[9999px] flex justify-center items-center mb-[12px]";
 
 const WaitlistCard = ({
   className,
@@ -30,7 +30,7 @@ const WaitlistCard = ({
   return (
     <Card
       className={cn(
-        `w-[100%] bg-[#fafafa] md:w-[320px] ${waitlistBorderStyle}`,
+        `w-[100%] bg-card-background md:w-[320px] ${waitlistBorderStyle}`,
         className,
       )}
       {...properties}
@@ -49,7 +49,7 @@ const WaitlistCard = ({
         </div>
         <CardTitle
           role="cardTitle"
-          className={cn("text-[18px] text-[#525252]")}
+          className={cn("text-[18px] text-neutral-dark-1")}
         >
           {cardTitle}
         </CardTitle>
