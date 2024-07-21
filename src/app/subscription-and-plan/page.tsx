@@ -1,11 +1,11 @@
-import Image from "next/image";
-
 import {
   managementData,
   projectData,
   sharingData,
   supportData,
 } from "../api/userdata";
+
+import Image from "next/image";
 
 interface Dataprops {
   title: string;
@@ -61,7 +61,7 @@ const SubscriptionAndPlan = () => {
           {projectData.map((item: Dataprops) => (
             <div
               key={item.id}
-              className="flex items-start justify-start border-[0.05restroke-colors-stroke px-2 py-4 text-[14px] sm:justify-start"
+              className="border-restroke-colors-stroke flex items-start justify-start border-[0.05px] px-2 py-4 text-[14px] sm:justify-start"
             >
               <p className="basis-[70%] sm:basis-[45%]">{item.title}</p>
               <p className="basis-[25%] sm:basis-[45%]">{item.value}</p>
@@ -78,7 +78,7 @@ const SubscriptionAndPlan = () => {
           {sharingData.map((item: Dataprops) => (
             <div
               key={item.id}
-              className="flex items-center justify-start border-[0.05restroke-colors-stroke px-2 py-4 text-[14px] sm:justify-start"
+              className="border-restroke-colors-stroke flex items-center justify-start border-[0.05px] px-2 py-4 text-[14px] sm:justify-start"
             >
               <p className="basis-[70%] sm:basis-[45%]">{item.title}</p>
               <div className="basis-[25%] sm:basis-[45%]">
@@ -103,7 +103,7 @@ const SubscriptionAndPlan = () => {
           {managementData.map((item: Dataprops) => (
             <div
               key={item.id}
-              className="flex items-center justify-start border-[0.05restroke-colors-stroke px-2 py-4 text-[14px] sm:justify-start"
+              className="border-restroke-colors-stroke flex items-center justify-start border-[0.05px] px-2 py-4 text-[14px] sm:justify-start"
             >
               <p className="basis-[70%] sm:basis-[45%]">{item.title}</p>
               <div className="basis-[25%] sm:basis-[45%]">
@@ -128,7 +128,7 @@ const SubscriptionAndPlan = () => {
           {supportData.map((item: Dataprops) => (
             <div
               key={item.id}
-              className="justart flex items-center border-[0.05restroke-colors-stroke px-2 py-4 text-[14px] sm:justify-start"
+              className="justart border-restroke-colors-stroke flex items-center border-[0.05px] px-2 py-4 text-[14px] sm:justify-start"
             >
               <p className="basis-[70%] sm:basis-[45%]">{item.title}</p>
               <div className="basis-[25%] sm:basis-[45%]">
@@ -150,12 +150,12 @@ const SubscriptionAndPlan = () => {
           Recent
         </div>
 
-        <div className="flex items-center justify-between border-[0.05restroke-colors-stroke px-2 py-4 text-[14px]">
+        <div className="border-spacing-5restroke-colors-stroke flex items-center justify-between border-[0.05px] px-2 py-4 text-[14px]">
           <span className="basis-[45%] text-start">Date</span>
           <span className="basis-[30%] text-start">Status</span>
           <span className="basis-[30%] text-start">Invoice</span>
         </div>
-        <div className="flex items-center justify-between border-[0.05restroke-colors-stroke px-2 py-4 text-[14px]">
+        <div className="border-restroke-colors-stroke flex items-center justify-between border-[0.05px] px-2 py-4 text-[14px]">
           <span className="basis-[45%] text-start">7-7-24</span>
           <span className="basis-[30%] text-start">paid</span>
           <a href="/" className="basis-[30%] text-start text-primary">
@@ -168,7 +168,7 @@ const SubscriptionAndPlan = () => {
         <button className="mr-2 rounded bg-primary px-2 py-2 text-[10px] text-white sm:mr-4 sm:px-4 sm:text-[12px]">
           Upgrade Subscription
         </button>
-        <button className="text-neutralColor-dark-2 ml-2 rounded border-[0.05restroke-colors-stroke px-2 py-2 text-[10px] sm:ml-4 sm:px-4 sm:text-[12px]">
+        <button className="text-neutralColor-dark-2 ml-2 rounded border-[0.05px] border-stroke-colors-stroke px-2 py-2 text-[10px] sm:ml-4 sm:px-4 sm:text-[12px]">
           Cancel Subscription
         </button>
       </div>
