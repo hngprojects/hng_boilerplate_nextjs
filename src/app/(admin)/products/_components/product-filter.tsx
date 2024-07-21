@@ -27,7 +27,7 @@ const ProductFilter = ({
   const { isOpenFilterModal, updateFilterModal } = useProductModal();
   const router = useRouter();
   const search = useSearchParams();
-  const filter = search.get("filter");
+  const filter = search?.get("filter");
   const filterReference = useRef<HTMLDivElement>(null);
   const filterTriggerReference = useRef<HTMLButtonElement>(null);
 
