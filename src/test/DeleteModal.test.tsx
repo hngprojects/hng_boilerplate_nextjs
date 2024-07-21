@@ -2,8 +2,8 @@ import { fireEvent, render, screen } from "@testing-library/react";
 
 import DeleteModal from "~/components/modals/DeleteModal";
 
-describe("DeleteModal", () => {
-  test("should display the modal correctly when visible", () => {
+describe("deleteModal", () => {
+  it("should display the modal correctly when visible", () => {
     render(<DeleteModal closeDeleteModal={vi.fn()} />);
     const modalContainer = screen.getByTestId("modal-container");
     const modalContent = screen.getByTestId("modal-content");
@@ -12,7 +12,7 @@ describe("DeleteModal", () => {
     expect(modalContent).toBeVisible();
   });
 
-  test("should be responsive across all screens", () => {
+  it("should be responsive across all screens", () => {
     render(<DeleteModal closeDeleteModal={vi.fn()} />);
     const modalContent = screen.getByTestId("modal-content");
 
@@ -26,17 +26,17 @@ describe("DeleteModal", () => {
     expect(modalContent).toHaveClass("left-[50%]");
   });
 
-  test("should close the modal when clicking outside of the modal content", () => {
+  it("should close the modal when clicking outside of the modal content", () => {
     const handleClose = vi.fn();
     render(<DeleteModal closeDeleteModal={handleClose} />);
 
     const modalContainer = screen.getByTestId("modal-container");
     fireEvent.click(modalContainer);
 
-    expect(handleClose).toHaveBeenCalled();
+    expect(handleClose).toHaveBeenCalledWith();
   });
 
-  test("should properly align heading, message, and buttons", () => {
+  it("should properly align heading, message, and buttons", () => {
     render(<DeleteModal closeDeleteModal={vi.fn()} />);
     const modalHeading = screen.getByTestId("modal-heading");
     const modalMessage = screen.getByTestId("modal-message");
@@ -47,27 +47,27 @@ describe("DeleteModal", () => {
     expect(modalButtons).toBeInTheDocument();
   });
 
-  test("should close the modal when clicking the Cancel button", () => {
+  it("should close the modal when clicking the Cancel button", () => {
     const handleClose = vi.fn();
     render(<DeleteModal closeDeleteModal={handleClose} />);
 
     const cancelButton = screen.getByTestId("modal-buttons");
     fireEvent.click(cancelButton);
 
-    expect(handleClose).toHaveBeenCalled();
+    expect(handleClose).toHaveBeenCalledWith();
   });
 
-  test("should close the modal when clicking the Delete button", () => {
+  it("should close the modal when clicking the Delete button", () => {
     const handleClose = vi.fn();
     render(<DeleteModal closeDeleteModal={handleClose} />);
 
     const deleteButton = screen.getByTestId("modal-buttons");
     fireEvent.click(deleteButton);
 
-    expect(handleClose).toHaveBeenCalled();
+    expect(handleClose).toHaveBeenCalledWith();
   });
 
-  test("should correctly apply overlay opacity", () => {
+  it("should correctly apply overlay opacity", () => {
     render(<DeleteModal closeDeleteModal={vi.fn()} />);
     const modalContainer = screen.getByTestId("modal-container");
     expect(modalContainer).toHaveClass("bg-opacity-[25%]");
