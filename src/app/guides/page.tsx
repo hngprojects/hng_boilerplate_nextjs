@@ -9,6 +9,7 @@ import HBPCommentBox from "~/components/common/Comment";
 import { commentsData } from "~/components/common/Comment/ComentData";
 import Sidebar from "~/components/layouts/Sidebar";
 import CharacterLimitTextarea from "../../components/common/CharacterLimitTextarea";
+import PricePlanCard from "~/components/common/PricePlanCard/PricePlanCard";
 
 const StyleGuide: React.FC = () => {
   const [text, setText] = useState("");
@@ -446,6 +447,9 @@ const StyleGuide: React.FC = () => {
           name="message"
           onChange={handleTextChange}
         />
+      </div>
+      <div>
+        <PricePlanCard />
       </div>
     </main>
   );
