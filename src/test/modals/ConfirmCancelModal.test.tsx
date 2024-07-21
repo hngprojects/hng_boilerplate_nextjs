@@ -1,8 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 
-// import { describe, expect, it, vi } from "vitest";
-
-import ConfirmCancelModal from "../../components/modals/";
+import ConfirmCancelModal from "../../components/modals/ConfirmCancelModal";
 
 describe("ConfirmCancelModal", () => {
   it("renders correctly when open", () => {
