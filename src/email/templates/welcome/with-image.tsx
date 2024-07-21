@@ -1,8 +1,17 @@
-import { Button, Img, Preview, Text } from "@react-email/components";
+import {
+  Body,
+  Button,
+  Container,
+  Font,
+  Head,
+  Heading,
+  Img,
+  Preview,
+  Section,
+  Text,
+} from "@react-email/components";
 
-import Star from "~/email/templates/_components/Star";
 import Tailwindwrapper from "~/email/templates/_components/tailwindWrapper";
-import Layout from "~/email/templates/_layouts/Layout";
 
 interface IProperties {
   name: string;
@@ -40,54 +49,70 @@ export const WelcomeWithImage = (properties: IProperties) => {
     app_name,
   } = properties;
   const baseUrl = process.env.BASE_URL
-    ? `${process.env.BASE_URL}/images/`
-    : "/images/";
+    ? `${process.env.BASE_URL}/images/welcome-email-with-image/`
+    : "localhost:3000/images/welcome-email-with-image/";
+
   return (
     <Tailwindwrapper>
       <Preview>{`Welcome ${name}`}</Preview>
-      <Layout>
-        <section
+      <Head>
+        <Font
+          fontFamily="Inter"
+          fallbackFontFamily="sans-serif"
+          webFont={{
+            url: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
+            format: "woff2",
+          }}
+        />
+      </Head>
+      <Body className="m-0">
+        <Section
           data-testid={EMAIL_WITH_IMAGE_TEST_ID}
           className="mx-auto flex max-w-[680px] flex-col items-center justify-center gap-10 self-stretch pt-12 md:gap-14 md:pt-14"
         >
-          <div className="p-0 text-center md:px-14">
+          <Container className="p-0 text-center md:px-14">
             <Img
               data-testid={IMAGES_TEST_ID}
-              src={baseUrl + "email-welcome.png"}
+              src={`${baseUrl}email-welcome.png`}
               alt={main_heading}
               className="mx-auto w-full min-w-[336px] max-w-[80%]"
             />
-          </div>
-          <div className="flex flex-col gap-10 self-stretch px-14 pb-12 md:gap-14 md:pb-14">
-            <header className="flex w-full flex-col items-center justify-center gap-2 md:gap-3">
-              <h4 className="my-0 text-center text-xl font-semibold text-primary md:text-2xl">
+          </Container>
+          <Container className="flex flex-col gap-10 self-stretch px-14 pb-12 md:gap-14 md:pb-14">
+            <Container className="flex w-full flex-col items-center justify-center gap-2 md:gap-3">
+              <Heading className="my-0 text-center text-xl font-semibold text-primary md:text-2xl">
                 {main_heading}
-              </h4>
-              <h6 className="my-0 text-center text-base font-medium md:text-lg">
+              </Heading>
+              <Heading className="my-0 text-center text-base font-medium md:text-lg">
                 {sub_heading}
-              </h6>
-            </header>
+              </Heading>
+            </Container>
             <main className="flex w-full flex-col gap-7 self-stretch md:gap-8">
               <p className="my-0 text-base font-semibold md:text-lg">
                 Hi <span data-testid={PERSONALIZED_NAME_TEST_ID}>{name}</span>,
               </p>
-              <div className="flex flex-col gap-6 md:gap-7">
+              <Container className="flex flex-col gap-6 md:gap-7">
                 <p className="my-0 text-sm font-normal md:text-base">
                   {description}
                 </p>
                 {with_highlights && (
-                  <div className="flex flex-col gap-5">
+                  <Container className="flex flex-col gap-5">
                     <p className="my-0 text-base font-semibold">
                       {highlights.title}
                     </p>
-                    <div className="flex flex-col gap-4">
+                    <Container className="flex flex-col gap-4">
                       {highlights.body.map((item, index) => (
                         <Text
                           key={index}
                           className="my-0 flex items-center gap-3 leading-4 md:gap-4"
                         >
                           <span className="text-primary">
-                            <Star />
+                            <Img
+                              src={`${baseUrl}star.png`}
+                              alt="Star Icon"
+                              width="24"
+                              height="24"
+                            />
                           </span>
                           <span>
                             <span className="font-semibold">{item.item}: </span>
@@ -97,27 +122,27 @@ export const WelcomeWithImage = (properties: IProperties) => {
                           </span>
                         </Text>
                       ))}
-                    </div>
-                  </div>
+                    </Container>
+                  </Container>
                 )}
-              </div>
-              <div className="text-center">
+              </Container>
+              <Container className="text-center">
                 <Button
                   href={`${action_url}${tracking_parameters}`}
                   data-testid={BUTTON_TEST_ID}
-                  className="block rounded-[8px] bg-[#F97316] px-10 py-2.5 text-base text-white sm:inline"
+                  className="block rounded-[8px] bg-primary px-10 py-2.5 text-base text-white sm:inline"
                 >
                   {cta_text}
                 </Button>
-              </div>
+              </Container>
             </main>
-            <footer className="flex w-full flex-col gap-2">
+            <Container className="flex w-full flex-col gap-2">
               <Text className="my-0 text-sm font-medium">Regards,</Text>
               <Text className="my-0 text-sm font-medium">{app_name}</Text>
-            </footer>
-          </div>
-        </section>
-      </Layout>
+            </Container>
+          </Container>
+        </Section>
+      </Body>
     </Tailwindwrapper>
   );
 };
