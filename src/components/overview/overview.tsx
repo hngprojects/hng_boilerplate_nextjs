@@ -106,25 +106,25 @@ export default function Home() {
         <DataCard
           heading={{
             title: "Total Revenue",
-            icon: <DollarSign className="h-[24px]" />,
+            icon: <DollarSign />,
           }}
           content={{ amount: "$45,000.00", subtext: "+20% from last month" }}
         />
         <DataCard
           heading={{
             title: "Subscriptions",
-            icon: <Users className="h-[24px]" />,
+            icon: <Users />,
           }}
           content={{ amount: "+2350", subtext: "+150% from last month" }}
         />
         <DataCard
-          heading={{ title: "Sales", icon: <PanelTop className="h-[24px]" /> }}
+          heading={{ title: "Sales", icon: <PanelTop /> }}
           content={{ amount: "15,000", subtext: "+10% from last month" }}
         />
         <DataCard
           heading={{
             title: "Active Now",
-            icon: <Activity className="h-[24px]" />,
+            icon: <Activity />,
           }}
           content={{ amount: "574", subtext: "+201 since last hour" }}
         />
