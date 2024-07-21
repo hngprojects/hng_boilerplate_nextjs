@@ -8,15 +8,7 @@ import { Breadcrumb } from "~/components/common/Breadcrumb";
 import CustomButton from "~/components/common/Button/button";
 import HBPCommentBox from "~/components/common/Comment";
 import { commentsData } from "~/components/common/Comment/ComentData";
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 import CustomInput from "~/components/common/Input/input";
-=======
-import HBPCommentBox from "~/components/common/Comment";
-import { commentsData } from "~/components/common/Comment/ComentData";
->>>>>>> a66c77a (ComentBox Display)
->>>>>>> 0b6f045 (ComentBox Display)
 import Sidebar from "~/components/layouts/Sidebar";
 import CharacterLimitTextarea from "../../components/common/CharacterLimitTextarea";
 
@@ -46,23 +38,23 @@ const StyleGuide: React.FC = () => {
         <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-subtle px-4 py-4 text-foreground">
           bg-subtle, text-foreground
         </div>
-        <div className="bg-neutral-dark-1 flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
+        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-neutral-dark-1 px-4 py-4 text-background">
           bg-neutral-dark-1, text-background
         </div>
-        <div className="bg-neutral-dark-2 flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
+        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-neutral-dark-2 px-4 py-4 text-background">
           bg-neutral-dark-2, text-background
         </div>
 
-        <div className="bg-error flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
+        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-error px-4 py-4 text-background">
           bg-error, text-background
         </div>
         <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-destructive px-4 py-4 text-background">
           bg-destructive, text-background
         </div>
-        <div className="bg-warning flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
+        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-warning px-4 py-4 text-background">
           bg-warning, text-background
         </div>
-        <div className="bg-success flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
+        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-success px-4 py-4 text-background">
           bg-success, text-background
         </div>
         <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg border border-border px-4 py-4 text-foreground">
@@ -319,6 +311,225 @@ const StyleGuide: React.FC = () => {
           </div>
         </div>
       </div>
+      <h2 className="text-2xl font-semibold">Input Components</h2>
+      <div
+        className="grid w-full items-start items-center gap-4"
+        style={{ gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))" }}
+      >
+        <CustomInput
+          placeholder="Email"
+          isDisabled={false}
+          isButtonVisible={true}
+          buttonContent="Save"
+          gap="lg"
+          label="Email"
+          variant="primary"
+          labelPosition="top"
+        />
+        <CustomInput
+          placeholder="Enter Your name"
+          isDisabled={true}
+          isButtonVisible={true}
+          buttonContent="Save"
+          gap="lg"
+          label="Email"
+          variant="border"
+          labelPosition="top"
+        />
+        <CustomInput
+          placeholder="Hello"
+          isDisabled={false}
+          isButtonVisible={false}
+          buttonContent="Save"
+          gap="lg"
+          label="Email"
+          variant="border"
+          labelPosition="top"
+        />
+        <CustomInput
+          placeholder="Hello"
+          isDisabled={false}
+          isButtonVisible={true}
+          buttonContent="Save"
+          gap="lg"
+          label="Enter Your Name"
+          variant="primary"
+          labelPosition="top"
+        />
+        <CustomInput
+          placeholder="Hello"
+          isDisabled={false}
+          isButtonVisible={true}
+          buttonContent="Save"
+          gap="lg"
+          label="Email"
+          variant="border"
+          labelPosition="side"
+        />
+        <CustomInput
+          placeholder="Hello"
+          isDisabled={false}
+          isButtonVisible={false}
+          buttonContent=""
+          gap="lg"
+          variant="primary"
+          labelPosition="top"
+        />
+      </div>
+      <h2 className="text-2xl font-semibold">Usage</h2>
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2">
+          <span>Import the custom input component</span>
+          <div className="rounded-lg bg-zinc-950 p-4">
+            <span className="block font-mono text-sm text-white">
+              import <span className="text-blue-400">CustomInput</span> from{" "}
+              <span className="text-yellow-400">
+                &quot;~/components/common/Input/input&quot;
+              </span>
+              ;
+            </span>
+          </div>
+        </div>
+        <div className="flex flex-col gap-2">
+          <span>Variant Types</span>
+          <div className="rounded-lg bg-zinc-950 p-4">
+            <span className="block font-mono text-sm text-gray-100">
+              <span className="text-pink-400">type Variant</span> {"{"}
+            </span>
+            <span className="ml-4 block font-mono text-sm text-gray-100">
+              primary <br />
+              border <br />
+            </span>
+            <span className="block font-mono text-sm text-gray-100">{"}"}</span>
+          </div>
+        </div>
+        <div className="flex flex-col gap-2">
+          <span>Gap Types</span>
+          <div className="rounded-lg bg-zinc-950 p-4">
+            <span className="block font-mono text-sm text-gray-100">
+              <span className="text-pink-400">type gap</span> {"{"}
+            </span>
+            <span className="ml-4 block font-mono text-sm text-gray-100">
+              sm <br />
+              md <br />
+              lg <br />
+            </span>
+            <span className="block font-mono text-sm text-gray-100">{"}"}</span>
+          </div>
+        </div>
+        <div className="flex flex-col gap-2">
+          <span>Label Position Types</span>
+          <div className="rounded-lg bg-zinc-950 p-4">
+            <span className="block font-mono text-sm text-gray-100">
+              <span className="text-pink-400">type LabelPosition</span> {"{"}
+            </span>
+            <span className="ml-4 block font-mono text-sm text-gray-100">
+              side <br />
+              top <br />
+            </span>
+            <span className="block font-mono text-sm text-gray-100">{"}"}</span>
+          </div>
+        </div>
+        <div className="flex flex-col gap-2">
+          <span>Accepted Custom Input Props</span>
+          <div className="rounded-lg bg-zinc-950 p-4">
+            <span className="block font-mono text-sm text-gray-100">
+              <span className="text-pink-400">InputProps</span> {"{"}
+            </span>
+            <span className="ml-4 block font-mono text-sm text-gray-100">
+              variant<span className="text-pink-400">?: </span>Variant;
+              <br />
+              gap<span className="text-pink-400">?: </span>Gap;
+              <br />
+              label<span className="text-pink-400">?: </span>string;
+              <br />
+              placeholder<span className="text-pink-400">: </span>string;
+              <br />
+              type<span className="text-pink-400">?: </span>string;
+              <br />
+              value<span className="text-pink-400">?: </span>string
+              <br />
+              onChange<span className="text-pink-400">?: </span>
+              React.ChangeEventHandler&lt;HTMLInputElement&gt;;
+              <br />
+              onFocus<span className="text-pink-400">?: </span>
+              React.FocusEventHandler&lt;HTMLInputElement&gt;;
+              <br />
+              isButtonVisible<span className="text-pink-400">?: </span>boolean;
+              <br />
+              buttonContent<span className="text-pink-400">?: </span>string;
+              <br />
+              onButtonClick<span className="text-pink-400">?: </span>
+              React.MouseEventHandler&lt;HTMLInputElement&gt;;
+              <br />
+              isDisabled<span className="text-pink-400">?: </span>boolean;
+              <br />
+              labelPosition<span className="text-pink-400">?: </span>
+              LabelsPosition;
+            </span>
+            <span className="block font-mono text-sm text-gray-100">{"}"}</span>
+          </div>
+        </div>
+        <div className="flex flex-col gap-2">
+          <span>Example</span>
+          <div className="rounded-lg bg-zinc-950 p-4">
+            <span className="block font-mono text-sm text-gray-100">
+              return (
+            </span>
+            <span className="ml-4 block font-mono text-sm text-gray-100">
+              <span className="text-green-400">{"<"}</span>
+              <span className="text-blue-400">CustomInput</span>
+              <br />
+
+              <span className="ml-4">
+                variant=
+                <span className="text-yellow-400">
+                  &quot;primary&quot;
+                </span>{" "}
+                <br />
+              </span>
+              <span className="ml-4">
+                placeholder=
+                <span className="text-yellow-400">&quot;Hello&quot;</span>{" "}
+                <br />
+              </span>
+              <span className="ml-4">
+                isDisabled=
+                <span className="text-yellow-400">false</span> <br />
+              </span>
+              <span className="ml-4">
+                isButtonVisible={<span className="text-yellow-400">true</span>}{" "}
+                <br />
+              </span>
+              <span className="ml-4">
+                buttonContent=
+                {<span className="text-yellow-400">&quot;Save&quot;</span>}{" "}
+                <br />
+              </span>
+              <span className="ml-4">
+                gap={<span className="text-yellow-400">&quot;lg&quot;</span>}{" "}
+                <br />
+              </span>
+              <span className="ml-4">
+                label=
+                {
+                  <span className="text-yellow-400">&quot;Email&quot;</span>
+                }{" "}
+                <br />
+                <span className="ml-4">
+                  labelPosition=
+                  {
+                    <span className="text-yellow-400">&quot;top&quot;</span>
+                  }{" "}
+                  <br />
+                </span>
+                <span className="text-green-400">{"/>"}</span> <br />
+              </span>
+            </span>
+            <span className="block font-mono text-sm text-gray-100">);</span>
+          </div>
+        </div>
+      </div>
       <h2 className="text-2xl font-semibold">Breadcrumbs</h2>
       <div
         className="grid w-full items-start gap-4"
@@ -455,24 +666,27 @@ const StyleGuide: React.FC = () => {
         </div>
       </div>
 
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold">HBP Comment Box</h2>
-        {commentsData.map((comment) => (
-          <HBPCommentBox
-            key={comment.id}
-            id={comment.id}
-            avatar={comment.avatar}
-            name={comment.name}
-            username={comment.username}
-            content={comment.content}
-            timestamp={comment.timestamp}
-            date={comment.date}
-            likes={comment.likes}
-            dislikes={comment.dislikes}
-          />
-        ))}
-        {/* Add more Comment components as needed */}
-<<<<<<< HEAD
+      <div className="space-y-4 rounded-lg bg-gray-100 p-4 shadow-md">
+        <h2 className="text-2xl font-semibold text-gray-800">
+          HBP Comment Box
+        </h2>
+        <div className="flex flex-col space-y-4">
+          {commentsData.map((comment) => (
+            <HBPCommentBox
+              key={comment.id}
+              id={comment.id}
+              avatar={comment.avatar}
+              name={comment.name}
+              username={comment.username}
+              content={comment.content}
+              timestamp={comment.timestamp}
+              date={comment.date}
+              likes={comment.likes}
+              dislikes={comment.dislikes}
+              className="rounded-lg bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
+            />
+          ))}
+        </div>
       </div>
 
       <div className="w-full">
@@ -503,8 +717,6 @@ const StyleGuide: React.FC = () => {
           name="message"
           onChange={handleTextChange}
         />
-=======
->>>>>>> 1a8e0f3 (ComentBox Display)
       </div>
     </main>
   );
