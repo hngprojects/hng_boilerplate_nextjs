@@ -1,3 +1,5 @@
+// Need to use this as SVG because I'm manipulating some values based on state
+
 interface CheckmarkProperties {
   color: string;
 }
