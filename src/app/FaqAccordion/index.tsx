@@ -1,4 +1,4 @@
-import React from "react";
+import {FC} from "react";
 
 import {
   Accordion,
@@ -12,7 +12,7 @@ interface FaqAccordionProperties {
   answer: string;
 }
 
-const FaqAccordion: React.FC<FaqAccordionProperties> = ({
+const FaqAccordion: FC<FaqAccordionProperties> = ({
   question,
   answer,
 }) => {
