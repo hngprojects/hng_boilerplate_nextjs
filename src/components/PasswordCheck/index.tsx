@@ -9,6 +9,7 @@ interface PasswordCheckProperties {
   onStrengthChange: (strength: PasswordCheck) => void;
 }
 
+
 interface PasswordCheck {
   minLengthCheck: boolean;
   containsUppercase: boolean;

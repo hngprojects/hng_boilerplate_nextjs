@@ -6,7 +6,7 @@
 import PasswordCheck from "~/components/common/PasswordCheck/index";
 ```
 
-### password Props
+### password Prop
 
 ```
 "password"
