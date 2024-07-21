@@ -1,10 +1,13 @@
 import React from "react";
 
 import Faqs from "~/components/common/Faqs";
+import Footer from "~/components/layouts/Footer";
+import Navbar from "~/components/layouts/Navbar";
 
 const faq: React.FC = () => {
   return (
     <div>
+      <Navbar />
       <main className="mt-8 flex min-h-screen flex-col px-[7.5rem] max-lg:px-10 max-md:px-5">
         <p className="text-neutral-dark-1 text-opacity-50 max-md:order-2 max-md:hidden">
           Contact Us / <span className="font-normal text-primary">FAQ</span>
@@ -30,6 +33,7 @@ const faq: React.FC = () => {
           </section>
         </div>
       </main>
+      <Footer />
     </div>
   );
 };

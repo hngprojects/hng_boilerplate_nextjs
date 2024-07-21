@@ -1,4 +1,4 @@
-import { render } from "../../test/utils";
+import { render } from "~/test/utils";
 import FaqAccordion from "./index";
 
 describe("accordion tests", () => {
