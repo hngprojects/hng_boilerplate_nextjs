@@ -30,7 +30,7 @@ const Dashboard: React.FC = () => {
             <div className="flex flex-col gap-[24px]">
               <h1 className="text-xl font-bold">Dashboard</h1>
               <TabSwitcher tab={tab} setTab={setTab} />
-                    </div>
+            </div>
                     <div className="flex gap-[8px] items-center">
               <DateSwitcher />
               <button className="rounded-sm bg-primary px-[16px] py-[9.5px] text-sm text-white">
