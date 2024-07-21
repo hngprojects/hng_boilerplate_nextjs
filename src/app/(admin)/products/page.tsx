@@ -1,10 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
 
-import ProductContent from "./_components/product-content";
 import ProductFilter from "./_components/product-filter";
 import ProductHeader from "./_components/product-header";
+
+const ProductContent = dynamic(() => import("./_components/product-content"), {
+  ssr: false,
+});
 
 const ProductPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
