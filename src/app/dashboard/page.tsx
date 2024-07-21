@@ -52,7 +52,7 @@ const Dashboard: React.FC = () => {
                                     </div>
                                 </div>
                                 <div className="flex-1 flex flex-col p-[24px] rounded-lg border border-solid border-stroke_dashboard pb-[40px] shadow-custom-light">
-                                    <div className="flex justify-between items-center">
+                      <div className="flex items-center justify-between">
                         <p className="text-sm font-[500]">
                           {subscriptions.name}
                                         <People />
