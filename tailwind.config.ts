@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-module */
 import type { Config } from "tailwindcss";
 
 const config = {
@@ -26,7 +27,7 @@ const config = {
         foreground: "hsl(var(--foreground))",
         default: {
           DEFAULT: "hsl(var(--default))",
-          foreground: "hsl(var(--default-foreground))"
+          foreground: "hsl(var(--default-foreground))",
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",
@@ -72,8 +73,8 @@ const config = {
           foreground: "hsl(var(--popover-foreground))",
         },
         card: {
-          DEFAULT: "var(--card)",
-          foreground: "var(--card-foreground)",
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
         },
         error: "hsl(var(--error))",
         success: "hsl(var(--success))",
@@ -87,6 +88,12 @@ const config = {
         stroke: {
           "colors-stroke": "hsl(var(--stroke-colors-stroke))",
         },
+        breadcrumb: {
+          page: "hsl(var(--breadcrumb-page))",
+          foreground: "hsl(var(--breadcrumb-foreground))",
+        },
+        desaturatedBlue: "hsl(var(--desaturated-blue))",
+        grey50: "hsl(var(--grey50))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -109,8 +116,11 @@ const config = {
       },
     },
   },
-  // eslint-disable-next-line unicorn/prefer-module
-  plugins: [require("tailwindcss-animate")],
+
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@mertasan/tailwindcss-variables"),
+  ],
 } satisfies Config;
 
 export default config;
