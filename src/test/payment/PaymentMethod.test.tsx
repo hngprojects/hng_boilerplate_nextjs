@@ -5,7 +5,7 @@ import { describe, expect, it, vi } from "vitest";
 
 import PaymentMethod from "../../components/paymentMethod/PaymentMethod";
 
-describe("PaymentMethod Component", () => {
+describe("paymentMethod Component", () => {
   const defaultProps = {
     image: "../../../public/images/logo(small).svg",
     header: "MasterCard",
@@ -17,6 +17,7 @@ describe("PaymentMethod Component", () => {
   };
 
   it("renders the component with given props", () => {
+    expect.assertions(6); // Updated number of assertions in this test
     render(<PaymentMethod {...defaultProps} />);
 
     // Check if the header is rendered
@@ -27,16 +28,16 @@ describe("PaymentMethod Component", () => {
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute(
       "src",
-    "../../../public/images/logo(small).svg",
+      "../../../public/images/logo(small).svg",
     );
     expect(image).toHaveAttribute("height", "40");
     expect(image).toHaveAttribute("width", "40");
 
-    // Check if the forms are rendered
     expect(screen.getByText("Form content")).toBeInTheDocument();
   });
 
   it("calls onClick when the radio button is clicked", () => {
+    expect.assertions(1);
     render(<PaymentMethod {...defaultProps} />);
 
     const radioButton = screen.getByRole("radio");
@@ -46,8 +47,10 @@ describe("PaymentMethod Component", () => {
   });
 
   it("renders the radio button with correct checked state", () => {
+    expect.assertions(2);
     const { rerender } = render(
-      <PaymentMethod {...defaultProps} active={true} />);
+      <PaymentMethod {...defaultProps} active={true} />,
+    );
 
     let radioButton = screen.getByRole("radio");
     expect(radioButton).toBeChecked();
@@ -59,13 +62,13 @@ describe("PaymentMethod Component", () => {
   });
 
   it("conditionally renders the forms section", () => {
+    expect.assertions(2);
     const { rerender } = render(
-      <PaymentMethod {...defaultProps} forms={undefined} />);
+      <PaymentMethod {...defaultProps} forms={undefined} />,
+    );
 
-    // Forms section should not be rendered
     expect(screen.queryByText("Form content")).not.toBeInTheDocument();
 
-    // Forms section should be rendered
     rerender(
       <PaymentMethod {...defaultProps} forms={<div>Form content</div>} />,
     );
