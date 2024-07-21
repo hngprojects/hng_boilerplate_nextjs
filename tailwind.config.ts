@@ -20,11 +20,11 @@ const config = {
     },
     extend: {
       fontSize: {
-        'xs': '12px',
-        'sm': '14px',
-        'base': '16px',
-        'lg': '24px',
-        'xl': '30px',
+        xs: "12px",
+        sm: "14px",
+        base: "16px",
+        lg: "24px",
+        xl: "30px",
       },
       colors: {
         neutral_dark_1: "#0A0A0A",
@@ -129,9 +129,9 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       boxShadow: {
-        'custom-light': '0px 1px 18px 0px rgba(10, 57, 176, 0.12)',
+        "custom-light": "0px 1px 18px 0px rgba(10, 57, 176, 0.12)",
       },
-    }
+    },
   },
 
   plugins: [

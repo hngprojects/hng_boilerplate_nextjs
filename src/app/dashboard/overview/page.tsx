@@ -2,34 +2,40 @@
 
 import React, { useState } from "react";
 
-import Card from "~/../../public/card.svg";
-import Dollar from "~/../../public/dollar.svg";
-import Growth from "~/../../public/growth.svg";
-import People from "~/../../public/people.svg";
+import CustomButton from "~/components/common/Button/button";
 import DateSwitcher from "~/components/common/DateSwitcher";
-import TabSwitcher from "~/components/common/TabSwitcher";
+import UserTabSwitch from "~/components/common/UserTabSwitch";
 import { Chart } from "~/components/layouts/Chart";
 import { customersData } from "~/data/customersData";
 import { chartData } from "~/data/graph";
 import { activeNow, sales, subscriptions, totalRevenue } from "~/data/overview";
+import Card from "../../../../public/card.svg";
+import Dollar from "../../../../public/dollar.svg";
+import Growth from "../../../../public/growth.svg";
+import People from "../../../../public/people.svg";
 import { formatPrice } from "../../../../utils/formatPrice";
 
 const Overview: React.FC = () => {
   const [tab, setTab] = useState(1);
 
   return (
-    <div className="flex min-h-screen p-[42px] pt-[110px]">
+    <div className="flex min-h-screen w-[inherit] p-[42px]">
       <div className="flex w-full flex-col gap-[24px]">
-        <div className="flex w-full flex-col items-center justify-between md:flex-row">
+        <div className="flex w-full flex-col items-start justify-between gap-[24px] md:flex-row md:items-center">
           <div className="flex flex-col gap-[24px]">
             <h1 className="text-xl font-bold">Dashboard</h1>
-            <TabSwitcher tab={tab} setTab={setTab} />
+            <UserTabSwitch tab={tab} setTab={setTab} />
           </div>
           <div className="flex items-center gap-[8px]">
             <DateSwitcher />
-            <button className="rounded-sm bg-primary px-[16px] py-[9.5px] text-sm text-white">
+
+            <CustomButton
+              variant="primary"
+              isLoading={false}
+              isDisabled={false}
+            >
               Download
-            </button>
+            </CustomButton>
           </div>
         </div>
 
@@ -37,7 +43,7 @@ const Overview: React.FC = () => {
           {tab === 1 && (
             <div className="flex flex-col gap-[16px]">
               <div className="flex flex-col gap-[16px] md:flex-row">
-                <div className="flex flex-1 flex-col gap-[16px] md:flex-row">
+                <div className="flex flex-1 flex-col gap-[16px] md:flex-col lg:flex-row">
                   <div className="flex flex-1 flex-col rounded-lg border border-solid border-stroke_dashboard p-[24px] pb-[40px] shadow-custom-light">
                     <div className="flex items-center justify-between">
                       <p className="text-sm font-[500]">{totalRevenue.name}</p>
@@ -66,7 +72,7 @@ const Overview: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-1 flex-col gap-[16px] md:flex-row">
+                <div className="flex flex-1 flex-col gap-[16px] md:flex-col lg:flex-row">
                   <div className="flex flex-1 flex-col rounded-lg border border-solid border-stroke_dashboard p-[24px] pb-[40px] shadow-custom-light">
                     <div className="flex items-center justify-between">
                       <p className="text-sm font-[500]">{sales.name}</p>
@@ -98,7 +104,7 @@ const Overview: React.FC = () => {
                   <div className="flex-[1]">
                     <h1 className="text-base font-bold">Overview</h1>
                   </div>
-                  <div className="flex-[9]">
+                  <div className="min-h-[250px] flex-[9]">
                     <Chart data={chartData} />
                   </div>
                 </div>

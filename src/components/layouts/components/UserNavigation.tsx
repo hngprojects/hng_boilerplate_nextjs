@@ -3,21 +3,21 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-function Navigation() {
+function UserNavigation() {
   const pathname = usePathname();
 
   const navItems = [
     {
       name: "Overview",
-      path: "/",
+      path: "/dashboard",
     },
     {
       name: "Orders",
-      path: "/orders",
+      path: "/dashboard/orders",
     },
     {
       name: "Customers",
-      path: "/customers",
+      path: "/dashboard/customers",
     },
   ];
 
@@ -38,4 +38,4 @@ function Navigation() {
   );
 }
 
-export default Navigation;
+export default UserNavigation;

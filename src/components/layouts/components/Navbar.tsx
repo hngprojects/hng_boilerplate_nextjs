@@ -6,10 +6,10 @@ import Boilerplate from "../../../../public/Boilerplate.svg";
 import Logo from "../../../../public/logo.svg";
 import Menu from "../../../../public/menu.svg";
 import Search from "../../../../public/search.svg";
-import Navigation from "../components/Navigation";
 import HelpDropdown from "./HelpDropdown";
 import NotificationDropdown from "./NotificationDropdown";
 import UserDropdown from "./UserDropdown";
+import UserNavigation from "./UserNavigation";
 
 const Navbar: React.FC = () => {
   const [openDropdown, setOpenDropdown] = useState<string | null>();
@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
         </div>
 
         <div className="flex items-center">
-          <Navigation />
+          <UserNavigation />
         </div>
       </div>
 

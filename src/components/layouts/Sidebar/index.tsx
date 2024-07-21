@@ -42,14 +42,14 @@ const Sidebar = () => {
         className={cn(
           "flex h-screen flex-col border-r bg-white transition-all duration-300",
           "dark:bg-neutralColor-dark-1",
-          isOpen ? "w-64" : "w-24",
+          isOpen ? "w-72" : "w-24",
         )}
       >
         <div className="mx-4 mb-5 mt-2 flex items-center justify-between p-4 px-2">
           <span
             className={cn(
-              "font-inter text-neutralColor-dark-1 text-center text-xl font-medium leading-[24.2px] dark:text-white",
-              !isOpen && "cursor-pointer",
+              "font-inter text-neutralColor-dark-1 text-center text-xl font-medium leading-[24.2px] duration-150 dark:text-white",
+              !isOpen && "cursor-pointer text-base",
             )}
             onClick={() => !isOpen && setIsOpen(true)}
           >

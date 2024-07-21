@@ -27,7 +27,7 @@ const Tabs = [
   },
 ];
 
-const TabSwitcher: React.FC<TabSwitcherProperties> = ({ tab, setTab }) => {
+const UserTabSwitch: React.FC<TabSwitcherProperties> = ({ tab, setTab }) => {
   return (
     <div className="flex rounded-md border border-solid border-slate_100 p-[5px]">
       {Tabs.map((tabItem) => (
@@ -45,4 +45,4 @@ const TabSwitcher: React.FC<TabSwitcherProperties> = ({ tab, setTab }) => {
   );
 };
 
-export default TabSwitcher;
+export default UserTabSwitch;

@@ -36,7 +36,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "src/components/common/TabSwitcher"  ],
+, "src/components/common/UserTabSwitch"  ],
   "exclude": [
     "node_modules"
   ]
