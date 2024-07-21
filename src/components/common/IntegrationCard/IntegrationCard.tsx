@@ -24,7 +24,7 @@ export const IntegrationCard = (properties: CardProperties) => {
   return (
     <div
       data-testid={INTEGRATION_CARD_TEST_ID}
-      className="flex h-[159.29px] w-full max-w-[341px] flex-col gap-6 rounded-lg border-[1px] border-border px-4 py-6 text-foreground"
+      className="flex min-h-[159.29px] w-full max-w-[341px] flex-col gap-6 rounded-lg border-[1px] border-border px-4 py-6"
     >
       <div className="flex w-full items-center justify-between">
         <Image
