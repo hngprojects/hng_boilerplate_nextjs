@@ -19,7 +19,7 @@ const Pagination = ({
 }: PaginationProperties) => {
   const getPageNumbers = () => {
     const pageNumbers = [];
-    const maxPageNumbersToShow = 4;
+    const maxPageNumbersToShow = 5;
     const halfWindow = Math.floor(maxPageNumbersToShow / 2);
 
     let startPage = Math.max(1, currentPage - halfWindow);
@@ -33,8 +33,22 @@ const Pagination = ({
       startPage = Math.max(1, totalPages - maxPageNumbersToShow + 1);
     }
 
+    if (startPage > 1) {
+      pageNumbers.push(1);
+      if (startPage > 2) {
+        pageNumbers.push("...");
+      }
+    }
+
     for (let index = startPage; index <= endPage; index++) {
       pageNumbers.push(index);
+    }
+
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1) {
+        pageNumbers.push("...");
+      }
+      pageNumbers.push(totalPages);
     }
 
     return pageNumbers;
@@ -48,44 +62,42 @@ const Pagination = ({
         </p>
       </div>
       <div className="flex items-center gap-1">
-        {getPageNumbers()[0] > 2 && (
-          <Button onClick={() => onPageChange(1)} variant="outline">
-            1
-          </Button>
-        )}
-        {getPageNumbers().map((number) => (
+        {getPageNumbers().map((number, index) => (
           <Button
-            variant={`${currentPage === number ? "primary" : "outline"}`}
-            key={number}
-            onClick={() => onPageChange(number)}
+            key={index}
+            variant={currentPage === number ? "primary" : "outline"}
+            onClick={() => number !== "..." && onPageChange(number as number)}
             className={`${currentPage === number ? "border border-primary bg-[#FFECE5] text-gray-700" : ""}`}
           >
             {number}
           </Button>
         ))}
-        {getPageNumbers()[getPageNumbers().length - 1] < totalPages - 1 && (
-          <Button onClick={() => onPageChange(totalPages)} variant="outline">
-            {totalPages}
-          </Button>
-        )}
       </div>
       <div className="flex gap-6">
-        <Button variant="outline" onClick={previousPage}>
+        <button
+          // variant="outline"
+          onClick={previousPage}
+          disabled={currentPage === 1}
+        >
           <Image
             src={"/images/leftIcon.svg"}
             alt="left icon"
             width={16}
             height={16}
           />
-        </Button>
-        <Button variant="outline" onClick={nextPage}>
+        </button>
+        <button
+          // variant="outline"
+          onClick={nextPage}
+          disabled={currentPage === totalPages}
+        >
           <Image
             src={"/images/rightIcon.svg"}
             alt="right icon"
             width={16}
             height={16}
           />
-        </Button>
+        </button>
       </div>
     </div>
   );

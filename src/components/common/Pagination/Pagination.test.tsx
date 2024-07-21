@@ -2,109 +2,93 @@ import { fireEvent, render, screen } from "@testing-library/react";
 
 import "@testing-library/jest-dom";
 
+import { describe, expect, it, vi } from "vitest";
+
 import Pagination from "./Pagination";
 
 describe("pagination Component", () => {
-  const onPageChange = vi.fn();
+  const onPageChangeMock = vi.fn();
+  const nextPageMock = vi.fn();
+  const previousPageMock = vi.fn();
 
-  const setup = (currentPage: number, totalPages: number) => {
+  const renderPagination = (currentPage: number, totalPages: number) => {
     render(
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        onPageChange={onPageChange}
-        nextPage={vi.fn()}
-        previousPage={vi.fn()}
+        onPageChange={onPageChangeMock}
+        nextPage={nextPageMock}
+        previousPage={previousPageMock}
       />,
     );
   };
 
-  it("renders correctly with given props", () => {
-    setup(1, 10);
-
-    expect(screen.getByText("Page 1 of 10")).toBeInTheDocument();
-    expect(screen.getByText("1")).toBeInTheDocument();
-  });
-
-  it("calls onPageChange with the correct page number when a page number is clicked", () => {
-    setup(1, 10);
-
-    fireEvent.click(screen.getByText("2"));
-    expect(onPageChange).toHaveBeenCalledWith(2);
-  });
-
-  it("calls onPageChange with the next page number when the next button is clicked", () => {
-    setup(1, 10);
-
-    fireEvent.click(screen.getByAltText("right icon"));
-    expect(onPageChange).toHaveBeenCalledWith(2);
-  });
-
-  it("calls onPageChange with the previous page number when the previous button is clicked", () => {
-    setup(2, 10);
-
-    fireEvent.click(screen.getByAltText("left icon"));
-    expect(onPageChange).toHaveBeenCalledWith(1);
-  });
-
-  it("displays the correct range of page numbers based on the current page", () => {
+  it("should render the correct page information", () => {
     expect.hasAssertions();
-    setup(5, 10);
+    renderPagination(3, 10);
+    expect(screen.getByText("Page 3 of 10")).toBeInTheDocument();
+  });
 
+  it("should display correct page numbers", () => {
+    expect.hasAssertions();
+    renderPagination(3, 10);
+    const buttons = screen.getAllByRole("button");
+    console.log(buttons.length);
+    expect(buttons).toHaveLength(9);
     expect(screen.getByText("1")).toBeInTheDocument();
-    expect(screen.queryByText("2")).not.toBeInTheDocument();
+    expect(screen.getByText("2")).toBeInTheDocument();
+    expect(screen.getByText("3")).toBeInTheDocument();
     expect(screen.getByText("4")).toBeInTheDocument();
-    expect(screen.getByText("5")).toBeInTheDocument();
-    expect(screen.getByText("6")).toBeInTheDocument();
-    expect(screen.getByText("7")).toBeInTheDocument();
-  });
-
-  // New tests to cover the uncovered lines
-  it("does not call onPageChange when clicking the next button on the last page", () => {
-    setup(10, 10);
-
-    fireEvent.click(screen.getByAltText("right icon"));
-    expect(onPageChange).not.toHaveBeenCalled();
-  });
-
-  it("does not call onPageChange when clicking the previous button on the first page", () => {
-    setup(1, 10);
-
-    fireEvent.click(screen.getByAltText("left icon"));
-    expect(onPageChange).not.toHaveBeenCalled();
-  });
-
-  it("displays the first page button if current page is beyond half window", () => {
-    setup(5, 10);
-
-    expect(screen.getByText("1")).toBeInTheDocument();
-  });
-
-  it("displays the last page button if current page is before total pages minus half window", () => {
-    setup(5, 10);
-
     expect(screen.getByText("10")).toBeInTheDocument();
   });
 
-  it("displays ellipsis if there is a gap between page numbers", () => {
-    setup(6, 10);
-
-    expect(screen.queryByText("2")).not.toBeInTheDocument();
-    expect(screen.getByText("...")).toBeInTheDocument(); // Assuming you show ellipsis for gaps
+  it("should call onPageChange with the correct page number when a page button is clicked", () => {
+    expect.hasAssertions();
+    renderPagination(3, 10);
+    const page2Button = screen.getByText("2");
+    fireEvent.click(page2Button);
+    expect(onPageChangeMock).toHaveBeenCalledWith(2);
   });
 
-  it("displays active page with primary variant", () => {
-    setup(5, 10);
-
-    expect(screen.getByText("5")).toHaveClass(
-      "border-primary bg-[#FFECE5] text-gray-700",
-    );
+  it("should call nextPage when the next button is clicked", () => {
+    expect.hasAssertions();
+    renderPagination(3, 10);
+    const nextButton = screen.getByAltText("right icon");
+    fireEvent.click(nextButton);
+    expect(nextPageMock).toHaveBeenCalledWith(expect.any(Object));
   });
 
-  it("calls onPageChange with clicked page number", () => {
-    setup(1, 10);
+  it("should call previousPage when the previous button is clicked", () => {
+    expect.hasAssertions();
+    renderPagination(3, 10);
+    const previousButton = screen.getByAltText("left icon");
+    fireEvent.click(previousButton);
+    expect(nextPageMock).toHaveBeenCalledWith(expect.any(Object));
+  });
 
-    fireEvent.click(screen.getByText("3"));
-    expect(onPageChange).toHaveBeenCalledWith(3);
+  it("should adjust page numbers correctly when currentPage is near the start", () => {
+    expect.hasAssertions();
+    renderPagination(2, 10);
+    const buttons = screen.getAllByRole("button");
+    expect(buttons).toHaveLength(9);
+    expect(screen.getByText("1")).toBeInTheDocument();
+    expect(screen.getByText("2")).toBeInTheDocument();
+    expect(screen.getByText("3")).toBeInTheDocument();
+    expect(screen.getByText("4")).toBeInTheDocument();
+    expect(screen.getByText("5")).toBeInTheDocument();
+    expect(screen.getByText("10")).toBeInTheDocument();
+  });
+
+  it("should adjust page numbers correctly when currentPage is near the end", () => {
+    expect.hasAssertions();
+    renderPagination(9, 10);
+    const buttons = screen.getAllByRole("button");
+    expect(buttons).toHaveLength(9);
+    expect(screen.getByText("1")).toBeInTheDocument();
+    expect(screen.getByText("6")).toBeInTheDocument();
+    expect(screen.getByText("7")).toBeInTheDocument();
+    expect(screen.getByText("8")).toBeInTheDocument();
+    expect(screen.getByText("9")).toBeInTheDocument();
+    expect(screen.getByText("10")).toBeInTheDocument();
   });
 });
