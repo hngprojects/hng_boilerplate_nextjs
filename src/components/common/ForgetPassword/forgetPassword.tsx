@@ -10,8 +10,7 @@ import { useState } from "react";
 const handleSubmit = (event: React.FormEvent, email: string): void => {
   event.preventDefault();
 
-  // Log the email submission (replace this with actual submission logic)
-  console.log(`Submitting email: ${email}`);
+  // console.log(`Submitting email: ${email}`);
 
   // Display a message or simulate submission (this will affect the test)
   // You can add logic to update state or trigger a notification
