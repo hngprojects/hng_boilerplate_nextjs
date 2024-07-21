@@ -1,14 +1,14 @@
 import { Breadcrumb } from "~/components/common/Breadcrumb";
-import Hero from "./components/Hero";
-import Main from "./Main";
 import SubPageHero from "~/components/external_static_page/SubPageHero";
+import Main from "./Main";
 
 const TermsConditions = () => {
   return (
     <div className="">
-      {/* <Hero /> */}
-       {/*Hero component to be replaced*/}
-       <SubPageHero/>
+      <SubPageHero
+        heading="Terms and Conditions"
+        description="Achieve your dreams with us today"
+      />
       <div className="mx-[222px] mb-[80px] mt-10 max-xl:mx-20 max-lg:mx-12 max-sm:mx-6">
         <Breadcrumb
           pages={[

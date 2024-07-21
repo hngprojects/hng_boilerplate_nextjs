@@ -104,6 +104,6 @@ describe("main component", () => {
     render(<Main />);
     const link = screen.getByTestId("mock-link");
     expect(link).toHaveTextContent("Privacy Policy page.");
-    expect(link).toHaveAttribute("href", "/privacy_policy");
+    expect(link).toHaveAttribute("href", "/privacy-policy");
   });
 });
