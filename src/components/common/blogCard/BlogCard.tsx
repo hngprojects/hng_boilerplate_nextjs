@@ -27,7 +27,7 @@ const BlogCard = (properties: blogCardProperties) => {
           <CardHeader className="flex-auto sm:flex-1">
             <div
               className={clsx(
-                "bg-desaturatedBlue mb-[10px] flex h-[10px] w-fit px-[9px] py-[13px]",
+                "mb-[10px] flex h-[10px] w-fit bg-desaturatedBlue px-[9px] py-[13px]",
                 "items-center gap-1 rounded-full font-semibold",
               )}
             >
@@ -59,7 +59,7 @@ const BlogCard = (properties: blogCardProperties) => {
               </div>
               <div className="flex items-center gap-[15px] text-[12px] font-medium text-neutral-dark-1 sm:text-[16px]">
                 <p>{properties.timeOfReading} mins Read</p>
-                <p className="text-grey50 text-[30px]">&middot;</p>
+                <p className="text-[30px] text-grey50">&middot;</p>
                 <p>{properties.date}</p>
               </div>
             </div>
