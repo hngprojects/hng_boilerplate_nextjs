@@ -74,10 +74,10 @@ const Pagination = ({
         ))}
       </div>
       <div className="flex gap-6">
-        <button
-          // variant="outline"
+        <Button
+          variant="outline"
           onClick={previousPage}
-          disabled={currentPage === 1}
+          isDisabled={currentPage === 1}
         >
           <Image
             src={"/images/leftIcon.svg"}
@@ -85,11 +85,11 @@ const Pagination = ({
             width={16}
             height={16}
           />
-        </button>
-        <button
-          // variant="outline"
+        </Button>
+        <Button
+          variant="outline"
           onClick={nextPage}
-          disabled={currentPage === totalPages}
+          isDisabled={currentPage === totalPages}
         >
           <Image
             src={"/images/rightIcon.svg"}
@@ -97,7 +97,7 @@ const Pagination = ({
             width={16}
             height={16}
           />
-        </button>
+        </Button>
       </div>
     </div>
   );
