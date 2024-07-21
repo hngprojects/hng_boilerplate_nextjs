@@ -19,12 +19,10 @@ describe("form", () => {
     ).toBeInTheDocument();
 
     expect(screen.getByLabelText("Full Name")).toHaveAttribute("type", "text");
-    // eslint-disable-next-line vitest/max-expects
     expect(screen.getByLabelText("Email Address")).toHaveAttribute(
       "type",
       "email",
     );
-    // eslint-disable-next-line vitest/max-expects
     expect(screen.getByLabelText("Password")).toHaveAttribute(
       "type",
       "password",
