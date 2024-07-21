@@ -5,7 +5,7 @@ import {
   AccordionTrigger,
 } from "~/components/ui/accordion";
 
-const TooltipAccordions = () => {
+const TopicsAccordions = () => {
   return (
     <Accordion
       className="px grid w-full grid-cols-1 gap-x-[20px] gap-y-[12px] md:grid-cols-2 lg:grid-cols-3"
@@ -38,7 +38,7 @@ const TooltipAccordions = () => {
   );
 };
 
-export default TooltipAccordions;
+export default TopicsAccordions;
 
 const faqs = [
   {

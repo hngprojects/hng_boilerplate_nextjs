@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import HelpCenterPage from "../../../app/help-center/page";
-import TooltipAccordions from "./TooltipAccordions";
+import TopicsAccordions from "./TopicsAccordions";
 
 // Mock FAQ data
 const faqs = [
@@ -19,11 +19,11 @@ const faqs = [
   },
 ];
 
-// TooltipAccordions test
-describe("tooltipAccordions Component", () => {
+// TopicsAccordions test
+describe("topicsAccordions Component", () => {
   it("renders accordion items correctly", () => {
     expect.hasAssertions();
-    render(<TooltipAccordions />);
+    render(<TopicsAccordions />);
 
     for (const faq of faqs) {
       const trigger = screen.getByText(faq.question);
@@ -34,7 +34,7 @@ describe("tooltipAccordions Component", () => {
 
   it("shows and hides content when clicking the trigger", () => {
     expect.hasAssertions();
-    render(<TooltipAccordions />);
+    render(<TopicsAccordions />);
 
     for (const faq of faqs) {
       const trigger = screen.getByText(faq.question);

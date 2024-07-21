@@ -2,7 +2,7 @@
 
 import Button from "~/components/common/Button/button";
 import { Input } from "~/components/ui/input";
-import TooltipAccordions from "./TooltipAccordions";
+import TopicsAccordions from "./TopicsAccordions";
 
 const handleButtonClickTest = () => {
   alert("Contact Button Click Test");
@@ -75,7 +75,7 @@ const HelpCenterPage = () => {
             Browse by topics
           </span>
           {/** Tooltip Accordions */}
-          <TooltipAccordions />
+          <TopicsAccordions />
         </section>
 
         <section className="flex w-full flex-col items-center justify-center gap-20 px-6 pb-24 pt-12 md:px-24">
