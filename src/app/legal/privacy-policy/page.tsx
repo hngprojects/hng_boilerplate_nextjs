@@ -14,7 +14,11 @@ export default function PrivacyPolicy() {
   const tableOfContents = getTableOfContents(privacyPolicyData);
 
   useEffect(() => {
-    const scrollClasses = ["scroll-smooth", "scroll-pt-6", "md:scroll-pt-10"];
+    const scrollClasses = [
+      "scroll-smooth",
+      "scroll-pt-24",
+      "md:scroll-pt-[108px]",
+    ];
 
     const htmlElement = document.documentElement;
     htmlElement.classList.add(...scrollClasses);
