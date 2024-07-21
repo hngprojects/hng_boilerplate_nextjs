@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -52,10 +52,9 @@ const passwordSchema = z
   });
 
 const PasswordForm: React.FC = () => {
-  const [password, setPassword] = useState<string>("");
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const confirmPasswordRef = useRef<HTMLInputElement>(null);
   const [showChecks, setShowChecks] = useState<boolean>(false);
-  const [passwordsMatch, setPasswordsMatch] = useState<boolean>(true);
   const [isPasswordVisible, setIsPasswordVisible] = useState<VisibilityState>({
     currentPassword: false,
     newPassword: false,
@@ -74,21 +73,11 @@ const PasswordForm: React.FC = () => {
     },
   });
 
-  const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-    setShowChecks(event.target.value.length > 0);
-  };
-
-  const handleConfirmPasswordChange = (
-    event: ChangeEvent<HTMLInputElement>,
-  ) => {
-    const newConfirmPassword = event.target.value;
-    setConfirmPassword(newConfirmPassword);
-    setPasswordsMatch(newConfirmPassword === password);
-  };
-
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    const password = passwordRef.current?.value || "";
+    const confirmPassword = confirmPasswordRef.current?.value || "";
 
     const result = passwordSchema.safeParse({ password, confirmPassword });
     if (!result.success) {
@@ -99,6 +88,9 @@ const PasswordForm: React.FC = () => {
       });
       return;
     }
+
+    setFormErrors({ password: "", confirmPassword: "" });
+    // Handle successful form submission
   };
 
   const togglePasswordVisibility = (field: keyof VisibilityState) => {
@@ -109,143 +101,139 @@ const PasswordForm: React.FC = () => {
   };
 
   const checks = {
-    uppercase: /[A-Z]/.test(password),
-    number: /\d/.test(password),
-    length: password.length >= 8,
+    uppercase: /[A-Z]/.test(passwordRef.current?.value || ""),
+    number: /\d/.test(passwordRef.current?.value || ""),
+    length: (passwordRef.current?.value || "").length >= 8,
   };
 
   return (
-    <>
-      <Form {...form}>
-        <form onSubmit={handleSubmit} className="w-full space-y-5">
-          <FormItem>
-            <FormLabel
-              htmlFor="password"
-              className="font-normal capitalize opacity-80"
-            >
-              Current Password
-            </FormLabel>
-            <FormControl>
-              <div className="relative">
-                <Input
-                  id="password"
-                  type={isPasswordVisible.currentPassword ? "text" : "password"}
-                  placeholder="Enter current password"
-                  required
-                  className="w-full py-2 text-sm font-medium opacity-60"
-                />
-                <span
-                  onClick={() => togglePasswordVisibility("currentPassword")}
-                  className="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3"
-                >
-                  {isPasswordVisible.currentPassword ? <Eye /> : <EyeOff />}
-                </span>
-              </div>
-            </FormControl>
-            <FormMessage />
-          </FormItem>
+    <Form {...form}>
+      <form onSubmit={handleSubmit} className="w-full space-y-5">
+        <FormItem>
+          <FormLabel
+            htmlFor="password"
+            className="font-normal capitalize opacity-80"
+          >
+            Current Password
+          </FormLabel>
+          <FormControl>
+            <div className="relative">
+              <Input
+                id="password"
+                type={isPasswordVisible.currentPassword ? "text" : "password"}
+                placeholder="Enter current password"
+                required
+                className="w-full py-2 text-sm font-medium opacity-60"
+                ref={passwordRef}
+                onChange={() => setShowChecks(passwordRef.current?.value.length > 0)}
+              />
+              <span
+                onClick={() => togglePasswordVisibility("currentPassword")}
+                className="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3"
+              >
+                {isPasswordVisible.currentPassword ? <Eye /> : <EyeOff />}
+              </span>
+            </div>
+          </FormControl>
+          <FormMessage />
+        </FormItem>
 
-          <FormItem>
-            <FormLabel
-              htmlFor="new-password"
-              className="font-normal capitalize opacity-80"
-            >
-              New Password
-            </FormLabel>
-            <FormControl>
-              <div className="relative">
-                <Input
-                  id="new-password"
-                  type={isPasswordVisible.newPassword ? "text" : "password"}
-                  placeholder="Enter new password"
-                  value={password}
-                  required
-                  className="w-full py-2 text-sm font-medium opacity-60"
-                  onChange={handlePasswordChange}
-                />
-                <span
-                  onClick={() => togglePasswordVisibility("newPassword")}
-                  className="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3"
-                >
-                  {isPasswordVisible.newPassword ? <Eye /> : <EyeOff />}
-                </span>
-              </div>
-            </FormControl>
+        <FormItem>
+          <FormLabel
+            htmlFor="new-password"
+            className="font-normal capitalize opacity-80"
+          >
+            New Password
+          </FormLabel>
+          <FormControl>
+            <div className="relative">
+              <Input
+                id="new-password"
+                type={isPasswordVisible.newPassword ? "text" : "password"}
+                placeholder="Enter new password"
+                required
+                className="w-full py-2 text-sm font-medium opacity-60"
+                ref={passwordRef}
+                onChange={() => setShowChecks(passwordRef.current?.value.length > 0)}
+              />
+              <span
+                onClick={() => togglePasswordVisibility("newPassword")}
+                className="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3"
+              >
+                {isPasswordVisible.newPassword ? <Eye /> : <EyeOff />}
+              </span>
+            </div>
+          </FormControl>
 
-            {showChecks && <PasswordChecks checks={checks} />}
+          {showChecks && <PasswordChecks checks={checks} />}
 
-            <FormMessage>{formErrors.password}</FormMessage>
-          </FormItem>
+          <FormMessage>{formErrors.password}</FormMessage>
+        </FormItem>
 
-          <FormItem>
-            <FormLabel
-              htmlFor="confirm-password"
-              className="font-normal capitalize opacity-80"
-            >
-              Confirm New Password
-            </FormLabel>
-            <FormControl>
-              <div className="relative">
-                <Input
-                  id="confirm-password"
-                  type={isPasswordVisible.confirmPassword ? "text" : "password"}
-                  placeholder="Confirm new password"
-                  value={confirmPassword}
-                  required
-                  className="w-full py-2 text-sm font-medium opacity-60"
-                  onChange={handleConfirmPasswordChange}
-                />
-                <span
-                  onClick={() => togglePasswordVisibility("confirmPassword")}
-                  className="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3"
-                >
-                  {isPasswordVisible.confirmPassword ? <Eye /> : <EyeOff />}
-                </span>
-              </div>
-            </FormControl>
-            <FormMessage>{formErrors.confirmPassword}</FormMessage>
-            {!passwordsMatch && (
-              <p className="text-sm text-red-600">Passwords do not match</p>
-            )}
-          </FormItem>
+        <FormItem>
+          <FormLabel
+            htmlFor="confirm-password"
+            className="font-normal capitalize opacity-80"
+          >
+            Confirm New Password
+          </FormLabel>
+          <FormControl>
+            <div className="relative">
+              <Input
+                id="confirm-password"
+                type={isPasswordVisible.confirmPassword ? "text" : "password"}
+                placeholder="Confirm new password"
+                required
+                className="w-full py-2 text-sm font-medium opacity-60"
+                ref={confirmPasswordRef}
+              />
+              <span
+                onClick={() => togglePasswordVisibility("confirmPassword")}
+                className="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3"
+              >
+                {isPasswordVisible.confirmPassword ? <Eye /> : <EyeOff />}
+              </span>
+            </div>
+          </FormControl>
+          <FormMessage>{formErrors.confirmPassword}</FormMessage>
+        </FormItem>
 
-          <div className="mt-2 flex space-x-6">
-            <Button
-              type="button"
-              className="rounded-md border border-border bg-white capitalize text-foreground"
-            >
-              Cancel
-            </Button>
+        <div className="mt-2 flex space-x-6">
+          <Button
+            type="button"
+            className="rounded-md border border-border bg-white capitalize text-foreground"
+          >
+            Cancel
+          </Button>
 
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button
-                  variant="outline"
-                  className="rounded-md bg-primary text-sm font-medium capitalize text-background"
-                >
-                  Show Dialog
-                </Button>
-              </AlertDialogTrigger>
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button
+                variant="outline"
+                className="rounded-md bg-primary text-sm font-medium capitalize text-background"
+              >
+                Show Dialog
+              </Button>
+            </AlertDialogTrigger>
 
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>
-                    Password Successfully Updated!
-                  </AlertDialogTitle>
-                  <AlertDialogDescription>
-                    Your password has been successfully updated! You can now log
-                    in with your new password.
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogAction>Continue</AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
-          </div>
-        </form>
-      </Form>
-    </>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>
+                  Password Successfully Updated!
+                </AlertDialogTitle>
+                <AlertDialogDescription>
+                  Your password has been successfully updated! You can now log
+                  in with your new password.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogAction>Continue</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </div>
+      </form>
+    </Form>
   );
 };
 
