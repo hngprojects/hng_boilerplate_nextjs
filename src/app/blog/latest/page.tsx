@@ -26,18 +26,22 @@ const LatestArticlesPage = () => {
               } = data;
 
               return (
-                <BlogCard
+                <div
+                  className="mx-auto w-fit border-b-neutral-dark-1 md:border-b"
                   key={index}
-                  authorName={author}
-                  authorPfP={avatar}
-                  blogImage={thumbnail}
-                  date={datePublished}
-                  description={content}
-                  link="/"
-                  title={title}
-                  tag={tag}
-                  timeOfReading={Number.parseInt(minsRead, 10)}
-                />
+                >
+                  <BlogCard
+                    authorName={author}
+                    authorPfP={avatar}
+                    blogImage={thumbnail}
+                    date={datePublished}
+                    description={content}
+                    link="/"
+                    title={title}
+                    tag={tag}
+                    timeOfReading={Number.parseInt(minsRead, 10)}
+                  />
+                </div>
               );
             })}
         </div>

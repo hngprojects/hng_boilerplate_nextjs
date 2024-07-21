@@ -31,7 +31,7 @@ const BlogCard = (properties: blogCardProperties) => {
                 "items-center gap-1 rounded-full font-semibold",
               )}
             >
-              <span className="mt-1 rounded-full text-[30px] font-bold">
+              <span className="rounded-full text-[30px] font-bold">
                 &middot;
               </span>
               <p className="m-0 mt-[2px] text-[12px] uppercase text-neutral-dark-1">
