@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 
-import MagicLogin from "~/components/common/MagicLogin/MagicLogin";
+import MagicLogin from "~/app/auth/user/Login";
 
 describe("login Component", () => {
   it("shows error for common typos in email domains", async () => {
