@@ -1,20 +1,11 @@
-import React from "react";
+import ProductFilter from "~/components/common/ProductFilter";
+import TableData from "~/components/common/Table";
 
-import AdminNavbar from "./navbar/AdminNavbar";
-
-interface IProperties {
-  children: React.ReactNode;
-}
-const AdminLayout: React.FC<IProperties> = ({ children }) => {
+export default function Page() {
   return (
-    <div className="grid min-h-screen w-full md:grid-cols-[252px_1fr] lg:grid-cols-[252px_1fr]">
-      <div className="hidden border-r bg-muted/40 md:block"></div>
-      <div className="flex flex-col">
-        <AdminNavbar />
-        {children}
-      </div>
-    </div>
+    <main className="">
+      <ProductFilter />
+      <TableData />
+    </main>
   );
-};
-
-export default AdminLayout;
+}
