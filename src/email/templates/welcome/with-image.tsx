@@ -18,6 +18,7 @@ interface IProperties {
     }[];
   };
   action_url: string;
+  tracking_parameters: string;
   cta_text: string;
   app_name: string;
 }
@@ -35,10 +36,11 @@ export const WelcomeWithImage = (properties: IProperties) => {
     highlights,
     action_url,
     cta_text,
+    tracking_parameters,
     app_name,
   } = properties;
-  const baseUrl = process.env.APP_URL
-    ? `${process.env.APP_URL}/images/`
+  const baseUrl = process.env.BASE_URL
+    ? `${process.env.BASE_URL}/images/`
     : "/images/";
   return (
     <Tailwindwrapper>
@@ -101,7 +103,7 @@ export const WelcomeWithImage = (properties: IProperties) => {
               </div>
               <div className="text-center">
                 <Button
-                  href={action_url}
+                  href={`${action_url}${tracking_parameters}`}
                   data-testid={BUTTON_TEST_ID}
                   className="block rounded-[8px] bg-[#F97316] px-10 py-2.5 text-base text-white sm:inline"
                 >
@@ -148,6 +150,8 @@ WelcomeWithImage.PreviewProps = {
     ],
   },
   action_url: "https://boilerplate-weblink.com",
+  tracking_parameters:
+    "?utm_source=email&utm_medium=welcome&utm_campaign=onboarding",
   cta_text: "Learn more about us",
   app_name: "Boilerplate",
 } satisfies IProperties;

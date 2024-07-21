@@ -39,6 +39,7 @@ describe("email Template For Welcome With Image", () => {
         with_highlights={true}
         highlights={highlights}
         action_url="https://boilerplate-weblink.com"
+        tracking_parameters="?utm_source=email&utm_medium=welcome&utm_campaign=onboarding"
         cta_text="Learn more about us"
         app_name="Boilerplate"
       />,
