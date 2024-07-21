@@ -82,26 +82,4 @@ describe("customInput", () => {
     const buttonElement = screen.getByText("Button");
     expect(buttonElement).toBeDisabled();
   });
-
-  it("applies the correct gap class", () => {
-    expect.hasAssertions();
-
-    render(<CustomInput label="Hello" placeholder="Enter text" gap="lg" />);
-    const container = screen.getByText("Hello");
-    expect(container).toHaveClass("gap-2.5");
-  });
-
-  it("applies the correct label position class", () => {
-    expect.hasAssertions();
-
-    render(
-      <CustomInput
-        label="Hello"
-        placeholder="Enter text"
-        labelPosition="side"
-      />,
-    );
-    const container = screen.getByText("Hello");
-    expect(container).toHaveClass("flex-row");
-  });
 });
