@@ -70,7 +70,7 @@ const SignupOtp: React.FC = () => {
     <div className="font-inter mx-auto flex h-[496px] max-w-[484px] items-center rounded-lg border border-solid border-gray-300 bg-white px-8">
       <div className="text-center">
         <div className="mx-auto mt-6 w-72">
-          <h2 className="text-2xl font-semibold leading-9 text-gray-900">
+          <h2 className="text-[32px] font-semibold leading-9 text-gray-900">
             Sign Up
           </h2>
           <p className="pt-4 text-sm text-gray-500">
@@ -103,7 +103,7 @@ const SignupOtp: React.FC = () => {
           ))}
         </div>
         <div className="flex items-center justify-center">
-          <CustomButton variant="default" className="mb-8 w-full">
+          <CustomButton variant="destructive" className="mb-8 w-full py-[1.5rem]">
             Continue
           </CustomButton>
         </div>
