@@ -120,7 +120,7 @@ export default function Page() {
                         ? "border-red-500 text-red-500 focus:outline-none"
                         : "border-[#CBD5E1] text-slate-400 focus:outline-[#CBD5E1]"
                     } overflow-hidden border outline-none focus:outline-[1.5px] focus:outline-offset-0`}
-                    placeholder="Enter your HTML content here"
+                    placeholder="Enter your link here"
                   />
                   {errors.htmlContent && (
                     <p className="mt-1 text-xs text-red-500">
