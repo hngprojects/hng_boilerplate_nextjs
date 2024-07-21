@@ -38,16 +38,17 @@ export function Breadcrumb({
   maxPages = 3,
   variant = "default",
 }: BreadcrumbProperties) {
-  const paths = usePathname().split("/");
+  const paths = usePathname()?.split("/");
 
-  const generatedPages: PagesList[] = paths.map((path, index, _paths) => {
-    const isHomePath = path.trim().length === 0;
-    return {
-      name: isHomePath ? "Home" : path.replaceAll("-", " "),
-      href: isHomePath ? "/" : "" + _paths.slice(0, index + 1).join("/"),
-      isCurrent: index === _paths.length - 1,
-    };
-  });
+  const generatedPages: PagesList[] =
+    paths?.map((path, index, _paths) => {
+      const isHomePath = path.trim().length === 0;
+      return {
+        name: isHomePath ? "Home" : path.replaceAll("-", " "),
+        href: isHomePath ? "/" : "" + _paths.slice(0, index + 1).join("/"),
+        isCurrent: index === _paths.length - 1,
+      };
+    }) ?? [];
   const isStatic = pages && pages.length > 0;
   const breadcrumbs = isStatic ? pages : generatedPages;
   const firstBreadcrumb = breadcrumbs[0];
