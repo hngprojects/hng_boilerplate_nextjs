@@ -1,37 +1,33 @@
-"use client"
+"use client";
 
-import Menu from "../../../../public/menu.svg"
-import Logo from "../../../../public/logo.svg"
-import Boilerplate from "../../../../public/Boilerplate.svg"
-import Search from "../../../../public/search.svg"
-import Navigation from "../components/Navigation"
-import { useState } from "react"
-import UserDropdown from "./UserDropdown"
-import HelpDropdown from "./HelpDropdown"
-import NotificationDropdown from "./NotificationDropdown"
+import { useState } from "react";
+
+import Boilerplate from "../../../../public/Boilerplate.svg";
+import Logo from "../../../../public/logo.svg";
+import Menu from "../../../../public/menu.svg";
+import Search from "../../../../public/search.svg";
+import Navigation from "../components/Navigation";
+import HelpDropdown from "./HelpDropdown";
+import NotificationDropdown from "./NotificationDropdown";
+import UserDropdown from "./UserDropdown";
 
 const Navbar: React.FC = () => {
-
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [openDropdown, setOpenDropdown] = useState<string | null>();
 
   const handleDropdown = (dropdown: string) => {
     if (openDropdown === dropdown) {
-      setOpenDropdown(null);
+      setOpenDropdown(undefined);
     } else {
       setOpenDropdown(dropdown);
     }
   };
 
-
-
-
-
   return (
-    <div className="absolute w-full top-0 z-[1000] bg-white py-[16px] px-[40px] flex justify-between items-center">
+    <div className="absolute top-0 z-[1000] flex w-full items-center justify-between bg-white px-[40px] py-[16px]">
       <div className="flex gap-[50px]">
         <div className="flex items-center gap-[20px]">
           <Menu />
-          <div className="flex gap-[20px] items-center">
+          <div className="flex items-center gap-[20px]">
             <Logo />
             <Boilerplate className="mt-[4px]" />
           </div>
@@ -42,27 +38,30 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex gap-[20px] items-center">
-        <div className="py-[7px] hidden md:flex x-[25px] gap-[10px] rounded-sm border border-solid border-gray-500 items-center px-[12px] text-sm">
+      <div className="flex items-center gap-[20px]">
+        <div className="x-[25px] hidden items-center gap-[10px] rounded-sm border border-solid border-gray-500 px-[12px] py-[7px] text-sm md:flex">
           <Search />
-          <input type="text" className="text-sm outline-none" placeholder="Search Option..." />
+          <input
+            type="text"
+            className="text-sm outline-none"
+            placeholder="Search Option..."
+          />
         </div>
         <UserDropdown
-          isOpen={openDropdown === 'user'}
-          toggleDropdown={() => handleDropdown('user')}
+          isOpen={openDropdown === "user"}
+          toggleDropdown={() => handleDropdown("user")}
         />
         <NotificationDropdown
-          isOpen={openDropdown === 'notification'}
-          toggleDropdown={() => handleDropdown('notification')}
+          isOpen={openDropdown === "notification"}
+          toggleDropdown={() => handleDropdown("notification")}
         />
         <HelpDropdown
-          isOpen={openDropdown === 'help'}
-          toggleDropdown={() => handleDropdown('help')}
+          isOpen={openDropdown === "help"}
+          toggleDropdown={() => handleDropdown("help")}
         />
       </div>
-
     </div>
-  )
+  );
 };
 
 export default Navbar;

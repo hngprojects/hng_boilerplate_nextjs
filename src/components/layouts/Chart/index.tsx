@@ -1,35 +1,34 @@
-import React from 'react';
-import dynamic from 'next/dynamic';
-import { ApexOptions } from 'apexcharts';
+import { ApexOptions } from "apexcharts";
+import dynamic from "next/dynamic";
 
-const ApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
+const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 type DataPoint = {
   month: string;
   value: number;
 };
 
-type ChartProps = {
+type ChartProperties = {
   data: DataPoint[];
 };
 
-export function Chart({ data }: ChartProps) {
+export function Chart({ data }: ChartProperties) {
   const chartOptions: ApexOptions = {
     chart: {
-      id: 'customer-bar-chart',
+      id: "customer-bar-chart",
       toolbar: {
         show: false,
       },
       fontFamily: `'Inter', sans-serif`,
     },
     xaxis: {
-      categories: data.map(item => item.month),
+      categories: data.map((item) => item.month),
     },
     plotOptions: {
       bar: {
         horizontal: false,
-        columnWidth: '95%',
-        borderRadius: 4,  // Rounded bar corners
+        columnWidth: "95%",
+        borderRadius: 4, // Rounded bar corners
       },
     },
     dataLabels: {
@@ -38,18 +37,18 @@ export function Chart({ data }: ChartProps) {
     stroke: {
       show: true,
       width: 2,
-      colors: ['transparent'],
+      colors: ["transparent"],
     },
-    colors: ['#F97316'],
+    colors: ["#F97316"],
     grid: {
-      show: false,  
+      show: false,
     },
   };
 
   const chartSeries = [
     {
-      name: 'Amount',
-      data: data.map(item => item.value),
+      name: "Amount",
+      data: data.map((item) => item.value),
     },
   ];
 
