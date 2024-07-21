@@ -59,7 +59,7 @@ const BlogCard = (properties: blogCardProperties) => {
               </div>
               <div className="flex items-center gap-[15px] text-[12px] font-medium text-neutral-dark-1 sm:text-[16px]">
                 <p>{properties.timeOfReading} mins Read</p>
-                <p className="text-[30px] text-grey50 text-[30px]">&middot;</p>
+                <p className="text-[30px] text-grey50">&middot;</p>
                 <p>{properties.date}</p>
               </div>
             </div>
