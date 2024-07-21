@@ -32,7 +32,7 @@ const Dashboard: React.FC = () => {
               <TabSwitcher tab={tab} setTab={setTab} />
                     </div>
                     <div className="flex gap-[8px] items-center">
-                    <DateSwitcher />
+              <DateSwitcher />
               <button className="rounded-sm bg-primary px-[16px] py-[9.5px] text-sm text-white">
                 Download
               </button>
