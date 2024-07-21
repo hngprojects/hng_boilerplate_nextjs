@@ -85,177 +85,475 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
         </span>
         <div
           class="px grid w-full grid-cols-1 gap-x-[20px] gap-y-[12px] md:grid-cols-2 lg:grid-cols-3"
+          data-orientation="vertical"
         >
           <div
-            aria-labelledby="faq-heading-0"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-0"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              What is EcoClean?
-            </div>
+              <button
+                aria-controls="radix-:r53:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-0"
+                role="heading"
+                type="button"
+              >
+                What is EcoClean?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Yes. It adheres to the WAI-ARIA design pattern.
-            </div>
+              aria-labelledby="faq-heading-0"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r53:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
           <div
-            aria-labelledby="faq-heading-1"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-1"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              How does EcoClean work?
-            </div>
+              <button
+                aria-controls="radix-:r55:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-1"
+                role="heading"
+                type="button"
+              >
+                How does EcoClean work?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </div>
+              aria-labelledby="faq-heading-1"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r55:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
           <div
-            aria-labelledby="faq-heading-2"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-2"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              What are the key features of EcoClean?
-            </div>
+              <button
+                aria-controls="radix-:r57:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-2"
+                role="heading"
+                type="button"
+              >
+                What are the key features of EcoClean?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum repellendus doloribus deserunt totam doloremque, quia quaerat veniam harum.
-            </div>
+              aria-labelledby="faq-heading-2"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r57:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
           <div
-            aria-labelledby="faq-heading-3"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-3"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              Who can benefit from using EcoClean?
-            </div>
+              <button
+                aria-controls="radix-:r59:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-3"
+                role="heading"
+                type="button"
+              >
+                Who can benefit from using EcoClean?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Yes. It adheres to the WAI-ARIA design pattern.
-            </div>
+              aria-labelledby="faq-heading-3"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r59:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
           <div
-            aria-labelledby="faq-heading-4"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-4"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              What are the system requirements for EcoClean?
-            </div>
+              <button
+                aria-controls="radix-:r5b:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-4"
+                role="heading"
+                type="button"
+              >
+                What are the system requirements for EcoClean?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </div>
+              aria-labelledby="faq-heading-4"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r5b:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
           <div
-            aria-labelledby="faq-heading-5"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-5"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              How do I use EcoClean?
-            </div>
+              <button
+                aria-controls="radix-:r5d:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-5"
+                role="heading"
+                type="button"
+              >
+                How do I use EcoClean?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Yes. It adheres to the WAI-ARIA design pattern.
-            </div>
+              aria-labelledby="faq-heading-5"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r5d:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
           <div
-            aria-labelledby="faq-heading-6"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-6"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              How do I store EcoClean?
-            </div>
+              <button
+                aria-controls="radix-:r5f:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-6"
+                role="heading"
+                type="button"
+              >
+                How do I store EcoClean?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </div>
+              aria-labelledby="faq-heading-6"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r5f:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
           <div
-            aria-labelledby="faq-heading-7"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-7"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              How much does EcoClean cost?
-            </div>
+              <button
+                aria-controls="radix-:r5h:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-7"
+                role="heading"
+                type="button"
+              >
+                How much does EcoClean cost?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </div>
+              aria-labelledby="faq-heading-7"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r5h:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
           <div
-            aria-labelledby="faq-heading-8"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-8"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              Are there any discounts available?
-            </div>
+              <button
+                aria-controls="radix-:r5j:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-8"
+                role="heading"
+                type="button"
+              >
+                Are there any discounts available?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Yes. It adheres to the WAI-ARIA design pattern.
-            </div>
+              aria-labelledby="faq-heading-8"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r5j:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
         </div>
       </section>
@@ -412,177 +710,475 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
         </span>
         <div
           class="px grid w-full grid-cols-1 gap-x-[20px] gap-y-[12px] md:grid-cols-2 lg:grid-cols-3"
+          data-orientation="vertical"
         >
           <div
-            aria-labelledby="faq-heading-0"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-0"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              What is EcoClean?
-            </div>
+              <button
+                aria-controls="radix-:r53:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-0"
+                role="heading"
+                type="button"
+              >
+                What is EcoClean?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Yes. It adheres to the WAI-ARIA design pattern.
-            </div>
+              aria-labelledby="faq-heading-0"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r53:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
           <div
-            aria-labelledby="faq-heading-1"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-1"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              How does EcoClean work?
-            </div>
+              <button
+                aria-controls="radix-:r55:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-1"
+                role="heading"
+                type="button"
+              >
+                How does EcoClean work?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </div>
+              aria-labelledby="faq-heading-1"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r55:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
           <div
-            aria-labelledby="faq-heading-2"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-2"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              What are the key features of EcoClean?
-            </div>
+              <button
+                aria-controls="radix-:r57:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-2"
+                role="heading"
+                type="button"
+              >
+                What are the key features of EcoClean?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum repellendus doloribus deserunt totam doloremque, quia quaerat veniam harum.
-            </div>
+              aria-labelledby="faq-heading-2"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r57:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
           <div
-            aria-labelledby="faq-heading-3"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-3"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              Who can benefit from using EcoClean?
-            </div>
+              <button
+                aria-controls="radix-:r59:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-3"
+                role="heading"
+                type="button"
+              >
+                Who can benefit from using EcoClean?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Yes. It adheres to the WAI-ARIA design pattern.
-            </div>
+              aria-labelledby="faq-heading-3"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r59:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
           <div
-            aria-labelledby="faq-heading-4"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-4"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              What are the system requirements for EcoClean?
-            </div>
+              <button
+                aria-controls="radix-:r5b:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-4"
+                role="heading"
+                type="button"
+              >
+                What are the system requirements for EcoClean?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </div>
+              aria-labelledby="faq-heading-4"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r5b:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
           <div
-            aria-labelledby="faq-heading-5"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-5"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              How do I use EcoClean?
-            </div>
+              <button
+                aria-controls="radix-:r5d:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-5"
+                role="heading"
+                type="button"
+              >
+                How do I use EcoClean?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Yes. It adheres to the WAI-ARIA design pattern.
-            </div>
+              aria-labelledby="faq-heading-5"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r5d:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
           <div
-            aria-labelledby="faq-heading-6"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-6"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              How do I store EcoClean?
-            </div>
+              <button
+                aria-controls="radix-:r5f:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-6"
+                role="heading"
+                type="button"
+              >
+                How do I store EcoClean?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </div>
+              aria-labelledby="faq-heading-6"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r5f:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
           <div
-            aria-labelledby="faq-heading-7"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-7"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              How much does EcoClean cost?
-            </div>
+              <button
+                aria-controls="radix-:r5h:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-7"
+                role="heading"
+                type="button"
+              >
+                How much does EcoClean cost?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </div>
+              aria-labelledby="faq-heading-7"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r5h:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
           <div
-            aria-labelledby="faq-heading-8"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-8"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              Are there any discounts available?
-            </div>
+              <button
+                aria-controls="radix-:r5j:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-8"
+                role="heading"
+                type="button"
+              >
+                Are there any discounts available?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Yes. It adheres to the WAI-ARIA design pattern.
-            </div>
+              aria-labelledby="faq-heading-8"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r5j:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
         </div>
       </section>
@@ -739,177 +1335,475 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
         </span>
         <div
           class="px grid w-full grid-cols-1 gap-x-[20px] gap-y-[12px] md:grid-cols-2 lg:grid-cols-3"
+          data-orientation="vertical"
         >
           <div
-            aria-labelledby="faq-heading-0"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-0"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              What is EcoClean?
-            </div>
+              <button
+                aria-controls="radix-:r53:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-0"
+                role="heading"
+                type="button"
+              >
+                What is EcoClean?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Yes. It adheres to the WAI-ARIA design pattern.
-            </div>
+              aria-labelledby="faq-heading-0"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r53:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
           <div
-            aria-labelledby="faq-heading-1"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-1"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              How does EcoClean work?
-            </div>
+              <button
+                aria-controls="radix-:r55:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-1"
+                role="heading"
+                type="button"
+              >
+                How does EcoClean work?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </div>
+              aria-labelledby="faq-heading-1"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r55:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
           <div
-            aria-labelledby="faq-heading-2"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-2"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              What are the key features of EcoClean?
-            </div>
+              <button
+                aria-controls="radix-:r57:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-2"
+                role="heading"
+                type="button"
+              >
+                What are the key features of EcoClean?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum repellendus doloribus deserunt totam doloremque, quia quaerat veniam harum.
-            </div>
+              aria-labelledby="faq-heading-2"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r57:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
           <div
-            aria-labelledby="faq-heading-3"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-3"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              Who can benefit from using EcoClean?
-            </div>
+              <button
+                aria-controls="radix-:r59:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-3"
+                role="heading"
+                type="button"
+              >
+                Who can benefit from using EcoClean?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Yes. It adheres to the WAI-ARIA design pattern.
-            </div>
+              aria-labelledby="faq-heading-3"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r59:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
           <div
-            aria-labelledby="faq-heading-4"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-4"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              What are the system requirements for EcoClean?
-            </div>
+              <button
+                aria-controls="radix-:r5b:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-4"
+                role="heading"
+                type="button"
+              >
+                What are the system requirements for EcoClean?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </div>
+              aria-labelledby="faq-heading-4"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r5b:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
           <div
-            aria-labelledby="faq-heading-5"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-5"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              How do I use EcoClean?
-            </div>
+              <button
+                aria-controls="radix-:r5d:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-5"
+                role="heading"
+                type="button"
+              >
+                How do I use EcoClean?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Yes. It adheres to the WAI-ARIA design pattern.
-            </div>
+              aria-labelledby="faq-heading-5"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r5d:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
           <div
-            aria-labelledby="faq-heading-6"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-6"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              How do I store EcoClean?
-            </div>
+              <button
+                aria-controls="radix-:r5f:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-6"
+                role="heading"
+                type="button"
+              >
+                How do I store EcoClean?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </div>
+              aria-labelledby="faq-heading-6"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r5f:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
           <div
-            aria-labelledby="faq-heading-7"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-7"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              How much does EcoClean cost?
-            </div>
+              <button
+                aria-controls="radix-:r5h:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-7"
+                role="heading"
+                type="button"
+              >
+                How much does EcoClean cost?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </div>
+              aria-labelledby="faq-heading-7"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r5h:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
           <div
-            aria-labelledby="faq-heading-8"
-            class="flex w-full flex-col bg-white px-4 py-8"
-            role="region"
+            class="flex w-full flex-col border-b-0 bg-white px-4 py-8"
+            data-orientation="vertical"
+            data-state="closed"
           >
-            <div
-              aria-level="2"
-              class="border-b-0"
-              id="faq-heading-8"
-              role="heading"
+            <h3
+              class="flex"
+              data-orientation="vertical"
+              data-state="closed"
             >
-              Are there any discounts available?
-            </div>
+              <button
+                aria-controls="radix-:r5j:"
+                aria-expanded="false"
+                aria-level="2"
+                class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
+                data-orientation="vertical"
+                data-radix-collection-item=""
+                data-state="closed"
+                id="faq-heading-8"
+                role="heading"
+                type="button"
+              >
+                Are there any discounts available?
+                <svg
+                  class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
+            </h3>
             <div
-              class="hidden"
-            >
-              Yes. It adheres to the WAI-ARIA design pattern.
-            </div>
+              aria-labelledby="faq-heading-8"
+              class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+              data-orientation="vertical"
+              data-state="closed"
+              hidden=""
+              id="radix-:r5j:"
+              role="region"
+              style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+            />
           </div>
         </div>
       </section>

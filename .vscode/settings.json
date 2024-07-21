@@ -1,9 +1,10 @@
 {
-    "[javascript][javascriptreact][typescript][typescriptreact]": {
-        "editor.formatOnSave": false,
-        "editor.defaultFormatter": "vscode.typescript-language-features"
-    },
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "always"
-    },
+  "[javascript][javascriptreact][typescript][typescriptreact]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "prettier.configPath": ".prettierrc.js"
 }

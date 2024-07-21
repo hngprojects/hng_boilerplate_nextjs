@@ -2,6 +2,7 @@
 
 import Button from "~/components/common/Button/button";
 import { Input } from "~/components/ui/input";
+import TooltipAccordions from "./TooltipAccordions";
 
 const handleButtonClickTest = () => {
   alert("Contact Button Click Test");
@@ -73,26 +74,8 @@ const HelpCenterPage = () => {
           >
             Browse by topics
           </span>
-          <div className="px grid w-full grid-cols-1 gap-x-[20px] gap-y-[12px] md:grid-cols-2 lg:grid-cols-3">
-            {faqs.map((faq, index) => (
-              <div
-                key={index}
-                className="flex w-full flex-col bg-white px-4 py-8"
-                role="region"
-                aria-labelledby={`faq-heading-${index}`}
-              >
-                <div
-                  className="border-b-0"
-                  id={`faq-heading-${index}`}
-                  role="heading"
-                  aria-level={2}
-                >
-                  {faq.question}
-                </div>
-                <div className="hidden">{faq.answer}</div>
-              </div>
-            ))}
-          </div>
+          {/** Tooltip Accordions */}
+          <TooltipAccordions />
         </section>
 
         <section className="flex w-full flex-col items-center justify-center gap-20 px-6 pb-24 pt-12 md:px-24">
@@ -148,52 +131,3 @@ const HelpCenterPage = () => {
 };
 
 export default HelpCenterPage;
-
-const faqs = [
-  {
-    id: "item-1",
-    question: "What is EcoClean?",
-    answer: "Yes. It adheres to the WAI-ARIA design pattern.",
-  },
-  {
-    id: "item-2",
-    question: "How does EcoClean work?",
-    answer: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-  },
-  {
-    id: "item-3",
-    question: "What are the key features of EcoClean?",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum repellendus doloribus deserunt totam doloremque, quia quaerat veniam harum.",
-  },
-  {
-    id: "item-4",
-    question: "Who can benefit from using EcoClean?",
-    answer: "Yes. It adheres to the WAI-ARIA design pattern.",
-  },
-  {
-    id: "item-5",
-    question: "What are the system requirements for EcoClean?",
-    answer: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-  },
-  {
-    id: "item-6",
-    question: "How do I use EcoClean?",
-    answer: "Yes. It adheres to the WAI-ARIA design pattern.",
-  },
-  {
-    id: "item-7",
-    question: "How do I store EcoClean?",
-    answer: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-  },
-  {
-    id: "item-8",
-    question: "How much does EcoClean cost?",
-    answer: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-  },
-  {
-    id: "item-9",
-    question: "Are there any discounts available?",
-    answer: "Yes. It adheres to the WAI-ARIA design pattern.",
-  },
-];
