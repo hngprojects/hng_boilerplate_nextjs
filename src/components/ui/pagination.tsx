@@ -39,7 +39,7 @@ PaginationItem.displayName = "PaginationItem";
 
 type PaginationLinkProperties = {
   isActive?: boolean;
-  activeVariant?: "default" | "outline"
+  activeVariant?: "default" | "outline";
 } & Pick<ButtonProperties, "size"> &
   React.ComponentProps<"a">;
 

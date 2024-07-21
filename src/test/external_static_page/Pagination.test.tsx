@@ -1,5 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import Pagination, { PaginationProperties } from "~/components/external_static_page/Pagination";
+
+import Pagination, {
+  PaginationProperties,
+} from "~/components/external_static_page/Pagination";
 
 const defaultProps: PaginationProperties = {
   total: 50,
