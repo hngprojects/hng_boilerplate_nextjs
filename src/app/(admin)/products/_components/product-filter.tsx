@@ -19,7 +19,7 @@ const ProductFilter = ({
   setView,
 }: ProductFilterProperties) => {
   return (
-    <div className="mt-5 flex w-full items-center justify-between">
+    <div className="flex w-full items-center justify-between">
       <div className="relative w-full max-w-[300px]">
         <Input
           type="text"
