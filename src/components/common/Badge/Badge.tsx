@@ -3,7 +3,7 @@
  * - Label: string
  * - Variant:  "default" | "primary" | "success" | "error"
  * - Icon?: React.ReactNode
- * 
+ *
  * The commponent can be rendered as follows:
  * import Badge, { BadgeInterface } from "~/components/common/Badge/Badge";
  * - Option1: Define the props object, render the component, and spread the object as props to it
