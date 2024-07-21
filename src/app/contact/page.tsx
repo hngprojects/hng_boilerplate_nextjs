@@ -11,8 +11,8 @@ import {
 import Layout from "~/app/(home)/layout";
 import ContactForm from "~/components/common/contact-us-form";
 
-export const bizTime = ["8am", "6pm"];
-export const contactInfo = [
+const bizTime = ["8am", "6pm"];
+const contactInfo = [
   {
     alt: "map icon",
     Icon: MapPin,
