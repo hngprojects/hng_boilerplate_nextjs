@@ -22,7 +22,7 @@ const Dashboard: React.FC = () => {
 
     const [tab, setTab] = useState(1)
 
-    return (
+  return (
         <>
          <div className="flex min-h-screen pt-[110px] p-[42px]">
          <div className="flex flex-col w-full gap-[24px]">
