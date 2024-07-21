@@ -83,7 +83,7 @@ const Main = () => {
             className="mb-6 self-stretch text-neutral-dark-1"
             id="changes-to-terms"
           >
-            <h2 className="font-inherit relative mt-0 self-stretch text-2xl font-bold text-inherit sm:text-[28px] mb-2">
+            <h2 className="font-inherit relative mb-2 mt-0 self-stretch text-2xl font-bold text-inherit sm:text-[28px]">
               Changes to Terms
             </h2>
             <div className="mb-[10px] text-base">
