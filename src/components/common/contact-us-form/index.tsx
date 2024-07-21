@@ -17,7 +17,6 @@ const schema = z.object({
   message: z.string().min(1, "Message is required"),
 });
 
-// Define the FormData interface
 type FormData = z.infer<typeof schema>;
 
 const initialFormData: FormData = {
@@ -31,27 +30,17 @@ const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({ ...initialFormData });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [status, setStatus] = useState<boolean | undefined>();
-  const [timer, setTimer] = useState<NodeJS.Timeout | undefined>();
   const [message, setMessage] = useState<string | undefined>();
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (status !== undefined) {
-      if (timer != undefined) {
-        clearTimeout(timer);
-      }
-      const newTimer = setTimeout(() => {
+      const timer = setTimeout(() => {
         setStatus(undefined);
       }, 3000);
-      setTimer(newTimer);
+      return () => clearTimeout(timer);
     }
-
-    return () => {
-      if (timer != undefined) {
-        clearTimeout(timer);
-      }
-    };
-  }, [status, timer]);
+  }, [status]);
 
   const validate = () => {
     try {
@@ -106,14 +95,14 @@ const ContactForm: React.FC = () => {
       setMessage(responseData?.message || "Form submitted successfully!");
       setFormData({ ...initialFormData });
       setErrors({});
-      setLoading(false);
     } catch (error) {
       setStatus(false);
-      setLoading(false);
       setMessage(
         (error as Error).message ||
           "Failed to submit the form. Please try again.",
       );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -195,9 +184,12 @@ const ContactForm: React.FC = () => {
             Send
           </CustomButton>
 
-          {status && <p className={`text-xs italic text-default`}>{message}</p>}
-          {status === false && (
-            <p className={`text-xs italic text-destructive`}>{message}</p>
+          {status !== undefined && (
+            <p
+              className={`text-xs italic ${status ? "text-default" : "text-destructive"}`}
+            >
+              {message}
+            </p>
           )}
         </form>
       </div>
