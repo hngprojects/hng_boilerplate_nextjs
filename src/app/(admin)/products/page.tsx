@@ -21,7 +21,8 @@ const ProductPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [view, setView] = useState<"list" | "grid">("list");
   const { addProducts } = useProducts();
-  const { isOpen, updateProductId, updateOpen } = useProductModal();
+  const { isOpen, updateProductId, updateOpen, updateFilterModal } =
+    useProductModal();
 
   useEffect(() => {
     const is_saved = localStorage.getItem("admin_products");
@@ -37,6 +38,7 @@ const ProductPage = () => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         updateOpen(false);
+        updateFilterModal(false);
         updateProductId("null");
       }
     };
@@ -46,10 +48,10 @@ const ProductPage = () => {
     };
   }, []);
   return (
-    <div className="flex w-full flex-col gap-y-8">
+    <div className="flex w-full flex-col gap-y-8 pt-8">
       <ProductHeader />
       <AnimatePresence>
-        <div className="flex w-full items-start gap-x-8 pt-4 xl:gap-x-10">
+        <div className="relative flex w-full items-start gap-x-8 pt-4 xl:gap-x-10">
           <motion.div
             layout
             layoutId="products_table"
