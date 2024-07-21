@@ -1,9 +1,9 @@
-import PriceCard from "~/app/settings/payment-information/Payment";
+import Payment from "~/app/settings/payment-information/Payment";
 
 const page = () => {
   return (
     <>
-      <PriceCard />
+      <Payment />
     </>
   );
 };

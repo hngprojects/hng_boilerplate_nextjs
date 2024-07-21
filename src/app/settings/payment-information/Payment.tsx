@@ -1,35 +1,40 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
+import { useState } from "react";
 
+import useUpgradePlan from "~/hooks/useUpgradePlan";
+import check from "../../../../public/images/check.svg";
 import icon from "../../../../public/images/icon.svg";
 import CustomButton from "../../../components/common/Button/button";
 
-const PriceCard: React.FC = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  const [isVisible, setIsVisible] = useState(false);
-
-  const toggleVisibility = () => {
-    setIsVisible(!isVisible);
+export default function Payment() {
+  const { upgradePlan, isLoading, popupMessage } = useUpgradePlan();
+  const handleUpgrade = async (plan: string) => {
+    await upgradePlan(plan);
   };
 
-  const upgradePlan = async (plan: string) => {
-    setIsLoading(true);
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log(`Upgrading to ${plan} plan`);
-    } catch (error) {
-      console.error("Error upgrading plan:", error);
-    } finally {
-      setIsLoading(false);
-    }
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
   };
 
   return (
     <>
       <div className="pb-24">
+        {popupMessage && (
+          <div
+            className={`fixed left-1/2 top-1/2 z-50 mb-4 -translate-x-1/2 transform rounded-md p-4 shadow-lg ${
+              popupMessage.includes("Error")
+                ? "bg-red-500 text-white"
+                : "bg-green-500 text-white"
+            }`}
+            role="alert"
+          >
+            {popupMessage}
+          </div>
+        )}
+
         <div className="mt-4">
           <h1 className="ml-5 font-sans text-2xl font-semibold">
             Current Plan
@@ -60,7 +65,7 @@ const PriceCard: React.FC = () => {
             </p>
 
             {/* The price cards */}
-            <div className="lg:gap-18 inline-flex items-center gap-2 xl:gap-20 2xl:gap-36">
+            <div className="lg:gap-18 inline-flex items-center gap-2 xl:gap-16 2xl:gap-36">
               {/* Free */}
               <div className="flex h-56 w-52 flex-1 flex-col items-start justify-start gap-7 rounded-xl px-6 py-4">
                 <div className="flex flex-col items-start gap-4 self-stretch">
@@ -75,7 +80,7 @@ const PriceCard: React.FC = () => {
                     </span>
                   </p>
 
-                  <p className="h-16 font-sans text-sm font-normal leading-normal">
+                  <p className="h-16 w-full font-sans text-sm font-normal leading-normal">
                     The essential to provide your best work for clients.
                   </p>
                 </div>
@@ -83,7 +88,7 @@ const PriceCard: React.FC = () => {
                 <CustomButton
                   variant="primary"
                   size="lg"
-                  onClick={() => upgradePlan("Free")}
+                  onClick={() => handleUpgrade("Free")}
                   isDisabled={isLoading}
                 >
                   {isLoading ? "Loading..." : "Get Free"}
@@ -103,7 +108,7 @@ const PriceCard: React.FC = () => {
               </div>
 
               {/* Basic */}
-              <div className="flex h-56 w-52 flex-1 flex-col items-start justify-start gap-6 rounded-xl px-[1.3125rem] py-[0.935rem]">
+              <div className="flex h-56 w-52 flex-1 flex-col items-start justify-start gap-6 rounded-xl px-6 py-4">
                 <div className="flex flex-col items-start gap-4 self-stretch">
                   <p className="font-sans text-base font-semibold leading-5">
                     Basic
@@ -116,7 +121,7 @@ const PriceCard: React.FC = () => {
                     </span>
                   </p>
 
-                  <p className="h-16 font-sans text-sm font-normal leading-normal">
+                  <p className="h-20 w-full font-sans text-sm font-normal leading-normal">
                     Ideal for growing needs who want more features.
                   </p>
                 </div>
@@ -124,7 +129,7 @@ const PriceCard: React.FC = () => {
                 <CustomButton
                   variant="primary"
                   size="lg"
-                  onClick={() => upgradePlan("Basic")}
+                  onClick={() => handleUpgrade("Basic")}
                   isDisabled={isLoading}
                   ariaLabel="upgrade-button-1"
                 >
@@ -162,7 +167,7 @@ const PriceCard: React.FC = () => {
                     </span>
                   </p>
 
-                  <p className="h-16 w-32 font-sans text-sm font-normal leading-normal">
+                  <p className="h-[4.3rem] w-full font-sans text-sm font-normal leading-normal">
                     Designed for power users and maximum functionalities.
                   </p>
                 </div>
@@ -170,7 +175,7 @@ const PriceCard: React.FC = () => {
                 <CustomButton
                   variant="primary"
                   size="lg"
-                  onClick={() => upgradePlan("Advanced")}
+                  onClick={() => handleUpgrade("Advanced")}
                   isDisabled={isLoading}
                   ariaLabel="upgrade-button-2"
                 >
@@ -212,7 +217,7 @@ const PriceCard: React.FC = () => {
                     </span>
                   </p>
 
-                  <p className="h-16 font-sans text-sm font-normal leading-normal">
+                  <p className="h-[4.3rem] font-sans text-sm font-normal leading-normal">
                     Perfect for users who want more features.
                   </p>
                 </div>
@@ -220,7 +225,7 @@ const PriceCard: React.FC = () => {
                 <CustomButton
                   variant="primary"
                   size="lg"
-                  onClick={() => upgradePlan("Premium")}
+                  onClick={() => handleUpgrade("Premium")}
                   isDisabled={isLoading}
                   ariaLabel="upgrade-button-3"
                 >
@@ -266,6 +271,7 @@ const PriceCard: React.FC = () => {
           className="mx-auto flex w-48 cursor-pointer items-center justify-center gap-1 text-neutral-dark-2"
           onClick={toggleVisibility}
           role="button"
+          aria-label="features"
         >
           <p className="font-sans text-base font-semibold leading-normal">
             Compare all features
@@ -284,8 +290,12 @@ const PriceCard: React.FC = () => {
         {/* First Table */}
         {isVisible && (
           <>
-            <div className="grid grid-cols-5 grid-rows-5">
-              <div className="col-span-5 flex h-20 w-full items-center gap-3 bg-[#FFF8F2] pb-7 pl-3 pr-10 pt-7">
+            <div
+              className="grid w-full grid-cols-5 grid-rows-5 overflow-x-scroll"
+              role="grid"
+              aria-label="table"
+            >
+              <div className="x col-span-5 flex h-20 w-full items-center gap-3 bg-[#FFF8F2] pb-7 pl-3 pr-10 pt-7">
                 <p className="font-sans text-base font-bold leading-normal text-neutral-dark-2">
                   Project Management
                 </p>
@@ -365,128 +375,64 @@ const PriceCard: React.FC = () => {
               </div>
 
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               {/* Second row */}
               <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 Guest Access
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               {/* Third row */}
               <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 Page Analysis
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               {/* Fourth row */}
               <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
                 Task Mangement
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
             </div>
 
@@ -502,25 +448,13 @@ const PriceCard: React.FC = () => {
 
               <div className="flex items-center justify-center border-y"></div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               {/* Second row */}
               <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
@@ -528,25 +462,13 @@ const PriceCard: React.FC = () => {
               </div>
               <div className="flex items-center justify-center border-y"></div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               {/* Third row */}
               <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
@@ -554,25 +476,13 @@ const PriceCard: React.FC = () => {
               </div>
               <div className="flex items-center justify-center border-y"></div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
             </div>
 
@@ -587,32 +497,16 @@ const PriceCard: React.FC = () => {
               </div>
 
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               {/* Second row */}
               <div className="flex items-center border-y border-l pl-2 font-sans text-sm font-normal leading-5 text-neutral-dark-2 sm:text-base">
@@ -620,25 +514,13 @@ const PriceCard: React.FC = () => {
               </div>
               <div className="flex items-center justify-center border-y"></div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
               <div className="flex items-center justify-center border-y sm:justify-start">
-                <Image
-                  src="/public/images/check.svg"
-                  alt="checkmark"
-                  width={20}
-                />
+                <Image src={check} alt="checkmark" width={20} height={20} />
               </div>
             </div>
           </>
@@ -646,6 +528,4 @@ const PriceCard: React.FC = () => {
       </div>
     </>
   );
-};
-
-export default PriceCard;
+}

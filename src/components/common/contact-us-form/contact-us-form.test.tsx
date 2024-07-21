@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
+import { beforeAll, describe, expect, it, vi } from "vitest";
 
 import ContactForm from "~/components/common/contact-us-form";
 
@@ -12,7 +12,7 @@ describe("contactForm Component", () => {
 
   afterEach(() => {
     vi.clearAllMocks();
-    vi.clearAllTimers(); // Clear timers after each test
+    vi.clearAllTimers();
   });
 
   const setup = () => {
@@ -33,16 +33,15 @@ describe("contactForm Component", () => {
   };
 
   it("should validate all required form fields", async () => {
-    expect.assertions(1); // Add this line
+    expect.assertions(1);
     const { submitButton } = setup();
     fireEvent.click(submitButton);
 
-    // Ensure that the error messages for all required fields are present
     await expect(screen.findAllByText(/is required/)).resolves.toHaveLength(2);
   });
 
   it("should validate email format", async () => {
-    expect.assertions(1); // Add this line
+    expect.assertions(1);
     const { emailInput, submitButton } = setup();
     fireEvent.change(emailInput, { target: { value: "invalid-email@kkk" } });
     fireEvent.click(submitButton);
@@ -51,7 +50,7 @@ describe("contactForm Component", () => {
   });
 
   it("should validate phone number format", async () => {
-    expect.assertions(1); // Add this line
+    expect.assertions(1);
     const { phoneInput, submitButton } = setup();
     fireEvent.change(phoneInput, { target: { value: "123" } });
     fireEvent.click(submitButton);
@@ -60,7 +59,7 @@ describe("contactForm Component", () => {
   });
 
   it("should submit the form successfully", async () => {
-    expect.assertions(2); // Add this line
+    expect.assertions(2); // Ensure we have at least two assertions in this test
     const { nameInput, emailInput, phoneInput, messageInput, submitButton } =
       setup();
     mockFetch.mockResolvedValueOnce({
@@ -82,7 +81,7 @@ describe("contactForm Component", () => {
   });
 
   it("should handle form submission error", async () => {
-    expect.assertions(2); // Add this line
+    expect.assertions(2); // Ensure we have at least two assertions in this test
     const { nameInput, emailInput, phoneInput, messageInput, submitButton } =
       setup();
     mockFetch.mockResolvedValueOnce({
@@ -102,7 +101,7 @@ describe("contactForm Component", () => {
   });
 
   it("should reset status and message after 3 seconds", async () => {
-    expect.assertions(2); // Add this line
+    expect.assertions(2);
     const { nameInput, emailInput, phoneInput, messageInput, submitButton } =
       setup();
     mockFetch.mockResolvedValueOnce({
@@ -122,7 +121,6 @@ describe("contactForm Component", () => {
       screen.getByText("Form submitted successfully!"),
     ).toBeInTheDocument();
 
-    // Use fake timers for this specific test case
     vi.useFakeTimers();
     vi.advanceTimersByTime(3000);
     vi.useRealTimers();
@@ -132,13 +130,11 @@ describe("contactForm Component", () => {
     expect.assertions(2);
     const { container } = setup();
 
-    // Check mobile responsiveness
-    window.innerWidth = 320; // Mobile width
+    window.innerWidth = 320;
     window.dispatchEvent(new Event("resize"));
     expect(container.firstChild).toHaveClass("w-full");
 
-    // Check desktop responsiveness
-    window.innerWidth = 1024; // Desktop width
+    window.innerWidth = 1024;
     window.dispatchEvent(new Event("resize"));
     expect(container.firstChild).toHaveClass("max-w-[80%]");
   });
