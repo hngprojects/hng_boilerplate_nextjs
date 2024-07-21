@@ -3,8 +3,9 @@ import userEvent from "@testing-library/user-event";
 
 import PasswordSettings from "./page";
 
-describe("PasswordSettings Component", () => {
+describe("passwordSettings Component", () => {
   it("renders all elements correctly", () => {
+    expect.assertions(7);
     render(<PasswordSettings />);
 
     expect(screen.getByText("Password Settings")).toBeInTheDocument();
@@ -19,12 +20,14 @@ describe("PasswordSettings Component", () => {
   });
 
   it("verifies responsiveness across various devices", () => {
+    expect.assertions(1);
     render(<PasswordSettings />);
 
     expect(screen.getByText("Password Settings")).toBeInTheDocument();
   });
 
   it("tests password update functionality", async () => {
+    expect.assertions(6);
     render(<PasswordSettings />);
     const user = userEvent.setup();
 
@@ -73,9 +76,10 @@ describe("PasswordSettings Component", () => {
         screen.getByText("New password must contain at least one number"),
       ).toBeInTheDocument();
     });
-  }, 10000);
+  }, 10_000);
 
   it("confirms successful password update workflow", async () => {
+    expect.assertions(2);
     render(<PasswordSettings />);
     const user = userEvent.setup();
 
