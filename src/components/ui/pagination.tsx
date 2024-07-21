@@ -39,12 +39,14 @@ PaginationItem.displayName = "PaginationItem";
 
 type PaginationLinkProperties = {
   isActive?: boolean;
+  activeVariant?: "default" | "outline";
 } & Pick<ButtonProperties, "size"> &
   React.ComponentProps<"a">;
 
 const PaginationLink = ({
   className,
   isActive,
+  activeVariant = "outline",
   size = "icon",
   ...properties
 }: PaginationLinkProperties) => (
@@ -52,7 +54,7 @@ const PaginationLink = ({
     aria-current={isActive ? "page" : undefined}
     className={cn(
       buttonVariants({
-        variant: isActive ? "outline" : "ghost",
+        variant: isActive ? activeVariant : "ghost",
         size,
       }),
       isActive
