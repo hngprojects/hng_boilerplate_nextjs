@@ -25,15 +25,17 @@ const SignupOtp: React.FC = () => {
     event: ChangeEvent<HTMLInputElement>,
   ) => {
     const value = event.target.value;
-    if (/^\d$/.test(value) || value === "") {
-      const newOtp = [...otp];
-      newOtp[index] = value;
-      setOtp(newOtp);
+    const newOtp =
+      /^\d$/.test(value) || value === ""
+        ? ((otpCopy) => {
+            otpCopy[index] = value;
+            setOtp(otpCopy);
+            return otpCopy;
+          })([...otp])
+        : otp;
 
-      if (value !== "" && index < 5) {
-        inputReferences.current[index + 1]?.focus();
-      }
-    }
+    console.log(newOtp);
+    value !== "" && index < 5 && inputReferences.current[index + 1]?.focus();
   };
 
   const handlePaste = (event: ClipboardEvent<HTMLInputElement>) => {
@@ -89,7 +91,7 @@ const SignupOtp: React.FC = () => {
               }}
               type="text"
               maxLength={1}
-              className={`h-15 w-15 rounded-lg border text-center text-lg font-semibold outline-none ${
+              className={`h-[60px] w-[60px] rounded-lg border text-center text-lg font-semibold outline-none ${
                 value ? "border-red-500" : "border-gray-300"
               }`}
               value={value}

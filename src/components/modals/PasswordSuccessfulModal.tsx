@@ -9,7 +9,7 @@ import {
   DialogDescription,
   DialogOverlay,
   DialogTitle,
-} from "../../ui/dialog";
+} from "~/components/ui/dialog";
 
 interface ModalProperties {
   show: boolean;
