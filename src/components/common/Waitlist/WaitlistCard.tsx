@@ -30,7 +30,7 @@ const WaitlistCard = ({
   return (
     <Card
       className={cn(
-        `w-[100%] bg-card-background md:w-[320px] ${waitlistBorderStyle}`,
+        `bg-card-background w-[100%] md:w-[320px] ${waitlistBorderStyle}`,
         className,
       )}
       {...properties}
