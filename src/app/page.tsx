@@ -1,5 +1,6 @@
-import Navbar from "~/components/layouts/Navbar";
+import Navbar from "~/components/layouts/components/Navbar";
 import Head from "next/head";
+import Dashboard from "./dashboard/page";
 
 export default function Home() {
 
@@ -7,7 +8,7 @@ export default function Home() {
     <>
       <Navbar />
       <main className="">
-
+        <Dashboard />
       </main>
     </>
   );
