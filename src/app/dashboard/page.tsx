@@ -25,7 +25,7 @@ const Dashboard: React.FC = () => {
   return (
         <>
          <div className="flex min-h-screen pt-[110px] p-[42px]">
-         <div className="flex flex-col w-full gap-[24px]">
+        <div className="flex w-full flex-col gap-[24px]">
                 <div className="flex flex-col md:flex-row justify-between items-center w-full">
                     <div className="flex flex-col gap-[24px]">
                         <h1 className="text-xl font-bold">Dashboard</h1>
