@@ -17,10 +17,10 @@ export const CustomToast: React.FC<CustomToastProperties> = ({
       description: description,
       role: role,
       className:
-        "custom-toast-invite fixed top-24 left-1/2 transform -translate-x-1/2 w-60 h-10 sm:w-80 sm:h-20 md:w-96 md:h-20 lg:w-96 lg:h-20 xl:w-96 xl:h-20 2xl:w-96 2xl:h-20 shadow-none bg-green-100 border-2 border-solid border-green-400 rounded-sm [&>button.custom-close-btn]:hidden ",
+        "custom-toast-invite fixed z-100 top-10 left-1/2 transform -translate-x-1/2 w-60 h-10 pr-6 sm:w-80 sm:h-16 md:w-[480px] shadow-none bg-green-100 border-2 border-solid border-green-400 rounded-sm [&>button.custom-close-btn]:hidden ",
       action: (
         <button data-testid="close-alert-btn" onClick={() => dismiss()}>
-          <X size={24} className="p-1" />
+          <X size={24} className="" />
         </button>
       ),
     });
