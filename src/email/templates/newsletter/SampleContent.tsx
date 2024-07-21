@@ -1,5 +1,5 @@
-import { Heading, Section, Text } from "@react-email/components";
-import Image from "next/image";
+import { Heading, Img, Section, Text } from "@react-email/components";
+import React from "react";
 
 interface SampleContentProperties {
   imageState: boolean;
@@ -7,7 +7,7 @@ interface SampleContentProperties {
 
 const SampleContent: React.FC<SampleContentProperties> = ({ imageState }) => {
   return (
-    <Section>
+    <Section className="w-full overflow-x-hidden">
       <Text className="mt-7 text-sm text-neutral-dark-1 md:mt-8 md:text-lg md:tracking-wide">
         We’re excited to bring you an exclusive offer that will keep you ahead
         of the curve! At Boilerplate, we pride ourselves on providing the latest
@@ -22,12 +22,12 @@ const SampleContent: React.FC<SampleContentProperties> = ({ imageState }) => {
         What’s in Store
       </Heading>
       <Text className="flex flex-row items-center gap-4 text-sm text-neutral-dark-2 md:gap-5">
-        <Image
+        <Img
           src="/images/newletter-email-template/Newsletter-Star.svg"
           alt="Star"
           className="w-6 md:w-6"
-          width={1000}
-          height={1000}
+          width={28}
+          height={28}
         />
         <span className="text-sm md:text-base">
           <b>The Ultimate Smartwatch:</b> Experience the future with this
@@ -35,12 +35,12 @@ const SampleContent: React.FC<SampleContentProperties> = ({ imageState }) => {
         </span>
       </Text>
       <Text className="flex flex-row items-center gap-5 text-neutral-dark-2">
-        <Image
+        <Img
           src="/images/newletter-email-template/Newsletter-Star.svg"
           alt="Star"
           className="w-6 md:w-6"
-          width={1000}
-          height={1000}
+          width={28}
+          height={28}
         />
         <span className="text-sm md:text-base">
           <b>The High-Performance Laptop: </b> A perfect blend of innovation and
@@ -48,12 +48,12 @@ const SampleContent: React.FC<SampleContentProperties> = ({ imageState }) => {
         </span>
       </Text>
       <Text className="flex flex-row items-center gap-5 text-neutral-dark-2">
-        <Image
+        <Img
           src="/images/newletter-email-template/Newsletter-Star.svg"
           alt="Star"
           className="w-6 md:w-6"
-          width={1000}
-          height={1000}
+          width={28}
+          height={28}
         />
         <span className="text-sm md:text-base">
           <b>The Wireless Noise-Cancelling Headphones:</b> Sleek, powerful, and
@@ -77,12 +77,12 @@ const SampleContent: React.FC<SampleContentProperties> = ({ imageState }) => {
         Why Choose Boilerplate?
       </Heading>
       <Text className="flex flex-row items-center gap-5 text-neutral-dark-2">
-        <Image
+        <Img
           src="/images/newletter-email-template/Newsletter-Star.svg"
           alt="Star"
           className="w-6 md:w-6"
-          width={1000}
-          height={1000}
+          width={28}
+          height={28}
         />
         <span className="text-sm md:text-base">
           <b> Cutting-Edge Technology:</b> We source the most innovative
@@ -90,12 +90,12 @@ const SampleContent: React.FC<SampleContentProperties> = ({ imageState }) => {
         </span>
       </Text>
       <Text className="flex flex-row items-center gap-5 text-neutral-dark-2">
-        <Image
+        <Img
           src="/images/newletter-email-template/Newsletter-Star.svg"
           alt="Star"
           className="w-6 md:w-6"
-          width={1000}
-          height={1000}
+          width={28}
+          height={28}
         />
         <span className="text-sm md:text-base">
           <b>Unmatched Quality: </b> Our products undergo rigorous testing to
@@ -103,12 +103,12 @@ const SampleContent: React.FC<SampleContentProperties> = ({ imageState }) => {
         </span>
       </Text>
       <Text className="flex flex-row items-center gap-5 text-foreground">
-        <Image
+        <Img
           src="/images/newletter-email-template/Newsletter-Star.svg"
           alt="Star"
           className="w-6 md:w-6"
-          width={1000}
-          height={1000}
+          width={28}
+          height={28}
         />
         <span className="text-sm md:text-base">
           <b>Exceptional Customer Support:</b> Our team is always here to assist
@@ -126,12 +126,12 @@ const SampleContent: React.FC<SampleContentProperties> = ({ imageState }) => {
       <Section
         className={`${imageState ? "mt-16 md:mt-20" : "mt-0"} flex flex-col items-center justify-center`}
       >
-        <Image
-          src="/images//newletter-email-template/Newsletter-Discount.svg"
-          alt="Newsletter"
-          className={`w-40 md:w-80 ${imageState ? "" : "hidden"}`}
-          width={1000}
-          height={1000}
+        <Img
+          src="/images/newletter-email-template/Newsletter-Discount.svg"
+          alt="Newsletter Image"
+          className={`hidden w-40 md:w-80 ${imageState ? "hidden" : "hidden"}`}
+          width={28}
+          height={28}
         />
       </Section>
       <Section
@@ -139,13 +139,13 @@ const SampleContent: React.FC<SampleContentProperties> = ({ imageState }) => {
       ></Section>
       <ol className="mt-12 text-sm leading-6 text-neutral-dark-1 md:text-base">
         <li>
-          1. Visit our website at{" "}
+          Visit our website at{" "}
           <a className="text-primary">www.boilerplate.com</a>
         </li>
-        <li>2. Browse our selection of cutting-edge tech. </li>
-        <li>3. Add your desired products to the cart.</li>
+        <li> Browse our selection of cutting-edge tech. </li>
+        <li>Add your desired products to the cart.</li>
         <li>
-          4. Enter the code TECHSAVVY at checkout to apply your discount. Don’t
+          Enter the code TECHSAVVY at checkout to apply your discount. Don’t
           miss out on this opportunity to upgrade your tech and stay ahead of
           the game. This exclusive offer is valid until 30th July, so act fast!
         </li>

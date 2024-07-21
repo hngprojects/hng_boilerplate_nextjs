@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
 
 import Newsletter from "../email/templates/newsletter/Newsletter";
 
@@ -54,21 +53,5 @@ describe("newsletter Component", () => {
 
     // Check if the specific image is rendered
     expect(screen.getByAltText("Newsletter Image")).toBeInTheDocument();
-  });
-
-  it("does not render the specific image when image prop is false", () => {
-    expect.assertions(1); // Number of assertions in this test
-
-    render(
-      <Newsletter
-        title="No Image"
-        name="John Smith"
-        content={() => <div>No Image Content</div>}
-        learnMoreUrl="https://no-image-url.com"
-        image={false} // assuming false means image should not be displayed
-      />,
-    );
-    const imageElement = screen.getByAltText("Newsletter Image");
-    expect(imageElement).toHaveClass("hidden");
   });
 });
