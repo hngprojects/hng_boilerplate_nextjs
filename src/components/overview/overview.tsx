@@ -4,6 +4,7 @@ import { Activity, DollarSign, PanelTop, Users } from "lucide-react";
 import Link from "next/link";
 
 import { ChartConfig } from "~/components/ui/chart";
+import DataCard from "../common/DataCard/DataCard";
 import { DatePickerDemo } from "./Calendar";
 import { Chart } from "./Chart";
 
@@ -75,7 +76,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="mx-12 p-4 md:p-8">
+    <div className="mx-4 w-full p-4 md:mx-12 md:p-8">
       <div className="mb-6 flex flex-col items-center justify-between md:flex-row">
         <div className="mb-4 md:mb-0">
           <h1 className="text-2xl font-bold md:text-3xl">Dashboard</h1>
@@ -102,38 +103,31 @@ export default function Home() {
         </div>
       </div>
       <div className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <div className="rounded bg-card p-[24px] shadow-md">
-          <div className="flex items-center justify-between">
-            <h2 className="text-[14px] font-medium">Total Revenue</h2>
-            <DollarSign className="h-[24px]" />
-          </div>
-          <p className="text-[24px] font-semibold">$45,000.00</p>
-          <p className="text-description-text text-sm">+20% from last month</p>
-        </div>
-        <div className="rounded bg-card p-[24px] shadow-md">
-          <div className="flex items-center justify-between">
-            <h2 className="text-[14px] font-medium">Subscriptions</h2>
-            <Users className="h-[24px]" />
-          </div>
-          <p className="text-[24px] font-semibold">+2350</p>
-          <p className="text-description-text text-sm">+150% from last month</p>
-        </div>
-        <div className="rounded bg-card p-[24px] shadow-md">
-          <div className="flex items-center justify-between">
-            <h2 className="h-[14px] font-medium">Sales</h2>
-            <PanelTop className="h-[24px]" />
-          </div>
-          <p className="text-[24px] font-semibold">15,000</p>
-          <p className="text-description-text text-sm">+10% from last month</p>
-        </div>
-        <div className="rounded bg-card p-[24px] shadow-md">
-          <div className="flex items-center justify-between">
-            <h2 className="text-[14px] font-medium">Active Now</h2>
-            <Activity className="h-[24px]" />
-          </div>
-          <p className="text-[24px] font-semibold">574</p>
-          <p className="text-description-text text-sm">+201 since last hour</p>
-        </div>
+        <DataCard
+          heading={{
+            title: "Total Revenue",
+            icon: <DollarSign className="h-[24px]" />,
+          }}
+          content={{ amount: "$45,000.00", subtext: "+20% from last month" }}
+        />
+        <DataCard
+          heading={{
+            title: "Subscriptions",
+            icon: <Users className="h-[24px]" />,
+          }}
+          content={{ amount: "+2350", subtext: "+150% from last month" }}
+        />
+        <DataCard
+          heading={{ title: "Sales", icon: <PanelTop className="h-[24px]" /> }}
+          content={{ amount: "15,000", subtext: "+10% from last month" }}
+        />
+        <DataCard
+          heading={{
+            title: "Active Now",
+            icon: <Activity className="h-[24px]" />,
+          }}
+          content={{ amount: "574", subtext: "+201 since last hour" }}
+        />
       </div>
       <div className="grid grid-cols-1 gap-[16px] lg:grid-cols-5">
         <div className="rounded bg-card p-4 shadow-md lg:col-span-3">
