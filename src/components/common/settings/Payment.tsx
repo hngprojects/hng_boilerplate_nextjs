@@ -6,7 +6,7 @@ import { useState } from "react";
 import useUpgradePlan from "~/hooks/useUpgradePlan";
 import check from "../../../../public/images/check.svg";
 import icon from "../../../../public/images/icon.svg";
-import CustomButton from "../../../components/common/Button/button";
+import CustomButton from "../Button/button";
 
 export default function Payment() {
   const { upgradePlan, isLoading, popupMessage } = useUpgradePlan();

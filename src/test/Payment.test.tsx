@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import Payment from "~/app/settings/payment-information/Payment";
+import Payment from "~/components/common/settings/Payment";
 
 describe("payment Component", () => {
   it("should toggle the visibility of the features table when the button is clicked", () => {
