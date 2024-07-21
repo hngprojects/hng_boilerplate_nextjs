@@ -31,11 +31,12 @@
     ]
   },
   "include": [
+    "svgr.d.ts",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "src/components/common/TabSwitcher"  ],
   "exclude": [
     "node_modules"
   ]

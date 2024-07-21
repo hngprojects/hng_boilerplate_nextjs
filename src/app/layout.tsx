@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { Toaster } from "~/components/ui/toaster";
 
 import "./globals.css";
+import Navbar from "~/components/layouts/Navbar";
 
 import Providers from "~/components/Providers";
 

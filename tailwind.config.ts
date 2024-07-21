@@ -19,7 +19,21 @@ const config = {
       },
     },
     extend: {
+      fontSize: {
+        'xs': '12px',
+        'sm': '14px',
+        'base': '16px',
+        'lg': '24px',
+        'xl': '30px',
+      },
       colors: {
+        neutral_dark_1: "#0A0A0A",
+        neutral_dark_2: "#525252",
+        black_900: "#080808",
+        black_300: "#626262",
+        slate_900: "#0F172A",
+        slate_100: "#F1F5F9",
+        stroke_dashboard: "#CBD5E1",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -96,9 +110,9 @@ const config = {
         grey50: "hsl(var(--grey50))",
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        lg: "12px",
+        md: "6px",
+        sm: "4px",
       },
       keyframes: {
         "accordion-down": {
@@ -114,7 +128,10 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
-    },
+      boxShadow: {
+        'custom-light': '0px 1px 18px 0px rgba(10, 57, 176, 0.12)',
+      },
+    }
   },
 
   plugins: [

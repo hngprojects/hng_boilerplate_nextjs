@@ -61,7 +61,7 @@ const Navbar = () => {
           >
             Log in
           </CustomButton>
-          <CustomButton variant="primary" className="h-[44px] w-[142px]">
+          <CustomButton variant="primary" className="h-[44px] w-[142px]" href="/dashboard">
             Get Started
           </CustomButton>
         </div>
