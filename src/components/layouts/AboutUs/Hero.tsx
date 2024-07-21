@@ -9,18 +9,18 @@ const Hero = () => {
   return (
     <div className="relative top-[108px] flex h-[754px] flex-col justify-between md:h-[834px] md:w-full md:pb-[64px] md:pt-[64px]">
       <div className="mx-auto flex flex-col items-center justify-evenly max-sm:h-[302px] max-sm:w-[382px] max-sm:gap-[24px]">
-        <p className="text-center text-[20px] font-[500] text-[#525252] md:text-[28px]">
+        <p className="text-center text-[20px] font-[500] text-foreground md:text-[28px]">
           About Us
         </p>
-        <p className="text-center text-[32px] font-[700] text-[#525252] max-sm:leading-[38px] md:text-[64px]">
+        <p className="text-neutralColor-dark-2 text-center text-[32px] font-[700] max-sm:leading-[38px] md:text-[64px]">
           More Than Just A BoilerPlate
         </p>
-        <p className="mx-auto h-[88px] w-[382px] text-center text-[18px] font-[400] leading-[22px] text-[#525252] md:h-[66px] md:w-[584px]">
+        <p className="mx-auto h-[88px] w-[382px] text-center text-[18px] font-[400] leading-[22px] text-foreground md:h-[66px] md:w-[584px]">
           Welcome to Hng Boilerplate, where passion meets innovation. Discover
           how we started, the challenges we overcame, and the milestones that
           define our journey.
         </p>
-        <Button className="hidden h-[40px] w-[136px] items-center justify-center rounded-[6px] bg-[#F97316] p-[16px_8px] text-[#fff] max-sm:flex">
+        <Button className="hidden h-[40px] w-[136px] items-center justify-center rounded-[6px] bg-primary p-[16px_8px] text-background max-sm:flex">
           Meet The Team
         </Button>
       </div>

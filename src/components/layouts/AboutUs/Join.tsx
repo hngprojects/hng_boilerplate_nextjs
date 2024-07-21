@@ -12,7 +12,7 @@ const Join = () => {
         Interested in joining out team? View our Job Listing page for openings
         and apply with an equal chance of working with us!
       </p>
-      <Button className="flex h-[40px] w-[80px] items-center justify-center rounded-[6px] bg-[#F97316] p-[16px_8px] text-[#fff]">
+      <Button className="flex h-[40px] w-[80px] items-center justify-center rounded-[6px] bg-primary p-[16px_8px] text-background">
         Join us
       </Button>
     </div>

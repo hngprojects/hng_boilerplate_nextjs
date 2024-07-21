@@ -6,12 +6,32 @@ import Insta from "../../../../public/AboutUs/Insta.png";
 import John from "../../../../public/AboutUs/John.png";
 import Joy from "../../../../public/AboutUs/joy.png";
 import Phillip from "../../../../public/AboutUs/Philp.png";
+import ShapeTwo from "../../../../public/AboutUs/Shape-2.png";
+import ShapeOne from "../../../../public/AboutUs/Shape.png";
 import Twitter from "../../../../public/AboutUs/X.png";
 
 const ExecutiveTeam = () => {
   return (
-    <div className="mt-[80px] flex h-[1831px] flex-col md:h-[610px] md:w-full">
-      <div className="mx-auto flex w-[382px] flex-col items-center justify-center max-sm:px-[5px] md:w-[630px]">
+    <div className="relative mt-[80px] flex h-[1831px] flex-col md:h-[610px] md:w-full">
+      <span>
+        <Image
+          src={ShapeOne}
+          alt="eclipse"
+          width={1441}
+          height={130}
+          className="absolute top-0 h-[130px] w-full"
+        />
+      </span>
+      <span>
+        <Image
+          src={ShapeTwo}
+          alt="eclipse"
+          width={1441}
+          height={130}
+          className="absolute bottom-0 h-[130px] w-full"
+        />
+      </span>
+      <div className="z-10 mx-auto flex w-[382px] flex-col items-center justify-center max-sm:px-[5px] md:w-[630px]">
         <h3 className="text-center text-[32px] font-[600] text-[#525252] md:text-[44px]">
           The Executive Team
         </h3>
@@ -20,7 +40,7 @@ const ExecutiveTeam = () => {
         </p>
       </div>
 
-      <div className="mx-auto mt-[20px] grid h-[1692px] grid-cols-1 gap-[27px] md:h-[3px] md:w-[1200px] md:grid-cols-4">
+      <div className="z-10 mx-auto mt-[20px] grid h-[1692px] grid-cols-1 gap-[27px] md:h-[3px] md:w-[1200px] md:grid-cols-4">
         <div
           className="flex w-[280px] flex-col gap-[20px] bg-[#f4f2f299] pb-[14px]"
           data-testid="johnSection"

@@ -9,7 +9,7 @@ const Mission = () => {
       <div className="flex h-[382px] flex-col gap-[24px] md:hidden">
         <div className="mx-auto flex h-[119px] w-[382px] flex-col items-center justify-evenly gap-[12px]">
           <h3
-            className="h-[34px] text-[24px] font-[700] leading-[53px] text-[#F97316]"
+            className="h-[34px] text-[24px] font-[700] leading-[53px] text-primary"
             data-testid="mission mobile"
           >
             Our Mission
@@ -59,7 +59,7 @@ const Mission = () => {
         <div className="flex h-[264px] w-[500px] flex-col gap-[24px]">
           <div className="flex h-[152px] w-[486px] flex-col gap-[12px]">
             <h3
-              className="h-[34px] text-[28px] font-[700] leading-[53px] text-[#F97316]"
+              className="h-[34px] text-[28px] font-[700] leading-[53px] text-primary"
               data-testid="mission web"
             >
               Our Mission

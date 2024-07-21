@@ -14,7 +14,7 @@ const CoreValues = () => {
       <div className="mt-[40px] grid h-[876px] w-[382px] grid-cols-1 gap-[24px] max-sm:px-[10px] md:h-[424px] md:w-[1200px] md:grid-cols-2">
         <div className="flex h-[200px] flex-col items-center gap-[24px] rounded-[10px] bg-[#f974161a] px-[16px] md:w-[588px]">
           <h3
-            className="text-[28px] font-[700] text-[#F97316]"
+            className="text-[28px] font-[700] text-primary"
             data-testid="integrity"
           >
             Integrity
@@ -28,7 +28,7 @@ const CoreValues = () => {
         </div>
 
         <div className="flex h-[200px] flex-col items-center gap-[24px] rounded-[10px] bg-[#f974161a] px-[16px] md:w-[588px]">
-          <h3 className="text-center text-[28px] font-[700] text-[#F97316]">
+          <h3 className="text-center text-[28px] font-[700] text-primary">
             Customer Centricity
           </h3>
           <p className="text-[16px] font-[400] leading-[19px] text-[#525252] max-sm:w-[350px] max-sm:text-center md:text-[18px] md:leading-[22px]">
@@ -41,7 +41,7 @@ const CoreValues = () => {
 
         <div className="flex h-[200px] flex-col items-center gap-[24px] rounded-[10px] bg-[#f974161a] px-[16px] md:w-[588px]">
           <h3
-            className="text-center text-[28px] font-[700] text-[#F97316]"
+            className="text-center text-[28px] font-[700] text-primary"
             data-testid="innovation"
           >
             Innovation
@@ -55,7 +55,7 @@ const CoreValues = () => {
         </div>
 
         <div className="flex h-[200px] flex-col items-center gap-[24px] rounded-[10px] bg-[#f974161a] px-[16px] md:w-[588px]">
-          <h3 className="text-center text-[28px] font-[700] text-[#F97316]">
+          <h3 className="text-center text-[28px] font-[700] text-primary">
             Excellence
           </h3>
           <p className="text-[16px] font-[400] leading-[19px] text-[#525252] max-sm:w-[350px] max-sm:text-center md:text-[18px] md:leading-[22px]">

@@ -10,7 +10,7 @@ const Vision = () => {
         <div className="flex h-[382px] w-[430px] flex-col gap-[24px] md:h-[264px] md:w-[500px]">
           <div className="mx-auto flex h-[119px] w-[211px] flex-col justify-evenly gap-[12px] max-sm:items-center md:h-[152px] md:w-[486px]">
             <h3
-              className="h-[34px] text-[24px] font-[700] leading-[53px] text-[#F97316] md:text-[28px] md:leading-[53px]"
+              className="h-[34px] text-[24px] font-[700] leading-[53px] text-primary md:text-[28px] md:leading-[53px]"
               data-testid="vision"
             >
               Our Vision
