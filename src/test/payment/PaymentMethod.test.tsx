@@ -9,8 +9,8 @@ describe("PaymentMethod Component", () => {
   const defaultProps = {
     image: "../../../public/images/logo(small).svg",
     header: "MasterCard",
-    width: 50,
-    height: 50,
+    width: 40,
+    height: 38,
     active: false,
     onClick: vi.fn(),
     forms: <div>Form content</div>,
