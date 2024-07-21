@@ -1,37 +1,38 @@
 import { render, screen } from "@testing-library/react";
+
 import Pricingplan from "./Pricingplan";
 
-test('renders monthly basic plan correctly', () => {
-    const { getByText, getByRole, queryByText } = render(<Pricingplan period="monthly" plan="Basic" />);
-  
-    expect(getByText('Basic')).toBeInTheDocument();
-    expect(getByText('$800')).toBeInTheDocument();
-    expect(getByRole('list')).toBeInTheDocument(); 
-    expect(queryByText('greyed')).not.toBeInTheDocument();
+const checkPricingPlan = (
+  period: string,
+  plan: string,
+  expectedPlanText: string,
+  expectedPriceText: string,
+) => {
+  render(<Pricingplan period={period} plan={plan} />);
+
+  expect(screen.getByText(expectedPlanText)).toBeInTheDocument();
+  expect(screen.getByText(expectedPriceText)).toBeInTheDocument();
+  expect(screen.getByRole("list")).toBeInTheDocument();
+};
+
+describe("rendering correct component", () => {
+  it("renders monthly basic plan correctly", () => {
+    expect.hasAssertions();
+    checkPricingPlan("monthly", "Basic", "Basic", "$800");
   });
 
-  test('renders monthly premium plan correctly', () => {
-    const { getByText, getByRole } = render(<Pricingplan period="monthly" plan="Premium" />);
-  
-    expect(getByText('Premium')).toBeInTheDocument();
-    expect(getByText('$3,000')).toBeInTheDocument();
-    expect(getByRole('list')).toBeInTheDocument();
-  });
-  
-  test('renders annually basic plan correctly', () => {
-    const { getByText, getByRole } = render(<Pricingplan period="annually" plan="Basic" />);
-  
-    expect(getByText('Basic')).toBeInTheDocument();
-    expect(getByText('$500')).toBeInTheDocument();
-    expect(getByRole('list')).toBeInTheDocument();
+  it("renders monthly premium plan correctly", () => {
+    expect.hasAssertions();
+    checkPricingPlan("monthly", "Premium", "Premium", "$3,000");
   });
 
-  test('renders annually premium plan correctly', () => {
-    const { getByText, getByRole, queryByText } = render(<Pricingplan period="annually" plan="Premium" />);
-  
-    expect(getByText('Premium')).toBeInTheDocument();
-    expect(getByText('$2,000')).toBeInTheDocument();
-    expect(getByRole('list')).toBeInTheDocument();
+  it("renders annually basic plan correctly", () => {
+    expect.hasAssertions();
+    checkPricingPlan("annually", "Basic", "Basic", "$500");
   });
-  
-  
+
+  it("renders annually premium plan correctly", () => {
+    expect.hasAssertions();
+    checkPricingPlan("annually", "Premium", "Premium", "$2,000");
+  });
+});
