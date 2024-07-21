@@ -1,5 +1,5 @@
 
-import { fireEvent, render, screen } from "../../test/utils";
+import { fireEvent, render, screen } from "../../../test/utils";
 import Page from "./page";
 
 describe("page tests", () => {
