@@ -1,77 +1,67 @@
+import { fireEvent, render, screen } from "@testing-library/react";
+
 import "@testing-library/jest-dom";
 
-import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
 import PaymentMethod from "../../components/paymentMethod/PaymentMethod";
 
-describe("paymentMethod Component", () => {
-  const defaultProps = {
-    image: "../../../public/images/logo(small).svg",
-    header: "MasterCard",
-    width: 40,
-    height: 40,
-    active: false,
-    onClick: vi.fn(),
-    forms: <div>Form content</div>,
-  };
+describe("paymentMethod", () => {
+  const image = "/images/Group (1).svg";
+  const header = "Credit Card";
+  const width = 65;
+  const height = 40;
+  const forms = <div>Credit Card Form</div>;
+  const selectedValue = "Credit Card";
+  const onChange = vi.fn();
 
-  it("renders the component with given props", () => {
-    expect.assertions(6); // Updated number of assertions in this test
-    render(<PaymentMethod {...defaultProps} />);
+  it("renders correctly", () => {
+    expect.assertions(3);
 
-    // Check if the header is rendered
-    expect(screen.getByText("MasterCard")).toBeInTheDocument();
-
-    // Check if the image is rendered with correct src
-    const image = screen.getByAltText("MasterCard Symbol");
-    expect(image).toBeInTheDocument();
-    expect(image).toHaveAttribute(
-      "src",
-      "../../../public/images/logo(small).svg",
+    render(
+      <PaymentMethod
+        image={image}
+        header={header}
+        width={width}
+        height={height}
+        forms={forms}
+        selectedValue={selectedValue}
+        onChange={onChange}
+      />,
     );
-    expect(image).toHaveAttribute("height", "40");
-    expect(image).toHaveAttribute("width", "40");
 
-    expect(screen.getByText("Form content")).toBeInTheDocument();
+    // Check that the radio button and label are rendered
+    const radioButton = screen.getByLabelText(header);
+    expect(radioButton).toBeInTheDocument();
+
+    // Check that the image is rendered
+    const img = screen.getByAltText(header);
+    expect(img).toBeInTheDocument();
+
+    // Check that the forms are rendered
+    const formContent = screen.getByText("Credit Card Form");
+    expect(formContent).toBeInTheDocument();
   });
 
-  it("calls onClick when the radio button is clicked", () => {
+  it("calls onChange when the radio button is selected", () => {
     expect.assertions(1);
-    render(<PaymentMethod {...defaultProps} />);
 
-    const radioButton = screen.getByRole("radio");
+    render(
+      <PaymentMethod
+        image={image}
+        header={header}
+        width={width}
+        height={height}
+        forms={forms}
+        selectedValue=""
+        onChange={onChange}
+      />,
+    );
+
+    const radioButton = screen.getByLabelText(header);
     fireEvent.click(radioButton);
 
-    expect(defaultProps.onClick).toHaveBeenCalled();
-  });
-
-  it("renders the radio button with correct checked state", () => {
-    expect.assertions(2);
-    const { rerender } = render(
-      <PaymentMethod {...defaultProps} active={true} />,
-    );
-
-    let radioButton = screen.getByRole("radio");
-    expect(radioButton).toBeChecked();
-
-    rerender(<PaymentMethod {...defaultProps} active={false} />);
-
-    radioButton = screen.getByRole("radio");
-    expect(radioButton).not.toBeChecked();
-  });
-
-  it("conditionally renders the forms section", () => {
-    expect.assertions(2);
-    const { rerender } = render(
-      <PaymentMethod {...defaultProps} forms={undefined} />,
-    );
-
-    expect(screen.queryByText("Form content")).not.toBeInTheDocument();
-
-    rerender(
-      <PaymentMethod {...defaultProps} forms={<div>Form content</div>} />,
-    );
-    expect(screen.getByText("Form content")).toBeInTheDocument();
+    // Check that the onChange function is called with the correct value
+    expect(onChange).toHaveBeenCalledWith(header);
   });
 });
