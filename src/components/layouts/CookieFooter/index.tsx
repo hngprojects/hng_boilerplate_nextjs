@@ -16,7 +16,7 @@ const CookieFooter: React.FC = () => {
           <span className="text-xs font-normal md:text-base">
             Our website uses cookies to enhance your browsing experience,
             provide personalized content, and analyze site traffic. By clicking
-            {"Accept All"}, you consent to our use of cookies.
+            &quot;Accept All&quot;, you consent to our use of cookies.
           </span>
         </p>
         <ul className="flex flex-row flex-wrap items-end gap-x-4 gap-y-2">
