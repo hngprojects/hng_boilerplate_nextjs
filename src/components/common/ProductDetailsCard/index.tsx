@@ -1,11 +1,9 @@
-/* eslint-disable prettier/prettier */
 "use client";
 
 import React, { useEffect, useState } from "react";
 
-import ProductDetailsCard from "./ProductDetailsCard";
- 
 import { useToast } from "~/components/ui/use-toast";
+import ProductDetailsCard from "./ProductDetailsCard";
 
 const ProductDetailsParent: React.FC = () => {
   const [isCardVisible, setIsCardVisible] = useState(true);
@@ -18,7 +16,6 @@ const ProductDetailsParent: React.FC = () => {
   };
 
   const handleEdit = (productID: string) => {
-    console.log(`Edit button clicked for product ID: ${productID}`);
     toast({
       title: "Edit Action",
       description: `You clicked edit for product ID: ${productID}`,
@@ -26,7 +23,6 @@ const ProductDetailsParent: React.FC = () => {
   };
 
   const handleDelete = (productID: string) => {
-    console.log(`Delete button clicked for product ID: ${productID}`);
     toast({
       title: "Delete Action",
       description: `You clicked delete for product ID: ${productID}`,
@@ -42,7 +38,6 @@ const ProductDetailsParent: React.FC = () => {
 
   return (
     <div>
-      
       {isCardVisible && (
         <div
           className={`transition-all duration-500 ${
