@@ -23,7 +23,7 @@ const ProductDetailView = () => {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 100 }}
           transition={{ duration: 0.5 }}
-          className="hidden w-full min-w-[350px] max-w-[403px] flex-col gap-y-5 rounded-xl border border-gray-300 bg-white px-2 py-4 shadow-[0px_1px_18px_0px_rgba(10,_57,_176,_0.12)] xl:flex xl:w-[403px] xl:px-4"
+          className="sticky top-0 hidden w-full min-w-[350px] max-w-[403px] flex-col gap-y-5 rounded-xl border border-gray-300 bg-white px-2 py-4 shadow-[0px_1px_18px_0px_rgba(10,_57,_176,_0.12)] xl:flex xl:w-[403px] xl:px-4"
         >
           <div className="flex w-full items-center justify-between">
             <h2 className="text-xl font-semibold xl:text-2xl min-[1400px]:text-[30px]">
