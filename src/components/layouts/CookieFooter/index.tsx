@@ -2,7 +2,6 @@
 import CustomButton from "~/components/common/Button/button";
 
 const CookieFooter: React.FC = () => {
-
   return (
     <footer className="fixed bottom-0 left-0 right-0 z-50 w-[100vw] bg-background text-start text-neutral-dark-1 md:text-foreground">
       <div className="mx-auto flex max-w-[1280px] flex-col gap-x-[25px] gap-y-4 px-6 py-5 md:py-10 lg:flex-row lg:justify-center">
