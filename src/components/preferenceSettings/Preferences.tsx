@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
+
 import { Button } from "../common/Button";
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
@@ -33,7 +33,7 @@ const regionOptions = [
   "Japan",
   "South Korea",
   "Russia",
-  "United Arab Emirates"
+  "United Arab Emirates",
 ];
 
 const timeZoneOptions = [
@@ -72,8 +72,13 @@ const Preferences: React.FC = () => {
   };
 
   const handleSubmit = async () => {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 1000);
+
     if (!selectedLanguage || !languageOptions.includes(selectedLanguage)) {
-      setMessage("There was a problem updating your Language. Please try again.");
+      setMessage(
+        "There was a problem updating your Language. Please try again.",
+      );
       return;
     }
     if (!selectedRegion || !regionOptions.includes(selectedRegion)) {
@@ -81,38 +86,42 @@ const Preferences: React.FC = () => {
       return;
     }
     if (!selectedZone || !timeZoneOptions.includes(selectedZone)) {
-      setMessage("There was a problem updating your Time-Zone. Please try again.");
+      setMessage(
+        "There was a problem updating your Time-Zone. Please try again.",
+      );
       return;
     }
 
-    try {
-      const response = await fetch('/api/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          language: selectedLanguage,
-          region: selectedRegion,
-          timeZone: selectedZone,
-        }),
-      });
-      const data = await response.json();
-      setMessage(data.message);
-    } catch (error) {
-      setMessage('Error updating settings. Please try again.');
+    const response = await fetch("/api/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        language: selectedLanguage,
+        region: selectedRegion,
+        timeZone: selectedZone,
+      }),
+      signal: controller.signal,
+    });
+    clearTimeout(timeoutId);
+
+    if (response.ok) {
+      setMessage("Settings have been saved successfully.");
+    } else {
+      setMessage("Error updating settings. Please try again.");
     }
   };
 
   return (
-    <div className="w-full ml-1 md:ml-10">
+    <div className="ml-1 w-full md:ml-10">
       <div className="mt-7 text-2xl font-bold">Language & Region</div>
       <div className="mt-1">Customize your language and region preferences</div>
 
       <div className="mt-10 text-gray-700">
         <Select onValueChange={handleLanguageChange} value={selectedLanguage}>
-          <SelectTrigger 
-            className="h-12 w-4/5 md:w-3/5 rounded-lg border border-gray-200 bg-white p-3"
+          <SelectTrigger
+            className="h-12 w-4/5 rounded-lg border border-gray-200 bg-white p-3 md:w-3/5"
             aria-label="Language"
           >
             <SelectValue placeholder={selectedZone || "Language"} />
@@ -120,7 +129,11 @@ const Preferences: React.FC = () => {
           <SelectContent>
             <SelectGroup>
               {languageOptions.map((language) => (
-                <SelectItem key={language} value={language} data-testid={language} >
+                <SelectItem
+                  key={language}
+                  value={language}
+                  data-testid={language}
+                >
                   {language}
                 </SelectItem>
               ))}
@@ -131,11 +144,11 @@ const Preferences: React.FC = () => {
 
       <div className="mt-4 text-gray-700">
         <Select onValueChange={handleRegionChange} value={selectedRegion}>
-          <SelectTrigger 
-            className="h-12 w-4/5 md:w-3/5 rounded-lg border border-gray-200 bg-white p-3"
+          <SelectTrigger
+            className="h-12 w-4/5 rounded-lg border border-gray-200 bg-white p-3 md:w-3/5"
             aria-label="Region"
           >
-           <SelectValue placeholder={selectedZone || "Region"} />
+            <SelectValue placeholder={selectedZone || "Region"} />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
@@ -151,12 +164,12 @@ const Preferences: React.FC = () => {
 
       <div className="mt-4 text-gray-700">
         <Select onValueChange={handleZoneChange} value={selectedZone}>
-          <SelectTrigger 
-            className="h-12 w-4/5 md:w-3/5 rounded-lg border border-gray-200 bg-white p-3"
+          <SelectTrigger
+            className="h-12 w-4/5 rounded-lg border border-gray-200 bg-white p-3 md:w-3/5"
             aria-label="Time-Zone"
           >
             <SelectValue placeholder={selectedZone || "Time-Zone"} />
-            </SelectTrigger>
+          </SelectTrigger>
           <SelectContent>
             <SelectGroup>
               {timeZoneOptions.map((zone) => (
@@ -178,7 +191,7 @@ const Preferences: React.FC = () => {
           Save
         </Button>
         <Button
-          className="btn mt-5 rounded border border-gray-200 px-4 py-2 text-gray-700 bg-white ml-5"
+          className="btn ml-5 mt-5 rounded border border-gray-200 bg-white px-4 py-2 text-gray-700"
           onClick={handleCancel}
           aria-label="Cancel"
         >
