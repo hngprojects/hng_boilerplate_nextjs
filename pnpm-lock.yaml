@@ -57,8 +57,7 @@ importers:
         specifier: 0.0.21
         version: 0.0.21(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@t3-oss/env-nextjs':
-        specifier: ^0.10.1
-        version: 0.10.1(typescript@5.5.3)(zod@3.23.8)      
+        specifier: ^0.10.1        
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
