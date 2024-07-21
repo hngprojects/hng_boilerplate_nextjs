@@ -1,36 +1,25 @@
-
-import { fireEvent, render, screen } from "../../../test/utils";
+import { fireEvent, render, screen, waitFor } from "../../../test/utils";
 import Page from "./page";
 
 describe("page tests", () => {
-  it("should render correctly", () => {
+  it("should render correctly and update card list on button click", async () => {
+    expect.assertions(2); // Specify the number of assertions
+
     render(<Page />);
+
+    // Initial render assertions
     expect(screen.getByText("Latest Articles")).toBeInTheDocument();
     const cardElements = screen.getAllByTestId("card-list");
     expect(cardElements).toHaveLength(5);
+
+    // Trigger button click
     const button = screen.getByTestId("buttontestid");
     fireEvent.click(button);
-    expect.assertions(1);
-    render(<Page />);
-    expect(screen.getByText('Latest Articles')).toBeInTheDocument()
-    const cardElements = screen.getAllByTestId('card-list');
-    expect(cardElements).toHaveLength(5);
-    const button = screen.getByTestId('buttontestid');
-    fireEvent.click(button)
 
-    setTimeout(() => {
-      const cardElementsSecondTime = screen.getAllByTestId('card-list');
-
-
-      expect(cardElementsSecondTime).toHaveLength(6);
-
-    }, 2500)
-
-    setTimeout(() => {
-      const cardElementsSecondTime = screen.getAllByTestId("card-list");
-
-      expect(cardElementsSecondTime).toHaveLength(6);
-    }, 2500);
-    expect(true).toBeTruthy();
+    // Wait for the update to reflect (assuming the update takes some time)
+    await waitFor(() => {
+      const updatedCardElements = screen.getAllByTestId("card-list");
+      expect(updatedCardElements).toHaveLength(6); // Assuming one new card is added
+    });
   });
 });
