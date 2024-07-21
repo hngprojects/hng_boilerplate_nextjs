@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 0, 0%, 98%;
+    --background: 0 0% 98%;
     --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
@@ -13,11 +13,11 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --default: 222, 47%, 11%;
-    --default-foreground: 0, 0%, 100%;
+    --default: 222 47% 11%;
+    --default-foreground: 0 0% 100%;
 
-    --primary: 25, 95%, 53%;
-    --primary-foreground: 0, 0%, 100%;
+    --primary: 25 95% 53%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -32,23 +32,23 @@
     --destructive-hover: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --subtle: 210, 40%, 96%;
-    --subtle-hover: 214, 32%, 91%;
-    --subtle-foreground: 222, 47%, 11%;
+    --subtle: 210 40% 96%;
+    --subtle-hover: 214 32% 91%;
+    --subtle-foreground: 222 47% 11%;
 
-    --loading: 222, 47%, 11%;
-    --loading-hover: 215, 25%, 27%;
-    --loading-foreground: 0, 0%, 100%;
+    --loading: 222 47% 11%;
+    --loading-hover: 215 25% 27%;
+    --loading-foreground: 0 0% 100%;
 
-    --outline: 0, 0%, 100%;
-    --outline-hover: 210, 40%, 96%;
-    --outline-foreground: 222, 47%, 11%;
+    --outline: 0 0% 100%;
+    --outline-hover: 210 40% 96%;
+    --outline-foreground: 222 47% 11%;
 
-    --link: 222, 47%, 11%;
+    --link: 222 47% 11%;
 
-    --error: 0, 72%, 51%;
-    --success: 102, 51%, 52%;
-    --warning: 45, 93%, 47%;
+    --error: 0 72% 51%;
+    --success: 102 51% 52%;
+    --warning: 45 93% 47%;
 
     --border: 214 32% 91%;
     --input: 214 32% 91%;
@@ -56,40 +56,23 @@
 
     --radius: 0.5rem;
 
-    --stroke-colors-stroke: 213, 27%, 84%;
+    --stroke-colors-stroke: 213 27% 84%;
 
-    --neutralColor-dark-1: 0, 0%, 32%;
-    --neutralColor-dark-2: 0, 0%, 4%;
-  }
+    --neutralColor-dark-1: 0 0% 32%;
+    --neutralColor-dark-2: 0 0% 4%;
+    --description-text: 215 16% 47%;
+    --breadcrumb-page: 0 0% 42%;
+    --breadcrumb-foreground: 0 0% 13%;
+    --desaturated-blue: 212.73 26.83% 83.92%;
+    --grey50: 0 0% 85.1%;
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --toast-bg: 128, 50%, 94%;
+    --toast-border: 126, 50%, 58%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --default-badge-bg: 222, 47%, 11%, 0.1;
+    --primary-badge-bg: 25, 95%, 53%, 0.1;
+    --success-badge-bg: 102, 51%, 52%, 0.1;
+    --error-badge-bg: 0, 72%, 51%, 0.1;
   }
 }
 
@@ -100,4 +83,72 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+[data-placeholder="true"] {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.129) 50%,
+    rgba(7, 7, 7, 0) 100%
+  );
+  background-size: cover;
+  transform: translateX(-120%);
+
+  animation: shimmer 1s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-120%);
+  }
+  50% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+.spinner_V8m1 {
+  transform-origin: center;
+  animation: spinner_zKoa 2s linear infinite;
+}
+.spinner_V8m1 circle {
+  stroke-linecap: round;
+  animation: spinner_YpZS 1.5s ease-in-out infinite;
+}
+@keyframes spinner_zKoa {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner_YpZS {
+  0% {
+    stroke-dasharray: 0 150;
+    stroke-dashoffset: 0;
+  }
+  47.5% {
+    stroke-dasharray: 42 150;
+    stroke-dashoffset: -16;
+  }
+  95%,
+  100% {
+    stroke-dasharray: 42 150;
+    stroke-dashoffset: -59;
+  }
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 6px;
+}
+.show_scrollbar::-webkit-scrollbar {
+  height: 8px;
+}
+.hide_scrollbar::-webkit-scrollbar {
+  height: 0.1px;
+  width: 0.1px;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary;
 }
