@@ -1,6 +1,7 @@
 // import { Html } from "@react-email/components";
 import {
   Body,
+  Button,
   Container,
   Head,
   Heading,
@@ -13,8 +14,6 @@ import {
 } from "@react-email/components";
 import { Tailwind } from "@react-email/tailwind";
 
-import Button from "~/components/common/Button/button";
-
 interface NewFeatureAnnouncementProperties {
   title?: string;
   username?: string;
@@ -23,6 +22,7 @@ interface NewFeatureAnnouncementProperties {
   star?: string;
   marketing?: string;
   featureName?: string;
+  learnMoreLink?: string;
   featureDescription?: string;
   benefitOne?: string;
   benefitTwo?: string;
@@ -40,6 +40,7 @@ export const NewFeatureAnnouncement = ({
   logo,
   star,
   featureName,
+  learnMoreLink,
   featureDescription,
   benefitOne,
   benefitTwo,
@@ -57,7 +58,7 @@ export const NewFeatureAnnouncement = ({
           {title} {featureName}
         </Preview>
         <Body className="mx-auto my-auto w-full bg-white p-4">
-          <Container className="mx-auto w-full max-w-[790px] border border-gray-200 pb-2 pt-2">
+          <Container className="mx-auto w-full max-w-[790px] overflow-hidden border border-gray-200 pb-2 pt-2">
             <Section className="mx-auto flex h-[108px] w-full items-center justify-center bg-[#E1D6D666]">
               <Img
                 src={logo}
@@ -66,36 +67,36 @@ export const NewFeatureAnnouncement = ({
               />
             </Section>
 
-            <Section className="mx-auto my-[40px] flex w-full items-center justify-center">
+            {/* <Section className="mx-auto my-[40px] flex w-full items-center justify-center">
               <Img
                 src={image}
                 alt="marketing"
                 className="h-[178px] w-[178px] md:h-[120px] md:w-[120px]"
               />
-            </Section>
+            </Section> */}
 
             <Section className="flex flex-col items-center justify-center px-[16px] md:px-[48px]">
               <Heading
                 as="h5"
-                className="font-inter mx-auto mb-8 w-full text-center text-[24px] font-semibold leading-[120%] text-[#121212] md:w-[381px] md:text-[20px]"
+                className="mx-auto mb-8 w-full text-center font-sans text-[24px] font-semibold leading-[120%] text-[#121212] md:w-[381px] md:text-[20px]"
               >
                 {title} {featureName}
               </Heading>
 
-              <Text className="font-inter mb-[16px] w-full text-left text-[18px] font-semibold leading-[120%] text-[#121212] md:text-[16px]">
+              <Text className="mb-[16px] w-full text-left font-sans text-[18px] font-semibold leading-[120%] text-[#121212] md:text-[16px]">
                 Hi {username},
-                <p>
+                <p className="font-sans">
                   We’re thrilled to announce the launch of our newest feature:{" "}
                   {featureName}!
                 </p>
-                <p>
+                <p className="font-sans">
                   {featureName} {featureDescription}
                 </p>
               </Text>
 
-              <Text className="font-inter w-full text-left text-[18px] font-semibold leading-[120%] text-[#121212] md:text-[16px]">
+              <Text className="w-full text-left font-sans text-[18px] font-semibold leading-[120%] text-[#121212] md:text-[16px]">
                 Benefits of {featureName}:
-                <ul className="flex flex-col gap-[16px] text-left text-base md:text-[14px]">
+                <ul className="flex flex-col gap-[16px] text-left font-sans text-base md:text-[14px]">
                   <li className="flex items-start gap-[16px]">
                     <Img src={star} alt="star" className="h-[24px] w-[24px]" />
                     <span>
@@ -117,32 +118,30 @@ export const NewFeatureAnnouncement = ({
             <Section className="font-h5-medium mb-[16px] flex flex-col items-center justify-center bg-orange-500 px-[20px] py-[20px] text-center text-white md:px-[108px] md:py-[39px]">
               <Heading
                 as="h2"
-                className="font-h2-semibold my-0 w-full text-[24px] font-semibold text-white md:text-[32px]"
+                className="my-0 w-full font-sans text-[24px] font-semibold text-white md:text-[32px]"
               >
                 {featureName} is now live!
               </Heading>
-              <Text className="font-h5-medium my-0 w-full text-lg font-medium text-white md:text-xl">
+              <Text className="my-0 w-full font-sans text-lg font-medium text-white md:text-xl">
                 You can start using it immediately.
               </Text>
             </Section>
 
-            <Text className="font-body-regular-normal mb-[40px] w-full text-center text-base text-[black] md:text-[16px]">
+            <Text className="mb-[40px] w-full text-center font-sans text-base text-[black] md:text-[16px]">
               Want to explore all the details? Click the button below to dive
               into our comprehensive guide
             </Text>
 
             <Section className="flex justify-center">
               <Button
-                variant="primary"
-                size="lg"
-                href="#"
-                className="w-full cursor-pointer items-center justify-center bg-orange-500 md:w-auto md:text-[16px]"
+                className="text-[white] box-border h-11 w-full cursor-pointer items-center justify-center rounded-lg border-0 bg-orange-500 bg-primary px-[16px] py-[8px] text-center font-sans text-base  md:w-auto md:text-[16px]"
+                href={learnMoreLink}
               >
                 Learn More
               </Button>
             </Section>
 
-            <Section className="mb-[40px] ml-[16px] mt-[24px] flex w-[30px] flex-col items-start justify-start text-left text-sm md:ml-[48px]">
+            <Section className="mb-[40px] ml-[16px] mt-[24px] flex w-auto flex-col items-start justify-start text-left font-sans text-sm md:ml-[48px]">
               <Text className="text-[14px] font-medium leading-[20px]">
                 Regards,
                 <br />
@@ -150,7 +149,7 @@ export const NewFeatureAnnouncement = ({
               </Text>
             </Section>
 
-            <Section className="font-inter bg-[#F3EFEF] px-[48px] py-[32px] text-left text-sm text-gray-600 md:px-12">
+            <Section className="bg-[#F3EFEF] px-[48px] py-[32px] text-left font-sans text-sm text-gray-600 md:px-12">
               <Section>
                 <div className="mx-auto mb-[30px] flex flex-row items-center justify-center gap-[16px] md:gap-[33px]">
                   <Link href="">
@@ -181,12 +180,12 @@ export const NewFeatureAnnouncement = ({
                   </Text>
                   <div className="h-[0.3px] w-full border-t-[0.3px] border-dashed border-gray-600" />
                   <Section className="flex w-full flex-col items-start justify-start gap-[8px]">
-                    <Text className="mb-[8px] mt-[30px] w-full text-[14px] leading-[20px]">
+                    <Text className="font-sansmb-[8px] mt-[30px] w-full text-[14px] leading-[20px]">
                       You are receiving this email because you signed up at
                       Boilerplate.com. Want to change how you receive these
                       emails?
                     </Text>
-                    <Text className="mt-0 w-full text-[14px] leading-[24px]">
+                    <Text className="mb-0 mt-0 w-full text-[14px] leading-[24px]">
                       You can{" "}
                       <Link href="" className="font-semibold text-gray-700">
                         update your preferences
@@ -221,11 +220,7 @@ NewFeatureAnnouncement.PreviewProps = {
     "Collaborative Spaces allow you to create dedicated areas for teamwork. Whether it’s a project, brainstorming session, or ongoing discussion, team members can collaborate seamlessly within these spaces.",
   benefitTwo:
     "With Collaborative Spaces, accountability becomes clearer. Each team member’s contributions are visible within the shared space.",
-
-  supportLink: "",
   learnMoreLink: "",
-  updatePrefLink: "",
-  unSubLink: "",
   linkedinIcon: "https://i.imgur.com/jBHlv7Y.png",
   redditIcon: "https://i.imgur.com/ONXC0iw.png",
   tiktokIcon: "https://i.imgur.com/sui2yFV.png",
