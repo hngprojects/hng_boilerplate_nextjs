@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 
-import { mainBlog } from "../../../data/articledata";
 import ArtcleCard from "~/components/articleCard/ArtcleCard";
+import { mainBlog } from "../../../data/articledata";
 
 const Page = () => {
   const [visible, setVisible] = useState(5);
