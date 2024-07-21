@@ -36,7 +36,11 @@ describe("the Privacy Policy Page", () => {
 
     // Check if CSS classes are added
     const htmlElement = document.documentElement;
-    const addedClasses = ["scroll-smooth", "scroll-pt-6", "md:scroll-pt-10"];
+    const addedClasses = [
+      "scroll-smooth",
+      "scroll-pt-24",
+      "md:scroll-pt-[108px]",
+    ];
     for (const className of addedClasses) {
       expect(htmlElement.classList.contains(className)).toBeTruthy();
     }
