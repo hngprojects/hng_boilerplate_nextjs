@@ -106,6 +106,15 @@ describe("custom Button Component", () => {
   it("renders internal link correctly with Next.js Link component", async () => {
     expect.hasAssertions();
 
+<<<<<<< Updated upstream
+=======
+  it('renders external link correctly with anchor tag', () => {
+    render(<CustomButton href="https://external-site.com" ariaLabel="external-link">External Link</CustomButton>);
+    
+  });
+
+  it('applies all props correctly', () => {
+>>>>>>> Stashed changes
     render(
       <CustomButton href="/internal-page" ariaLabel="internal-link">
         Internal Link
