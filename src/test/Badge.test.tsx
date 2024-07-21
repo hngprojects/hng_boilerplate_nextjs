@@ -2,27 +2,9 @@ import { render, screen } from "@testing-library/react";
 
 import Badge, { BadgeInterface } from "~/components/common/Badge/Badge";
 
-describe("the Badge component renders correctly with an icon", () => {
-  it("renders the badge component correctly", () => {
-    expect.assertions(2);
-    render(
-      <Badge label={"Label"} variant={"success"} icon={<span>&larr;</span>} />,
-    );
-    expect(true).toBeTruthy();
-
-    const badgeProperties: BadgeInterface = {
-      label: "iconlabel",
-      variant: "primary",
-      icon: <p>&larr;</p>,
-    };
-    render(<Badge {...badgeProperties} />);
-    expect(true).toBeTruthy();
-  });
-});
-
 describe("the badge component has the right label", () => {
   it("renders the badge component with the correct label", () => {
-    expect.assertions(2);
+    expect.assertions(3);
 
     render(<Badge label={"label"} variant={"default"} />);
     const badgeLabel = screen.getByText("label");
@@ -31,21 +13,14 @@ describe("the badge component has the right label", () => {
     render(<Badge label={"labeltest"} variant={"default"} />);
     const badgeLabel2 = screen.getByText("labeltest");
     expect(badgeLabel2).toBeInTheDocument();
-  });
-});
-
-describe("the Badge component renders correctly without an icon", () => {
-  it("renders the badge component correctly without an icon", () => {
-    expect.assertions(2);
-
-    render(<Badge label={"test"} variant={"error"} />);
-    expect(true).toBeTruthy();
 
     const badgeProperties: BadgeInterface = {
-      label: "label",
+      label: "newlabel",
       variant: "error",
+      icon: <span>&larr;</span>,
     };
     render(<Badge {...badgeProperties} />);
-    expect(true).toBeTruthy();
+    const badgeLabel3 = screen.getByText("newlabel");
+    expect(badgeLabel3).toBeInTheDocument();
   });
 });
