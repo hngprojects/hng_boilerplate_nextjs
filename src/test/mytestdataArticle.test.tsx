@@ -1,5 +1,5 @@
-import { fireEvent, render, screen, waitFor } from "../../../test/utils";
-import Page from "./page";
+import Page from "../app/(home)/myArticle/page";
+import { fireEvent, render, screen, waitFor } from "./utils";
 
 describe("page tests", () => {
   it("should render correctly and update card list on button click", async () => {
