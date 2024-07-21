@@ -29,7 +29,7 @@ export default function PricePlanCard() {
     },
   ];
   return (
-    <div className="flex w-[24rem] max-w-[24rem] flex-col gap-[51px] rounded-xl border border-[#CBD5E1] px-[32px] py-[31px] text-[#0A0A0A]">
+    <div className="flex w-full max-w-[24rem] flex-col gap-[51px] rounded-xl border border-[#CBD5E1] px-[32px] py-[31px] text-[#0A0A0A]">
       <section className="flex flex-col gap-4">
         <h1 className="text-[25px] font-bold">Basic</h1>
         <h1 className="text-[39px] font-bold">
