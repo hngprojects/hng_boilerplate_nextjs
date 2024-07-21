@@ -8,7 +8,6 @@ import { Breadcrumb } from "~/components/common/Breadcrumb";
 import CustomButton from "~/components/common/Button/button";
 import HBPCommentBox from "~/components/common/Comment";
 import { commentsData } from "~/components/common/Comment/ComentData";
-import PricePlanCard from "~/components/common/PricePlanCard/PricePlanCard";
 import Sidebar from "~/components/layouts/Sidebar";
 import CharacterLimitTextarea from "../../components/common/CharacterLimitTextarea";
 
@@ -498,10 +497,6 @@ const StyleGuide: React.FC = () => {
           name="message"
           onChange={handleTextChange}
         />
-      </div>
-      <div className="flex w-full flex-col items-center justify-center gap-6 md:flex-row">
-        <PricePlanCard type="Basic" price="$800" isActive={false} />
-        <PricePlanCard type="Premium" price="$3,000" isActive={true} />
       </div>
     </main>
   );
