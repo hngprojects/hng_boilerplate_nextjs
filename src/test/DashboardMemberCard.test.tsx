@@ -11,11 +11,9 @@ const Card = (
     role="Admin"
     roles={["Admin", "Guest", "User"]}
     changeRole={(role: string) => {
-      console.log("Role changed: " + role);
+      return role;
     }}
-    deleteMember={() => {
-      console.log("Member deleted");
-    }}
+    deleteMember={() => {}}
     otherInfo={[]}
   />
 );
