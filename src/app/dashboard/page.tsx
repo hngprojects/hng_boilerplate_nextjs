@@ -44,7 +44,8 @@ const Dashboard: React.FC = () => {
                                 <div className="flex-1 flex flex-col p-[24px] rounded-lg border border-solid border-stroke_dashboard pb-[40px] shadow-custom-light">
                                     <div className="flex justify-between items-center">
                                         <p className="text-sm font-[500]">{totalRevenue.name}</p>
-                                        <Dollar />
+                        </p>
+                        <Dollar />
                       </div>
                       <div className="">
                         <h1 className="text-lg font-bold">
