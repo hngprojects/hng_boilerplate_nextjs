@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Check, X } from "lucide-react";
 
 import CustomButton from "~/components/common/Button/button";
 import {
@@ -68,7 +68,7 @@ const Modal = ({
       return (
         <Dialog>
           <DialogTrigger asChild>
-            <CustomButton variant="outline">Open Dialog</CustomButton>
+            <CustomButton variant="outline">{triggerMsg}</CustomButton>
           </DialogTrigger>
           <DialogContent className="rounded-2xl border border-border p-6 sm:rounded-2xl">
             <DialogHeader>
@@ -103,7 +103,7 @@ const Modal = ({
       return (
         <Dialog>
           <DialogTrigger asChild>
-            <CustomButton variant="outline">Open Dialog</CustomButton>
+            <CustomButton variant="outline">{triggerMsg}</CustomButton>
           </DialogTrigger>
           <DialogContent className="rounded-2xl border border-border p-6 sm:rounded-2xl">
             <DialogHeader>
@@ -140,17 +140,16 @@ const Modal = ({
       return (
         <Dialog>
           <DialogTrigger asChild>
-            <CustomButton variant="outline">Open Dialog</CustomButton>
+            <CustomButton variant="outline">{triggerMsg}</CustomButton>
           </DialogTrigger>
           <DialogContent className="rounded-2xl border border-border p-6 pt-11 sm:rounded-2xl">
             <DialogHeader className="flex flex-col items-center">
-              <Image
-                src="/success-modal-icon.svg"
-                alt="success"
-                width={48}
-                height={48}
-                className="h-12 w-12"
-              />
+              <div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full">
+                <div className="absolute h-full w-full bg-success opacity-20"></div>
+                <div className="absolute z-10 h-full w-full rounded-full border-4 border-success opacity-30"></div>
+                <div className="absolute z-20 h-10 w-10 rounded-full border-2 border-success opacity-60"></div>
+                <Check size={24} color="#096012" className="absolute z-20" />
+              </div>
               <DialogTitle className="text-center text-lg font-semibold text-foreground">
                 {heading}
               </DialogTitle>
@@ -171,17 +170,16 @@ const Modal = ({
       return (
         <Dialog>
           <DialogTrigger asChild>
-            <CustomButton variant="outline">Open Dialog</CustomButton>
+            <CustomButton variant="outline">{triggerMsg}</CustomButton>
           </DialogTrigger>
           <DialogContent className="rounded-2xl border border-border p-6 pt-11 sm:rounded-2xl">
             <DialogHeader className="flex flex-col items-center">
-              <Image
-                src="/error-modal-icon.svg"
-                alt="success"
-                width={48}
-                height={48}
-                className="h-12 w-12"
-              />
+              <div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full">
+                <div className="absolute h-full w-full bg-error opacity-20"></div>
+                <div className="absolute z-10 h-full w-full rounded-full border-4 border-error opacity-30"></div>
+                <div className="absolute z-20 h-10 w-10 rounded-full border-2 border-error opacity-60"></div>
+                <X size={24} color="#DC2626" className="absolute z-20" />
+              </div>
               <DialogTitle className="text-center text-lg font-semibold text-foreground">
                 {heading}
               </DialogTitle>
