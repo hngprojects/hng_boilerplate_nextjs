@@ -48,7 +48,8 @@ const Dashboard: React.FC = () => {
                                     </div>
                                     <div className="">
                                         <h1 className="text-lg font-bold">{formatPrice(totalRevenue.overview_stats, 'en-US', 'USD')}</h1>
-                                        <p className="text-xs">{`+${totalRevenue.percentage}% from last month`}</p>
+                        </h1>
+                        <p className="text-xs">{`+${totalRevenue.percentage}% from last month`}</p>
                       </div>
                     </div>
                     <div className="flex flex-1 flex-col rounded-lg border border-solid border-stroke_dashboard p-[24px] pb-[40px] shadow-custom-light">
