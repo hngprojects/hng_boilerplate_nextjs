@@ -18,16 +18,40 @@ const UserForm: React.FC = () => {
   const [errors, setErrors] = useState<FormErrors>({});
   const [success, setSuccess] = useState<boolean>(false);
 
+  type FormErrorKey = keyof FormErrors;
+
   const validate = (): FormErrors => {
     const newErrors: FormErrors = {};
-    if (!formData.name) {
-      newErrors.name = "Your name is required here";
+
+    const validationRules: {
+      check: boolean;
+      field: FormErrorKey;
+      message: string;
+    }[] = [
+      {
+        check: formData.name.trim() === "",
+        field: "name",
+        message: "Your name is required here",
+      },
+      {
+        check: formData.email.trim() === "", // Ensure check is a boolean
+        field: "email",
+        message: "Please enter a valid email address",
+      },
+      {
+        check:
+          formData.email.trim() !== "" && !/\S+@\S+\.\S+/.test(formData.email), // Ensure check is a boolean
+        field: "email",
+        message: "Please enter a valid email address",
+      },
+    ];
+
+    for (const rule of validationRules) {
+      if (rule.check) {
+        newErrors[rule.field] = rule.message;
+      }
     }
-    if (!formData.email) {
-      newErrors.email = "Please enter a valid email address";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
-    }
+
     return newErrors;
   };
 
