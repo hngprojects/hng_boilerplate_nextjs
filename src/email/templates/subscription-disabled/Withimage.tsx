@@ -95,7 +95,7 @@ const EmailTemplate: React.FC<EmailTemplateProperties> = ({
           </Section>
 
           <Section className="pl-[56px] pr-[56px]">
-            <Text className="font-inter pb-4 text-left text-[14px] font-semibold leading-[16.34px] text-[#111111] md:pb-0 md:text-[16px] md:text-[18px] md:leading-[19.36px] md:leading-[21.78px]">
+            <Text className="font-inter pb-4 text-left text-[14px] font-semibold leading-[16.34px] text-[#111111] md:pb-0 md:text-[18px] md:leading-[21.78px]">
               Hi {userName},
             </Text>
 
@@ -116,7 +116,7 @@ const EmailTemplate: React.FC<EmailTemplateProperties> = ({
             <div className="mx-auto flex h-[108px] w-[318px] flex-col gap-[20px] md:h-[44px] md:w-[421px] md:flex-row md:gap-[20px]">
               <Button
                 href="https://example.com/reactivate"
-                className="flex h-[44px] w-[265px] w-[318px] cursor-pointer items-center justify-center rounded-b-[8px] rounded-t-[8px] border-0 bg-[#F97316] text-[16px] text-[#FFFFFF] md:h-[44px] md:w-[265px]"
+                className="flex h-[44px] w-[265px] cursor-pointer items-center justify-center rounded-b-[8px] rounded-t-[8px] border-0 bg-[#F97316] text-[16px] text-[#FFFFFF] md:h-[44px] md:w-[265px] lg:w-[318px]"
               >
                 {reactivateURL}
               </Button>
@@ -124,7 +124,7 @@ const EmailTemplate: React.FC<EmailTemplateProperties> = ({
               <Button
                 href="https://example.com/upgrade"
                 style={button}
-                className="flex h-[42px] w-[134px] w-[316px] cursor-pointer items-center justify-center rounded-b-[8px] rounded-t-[8px] text-[16px] text-[#F97316] md:h-[42px] md:w-[136px]"
+                className="flex h-[42px] w-[134px] cursor-pointer items-center justify-center rounded-b-[8px] rounded-t-[8px] text-[16px] text-[#F97316] md:h-[42px] md:w-[136px] lg:w-[316px]"
               >
                 {upgradeURL}
               </Button>
@@ -138,7 +138,7 @@ const EmailTemplate: React.FC<EmailTemplateProperties> = ({
             </Text>
           </Section>
 
-          <Section className="pb-10 pl-[56px] pr-[56px] md:pb-0 md:pb-12">
+          <Section className="pb-10 pl-[56px] pr-[56px] md:pb-0">
             <Text className="font-inter w-[334px] text-left text-base font-normal leading-[19.36px] text-[#111111] md:w-[678px]">
               If you have questions, please visit our{" "}
               <span className="text-base font-semibold leading-relaxed text-[#F97316]">
@@ -158,7 +158,7 @@ const EmailTemplate: React.FC<EmailTemplateProperties> = ({
               <span className="font-inter text-left text-base font-normal leading-[19.36px] text-[#111111]">
                 {" "}
                 <a
-                  className="font-inter text-left text-base font-normal font-semibold leading-[19.36px] text-[#111111]"
+                  className="font-inter text-left text-base font-semibold leading-[19.36px] text-[#111111]"
                   href=""
                 >
                   click here
@@ -264,7 +264,7 @@ const EmailTemplate: React.FC<EmailTemplateProperties> = ({
               </div>
 
               <div className="flex h-[200px] w-[328px] flex-col space-y-12 md:w-[694px]">
-                <Text className="font-inter m-0 h-10 w-[328px] w-[334px] text-left text-[14px] font-normal leading-[16.94px] text-[#5B5B5D] md:w-[678px] md:w-[694px]">
+                <Text className="font-inter m-0 h-10 w-[328px] text-left text-[14px] font-normal leading-[16.94px] text-[#5B5B5D] md:w-[678px] xl:w-[334px]">
                   Thank you for choosing Boilerplate.com Need help?{" "}
                   <span className="text-base font-semibold">
                     {" "}
@@ -294,12 +294,12 @@ const EmailTemplate: React.FC<EmailTemplateProperties> = ({
                   />
                 </svg>
 
-                <Text className="font-inter m-0 mb-6 h-10 w-[328px] w-[334px] text-left text-[14px] font-normal leading-[20px] text-[#5B5B5D] md:w-[678px] md:w-[694px]">
+                <Text className="font-inter m-0 mb-6 h-10 w-[328px] text-left text-[14px] font-normal leading-[20px] text-[#5B5B5D] md:w-[678px]">
                   You are receiving this email because you signed up at
                   Boilerplate.com. Want to change how you receive these emails?
                 </Text>
 
-                <Text className="font-inter m-0 mb-2 h-10 w-[328px] w-[334px] text-left text-[14px] font-normal leading-[24px] text-[#5B5B5D] md:w-[678px] md:w-[694px]">
+                <Text className="font-inter m-0 mb-2 h-10 w-[328px] text-left text-[14px] font-normal leading-[24px] text-[#5B5B5D] md:w-[678px]">
                   You can{" "}
                   <span className="font-semibold text-[#111111] no-underline">
                     <a
