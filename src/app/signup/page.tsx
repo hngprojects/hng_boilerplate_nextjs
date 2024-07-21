@@ -9,8 +9,8 @@ import { z, ZodType } from "zod";
 import CustomButton from "~/components/common/Button/button";
 import Footer from "~/components/layouts/Footer";
 import Navbar from "~/components/layouts/Navbar";
-import FacebookIcon from "../../../public/bi_facebook.svg";
-import GoogleIcon from "../../../public/flat-color-icons_google.svg";
+import FacebookIcon from "../../../public/signup/icons/bi_facebook.svg";
+import GoogleIcon from "../../../public/signup/icons/flat-color-icons_google.svg";
 
 interface TestFormProperties {
   onSubmit: (data: {
