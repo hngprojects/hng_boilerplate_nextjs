@@ -23,10 +23,10 @@ interface CardProperties extends React.ComponentProps<typeof Card> {
   unreadCount: number;
 }
 
-const NotificationCard: FC<CardProperties> = ({
+const UnreadNotificationCard: FC<CardProperties> = ({
   className,
   notificationsPreview = [],
-  unreadCount = notificationsPreview.length,
+  unreadCount = 0,
   ...properties
 }) => {
   return (
@@ -95,4 +95,4 @@ const NotificationCard: FC<CardProperties> = ({
   );
 };
 
-export default NotificationCard;
+export default UnreadNotificationCard;
