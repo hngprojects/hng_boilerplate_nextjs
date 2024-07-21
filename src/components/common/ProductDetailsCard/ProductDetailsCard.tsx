@@ -103,7 +103,7 @@ const ProductDetailsCard: React.FC<ProductDetailsProperties> = ({
     <div className="inline-flex max-w-[403px] flex-col justify-center rounded-md border border-solid border-border py-6 pl-[1.4375rem] pr-[1.5rem] text-sm shadow-[0px_1px_18px_rgba(10,_57,_176,_0.12)] transition-all duration-500">
       <header className="flex justify-between gap-5 px-px text-xl font-semibold text-neutral-dark-2">
         <div>{productName}</div>
-        <div onClick={handleClose}>
+        <div onClick={handleClose} role="button" aria-label="close">
           <X
             size={24}
             className="aspect-square h-6 w-6 shrink-0 cursor-pointer"
