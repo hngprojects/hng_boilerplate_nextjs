@@ -52,7 +52,7 @@ const PaginatedTemplateList = ({
     <div className="w-full overflow-x-auto">
       <table className="min-w-full border-collapse">
         <tbody>
-          {currentTemplates && currentTemplates.length > 0 ? (
+          {currentTemplates.length > 0 ? (
             currentTemplates.map((template) => (
               <TemplateListItem
                 key={template.id}

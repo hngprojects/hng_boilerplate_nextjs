@@ -15,11 +15,7 @@ import CharacterLimitTextarea from "../../components/common/CharacterLimitTextar
 
 const StyleGuide: React.FC = () => {
   const [text, setText] = useState("");
-  const [activePreview, setAcivePreview] = useState<number>(1);
-
-  const onPreview = (id: number) => {
-    setAcivePreview(id);
-  };
+  const [activePreview, setActivePreview] = useState<number>(1);
 
   const handleTextChange = (newValue: string) => {
     setText(newValue);
@@ -697,7 +693,7 @@ const StyleGuide: React.FC = () => {
         </div>
         <PaginatedTemplateList
           itemsPerPage={5}
-          onPreview={onPreview}
+          onPreview={(id) => setActivePreview(id)}
           templates={templateTableList}
           activePreview={activePreview}
         />
