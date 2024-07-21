@@ -2,7 +2,7 @@ import "./setup";
 
 import { render, screen } from "@testing-library/react";
 
-import SubscriptionRenewalEmail from "~/email/templates/subscription-renewal-reminder/Subscription";
+import SubscriptionRenewalEmail from "~/email/templates/subscription-renewal-reminder/with-image";
 
 describe("subscriptionEmail Component", () => {
   const properties = {

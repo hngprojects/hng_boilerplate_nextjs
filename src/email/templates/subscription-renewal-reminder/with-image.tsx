@@ -162,17 +162,17 @@ export default function SubscriptionRenewalEmail(properties: Properties) {
   );
 }
 
-SubscriptionRenewalEmail.previewProps = {
-  title: "Subscription Renewal Reminder",
-  name: "John Smith",
-  imageUrl: "https://picsum.photos/200/300",
-  renewalDate: "2017-12-31",
-  renewalPrice: "200",
-  renewalPeriod: "month",
-  reviewUrl: "/",
-  renewUrl: "/",
-  companyName: "Business Name",
-  faqUrl: "/",
-  helpUrl: "/",
-  unsubscribeUrl: "/",
-} satisfies Properties;
+// SubscriptionRenewalEmail.previewProps = {
+//   title: "Subscription Renewal Reminder",
+//   name: "John Smith",
+//   imageUrl: "https://picsum.photos/200/300",
+//   renewalDate: "2017-12-31",
+//   renewalPrice: "200",
+//   renewalPeriod: "month",
+//   reviewUrl: "/",
+//   renewUrl: "/",
+//   companyName: "Business Name",
+//   faqUrl: "/",
+//   helpUrl: "/",
+//   unsubscribeUrl: "/",
+// } satisfies Properties;
