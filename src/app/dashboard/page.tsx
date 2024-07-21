@@ -1,6 +1,6 @@
 "use client";
-import TabSwitcher from "~/components/common/TabSwitcher"
 import React, { useState } from "react"
+import TabSwitcher from "~/components/common/TabSwitcher"
 import { totalRevenue } from "~/data/overview"
 import { subscriptions } from "~/data/overview"
 import { sales } from "~/data/overview"
@@ -29,13 +29,12 @@ const Dashboard: React.FC = () => {
                         <TabSwitcher tab={tab} setTab={setTab} />
                     </div>
                     <div className="flex gap-[8px] items-center">
-
-                        <DateSwitcher />
-                        <button className='bg-primary py-[9.5px] px-[16px] rounded-sm text-sm text-white'>Download</button>
+                    <DateSwitcher />
+                    <button className='bg-primary py-[9.5px] px-[16px] rounded-sm text-sm text-white'>Download</button>
                 </div>
-            </div>
+        </div>
 
-            <div className="">
+        <div className="">
                 {tab == 1 && <div className='flex flex-col gap-[16px]'>
                     <div className="flex flex-col md:flex-row gap-[16px]">
                             <div className="flex-1 flex flex-col md:flex-row gap-[16px]">
