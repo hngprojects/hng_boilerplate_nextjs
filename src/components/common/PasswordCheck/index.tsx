@@ -9,7 +9,6 @@ interface PasswordCheckProperties {
   onStrengthChange: (strength: PasswordCheck) => void;
 }
 
-
 interface PasswordCheck {
   minLengthCheck: boolean;
   containsUppercase: boolean;
@@ -69,7 +68,7 @@ const PasswordCheck: React.FC<PasswordCheckProperties> = ({
         ></div>
       </div>
       <div>
-        <p className="mt-[24px]">Weak password. Must contains;</p>
+        <p className="mt-[24px]">Weak password. Must contain:</p>
         <div className="mt-[12px] flex items-center gap-[8px]">
           <CircleCheck
             data-testid="circle-check-icon"
@@ -77,7 +76,6 @@ const PasswordCheck: React.FC<PasswordCheckProperties> = ({
               color: checkPassword.containsUppercase ? "#6DC347" : "#B6B6B6",
             }}
           />
-
           <p className="">At least 1 uppercase</p>
         </div>
         <div className="mt-[8px] flex items-center gap-[8px]">
@@ -87,7 +85,6 @@ const PasswordCheck: React.FC<PasswordCheckProperties> = ({
               color: checkPassword.containNumber ? "#6DC347" : "#B6B6B6",
             }}
           />
-
           <p>At least 1 number</p>
         </div>
         <div className="mt-[8px] flex items-center gap-[8px]">

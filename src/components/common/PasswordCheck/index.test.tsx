@@ -20,7 +20,7 @@ describe("passwordCheck", () => {
     expect.assertions(1);
     setup("password");
     expect(
-      screen.getByText("Weak password. Must contains;"),
+      screen.getByText("Weak password. Must contain:"),
     ).toBeInTheDocument();
   });
 
