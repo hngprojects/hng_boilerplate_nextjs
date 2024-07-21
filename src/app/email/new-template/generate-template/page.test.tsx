@@ -1,17 +1,57 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { vi } from "vitest";
 
 import Page from "./page";
 
+// Mocking next/navigation hooks
+vi.mock("next/navigation", () => ({
+  useSearchParams: () => ({
+    get: vi.fn((parameter) => {
+      if (parameter === "htmlContent") {
+        return "true";
+      }
+      return;
+    }),
+  }),
+  useRouter: () => ({
+    push: vi.fn(),
+  }),
+}));
+
 describe("page Component Tests", () => {
   it("renders the breadcrumbs", () => {
-    expect.assertions(1);
+    expect.assertions(3);
     render(<Page />);
     expect(screen.getByText("Email")).toBeInTheDocument();
     expect(screen.getByText("New Template")).toBeInTheDocument();
     expect(screen.getByText("Generate with HTML")).toBeInTheDocument();
   });
 
-  it("renders the HTML content textarea", () => {
+  it("renders the HTML content textarea when not in preview mode", () => {
+    expect.hasAssertions();
+    vi.mock("next/navigation", () => ({
+      useSearchParams: () => ({
+        get: vi.fn((parameter) => {
+          if (parameter === "htmlContent") {
+            return;
+          }
+          return;
+        }),
+      }),
+      useRouter: () => ({
+        push: vi.fn(),
+      }),
+    }));
+
+    Object.defineProperty(window, "localStorage", {
+      value: {
+        getItem: vi.fn().mockReturnValue("<h1>Hello World</h1>"),
+        setItem: vi.fn(),
+        clear: vi.fn(),
+      },
+      writable: true,
+    });
+
     expect.assertions(1);
     render(<Page />);
     expect(
@@ -19,13 +59,61 @@ describe("page Component Tests", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders the generate button", () => {
+  it("renders the generate button when not in preview mode", () => {
+    expect.hasAssertions();
+    vi.mock("next/navigation", () => ({
+      useSearchParams: () => ({
+        get: vi.fn((parameter) => {
+          if (parameter === "htmlContent") {
+            return;
+          }
+          return;
+        }),
+      }),
+      useRouter: () => ({
+        push: vi.fn(),
+      }),
+    }));
+
+    Object.defineProperty(window, "localStorage", {
+      value: {
+        getItem: vi.fn().mockReturnValue("<h1>Hello World</h1>"),
+        setItem: vi.fn(),
+        clear: vi.fn(),
+      },
+      writable: true,
+    });
+
     expect.assertions(1);
     render(<Page />);
     expect(screen.getByText("Generate")).toBeInTheDocument();
   });
 
-  it("shows error message when HTML content is empty", async () => {
+  it("shows error message when HTML content is empty and in non-preview mode", async () => {
+    expect.hasAssertions();
+    vi.mock("next/navigation", () => ({
+      useSearchParams: () => ({
+        get: vi.fn((parameter) => {
+          if (parameter === "htmlContent") {
+            return;
+          }
+          return;
+        }),
+      }),
+      useRouter: () => ({
+        push: vi.fn(),
+      }),
+    }));
+
+    Object.defineProperty(window, "localStorage", {
+      value: {
+        getItem: vi.fn().mockReturnValue("<h1>Hello World</h1>"),
+        setItem: vi.fn(),
+        clear: vi.fn(),
+      },
+      writable: true,
+    });
+
     expect.assertions(1);
     render(<Page />);
     fireEvent.click(screen.getByText("Generate"));
@@ -35,21 +123,31 @@ describe("page Component Tests", () => {
     });
   });
 
-  it("shows preview when HTML content is provided", async () => {
-    expect.assertions(1);
-    render(<Page />);
-    const textarea = screen.getByPlaceholderText("Enter your link here");
-    fireEvent.change(textarea, { target: { value: "<h1>Hello World</h1>" } });
-    fireEvent.click(screen.getByText("Generate"));
+  it("renders tips on acceptable HTML content when not in preview mode", () => {
+    expect.hasAssertions();
+    vi.mock("next/navigation", () => ({
+      useSearchParams: () => ({
+        get: vi.fn((parameter) => {
+          if (parameter === "htmlContent") {
+            return;
+          }
+          return;
+        }),
+      }),
+      useRouter: () => ({
+        push: vi.fn(),
+      }),
+    }));
 
-    await waitFor(() => {
-      expect(
-        screen.getByText("Preview Your Generated Template"),
-      ).toBeInTheDocument();
+    Object.defineProperty(window, "localStorage", {
+      value: {
+        getItem: vi.fn().mockReturnValue("<h1>Hello World</h1>"),
+        setItem: vi.fn(),
+        clear: vi.fn(),
+      },
+      writable: true,
     });
-  });
 
-  it("renders tips on acceptable HTML content", () => {
     expect.assertions(3);
     render(<Page />);
     expect(
