@@ -1,4 +1,4 @@
-import { render, screen } from "../../test/utils";
+import { render, screen } from "../../../test/utils";
 import Page from "./page";
 
 describe("jobs page", () => {
@@ -51,7 +51,7 @@ describe("jobs page", () => {
 
       expect(view).toBeTruthy();
       expect(listingDiv.className).toBe(
-        "grid grid-cols-1 gap-y-5 md:grid-cols-2",
+        "grid grid-cols-1 gap-y-5 sm:grid-cols-2",
       );
     });
   });

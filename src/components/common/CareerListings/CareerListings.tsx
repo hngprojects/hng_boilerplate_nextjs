@@ -1,23 +1,23 @@
 import CareerCardParent from "~/components/common/CareerCard";
 import EmptyList from "~/components/common/Empty List/EmptyList";
-import CareerListPagination from "~/components/common/PaginationButton/CareerListPagination";
+import CareerListingsPagination from "../CareerListingsPagination/CareerListingsPagination";
 
-type JobListingsProperties = {
+type CareerListingsProperties = {
   page: number;
 };
 
-type JobFetchResponse = {
+type CareerFetchResponse = {
   ok: boolean;
   data: {
     page: number;
     limit: number;
     total: number;
-    jobs: Array<unknown>;
+    careers: Array<unknown>;
   };
 };
 
 async function getData({ page, limit }: { page: number; limit: number }) {
-  const response = await new Promise<JobFetchResponse>((resolve) => {
+  const response = await new Promise<CareerFetchResponse>((resolve) => {
     setTimeout(() => {
       resolve({
         ok: true,
@@ -25,7 +25,7 @@ async function getData({ page, limit }: { page: number; limit: number }) {
           page,
           limit,
           total: 30,
-          jobs: Array.from({ length: limit }),
+          careers: Array.from({ length: limit }),
         },
       });
     }, 1000);
@@ -38,17 +38,19 @@ async function getData({ page, limit }: { page: number; limit: number }) {
   return response.data;
 }
 
-export default async function JobListings({ page }: JobListingsProperties) {
+export default async function CareerListings({
+  page,
+}: CareerListingsProperties) {
   const limit = 6;
 
   // simulate data fetching
-  const jobsData = await getData({ page, limit });
+  const careerData = await getData({ page, limit });
   return (
     <>
-      {!jobsData ||
-      !jobsData.jobs ||
-      !Array.isArray(jobsData.jobs) ||
-      jobsData.jobs.length === 0 ? (
+      {!careerData ||
+      !careerData.careers ||
+      !Array.isArray(careerData.careers) ||
+      careerData.careers.length === 0 ? (
         <EmptyList
           image="/images/no-jobs.svg"
           mainText="No available Jobs at the moment"
@@ -59,18 +61,18 @@ export default async function JobListings({ page }: JobListingsProperties) {
           <div className="flex flex-col items-center gap-8">
             <div
               data-testid="job-listings"
-              className="grid grid-cols-1 gap-y-5 md:grid-cols-2"
+              className="grid grid-cols-1 gap-y-5 sm:grid-cols-2"
             >
-              {jobsData.jobs.map((_, index) => (
+              {careerData.careers.map((_, index) => (
                 <CareerCardParent key={index} />
               ))}
             </div>
             <div className="flex w-full items-center justify-end px-5">
-              <p className="text-lg">{`Showing ${limit} of ${jobsData.total} jobs`}</p>
+              <p className="text-lg">{`Showing ${limit} of ${careerData.total} jobs`}</p>
             </div>
           </div>
           <div className="flex w-full items-center justify-center">
-            <CareerListPagination page={page} total={jobsData.total} />
+            <CareerListingsPagination page={page} total={careerData.total} />
           </div>
         </div>
       )}

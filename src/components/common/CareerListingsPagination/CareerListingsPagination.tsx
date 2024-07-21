@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-import { BackAngleBracket, ForwardAngleBracket } from "~/app/jobs/svgs";
+import { BackAngleBracket, ForwardAngleBracket } from "./Svgs";
 
-type CareerListPaginationProperties = {
+type CareerListingsPaginationProperties = {
   page: number;
   total: number;
 };
@@ -10,10 +10,10 @@ type CareerListPaginationProperties = {
 const setNewSearchParameter = (page: number) =>
   `?${new URLSearchParams({ page: page.toString() })}`;
 
-export default function CareerListPagination({
+export default function CareerListingsPagination({
   total,
   page,
-}: CareerListPaginationProperties) {
+}: CareerListingsPaginationProperties) {
   const lastPage = Math.ceil(total / 6);
   const isFirstPage = page === 1;
   const isLastPage = page === lastPage;

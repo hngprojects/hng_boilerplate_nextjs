@@ -1,15 +1,8 @@
-import CareerListings from "~/components/common/CareerListings/CareerListings";
+"use client";
 
-export default async function Career({
-  searchParams,
-}: {
-  searchParams?: { [key: string]: string | undefined };
-}) {
-  const pageQuery = Number.parseInt(searchParams?.page || "");
-  const page = Number.isNaN(pageQuery) ? 1 : pageQuery;
+import EmptyList from "~/components/common/Empty List/EmptyList";
 
-  const careerListings = await CareerListings({ page });
-
+export default function JobListError() {
   return (
     <div className="mx-auto flex max-w-[1200px] flex-col items-center justify-center px-5 py-12">
       <div className="mb-10 max-w-xl text-center md:mx-auto md:mb-12 md:max-w-5xl">
@@ -26,8 +19,11 @@ export default async function Career({
           skills and career aspirations.
         </p>
       </div>
-
-      {careerListings}
+      <EmptyList
+        image="/images/no-jobs.svg"
+        mainText="No available Jobs at the moment"
+        subText="Come back later!"
+      />
     </div>
   );
 }
