@@ -1,7 +1,7 @@
 import { error } from "node:console";
 import Image from "next/image";
 
-import { Button } from "~/components/common/Button";
+import Button from "./button";
 import { SubscriptionRenewalFailedSchema } from "./zodSchema";
 
 interface SubscriptionRenewalFailedProperties {
@@ -117,11 +117,9 @@ const SubscriptionRenewalFailed: React.FC<
         </div>
         <a
           href={updatePaymentLink}
-          className="renewal-with-icon-button-link flex self-stretch md:self-center"
+          className="flex self-stretch md:self-center"
         >
-          <Button variant="default" className="renewal-button">
-            Update Payment Details
-          </Button>
+          <Button />
         </a>
       </section>
       <div className="renewal-with-icon-regards flex flex-col items-start justify-center gap-[8px] self-stretch text-sm text-neutral-dark-2">
@@ -136,13 +134,13 @@ const SubscriptionRenewalFailed: React.FC<
         <span className="renewal-with-icon-contact-text font-normal text-neutral-dark-2">
           If you have questions, please visit our{" "}
         </span>
-        <span className="renewal-with-icon-faqs-link font-semibold text-background">
+        <span className="renewal-with-icon-faqs-link font-semibold text-orange-400">
           <a href={faqsLink}>FAQs</a>
         </span>
         <span className="renewal-with-icon-contact-text font-normal text-neutral-dark-2">
           , or email us at{" "}
         </span>
-        <span className="renewal-with-icon-email-link text-background">
+        <span className="renewal-with-icon-email-link text-orange-400">
           <a href={`mailto:${supportEmail}`}>{supportEmail}</a>
         </span>
         <span className="renewal-with-icon-contact-text font-normal text-neutral-dark-2">
