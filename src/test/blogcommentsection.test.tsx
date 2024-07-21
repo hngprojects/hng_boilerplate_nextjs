@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import BlogCommentSection from "~/app/blogcommentsection/page";
+import BlogCommentSection from "~/components/common/blogcommentsection";
 
 const formatTimeAgo = (timestamp: Date) => {
   const now = new Date();
