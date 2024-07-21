@@ -10,7 +10,7 @@ describe("PaymentMethod Component", () => {
     image: "../../../public/images/logo(small).svg",
     header: "MasterCard",
     width: 40,
-    height: 38,
+    height: 40,
     active: false,
     onClick: vi.fn(),
     forms: <div>Form content</div>,
@@ -29,7 +29,7 @@ describe("PaymentMethod Component", () => {
       "src",
     "../../../public/images/logo(small).svg",
     );
-    expect(image).toHaveAttribute("height", "38");
+    expect(image).toHaveAttribute("height", "40");
     expect(image).toHaveAttribute("width", "40");
 
     // Check if the forms are rendered
