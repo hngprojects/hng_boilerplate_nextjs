@@ -1,19 +1,19 @@
-"use client"
-import TabSwitcher from '~/components/common/TabSwitcher'
-import React, { useState } from 'react'
-import { totalRevenue } from '~/data/overview'
-import { subscriptions } from '~/data/overview'
-import { sales } from '~/data/overview'
-import { activeNow } from '~/data/overview'
+"use client";
+import TabSwitcher from "~/components/common/TabSwitcher"
+import React, { useState } from "react"
+import { totalRevenue } from "~/data/overview"
+import { subscriptions } from "~/data/overview"
+import { sales } from "~/data/overview"
+import { activeNow } from "~/data/overview"
 import Dollar from "../../../public/dollar.svg"
 import People from "../../../public/people.svg"
 import Growth from "../../../public/growth.svg"
 import Card from "../../../public/card.svg"
-import { formatPrice } from '../../../utils/formatPrice'
-import { customersData } from '~/data/customersData'
-import { Chart } from '~/components/layouts/Chart'
-import { chartData } from '~/data/graph'
-import DateSwitcher from '~/components/common/DateSwitcher'
+import { formatPrice } from "../../../utils/formatPrice"
+import { customersData } from "~/data/customersData"
+import { Chart } from "~/components/layouts/Chart"
+import { chartData } from "~/data/graph"
+import DateSwitcher from "~/components/common/DateSwitcher"
 
 const Dashboard: React.FC = () => {
 
@@ -32,12 +32,12 @@ const Dashboard: React.FC = () => {
 
                         <DateSwitcher />
                         <button className='bg-primary py-[9.5px] px-[16px] rounded-sm text-sm text-white'>Download</button>
-                    </div>
                 </div>
+            </div>
 
-                <div className="">
-                    {tab == 1 && <div className='flex flex-col gap-[16px]'>
-                        <div className="flex flex-col md:flex-row gap-[16px]">
+            <div className="">
+                {tab == 1 && <div className='flex flex-col gap-[16px]'>
+                    <div className="flex flex-col md:flex-row gap-[16px]">
                             <div className="flex-1 flex flex-col md:flex-row gap-[16px]">
                                 <div className="flex-1 flex flex-col p-[24px] rounded-lg border border-solid border-stroke_dashboard pb-[40px] shadow-custom-light">
                                     <div className="flex justify-between items-center">
