@@ -5,9 +5,9 @@ import React from "react";
 
 import { Breadcrumb } from "~/components/common/Breadcrumb";
 import CustomButton from "~/components/common/Button/button";
-import CustomInput from "~/components/common/Input/input";
 import HBPCommentBox from "~/components/common/Comment";
 import { commentsData } from "~/components/common/Comment/ComentData";
+import CustomInput from "~/components/common/Input/input";
 import Sidebar from "~/components/layouts/Sidebar";
 
 const StyleGuide: React.FC = () => {
@@ -305,15 +305,68 @@ const StyleGuide: React.FC = () => {
       </div>
       <h2 className="text-2xl font-semibold">Input Components</h2>
       <div
-        className="grid w-full items-start gap-4 items-center"
+        className="grid w-full items-start items-center gap-4"
         style={{ gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))" }}
       >
-        <CustomInput placeholder="Email" isDisabled={false} isButtonVisible={true} buttonContent="Save" gap="lg" label="Email" variant="primary" labelPosition="top" />
-        <CustomInput placeholder="Enter Your name" isDisabled={true} isButtonVisible={true} buttonContent="Save" gap="lg" label="Email" variant="border" labelPosition="top" />
-        <CustomInput placeholder="Hello" isDisabled={false} isButtonVisible={false} buttonContent="Save" gap="lg" label="Email" variant="border" labelPosition="top" />
-        <CustomInput placeholder="Hello" isDisabled={false} isButtonVisible={true} buttonContent="Save" gap="lg" label="Enter Your Name" variant="primary" labelPosition="top" />
-        <CustomInput placeholder="Hello" isDisabled={false} isButtonVisible={true} buttonContent="Save" gap="lg" label="Email" variant="border" labelPosition="side" />
-        <CustomInput placeholder="Hello" isDisabled={false} isButtonVisible={false} buttonContent="" gap="lg" variant="primary" labelPosition="top" />
+        <CustomInput
+          placeholder="Email"
+          isDisabled={false}
+          isButtonVisible={true}
+          buttonContent="Save"
+          gap="lg"
+          label="Email"
+          variant="primary"
+          labelPosition="top"
+        />
+        <CustomInput
+          placeholder="Enter Your name"
+          isDisabled={true}
+          isButtonVisible={true}
+          buttonContent="Save"
+          gap="lg"
+          label="Email"
+          variant="border"
+          labelPosition="top"
+        />
+        <CustomInput
+          placeholder="Hello"
+          isDisabled={false}
+          isButtonVisible={false}
+          buttonContent="Save"
+          gap="lg"
+          label="Email"
+          variant="border"
+          labelPosition="top"
+        />
+        <CustomInput
+          placeholder="Hello"
+          isDisabled={false}
+          isButtonVisible={true}
+          buttonContent="Save"
+          gap="lg"
+          label="Enter Your Name"
+          variant="primary"
+          labelPosition="top"
+        />
+        <CustomInput
+          placeholder="Hello"
+          isDisabled={false}
+          isButtonVisible={true}
+          buttonContent="Save"
+          gap="lg"
+          label="Email"
+          variant="border"
+          labelPosition="side"
+        />
+        <CustomInput
+          placeholder="Hello"
+          isDisabled={false}
+          isButtonVisible={false}
+          buttonContent=""
+          gap="lg"
+          variant="primary"
+          labelPosition="top"
+        />
       </div>
       <h2 className="text-2xl font-semibold">Usage</h2>
       <div className="flex flex-col gap-4">
@@ -398,11 +451,13 @@ const StyleGuide: React.FC = () => {
               <br />
               buttonContent<span className="text-pink-400">?: </span>string;
               <br />
-              onButtonClick<span className="text-pink-400">?: </span>React.MouseEventHandler&lt;HTMLInputElement&gt;;
+              onButtonClick<span className="text-pink-400">?: </span>
+              React.MouseEventHandler&lt;HTMLInputElement&gt;;
               <br />
               isDisabled<span className="text-pink-400">?: </span>boolean;
               <br />
-              labelPosition<span className="text-pink-400">?: </span>LabelsPosition;
+              labelPosition<span className="text-pink-400">?: </span>
+              LabelsPosition;
             </span>
             <span className="block font-mono text-sm text-gray-100">{"}"}</span>
           </div>
@@ -420,11 +475,14 @@ const StyleGuide: React.FC = () => {
 
               <span className="ml-4">
                 variant=
-                <span className="text-yellow-400">&quot;primary&quot;</span>{" "}
+                <span className="text-yellow-400">
+                  &quot;primary&quot;
+                </span>{" "}
                 <br />
               </span>
               <span className="ml-4">
-                placeholder=<span className="text-yellow-400">&quot;Hello&quot;</span>{" "}
+                placeholder=
+                <span className="text-yellow-400">&quot;Hello&quot;</span>{" "}
                 <br />
               </span>
               <span className="ml-4">
@@ -436,7 +494,8 @@ const StyleGuide: React.FC = () => {
                 <br />
               </span>
               <span className="ml-4">
-                buttonContent={<span className="text-yellow-400">&quot;Save&quot;</span>}{" "}
+                buttonContent=
+                {<span className="text-yellow-400">&quot;Save&quot;</span>}{" "}
                 <br />
               </span>
               <span className="ml-4">
@@ -444,10 +503,16 @@ const StyleGuide: React.FC = () => {
                 <br />
               </span>
               <span className="ml-4">
-                label={<span className="text-yellow-400">&quot;Email&quot;</span>}{" "}
+                label=
+                {
+                  <span className="text-yellow-400">&quot;Email&quot;</span>
+                }{" "}
                 <br />
                 <span className="ml-4">
-                  labelPosition={<span className="text-yellow-400">&quot;top&quot;</span>}{" "}
+                  labelPosition=
+                  {
+                    <span className="text-yellow-400">&quot;top&quot;</span>
+                  }{" "}
                   <br />
                 </span>
                 <span className="text-green-400">{"/>"}</span> <br />
