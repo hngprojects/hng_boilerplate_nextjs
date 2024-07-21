@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import NotificationCard from "~/components/common/NotificationCard/NotificationCard";
+import UnreadNotificationCard from "~/components/common/UnreadNotificationCard/UnreadNotificationCard";
 
 interface NotificationPreview {
   header: string;
@@ -10,7 +10,7 @@ interface NotificationPreview {
 
 function renderComponents(preview: NotificationPreview[] = []) {
   render(
-    <NotificationCard
+    <UnreadNotificationCard
       notificationsPreview={preview}
       unreadCount={preview.length}
     />,
@@ -25,7 +25,7 @@ function renderComponents(preview: NotificationPreview[] = []) {
   };
 }
 
-describe("notificationCard", () => {
+describe("unreadNotificationCard without messages", () => {
   it("should display notification title", () => {
     expect.assertions(2);
 
@@ -68,7 +68,7 @@ describe("notificationCard", () => {
   });
 });
 
-describe("notificationCard Messages", () => {
+describe("unreadNotificationCard with Messages", () => {
   const previewMessages: NotificationPreview[] = [
     { header: "Check mail", time: "1 hour ago" },
     { header: "Sign up for offer", time: "2 hours ago" },
@@ -101,31 +101,34 @@ describe("notificationCard Messages", () => {
     expect(previewCount).toHaveTextContent(/3 unread messages/i);
   });
 
-  describe.each(previewMessages)("notificationCard with preview", (message) => {
-    it(`should display preview with header "${message.header}" and time "${message.time}"`, () => {
-      expect.assertions(4);
+  describe.each(previewMessages)(
+    "unreadNotificationCard with messages",
+    (message) => {
+      it(`should display preview with header "${message.header}" and time "${message.time}"`, () => {
+        expect.assertions(4);
 
-      const index = previewMessages.indexOf(message);
+        const index = previewMessages.indexOf(message);
 
-      render(
-        <NotificationCard
-          notificationsPreview={previewMessages}
-          unreadCount={previewMessages.length}
-        />,
-      );
+        render(
+          <UnreadNotificationCard
+            notificationsPreview={previewMessages}
+            unreadCount={previewMessages.length}
+          />,
+        );
 
-      const header = screen.getByTestId(`previewHeader${index}`);
-      const time = screen.getByTestId(`previewTime${index}`);
+        const header = screen.getByTestId(`previewHeader${index}`);
+        const time = screen.getByTestId(`previewTime${index}`);
 
-      expect(header).toBeInTheDocument();
-      expect(header).toHaveTextContent(message.header);
+        expect(header).toBeInTheDocument();
+        expect(header).toHaveTextContent(message.header);
 
-      expect(time).toBeInTheDocument();
-      expect(time).toHaveTextContent(message.time);
-    });
-  });
+        expect(time).toBeInTheDocument();
+        expect(time).toHaveTextContent(message.time);
+      });
+    },
+  );
 
-  it("should enable CTA button  if there are unread messages", () => {
+  it("should enable CTA button if there are unread messages", () => {
     expect.assertions(2);
 
     const { CTAButton } = renderComponents(previewMessages);
@@ -135,7 +138,7 @@ describe("notificationCard Messages", () => {
   });
 });
 
-describe("notificationCard responsiveness", () => {
+describe("unreadNotificationCard responsiveness", () => {
   const previewMessages: NotificationPreview[] = [
     { header: "Check mail", time: "1 hour ago" },
     { header: "Sign up for offer", time: "2 hours ago" },
@@ -158,34 +161,37 @@ describe("notificationCard responsiveness", () => {
     expect(cardTitle).toBeInTheDocument();
   });
 
-  describe.each(previewMessages)("notificationCard with preview", (message) => {
-    it(`should display preview with header "${message.header}" and time "${message.time}"`, () => {
-      expect.assertions(4);
+  describe.each(previewMessages)(
+    "unreadNotificationCard with messages",
+    (message) => {
+      it(`should display preview with header "${message.header}" and time "${message.time}"`, () => {
+        expect.assertions(4);
 
-      global.innerWidth = 320;
-      global.dispatchEvent(new Event("resize"));
+        global.innerWidth = 320;
+        global.dispatchEvent(new Event("resize"));
 
-      const index = previewMessages.indexOf(message);
+        const index = previewMessages.indexOf(message);
 
-      render(
-        <NotificationCard
-          notificationsPreview={previewMessages}
-          unreadCount={previewMessages.length}
-        />,
-      );
+        render(
+          <UnreadNotificationCard
+            notificationsPreview={previewMessages}
+            unreadCount={previewMessages.length}
+          />,
+        );
 
-      const header = screen.getByTestId(`previewHeader${index}`);
-      const time = screen.getByTestId(`previewTime${index}`);
+        const header = screen.getByTestId(`previewHeader${index}`);
+        const time = screen.getByTestId(`previewTime${index}`);
 
-      expect(header).toBeInTheDocument();
-      expect(header).toHaveTextContent(message.header);
-      expect(time).toBeInTheDocument();
-      expect(time).toHaveTextContent(message.time);
-    });
-  });
+        expect(header).toBeInTheDocument();
+        expect(header).toHaveTextContent(message.header);
+        expect(time).toBeInTheDocument();
+        expect(time).toHaveTextContent(message.time);
+      });
+    },
+  );
 });
 
-describe("notificationCard style ", () => {
+describe("unreadNotificationCard style ", () => {
   it("should have the correct card style ", () => {
     expect.assertions(1);
 
