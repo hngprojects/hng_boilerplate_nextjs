@@ -9,7 +9,6 @@ import {
 
 import Tailwindwrapper from "~/email/templates/_components/tailwindWrapper";
 
-import EmailResetPasswordLayout from "~/email/templates/_components/emailLayouts/emailResetPasswordLayout";
 
 
 interface IncomingAccountDeactivationProperties {
