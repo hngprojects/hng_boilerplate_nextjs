@@ -26,7 +26,7 @@ const PasswordChecks: React.FC<PasswordChecksProperties> = ({ checks }) => {
         </div>
         <div className="h-1 w-24 overflow-hidden rounded-sm bg-[#e0e0e0]">
           <div
-            className={`h-full rounded-sm transition-all duration-300 ${checks.length > 0 ? "bg-green-600" : "bg-[#e0e0e0]"} ${checks.length > 0 || checks.number || checks.uppercase ? "w-full" : "w-0"}`}
+            className={`h-full rounded-sm transition-all duration-300 ${checks.length ? "bg-green-600" : "bg-[#e0e0e0]"} ${checks.length || checks.number || checks.uppercase ? "w-full" : "w-0"}`}
           ></div>
         </div>
       </div>
@@ -41,7 +41,7 @@ const PasswordChecks: React.FC<PasswordChecksProperties> = ({ checks }) => {
           <span>At least 1 number</span>
         </div>
         <div className="flex items-center gap-x-1 text-[#434343]">
-          <CheckmarkIcon color={checks.length > 0 ? "#6DC347" : "#DC2626"} />
+          <CheckmarkIcon color={checks.length ? "#6DC347" : "#DC2626"} />
           <span>At least 8 characters</span>
         </div>
       </div>
