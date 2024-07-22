@@ -1,32 +1,31 @@
 "use client";
 
-import  RolesList  from "~/components/ui/RolesList";
+import RolesList from "~/components/RolesList";
 
 
-  const page = () =>{ 
 
-    
-    
-    return (
+
+const page = () => {
+
+
+
+  return (
     <div>
 
 
 
-      
-   
-      
-  
-
-
-
-<RolesList/>
 
 
 
 
 
-</div>
-)
+      <RolesList />
+
+
+
+
+    </div>
+  )
 };
 
 export default page;

@@ -152,3 +152,32 @@
 ::-webkit-scrollbar-thumb {
   @apply bg-primary;
 }
+
+
+.toggle-switch {
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  border-radius: 10px;
+  background: gray;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.toggle-switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  transition: left 0.3s;
+}
+.toggle-switch.enabled {
+  background: orange;
+}
+.toggle-switch.enabled::after {
+  left: 22px;
+}
