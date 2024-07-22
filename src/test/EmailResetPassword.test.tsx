@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 
 import ResetPasswordEmail from "../email/templates/password-reset/no-image";
 
+// eslint-disable-next-line vitest/no-disabled-tests
 describe.skip("resetPasswordEmail", () => {
   const properties = {
     name: "John Doe",
