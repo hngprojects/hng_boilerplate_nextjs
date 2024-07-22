@@ -8,6 +8,7 @@ import CustomButton from "~/components/common/Button/button";
 describe("custom Button Component", () => {
   it("renders correctly with left icon", () => {
     expect.hasAssertions();
+
     render(
       <CustomButton
         isLeftIconVisible
@@ -26,6 +27,7 @@ describe("custom Button Component", () => {
 
   it("renders correctly with right icon", () => {
     expect.hasAssertions();
+
     render(
       <CustomButton
         isRightIconVisible
@@ -44,6 +46,7 @@ describe("custom Button Component", () => {
 
   it("renders loading spinner correctly", () => {
     expect.hasAssertions();
+
     render(
       <CustomButton isLoading ariaLabel="button-loading">
         Loading
@@ -57,6 +60,7 @@ describe("custom Button Component", () => {
 
   it("handles loading state transitions smoothly", () => {
     expect.hasAssertions();
+
     const { rerender } = render(
       <CustomButton isLoading={false} ariaLabel="button-loading">
         Loading
@@ -73,6 +77,7 @@ describe("custom Button Component", () => {
 
   it("supports keyboard navigation and screen reader compatibility", async () => {
     expect.hasAssertions();
+
     render(
       <CustomButton ariaLabel="accessible-button">
         Accessible Button
