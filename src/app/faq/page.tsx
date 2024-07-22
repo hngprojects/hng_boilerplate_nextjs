@@ -1,6 +1,7 @@
 import React from "react";
 
 import Faqs from "~/components/common/Faqs";
+import AdditionalInquiriesForm from "../additionalinquiriesform/AdditionalInquiriesForm";
 
 const faq: React.FC = () => {
   return (
@@ -25,8 +26,9 @@ const faq: React.FC = () => {
               Achieve your dreams with us today
             </p>
           </div>
-          <section className="flex flex-col max-md:order-3">
+          <section className="flex w-full flex-col justify-center max-md:order-3">
             <Faqs />
+            <AdditionalInquiriesForm />
           </section>
         </div>
       </main>

@@ -49,7 +49,7 @@ export default function AdditionalInquiriesForm() {
   }
 
   return (
-    <div className="mb-[11.375rem] mt-[2.75rem] flex w-full max-w-[676px] flex-col gap-[28px] md:mb-[4rem] md:gap-[4.125rem]">
+    <div className="mx-auto mb-[11.375rem] mt-[2.75rem] flex w-full max-w-[676px] flex-col gap-[28px] md:mb-[4rem] md:gap-[4.125rem]">
       <div className="flex flex-col items-center gap-[.9375rem] text-center md:gap-[9px]">
         <h3 className="text-[1.25rem] font-[700] leading-[33.89px] text-primary md:text-[1.75rem]">
           Still have questions?
