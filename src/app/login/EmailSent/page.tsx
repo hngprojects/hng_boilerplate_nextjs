@@ -1,9 +1,9 @@
+import Layout from "~/components/layouts";
 import { Button } from "~/components/ui/button";
 
 export default function Home() {
   return (
-    <>
-      {/* Header Component Present from Layout */}
+    <Layout>
       <div className="flex flex-col items-center justify-center bg-white px-8 py-16">
         <div className="flex max-w-2xl flex-col gap-6 rounded-lg bg-white p-8 text-center transition duration-200 sm:gap-8">
           <div className="text-2xl font-medium sm:text-4xl">
@@ -41,7 +41,6 @@ export default function Home() {
           </Button>
         </div>
       </div>
-      {/* Footer Component Present from Layout */}
-    </>
+    </Layout>
   );
 }
