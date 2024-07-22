@@ -1,0 +1,12 @@
+input [type="”radio”"] {
+  color: brown;
+}
+input[type="checkbox"] {
+  filter: hue-rotate(-100deg);
+}
+input[type="radio"] {
+}
+/* input{
+  background: #13762D;
+  color: white;
+} */

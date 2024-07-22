@@ -90,7 +90,7 @@ const ProductDetailsCard: React.FC<ProductDetailsProperties> = ({
     !description
   ) {
     return (
-      <div className="inline-flex max-w-[403px] flex-col justify-center rounded-md border border-solid border-input py-6 pl-[1.4375rem] pr-[1.5rem] text-sm shadow-[0px_1px_18px_rgba(10,_57,_176,_0.12)] shadow-sm transition-all duration-500">
+      <div className="inline-flex max-w-[403px] flex-col justify-center rounded-md border border-solid border-input py-6 pl-[1.4375rem] pr-[1.5rem] text-sm shadow-[0px_1px_18px_rgba(10,_57,_176,_0.12)] transition-all duration-500">
         <div className="text-center text-error">
           Some product details are missing. Please provide complete product
           information.
