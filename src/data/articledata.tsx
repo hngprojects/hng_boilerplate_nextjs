@@ -1,17 +1,17 @@
-import climate from "../../public/images/ArticleImages/Climate.png";
-import climateDextop from "../../public/images/ArticleImages/ClimateDextop.png";
-import future from "../../public/images/ArticleImages/Future Picture.png";
-import futureDextop from "../../public/images/ArticleImages/FutureDextop.png";
-import mental from "../../public/images/ArticleImages/Mental.png";
-import mentalDextop from "../../public/images/ArticleImages/MentalDextop.png";
-import networking from "../../public/images/ArticleImages/Networking.png";
-import networkingDextop from "../../public/images/ArticleImages/NetworkingDextop.png";
-import noraDextop from "../../public/images/ArticleImages/Nora dextop.png";
-import noraMobile from "../../public/images/ArticleImages/Nora mobile.png";
-import recipe from "../../public/images/ArticleImages/Recipe.png";
-import recipeDextop from "../../public/images/ArticleImages/RecipeDextop.png";
-import styling from "../../public/images/ArticleImages/Styling.png";
-import stylingDextop from "../../public/images/ArticleImages/StylingDextop.png";
+import climate from "../../public/images/latestArticles/Climate.png";
+import climateDextop from "../../public/images/latestArticles/ClimateDextop.png";
+import future from "../../public/images/latestArticles/Future Picture.png";
+import futureDextop from "../../public/images/latestArticles/FutureDextop.png";
+import mental from "../../public/images/latestArticles/Mental.png";
+import mentalDextop from "../../public/images/latestArticles/MentalDextop.png";
+import networking from "../../public/images/latestArticles/Networking.png";
+import networkingDextop from "../../public/images/latestArticles/NetworkingDextop.png";
+import noraDextop from "../../public/images/latestArticles/Nora dextop.png";
+import noraMobile from "../../public/images/latestArticles/Nora mobile.png";
+import recipe from "../../public/images/latestArticles/Recipe.png";
+import recipeDextop from "../../public/images/latestArticles/RecipeDextop.png";
+import styling from "../../public/images/latestArticles/Styling.png";
+import stylingDextop from "../../public/images/latestArticles/StylingDextop.png";
 
 export const mainBlog = [
   {
