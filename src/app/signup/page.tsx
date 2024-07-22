@@ -148,9 +148,9 @@ const SignUp = ({ onSubmit }: TestFormProperties) => {
                   className={`text-neutralColor-dark-2 rounded-lg border px-4 py-3 text-lg outline-none placeholder:text-[hsl(var(--neutralColor-dark-1))] focus:border-primary lg:py-5 lg:pl-4 lg:pr-6 ${
                     errors.fullName
                       ? "border-[#E80D0D]"
-                      : formData.fullName
+                      : (formData.fullName
                         ? "border-primary"
-                        : "border-stroke-colors-stroke"
+                        : "border-stroke-colors-stroke")
                   }`}
                   placeholder="Enter your full name"
                 />
@@ -178,9 +178,9 @@ const SignUp = ({ onSubmit }: TestFormProperties) => {
                   className={`text-neutralColor-dark-2 rounded-lg border px-4 py-3 text-lg outline-none placeholder:text-[hsl(var(--neutralColor-dark-1))] focus:border-primary lg:py-5 lg:pl-4 lg:pr-6 ${
                     errors.email
                       ? "border-[#E80D0D]"
-                      : formData.email
+                      : (formData.email
                         ? "border-primary"
-                        : "border-stroke-colors-stroke"
+                        : "border-stroke-colors-stroke")
                   }`}
                   placeholder="Enter your email address"
                 />
@@ -208,9 +208,9 @@ const SignUp = ({ onSubmit }: TestFormProperties) => {
                   className={`text-neutralColor-dark-2 rounded-lg border px-4 py-3 text-lg outline-none placeholder:text-[hsl(var(--neutralColor-dark-1))] focus:border-primary lg:py-5 lg:pl-4 lg:pr-6 ${
                     errors.password
                       ? "border-[#E80D0D]"
-                      : formData.password
+                      : (formData.password
                         ? "border-primary"
-                        : "border-stroke-colors-stroke"
+                        : "border-stroke-colors-stroke")
                   }`}
                   placeholder="Create your password"
                 />

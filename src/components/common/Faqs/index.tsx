@@ -76,11 +76,11 @@ export default function Faqs() {
           <div className="grid grid-cols-3 gap-x-8 gap-y-6 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-x-4">
             {accordions}
           </div>
-        ) : filteredAccordions.length > 0 ? (
+        ) : (filteredAccordions.length > 0 ? (
           <div className="grid grid-cols-3">{filteredAccordions}</div>
         ) : (
           <p className="mt-4 text-center">No results found.</p>
-        )}
+        ))}
       </div>
     </div>
   );
