@@ -1,4 +1,4 @@
-import Sidebar from "~/components/common/sidebar";
+import Sidebar from "~/components/common/overviewsidebar/sidebar";
 
 export default function ProductLayout({
   children,

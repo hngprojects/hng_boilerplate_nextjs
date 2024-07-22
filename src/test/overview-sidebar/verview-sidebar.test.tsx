@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 
-import Sidebar from "~/components/common/sidebar";
+import Sidebar from "~/components/common/overviewsidebar/sidebar";
 
 describe("sidebar component", () => {
   it("renders Settings header initially visible", () => {
