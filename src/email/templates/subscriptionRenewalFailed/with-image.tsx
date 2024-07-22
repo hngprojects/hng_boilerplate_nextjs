@@ -1,8 +1,6 @@
-import { error } from "node:console";
-import Image from "next/image";
+import { Img } from "@react-email/components";
 
 import CustomButton from "~/components/common/Button/button";
-import { SubscriptionRenewalFailedSchema } from "./zodSchema";
 
 interface SubscriptionRenewalFailedProperties {
   title: string;
@@ -15,15 +13,7 @@ interface SubscriptionRenewalFailedProperties {
   unsubscribeLink: string;
 }
 
-const SubscriptionRenewalFailed: React.FC<
-  SubscriptionRenewalFailedProperties
-> = (properties) => {
-  const result = SubscriptionRenewalFailedSchema.safeParse(properties);
-  if (!result.success) {
-    error("Invalid props:", result.error.format());
-    return;
-  }
-
+export default function Email(properties: SubscriptionRenewalFailedProperties) {
   const {
     title,
     name,
@@ -33,11 +23,11 @@ const SubscriptionRenewalFailed: React.FC<
     faqsLink,
     supportEmail,
     unsubscribeLink,
-  } = result.data;
+  } = properties;
 
   return (
     <div className="renewal-with-icon font-inter box-border flex w-full max-w-full flex-col items-center justify-start gap-[40px] bg-background px-14 pb-[53px] pt-14 text-left text-4xl font-semibold text-neutral-dark-2 md:gap-[56px]">
-      <Image
+      <Img
         className="renewal-with-icon-image relative h-[142px] w-[142px] shrink-0 overflow-hidden object-contain md:h-[178px] md:w-[178px]"
         loading="lazy"
         alt="Payment Error"
@@ -71,7 +61,7 @@ const SubscriptionRenewalFailed: React.FC<
           </div>
           <div className="renewal-with-icon-reasons flex max-w-full flex-col items-start justify-start gap-[16px] self-stretch font-normal text-neutral-dark-2">
             <div className="renewal-with-icon-reason flex max-w-full flex-row items-center justify-start gap-[16px] self-stretch">
-              <Image
+              <Img
                 className="renewal-with-icon-reason-icon relative h-6 w-6"
                 loading="lazy"
                 alt="Reason Icon"
@@ -84,7 +74,7 @@ const SubscriptionRenewalFailed: React.FC<
               </div>
             </div>
             <div className="renewal-with-icon-reason flex max-w-full flex-row items-center justify-start gap-[16px] self-stretch">
-              <Image
+              <Img
                 className="renewal-with-icon-reason-icon relative h-6 w-6"
                 loading="lazy"
                 alt="Reason Icon"
@@ -97,7 +87,7 @@ const SubscriptionRenewalFailed: React.FC<
               </div>
             </div>
             <div className="renewal-with-icon-reason flex max-w-full flex-row items-center justify-start gap-[16px] self-stretch">
-              <Image
+              <Img
                 className="renewal-with-icon-reason-icon relative h-6 w-6"
                 loading="lazy"
                 alt="Reason Icon"
@@ -162,6 +152,15 @@ const SubscriptionRenewalFailed: React.FC<
       </div>
     </div>
   );
-};
+}
 
-export default SubscriptionRenewalFailed;
+Email.PreviewProps = {
+  name: "John Doe",
+  title: "Subscription Renewal Failed",
+  image: "",
+  renewalPeriod: "Bi-monthly",
+  faqsLink: "https://www.boilerplate.com/faqs",
+  supportEmail: "help@boilerplate.com",
+  unsubscribeLink: "https://www.boilerplate.com/unsubscribe",
+  updatePaymentLink: "https://www.boilerplate.com/update-payment",
+} satisfies SubscriptionRenewalFailedProperties;
