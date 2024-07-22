@@ -35,21 +35,21 @@ const BlogCard = ({
           style={{ backgroundColor: newsType.color }}
           className="absolute left-[15px] top-[15px] rounded-[16px] px-[17px] py-[5px]"
         >
-          <p className="text-blog-relatedBg text-[12px] font-bold">
+          <p className="text-[12px] font-bold text-blog-relatedBg">
             {newsType.name}
           </p>
         </div>
       </div>
       <div className="flex h-[147px] w-[372px] flex-col gap-[24px] p-[16px] md:h-[137px] md:w-[354px]">
-        <p className="text-blog-relatedHeading w-[320px] text-[20px] font-bold">
+        <p className="w-[320px] text-[20px] font-bold text-blog-relatedHeading">
           {newsType.title}
         </p>
         <div className="flex items-center justify-between">
-          <p className="text-blog-relatedHeading text-[14px] font-normal">
+          <p className="text-[14px] font-normal text-blog-relatedHeading">
             {newsType.date}
           </p>
-          <div className="bg-blog-relatedBg rounded-[16px] p-[8px]">
-            <p className="text-blog-relatedHeading text-[14px] font-normal">
+          <div className="rounded-[16px] bg-blog-relatedBg p-[8px]">
+            <p className="text-[14px] font-normal text-blog-relatedHeading">
               {newsType.timeRead}
             </p>
           </div>

@@ -65,21 +65,21 @@ const RelatedArticle = () => {
 
   if (errors) {
     return (
-      <p className="text-blog-relatedHeading p-[0] text-[24px] font-bold sm:px-[100px]">
+      <p className="p-[0] text-[24px] font-bold text-blog-relatedHeading sm:px-[100px]">
         {errors}
       </p>
     );
   }
 
   return (
-    <div className="bg-blog-relatedBg flex w-[372px] flex-col justify-center gap-[24px] px-[0px] py-[16px] sm:w-full sm:px-[100px]">
-      <h1 className="text-blog-relatedHeading ml-[17px] text-[28px] font-bold md:ml-[0px]">
+    <div className="flex w-[372px] flex-col justify-center gap-[24px] px-[0px] py-[16px] sm:w-full sm:px-[100px] bg-blog-relatedBg">
+      <h1 className="ml-[17px] text-[28px] font-bold md:ml-[0px] text-blog-relatedHeading">
         Related Articles
       </h1>
 
       {loading ? (
         <div className="p-[0] sm:px-[100px]">
-          <p className="text-blog-relatedHeading text-[24px] font-bold">
+          <p className="text-[24px] font-bold text-blog-relatedHeading">
             Loading...
           </p>
         </div>
