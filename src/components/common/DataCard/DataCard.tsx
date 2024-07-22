@@ -21,8 +21,9 @@ const DataCard = ({ heading, content }: DataCardProperties) => {
     <>
       <Card
         className={cn(
-          "flex w-[325px] flex-col gap-1 rounded-[0.75rem] border-[0.5px] border-border bg-card px-6 pb-10 pt-[1.4rem] text-neutral-dark-2",
+          "flex flex-col gap-1 rounded-[0.75rem] border-[0.5px] border-border bg-card px-6 pb-10 pt-[1.4rem] text-neutral-dark-2",
         )}
+        style={{ boxShadow: "0px 1px 18px 0px hsla(226, 89%, 36%, 0.12)" }}
         aria-labelledby="card-title"
       >
         <CardHeader className="flex w-full flex-row items-center justify-between space-y-0 p-0">
