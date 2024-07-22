@@ -195,9 +195,9 @@ const StyleGuide: FC = () => {
           <span>Import the custom button component</span>
           <div className="rounded-lg bg-zinc-950 p-4">
             <span className="block font-mono text-sm text-white">
-              import <span className="text-blue-400">CustomButton</span> from
+              import <span className="text-blue-400">CustomButton</span> from{" "}
               <span className="text-yellow-400">
-                `~/components/common/Button/button`
+                &quot;~/components/common/Button/button&quot;
               </span>
               ;
             </span>
