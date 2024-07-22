@@ -34,21 +34,21 @@ interface NewFeatureAnnouncementProperties {
 }
 ``;
 export const NewFeatureAnnouncement = ({
-  title,
-  username,
-  image,
-  logo,
-  star,
-  featureName,
-  learnMoreLink,
-  featureDescription,
-  benefitOne,
-  benefitTwo,
-  linkedinIcon,
-  redditIcon,
-  tiktokIcon,
-  igIcon,
-  xIcon,
+  title = "",
+  username = "",
+  image = "",
+  logo = "",
+  star = "",
+  featureName = "",
+  learnMoreLink = "",
+  featureDescription = "",
+  benefitOne = "",
+  benefitTwo = "",
+  linkedinIcon = "",
+  redditIcon = "",
+  tiktokIcon = "",
+  igIcon = "",
+  xIcon = "",
 }: NewFeatureAnnouncementProperties) => {
   return (
     <Html>
@@ -86,7 +86,7 @@ export const NewFeatureAnnouncement = ({
               <Text className="mb-[16px] w-full text-left font-sans text-[18px] font-semibold leading-[120%] text-[#121212] md:text-[16px]">
                 Hi {username},
                 <p className="font-sans">
-                  We’re thrilled to announce the launch of our newest feature:{" "}
+                  We're thrilled to announce the launch of our newest feature:{" "}
                   {featureName}!
                 </p>
                 <p className="font-sans">
