@@ -29,8 +29,7 @@ const MediaUpload: React.FC<MediaUploadProperties> = ({
 
   const handleFilesAdded = useCallback(
     (newFiles: FileList) => {
-      // eslint-disable-next-line unicorn/prefer-spread
-      const fileArray = Array.from(newFiles);
+      const fileArray = Array.prototype.slice.call(newFiles);
       setFiles((previousFiles) => [...previousFiles, ...fileArray]);
       onFilesAdded(fileArray);
     },
