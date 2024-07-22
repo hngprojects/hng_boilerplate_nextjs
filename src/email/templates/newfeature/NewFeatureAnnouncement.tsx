@@ -86,8 +86,8 @@ export const NewFeatureAnnouncement = ({
               <Text className="mb-[16px] w-full text-left font-sans text-[18px] font-semibold leading-[120%] text-[#121212] md:text-[16px]">
                 Hi {username},
                 <p className="font-sans">
-                  We're thrilled to announce the launch of our newest feature:{" "}
-                  {featureName}!
+                  We&apos;re thrilled to announce the launch of our newest
+                  feature: {featureName}!
                 </p>
                 <p className="font-sans">
                   {featureName} {featureDescription}
