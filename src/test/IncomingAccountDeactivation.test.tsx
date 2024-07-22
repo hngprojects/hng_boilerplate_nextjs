@@ -21,7 +21,6 @@ describe("incomingAccountDeactivation template", () => {
     expect.assertions(2);
     render(<IncomingAccountDeactivation {...properties} />);
 
-   
     expect(screen.getByText("Hi John Doe,")).toBeInTheDocument();
 
     expect(screen.getByText("17th June, 2024 / 11:56pm")).toBeInTheDocument();
@@ -32,7 +31,6 @@ describe("incomingAccountDeactivation template", () => {
     render(<IncomingAccountDeactivation {...properties} />);
 
     expect(screen.getByText("Your deactivation deatails:")).toBeInTheDocument();
-    
 
     expect(screen.getByText("Regards,")).toBeInTheDocument();
     expect(screen.getByText("Boilerplate")).toBeInTheDocument();
