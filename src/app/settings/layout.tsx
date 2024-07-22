@@ -15,6 +15,6 @@ export default function SettingsLayout({
           {children}
         </div>
       </section>
-    </StateContextProvider>
+    </>
   );
 }
