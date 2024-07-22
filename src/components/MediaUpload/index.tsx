@@ -76,6 +76,7 @@ const MediaUpload: React.FC<MediaUploadProperties> = ({
               className="flex h-[125px] w-full flex-col items-center justify-center gap-3 rounded-[6px] border border-dashed border-slate-300 bg-zinc-50"
               onDragOver={handleDragOver}
               onDrop={handleDrop}
+              data-testid="drop-area"
             >
               <div className="">
                 <input
