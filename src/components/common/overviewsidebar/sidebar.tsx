@@ -15,13 +15,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-// import { IoIosArrowBack, IoIosNotificationsOutline } from "react-icons/io";
-// import { IoChevronForward } from "react-icons/io5";
-// import { LuUsers } from "react-icons/lu";
-
 import { cn } from "~/lib/utils";
-
-//icons
 
 const Sidebar = () => {
   const [hidden, setHidden] = useState(false);
@@ -42,7 +36,6 @@ const Sidebar = () => {
             <h2 className="hidden md:block">Settings</h2>
           </div>
 
-          {/* profile part */}
           {hidden && (
             <div className="w-full">
               <div className="nd:gap-[6px] flex w-full flex-col items-start gap-[3px] border-b border-border pb-[18px] font-light md:pb-[40px] lg:text-[16px]">
@@ -179,7 +172,6 @@ const Sidebar = () => {
                 </div>
               </div>
 
-              {/* organisation part */}
               <div className="flex w-full flex-col items-start gap-[6px] pb-[141px] font-light md:gap-[12px] lg:text-[16px]">
                 <div className="px-[6px] py-[10px] text-left md:px-[10px] md:py-[15.5px]">
                   {" "}
