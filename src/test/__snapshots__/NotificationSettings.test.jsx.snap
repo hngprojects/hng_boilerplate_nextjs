@@ -1,0 +1,653 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Home Component > renders correctly and matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="p-4 sm:p-6 lg:p-8"
+  >
+    <div
+      class="mb-6"
+    >
+      <h3
+        class="text-base font-semibold sm:text-lg lg:text-xl"
+      >
+        Notifications Alert
+      </h3>
+      <div
+        class="mb-4"
+      >
+        <h4
+          class="text-sm font-medium sm:text-base lg:text-lg"
+        >
+          Mobile push notifications
+        </h4>
+        <div
+          class="flex flex-col justify-between gap-2 text-sm sm:flex-row sm:text-base lg:text-lg"
+        >
+          <p
+            class="text-gray-600"
+          >
+            Receive push notifications on mentions and comments via your mobile app
+          </p>
+          <div>
+            <button
+              aria-checked="false"
+              class="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+              data-state="unchecked"
+              role="switch"
+              type="button"
+              value="on"
+            >
+              <span
+                class="pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+                data-state="unchecked"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="mb-6"
+    >
+      <h3
+        class="text-base font-semibold sm:text-lg lg:text-xl"
+      >
+        Email Notifications
+      </h3>
+      <div
+        class="mb-4"
+      >
+        <h4
+          class="text-sm font-medium sm:text-base lg:text-lg"
+        >
+          Activity in your workspace
+        </h4>
+        <div
+          class="flex flex-col justify-between gap-2 text-sm sm:flex-row sm:text-base lg:text-lg"
+        >
+          <p
+            class="text-gray-600"
+          >
+            Receive emails when you get comments, mentions, page invites, reminders, access requests, and property changes
+          </p>
+          <div>
+            <button
+              aria-checked="false"
+              class="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+              data-state="unchecked"
+              role="switch"
+              type="button"
+              value="on"
+            >
+              <span
+                class="pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+                data-state="unchecked"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mb-4"
+      >
+        <h4
+          class="text-sm font-medium sm:text-base lg:text-lg"
+        >
+          Always send email notifications
+        </h4>
+        <div
+          class="flex flex-col justify-between gap-2 text-sm sm:flex-row sm:text-base lg:text-lg"
+        >
+          <p
+            class="text-gray-600"
+          >
+            Receive emails about activity in your workspace, even when you are active on the app
+          </p>
+          <div>
+            <button
+              aria-checked="false"
+              class="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+              data-state="unchecked"
+              role="switch"
+              type="button"
+              value="on"
+            >
+              <span
+                class="pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+                data-state="unchecked"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mb-4"
+      >
+        <h4
+          class="text-sm font-medium sm:text-base lg:text-lg"
+        >
+          Email digests
+        </h4>
+        <div
+          class="flex flex-col justify-between gap-2 text-sm sm:flex-row sm:text-base lg:text-lg"
+        >
+          <p
+            class="text-gray-600"
+          >
+            Receive email digest every 8 hours for changes to pages you are subscribed to
+          </p>
+          <div>
+            <button
+              aria-checked="false"
+              class="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+              data-state="unchecked"
+              role="switch"
+              type="button"
+              value="on"
+            >
+              <span
+                class="pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+                data-state="unchecked"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mb-4"
+      >
+        <h4
+          class="text-sm font-medium sm:text-base lg:text-lg"
+        >
+          Announcements and update emails
+        </h4>
+        <div
+          class="flex flex-col justify-between gap-2 text-sm sm:flex-row sm:text-base lg:text-lg"
+        >
+          <p
+            class="text-gray-600"
+          >
+            Receive occasional emails about product launches and new features from Notion
+          </p>
+          <div>
+            <button
+              aria-checked="false"
+              class="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+              data-state="unchecked"
+              role="switch"
+              type="button"
+              value="on"
+            >
+              <span
+                class="pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+                data-state="unchecked"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="mb-6"
+    >
+      <h3
+        class="text-base font-semibold sm:text-lg lg:text-xl"
+      >
+        Slack notifications
+      </h3>
+      <div
+        class="mb-4"
+      >
+        <h4
+          class="text-sm font-medium sm:text-base lg:text-lg"
+        >
+          Activity in your workspace
+        </h4>
+        <div
+          class="flex flex-col justify-between gap-2 text-sm sm:flex-row sm:text-base lg:text-lg"
+        >
+          <p
+            class="text-gray-600"
+          >
+            Receive emails when you get comments, mentions, page invites, reminders, access requests, and property changes
+          </p>
+          <div>
+            <button
+              aria-checked="false"
+              class="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+              data-state="unchecked"
+              role="switch"
+              type="button"
+              value="on"
+            >
+              <span
+                class="pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+                data-state="unchecked"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mb-4"
+      >
+        <h4
+          class="text-sm font-medium sm:text-base lg:text-lg"
+        >
+          Always send email notifications
+        </h4>
+        <div
+          class="flex flex-col justify-between gap-2 text-sm sm:flex-row sm:text-base lg:text-lg"
+        >
+          <p
+            class="text-gray-600"
+          >
+            Receive emails about activity in your workspace, even when you are active on the app
+          </p>
+          <div>
+            <button
+              aria-checked="false"
+              class="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+              data-state="unchecked"
+              role="switch"
+              type="button"
+              value="on"
+            >
+              <span
+                class="pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+                data-state="unchecked"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mb-4"
+      >
+        <h4
+          class="text-sm font-medium sm:text-base lg:text-lg"
+        >
+          Announcements and update emails
+        </h4>
+        <div
+          class="flex flex-col justify-between gap-2 text-sm sm:flex-row sm:text-base lg:text-lg"
+        >
+          <p
+            class="text-gray-600"
+          >
+            Receive occasional emails about product launches and new features from Notion
+          </p>
+          <div>
+            <button
+              aria-checked="false"
+              class="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+              data-state="unchecked"
+              role="switch"
+              type="button"
+              value="on"
+            >
+              <span
+                class="pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+                data-state="unchecked"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-6"
+    >
+      <button
+        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow h-9 px-4 py-2"
+        role="button"
+      >
+        <svg
+          class="lucide lucide-check"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M20 6 9 17l-5-5"
+          />
+        </svg>
+         Save Changes
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`NotificationSettings Component > renders correctly and matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="p-4 sm:p-6 lg:p-8"
+  >
+    <div
+      class="mb-6"
+    >
+      <h3
+        class="text-base font-semibold sm:text-lg lg:text-xl"
+      >
+        Notifications Alert
+      </h3>
+      <div
+        class="mb-4"
+      >
+        <h4
+          class="text-sm font-medium sm:text-base lg:text-lg"
+        >
+          Mobile push notifications
+        </h4>
+        <div
+          class="flex flex-col justify-between gap-2 text-sm sm:flex-row sm:text-base lg:text-lg"
+        >
+          <p
+            class="text-gray-600"
+          >
+            Receive push notifications on mentions and comments via your mobile app
+          </p>
+          <div>
+            <button
+              aria-checked="false"
+              class="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+              data-state="unchecked"
+              role="switch"
+              type="button"
+              value="on"
+            >
+              <span
+                class="pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+                data-state="unchecked"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="mb-6"
+    >
+      <h3
+        class="text-base font-semibold sm:text-lg lg:text-xl"
+      >
+        Email Notifications
+      </h3>
+      <div
+        class="mb-4"
+      >
+        <h4
+          class="text-sm font-medium sm:text-base lg:text-lg"
+        >
+          Activity in your workspace
+        </h4>
+        <div
+          class="flex flex-col justify-between gap-2 text-sm sm:flex-row sm:text-base lg:text-lg"
+        >
+          <p
+            class="text-gray-600"
+          >
+            Receive emails when you get comments, mentions, page invites, reminders, access requests, and property changes
+          </p>
+          <div>
+            <button
+              aria-checked="false"
+              class="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+              data-state="unchecked"
+              role="switch"
+              type="button"
+              value="on"
+            >
+              <span
+                class="pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+                data-state="unchecked"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mb-4"
+      >
+        <h4
+          class="text-sm font-medium sm:text-base lg:text-lg"
+        >
+          Always send email notifications
+        </h4>
+        <div
+          class="flex flex-col justify-between gap-2 text-sm sm:flex-row sm:text-base lg:text-lg"
+        >
+          <p
+            class="text-gray-600"
+          >
+            Receive emails about activity in your workspace, even when you are active on the app
+          </p>
+          <div>
+            <button
+              aria-checked="false"
+              class="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+              data-state="unchecked"
+              role="switch"
+              type="button"
+              value="on"
+            >
+              <span
+                class="pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+                data-state="unchecked"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mb-4"
+      >
+        <h4
+          class="text-sm font-medium sm:text-base lg:text-lg"
+        >
+          Email digests
+        </h4>
+        <div
+          class="flex flex-col justify-between gap-2 text-sm sm:flex-row sm:text-base lg:text-lg"
+        >
+          <p
+            class="text-gray-600"
+          >
+            Receive email digest every 8 hours for changes to pages you are subscribed to
+          </p>
+          <div>
+            <button
+              aria-checked="false"
+              class="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+              data-state="unchecked"
+              role="switch"
+              type="button"
+              value="on"
+            >
+              <span
+                class="pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+                data-state="unchecked"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mb-4"
+      >
+        <h4
+          class="text-sm font-medium sm:text-base lg:text-lg"
+        >
+          Announcements and update emails
+        </h4>
+        <div
+          class="flex flex-col justify-between gap-2 text-sm sm:flex-row sm:text-base lg:text-lg"
+        >
+          <p
+            class="text-gray-600"
+          >
+            Receive occasional emails about product launches and new features from Notion
+          </p>
+          <div>
+            <button
+              aria-checked="false"
+              class="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+              data-state="unchecked"
+              role="switch"
+              type="button"
+              value="on"
+            >
+              <span
+                class="pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+                data-state="unchecked"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="mb-6"
+    >
+      <h3
+        class="text-base font-semibold sm:text-lg lg:text-xl"
+      >
+        Slack notifications
+      </h3>
+      <div
+        class="mb-4"
+      >
+        <h4
+          class="text-sm font-medium sm:text-base lg:text-lg"
+        >
+          Activity in your workspace
+        </h4>
+        <div
+          class="flex flex-col justify-between gap-2 text-sm sm:flex-row sm:text-base lg:text-lg"
+        >
+          <p
+            class="text-gray-600"
+          >
+            Receive emails when you get comments, mentions, page invites, reminders, access requests, and property changes
+          </p>
+          <div>
+            <button
+              aria-checked="false"
+              class="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+              data-state="unchecked"
+              role="switch"
+              type="button"
+              value="on"
+            >
+              <span
+                class="pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+                data-state="unchecked"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mb-4"
+      >
+        <h4
+          class="text-sm font-medium sm:text-base lg:text-lg"
+        >
+          Always send email notifications
+        </h4>
+        <div
+          class="flex flex-col justify-between gap-2 text-sm sm:flex-row sm:text-base lg:text-lg"
+        >
+          <p
+            class="text-gray-600"
+          >
+            Receive emails about activity in your workspace, even when you are active on the app
+          </p>
+          <div>
+            <button
+              aria-checked="false"
+              class="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+              data-state="unchecked"
+              role="switch"
+              type="button"
+              value="on"
+            >
+              <span
+                class="pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+                data-state="unchecked"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mb-4"
+      >
+        <h4
+          class="text-sm font-medium sm:text-base lg:text-lg"
+        >
+          Announcements and update emails
+        </h4>
+        <div
+          class="flex flex-col justify-between gap-2 text-sm sm:flex-row sm:text-base lg:text-lg"
+        >
+          <p
+            class="text-gray-600"
+          >
+            Receive occasional emails about product launches and new features from Notion
+          </p>
+          <div>
+            <button
+              aria-checked="false"
+              class="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+              data-state="unchecked"
+              role="switch"
+              type="button"
+              value="on"
+            >
+              <span
+                class="pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+                data-state="unchecked"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-6"
+    >
+      <button
+        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow h-9 px-4 py-2"
+        role="button"
+      >
+        <svg
+          class="lucide lucide-check"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M20 6 9 17l-5-5"
+          />
+        </svg>
+         Save Changes
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;
