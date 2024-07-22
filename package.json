@@ -89,11 +89,7 @@
     "postcss": "^8.4.39",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.5",
-<<<<<<< HEAD
-    "tailwindcss": "^3.4.6",
-=======
     "tailwindcss": "^3.4.1",
->>>>>>> 963a41aac086d795018f1302698c589a5ce84665
     "typescript": "^5.5.3",
     "vitest": "^1.6.0"
   }
