@@ -7,7 +7,7 @@ import {
   Preview,
 } from "@react-email/components";
 
-import Tailwindwrapper from "~/email/templates/_components/tailwindWrapper";
+import TailwindWrapper from "~/email/templates/_components/tailwindWrapper";
 
 
 
@@ -35,7 +35,7 @@ export const IncomingAccountDeactivation = ({
 }: IncomingAccountDeactivationProperties) => {
   return (
     <Html>
-      <Tailwindwrapper>
+      <TailwindWrapper>
         <Head />
         <Preview>{`${title} ${titleDeactivationDays}`}</Preview>
         
@@ -112,7 +112,7 @@ export const IncomingAccountDeactivation = ({
             </span>
           </div>
         </div>
-      </Tailwindwrapper>
+      </TailwindWrapper>
     </Html>
   );
 };
