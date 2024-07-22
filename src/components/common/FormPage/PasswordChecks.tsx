@@ -41,7 +41,9 @@ const PasswordChecks: React.FC<PasswordChecksProperties> = ({ checks }) => {
           <span>At least 1 number</span>
         </div>
         <div className="flex items-center gap-x-1 text-[#434343]">
-          <CheckmarkIcon color={checks.passwordLength ? "#6DC347" : "#DC2626"} />
+          <CheckmarkIcon
+            color={checks.passwordLength ? "#6DC347" : "#DC2626"}
+          />
           <span>At least 8 characters</span>
         </div>
       </div>
