@@ -1,18 +1,23 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, MoreVertical } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useEffect, useMemo, useState } from "react";
 
-import BlurImage from "~/components/miscellaneous/blur-image";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
-import { Button } from "~/components/ui/button";
-import { Input } from "~/components/ui/input";
-import { cn, formatPrice } from "~/lib/utils";
+import ProductCardSkeleton from "~/components/skeleton/product.skeleton";
 import {
-  PRODUCT_NAV,
-  PRODUCT_TABLE,
-  type ProductTableProperties,
-} from "../data/product.mock";
+  Table,
+  TableBody,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "~/components/ui/table";
+import { useProductModal } from "~/hooks/admin-product/use-product.modal";
+import { useProductsFilters } from "~/hooks/admin-product/use-products.-filters.persistence";
+import { useProducts } from "~/hooks/admin-product/use-products.persistence";
+import { cn } from "~/lib/utils";
+import { ProductTableProperties } from "~/types/admin-product.types";
+import ProductBodyShadcn from "./product-body-shadcn";
 
 const Pagination = dynamic(() => import("react-paginate"), {
   ssr: false,
@@ -28,8 +33,10 @@ const ProductContent = ({
 }) => {
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
-
+  const { products } = useProducts();
   const [perPage, setPerPage] = useState("10");
+  const { isOpen } = useProductModal();
+  const { active_filter } = useProductsFilters();
 
   const [subset, setSubset] = useState<ProductTableProperties[]>([]);
 
@@ -40,17 +47,30 @@ const ProductContent = ({
     setCurrentPage(selected);
     window?.scrollTo({ top: 0, behavior: "smooth" });
   };
+  // filter by active filter
+  const filteredProductsByActiveFilter = useMemo(() => {
+    if (!products) return [];
+    if (products.length === 0) return [];
+    return products.filter((product) => {
+      if (active_filter === "all") return product;
+      return product.status === active_filter;
+    });
+  }, [active_filter, products]);
 
   // filter by search term
   const filteredProducts = useMemo(() => {
-    if (PRODUCT_TABLE.length === 0) return [];
-    return PRODUCT_TABLE.filter((product) => {
-      if (!(searchTerm.length > 1) || PRODUCT_TABLE.length === 0) {
+    if (!filteredProductsByActiveFilter) return [];
+    if (filteredProductsByActiveFilter.length === 0) return [];
+    return filteredProductsByActiveFilter.filter((product) => {
+      if (
+        !(searchTerm.length > 1) ||
+        filteredProductsByActiveFilter.length === 0
+      ) {
         return product;
       }
       return product.name.toLowerCase().includes(searchTerm.toLowerCase());
     });
-  }, [searchTerm]);
+  }, [searchTerm, filteredProductsByActiveFilter]);
 
   useEffect(() => {
     if (filteredProducts.length === 0) return;
@@ -68,144 +88,42 @@ const ProductContent = ({
 
   return (
     <div className="relative flex w-full flex-col overflow-hidden pb-10">
-      <div className="show_scrollbar w-[calc(100%)]x w-fullx overflow-x-auto rounded-xl border border-gray-300 bg-[#F1F5F9] pt-4">
+      <div
+        className={cn(
+          "show_scrollbar rounded-xl border border-gray-300 bg-[#F1F5F9] pt-4",
+          isOpen
+            ? "max-w-full lg:max-w-[600px] min-[1090px]:max-w-[650px] min-[1150px]:max-w-[750px] min-[1200px]:max-w-[800px] xl:max-w-full"
+            : "max- w-full",
+        )}
+      >
         <AnimatePresence>
           {view === "list" && (
-            <table className="w-full max-w-full">
-              <thead className="">
-                <tr>
-                  {PRODUCT_NAV.map((item) => (
-                    <th
-                      key={item.name}
-                      className={cn(
-                        "whitespace-nowrap px-4 py-3 text-left text-sm font-medium tracking-wider xl:px-6",
-                        item.name === "product_name" ? "text-center" : "",
-                      )}
-                    >
-                      {item.label}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-
-              <motion.tbody
-                initial="productCards"
-                animate="whileInView"
-                whileInView="whileInView"
-                transition={{ duration: 0.2, staggerChildren: 0.15 }}
-                className="min-h-[400px] w-full divide-y divide-gray-200 overflow-hidden bg-white"
-              >
-                <AnimatePresence>
-                  {filteredProducts.length > 0 &&
-                    subset.length > 0 &&
-                    subset.map((product) => (
-                      <motion.tr
-                        layout
-                        layoutId={product.product_id}
-                        key={product.product_id}
-                        variants={{
-                          productCards: {
-                            opacity: 0,
-                            y: 30,
-                          },
-                          whileInView: {
-                            opacity: 1,
-                            y: 0,
-                          },
-                        }}
-                        transition={{
-                          type: "spring",
-                          mass: 2,
-                          // stiffness: 200,
-                          damping: 30,
-                        }}
-                        viewport={{ once: true }}
-                        className="transition-colors hover:bg-[#F1F5F9]"
-                      >
-                        <td className="flex items-center justify-start gap-x-2 whitespace-nowrap px-4 py-4 md:gap-x-4 xl:px-6">
-                          <div className="flex items-center gap-x-2 md:gap-x-4">
-                            <Input
-                              type="checkbox"
-                              className="size-4 lg:size-5"
-                            />
-                            <BlurImage
-                              src={product.image}
-                              alt="Product"
-                              width={40}
-                              height={40}
-                              className="h-10 w-10 rounded-lg"
-                            />
-                          </div>
-                          <td className="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-900 xl:px-6">
-                            <span>
-                              {searchTerm.length > 1 ? (
-                                <span
-                                  className={cn(
-                                    "",
-                                    searchTerm.length > 2
-                                      ? "w-[50px] overflow-x-auto"
-                                      : "",
-                                  )}
-                                  dangerouslySetInnerHTML={{
-                                    __html: product.name!.replaceAll(
-                                      new RegExp(`(${searchTerm})`, "gi"),
-                                      (match, group) =>
-                                        `<span  style="color: black; background-color: ${
-                                          group.toLowerCase() ===
-                                          searchTerm.toLowerCase()
-                                            ? "yellow"
-                                            : "inherit"
-                                        }">${match}</span>`,
-                                    ),
-                                  }}
-                                />
-                              ) : (
-                                <span>{product.name}</span>
-                              )}
-                            </span>
-                          </td>
-                        </td>
-                        <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-500 xl:px-6">
-                          {product.product_id}
-                        </td>
-                        <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-500 xl:px-6">
-                          {product.category}
-                        </td>
-                        <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-500 xl:px-6">
-                          {formatPrice(product.price)}
-                        </td>
-                        <td className="whitespace-nowrap px-4 py-4 xl:px-6">
-                          <span
-                            className={cn(
-                              "flex items-center gap-x-1 rounded-full px-2 text-sm leading-5 md:gap-x-2",
-                            )}
-                          >
-                            <span
-                              className={cn("size-4 rounded-full", {
-                                "bg-[#6DC347]": product.stock === "in_stock",
-                                "bg-[#DC2626]":
-                                  product.stock === "low_on_stock",
-                                "bg-[#EAB308]":
-                                  product.stock === "out_of_stock",
-                              })}
-                            />
-                            {product.stock === "in_stock" && "In Stock"}
-                            {product.stock === "low_on_stock" && "Low on Stock"}
-                            {product.stock === "out_of_stock" && "Out of Stock"}
-                          </span>
-                        </td>
-                        <td className="whitespace-nowrap px-4 py-4 xl:px-6">
-                          <Button variant={"ghost"} size={"icon"}>
-                            <MoreVertical />
-                          </Button>
-                        </td>
-                      </motion.tr>
-                    ))}
-                </AnimatePresence>
-              </motion.tbody>
-            </table>
+            <Table divClassName={cn("relative")}>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-[100px] overflow-x-auto text-center md:w-[200px] lg:w-[200px]">
+                    Product Name
+                  </TableHead>
+                  <TableHead className="whitespace-nowrap">
+                    Product ID
+                  </TableHead>
+                  <TableHead>Category</TableHead>
+                  <TableHead>Price</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead>Actions</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody className="w-full">
+                <ProductBodyShadcn
+                  subset={subset}
+                  filteredProducts={filteredProducts}
+                  searchTerm={searchTerm}
+                />
+              </TableBody>
+            </Table>
           )}
         </AnimatePresence>
+        {!products && <ProductCardSkeleton count={9} />}
         {filteredProducts.length === 0 && searchTerm.length > 1 && (
           <div className="flex h-[400px] w-full items-center justify-center bg-white">
             <p className="w-full text-center">
@@ -217,13 +135,32 @@ const ProductContent = ({
         )}
       </div>
       <AnimatePresence>
-        {filteredProducts.length > 0 && (
+        {products && filteredProducts.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            className="mt-8 flex w-full justify-end md:mt-12"
+            className="mt-8 flex w-full justify-between md:mt-12"
           >
+            <div className="flex items-center gap-x-4">
+              <p className="text-sm font-medium text-neutral-dark-1">
+                Showing{" "}
+                <span className="text-lg font-bold text-neutral-950">
+                  {startIndex + 1}
+                </span>{" "}
+                to{" "}
+                <span className="text-lg font-bold text-neutral-950">
+                  {endIndex > filteredProducts.length
+                    ? filteredProducts.length
+                    : endIndex}
+                </span>{" "}
+                of{" "}
+                <span className="text-lg font-bold text-neutral-950">
+                  {filteredProducts.length}
+                </span>{" "}
+                products
+              </p>
+            </div>
             {totalPages > 1 && (
               <Pagination
                 breakLabel="..."
