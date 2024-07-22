@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import EmailSentPage from "~/pages/login/EmailSent";
+import EmailSentPage from "~/app/login/EmailSent/page";
 
 describe("email Sent Component", () => {
   it("renders the header text", () => {
