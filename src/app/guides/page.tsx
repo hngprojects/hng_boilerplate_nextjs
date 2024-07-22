@@ -11,6 +11,7 @@ import { commentsData } from "~/components/common/Comment/ComentData";
 import CustomInput from "~/components/common/Input/input";
 import PaginatedTemplateList from "~/components/common/PaginatedTemplateList/PaginatedTemplateList";
 import Sidebar from "~/components/layouts/Sidebar";
+import DialogBox from "~/components/modals/DialogBox/DialogBox";
 import templateTableList from "~/constants/templateList";
 import CharacterLimitTextarea from "../../components/common/CharacterLimitTextarea";
 
@@ -20,6 +21,16 @@ const StyleGuide: FC = () => {
 
   const handleTextChange = (newValue: string) => {
     setText(newValue);
+  };
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openDialog = () => {
+    setIsOpen(true);
+  };
+
+  const closeDialog = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -749,6 +760,64 @@ const StyleGuide: FC = () => {
           templates={templateTableList}
           activePreview={activePreview}
         />
+      </div>
+
+      <div className="w-full">
+        <h2 className="mb-3 text-2xl font-semibold text-gray-800">
+          DialogBox Component
+        </h2>
+        <div className="rounded-lg bg-zinc-950 p-4">
+          <span className="block font-mono text-sm text-gray-100">
+            <span className="text-pink-400">DialogBox</span> {"{"}
+          </span>
+          <span className="ml-4 block font-mono text-sm text-gray-100">
+            headerText<span className="text-pink-400">: </span>string;
+            <br />
+            description<span className="text-pink-400">?: </span>string;
+            <br />
+            buttons<span className="text-pink-400">: </span>
+            React.ReactNode[];
+            <br />
+            variant<span className="text-pink-400">?: </span>"success" |
+            "warning" | "error";
+            <br />
+          </span>
+          <span className="block font-mono text-sm text-gray-100">{"}"}</span>
+        </div>
+        <button
+          onClick={openDialog}
+          className="mt-2 rounded-lg border-2 border-solid border-border bg-neutral-dark-2 px-4 py-2 text-background"
+        >
+          Click to Open DialogBox
+        </button>
+
+        {isOpen && (
+          <div>
+            <div className="h-2 w-3">
+              <DialogBox
+                headerText="Delete Organization"
+                description="Are you sure you want to delete Jolly organization ? All of your data will be permanently removed. This action cannot be undone."
+                buttons={[
+                  <button
+                    key="1"
+                    onClick={closeDialog}
+                    className="rounded border-2 border-solid border-border bg-white px-4 py-2"
+                  >
+                    Cancel
+                  </button>,
+                  <button
+                    key="2"
+                    onClick={closeDialog}
+                    className="rounded-md bg-error px-4 py-2 text-white"
+                  >
+                    Delete
+                  </button>,
+                ]}
+                variant="error"
+              />
+            </div>
+          </div>
+        )}
       </div>
     </main>
   );
