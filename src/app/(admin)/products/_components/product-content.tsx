@@ -5,11 +5,19 @@ import { useEffect, useMemo, useState } from "react";
 
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import ProductCardSkeleton from "~/components/skeleton/product.skeleton";
+import {
+  Table,
+  TableBody,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "~/components/ui/table";
+import { useProductModal } from "~/hooks/admin-product/use-product.modal";
+import { useProductsFilters } from "~/hooks/admin-product/use-products.-filters.persistence";
 import { useProducts } from "~/hooks/admin-product/use-products.persistence";
 import { cn } from "~/lib/utils";
 import { ProductTableProperties } from "~/types/admin-product.types";
-import { PRODUCT_NAV } from "../data/product.mock";
-import ProductBody from "./product-body";
+import ProductBodyShadcn from "./product-body-shadcn";
 
 const Pagination = dynamic(() => import("react-paginate"), {
   ssr: false,
@@ -27,6 +35,8 @@ const ProductContent = ({
   const [currentPage, setCurrentPage] = useState(0);
   const { products } = useProducts();
   const [perPage, setPerPage] = useState("10");
+  const { isOpen } = useProductModal();
+  const { active_filter } = useProductsFilters();
 
   const [subset, setSubset] = useState<ProductTableProperties[]>([]);
 
@@ -37,18 +47,30 @@ const ProductContent = ({
     setCurrentPage(selected);
     window?.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  // filter by search term
-  const filteredProducts = useMemo(() => {
+  // filter by active filter
+  const filteredProductsByActiveFilter = useMemo(() => {
     if (!products) return [];
     if (products.length === 0) return [];
     return products.filter((product) => {
-      if (!(searchTerm.length > 1) || products.length === 0) {
+      if (active_filter === "all") return product;
+      return product.status === active_filter;
+    });
+  }, [active_filter, products]);
+
+  // filter by search term
+  const filteredProducts = useMemo(() => {
+    if (!filteredProductsByActiveFilter) return [];
+    if (filteredProductsByActiveFilter.length === 0) return [];
+    return filteredProductsByActiveFilter.filter((product) => {
+      if (
+        !(searchTerm.length > 1) ||
+        filteredProductsByActiveFilter.length === 0
+      ) {
         return product;
       }
       return product.name.toLowerCase().includes(searchTerm.toLowerCase());
     });
-  }, [searchTerm, products]);
+  }, [searchTerm, filteredProductsByActiveFilter]);
 
   useEffect(() => {
     if (filteredProducts.length === 0) return;
@@ -66,32 +88,39 @@ const ProductContent = ({
 
   return (
     <div className="relative flex w-full flex-col overflow-hidden pb-10">
-      <div className="show_scrollbar w-[calc(100%)]x w-fullx overflow-x-autox rounded-xl border border-gray-300 bg-[#F1F5F9] pt-4">
+      <div
+        className={cn(
+          "show_scrollbar rounded-xl border border-gray-300 bg-[#F1F5F9] pt-4",
+          isOpen
+            ? "max-w-full lg:max-w-[600px] min-[1090px]:max-w-[650px] min-[1150px]:max-w-[750px] min-[1200px]:max-w-[800px] xl:max-w-full"
+            : "max- w-full",
+        )}
+      >
         <AnimatePresence>
           {view === "list" && (
-            <table className="relative w-full max-w-full">
-              <thead className="">
-                <tr>
-                  {PRODUCT_NAV.map((item) => (
-                    <th
-                      key={item.name}
-                      className={cn(
-                        "whitespace-nowrap px-2 py-3 text-left text-sm font-medium tracking-wider min-[1440px]:px-6",
-                        item.name === "product_name" ? "text-center" : "",
-                      )}
-                    >
-                      {item.label}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-
-              <ProductBody
-                filteredProducts={filteredProducts}
-                searchTerm={searchTerm}
-                subset={subset}
-              />
-            </table>
+            <Table divClassName={cn("relative")}>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-[100px] overflow-x-auto text-center md:w-[200px] lg:w-[200px]">
+                    Product Name
+                  </TableHead>
+                  <TableHead className="whitespace-nowrap">
+                    Product ID
+                  </TableHead>
+                  <TableHead>Category</TableHead>
+                  <TableHead>Price</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead>Actions</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody className="w-full">
+                <ProductBodyShadcn
+                  subset={subset}
+                  filteredProducts={filteredProducts}
+                  searchTerm={searchTerm}
+                />
+              </TableBody>
+            </Table>
           )}
         </AnimatePresence>
         {!products && <ProductCardSkeleton count={9} />}
@@ -114,19 +143,19 @@ const ProductContent = ({
             className="mt-8 flex w-full justify-between md:mt-12"
           >
             <div className="flex items-center gap-x-4">
-              <p className="text-sm font-medium text-neutral-dark-1">
+              <p className="text-xs font-medium text-neutral-dark-1 md:text-sm">
                 Showing{" "}
-                <span className="text-lg font-bold text-neutral-950">
+                <span className="text-sm font-bold text-neutral-950 md:text-lg">
                   {startIndex + 1}
                 </span>{" "}
                 to{" "}
-                <span className="text-lg font-bold text-neutral-950">
+                <span className="text-sm font-bold text-neutral-950 md:text-lg">
                   {endIndex > filteredProducts.length
                     ? filteredProducts.length
                     : endIndex}
                 </span>{" "}
                 of{" "}
-                <span className="text-lg font-bold text-neutral-950">
+                <span className="text-sm font-bold text-neutral-950 md:text-lg">
                   {filteredProducts.length}
                 </span>{" "}
                 products
@@ -136,15 +165,15 @@ const ProductContent = ({
               <Pagination
                 breakLabel="..."
                 nextLabel={
-                  <span className="ml-5 flex items-center gap-x-1">
-                    Next
+                  <span className="flex items-center gap-x-1 text-sm md:ml-5 md:text-base">
+                    <span className="hidden min-[500px]:inline">Next</span>
                     <ChevronRight />
                   </span>
                 }
                 previousLabel={
-                  <span className="mr-5 flex items-center gap-x-1">
+                  <span className="flex items-center gap-x-1 text-sm md:mr-5 md:text-base">
                     <ChevronLeft />
-                    Previous
+                    <span className="hidden min-[500px]:inline">Previous</span>
                   </span>
                 }
                 previousAriaLabel="Previous"
@@ -153,10 +182,10 @@ const ProductContent = ({
                 onPageChange={handlePageChange}
                 pageRangeDisplayed={3}
                 marginPagesDisplayed={2}
-                className="flex select-none items-center justify-center rounded-md px-4"
-                pageClassName="w-8 h-8 flex justify-center items-center  "
-                previousClassName="pr-2 lg:pr-4 text-accent-orange  font-medium"
-                nextClassName="pl-2 lg:pl-4 text-accent-orange font-medium"
+                className="flex select-none items-center justify-center rounded-md md:px-4"
+                pageClassName="size-6 md:size-8 flex justify-center items-center  "
+                previousClassName="pr-2 lg:pr-4 text-sm md:text-base  font-medium"
+                nextClassName="pl-2 lg:pl-4 text-sm md:text-base font-medium"
                 pageLinkClassName="  w-full h-full flex items-center justify-center"
                 activeClassName="bg-transparent  !text-black border   font-medium rounded-md mx-4"
                 renderOnZeroPageCount={undefined}
