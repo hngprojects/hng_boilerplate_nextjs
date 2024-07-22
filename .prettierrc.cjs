@@ -1,4 +1,8 @@
-/** @type {import('prettier').Config & import("@ianvs/prettier-plugin-sort-imports").PluginConfig} */
+// @ts-check
+
+/** @typedef {import("@ianvs/prettier-plugin-sort-imports").PluginConfig & import('prettier-plugin-tailwindcss').PluginOptions} PluginConfigs */
+
+/** @type {import('prettier').Config & PluginConfigs} */
 module.exports = {
   tabWidth: 2,
   printWidth: 80,
@@ -9,7 +13,10 @@ module.exports = {
   arrowParens: "always",
   endOfLine: "auto",
 
-  plugins: ["@ianvs/prettier-plugin-sort-imports"],
+  plugins: [
+    "@ianvs/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss",
+  ],
 
   // #region @ianvs/prettier-plugin-sort-imports
   importOrder: ["<THIRD_PARTY_MODULES>", "", "^~/", "^[.][.]/", "^[.]/"],
