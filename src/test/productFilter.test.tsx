@@ -1,28 +1,58 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect } from "vitest";
+
+import "@testing-library/jest-dom";
+
+import { describe, expect, it } from "vitest";
 
 import ProductFilter from "~/components/common/ProductFilter";
 
-describe("productFilter component", () => {
-  it("renders the component with correct elements", () => {
-    expect.assertions(6);
+describe("productFilter Component", () => {
+  it("renders correctly", () => {
+    expect.assertions(5);
 
     render(<ProductFilter />);
 
-    const title = screen.getByRole("heading", { level: 2 });
-    const description = screen.getByText(
-      "Manage your products and view their sales performance.",
+    const heading = screen.getByRole("heading", { name: /products/i });
+    const subheading = screen.getByText(
+      /manage your products and view their sales performance\./i,
     );
-    const filterButton = screen.getByRole("button", { name: "Filter" });
+
+    expect(heading).toBeInTheDocument();
+    expect(subheading).toBeInTheDocument();
+
+    const filterButton = screen.getByRole("button", { name: /filter/i });
     const addProductButton = screen.getByRole("button", {
-      name: "Add Product",
+      name: /add product/i,
     });
 
-    expect(title).toBeInTheDocument();
-    expect(description).toBeInTheDocument();
     expect(filterButton).toBeInTheDocument();
     expect(addProductButton).toBeInTheDocument();
-    expect(screen.getByAltText("filter icon")).toBeInTheDocument();
-    expect(screen.getByAltText("add icon")).toBeInTheDocument();
+
+    // Check if the images are rendered
+    const filterImage = screen.getByAltText("Filter icon");
+    const addImage = screen.getByAltText("Add icon");
+
+    expect(filterImage).toBeInTheDocument();
+    expect(addImage).toBeInTheDocument();
+  });
+
+  it("renders the Filter button correctly", () => {
+    expect.hasAssertions();
+
+    render(<ProductFilter />);
+    const filterButton = screen.getByRole("button", { name: /filter/i });
+    expect(filterButton).toBeInTheDocument();
+    expect(filterButton).toHaveClass("bg-[#FFF]");
+  });
+
+  it("renders the Add Product button correctly", () => {
+    expect.hasAssertions();
+
+    render(<ProductFilter />);
+    const addProductButton = screen.getByRole("button", {
+      name: /add product/i,
+    });
+    expect(addProductButton).toBeInTheDocument();
+    expect(addProductButton).toHaveClass("bg-[#F97316]");
   });
 });

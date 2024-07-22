@@ -19,13 +19,13 @@ function ProductFilter() {
             src="/images/filter.svg"
             width={20}
             height={20}
-            alt=""
+            alt="Filter icon"
             className="h-4 w-4 lg:h-[20px] lg:w-[20px]"
           />
           <span>Filter</span>
         </Button>
         <Button className="flex items-center gap-2 rounded bg-[#F97316] px-[16px] py-[8px] text-white hover:bg-[#F97316]">
-          <Image src="/images/add.svg" width={16} height={16} alt="" />
+          <Image src="/images/add.svg" width={16} height={16} alt="Add icon" />
           <span>Add Product</span>
         </Button>
       </div>
