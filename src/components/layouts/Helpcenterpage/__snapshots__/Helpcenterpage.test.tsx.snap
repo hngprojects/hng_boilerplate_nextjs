@@ -9,8 +9,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
       class="w-full bg-primary/10"
     >
       <div
-        class="mx-auto w-full"
-        style="max-width: 1349px;"
+        class="mx-auto w-full max-w-[1349px]"
       >
         <section
           aria-labelledby="help-center-heading"
@@ -38,40 +37,50 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               Find advice and answers from our support team
             </p>
             <div
-              class="flex h-fit w-full items-center justify-start overflow-hidden rounded-xl border border-slate-300 bg-white px-2 py-[2px] text-xs font-normal leading-none text-neutral-600 focus-visible:ring-0 focus-visible:ring-offset-0 md:w-[466px] md:rounded-3xl"
+              class="group flex h-fit w-full items-center justify-start overflow-hidden rounded-xl border border-slate-300 bg-white px-2 py-[2px] text-xs font-normal leading-none text-neutral-600 focus-within:ring-1 focus-within:ring-primary focus-within:ring-offset-0 md:w-[466px] md:rounded-3xl"
             >
-              <span
-                class="flex h-8 w-8 items-center justify-center p-1"
+              <svg
+                class="lucide lucide-search flex h-8 w-8 items-center justify-center p-1 text-muted-foreground"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  aria-hidden="true"
-                  fill="none"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
+                <circle
+                  cx="11"
+                  cy="11"
+                  r="8"
+                />
+                <path
+                  d="m21 21-4.3-4.3"
+                />
+              </svg>
+              <div
+                class="flex w-full text-sm rounded-md transition-colors text-primary focus:outline-none focus:ring-1 focus:ring-primary border-border gap-2 flex-col"
+              >
+                <div
+                  class="flex items-center"
                 >
-                  <path
-                    d="M20 20L16.2223 16.2156M18.3158 11.1579C18.3158 13.0563 17.5617 14.8769 16.2193 16.2193C14.8769 17.5617 13.0563 18.3158 11.1579 18.3158C9.2595 18.3158 7.43886 17.5617 6.0965 16.2193C4.75413 14.8769 4 13.0563 4 11.1579C4 9.2595 4.75413 7.43886 6.0965 6.0965C7.43886 4.75413 9.2595 4 11.1579 4C13.0563 4 14.8769 4.75413 16.2193 6.0965C17.5617 7.43886 18.3158 9.2595 18.3158 11.1579V11.1579Z"
-                    stroke="#525252"
-                    stroke-linecap="round"
-                    stroke-width="1.5"
+                  <input
+                    aria-label="Search on any topic"
+                    class="text-sm rounded-md transition-colors text-primary focus:outline-none focus:ring-1 focus:ring-primary border-border gap-2 flex-col border-none bg-transparent focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 w-full border px-4 py-2"
+                    placeholder="Search on any topic..."
+                    type="text"
                   />
-                </svg>
-              </span>
-              <input
-                aria-label="Search on any topic"
-                class="flex h-10 rounded-md border border-input text-sm ring-[#CBD5E1] file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:ring-[#f97316] disabled:cursor-not-allowed disabled:opacity-50 w-full border-none bg-transparent px-1 py-2 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
-                placeholder="Search on any topic..."
-              />
+                </div>
+              </div>
             </div>
           </div>
         </section>
       </div>
     </div>
     <div
-      class="mx-auto w-full"
-      style="max-width: 1349px;"
+      class="mx-auto w-full max-w-[1349px]"
     >
       <section
         aria-labelledby="browse-topics-heading"
@@ -793,8 +802,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
       class="w-full bg-primary/10"
     >
       <div
-        class="mx-auto w-full"
-        style="max-width: 1349px;"
+        class="mx-auto w-full max-w-[1349px]"
       >
         <section
           aria-labelledby="help-center-heading"
@@ -822,40 +830,50 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               Find advice and answers from our support team
             </p>
             <div
-              class="flex h-fit w-full items-center justify-start overflow-hidden rounded-xl border border-slate-300 bg-white px-2 py-[2px] text-xs font-normal leading-none text-neutral-600 focus-visible:ring-0 focus-visible:ring-offset-0 md:w-[466px] md:rounded-3xl"
+              class="group flex h-fit w-full items-center justify-start overflow-hidden rounded-xl border border-slate-300 bg-white px-2 py-[2px] text-xs font-normal leading-none text-neutral-600 focus-within:ring-1 focus-within:ring-primary focus-within:ring-offset-0 md:w-[466px] md:rounded-3xl"
             >
-              <span
-                class="flex h-8 w-8 items-center justify-center p-1"
+              <svg
+                class="lucide lucide-search flex h-8 w-8 items-center justify-center p-1 text-muted-foreground"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  aria-hidden="true"
-                  fill="none"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
+                <circle
+                  cx="11"
+                  cy="11"
+                  r="8"
+                />
+                <path
+                  d="m21 21-4.3-4.3"
+                />
+              </svg>
+              <div
+                class="flex w-full text-sm rounded-md transition-colors text-primary focus:outline-none focus:ring-1 focus:ring-primary border-border gap-2 flex-col"
+              >
+                <div
+                  class="flex items-center"
                 >
-                  <path
-                    d="M20 20L16.2223 16.2156M18.3158 11.1579C18.3158 13.0563 17.5617 14.8769 16.2193 16.2193C14.8769 17.5617 13.0563 18.3158 11.1579 18.3158C9.2595 18.3158 7.43886 17.5617 6.0965 16.2193C4.75413 14.8769 4 13.0563 4 11.1579C4 9.2595 4.75413 7.43886 6.0965 6.0965C7.43886 4.75413 9.2595 4 11.1579 4C13.0563 4 14.8769 4.75413 16.2193 6.0965C17.5617 7.43886 18.3158 9.2595 18.3158 11.1579V11.1579Z"
-                    stroke="#525252"
-                    stroke-linecap="round"
-                    stroke-width="1.5"
+                  <input
+                    aria-label="Search on any topic"
+                    class="text-sm rounded-md transition-colors text-primary focus:outline-none focus:ring-1 focus:ring-primary border-border gap-2 flex-col border-none bg-transparent focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 w-full border px-4 py-2"
+                    placeholder="Search on any topic..."
+                    type="text"
                   />
-                </svg>
-              </span>
-              <input
-                aria-label="Search on any topic"
-                class="flex h-10 rounded-md border border-input text-sm ring-[#CBD5E1] file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:ring-[#f97316] disabled:cursor-not-allowed disabled:opacity-50 w-full border-none bg-transparent px-1 py-2 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
-                placeholder="Search on any topic..."
-              />
+                </div>
+              </div>
             </div>
           </div>
         </section>
       </div>
     </div>
     <div
-      class="mx-auto w-full"
-      style="max-width: 1349px;"
+      class="mx-auto w-full max-w-[1349px]"
     >
       <section
         aria-labelledby="browse-topics-heading"
@@ -1577,8 +1595,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
       class="w-full bg-primary/10"
     >
       <div
-        class="mx-auto w-full"
-        style="max-width: 1349px;"
+        class="mx-auto w-full max-w-[1349px]"
       >
         <section
           aria-labelledby="help-center-heading"
@@ -1606,40 +1623,50 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               Find advice and answers from our support team
             </p>
             <div
-              class="flex h-fit w-full items-center justify-start overflow-hidden rounded-xl border border-slate-300 bg-white px-2 py-[2px] text-xs font-normal leading-none text-neutral-600 focus-visible:ring-0 focus-visible:ring-offset-0 md:w-[466px] md:rounded-3xl"
+              class="group flex h-fit w-full items-center justify-start overflow-hidden rounded-xl border border-slate-300 bg-white px-2 py-[2px] text-xs font-normal leading-none text-neutral-600 focus-within:ring-1 focus-within:ring-primary focus-within:ring-offset-0 md:w-[466px] md:rounded-3xl"
             >
-              <span
-                class="flex h-8 w-8 items-center justify-center p-1"
+              <svg
+                class="lucide lucide-search flex h-8 w-8 items-center justify-center p-1 text-muted-foreground"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  aria-hidden="true"
-                  fill="none"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
+                <circle
+                  cx="11"
+                  cy="11"
+                  r="8"
+                />
+                <path
+                  d="m21 21-4.3-4.3"
+                />
+              </svg>
+              <div
+                class="flex w-full text-sm rounded-md transition-colors text-primary focus:outline-none focus:ring-1 focus:ring-primary border-border gap-2 flex-col"
+              >
+                <div
+                  class="flex items-center"
                 >
-                  <path
-                    d="M20 20L16.2223 16.2156M18.3158 11.1579C18.3158 13.0563 17.5617 14.8769 16.2193 16.2193C14.8769 17.5617 13.0563 18.3158 11.1579 18.3158C9.2595 18.3158 7.43886 17.5617 6.0965 16.2193C4.75413 14.8769 4 13.0563 4 11.1579C4 9.2595 4.75413 7.43886 6.0965 6.0965C7.43886 4.75413 9.2595 4 11.1579 4C13.0563 4 14.8769 4.75413 16.2193 6.0965C17.5617 7.43886 18.3158 9.2595 18.3158 11.1579V11.1579Z"
-                    stroke="#525252"
-                    stroke-linecap="round"
-                    stroke-width="1.5"
+                  <input
+                    aria-label="Search on any topic"
+                    class="text-sm rounded-md transition-colors text-primary focus:outline-none focus:ring-1 focus:ring-primary border-border gap-2 flex-col border-none bg-transparent focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 w-full border px-4 py-2"
+                    placeholder="Search on any topic..."
+                    type="text"
                   />
-                </svg>
-              </span>
-              <input
-                aria-label="Search on any topic"
-                class="flex h-10 rounded-md border border-input text-sm ring-[#CBD5E1] file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:ring-[#f97316] disabled:cursor-not-allowed disabled:opacity-50 w-full border-none bg-transparent px-1 py-2 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
-                placeholder="Search on any topic..."
-              />
+                </div>
+              </div>
             </div>
           </div>
         </section>
       </div>
     </div>
     <div
-      class="mx-auto w-full"
-      style="max-width: 1349px;"
+      class="mx-auto w-full max-w-[1349px]"
     >
       <section
         aria-labelledby="browse-topics-heading"

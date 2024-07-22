@@ -1,9 +1,11 @@
 "use client";
 
+import { Search } from "lucide-react";
+
 import Button from "~/components/common/Button/button";
 import FaqAccordion from "~/components/common/FaqAccordion";
 import { faqData } from "~/components/common/FaqAccordion/data/faq.mock";
-import { Input } from "~/components/ui/input";
+import { Input } from "~/components/common/Input";
 import TopicsAccordions from "./_components/TopicsAccordions/TopicsAccordions";
 
 const handleButtonClickTest = () => {
@@ -14,7 +16,7 @@ const HelpCenterPage = () => {
   return (
     <div className="w-full bg-background">
       <div className="w-full bg-primary/10">
-        <div className="mx-auto w-full" style={{ maxWidth: "1349px" }}>
+        <div className="mx-auto w-full max-w-[1349px]">
           <section
             className="flex w-full flex-col items-center justify-center gap-4 px-6 py-[24px] text-center md:px-0 md:py-24"
             aria-labelledby="help-center-heading"
@@ -36,28 +38,13 @@ const HelpCenterPage = () => {
               <p className="text-center text-base font-normal text-neutral-600 md:text-lg">
                 Find advice and answers from our support team
               </p>
-              <div className="flex h-fit w-full items-center justify-start overflow-hidden rounded-xl border border-slate-300 bg-white px-2 py-[2px] text-xs font-normal leading-none text-neutral-600 focus-visible:ring-0 focus-visible:ring-offset-0 md:w-[466px] md:rounded-3xl">
-                <span className="flex h-8 w-8 items-center justify-center p-1">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M20 20L16.2223 16.2156M18.3158 11.1579C18.3158 13.0563 17.5617 14.8769 16.2193 16.2193C14.8769 17.5617 13.0563 18.3158 11.1579 18.3158C9.2595 18.3158 7.43886 17.5617 6.0965 16.2193C4.75413 14.8769 4 13.0563 4 11.1579C4 9.2595 4.75413 7.43886 6.0965 6.0965C7.43886 4.75413 9.2595 4 11.1579 4C13.0563 4 14.8769 4.75413 16.2193 6.0965C17.5617 7.43886 18.3158 9.2595 18.3158 11.1579V11.1579Z"
-                      stroke="#525252"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </span>
+              <div className="group flex h-fit w-full items-center justify-start overflow-hidden rounded-xl border border-slate-300 bg-white px-2 py-[2px] text-xs font-normal leading-none text-neutral-600 focus-within:ring-1 focus-within:ring-primary focus-within:ring-offset-0 md:w-[466px] md:rounded-3xl">
+                <Search className="flex h-8 w-8 items-center justify-center p-1 text-muted-foreground" />
                 <Input
-                  autoFocus
+                  isButtonVisible={false}
+                  className="w-full border-none bg-transparent px-2 py-2 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                  type="text"
                   placeholder="Search on any topic..."
-                  className="w-full border-none bg-transparent px-1 py-2 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
                   aria-label="Search on any topic"
                 />
               </div>
@@ -65,7 +52,7 @@ const HelpCenterPage = () => {
           </section>
         </div>
       </div>
-      <div className="mx-auto w-full" style={{ maxWidth: "1349px" }}>
+      <div className="mx-auto w-full max-w-[1349px]">
         <section
           className="flex flex-col items-center justify-start gap-7 px-6 py-24 md:px-24"
           aria-labelledby="browse-topics-heading"
@@ -76,7 +63,6 @@ const HelpCenterPage = () => {
           >
             Browse by topics
           </span>
-          {/** Tooltip Accordions */}
           <TopicsAccordions />
         </section>
 
