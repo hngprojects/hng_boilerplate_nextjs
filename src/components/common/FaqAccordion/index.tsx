@@ -29,7 +29,7 @@ const FaqAccordion = ({
     <div
       role="region"
       className={clsx(
-        "inline-flex w-full flex-col items-start justify-start rounded-xl bg-neutral-50 p-6 md:max-w-96",
+        "inline-flex w-full flex-col items-start justify-start rounded-xl bg-neutral-50 p-6 md:max-w-[590px]",
         { containerClassName },
       )}
     >

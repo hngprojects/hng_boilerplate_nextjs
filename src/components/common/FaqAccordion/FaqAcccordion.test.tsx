@@ -46,6 +46,6 @@ describe("faqAccordion", () => {
     // Check if the container class includes responsive width
     const container = screen.getByRole("region");
     expect(container).toHaveClass("w-full");
-    expect(container).toHaveClass("md:max-w-96");
+    expect(container).toHaveClass("md:max-w-[590px]");
   });
 });
