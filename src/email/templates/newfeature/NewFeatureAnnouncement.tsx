@@ -32,7 +32,7 @@ interface NewFeatureAnnouncementProperties {
   igIcon?: string;
   xIcon?: string;
 }
-``;
+
 export const NewFeatureAnnouncement = ({
   title,
   username,
