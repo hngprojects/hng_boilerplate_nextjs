@@ -2,16 +2,20 @@ import { Link } from "@react-email/components";
 
 const EmailFooter: React.FC = () => {
   return (
-    <footer className="fixed bottom-0 left-0 right-0 flex justify-center bg-[#F3EFEF] p-4 text-default-foreground">
-      <div className="w-full max-w-[600px] text-center text-sm">
-        <section className="justify-flex-center mt-2 flex gap-8">
-          <Link href="https://nextjs.boilerplate.hng.tech/">
+    <footer className="bottom-0 left-0 right-0 mx-auto w-[80%] text-default-foreground">
+      <div className="mx-auto w-full max-w-[600px] px-4 py-4 text-center text-sm">
+        <section className="mb-6 mt-2 flex flex-wrap justify-center gap-8 text-center">
+          <Link
+            href="https://deployment.nextjs.boilerplate.hng.tech/"
+            aria-label="Twitter"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
               viewBox="0 0 24 24"
               fill="none"
+              aria-hidden="true"
             >
               <path
                 d="M18.3263 1.90393H21.6998L14.3297 10.3274L23 21.7899H16.2112L10.894 14.838L4.80995 21.7899H1.43443L9.31743 12.78L1 1.90393H7.96111L12.7674 8.25826L18.3263 1.90393ZM17.1423 19.7707H19.0116L6.94539 3.81706H4.93946L17.1423 19.7707Z"
@@ -20,13 +24,17 @@ const EmailFooter: React.FC = () => {
             </svg>
           </Link>
 
-          <Link href="https://nextjs.boilerplate.hng.tech/">
+          <Link
+            href="https://deployment.nextjs.boilerplate.hng.tech/"
+            aria-label="Instagram"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
               viewBox="0 0 24 24"
               fill="none"
+              aria-hidden="true"
             >
               <g clipPath="url(#clip0_10908_7020)">
                 <path
@@ -50,13 +58,17 @@ const EmailFooter: React.FC = () => {
             </svg>
           </Link>
 
-          <Link href="https://nextjs.boilerplate.hng.tech/">
+          <Link
+            href="https://deployment.nextjs.boilerplate.hng.tech/"
+            aria-label="TikTok"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
               viewBox="0 0 24 24"
               fill="none"
+              aria-hidden="true"
             >
               <path
                 d="M17.0725 0H13.0278V16.3478C13.0278 18.2957 11.4722 19.8957 9.53626 19.8957C7.60034 19.8957 6.04469 18.2957 6.04469 16.3478C6.04469 14.4348 7.56577 12.8695 9.43257 12.8V8.69567C5.31872 8.7652 2 12.1391 2 16.3478C2 20.5913 5.38786 24 9.57085 24C13.7538 24 17.1416 20.5565 17.1416 16.3478V7.9652C18.6627 9.07827 20.5295 9.73913 22.5 9.77393V5.66957C19.4579 5.56522 17.0725 3.06087 17.0725 0Z"
@@ -65,13 +77,17 @@ const EmailFooter: React.FC = () => {
             </svg>
           </Link>
 
-          <Link href="https://nextjs.boilerplate.hng.tech/">
+          <Link
+            href="https://deployment.nextjs.boilerplate.hng.tech/"
+            aria-label="Reddit"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
               viewBox="0 0 24 24"
               fill="none"
+              aria-hidden="true"
             >
               <path
                 d="M14.4412 5.65873C14.6493 6.54092 15.4415 7.19811 16.3874 7.19811C17.4918 7.19811 18.3871 6.30279 18.3871 5.19842C18.3871 4.09404 17.4918 3.19873 16.3874 3.19873C15.4218 3.19873 14.6165 3.88311 14.429 4.79342C12.8118 4.96686 11.549 6.33842 11.549 8.00061C11.549 8.00436 11.549 8.00717 11.549 8.01092C9.79023 8.08498 8.18429 8.58561 6.90929 9.37592C6.43585 9.00936 5.84147 8.79092 5.19647 8.79092C3.64866 8.79092 2.39429 10.0453 2.39429 11.5931C2.39429 12.7162 3.05429 13.6837 4.00772 14.1309C4.10054 17.384 7.64523 20.0006 12.0055 20.0006C16.3659 20.0006 19.9152 17.3812 20.0033 14.1253C20.9493 13.6753 21.6037 12.7106 21.6037 11.594C21.6037 10.0462 20.3493 8.79186 18.8015 8.79186C18.1593 8.79186 17.5677 9.00842 17.0952 9.37217C15.809 8.57623 14.1852 8.07561 12.4087 8.00904C12.4087 8.00623 12.4087 8.00436 12.4087 8.00154C12.4087 6.81092 13.2937 5.82279 14.4412 5.66061V5.65873ZM6.79679 13.3715C6.84366 12.3553 7.51866 11.5753 8.30335 11.5753C9.08804 11.5753 9.68804 12.3994 9.64116 13.4156C9.59429 14.4319 9.00835 14.8012 8.22272 14.8012C7.4371 14.8012 6.74991 14.3878 6.79679 13.3715ZM15.7087 11.5753C16.4943 11.5753 17.1693 12.3553 17.2152 13.3715C17.2621 14.3878 16.574 14.8012 15.7893 14.8012C15.0046 14.8012 14.4177 14.4328 14.3708 13.4156C14.324 12.3994 14.923 11.5753 15.7087 11.5753ZM14.7749 15.7228C14.9221 15.7378 15.0158 15.8906 14.9587 16.0275C14.4758 17.1815 13.3358 17.9925 12.0055 17.9925C10.6752 17.9925 9.53616 17.1815 9.05241 16.0275C8.99522 15.8906 9.08897 15.7378 9.23616 15.7228C10.0987 15.6356 11.0315 15.5878 12.0055 15.5878C12.9796 15.5878 13.9115 15.6356 14.7749 15.7228Z"
@@ -80,13 +96,17 @@ const EmailFooter: React.FC = () => {
             </svg>
           </Link>
 
-          <Link href="https://nextjs.boilerplate.hng.tech/">
+          <Link
+            href="https://deployment.nextjs.boilerplate.hng.tech/"
+            aria-label="LinkedIn"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
               viewBox="0 0 24 24"
               fill="none"
+              aria-hidden="true"
             >
               <g clipPath="url(#clip0_10908_7028)">
                 <path
@@ -102,43 +122,52 @@ const EmailFooter: React.FC = () => {
             </svg>
           </Link>
         </section>
-        <div className="mb-2 text-left font-normal text-[#5B5B5D]">
-          Thank you for choosing Boilerplate. Need help?{" "}
-          <Link
-            href="https://nextjs.boilerplate.hng.tech/"
-            className="text-decoration-color: #5B5B5D font-semibold text-primary underline visited:text-purple-600 hover:text-blue-800"
-          >
-            Contact our customer support
-          </Link>
-          <div className="my-3 border border-dashed border-[#5B5B5D] border-opacity-10"></div>
-        </div>
-        <div className="mb-2 text-left font-normal text-[#5B5B5D]">
-          You are receiving this email because you signed up at{" "}
-          <Link
-            href="https://nextjs.boilerplate.hng.tech/"
-            className="text-decoration-color: #5B5B5D font-semibold text-primary underline visited:text-purple-600 hover:text-blue-800"
-          >
-            Boilerplate.com
-          </Link>
-          . Want to change how you receive these emails?
-        </div>
-        <div className="text-left font-normal text-[#5B5B5D]">
-          You can{" "}
-          <Link
-            href="https://nextjs.boilerplate.hng.tech/"
-            className="text-decoration-color: #5B5B5D font-semibold text-primary underline visited:text-purple-600 hover:text-blue-800"
-          >
-            update your preferences
-          </Link>{" "}
-          or{" "}
-          <Link
-            href="https://boilerplate.com/unsubscribe"
-            className="font-semibold text-primary decoration-current visited:underline hover:underline"
-          >
-            unsubscribe from this list
-          </Link>
-          .
-        </div>
+        <section className="max-w-[600px] px-2">
+          <div className="mb-2 break-words text-left font-normal text-[#5B5B5D]">
+            <p className="m-0">
+              Thank you for choosing Boilerplate. Need help?{" "}
+              <Link
+                href="https://deployment.nextjs.boilerplate.hng.tech/"
+                className="font-semibold text-[#5B5B5D] no-underline visited:underline"
+              >
+                Contact our customer support
+              </Link>
+              {/* <div className="justify-cenetr min-w-[300px] max-w-[500px]"> */}
+              <div className="my-3 max-w-[600px] border border-t border-dashed border-[#5B5B5D] border-opacity-5"></div>
+              {/* </div> */}
+            </p>
+          </div>
+          <div className="text sm mb-2 break-words text-left font-normal text-[#5B5B5D]">
+            <p className="m-0">
+              You are receiving this email because you signed up at{" "}
+              <Link
+                href="https://deployment.nextjs.boilerplate.hng.tech/"
+                className="font-semibold text-[#5B5B5D] no-underline visited:underline"
+              >
+                Boilerplate.com
+              </Link>
+              . Want to change how you receive these emails?
+            </p>
+          </div>
+          <div className="break-words text-left text-sm font-normal text-[#5B5B5D]">
+            <p className="m-0">
+              You can{" "}
+              <Link
+                href="https://deployment.nextjs.boilerplate.hng.tech/"
+                className="font-semibold text-[#5B5B5D] no-underline visited:underline"
+              >
+                update your preferences
+              </Link>{" "}
+              or{" "}
+              <Link
+                href="https://deployment.nextjs.boilerplate.hng.tech/"
+                className="break-words font-semibold text-[#5B5B5D] no-underline decoration-current visited:underline"
+              >
+                unsubscribe from this list.
+              </Link>
+            </p>
+          </div>
+        </section>
       </div>
     </footer>
   );
