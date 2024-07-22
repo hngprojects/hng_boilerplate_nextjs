@@ -11,6 +11,7 @@ import { commentsData } from "~/components/common/Comment/ComentData";
 import CustomInput from "~/components/common/Input/input";
 import Sidebar from "~/components/layouts/Sidebar";
 import CharacterLimitTextarea from "../../components/common/CharacterLimitTextarea";
+import EmptyList from "../../components/common/Empty List/EmptyList";
 
 const StyleGuide: React.FC = () => {
   const [text, setText] = useState("");
@@ -718,6 +719,32 @@ const StyleGuide: React.FC = () => {
           onChange={handleTextChange}
         />
       </div>
+
+      <section className="my-12 rounded-lg bg-white px-8 py-5">
+        <h1 className="mb-5 text-2xl font-semibold">
+          A reusable empty list component
+        </h1>
+        <p className="mb-5">
+          This component is used in the career page when there are no available
+          jobs
+        </p>
+
+        <p className="mb-5">
+          To use: Import EmptyList from the components/common/Empty
+          List/EmptyList The component should receive the following properties:
+        </p>
+        <ul className="list-disc">
+          <li>image: Image to show indicate no job</li>
+          <li>mainText: The main text which is in bold font</li>
+          <li>subText: subtext</li>
+        </ul>
+        <p className="my-5">How it will look on the page:</p>
+        <EmptyList
+          image="/no-job-img.png"
+          mainText="No available jobs at the moment"
+          subText="Come back later!"
+        />
+      </section>
     </main>
   );
 };
