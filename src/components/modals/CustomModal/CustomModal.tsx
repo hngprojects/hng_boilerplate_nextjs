@@ -1,3 +1,4 @@
+import { DialogTitle } from "@radix-ui/react-dialog";
 import { ReactNode } from "react";
 
 import CustomButton from "~/components/common/Button/button";
@@ -6,6 +7,7 @@ import {
   DialogClose,
   DialogContent,
   DialogFooter,
+  DialogHeader,
 } from "~/components/ui/dialog";
 
 type Variant =
@@ -45,6 +47,9 @@ const CustomModal: React.FC<CustomModalProperties> = ({
   return (
     <Dialog open={onOpen} onOpenChange={toggleState}>
       <DialogContent className="sm:max-w-md" aria-describedby="modal-content">
+        <DialogHeader>
+          <DialogTitle></DialogTitle>
+        </DialogHeader>
         <div className="w-full flex-[5]">{children}</div>
         {showButtons && (
           <DialogFooter
