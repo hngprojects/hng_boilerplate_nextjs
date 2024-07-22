@@ -2,7 +2,7 @@ import { Text } from "@react-email/components";
 
 const EmailHeader: React.FC = () => {
   return (
-    <header className="h-22 fixed left-0 right-0 top-0 flex items-center justify-center bg-[#E1D6D666] p-4 text-default-foreground">
+    <header className="flex h-24 items-center justify-center p-4 text-default-foreground">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="18"
