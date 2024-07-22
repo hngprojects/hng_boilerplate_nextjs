@@ -1,4 +1,4 @@
-import path from "node:path";
+import path from "path";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vitest/config";
 
@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "~": path.resolve(import.meta.dirname, "./src"),
+      "~": path.resolve(__dirname, "./src"), // Use __dirname instead of import.meta.dirname
     },
   },
   test: {
