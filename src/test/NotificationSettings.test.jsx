@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import NotificationSettings from "../app/settings/notification-settings/page";
+import NotificationSettings from "../app/settings/notification-settings/notificationsettings";
 
 const SETTINGS_DATA = [
   {
