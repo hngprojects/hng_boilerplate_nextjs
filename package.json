@@ -68,9 +68,9 @@
     "@types/node": "^20.14.11",
     "@types/prop-types": "^15.7.12",
     "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/eslint-plugin": "^7.16.1",
-    "@typescript-eslint/parser": "^7.16.1",
+    "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "^7.15.0",
+    "@typescript-eslint/parser": "^7.15.0",
     "@vitejs/plugin-react": "^4.3.1",
     "@vitest/coverage-istanbul": "^1.6.0",
     "@vitest/coverage-v8": "^1.6.0",
@@ -89,7 +89,11 @@
     "postcss": "^8.4.39",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.5",
+<<<<<<< HEAD
     "tailwindcss": "^3.4.6",
+=======
+    "tailwindcss": "^3.4.1",
+>>>>>>> 963a41aac086d795018f1302698c589a5ce84665
     "typescript": "^5.5.3",
     "vitest": "^1.6.0"
   }
