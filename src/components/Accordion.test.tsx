@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 
 import "@testing-library/jest-dom";
 
-import { AccordionDemo } from "./Accordion";
+import { AccordionComponent } from "./Accordion";
 
 const expectContentVisibility = (
   content: HTMLElement | null,
@@ -22,7 +22,7 @@ const expectContentVisibility = (
 describe("accordion Component", () => {
   it("renders the headers correctly", () => {
     expect.assertions(3);
-    render(<AccordionDemo />);
+    render(<AccordionComponent />);
     const faqItems = [
       "What payment methods do you accept?",
       "Is there a discount for annual subscriptions?",
@@ -35,7 +35,7 @@ describe("accordion Component", () => {
 
   it("toggles content visibility when headers are clicked", () => {
     expect.assertions(3);
-    render(<AccordionDemo />);
+    render(<AccordionComponent />);
 
     const firstHeader = screen.getByText("What payment methods do you accept?");
     let firstContent = screen.queryByText("Answer to question 1.");
@@ -53,7 +53,7 @@ describe("accordion Component", () => {
 
   it("does not allow more than one item to be expanded", () => {
     expect.assertions(5);
-    render(<AccordionDemo />);
+    render(<AccordionComponent />);
 
     const firstHeader = screen.getByText("What payment methods do you accept?");
     const secondHeader = screen.getByText(
