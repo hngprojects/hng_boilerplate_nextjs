@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import RoleCreationModal from '~/components/modals/RoleCreationModal'; // Adjust the import path accordingly
+import RoleCreationModal from '~/components/modals/RoleCreationModal';
 import CustomButton from '~/components/common/Button/button';
 
 type Role = {
@@ -67,13 +67,14 @@ const RolesList: React.FC = () => {
 
   const handleRoleClick = (roleId: number) => {
     setSelectedRoleId(roleId);
-    setPermissions(permissionsData[roleId] || []);
+    setPermissions([...permissionsData[roleId]]);
   };
 
   const handleToggle = (index: number) => {
-    setPermissions(prev => {
+    setPermissions((prev) => {
       const newPermissions = [...prev];
       newPermissions[index].enabled = !newPermissions[index].enabled;
+      permissionsData[selectedRoleId!] = newPermissions;
       return newPermissions;
     });
   };
@@ -88,16 +89,26 @@ const RolesList: React.FC = () => {
 
   return (
     <div className="min-h-screen p-4 bg-gray-50">
-      <CustomButton variant="primary" className='absolute right-[70px]' onClick={handleModalOpen}>+ Create roles</CustomButton>
-      
-      <div className="flex"> 
+      <CustomButton
+        variant="primary"
+        className="absolute right-[70px]"
+        onClick={handleModalOpen}
+      >
+        + Create roles
+      </CustomButton>
+
+      <div className="flex">
         <div className="w-1/4 p-4 bg-white rounded-lg shadow-lg">
-          <h2 className="mb-4 text-lg font-semibold">Roles</h2> 
+          <h2 className="mb-4 text-lg font-semibold">Roles</h2>
           <ul>
-            {rolesData.map(role => (
+            {rolesData.map((role) => (
               <li
                 key={role.id}
-                className={`p-2 mb-2 cursor-pointer rounded ${selectedRoleId === role.id ? 'bg-orange-500 text-white' : 'bg-white'}`}
+                className={`p-2 mb-2 cursor-pointer rounded ${
+                  selectedRoleId === role.id
+                    ? 'bg-orange-500 text-white'
+                    : 'bg-white'
+                }`}
                 onClick={() => handleRoleClick(role.id)}
               >
                 <div className="font-semibold">{role.name}</div>
@@ -105,16 +116,20 @@ const RolesList: React.FC = () => {
               </li>
             ))}
           </ul>
-         
         </div>
-        <div className=" w-3/4 mt-12 p-4 ml-4 bg-white border-l-2 border-gray-300  ">
+        <div className="w-3/4 mt-12 p-4 ml-4 bg-white border-l-2 border-gray-300">
           {selectedRoleId !== null ? (
             <>
-              <h2 className=" mb-4 text-lg font-semibold">Permissions</h2>
-              <p className="mb-4">See the list of permissions for this role</p>
+              <h2 className="mb-4 text-lg font-semibold">Permissions</h2>
+              <p className="mb-4">
+                See the list of permissions for this role
+              </p>
               <div>
                 {permissions.map((permission, index) => (
-                  <div key={permission.name} className="flex items-center justify-between mb-4">
+                  <div
+                    key={permission.name}
+                    className="flex items-center justify-between mb-4"
+                  >
                     <span>{permission.name}</span>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input
@@ -128,7 +143,9 @@ const RolesList: React.FC = () => {
                   </div>
                 ))}
               </div>
-              <button className="px-4 py-2 mt-4 text-white bg-blue-500 rounded hover:bg-blue-600">Save Preferences</button>
+              <button className="px-4 py-2 mt-4 text-white bg-blue-500 rounded hover:bg-blue-600">
+                Save Preferences
+              </button>
             </>
           ) : (
             <div className="text-center">Select a role to view permissions</div>
