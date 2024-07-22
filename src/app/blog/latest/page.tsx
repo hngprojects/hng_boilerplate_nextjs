@@ -7,8 +7,8 @@ const LatestArticlesPage = () => {
 
   return (
     <>
-      <main className="mx-auto max-w-6xl px-5 py-5 md:px-10 md:py-7">
-        <h1 className="text-[28px] font-[700] leading-[33.89px] text-neutral-dark-1 md:text-[30px] md:leading-[43.57px] lg:text-center lg:text-[36px]">
+      <main className="mx-auto max-w-6xl px-5 py-5 md:px-10 md:py-5">
+        <h1 className="text-[28px] font-[700] leading-[33.89px] text-neutral-dark-1 md:text-center md:text-[30px] md:leading-[43.57px] lg:text-[36px]">
           Latest Articles
         </h1>
         <div className="mt-6 flex flex-col space-y-4">
