@@ -1,12 +1,12 @@
-import React from "react";
+import { FC, ReactNode } from "react";
 
 type ButtonWrapperProperties = {
   "data-testid": string;
-  children: React.ReactNode;
+  children: ReactNode;
   [key: string]: unknown; // To allow passing other props to the wrapped button
 };
 
-const ButtonWrapper: React.FC<ButtonWrapperProperties> = ({
+const ButtonWrapper: FC<ButtonWrapperProperties> = ({
   "data-testid": testId,
   children,
   ...properties
