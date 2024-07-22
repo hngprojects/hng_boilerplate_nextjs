@@ -1,9 +1,8 @@
-import "./globals.css";
-import "~/components/layouts/homepage/styles/styles.css";
+import "../globals.css";
 
 import { Inter } from "next/font/google";
 import type { Metadata } from "next";
-import { Toaster } from "~/components/ui/toaster";
+import SubscriptionAndPlan from "./page";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,8 +19,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <SubscriptionAndPlan />
         {children}
-        <Toaster />
       </body>
     </html>
   );
