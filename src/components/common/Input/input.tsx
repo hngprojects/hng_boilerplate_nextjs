@@ -52,7 +52,7 @@ const CustomInput: React.FC<CustomInputProperties> = ({
   };
 
   const inputState =
-    !isValid && inputValue ? "invalid" : inputValue ? "active" : "default";
+    !isValid && inputValue ? "invalid" : (inputValue ? "active" : "default");
 
   return (
     <Input

@@ -45,9 +45,9 @@ const MagicLogin = () => {
               className={`h-12 w-full rounded-lg border bg-white px-4 py-2 focus:border-primary focus:bg-background focus:outline-none sm:h-16 ${
                 error
                   ? "border-error"
-                  : isValidEmail
+                  : (isValidEmail
                     ? "border-primary"
-                    : "border-border"
+                    : "border-border")
               }`}
               id="email"
               placeholder="Enter Email Address"

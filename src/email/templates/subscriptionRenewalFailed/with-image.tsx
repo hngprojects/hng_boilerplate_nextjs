@@ -1,6 +1,6 @@
 import { Img } from "@react-email/components";
 
-import CustomButton from "~/components/common/Button/button";
+import { Button } from "~/components/common/Button";
 
 interface SubscriptionRenewalFailedProperties {
   title: string;
@@ -110,12 +110,12 @@ export default function Email(properties: SubscriptionRenewalFailedProperties) {
           className="renewal-with-icon-button-link flex items-center self-stretch md:self-center"
           style={{ flex: 1 }}
         >
-          <CustomButton
+          <Button
             variant="primary"
             className="renewal-button h-[44px] w-full px-4 py-2 text-base md:w-auto md:px-10"
           >
             Update Payment Details
-          </CustomButton>
+          </Button>
         </a>
       </section>
       <div className="renewal-with-icon-regards flex flex-col items-start justify-center gap-[8px] self-stretch text-sm text-neutral-dark-2">
