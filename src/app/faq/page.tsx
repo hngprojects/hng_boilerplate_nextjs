@@ -1,8 +1,6 @@
 import React from "react";
 
 import Faqs from "~/components/common/Faqs";
-import Footer from "~/components/layouts/Footer";
-import Navbar from "~/components/layouts/Navbar";
 
 const faq: React.FC = () => {
   return (
