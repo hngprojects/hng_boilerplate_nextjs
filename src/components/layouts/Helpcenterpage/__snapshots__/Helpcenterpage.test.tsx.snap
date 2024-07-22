@@ -98,7 +98,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r53:"
+                aria-controls="radix-:r6d:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -134,7 +134,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r53:"
+              id="radix-:r6d:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -150,7 +150,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r55:"
+                aria-controls="radix-:r6f:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -186,7 +186,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r55:"
+              id="radix-:r6f:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -202,7 +202,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r57:"
+                aria-controls="radix-:r6h:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -238,7 +238,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r57:"
+              id="radix-:r6h:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -254,7 +254,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r59:"
+                aria-controls="radix-:r6j:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -290,7 +290,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r59:"
+              id="radix-:r6j:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -306,7 +306,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r5b:"
+                aria-controls="radix-:r6l:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -342,7 +342,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r5b:"
+              id="radix-:r6l:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -358,7 +358,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r5d:"
+                aria-controls="radix-:r6n:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -394,7 +394,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r5d:"
+              id="radix-:r6n:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -410,7 +410,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r5f:"
+                aria-controls="radix-:r6p:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -446,7 +446,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r5f:"
+              id="radix-:r6p:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -462,7 +462,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r5h:"
+                aria-controls="radix-:r6r:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -498,7 +498,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r5h:"
+              id="radix-:r6r:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -514,7 +514,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r5j:"
+                aria-controls="radix-:r6t:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -550,7 +550,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r5j:"
+              id="radix-:r6t:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -589,9 +589,168 @@ exports[`helpCenterPage > renders correctly at different screen sizes > desktop 
             class="flex w-full"
           >
             <div
-              class="flex w-full items-center justify-center bg-white md:ml-auto 2xl:w-[500px]"
+              class="flex w-full items-center justify-center md:ml-auto 2xl:w-[500px]"
             >
-              Faq Accordions
+              <div
+                class="inline-flex w-full flex-col items-start justify-start rounded-xl bg-neutral-50 p-6 md:max-w-[590px] px-0 md:px-6"
+                role="region"
+              >
+                <div
+                  class="w-full"
+                  data-orientation="vertical"
+                >
+                  <div
+                    class="border-b"
+                    data-orientation="vertical"
+                    data-state="closed"
+                  >
+                    <h3
+                      class="flex"
+                      data-orientation="vertical"
+                      data-state="closed"
+                    >
+                      <button
+                        aria-controls="radix-:r6v:"
+                        aria-expanded="false"
+                        class="flex flex-1 items-center justify-between py-4 transition-all [&[data-state=open]>svg]:rotate-180 text-left text-base font-medium leading-normal text-neutral-950 hover:no-underline"
+                        data-orientation="vertical"
+                        data-radix-collection-item=""
+                        data-state="closed"
+                        id="radix-:r6u:"
+                        type="button"
+                      >
+                        What is the purpose of this application?
+                        <svg
+                          class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                          fill="none"
+                          height="24"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="m6 9 6 6 6-6"
+                          />
+                        </svg>
+                      </button>
+                    </h3>
+                    <div
+                      aria-labelledby="radix-:r6u:"
+                      class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+                      data-orientation="vertical"
+                      data-state="closed"
+                      hidden=""
+                      id="radix-:r6v:"
+                      role="region"
+                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                    />
+                  </div>
+                  <div
+                    class="border-b"
+                    data-orientation="vertical"
+                    data-state="closed"
+                  >
+                    <h3
+                      class="flex"
+                      data-orientation="vertical"
+                      data-state="closed"
+                    >
+                      <button
+                        aria-controls="radix-:r71:"
+                        aria-expanded="false"
+                        class="flex flex-1 items-center justify-between py-4 transition-all [&[data-state=open]>svg]:rotate-180 text-left text-base font-medium leading-normal text-neutral-950 hover:no-underline"
+                        data-orientation="vertical"
+                        data-radix-collection-item=""
+                        data-state="closed"
+                        id="radix-:r70:"
+                        type="button"
+                      >
+                        How do I reset my password?
+                        <svg
+                          class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                          fill="none"
+                          height="24"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="m6 9 6 6 6-6"
+                          />
+                        </svg>
+                      </button>
+                    </h3>
+                    <div
+                      aria-labelledby="radix-:r70:"
+                      class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+                      data-orientation="vertical"
+                      data-state="closed"
+                      hidden=""
+                      id="radix-:r71:"
+                      role="region"
+                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                    />
+                  </div>
+                  <div
+                    class="border-b"
+                    data-orientation="vertical"
+                    data-state="closed"
+                  >
+                    <h3
+                      class="flex"
+                      data-orientation="vertical"
+                      data-state="closed"
+                    >
+                      <button
+                        aria-controls="radix-:r73:"
+                        aria-expanded="false"
+                        class="flex flex-1 items-center justify-between py-4 transition-all [&[data-state=open]>svg]:rotate-180 text-left text-base font-medium leading-normal text-neutral-950 hover:no-underline"
+                        data-orientation="vertical"
+                        data-radix-collection-item=""
+                        data-state="closed"
+                        id="radix-:r72:"
+                        type="button"
+                      >
+                        Can I use this application on multiple devices?
+                        <svg
+                          class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                          fill="none"
+                          height="24"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="m6 9 6 6 6-6"
+                          />
+                        </svg>
+                      </button>
+                    </h3>
+                    <div
+                      aria-labelledby="radix-:r72:"
+                      class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+                      data-orientation="vertical"
+                      data-state="closed"
+                      hidden=""
+                      id="radix-:r73:"
+                      role="region"
+                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -723,7 +882,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r53:"
+                aria-controls="radix-:r6d:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -759,7 +918,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r53:"
+              id="radix-:r6d:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -775,7 +934,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r55:"
+                aria-controls="radix-:r6f:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -811,7 +970,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r55:"
+              id="radix-:r6f:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -827,7 +986,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r57:"
+                aria-controls="radix-:r6h:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -863,7 +1022,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r57:"
+              id="radix-:r6h:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -879,7 +1038,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r59:"
+                aria-controls="radix-:r6j:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -915,7 +1074,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r59:"
+              id="radix-:r6j:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -931,7 +1090,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r5b:"
+                aria-controls="radix-:r6l:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -967,7 +1126,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r5b:"
+              id="radix-:r6l:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -983,7 +1142,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r5d:"
+                aria-controls="radix-:r6n:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -1019,7 +1178,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r5d:"
+              id="radix-:r6n:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -1035,7 +1194,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r5f:"
+                aria-controls="radix-:r6p:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -1071,7 +1230,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r5f:"
+              id="radix-:r6p:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -1087,7 +1246,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r5h:"
+                aria-controls="radix-:r6r:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -1123,7 +1282,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r5h:"
+              id="radix-:r6r:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -1139,7 +1298,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r5j:"
+                aria-controls="radix-:r6t:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -1175,7 +1334,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r5j:"
+              id="radix-:r6t:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -1214,9 +1373,168 @@ exports[`helpCenterPage > renders correctly at different screen sizes > mobile 1
             class="flex w-full"
           >
             <div
-              class="flex w-full items-center justify-center bg-white md:ml-auto 2xl:w-[500px]"
+              class="flex w-full items-center justify-center md:ml-auto 2xl:w-[500px]"
             >
-              Faq Accordions
+              <div
+                class="inline-flex w-full flex-col items-start justify-start rounded-xl bg-neutral-50 p-6 md:max-w-[590px] px-0 md:px-6"
+                role="region"
+              >
+                <div
+                  class="w-full"
+                  data-orientation="vertical"
+                >
+                  <div
+                    class="border-b"
+                    data-orientation="vertical"
+                    data-state="closed"
+                  >
+                    <h3
+                      class="flex"
+                      data-orientation="vertical"
+                      data-state="closed"
+                    >
+                      <button
+                        aria-controls="radix-:r6v:"
+                        aria-expanded="false"
+                        class="flex flex-1 items-center justify-between py-4 transition-all [&[data-state=open]>svg]:rotate-180 text-left text-base font-medium leading-normal text-neutral-950 hover:no-underline"
+                        data-orientation="vertical"
+                        data-radix-collection-item=""
+                        data-state="closed"
+                        id="radix-:r6u:"
+                        type="button"
+                      >
+                        What is the purpose of this application?
+                        <svg
+                          class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                          fill="none"
+                          height="24"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="m6 9 6 6 6-6"
+                          />
+                        </svg>
+                      </button>
+                    </h3>
+                    <div
+                      aria-labelledby="radix-:r6u:"
+                      class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+                      data-orientation="vertical"
+                      data-state="closed"
+                      hidden=""
+                      id="radix-:r6v:"
+                      role="region"
+                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                    />
+                  </div>
+                  <div
+                    class="border-b"
+                    data-orientation="vertical"
+                    data-state="closed"
+                  >
+                    <h3
+                      class="flex"
+                      data-orientation="vertical"
+                      data-state="closed"
+                    >
+                      <button
+                        aria-controls="radix-:r71:"
+                        aria-expanded="false"
+                        class="flex flex-1 items-center justify-between py-4 transition-all [&[data-state=open]>svg]:rotate-180 text-left text-base font-medium leading-normal text-neutral-950 hover:no-underline"
+                        data-orientation="vertical"
+                        data-radix-collection-item=""
+                        data-state="closed"
+                        id="radix-:r70:"
+                        type="button"
+                      >
+                        How do I reset my password?
+                        <svg
+                          class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                          fill="none"
+                          height="24"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="m6 9 6 6 6-6"
+                          />
+                        </svg>
+                      </button>
+                    </h3>
+                    <div
+                      aria-labelledby="radix-:r70:"
+                      class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+                      data-orientation="vertical"
+                      data-state="closed"
+                      hidden=""
+                      id="radix-:r71:"
+                      role="region"
+                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                    />
+                  </div>
+                  <div
+                    class="border-b"
+                    data-orientation="vertical"
+                    data-state="closed"
+                  >
+                    <h3
+                      class="flex"
+                      data-orientation="vertical"
+                      data-state="closed"
+                    >
+                      <button
+                        aria-controls="radix-:r73:"
+                        aria-expanded="false"
+                        class="flex flex-1 items-center justify-between py-4 transition-all [&[data-state=open]>svg]:rotate-180 text-left text-base font-medium leading-normal text-neutral-950 hover:no-underline"
+                        data-orientation="vertical"
+                        data-radix-collection-item=""
+                        data-state="closed"
+                        id="radix-:r72:"
+                        type="button"
+                      >
+                        Can I use this application on multiple devices?
+                        <svg
+                          class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                          fill="none"
+                          height="24"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="m6 9 6 6 6-6"
+                          />
+                        </svg>
+                      </button>
+                    </h3>
+                    <div
+                      aria-labelledby="radix-:r72:"
+                      class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+                      data-orientation="vertical"
+                      data-state="closed"
+                      hidden=""
+                      id="radix-:r73:"
+                      role="region"
+                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1348,7 +1666,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r53:"
+                aria-controls="radix-:r6d:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -1384,7 +1702,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r53:"
+              id="radix-:r6d:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -1400,7 +1718,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r55:"
+                aria-controls="radix-:r6f:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -1436,7 +1754,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r55:"
+              id="radix-:r6f:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -1452,7 +1770,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r57:"
+                aria-controls="radix-:r6h:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -1488,7 +1806,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r57:"
+              id="radix-:r6h:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -1504,7 +1822,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r59:"
+                aria-controls="radix-:r6j:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -1540,7 +1858,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r59:"
+              id="radix-:r6j:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -1556,7 +1874,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r5b:"
+                aria-controls="radix-:r6l:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -1592,7 +1910,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r5b:"
+              id="radix-:r6l:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -1608,7 +1926,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r5d:"
+                aria-controls="radix-:r6n:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -1644,7 +1962,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r5d:"
+              id="radix-:r6n:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -1660,7 +1978,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r5f:"
+                aria-controls="radix-:r6p:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -1696,7 +2014,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r5f:"
+              id="radix-:r6p:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -1712,7 +2030,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r5h:"
+                aria-controls="radix-:r6r:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -1748,7 +2066,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r5h:"
+              id="radix-:r6r:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -1764,7 +2082,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               data-state="closed"
             >
               <button
-                aria-controls="radix-:r5j:"
+                aria-controls="radix-:r6t:"
                 aria-expanded="false"
                 aria-level="2"
                 class="flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 border-b-0 text-left hover:no-underline"
@@ -1800,7 +2118,7 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
               data-orientation="vertical"
               data-state="closed"
               hidden=""
-              id="radix-:r5j:"
+              id="radix-:r6t:"
               role="region"
               style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
             />
@@ -1839,9 +2157,168 @@ exports[`helpCenterPage > renders correctly at different screen sizes > tablet 1
             class="flex w-full"
           >
             <div
-              class="flex w-full items-center justify-center bg-white md:ml-auto 2xl:w-[500px]"
+              class="flex w-full items-center justify-center md:ml-auto 2xl:w-[500px]"
             >
-              Faq Accordions
+              <div
+                class="inline-flex w-full flex-col items-start justify-start rounded-xl bg-neutral-50 p-6 md:max-w-[590px] px-0 md:px-6"
+                role="region"
+              >
+                <div
+                  class="w-full"
+                  data-orientation="vertical"
+                >
+                  <div
+                    class="border-b"
+                    data-orientation="vertical"
+                    data-state="closed"
+                  >
+                    <h3
+                      class="flex"
+                      data-orientation="vertical"
+                      data-state="closed"
+                    >
+                      <button
+                        aria-controls="radix-:r6v:"
+                        aria-expanded="false"
+                        class="flex flex-1 items-center justify-between py-4 transition-all [&[data-state=open]>svg]:rotate-180 text-left text-base font-medium leading-normal text-neutral-950 hover:no-underline"
+                        data-orientation="vertical"
+                        data-radix-collection-item=""
+                        data-state="closed"
+                        id="radix-:r6u:"
+                        type="button"
+                      >
+                        What is the purpose of this application?
+                        <svg
+                          class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                          fill="none"
+                          height="24"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="m6 9 6 6 6-6"
+                          />
+                        </svg>
+                      </button>
+                    </h3>
+                    <div
+                      aria-labelledby="radix-:r6u:"
+                      class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+                      data-orientation="vertical"
+                      data-state="closed"
+                      hidden=""
+                      id="radix-:r6v:"
+                      role="region"
+                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                    />
+                  </div>
+                  <div
+                    class="border-b"
+                    data-orientation="vertical"
+                    data-state="closed"
+                  >
+                    <h3
+                      class="flex"
+                      data-orientation="vertical"
+                      data-state="closed"
+                    >
+                      <button
+                        aria-controls="radix-:r71:"
+                        aria-expanded="false"
+                        class="flex flex-1 items-center justify-between py-4 transition-all [&[data-state=open]>svg]:rotate-180 text-left text-base font-medium leading-normal text-neutral-950 hover:no-underline"
+                        data-orientation="vertical"
+                        data-radix-collection-item=""
+                        data-state="closed"
+                        id="radix-:r70:"
+                        type="button"
+                      >
+                        How do I reset my password?
+                        <svg
+                          class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                          fill="none"
+                          height="24"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="m6 9 6 6 6-6"
+                          />
+                        </svg>
+                      </button>
+                    </h3>
+                    <div
+                      aria-labelledby="radix-:r70:"
+                      class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+                      data-orientation="vertical"
+                      data-state="closed"
+                      hidden=""
+                      id="radix-:r71:"
+                      role="region"
+                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                    />
+                  </div>
+                  <div
+                    class="border-b"
+                    data-orientation="vertical"
+                    data-state="closed"
+                  >
+                    <h3
+                      class="flex"
+                      data-orientation="vertical"
+                      data-state="closed"
+                    >
+                      <button
+                        aria-controls="radix-:r73:"
+                        aria-expanded="false"
+                        class="flex flex-1 items-center justify-between py-4 transition-all [&[data-state=open]>svg]:rotate-180 text-left text-base font-medium leading-normal text-neutral-950 hover:no-underline"
+                        data-orientation="vertical"
+                        data-radix-collection-item=""
+                        data-state="closed"
+                        id="radix-:r72:"
+                        type="button"
+                      >
+                        Can I use this application on multiple devices?
+                        <svg
+                          class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                          fill="none"
+                          height="24"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="m6 9 6 6 6-6"
+                          />
+                        </svg>
+                      </button>
+                    </h3>
+                    <div
+                      aria-labelledby="radix-:r72:"
+                      class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+                      data-orientation="vertical"
+                      data-state="closed"
+                      hidden=""
+                      id="radix-:r73:"
+                      role="region"
+                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
