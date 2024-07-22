@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 
 import AcceptableUse from "./AcceptableUse";
-import Discclaimer from "./Disclaimer";
+import Disclaimer from "./Disclaimer";
 import GoverningLaws from "./GoverningLaws";
 import IntellectualProperty from "./IntellectualProperty";
 import TableOfContents from "./TableOfContents";
@@ -74,7 +74,7 @@ const Main = () => {
             <IntellectualProperty />
           </div>
           <div id="disclaimer" className="mb-6 text-neutral-dark-1">
-            <Discclaimer />
+            <Disclaimer />
           </div>
           <div id="governing-law" className="mb-6 text-neutral-dark-1">
             <GoverningLaws />
