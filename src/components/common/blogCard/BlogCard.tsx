@@ -1,8 +1,10 @@
+"use client";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 
 import { Card, CardDescription, CardHeader, CardTitle } from "../../ui/card";
+import { useEffect, useState } from "react";
 
 interface blogCardProperties {
   tag: string;
@@ -17,6 +19,14 @@ interface blogCardProperties {
 }
 
 const BlogCard = (properties: blogCardProperties) => {
+  const [leading, setLeading] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (window.innerWidth > 768) {
+      setLeading(true)
+    }
+  }, [])
+
   return (
     <>
       <div className="flex items-center justify-center">
@@ -24,7 +34,7 @@ const BlogCard = (properties: blogCardProperties) => {
           data-testid="mobile-element"
           className="flex w-[100%] flex-col-reverse items-center border-none shadow-none sm:w-[484px] md:w-[890px] md:flex-row"
         >
-          <CardHeader className="flex-auto sm:flex-1">
+          <CardHeader className="flex-auto md:flex-1">
             <div
               className={clsx(
                 "mb-[10px] flex h-[10px] w-fit bg-desaturatedBlue px-[9px] py-[13px]",
@@ -38,7 +48,7 @@ const BlogCard = (properties: blogCardProperties) => {
                 {properties.tag}
               </p>
             </div>
-            <CardTitle className="text-[24px] leading-[1rem] tracking-[20px] text-neutral-dark-1 md:text-[29px] md:leading-[2.5rem]">
+            <CardTitle className="text-[24px] leading-[3rem] tracking-[50px] text-neutral-dark-1 md:text-[28px] md:leading-[2.5rem]" style={{ lineHeight: leading ? "30px" : "40px", letterSpacing: "0.5px" }}>
               {properties.title}
             </CardTitle>
             <CardDescription className="text-[14px] font-normal leading-[21.78px] text-neutral-dark-1 sm:text-[17px]">
@@ -65,7 +75,7 @@ const BlogCard = (properties: blogCardProperties) => {
             </div>
           </CardHeader>
           <Link
-            className="h-[200px] w-[100%] flex-auto sm:h-[250px] sm:flex-1 md:w-[900px]"
+            className="h-[200px] w-[100%] flex-auto sm:h-[250px] md:flex-1 lg:w-[900px] md:w-[600px]"
             href={properties.link}
           >
             <Image
