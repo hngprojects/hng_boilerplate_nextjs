@@ -7,7 +7,10 @@ interface TermsType {
 
 const GoverningLaws = () => {
   return (
-    <div className="flex flex-col items-start justify-start gap-[10px] self-stretch">
+    <div
+      className="flex flex-col items-start justify-start gap-[10px] self-stretch"
+      data-testid="governing-laws"
+    >
       <h2 className="font-inherit relative mt-0 self-stretch text-2xl font-bold text-inherit sm:text-[28px]">
         Governing Law and Dispute Resolution
       </h2>

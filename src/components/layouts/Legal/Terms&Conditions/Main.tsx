@@ -54,9 +54,9 @@ const Main = () => {
             className="max-w-full self-stretch xl:w-[612px]"
             id="introduction"
           >
-            <div className="relative mb-[10px] self-stretch text-2xl font-bold sm:text-[28px]">
+            <h2 className="relative mb-[10px] self-stretch text-2xl font-bold sm:text-[28px]">
               Introduction
-            </div>
+            </h2>
             <div className="relative inline-block self-stretch text-base">
               Welcome to Boilerplate Hng. These Terms and Conditions govern your
               use of our website and services. By accessing or using our site,
