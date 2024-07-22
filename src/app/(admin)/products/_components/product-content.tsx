@@ -143,19 +143,19 @@ const ProductContent = ({
             className="mt-8 flex w-full justify-between md:mt-12"
           >
             <div className="flex items-center gap-x-4">
-              <p className="text-sm font-medium text-neutral-dark-1">
+              <p className="text-xs font-medium text-neutral-dark-1 md:text-sm">
                 Showing{" "}
-                <span className="text-lg font-bold text-neutral-950">
+                <span className="text-sm font-bold text-neutral-950 md:text-lg">
                   {startIndex + 1}
                 </span>{" "}
                 to{" "}
-                <span className="text-lg font-bold text-neutral-950">
+                <span className="text-sm font-bold text-neutral-950 md:text-lg">
                   {endIndex > filteredProducts.length
                     ? filteredProducts.length
                     : endIndex}
                 </span>{" "}
                 of{" "}
-                <span className="text-lg font-bold text-neutral-950">
+                <span className="text-sm font-bold text-neutral-950 md:text-lg">
                   {filteredProducts.length}
                 </span>{" "}
                 products
@@ -165,15 +165,15 @@ const ProductContent = ({
               <Pagination
                 breakLabel="..."
                 nextLabel={
-                  <span className="ml-5 flex items-center gap-x-1">
-                    Next
+                  <span className="flex items-center gap-x-1 text-sm md:ml-5 md:text-base">
+                    <span className="hidden min-[500px]:inline">Next</span>
                     <ChevronRight />
                   </span>
                 }
                 previousLabel={
-                  <span className="mr-5 flex items-center gap-x-1">
+                  <span className="flex items-center gap-x-1 text-sm md:mr-5 md:text-base">
                     <ChevronLeft />
-                    Previous
+                    <span className="hidden min-[500px]:inline">Previous</span>
                   </span>
                 }
                 previousAriaLabel="Previous"
@@ -182,10 +182,10 @@ const ProductContent = ({
                 onPageChange={handlePageChange}
                 pageRangeDisplayed={3}
                 marginPagesDisplayed={2}
-                className="flex select-none items-center justify-center rounded-md px-4"
-                pageClassName="w-8 h-8 flex justify-center items-center  "
-                previousClassName="pr-2 lg:pr-4 text-accent-orange  font-medium"
-                nextClassName="pl-2 lg:pl-4 text-accent-orange font-medium"
+                className="flex select-none items-center justify-center rounded-md md:px-4"
+                pageClassName="size-6 md:size-8 flex justify-center items-center  "
+                previousClassName="pr-2 lg:pr-4 text-sm md:text-base  font-medium"
+                nextClassName="pl-2 lg:pl-4 text-sm md:text-base font-medium"
                 pageLinkClassName="  w-full h-full flex items-center justify-center"
                 activeClassName="bg-transparent  !text-black border   font-medium rounded-md mx-4"
                 renderOnZeroPageCount={undefined}
