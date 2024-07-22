@@ -68,9 +68,8 @@ const SettingsSidebar = () => {
   const pathname = usePathname();
   // remove the /settings/ from the pathname
   const currentPath = pathname?.replace("/settings/", "");
-
   useEffect(() => {
-    setActiveLink(currentPath);
+    if (currentPath) setActiveLink(currentPath);
   }, [currentPath]);
   return (
     <section className="group fixed left-0 top-0 z-[50] hidden h-screen w-[0px] select-none flex-col items-center gap-y-4 overflow-hidden rounded-t-[16px] bg-[#FAFAFA] py-6 transition-all duration-300 hover:w-[270px] hover:p-4 md:flex md:w-[96px] min-[1140px]:w-[270px] min-[1140px]:p-4">
