@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 lockfileVersion: '9.0'
 
 settings:
@@ -10528,4 +10526,3 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.3
       react: 18.3.1
->>>>>>> d1799b7fde7c2251606bf0b0f0dcb72ae61c9a15
