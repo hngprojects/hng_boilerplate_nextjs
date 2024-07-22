@@ -5,8 +5,8 @@ import CustomButton from "../common/Button/button";
 interface Properties {
   members: object[];
 }
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function convertToCSV(data: Record<string, any>[]): string {
+
+function convertToCSV(data: object[]): string {
   const headers = Object.keys(data[0]).join(",");
   const rows = data.map((item) => Object.values(item).join(","));
   return `${headers}\n${rows.join("\n")}`;
