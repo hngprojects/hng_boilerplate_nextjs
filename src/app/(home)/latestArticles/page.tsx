@@ -6,13 +6,11 @@ import ArtcleCard from "~/components/articleCard/ArtcleCard";
 import { mainBlog } from "../../../data/articledata";
 
 const Page = () => {
-  const [visible, setVisible] = useState(5);
   const [loading, setLoading] = useState(false);
   const showMoreItem = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      setVisible((previousValue) => previousValue + 2);
     }, 2000);
   };
   return (
@@ -24,7 +22,7 @@ const Page = () => {
         Latest Articles
       </h1>
       <div className="mb-3 flex flex-col items-start gap-[24px] lg:mx-auto">
-        {mainBlog.slice(0, visible).map((blog) => {
+        {mainBlog.map((blog) => {
           return (
             <>
               <ArtcleCard
