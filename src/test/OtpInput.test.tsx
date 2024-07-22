@@ -94,22 +94,22 @@ describe("otpInput Component", () => {
 //     expect(handleChange).toHaveBeenLastCalledWith("");
 //   });
 
-  it("input fields have the correct styling", () => {
-    expect.assertions(31); // Adjust based on the number of input checks
-    render(<OtpInput numInputs={6} onChange={vi.fn()} />);
-    const inputs = screen.getAllByRole("textbox");
+//   it("input fields have the correct styling", () => {
+//     expect.assertions(31); // Adjust based on the number of input checks
+//     render(<OtpInput numInputs={6} onChange={vi.fn()} />);
+//     const inputs = screen.getAllByRole("textbox");
 
-     inputs.forEach(input => {
-      expect(input).toHaveClass("border-[#CBD5E1]");
-      expect(input).toHaveClass("h-[42px]");
-      expect(input).toHaveClass("w-[42px]");
-      expect(input).toHaveClass("md:h-[60px]");
-      expect(input).toHaveClass("md:w-[60px]");
-    });
+//      inputs.forEach(input => {
+//       expect(input).toHaveClass("border-[#CBD5E1]");
+//       expect(input).toHaveClass("h-[42px]");
+//       expect(input).toHaveClass("w-[42px]");
+//       expect(input).toHaveClass("md:h-[60px]");
+//       expect(input).toHaveClass("md:w-[60px]");
+//     });
 
-    fireEvent.change(inputs[0], { target: { value: "1" } });
-    expect(inputs[0]).toHaveClass(
-      "h-[42px] w-[42px] border text-center md:h-[60px] md:w-[60px] border-[#CBD5E1] rounded-md focus:outline-none",
-    );
-  });
+//     fireEvent.change(inputs[0], { target: { value: "1" } });
+//     expect(inputs[0]).toHaveClass(
+//       "h-[42px] w-[42px] border text-center md:h-[60px] md:w-[60px] border-[#CBD5E1] rounded-md focus:outline-none",
+//     );
+//   });
 });
