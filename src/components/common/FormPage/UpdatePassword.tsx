@@ -111,7 +111,7 @@ const PasswordForm: React.FC = () => {
   const checks = {
     uppercase: /[A-Z]/.test(password),
     number: /\d/.test(password),
-    length: password.length >= 8,
+    passwordLength: password.length >= 8,
   };
 
   return (
