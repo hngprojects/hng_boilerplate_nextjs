@@ -1,9 +1,9 @@
-import React from "react";
+import { FC } from "react";
 
 import { EditorProvider } from "../../../components/common/context/editor-context";
 import ReusableTemplateEditorBlock from "../../../components/common/template/templateEditorBlock";
 
-const PlaceholderContent: React.FC = () => {
+const PlaceholderContent: FC = () => {
   return (
     <EditorProvider>
       <div style={{ display: "flex", justifyContent: "center" }}>
