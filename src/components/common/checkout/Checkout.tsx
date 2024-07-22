@@ -95,13 +95,6 @@ const Page = () => {
     if (status) {
       return true; // No errors, form is valid
     } else {
-      try {
-        // Simulate a validation error throw for demonstration
-        throw new Error("Validation error");
-      } catch (error) {
-        console.log(error);
-      }
-
       setErrors((previousData) => ({ ...previousData, ...data }));
       return false; // Form is invalid
     }
