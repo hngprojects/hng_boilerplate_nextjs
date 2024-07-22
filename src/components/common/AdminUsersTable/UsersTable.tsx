@@ -154,7 +154,7 @@ const UserListTable = (properties: TableProperties) => {
               <TableCell className="align-center flex gap-4">
                 <div className="h-10 w-10">
                   <Image
-                    src={user.image || defaultImage}
+                    src={user.image ||  defaultImage}
                     alt={user.name}
                     width={50}
                     height={50}
