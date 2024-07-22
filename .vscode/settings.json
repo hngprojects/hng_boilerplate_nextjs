@@ -5,5 +5,15 @@
   },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always"
-  }
+  },
+  "cSpell.words": [
+    "Adedapo",
+    "Adedayo",
+    "Adetunji",
+    "Afolabi",
+    "Ifunanya",
+    "Moshood",
+    "Olanipekun",
+    "Oluwaseun"
+  ]
 }
