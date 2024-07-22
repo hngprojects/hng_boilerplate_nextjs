@@ -4,11 +4,11 @@ import type { Config } from "tailwindcss";
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -100,6 +100,11 @@ const config = {
         },
         desaturatedBlue: "hsl(var(--desaturated-blue))",
         grey50: "hsl(var(--grey50))",
+        blog: {
+          relatedBg: "hsl(var(--blog-related-article-bg))",
+          relatedHeading: "hsl(var(--blog-related-article-heading))",
+          relatedTimeReadBg: "hsl(var(--blog-related-article-timeread-bg))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

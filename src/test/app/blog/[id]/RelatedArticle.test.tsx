@@ -32,6 +32,9 @@ describe("related Article", () => {
       id: number;
       name: string;
       color: string;
+      title: string;
+      date: string;
+      timeRead: string;
     };
     const News: New = [
       {
@@ -48,11 +51,17 @@ describe("related Article", () => {
         id: 0,
         name: "Business",
         color: "#F97316",
+        title: "The Power of Networking: How to Build Meaningful Connections",
+        date: "July 12, 2024",
+        timeRead: "5 min read",
       },
       {
         id: 1,
         name: "Lifestyle",
         color: "#7F0682",
+        title: "The Power of Networking: How to Build Meaningful Connections",
+        date: "July 12, 2024",
+        timeRead: "5 min read",
       },
     ];
 
