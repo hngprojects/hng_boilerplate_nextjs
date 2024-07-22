@@ -4,6 +4,7 @@ interface List {
   benefitTitle: string;
   isAddedBenefit: boolean;
 }
+
 export default function PricePlanBenefit(properties: { list: List }) {
   const { list } = properties;
   const { benefitTitle, isAddedBenefit } = list;
