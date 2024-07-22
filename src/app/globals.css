@@ -73,6 +73,10 @@
     --primary-badge-bg: 25, 95%, 53%, 0.1;
     --success-badge-bg: 102, 51%, 52%, 0.1;
     --error-badge-bg: 0, 72%, 51%, 0.1;
+
+    --blog-related-article-bg: 0°, 0%, 98%;
+    --blog-related-article-heading: 0°, 0%, 32%;
+    --blog-related-article-timeread-bg: 220°, 14%, 96%;
   }
 }
 
@@ -143,6 +147,9 @@
 }
 .show_scrollbar::-webkit-scrollbar {
   height: 8px;
+}
+.show_scrollbar ::-webkit-scrollbar-thumb {
+  border-radius: 12px;
 }
 .hide_scrollbar::-webkit-scrollbar {
   height: 0.1px;

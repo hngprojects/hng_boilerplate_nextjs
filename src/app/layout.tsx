@@ -1,3 +1,7 @@
+import "./globals.css";
+
+// import "~/components/layouts/homepage/styles/styles.css";
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 

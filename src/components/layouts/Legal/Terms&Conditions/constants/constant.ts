@@ -122,7 +122,7 @@ export const GoverningLaw = [
   },
 ];
 
-export const Contents = [
+export const SECTIONS = [
   { id: "introduction", text: "Introduction" },
   { id: "user-obligations", text: "User Obligations" },
   { id: "acceptable-use-policy", text: "Acceptable Use Policy" },
@@ -132,4 +132,6 @@ export const Contents = [
   { id: "changes-to-terms", text: "Changes to Terms" },
   { id: "contact-information", text: "Contact Information" },
   { id: "last-updated", text: "Last Updated Date" },
-];
+] as const;
+
+export const Contents = SECTIONS.map(({ id, text }) => ({ id, text }));
