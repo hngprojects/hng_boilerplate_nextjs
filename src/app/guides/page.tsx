@@ -778,8 +778,8 @@ const StyleGuide: FC = () => {
             buttons<span className="text-pink-400">: </span>
             React.ReactNode[];
             <br />
-            variant<span className="text-pink-400">?: </span>"success" |
-            "warning" | "error";
+            variant<span className="text-pink-400">?: </span>&quot;success&quot;
+            | &quot;warning&quot; | &quot;error&quot;;
             <br />
           </span>
           <span className="block font-mono text-sm text-gray-100">{"}"}</span>
