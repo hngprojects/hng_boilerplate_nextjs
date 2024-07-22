@@ -1,5 +1,5 @@
 import Page from "../app/(home)/latestArticles/page";
-import { fireEvent, render, screen, waitFor } from "./utils";
+import { fireEvent, render, screen } from "./utils";
 
 describe("page tests", () => {
   it("should render correctly and update card list on button click", async () => {
