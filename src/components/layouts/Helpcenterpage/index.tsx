@@ -1,6 +1,8 @@
 "use client";
 
 import Button from "~/components/common/Button/button";
+import FaqAccordion from "~/components/common/FaqAccordion";
+import { faqData } from "~/components/common/FaqAccordion/data/faq.mock";
 import { Input } from "~/components/ui/input";
 import TopicsAccordions from "./_components/TopicsAccordions/TopicsAccordions";
 
@@ -101,8 +103,11 @@ const HelpCenterPage = () => {
               </Button>
             </div>
             <div className="flex w-full">
-              <div className="flex w-full items-center justify-center bg-white md:ml-auto 2xl:w-[500px]">
-                Faq Accordions
+              <div className="flex w-full items-center justify-center md:ml-auto 2xl:w-[500px]">
+                <FaqAccordion
+                  faqs={faqData}
+                  containerClassName="px-0 md:px-6"
+                />
               </div>
             </div>
           </div>
