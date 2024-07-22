@@ -22,12 +22,12 @@ export default function Page() {
     formState: { errors },
   } = useForm<FieldValues>({ mode: "all" });
 
-  const [error, setError] = useState<string | null>();
+  const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [htmlContent, setHtmlContent] = useState<string | undefined>();
 
   const searchParameter = useSearchParams();
-  const contentPreview = searchParameter.get("htmlContent");
+  const contentPreview = searchParameter ? searchParameter.get("htmlContent") : null;
 
   const router = useRouter();
 
@@ -40,7 +40,7 @@ export default function Page() {
 
   const onSubmit = (data: FieldValues) => {
     const htmlContent = data.htmlContent;
-    setError(undefined);
+    setError(null);
     setIsLoading(true);
     setTimeout(() => {
       if (typeof window !== "undefined") {
