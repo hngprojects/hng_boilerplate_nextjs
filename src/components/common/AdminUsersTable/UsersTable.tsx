@@ -1,6 +1,7 @@
 import { EllipsisVertical, FilterIcon, PlusCircle } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import defaultImage  from './user-profile-icon-vector-avatar-.webp'
 
 import {
   DropdownMenu,
@@ -39,7 +40,7 @@ type TableProperties = {
     email: string;
     status: string;
     dateCreated: string;
-    image: string;
+    image?: string;
   }[];
 };
 
@@ -153,9 +154,11 @@ const UserListTable = (properties: TableProperties) => {
               <TableCell className="align-center flex gap-4">
                 <div className="h-10 w-10">
                   <Image
-                    src={user.image}
+                    src={user.image || defaultImage}
                     alt={user.name}
-                    className="w-full rounded-full"
+                    width={50}
+                    height={50}
+                    className=" rounded-full"
                   />
                 </div>
                 <div>
