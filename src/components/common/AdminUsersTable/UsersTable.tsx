@@ -1,16 +1,7 @@
-import { useState } from "react";
+import { EllipsisVertical, FilterIcon, PlusCircle } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
 
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "~/components/ui/table";
-import { Button } from "../Button";
-import { FilterIcon, PlusCircle, EllipsisVertical } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,21 +18,35 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "~/components/ui/pagination";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "~/components/ui/table";
+import { Button } from "../Button";
 
-
-
-
-type TableProps = {
+type TableProperties = {
   addNewUser: () => void;
   deleteUser: (id: number) => void;
   editUser: (id: number) => void;
-  users: { id: number; name: string; phoneNumber: string; email: string; status: string; dateCreated: string; image: string; }[];
+  users: {
+    id: number;
+    name: string;
+    phoneNumber: string;
+    email: string;
+    status: string;
+    dateCreated: string;
+    image: string;
+  }[];
 };
 
 type FilterStatus = "active" | "inactive" | "all";
 
-const UserListTable = (props: TableProps) => {
-  const { addNewUser, deleteUser, editUser } = props;
+const UserListTable = (properties: TableProperties) => {
+  const { addNewUser, deleteUser, editUser } = properties;
   const [filterStatus, setFilterStatus] = useState<FilterStatus>("all");
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5;
@@ -50,26 +55,22 @@ const UserListTable = (props: TableProps) => {
     setCurrentPage(page);
   };
 
-  const filteredUsers = props.users.filter((user) =>
-    filterStatus === "all" || user.status === filterStatus
+  const filteredUsers = properties.users.filter(
+    (user) => filterStatus === "all" || user.status === filterStatus,
   );
 
   const totalUsers = filteredUsers.length;
   const totalPages = Math.ceil(totalUsers / pageSize);
   const displayedUsers = filteredUsers.slice(
     (currentPage - 1) * pageSize,
-    currentPage * pageSize
+    currentPage * pageSize,
   );
 
   const getPageNumbers = () => {
     const pages = [];
     const showEllipsis = totalPages > 3;
 
-    if (!showEllipsis) {
-      for (let index = 1; index <= totalPages; index++) {
-        pages.push(index);
-      }
-    } else {
+    if (showEllipsis) {
       pages.push(1);
       if (currentPage > 4) {
         pages.push("...");
@@ -86,6 +87,10 @@ const UserListTable = (props: TableProps) => {
         pages.push("...");
       }
       pages.push(totalPages);
+    } else {
+      for (let index = 1; index <= totalPages; index++) {
+        pages.push(index);
+      }
     }
 
     return pages;
@@ -94,14 +99,14 @@ const UserListTable = (props: TableProps) => {
   return (
     <div className="bg-white p-4">
       <div
-        className="flex justify-between align-center m-auto bg-white py-1 mb-8"
+        className="align-center m-auto mb-8 flex justify-between bg-white py-1"
         style={{ width: "96%" }}
       >
         <div>
-          <h2 className="text-2xl font-bold mb-">Users</h2>
+          <h2 className="mb- text-2xl font-bold">Users</h2>
           <p>Manage Users & Track Activity</p>
         </div>
-        <div className="flex align-center gap-2">
+        <div className="align-center flex gap-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline">
@@ -112,11 +117,17 @@ const UserListTable = (props: TableProps) => {
             <DropdownMenuContent className="w-56">
               <DropdownMenuRadioGroup
                 value={filterStatus}
-                onValueChange={(value) => setFilterStatus(value as FilterStatus)}
+                onValueChange={(value) =>
+                  setFilterStatus(value as FilterStatus)
+                }
               >
                 <DropdownMenuRadioItem value="all">All</DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="active">Active</DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="inactive">Inactive</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="active">
+                  Active
+                </DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="inactive">
+                  Inactive
+                </DropdownMenuRadioItem>
               </DropdownMenuRadioGroup>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -127,7 +138,7 @@ const UserListTable = (props: TableProps) => {
         </div>
       </div>
       <Table>
-        <TableHeader className="bg-tableHeadBg border-none">
+        <TableHeader className="order-none">
           <TableRow>
             <TableHead>Name</TableHead>
             <TableHead>Phone Number</TableHead>
@@ -139,8 +150,8 @@ const UserListTable = (props: TableProps) => {
         <TableBody>
           {displayedUsers.map((user) => (
             <TableRow key={user.id} className="border-t-none">
-              <TableCell className="flex align-center gap-4">
-                <div className="w-10 h-10">
+              <TableCell className="align-center flex gap-4">
+                <div className="h-10 w-10">
                   <Image
                     src={user.image}
                     alt={user.name}
@@ -148,7 +159,7 @@ const UserListTable = (props: TableProps) => {
                   />
                 </div>
                 <div>
-                  <p className="capitalize font-semibold">{user.name}</p>
+                  <p className="font-semibold capitalize">{user.name}</p>
                   <p className="text-xs text-gray-500">{user.email}</p>
                 </div>
               </TableCell>
@@ -166,13 +177,13 @@ const UserListTable = (props: TableProps) => {
                   <DropdownMenuContent>
                     <p
                       onClick={() => editUser(user.id)}
-                      className="py-2 pl-2 mx-auto cursor-pointer hover:bg-defaultBadgeBg"
+                      className="mx-auto cursor-pointer py-2 pl-2 hover:bg-defaultBadgeBg"
                     >
                       Edit
                     </p>
                     <p
                       onClick={() => deleteUser(user.id)}
-                      className="py-2 pl-2 mx-auto cursor-pointer hover:bg-defaultBadgeBg"
+                      className="mx-auto cursor-pointer py-2 pl-2 hover:bg-defaultBadgeBg"
                     >
                       Delete
                     </p>
@@ -214,7 +225,9 @@ const UserListTable = (props: TableProps) => {
               href="#"
               onClick={() => handlePageChange(currentPage + 1)}
               className={`ml-2 ${
-                currentPage === totalPages ? "cursor-not-allowed opacity-50" : ""
+                currentPage === totalPages
+                  ? "cursor-not-allowed opacity-50"
+                  : ""
               }`}
             />
           </PaginationItem>
