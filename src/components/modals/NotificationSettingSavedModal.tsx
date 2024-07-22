@@ -34,7 +34,8 @@ const NotificationSettingSavedModal: React.FC<ModalProperties> = ({
           Notification Updated!
         </DialogTitle>
         <DialogDescription className="text-sm font-normal text-muted-foreground">
-        Notification preferences updated successfully. Remember, you can always adjust these settings later.
+          Notification preferences updated successfully. Remember, you can
+          always adjust these settings later.
         </DialogDescription>
         <div className="flex justify-end">
           <div onClick={onClose}>
