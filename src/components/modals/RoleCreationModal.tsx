@@ -19,7 +19,7 @@ const RoleCreationModal: React.FC<ModalProperties> = ({ show, onClose }) => {
   return (
     <>
       <Dialog open={show} onOpenChange={onClose}>
-        <DialogTrigger>Trigger RC Dialog</DialogTrigger>
+        
         <DialogContent>
           <DialogHeader>
             <DialogTitle>
