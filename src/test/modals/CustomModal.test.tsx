@@ -84,7 +84,7 @@ describe("customModal Component", () => {
     );
     const actionButton = screen.getByRole("button", { name: /delete/i });
     await userEvent.click(actionButton);
-    expect(buttonActionMock).toHaveBeenCalledWith();
+    expect(buttonActionMock).toHaveBeenCalledWith(expect.anything());
   });
 
   it("does not show buttons if showButtons is false", () => {
