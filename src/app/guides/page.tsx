@@ -317,7 +317,7 @@ const StyleGuide: FC = () => {
       </div>
       <h2 className="text-2xl font-semibold">Input Components</h2>
       <div
-        className="grid w-full items-start items-center gap-4"
+        className="grid w-full items-center gap-4"
         style={{ gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))" }}
       >
         <CustomInput
