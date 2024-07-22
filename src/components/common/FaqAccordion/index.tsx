@@ -30,7 +30,7 @@ const FaqAccordion = ({
       role="region"
       className={clsx(
         "inline-flex w-full flex-col items-start justify-start rounded-xl bg-neutral-50 p-6 md:max-w-[590px]",
-        { containerClassName },
+        containerClassName,
       )}
     >
       <Accordion type="single" collapsible className="w-full">
