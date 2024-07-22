@@ -68,7 +68,6 @@ const LanguageRegion: React.FC = () => {
 
   const handleSave = () => {
     if (validate()) {
-      console.log({ language, region, timeZone });
       setSuccessMessage("Settings have been saved successfully");
       setTimeout(() => setSuccessMessage(""), 3000);
     }
