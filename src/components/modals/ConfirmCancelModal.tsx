@@ -47,7 +47,7 @@ const ConfirmCancelModal: React.FC<ConfirmCancelModalProps> = ({
             onClick={onCancel}
             className="flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-4 py-2 text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500"
           >
-            Cancel Subscription
+            Cancel Subscription.
           </Button>
         </DialogFooter>
       </DialogContent>
