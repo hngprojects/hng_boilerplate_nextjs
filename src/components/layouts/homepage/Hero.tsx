@@ -4,7 +4,7 @@ import Image from "next/image";
 import { A11y, Autoplay, Pagination, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { HeroBoilerPlate, HeroChat, HeroCheckMark } from "./svgs";
+import { HeroBoilerPlate, HeroChat, HeroCheckMark, HeroLine } from "./svgs";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
@@ -31,12 +31,12 @@ const Hero = () => {
               />
             </div>
 
-            <p className="mb-8 mt-5 text-lg text-foreground md:mb-12 md:mt-7 md:text-xl">
+            <p className="text-foreground">
               Streamline your processes with a boilerplate built for efficiency
               and optimal productivity.
             </p>
 
-            <button className="rounded bg-primary px-8 py-4 text-background">
+            <button className="get-started bg-primary text-background">
               Get Started
             </button>
           </div>
@@ -50,17 +50,11 @@ const Hero = () => {
                 <HeroCheckMark />
               </div>
 
-              <div
-                data-testid="hero-chat"
-                className="absolute bottom-[-1.25rem] right-8 z-20"
-              >
+              <div data-testid="hero-chat" className="hero-chat">
                 <HeroChat />
               </div>
 
-              <div
-                data-testid="hero-boilerplate"
-                className="absolute bottom-8 z-30 sm:left-[-0.75rem] md:left-[-3.75rem]"
-              >
+              <div data-testid="hero-boilerplate" className="hero-boilerplate">
                 <HeroBoilerPlate />
               </div>
 
@@ -68,6 +62,7 @@ const Hero = () => {
                 modules={[Pagination, Scrollbar, A11y, Autoplay]}
                 spaceBetween={1}
                 slidesPerView={1}
+                // onSwiper={(swiper) => console.log("")}
                 autoplay={{
                   delay: 3000,
                   disableOnInteraction: false,
@@ -94,7 +89,6 @@ const Hero = () => {
                     width={100}
                     height={100}
                     unoptimized
-                    className="h-[300px] w-full object-cover lg:h-[526px] lg:object-contain"
                   />
                 </SwiperSlide>
 
@@ -108,7 +102,6 @@ const Hero = () => {
                     className="h-[300px] w-full object-cover lg:h-[526px] lg:object-contain"
                   />
                 </SwiperSlide>
-
                 <SwiperSlide>
                   <Image
                     src="/images/hero-image4.svg"
@@ -137,6 +130,15 @@ const Hero = () => {
                     height={100}
                     unoptimized
                     className="h-[300px] w-full object-cover lg:h-[526px] lg:object-contain"
+                  />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <Image
+                    src="/images/hero-image6.svg"
+                    alt="Hero Image"
+                    width={100}
+                    height={100}
+                    unoptimized
                   />
                 </SwiperSlide>
               </Swiper>
