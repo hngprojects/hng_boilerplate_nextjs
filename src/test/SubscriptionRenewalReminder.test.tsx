@@ -4,7 +4,7 @@ import { render, screen } from "@testing-library/react";
 
 import SubscriptionRenewalReminder from "~/email/templates/subscriptionRenewalReminder/with-image";
 
-describe("SubscriptionRenewalReminderEmail Component", () => {
+describe("subscriptionRenewalReminderEmail Component", () => {
   const properties = {
     title: "Subscription Renewal",
     name: "John Doe",
