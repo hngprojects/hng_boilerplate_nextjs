@@ -9,6 +9,7 @@
 # testing
 /coverage
 /html
+html
 
 # next.js
 /.next/
@@ -38,3 +39,4 @@ next-env.d.ts
 
 # react email
 /.react-email
+package-lock.json

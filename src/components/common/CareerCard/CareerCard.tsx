@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 
 import { Card, CardContent, CardFooter } from "~/components/ui/card";
 import { Skeleton } from "~/components/ui/skeleton";
@@ -12,7 +12,7 @@ interface CareerCardProperties {
   amount?: string;
 }
 
-const CareerCard: React.FC<CareerCardProperties> = ({
+const CareerCard: FC<CareerCardProperties> = ({
   isLoading,
   jobTitle,
   location,

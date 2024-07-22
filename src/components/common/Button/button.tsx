@@ -1,6 +1,12 @@
 import { LoaderCircle, Plus } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import {
+  cloneElement,
+  FC,
+  MouseEventHandler,
+  ReactElement,
+  ReactNode,
+} from "react";
 
 import { Button } from "~/components/common/Button";
 
@@ -22,9 +28,9 @@ interface ButtonProperties {
   /** Specifies the size of the button */
   size?: Size;
   /** Icon to be displayed inside the button */
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   /** Text or elements to be displayed inside the button */
-  children?: React.ReactNode;
+  children?: ReactNode;
   /** Indicates if the button is in a loading state */
   isLoading?: boolean;
   /** Indicates if the button is icon only */
@@ -39,6 +45,10 @@ interface ButtonProperties {
   ariaLabel?: string;
   /** Href to link button to a URL or route */
   href?: string;
+  /** Class for custom styling */
+  className?: string;
+  /** Click event handler for the button */
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 /**
@@ -47,7 +57,7 @@ interface ButtonProperties {
  * @param {ButtonProps} props - Properties to configure the button.
  * @returns {JSX.Element} The rendered button component.
  */
-const CustomButton: React.FC<ButtonProperties> = ({
+const CustomButton: FC<ButtonProperties> = ({
   variant,
   size,
   children,
@@ -59,9 +69,11 @@ const CustomButton: React.FC<ButtonProperties> = ({
   isIconOnly = false,
   ariaLabel,
   href,
+  className,
+  onClick,
 }) => {
   const modifiedIcon = icon ? (
-    React.cloneElement(icon as React.ReactElement, {
+    cloneElement(icon as ReactElement, {
       className: "w-[1rem] h-[1rem]",
       "data-testid": "icon",
     })
@@ -90,12 +102,19 @@ const CustomButton: React.FC<ButtonProperties> = ({
 
     if (isExternal) {
       return (
-        <a href={href} target="_blank" rel="noopener noreferrer">
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={ariaLabel}
+        >
           <Button
             variant={variant}
             size={size}
             disabled={isDisabled}
             aria-label={ariaLabel}
+            className={className}
+            onClick={onClick}
             role="button"
           >
             {buttonContent}
@@ -105,12 +124,14 @@ const CustomButton: React.FC<ButtonProperties> = ({
     }
 
     return (
-      <Link href={href} passHref>
+      <Link href={href} passHref aria-label={ariaLabel}>
         <Button
           variant={variant}
           size={size}
           disabled={isDisabled}
           aria-label={ariaLabel}
+          className={className}
+          onClick={onClick}
           role="button"
         >
           {buttonContent}
@@ -126,6 +147,8 @@ const CustomButton: React.FC<ButtonProperties> = ({
         size={size}
         disabled={isDisabled}
         aria-label={ariaLabel}
+        className={className}
+        onClick={onClick}
         role="button"
       >
         {buttonContent}
