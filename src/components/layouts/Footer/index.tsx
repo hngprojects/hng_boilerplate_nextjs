@@ -9,6 +9,7 @@ import {
 import Link from "next/link";
 
 import CustomButton from "~/components/common/Button/button";
+import { Input } from "~/components/common/Input";
 
 const Footer = () => {
   const footerLinks = [
@@ -91,6 +92,7 @@ const Footer = () => {
                   className="rounded-tr-0 rounded-br-0 h-full w-full rounded-bl-[5px] rounded-tl-[5px] border-b-[1px] border-l-[1px] border-t-[1px] border-neutral-dark-1 bg-transparent px-[10px] outline-none"
                   type="text"
                 />
+                <Input />
                 <CustomButton variant="primary" className="h-full">
                   Subscibe
                 </CustomButton>
@@ -126,13 +128,12 @@ const Footer = () => {
                 Sign Up For Newsletter
               </h5>
               <div className="item flex h-[46px] w-full max-w-[283px] items-center justify-start">
-                <input
-                  placeholder="Enter email"
-                  className="rounded-tr-0 rounded-br-0 h-full w-full rounded-bl-[5px] rounded-tl-[5px] border-b-[1px] border-l-[1px] border-t-[1px] border-neutral-dark-1 bg-transparent px-[10px] outline-none"
-                  type="text"
+                <Input
+                  className="border-r-none h-[46px] rounded-r-none border-r-0 border-r-transparent bg-transparent"
+                  placeholder="Enter your email"
                 />
                 <CustomButton variant="primary" className="h-full">
-                  Subscibe
+                  Subscibeu
                 </CustomButton>
               </div>
             </div>
