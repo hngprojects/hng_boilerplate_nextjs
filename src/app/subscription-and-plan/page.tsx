@@ -1,11 +1,11 @@
+import Image from "next/image";
+
 import {
   managementData,
   projectData,
   sharingData,
   supportData,
 } from "../api/userdata";
-
-import Image from "next/image";
 
 interface Dataprops {
   title: string;
