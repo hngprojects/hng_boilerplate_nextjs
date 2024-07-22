@@ -1,7 +1,7 @@
 "use client";
 
 import { Orbit, Plus } from "lucide-react";
-import React, { useState } from "react";
+import { FC, useState } from "react";
 
 import Badge from "~/components/common/Badge/Badge";
 import { Breadcrumb } from "~/components/common/Breadcrumb";
@@ -14,7 +14,7 @@ import Sidebar from "~/components/layouts/Sidebar";
 import templateTableList from "~/constants/templateList";
 import CharacterLimitTextarea from "../../components/common/CharacterLimitTextarea";
 
-const StyleGuide: React.FC = () => {
+const StyleGuide: FC = () => {
   const [text, setText] = useState("");
   const [activePreview, setActivePreview] = useState<number>(1);
 

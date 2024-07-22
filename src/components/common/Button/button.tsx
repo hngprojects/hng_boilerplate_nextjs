@@ -1,6 +1,12 @@
 import { LoaderCircle, Plus } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import {
+  cloneElement,
+  FC,
+  MouseEventHandler,
+  ReactElement,
+  ReactNode,
+} from "react";
 
 import { Button } from "~/components/common/Button";
 
@@ -22,9 +28,9 @@ interface ButtonProperties {
   /** Specifies the size of the button */
   size?: Size;
   /** Icon to be displayed inside the button */
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   /** Text or elements to be displayed inside the button */
-  children?: React.ReactNode;
+  children?: ReactNode;
   /** Indicates if the button is in a loading state */
   isLoading?: boolean;
   /** Indicates if the button is icon only */
@@ -42,7 +48,7 @@ interface ButtonProperties {
   /** Class for custom styling */
   className?: string;
   /** Click event handler for the button */
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 /**
@@ -51,7 +57,7 @@ interface ButtonProperties {
  * @param {ButtonProps} props - Properties to configure the button.
  * @returns {JSX.Element} The rendered button component.
  */
-const CustomButton: React.FC<ButtonProperties> = ({
+const CustomButton: FC<ButtonProperties> = ({
   variant,
   size,
   children,
@@ -67,7 +73,7 @@ const CustomButton: React.FC<ButtonProperties> = ({
   onClick,
 }) => {
   const modifiedIcon = icon ? (
-    React.cloneElement(icon as React.ReactElement, {
+    cloneElement(icon as ReactElement, {
       className: "w-[1rem] h-[1rem]",
       "data-testid": "icon",
     })
