@@ -46,11 +46,11 @@ export default function Faqs() {
       <Search onSearch={handleSearch} />
       {searchValue.trim() === "" ? (
         accordions
-      ) : filteredAccordions.length > 0 ? (
+      ) : (filteredAccordions.length > 0 ? (
         filteredAccordions
       ) : (
         <p className="mt-4 text-center">No results found.</p>
-      )}
+      ))}
     </div>
   );
 }
