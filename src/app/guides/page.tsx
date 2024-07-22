@@ -1,7 +1,7 @@
 "use client";
 
 import { Orbit, Plus } from "lucide-react";
-import React, { useState } from "react";
+import { FC, useState } from "react";
 
 import Badge from "~/components/common/Badge/Badge";
 import { Breadcrumb } from "~/components/common/Breadcrumb";
@@ -9,11 +9,14 @@ import CustomButton from "~/components/common/Button/button";
 import HBPCommentBox from "~/components/common/Comment";
 import { commentsData } from "~/components/common/Comment/ComentData";
 import CustomInput from "~/components/common/Input/input";
+import PaginatedTemplateList from "~/components/common/PaginatedTemplateList/PaginatedTemplateList";
 import Sidebar from "~/components/layouts/Sidebar";
+import templateTableList from "~/constants/templateList";
 import CharacterLimitTextarea from "../../components/common/CharacterLimitTextarea";
 
-const StyleGuide: React.FC = () => {
+const StyleGuide: FC = () => {
   const [text, setText] = useState("");
+  const [activePreview, setActivePreview] = useState<number>(1);
 
   const handleTextChange = (newValue: string) => {
     setText(newValue);
@@ -716,6 +719,34 @@ const StyleGuide: React.FC = () => {
           id="message"
           name="message"
           onChange={handleTextChange}
+        />
+      </div>
+      <div className="w-full">
+        <h2 className="mb-3 text-2xl font-semibold text-gray-800">
+          Email Template Paginated Table List
+        </h2>
+
+        <div className="rounded-lg bg-zinc-950 p-4">
+          <span className="block font-mono text-sm text-gray-100">
+            <span className="text-pink-400">PaginatedTemplateList</span> {"{"}
+          </span>
+          <span className="ml-4 block font-mono text-sm text-gray-100">
+            itemsPerPage<span className="text-pink-400">: </span>number;
+            <br />
+            onPreview<span className="text-pink-400">: </span>() =&gt; void;
+            <br />
+            templates: [];
+            <br />
+            activePreview<span className="text-pink-400">: </span>number;
+            <br />
+          </span>
+          <span className="block font-mono text-sm text-gray-100">{"}"}</span>
+        </div>
+        <PaginatedTemplateList
+          itemsPerPage={5}
+          onPreview={(id) => setActivePreview(id)}
+          templates={templateTableList}
+          activePreview={activePreview}
         />
       </div>
     </main>
