@@ -1,6 +1,8 @@
 import { Check, Filter } from "lucide-react";
 import { FC, KeyboardEvent, useRef, useState } from "react";
 
+import { Button } from "~/components/ui/button";
+
 export interface FilterType {
   label: string;
   queryParameter: string;
@@ -82,17 +84,19 @@ const ProductListFilter: FC<ProductListFilterProperties> = ({
 
   return (
     <div className="relative">
-      <button
+      <Button
         ref={buttonReference}
         onClick={toggleDropdown}
         onKeyDown={handleKeyDown}
         aria-haspopup="true"
         aria-expanded={isOpen}
-        className="flex w-fit cursor-pointer gap-2 rounded-md border-2 border-border bg-card px-1.5 py-2"
+        variant="outline"
+        className="flex items-center gap-x-2 bg-transparent text-sm"
       >
-        <Filter className="w-5" />{" "}
-        <span className="text-base text-neutral-dark-2">Filter</span>
-      </button>
+        <Filter />
+        <span>Filter</span>
+      </Button>
+
       {isOpen && (
         // drop down content
         <div
