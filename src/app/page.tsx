@@ -1,3 +1,4 @@
+import React from "react";
 import Hero from "~/components/layouts/homepage/Hero";
 import HowItWorks from "~/components/layouts/homepage/HowItWorks";
 import PerfectFit from "~/components/layouts/homepage/PerfectFit";
