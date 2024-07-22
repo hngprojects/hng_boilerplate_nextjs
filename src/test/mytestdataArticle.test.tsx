@@ -10,7 +10,7 @@ describe("page tests", () => {
     // Initial render assertions
     expect(screen.getByText("Latest Articles")).toBeInTheDocument();
     const cardElements = screen.getAllByTestId("card-list");
-    expect(cardElements).toHaveLength(5);
+    expect(cardElements).toHaveLength(6);
 
     // Trigger button click
     const button = screen.getByTestId("buttontestid");
