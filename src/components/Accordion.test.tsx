@@ -4,6 +4,18 @@ import "@testing-library/jest-dom";
 
 import { AccordionDemo } from "./Accordion";
 
+const expectContentVisibility = (content, visibility) => {
+  if (visibility) {
+    expect(content).toBeVisible();
+  } else {
+    if (content) {
+      expect(content).not.toBeVisible();
+    } else {
+      expect(content).toBeNull();
+    }
+  }
+};
+
 describe("accordion Component", () => {
   it("renders the headers correctly", () => {
     expect.assertions(3); // Ensure the correct number of assertions
@@ -40,7 +52,7 @@ describe("accordion Component", () => {
   });
 
   it("does not allow more than one item to be expanded", () => {
-    expect.assertions(4); // Ensure the correct number of assertions
+    expect.assertions(5); // Update to match the actual number of assertions
     render(<AccordionDemo />);
 
     const firstHeader = screen.getByText("What payment methods do you accept?");
@@ -59,9 +71,11 @@ describe("accordion Component", () => {
     // Expand second item and first item should collapse
     fireEvent.click(secondHeader);
     const firstContent = screen.queryByText("Answer to question 1.");
-    if (firstContent) {
-      expect(firstContent).not.toBeVisible();
-    }
-    expect(screen.getByText("Answer to question 2.")).toBeVisible();
+    const secondContent = screen.getByText("Answer to question 2.");
+
+    // Ensure the first content is not visible (collapsed)
+    expectContentVisibility(firstContent, false);
+    // Ensure the second content is visible
+    expectContentVisibility(secondContent, true);
   });
 });
