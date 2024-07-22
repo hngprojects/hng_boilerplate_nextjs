@@ -33,7 +33,7 @@ const editUser = vi.fn();
 
 describe("userListTable", () => {
   it("renders without crashing", () => {
-    expect.assertions(1);
+    expect.hasAssertions();
     render(
       <UserListTable
         users={users}
@@ -46,7 +46,7 @@ describe("userListTable", () => {
   });
 
   it('calls addNewUser when "Add New User" button is clicked', () => {
-    expect.assertions(1);
+    expect.hasAssertions();
     render(
       <UserListTable
         users={users}
@@ -61,7 +61,7 @@ describe("userListTable", () => {
   });
 
   it('calls editUser when "Edit" is clicked', () => {
-    expect.assertions(1);
+    expect.hasAssertions();
     render(
       <UserListTable
         users={users}
@@ -76,7 +76,7 @@ describe("userListTable", () => {
   });
 
   it('calls deleteUser when "Delete" is clicked', () => {
-    expect.assertions(1);
+    expect.hasAssertions();
     render(
       <UserListTable
         users={users}
