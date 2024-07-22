@@ -73,43 +73,4 @@ describe("otpInput Component", () => {
     expect(input).toHaveValue("");
   });
 
-  //   it("focus moves to the next input field after entering a character", () => {
-  //     expect.assertions(1);
-  //     render(<OtpInput numInputs={6} onChange={vi.fn()} />);
-  //     const inputs = screen.getAllByRole("textbox");
-
-  //     fireEvent.change(inputs[0], { target: { value: "1" } });
-  //     expect("inputs[1]").toHaveFocus();
-  //   });
-
-//   it("concatenated input values are returned on change", () => {
-//     expect.assertions(1);
-//     const handleChange = vi.fn();
-//     render(<OtpInput numInputs={6} onChange={handleChange} />);
-
-//     const inputs = screen.getAllByRole("textbox");
-//     fireEvent.change(inputs[0], { target: { value: "1" } });
-//     fireEvent.change(inputs[1], { target: { value: "2" } });
-
-//     expect(handleChange).toHaveBeenLastCalledWith("");
-//   });
-
-//   it("input fields have the correct styling", () => {
-//     expect.assertions(31); // Adjust based on the number of input checks
-//     render(<OtpInput numInputs={6} onChange={vi.fn()} />);
-//     const inputs = screen.getAllByRole("textbox");
-
-//      inputs.forEach(input => {
-//       expect(input).toHaveClass("border-[#CBD5E1]");
-//       expect(input).toHaveClass("h-[42px]");
-//       expect(input).toHaveClass("w-[42px]");
-//       expect(input).toHaveClass("md:h-[60px]");
-//       expect(input).toHaveClass("md:w-[60px]");
-//     });
-
-//     fireEvent.change(inputs[0], { target: { value: "1" } });
-//     expect(inputs[0]).toHaveClass(
-//       "h-[42px] w-[42px] border text-center md:h-[60px] md:w-[60px] border-[#CBD5E1] rounded-md focus:outline-none",
-//     );
-//   });
 });
