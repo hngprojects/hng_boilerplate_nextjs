@@ -59,14 +59,14 @@ const ProductFilter = ({
   });
 
   return (
-    <div className="flex w-full items-center justify-between">
+    <div className="flex w-full items-center justify-between gap-x-2 min-[500px]:gap-x-0">
       <div className="relative w-full max-w-[300px]">
         <Input
           type="text"
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
           placeholder="search products..."
-          className="w-full bg-transparent text-sm"
+          className="h-8 w-full bg-transparent text-sm min-[500px]:h-10"
         />
         <Button
           onClick={() => setSearchTerm("")}
@@ -82,7 +82,7 @@ const ProductFilter = ({
           <X />
         </Button>
       </div>
-      <div className="relative flex items-center gap-x-4">
+      <div className="relative flex items-center gap-x-2 min-[500px]:gap-x-4">
         <div className="flex items-center gap-x-2">
           <Button
             onClick={() => setView("grid")}
@@ -96,7 +96,7 @@ const ProductFilter = ({
                 : "",
             )}
           >
-            <Grid />
+            <Grid className="size-5 min-[500px]:size-10" />
           </Button>
           <Button
             onClick={() => setView("list")}
@@ -110,18 +110,18 @@ const ProductFilter = ({
                 : "",
             )}
           >
-            <List />
+            <List className="size-5 min-[500px]:size-10" />
           </Button>
         </div>
-        <span className="h-[36px] w-[1px] flex-1 bg-[#E4E4E7]" />
+        <span className="h-[30px] w-[1px] flex-1 bg-[#E4E4E7] min-[500px]:h-[36px]" />
         <Button
           onClick={() => updateFilterModal(!isOpenFilterModal)}
           ref={filterTriggerReference}
           variant="outline"
-          className="relative flex items-center gap-x-2 bg-transparent text-sm"
+          className="relative grid w-8 place-items-center gap-x-2 bg-transparent text-sm min-[500px]:flex min-[500px]:w-fit min-[500px]:items-center"
         >
-          <Filter />
-          <span>Filter</span>
+          <Filter className="size-5 min-[500px]:size-10" />
+          <span className="hidden min-[500px]:inline">Filter</span>
         </Button>
 
         <AnimatePresence>
