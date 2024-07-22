@@ -3,7 +3,6 @@ import {
   Font,
   Head,
   Html,
-  Img,
   Link,
   Section,
   Text,
@@ -53,14 +52,6 @@ export default function SubscriptionRenewalReminder(properties: Properties) {
               <div className="w-[70rem]">
                 <div className="px-[5.6rem]">
                   <Section>
-                    <Img
-                      className="mx-auto my-[5rem] block"
-                      src={properties.imageUrl}
-                      alt="Reminder Image"
-                      width={200}
-                      height={178}
-                    />
-
                     <Text className="mb-[4.5rem] text-center text-[2rem] font-semibold leading-[2.5rem]">
                       {properties.title}
                     </Text>

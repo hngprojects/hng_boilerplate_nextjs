@@ -2,9 +2,9 @@ import "./setup";
 
 import { render, screen } from "@testing-library/react";
 
-import SubscriptionRenewalEmail from "~/email/templates/subscriptionRenewalReminder/with-image";
+import SubscriptionRenewalReminder from "~/email/templates/subscriptionRenewalReminder/with-image";
 
-describe("subscriptionEmail Component", () => {
+describe("SubscriptionRenewalReminderEmail Component", () => {
   const properties = {
     title: "Subscription Renewal",
     name: "John Doe",
@@ -22,7 +22,7 @@ describe("subscriptionEmail Component", () => {
 
   it("renders text content correctly", () => {
     expect.hasAssertions();
-    render(<SubscriptionRenewalEmail {...properties} />);
+    render(<SubscriptionRenewalReminder {...properties} />);
     expect(screen.getByText(properties.title)).toBeInTheDocument();
     expect(screen.getByText(`Hi ${properties.name},`)).toBeInTheDocument();
     expect(screen.getByText(properties.renewalDate)).toBeInTheDocument();
@@ -36,7 +36,7 @@ describe("subscriptionEmail Component", () => {
 
   it("renders links correctly", () => {
     expect.hasAssertions();
-    render(<SubscriptionRenewalEmail {...properties} />);
+    render(<SubscriptionRenewalReminder {...properties} />);
     const links = [
       { name: "review subscription.", url: properties.reviewUrl },
       { name: "Renew Subscription", url: properties.renewUrl },
