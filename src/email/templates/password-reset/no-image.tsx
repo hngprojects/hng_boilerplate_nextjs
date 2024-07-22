@@ -1,32 +1,59 @@
-import { Button, Head, Html, Preview, Text } from "@react-email/components";
+import {
+  Button,
+  Head,
+  Html,
+  Preview,
+  Section,
+  Text,
+} from "@react-email/components";
 
-import Tailwindwrapper from "~/email/templates/_components/tailwindWrapper";
+import EmailResetPasswordLayout from "~/email/templates/_components/emailLayouts/emailResetPasswordLayout";
+import TailwindWrapper from "../_components/tailwindWrapper";
 
 interface IProperties {
   name: string;
+  resetLink: string;
 }
 
-export default function Email(properties: IProperties) {
-  const { name } = properties;
+export default function ResetPasswordEmail(properties: IProperties) {
+  const { name, resetLink } = properties;
 
   return (
-    <Html>
-      <Head />
-      <Preview>{`Password Reset for ${name}`}</Preview>
+    <TailwindWrapper>
+      <Html>
+        <Head />
+        <Preview>{`Password Reset for ${name}`}</Preview>
+        <EmailResetPasswordLayout>
+          <Text className="text-center text-2xl font-bold">
+            Reset Your Password
+          </Text>
+          <Text className="mb-4">Hi {name},</Text>
+          <Text className="mb-4">
+            You recently requested to reset your password. If you did not make
+            this request, you can ignore this email.
+          </Text>
+          <Text className="mt-4">
+            To reset your password, please click the button below.
+          </Text>
+          <Section className="text-center">
+            <Button
+              href={resetLink}
+              className="w-56 rounded bg-[#F97316] px-4 py-2 font-medium text-background text-white"
+            />
+          </Section>
 
-      <Tailwindwrapper>
-        <Text>Hi there, {name}!</Text>
-        <Button
-          href="https://example.com"
-          className="bg-black px-5 py-3 text-white"
-        >
-          Click me
-        </Button>
-      </Tailwindwrapper>
-    </Html>
+          <Text className="mb-6 mt-8">
+            Regards,
+            <br />
+            Boilerplate Team
+          </Text>
+        </EmailResetPasswordLayout>
+      </Html>
+    </TailwindWrapper>
   );
 }
 
-Email.PreviewProps = {
+ResetPasswordEmail.PreviewProps = {
   name: "John Doe",
+  resetLink: "https://example.com/reset-password",
 } satisfies IProperties;
