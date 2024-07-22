@@ -38,7 +38,7 @@ const NotificationSettingSavedModal: React.FC<ModalProperties> = ({
         </DialogDescription>
         <div className="flex justify-end">
           <div onClick={onClose}>
-            <CustomButton variant="primary">Continue</CustomButton>
+            <CustomButton variant="primary">Done</CustomButton>
           </div>
         </div>
       </DialogContent>
