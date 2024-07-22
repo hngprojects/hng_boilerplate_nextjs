@@ -12,6 +12,7 @@
     "shad:add": "npx shadcn-ui@latest add",
     "test": "vitest",
     "test:ui": "vitest --ui",
+    "test:update": "vitest --update",
     "test:ci": "vitest --coverage",
     "email:dev": "email dev --dir \"./src/email/templates\"",
     "email:build": "email build --dir \"./src/email/templates\"",
