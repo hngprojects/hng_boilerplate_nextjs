@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 import CareerCard from "./CareerCard";
 
-const CareerCardParent: React.FC = () => {
+const CareerCardParent: FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
