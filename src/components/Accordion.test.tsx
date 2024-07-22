@@ -4,7 +4,10 @@ import "@testing-library/jest-dom";
 
 import { AccordionDemo } from "./Accordion";
 
-const expectContentVisibility = (content, visibility) => {
+const expectContentVisibility = (
+  content: HTMLElement | null,
+  visibility: boolean,
+) => {
   if (visibility) {
     expect(content).toBeVisible();
   } else {
