@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+import SignupForm from "./_component/SignupForm";
 import SignUp from "./page";
 
 describe("form", () => {
@@ -8,7 +9,7 @@ describe("form", () => {
 
   it("should render the form fields", () => {
     expect.hasAssertions();
-    render(<SignUp onSubmit={handleSubmit} />);
+    render(<SignUp />);
 
     expect(screen.getByLabelText("Full Name")).toBeInTheDocument();
     expect(screen.getByLabelText("Email Address")).toBeInTheDocument();
@@ -30,7 +31,7 @@ describe("form", () => {
 
   it("should not submit the form if required fields are empty", async () => {
     expect.hasAssertions();
-    render(<SignUp onSubmit={handleSubmit} />);
+    render(<SignupForm onSubmit={handleSubmit} />);
 
     await userEvent.click(
       screen.getByRole("button", { name: "Create Account" }),
@@ -40,7 +41,7 @@ describe("form", () => {
 
   it("should submit the form with correct values", async () => {
     expect.hasAssertions();
-    render(<SignUp onSubmit={handleSubmit} />);
+    render(<SignupForm onSubmit={handleSubmit} />);
 
     await userEvent.type(screen.getByLabelText("Full Name"), "John Doe");
     await userEvent.type(
