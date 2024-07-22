@@ -7,7 +7,10 @@ interface TermsType {
 
 const UserObligations = () => {
   return (
-    <div className="mt-[20px] flex flex-col items-start justify-start gap-[10px] self-stretch">
+    <div
+      className="mt-[20px] flex flex-col items-start justify-start gap-[10px] self-stretch"
+      data-testid="user-obligations"
+    >
       <h2 className="font-inherit relative m-0 self-stretch text-2xl font-bold text-inherit sm:text-[28px]">
         User Obligations
       </h2>
