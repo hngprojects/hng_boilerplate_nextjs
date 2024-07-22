@@ -16,6 +16,7 @@ import {
 import { Input } from "~/components/ui/input";
 import { Textarea } from "~/components/ui/textarea";
 import FormSchema from "./formSchema";
+import { FormResponse, submitForm } from "./formSubmitHelper";
 
 export default function AdditionalInquiriesForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -27,41 +28,23 @@ export default function AdditionalInquiriesForm() {
     },
   });
 
-  const {
-    handleSubmit, //
-  } = form;
+  const { handleSubmit } = form;
 
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  async function onSubmit(values: z.infer<typeof FormSchema>) {
-    // eslint-disable-next-line no-console
-    console.log(values);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async function onSubmit(_values: z.infer<typeof FormSchema>) {
+    const response: FormResponse = await submitForm();
 
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
-
-      if (!response.ok) {
-        throw new Error(
-          "There was an error submitting your question. Please try again",
-        );
-      }
-
-      setSuccessMessage("Your question has been submitted successfully");
+    if (response.success) {
+      setSuccessMessage(response.message);
       setErrorMessage("");
-    } catch (error) {
-      if (error instanceof Error) {
-        setErrorMessage(error.message);
-      } else {
-        setErrorMessage("An unknown error occurred");
-      }
+      form.reset();
+    } else {
+      setErrorMessage(response.message);
       setSuccessMessage("");
+      form.reset();
     }
   }
 
@@ -78,7 +61,7 @@ export default function AdditionalInquiriesForm() {
       <Form {...form}>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex w-full flex-col gap-[27px] md:gap-[1.5rem]" // className="space-y-8"
+          className="flex w-full flex-col gap-[27px] md:gap-[1.5rem]"
           noValidate
         >
           <FormField

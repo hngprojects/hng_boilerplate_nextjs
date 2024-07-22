@@ -1,4 +1,4 @@
-import AdditionalQuestionsForm from "./AdditionalQuestionsForm";
+import AdditionalQuestionsForm from "./AdditionalInquiriesForm";
 
 export default function QuestionsForm() {
   return (

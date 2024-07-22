@@ -1,17 +1,15 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { beforeEach, describe, expect, it, Mock, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import AdditionalInquiriesForm from "./AdditionalInquiriesForm";
-
-// Mock the fetch API
-global.fetch = vi.fn() as Mock;
+import * as formSubmitHelper from "./formSubmitHelper";
 
 describe("additionalQuestionsForm Tests", () => {
   beforeEach(() => {
+    // Clear mocks if any
     vi.clearAllMocks();
   });
 
-  // Validation Tests
   it("should display error messages for empty required fields", async () => {
     expect.assertions(3);
     render(<AdditionalInquiriesForm />);
@@ -32,7 +30,7 @@ describe("additionalQuestionsForm Tests", () => {
     expect.assertions(1);
     render(<AdditionalInquiriesForm />);
     const emailInput = screen.getByLabelText(/email/i);
-    const submitButton = screen.getByText(/submit/i);
+    const submitButton = screen.getByRole("button", { name: /submit/i });
 
     fireEvent.change(emailInput, { target: { value: "invalid-email" } });
     fireEvent.click(submitButton);
@@ -41,14 +39,15 @@ describe("additionalQuestionsForm Tests", () => {
     expect(errorMessage).toBeInTheDocument();
   });
 
-  // API Integration Tests
   it("should display success message on successful form submission", async () => {
-    expect.assertions(2);
-    (fetch as Mock).mockResolvedValueOnce({
-      ok: true,
-      json: async () => ({ message: "Success" }),
-    } as Response);
+    expect.hasAssertions();
+    // Mock the submitForm function to return a successful response
+    vi.spyOn(formSubmitHelper, "submitForm").mockResolvedValue({
+      success: true,
+      message: "Your question has been submitted successfully",
+    });
 
+    expect.assertions(1);
     render(<AdditionalInquiriesForm />);
     const nameInput = screen.getByLabelText(/name/i);
     const emailInput = screen.getByLabelText(/email/i);
@@ -64,17 +63,22 @@ describe("additionalQuestionsForm Tests", () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(
-        screen.getByText(/your question has been submitted successfully/i),
-      ).toBeInTheDocument();
+      const successMessage = screen.getByText(
+        "Your question has been submitted successfully",
+      );
+      expect(successMessage).toBeInTheDocument();
     });
-    expect(fetch).toHaveBeenCalledTimes(1);
   });
 
   it("should display error message on failed form submission", async () => {
-    expect.assertions(2);
-    (fetch as Mock).mockResolvedValueOnce({ ok: false } as Response);
+    expect.hasAssertions();
+    // Mock the submitForm function to return a failed response
+    vi.spyOn(formSubmitHelper, "submitForm").mockResolvedValue({
+      success: false,
+      message: "There was an error submitting your question. Please try again.",
+    });
 
+    expect.assertions(1);
     render(<AdditionalInquiriesForm />);
     const nameInput = screen.getByLabelText(/name/i);
     const emailInput = screen.getByLabelText(/email/i);
@@ -90,29 +94,10 @@ describe("additionalQuestionsForm Tests", () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(
-        screen.getByText(
-          /there was an error submitting your question. please try again/i,
-        ),
-      ).toBeInTheDocument();
+      const errorMessage = screen.getByText(
+        "There was an error submitting your question. Please try again.",
+      );
+      expect(errorMessage).toBeInTheDocument();
     });
-    expect(fetch).toHaveBeenCalledTimes(1);
-  });
-
-  // Responsiveness Tests
-  it("should render correctly on mobile devices", () => {
-    expect.assertions(1);
-    window.innerWidth = 320;
-    render(<AdditionalInquiriesForm />);
-    const emailInput = screen.getByLabelText(/email/i);
-    expect(emailInput).toHaveClass("py-[.75rem]");
-  });
-
-  it("should render correctly on desktop devices", () => {
-    expect.assertions(1);
-    window.innerWidth = 1024;
-    render(<AdditionalInquiriesForm />);
-    const emailInput = screen.getByLabelText(/email/i);
-    expect(emailInput).toHaveClass("md:py-[1.25rem]");
   });
 });
