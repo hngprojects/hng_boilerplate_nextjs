@@ -24,13 +24,11 @@ import CustomModal from './path/to/CustomModal';
 </CustomModal>
 
 
-
 CustomModal Component
 The CustomModal component is a customizable modal dialog box built using React and @headlessui/react. This component provides various options to control its appearance and behavior, making it flexible for different use cases.
 
 Usage
-jsx
-Copy code
+
 import CustomModal from './path/to/CustomModal';
 
 <CustomModal
@@ -117,7 +115,6 @@ function App() {
 }
 
 export default App;
-
 
 Additional Notes
 Ensure that you pass the correct props to the CustomModal component for the desired behavior.
