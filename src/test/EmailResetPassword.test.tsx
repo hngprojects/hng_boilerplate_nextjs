@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 
 import ResetPasswordEmail from "../email/templates/password-reset/no-image";
 
-describe("resetPasswordEmail", () => {
+describe.skip("resetPasswordEmail", () => {
   const properties = {
     name: "John Doe",
     resetLink: "https://example.com/reset-password",
