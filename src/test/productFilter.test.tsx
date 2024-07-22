@@ -1,28 +1,57 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import ProductFilter from "~/components/common/ProductFilter";
 
 describe("productFilter component", () => {
-  it("renders the component with correct elements", () => {
-    expect.assertions(6);
+  it("renders the heading and description correctly", () => {
+    expect.assertions(2);
 
     render(<ProductFilter />);
 
-    const title = screen.getByRole("heading", { level: 2 });
-    const description = screen.getByText(
-      "Manage your products and view their sales performance.",
-    );
-    const filterButton = screen.getByRole("button", { name: "Filter" });
-    const addProductButton = screen.getByRole("button", {
-      name: "Add Product",
-    });
+    expect(
+      screen.getByRole("heading", { name: /products/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        /manage your products and view their sales performance\./i,
+      ),
+    ).toBeInTheDocument();
+  });
 
-    expect(title).toBeInTheDocument();
-    expect(description).toBeInTheDocument();
+  it("renders the Filter button with correct content", () => {
+    expect.assertions(3);
+
+    render(<ProductFilter />);
+
+    const filterButton = screen.getByRole("button", { name: /filter/i });
     expect(filterButton).toBeInTheDocument();
-    expect(addProductButton).toBeInTheDocument();
-    expect(screen.getByAltText("filter icon")).toBeInTheDocument();
-    expect(screen.getByAltText("add icon")).toBeInTheDocument();
+
+    // Find the filter image
+    const filterIcon = screen.getAllByRole("img").find((img) => {
+      const imageElement = img as HTMLImageElement;
+      return imageElement.src.includes("/images/filter.svg");
+    });
+    expect(filterIcon).toBeInTheDocument();
+
+    expect(filterButton).toHaveTextContent("Filter");
+  });
+
+  it("renders the Add Product button with correct content", () => {
+    expect.assertions(3);
+
+    render(<ProductFilter />);
+
+    const addButton = screen.getByRole("button", { name: /add product/i });
+    expect(addButton).toBeInTheDocument();
+
+    // Find the add image
+    const addIcon = screen.getAllByRole("img").find((img) => {
+      const imageElement = img as HTMLImageElement;
+      return imageElement.src.includes("/images/add.svg");
+    });
+    expect(addIcon).toBeInTheDocument();
+
+    expect(addButton).toHaveTextContent("Add Product");
   });
 });

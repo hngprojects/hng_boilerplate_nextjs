@@ -1,61 +1,65 @@
-import { render, screen } from "@testing-library/react";
-import { describe, expect } from "vitest";
+import { render, screen, within } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
 
 import TableData from "~/components/common/Table";
 
-interface TableDataItem {
-  id: number;
-  name: string;
-  price: number;
-  totalSales: number;
-  status: string;
-  createdAt: string;
-}
-
-const data: TableDataItem[] = [
-  {
-    id: 1,
-    name: "Hypernova Headphones",
-    price: 129.99,
-    status: "Draft",
-    totalSales: 25,
-    createdAt: "2024-07-16 10:35AM",
-  },
-];
-
 describe("tableData component", () => {
-  it("renders the table header with correct columns", () => {
+  it("renders the table headers correctly", () => {
     expect.assertions(6);
+
     render(<TableData />);
 
-    const columnHeaders = screen.getAllByRole("columnheader");
-    expect(columnHeaders).toHaveLength(6);
-    expect(columnHeaders[0]).toHaveTextContent("Name");
-    expect(columnHeaders[1]).toHaveTextContent("Price");
-    expect(columnHeaders[2]).toHaveTextContent("Total sales");
-    expect(columnHeaders[3]).toHaveTextContent("Status");
-    expect(columnHeaders[4]).toHaveTextContent("Created at");
-    expect(columnHeaders[5]).toHaveTextContent("Action");
-  });
-
-  it("renders the table body with data from props", () => {
-    expect.assertions(5);
-    render(<TableData />);
-
-    for (const item of data) {
-      expect(screen.getByText(item.name)).toBeInTheDocument();
-      expect(screen.getByText(item.price.toString())).toBeInTheDocument();
-      expect(screen.getByText(item.totalSales.toString())).toBeInTheDocument();
-      expect(screen.getByText(item.status)).toBeInTheDocument();
-      expect(screen.getByText(item.createdAt)).toBeInTheDocument();
+    const headers = [
+      "Name",
+      "Price",
+      "Total sales",
+      "Status",
+      "Created at",
+      "Action",
+    ];
+    for (const header of headers) {
+      expect(screen.getByText(header)).toBeInTheDocument();
     }
   });
 
-  it("renders the action icon using Next/Image", () => {
-    expect.assertions(1);
+  it("renders the data rows correctly", () => {
+    expect.assertions(6);
+
     render(<TableData />);
 
-    const image = screen.getByAltText("action button");
-    expect(image).toBeInTheDocument();
+    const rows = screen.getAllByRole("row");
+    expect(rows).toHaveLength(5);
+
+    const firstRowCells = within(rows[1]).getAllByRole("cell");
+    expect(firstRowCells[0]).toHaveTextContent("Hypernova Headphones");
+    expect(firstRowCells[1]).toHaveTextContent("129.99");
+    expect(firstRowCells[2]).toHaveTextContent("25");
+    expect(firstRowCells[3]).toHaveTextContent("Draft");
+    expect(firstRowCells[4]).toHaveTextContent("2024-07-16 10:35AM");
+  });
+
+  it("renders the correct status styles", () => {
+    expect.assertions(4); // We expect 4 assertions in this test
+
+    render(<TableData />);
+
+    const activeStatuses = screen.getAllByText("Active");
+    for (const status of activeStatuses) {
+      expect(status).toHaveClass("border-[#6DC347]", "text-[#6DC347]");
+    }
+
+    const draftStatuses = screen.getAllByText("Draft");
+    for (const status of draftStatuses) {
+      expect(status).toHaveClass("border-[#525252]");
+    }
+  });
+
+  it("renders action button images correctly", () => {
+    expect.assertions(1);
+
+    render(<TableData />);
+
+    const actionButtons = screen.getAllByAltText("action button");
+    expect(actionButtons).toHaveLength(4);
   });
 });

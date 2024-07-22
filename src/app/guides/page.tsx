@@ -9,7 +9,6 @@ import CustomButton from "~/components/common/Button/button";
 import HBPCommentBox from "~/components/common/Comment";
 import { commentsData } from "~/components/common/Comment/ComentData";
 import CustomInput from "~/components/common/Input/input";
-import PaginatedTemplateList from "~/components/common/PaginatedTemplateList/PaginatedTemplateList";
 import Sidebar from "~/components/layouts/Sidebar";
 import templateTableList from "~/constants/templateList";
 import CharacterLimitTextarea from "../../components/common/CharacterLimitTextarea";
@@ -670,24 +669,27 @@ const StyleGuide: FC = () => {
         </div>
       </div>
 
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold">HBP Comment Box</h2>
-        {commentsData.map((comment) => (
-          <HBPCommentBox
-            key={comment.id}
-            id={comment.id}
-            avatar={comment.avatar}
-            name={comment.name}
-            username={comment.username}
-            content={comment.content}
-            timestamp={comment.timestamp}
-            date={comment.date}
-            likes={comment.likes}
-            dislikes={comment.dislikes}
-          />
-        ))}
-        {/* Add more Comment components as needed */}
-<<<<<<< HEAD
+      <div className="space-y-4 rounded-lg bg-gray-100 p-4 shadow-md">
+        <h2 className="text-2xl font-semibold text-gray-800">
+          HBP Comment Box
+        </h2>
+        <div className="flex flex-col space-y-4">
+          {commentsData.map((comment) => (
+            <HBPCommentBox
+              key={comment.id}
+              id={comment.id}
+              avatar={comment.avatar}
+              name={comment.name}
+              username={comment.username}
+              content={comment.content}
+              timestamp={comment.timestamp}
+              date={comment.date}
+              likes={comment.likes}
+              dislikes={comment.dislikes}
+              className="rounded-lg bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
+            />
+          ))}
+        </div>
       </div>
 
       <div className="w-full">
@@ -718,8 +720,6 @@ const StyleGuide: FC = () => {
           name="message"
           onChange={handleTextChange}
         />
-=======
->>>>>>> 1a8e0f3 (ComentBox Display)
       </div>
     </main>
   );
