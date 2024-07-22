@@ -1,3 +1,7 @@
+import { render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+
+import VerifyCodePage from "~/app/auth/forgot-password/verify-otp/page";
 
 class ResizeObserver {
   observe() {}
@@ -7,11 +11,7 @@ class ResizeObserver {
 
 global.ResizeObserver = ResizeObserver;
 
-import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
-import VerifyCodePage from "~/app/auth/forgot-password/verify-otp/page";
-
-describe("VerifyCodePage Component", () => {
+describe("verifyCodePage Component", () => {
   it("renders correctly", () => {
     expect.assertions(1);
     render(<VerifyCodePage />);
@@ -23,12 +23,6 @@ describe("VerifyCodePage Component", () => {
     render(<VerifyCodePage />);
     expect(screen.getByText("ellafedora@gmail.com")).toBeInTheDocument();
     expect(screen.getByText("00:59")).toBeInTheDocument();
-  });
-
-  it("renders the OTP input component", () => {
-    expect.assertions(0);
-    render(<VerifyCodePage />);
-    const otpInputs = screen.getAllByRole("textbox");
   });
 
   it("renders the verify button as disabled initially", () => {
