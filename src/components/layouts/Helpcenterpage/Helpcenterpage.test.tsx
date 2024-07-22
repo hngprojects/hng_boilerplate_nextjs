@@ -5,7 +5,6 @@ import "@testing-library/jest-dom";
 import HelpCenterPage from "../../../app/help-center/page";
 import TopicsAccordions from "./_components/TopicsAccordions/TopicsAccordions";
 
-// Mock Topic data
 const topics = [
   {
     id: "item-1",
@@ -18,8 +17,6 @@ const topics = [
     answer: "Lorem ipsum dolor sit amet consectetur elit.",
   },
 ];
-
-// TopicsAccordions test
 describe("topicsAccordions Component", () => {
   it("renders accordion items correctly", () => {
     expect.hasAssertions();
@@ -45,8 +42,6 @@ describe("topicsAccordions Component", () => {
     }
   });
 });
-
-// HelpCenterPage tests
 describe("helpCenterPage", () => {
   it("renders Help Center title", () => {
     expect.hasAssertions();
@@ -90,7 +85,6 @@ describe("helpCenterPage", () => {
     expect(contactButton).toBeInTheDocument();
   });
 
-  // Button test
   it("triggers an alert when the Contact Us button is clicked", () => {
     expect.hasAssertions();
     const alertMock = vi.fn();
@@ -102,22 +96,18 @@ describe("helpCenterPage", () => {
     expect(alertMock).toHaveBeenCalledWith("Contact Button Click Test");
   });
 
-  // Responsive test with snapshot
   it("renders correctly at different screen sizes", () => {
     expect.hasAssertions();
     const { container } = render(<HelpCenterPage />);
 
-    // Test for mobile
     global.innerWidth = 320;
     global.dispatchEvent(new Event("resize"));
     expect(container).toMatchSnapshot("mobile");
 
-    // Test for tablet
     global.innerWidth = 768;
     global.dispatchEvent(new Event("resize"));
     expect(container).toMatchSnapshot("tablet");
 
-    // Test for desktop
     global.innerWidth = 1024;
     global.dispatchEvent(new Event("resize"));
     expect(container).toMatchSnapshot("desktop");
