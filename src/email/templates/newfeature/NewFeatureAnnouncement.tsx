@@ -134,7 +134,7 @@ export const NewFeatureAnnouncement = ({
 
             <Section className="flex justify-center">
               <Button
-                className="text-[white] box-border h-11 w-full cursor-pointer items-center justify-center rounded-lg border-0 bg-orange-500 bg-primary px-[16px] py-[8px] text-center font-sans text-base  md:w-auto md:text-[16px]"
+                className="box-border h-11 w-full cursor-pointer items-center justify-center rounded-lg border-0 bg-orange-500 bg-primary px-[16px] py-[8px] text-center font-sans text-base text-[white] md:w-auto md:text-[16px]"
                 href={learnMoreLink}
               >
                 Learn More
