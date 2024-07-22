@@ -32,7 +32,7 @@ const BlogCard = (properties: blogCardProperties) => {
     <div className="flex items-center justify-center">
       <Card
         data-testid="mobile-element"
-        className="flex w-[100%] flex-col-reverse items-center border-none shadow-none md:w-[70%] lg:w-[890px] lg:flex-row"
+        className="flex w-[100%] flex-col-reverse items-center border-none bg-transparent shadow-none md:w-[70%] lg:w-[890px] lg:flex-row"
       >
         <CardHeader className="flex-auto lg:flex-1">
           <div
@@ -41,9 +41,7 @@ const BlogCard = (properties: blogCardProperties) => {
               "items-center gap-1 rounded-full font-semibold",
             )}
           >
-            <span className="mt-1 rounded-full text-[30px] font-bold">
-              &middot;
-            </span>
+            <span className="rounded-full text-[30px] font-bold">&middot;</span>
             <p className="m-0 mt-[2px] text-[10px] uppercase text-neutral-dark-1 sm:text-[12px]">
               {properties.tag}
             </p>
