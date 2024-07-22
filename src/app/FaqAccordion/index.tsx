@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 
 import {
   Accordion,
@@ -12,10 +12,7 @@ interface FaqAccordionProperties {
   answer: string;
 }
 
-const FaqAccordion: React.FC<FaqAccordionProperties> = ({
-  question,
-  answer,
-}) => {
+const FaqAccordion: FC<FaqAccordionProperties> = ({ question, answer }) => {
   return (
     <div className="m-auto h-[128px] w-[384px]">
       <Accordion type="single" collapsible>
