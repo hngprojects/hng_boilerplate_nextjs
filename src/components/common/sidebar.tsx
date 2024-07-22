@@ -31,7 +31,7 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className="sm-[140px] w-[110px] animate-accordion-down cursor-pointer rounded-r-[16px] bg-subtle p-[16px] text-[10px] font-light text-foreground md:w-[304px] md:p-[24px] md:text-[16px]">
+      <div className="w-[110px] cursor-pointer rounded-r-[16px] bg-subtle p-[16px] text-[10px] font-light text-foreground sm:w-[140px] md:w-[304px] md:p-[24px] md:text-[16px]">
         <div className="flex flex-col items-start justify-start gap-[16px] md:gap-[24px]">
           <div
             onClick={() => setHidden((open) => !open)}
@@ -210,6 +210,7 @@ const Sidebar = () => {
 
                 <div className="w-full rounded">
                   <Link
+                    data-testid="role"
                     href="/overview/roles"
                     className={`link ${pathname === "/overview/roles" ? "text-background" : ""}`}
                   >
