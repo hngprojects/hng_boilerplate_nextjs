@@ -1,7 +1,7 @@
 "use client";
 
 import { Orbit, Plus } from "lucide-react";
-import React, { useState } from "react";
+import { FC, useState } from "react";
 
 import Badge from "~/components/common/Badge/Badge";
 import { Breadcrumb } from "~/components/common/Breadcrumb";
@@ -12,7 +12,7 @@ import CustomInput from "~/components/common/Input/input";
 import Sidebar from "~/components/layouts/Sidebar";
 import CharacterLimitTextarea from "../../components/common/CharacterLimitTextarea";
 
-const StyleGuide: React.FC = () => {
+const StyleGuide: FC = () => {
   const [text, setText] = useState("");
 
   const handleTextChange = (newValue: string) => {
