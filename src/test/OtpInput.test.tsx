@@ -44,7 +44,7 @@ vi.mock("~/components/ui/input-otp", () => ({
       maxLength={1}
       value={value[index] || ""}
       onChange={(event) => {
-        const newValue = Array.from(value);
+        const newValue = [...value];
         newValue[index] = event.target.value;
         if (onChange) {
           onChange(newValue.join(""));
@@ -72,5 +72,4 @@ describe("otpInput Component", () => {
     fireEvent.change(input, { target: { value: "12" } });
     expect(input).toHaveValue("");
   });
-
 });
