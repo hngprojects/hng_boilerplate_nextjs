@@ -143,6 +143,9 @@
 .show_scrollbar::-webkit-scrollbar {
   height: 8px;
 }
+.show_scrollbar ::-webkit-scrollbar-thumb {
+  border-radius: 12px;
+}
 .hide_scrollbar::-webkit-scrollbar {
   height: 0.1px;
   width: 0.1px;
