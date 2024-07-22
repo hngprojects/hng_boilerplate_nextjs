@@ -38,7 +38,7 @@ const BlogCard = (properties: blogCardProperties) => {
                 {properties.tag}
               </p>
             </div>
-            <CardTitle className="text-[24px] leading-[2rem] tracking-[20px] text-neutral-dark-1 md:text-[29px] md:leading-[2.5rem]">
+            <CardTitle className="text-[24px] leading-[1rem] tracking-[20px] text-neutral-dark-1 md:text-[29px] md:leading-[2.5rem]">
               {properties.title}
             </CardTitle>
             <CardDescription className="text-[14px] font-normal leading-[21.78px] text-neutral-dark-1 sm:text-[17px]">
