@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-module */
 import type { Config } from "tailwindcss";
 
 const config = {
@@ -22,8 +23,18 @@ const config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
+        toastBg: "hsl(var(--toast-bg))",
+        toastBorder: "hsl(var(--toast-border))",
+        defaultBadgeBg: "hsl(var(--default-badge-bg))",
+        primaryBadgeBg: "hsl(var(--primary-badge-bg))",
+        successBadgeBg: "hsl(var(--success-badge-bg))",
+        errorBadgeBg: "hsl(var(--red-badge-bg))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        default: {
+          DEFAULT: "hsl(var(--default))",
+          foreground: "hsl(var(--default-foreground))",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -34,7 +45,26 @@ const config = {
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
+          hover: "hsl(var(--destructive-hover))",
           foreground: "hsl(var(--destructive-foreground))",
+        },
+        subtle: {
+          DEFAULT: "hsl(var(--subtle))",
+          hover: "hsl(var(--subtle-hover))",
+          foreground: "hsl(var(--subtle-foreground))",
+        },
+        loading: {
+          DEFAULT: "hsl(var(--loading))",
+          hover: "hsl(var(--loading-hover))",
+          foreground: "hsl(var(--loading-foreground))",
+        },
+        outline: {
+          DEFAULT: "hsl(var(--outline))",
+          hover: "hsl(var(--outline-hover))",
+          foreground: "hsl(var(--outline-foreground))",
+        },
+        link: {
+          DEFAULT: "hsl(var(--link))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
@@ -52,6 +82,24 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        error: "hsl(var(--error))",
+        success: "hsl(var(--success))",
+        warning: "hsl(var(--warning))",
+        neutral: {
+          dark: {
+            1: "hsl(var(--neutralColor-dark-1))",
+            2: "hsl(var(--neutralColor-dark-2))",
+          },
+        },
+        stroke: {
+          "colors-stroke": "hsl(var(--stroke-colors-stroke))",
+        },
+        breadcrumb: {
+          page: "hsl(var(--breadcrumb-page))",
+          foreground: "hsl(var(--breadcrumb-foreground))",
+        },
+        desaturatedBlue: "hsl(var(--desaturated-blue))",
+        grey50: "hsl(var(--grey50))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -74,8 +122,11 @@ const config = {
       },
     },
   },
-  // eslint-disable-next-line unicorn/prefer-module
-  plugins: [require("tailwindcss-animate")],
+
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@mertasan/tailwindcss-variables"),
+  ],
 } satisfies Config;
 
 export default config;
