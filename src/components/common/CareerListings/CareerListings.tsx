@@ -17,14 +17,26 @@ type CareerFetchResponse = {
 };
 
 async function getData({ page, limit }: { page: number; limit: number }) {
-  const response = await new Promise<CareerFetchResponse>((resolve) => {
+  const response = await new Promise<CareerFetchResponse>((resolve, reject) => {
+    const total = 25;
     setTimeout(() => {
+      if (page > Math.ceil(total / limit)) {
+        reject({
+          ok: false,
+          data: {
+            page,
+            limit,
+            total,
+            careers: [],
+          },
+        });
+      }
       resolve({
         ok: true,
         data: {
           page,
           limit,
-          total: 30,
+          total: total,
           careers: Array.from({ length: limit }),
         },
       });
