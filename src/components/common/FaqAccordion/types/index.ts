@@ -1,4 +1,4 @@
 export interface FAQACCORDION {
-    question: string;
-    content: string;
+  question: string;
+  content: string;
 }
