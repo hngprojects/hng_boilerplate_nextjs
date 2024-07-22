@@ -17,6 +17,10 @@ jobs:
       - run: pnpm install
       - name: "Test"
         run: pnpm run test:ci -- --max-warnings 0
+      - name: "Build email"
+        run: pnpm email:build
+      - name: "Build project"
+        run: pnpm build
       - name: "Upload Coverage"
         uses: actions/upload-artifact@v4
         with:
