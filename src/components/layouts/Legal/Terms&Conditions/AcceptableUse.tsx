@@ -7,7 +7,10 @@ interface TermsType {
 
 const AcceptableUse = () => {
   return (
-    <div className="flex flex-col items-start justify-start gap-[10px] self-stretch">
+    <div
+      className="flex flex-col items-start justify-start gap-[10px] self-stretch"
+      data-testid="acceptable-use"
+    >
       <h2 className="font-inherit relative mt-0 self-stretch text-2xl font-bold text-inherit sm:text-[28px]">
         Acceptable Use Policy
       </h2>
