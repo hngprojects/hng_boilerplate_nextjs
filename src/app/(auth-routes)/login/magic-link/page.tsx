@@ -17,6 +17,7 @@ import {
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
+import { useToast } from "~/components/ui/use-toast";
 
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -38,6 +39,7 @@ const getInputClassName = (hasError: boolean, isValid: boolean) => {
 
 const LoginMagicLink: React.FC = () => {
   const router = useRouter();
+  const { toast } = useToast();
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -49,8 +51,13 @@ const LoginMagicLink: React.FC = () => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       router.push("/login/magic-link/link-sent");
-    } catch (error) {
-      console.error("Login failed:", error);
+    } catch (error: unknown) {
+      toast({
+        title: "Login failed",
+        description:
+          error instanceof Error ? error.message : "An unknown error occurred",
+        variant: "destructive",
+      });
     }
   };
 

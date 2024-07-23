@@ -18,6 +18,7 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
+import { useToast } from "~/components/ui/use-toast";
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Invalid email format" }),
@@ -43,6 +44,7 @@ const getInputClassName = (hasError: boolean, isValid: boolean) => {
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const { toast } = useToast();
 
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
@@ -53,8 +55,11 @@ const LoginPage = () => {
     },
   });
 
-  const onSubmit = (data: LoginFormData) => {
-    console.log("Form submitted:", data);
+  const onSubmit = () => {
+    toast({
+      title: "Login successful",
+      description: "You have been logged in successfully.",
+    });
   };
 
   const togglePasswordVisibility = () => {
