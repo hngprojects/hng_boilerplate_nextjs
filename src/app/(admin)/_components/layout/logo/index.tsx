@@ -5,16 +5,19 @@ const DashboardLogo = () => {
   return (
     <Link
       href="/"
-      className="h-[37px] w-full max-w-[80px] md:h-[52px] md:max-w-[160px]"
+      className="flex w-full max-w-[24px] items-center justify-center gap-2.5 py-[14px] md:justify-start"
       data-testid="logo"
     >
       <Image
-        src="/logo/dashboard-logo.png"
+        src="/logo/logo.png"
         alt="Hgn boiler plate logo"
-        height={30}
-        width={160}
+        height={24}
+        width={24}
         className="h-full w-full object-contain"
       />
+      <span className="neutral-dark hidden text-2xl font-semibold md:block">
+        Boilerplate
+      </span>
     </Link>
   );
 };
