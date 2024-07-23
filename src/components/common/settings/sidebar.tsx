@@ -9,6 +9,7 @@ import {
   LucideIcon,
   User,
   UserPlus,
+  Users,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -26,21 +27,21 @@ type SettingsSidebarProperties = {
 const Settings_Sidebar_Links: SettingsSidebarProperties[] = [
   {
     id: 1,
-    label: "Profile",
+    label: "General",
     icon: User,
-    link: "profile",
+    link: "general",
   },
   {
     id: 2,
-    label: "account-security",
+    label: "Account",
     icon: UserPlus,
-    link: "account-security",
+    link: "account",
   },
   {
     id: 3,
-    label: "Notification Settings",
+    label: "Notification",
     icon: Bell,
-    link: "notification-settings",
+    link: "notification",
   },
   {
     id: 4,
@@ -62,6 +63,27 @@ const Settings_Sidebar_Links: SettingsSidebarProperties[] = [
   },
 ];
 
+const Settings_Sidebar_Organization_Links: SettingsSidebarProperties[] = [
+  {
+    id: 1,
+    label: "Members",
+    icon: Users,
+    link: "members",
+  },
+  {
+    id: 2,
+    label: "Roles and Permissions",
+    icon: Bell,
+    link: "roles-ad-permissions",
+  },
+  {
+    id: 3,
+    label: "Integrations",
+    icon: Banknote,
+    link: "integrations",
+  },
+];
+
 const SettingsSidebar = () => {
   const [activeLink, setActiveLink] = useState("");
   const router = useRouter();
@@ -72,8 +94,8 @@ const SettingsSidebar = () => {
     if (currentPath) setActiveLink(currentPath);
   }, [currentPath]);
   return (
-    <section className="group fixed left-0 top-0 z-[50] hidden h-screen w-[0px] select-none flex-col items-center gap-y-4 overflow-hidden rounded-t-[16px] bg-[#FAFAFA] py-6 transition-all duration-300 hover:w-[270px] hover:p-4 md:flex md:w-[96px] min-[1140px]:w-[270px] min-[1140px]:p-4">
-      <ul className="flex flex-col gap-y-4 pt-8">
+    <section className="group absolute left-0 top-0 z-[50] hidden h-screen w-[0px] select-none flex-col items-center gap-y-4 rounded-t-[16px] bg-[#FAFAFA] py-6 transition-all duration-300 hover:w-[340px] md:flex md:w-[96px] min-[1140px]:w-[340px] min-[1140px]:p-4 min-[1140px]:pt-[70px]">
+      <ul className="flex w-[100%] flex-col gap-y-4 pb-[30px] pt-8">
         <div className="items-center">
           <button
             className={cn(
@@ -82,9 +104,12 @@ const SettingsSidebar = () => {
             onClick={() => router.back()}
           >
             <ChevronLeft size={24} />
-            <h2>Settings</h2>
+            <h2 className="font-semibold tracking-wider">Settings</h2>
           </button>
         </div>
+        <h1 className="pl-[20px] pt-[30px] text-[16px] font-semibold tracking-wider text-neutral-500">
+          Profile
+        </h1>
         {Settings_Sidebar_Links.map((link) => (
           <Link
             href={`/settings/${link.link}`}
@@ -97,7 +122,38 @@ const SettingsSidebar = () => {
             }}
             aria-label={link.label}
             className={cn(
-              "flex h-[52px] cursor-pointer items-center gap-x-3 rounded-md px-3 py-2 text-base font-medium text-[#3a3a3a] transition-colors duration-300",
+              "flex h-[52px] cursor-pointer items-center gap-x-3 rounded-md px-3 py-2 text-[16px] font-medium text-[#3a3a3a] transition-colors duration-300",
+              activeLink === link.link
+                ? "rounded bg-[#f97316] text-white outline-none"
+                : "focus-visible:outline-primary-light hover:bg-[#f97316]/30 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2",
+            )}
+          >
+            <link.icon size={24} aria-hidden />
+
+            <span className="w-[80%] group-hover:block max-[1139px]:hidden">
+              {link.label}
+            </span>
+          </Link>
+        ))}
+        <hr className="mt-[20px] border-gray-300 px-[5px]" />
+
+        <h1 className="pl-[20px] pt-[30px] text-[16px] font-semibold tracking-wider text-neutral-500">
+          Organizations
+        </h1>
+
+        {Settings_Sidebar_Organization_Links.map((link) => (
+          <Link
+            href={`/settings/${link.link}`}
+            key={link.id}
+            aria-current={activeLink === link.link ? "page" : undefined}
+            onKeyUp={(t) => {
+              if (t.key === "Enter" || t.key === " ") {
+                setActiveLink(link.link);
+              }
+            }}
+            aria-label={link.label}
+            className={cn(
+              "flex h-[52px] cursor-pointer items-center gap-x-3 rounded-md px-3 py-2 text-[16px] font-medium text-[#3a3a3a] transition-colors duration-300",
               activeLink === link.link
                 ? "rounded bg-[#f97316] text-white outline-none"
                 : "focus-visible:outline-primary-light hover:bg-[#f97316]/30 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2",

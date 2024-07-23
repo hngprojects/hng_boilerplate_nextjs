@@ -1,5 +1,5 @@
 import SettingsSidebar from "~/components/common/settings/sidebar";
-import Navbar from "~/components/layouts/Navbar";
+import Navbar from "~/components/layouts/Navbar/NavbarLoggedIn/Navbar";
 
 export default function SettingsLayout({
   children,
@@ -10,8 +10,8 @@ export default function SettingsLayout({
     <>
       <Navbar />
       <SettingsSidebar />
-      <section className="relative w-full overflow-x-hidden md:pl-[126px] min-[1140px]:pl-[290px]">
-        <div className="relative flex h-full w-full flex-col md:pt-0">
+      <section className="relative w-full overflow-x-hidden md:pl-[126px] min-[1140px]:pl-[340px]">
+        <div className="relative flex h-full w-full flex-col md:pt-[70px]">
           {children}
         </div>
       </section>

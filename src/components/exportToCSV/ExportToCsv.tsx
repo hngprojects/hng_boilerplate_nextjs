@@ -25,10 +25,12 @@ export default function ExportToCsv({ members }: Properties) {
   };
 
   return (
-    <div className="flex w-full flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+    <div className="flex w-full flex-col gap-[100px] lg:flex-row lg:items-center lg:justify-between">
       <div className="flex flex-col gap-2 lg:w-4/5">
-        <h1 className="text-2xl font-medium">Export Members List</h1>
-        <p className="text-base">
+        <h1 className="text-[18px] font-medium text-[#525252]">
+          Export Members List
+        </h1>
+        <p className="text-[14px] text-[#525252]">
           Export a CSV with information of all members of your team
         </p>
       </div>
