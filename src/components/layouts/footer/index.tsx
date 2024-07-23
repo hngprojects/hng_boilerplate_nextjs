@@ -1,5 +1,3 @@
-import CustomButton from "@/components/common/button/button";
-import { Input } from "@/components/ui/input";
 import {
   Copyright,
   Facebook,
@@ -9,6 +7,9 @@ import {
   Youtube,
 } from "lucide-react";
 import Link from "next/link";
+
+import CustomButton from "~/components/common/button/button";
+import { Input } from "~/components/ui/input";
 
 const Footer = () => {
   const footerLinks = [

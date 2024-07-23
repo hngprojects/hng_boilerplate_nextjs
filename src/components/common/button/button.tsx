@@ -1,4 +1,3 @@
-import { Button } from "@/components/common/button";
 import { LoaderCircle, Plus } from "lucide-react";
 import Link from "next/link";
 import {
@@ -8,6 +7,8 @@ import {
   ReactElement,
   ReactNode,
 } from "react";
+
+import { Button } from "~/components/common/button";
 
 type Variant =
   | "default"

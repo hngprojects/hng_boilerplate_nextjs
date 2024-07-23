@@ -1,10 +1,11 @@
 "use client";
 
-import CustomButton from "@/components/common/button/button";
-import Logo from "@/components/common/logo";
 import { BellIcon, Menu, User } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+
+import CustomButton from "~/components/common/button/button";
+import Logo from "~/components/common/logo";
 
 const navlinks = [
   { route: "Home", link: "/" },
