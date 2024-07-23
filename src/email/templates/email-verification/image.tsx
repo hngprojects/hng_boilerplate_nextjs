@@ -4,6 +4,7 @@ import {
   Head,
   Heading,
   Html,
+  Img,
   Link,
   Preview,
   Section,
@@ -15,6 +16,7 @@ import TailwindWrapper from "../_tailwindWrapper";
 interface IProperties {
   title: string;
   username: string;
+  image: string;
   statementOne: string;
   statementTwo: string;
   statementThree: string;
@@ -26,6 +28,7 @@ export default function Email(properties: IProperties) {
   const {
     title,
     username,
+    image,
     statementOne,
     statementTwo,
     statementThree,
@@ -40,6 +43,19 @@ export default function Email(properties: IProperties) {
         <Preview>Password Reset for {username}</Preview>
         <Column align="center" className="px-14">
           <Section className="w-full max-w-[678px] py-12 md:py-14">
+            <Section className="mb-10 md:mb-14">
+              <Column align="center">
+                <div className="md:h[178px] h-[142px] w-full max-w-[142px] md:max-w-[178px]">
+                  <Img
+                    src={image}
+                    alt="email verification"
+                    width="178"
+                    height="178"
+                    className="h-full w-full object-contain"
+                  />
+                </div>
+              </Column>
+            </Section>
             <Heading
               as="h1"
               className="text-center text-[20px] text-[#0A0A0A] md:text-2xl"
@@ -98,6 +114,7 @@ export default function Email(properties: IProperties) {
 Email.PreviewProps = {
   title: "Introducing Our Latest Feature:",
   username: "John Doe",
+  image: "https://i.imgur.com/p66l3SQ.png",
   statementOne:
     "is designed to help you create shared spaces for collaboration. Invite team members, share files, and work together seamlessly. From project planning to brainstorming sessions, collaborative spaces foster productivity.. Whether you’re a seasoned user or just getting started, this enhancement will transform your experience.",
   statementTwo:

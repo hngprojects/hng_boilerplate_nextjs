@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 
-// import AdminNavbar from "~/components/superadminlayout/navbar/AdminNavbar";
+import DashboardNavbar from "./_components/layout/navbar";
 
 export default function AdminLayout({
   children,
@@ -8,12 +8,13 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="md:grid-cols-[252px_1fr]x lg:grid-cols-[252px_1fr]x grid min-h-[100dvh] grid-rows-[auto_1fr]">
-      {/* <div className="hidden border-r bg-muted/40 md:block" /> */}
-      {/* <AdminNavbar /> */}
-
-      <div className="relative w-full bg-white px-2 max-lg:overflow-hidden xl:px-4">
-        <Suspense>{children}</Suspense>
+    <div className="grid min-h-screen grid-cols-[60px_1fr] md:grid-cols-[252px_1fr]">
+      <div className="border-r bg-muted/40 md:block" />
+      <div className="grid grid-rows-[auto_1fr]">
+        <DashboardNavbar />
+        <div className="p-8">
+          <Suspense>{children}</Suspense>
+        </div>
       </div>
     </div>
   );
