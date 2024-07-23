@@ -1,10 +1,9 @@
 function ForgotPassword() {
-  return(
-  <>
-<div>Reset Password</div>
-  <>
-
-  )
+  return (
+    <>
+      <div>forgot password</div>
+    </>
+  );
 }
 
-export default ForgotPassword
+export default ForgotPassword;
