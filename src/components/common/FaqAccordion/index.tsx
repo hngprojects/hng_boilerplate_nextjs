@@ -1,4 +1,8 @@
-import React from "react";
+import {
+  AccordionContentProps,
+  AccordionTriggerProps,
+} from "@radix-ui/react-accordion";
+import clsx from "clsx";
 
 import {
   Accordion,
@@ -6,25 +10,52 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "~/components/ui/accordion";
+import { FAQACCORDION } from "./types";
 
 interface FaqAccordionProperties {
-  question: string;
-  answer: string;
+  faqs: FAQACCORDION[];
+  containerClassName?: HTMLDivElement["className"];
+  triggerClassName?: AccordionTriggerProps["className"];
+  contentClassName?: AccordionContentProps["className"];
 }
 
-const FaqAccordion: React.FC<FaqAccordionProperties> = ({
-  question,
-  answer,
-}) => {
+const FaqAccordion = ({
+  faqs,
+  triggerClassName,
+  contentClassName,
+  containerClassName,
+}: FaqAccordionProperties) => {
   return (
-    <div className="m-auto w-full max-md:w-[80%]">
-      <Accordion className="bg-white" type="single" collapsible>
-        <AccordionItem value="item-1">
-          <AccordionTrigger className="p-6 text-xl font-normal hover:no-underline">
-            {question}
-          </AccordionTrigger>
-          <AccordionContent className="p-6">{answer}</AccordionContent>
-        </AccordionItem>
+    <div
+      role="region"
+      className={clsx(
+        "inline-flex w-full flex-col items-start justify-start rounded-xl bg-neutral-50 p-6 md:max-w-[590px]",
+        containerClassName,
+      )}
+    >
+      <Accordion type="single" collapsible className="w-full">
+        {faqs.map((faq, index) => {
+          return (
+            <AccordionItem key={faq.question} value={`item-${index}`}>
+              <AccordionTrigger
+                className={clsx(
+                  "text-left text-base font-medium leading-normal text-neutral-950 hover:no-underline",
+                  triggerClassName,
+                )}
+              >
+                {faq.question}
+              </AccordionTrigger>
+              <AccordionContent
+                className={clsx(
+                  "text-sm font-normal leading-tight text-neutral-950",
+                  contentClassName,
+                )}
+              >
+                {faq.content}
+              </AccordionContent>
+            </AccordionItem>
+          );
+        })}
       </Accordion>
     </div>
   );

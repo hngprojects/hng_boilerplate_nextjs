@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import FaqAccordion from "../FaqAccordion";
+import FaqAccordion from "~/app/FaqAccordion";
 import Search from "../SearchFaq";
 
 export default function Faqs() {
