@@ -4,12 +4,12 @@ import { BellIcon, Menu, User } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import CustomButton from "~/components/common/button/button";
+import CustomButton from "~/components/common/common-button/common-button";
 import Logo from "~/components/common/logo";
 
 const navlinks = [
   { route: "Home", link: "/" },
-  { route: "Pricing", link: "/" },
+  { route: "Pricing", link: "/pricing" },
   { route: "Features", link: "/" },
 ];
 

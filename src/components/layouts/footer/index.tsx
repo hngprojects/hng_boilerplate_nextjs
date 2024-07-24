@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-import CustomButton from "~/components/common/button/button";
+import CustomButton from "~/components/common/common-button/common-button";
 import { Input } from "~/components/ui/input";
 
 const Footer = () => {
@@ -17,27 +17,27 @@ const Footer = () => {
       title: "Navigation",
       links: [
         { route: "Home", link: "/" },
-        { route: "About us", link: "/" },
-        { route: "Career", link: "/" },
+        { route: "About us", link: "/about-us" },
+        { route: "Career", link: "/career" },
         { route: "Feature updates", link: "/" },
-        { route: "Blog", link: "/" },
+        { route: "Blog", link: "/blog" },
       ],
     },
     {
       title: "Support",
       links: [
         { route: "Help center", link: "/" },
-        { route: "FAQ", link: "/" },
-        { route: "waiting list", link: "/" },
-        { route: "Pricing Experience", link: "/" },
+        { route: "FAQ", link: "/faqs" },
+        { route: "waiting list", link: "/waitlist" },
+        { route: "Pricing Experience", link: "/pricing" },
         { route: "Contact Us", link: "/" },
       ],
     },
     {
       title: "Legal",
       links: [
-        { route: "Privacy Policy", link: "/" },
-        { route: "Terms and condition", link: "/" },
+        { route: "Privacy Policy", link: "/privacy-policy" },
+        { route: "Terms and condition", link: "/terms-and-conditions" },
       ],
     },
   ];
