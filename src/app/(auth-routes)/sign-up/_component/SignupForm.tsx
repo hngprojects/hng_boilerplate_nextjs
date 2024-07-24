@@ -4,7 +4,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { z, ZodType } from "zod";
 
-import CustomButton from "~/components/common/Button/button";
+import CustomButton from "~/components/common/common-button/common-button";
 
 interface IData {
   fullName: string;
