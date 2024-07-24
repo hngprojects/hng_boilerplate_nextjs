@@ -1,7 +1,7 @@
 import React from "react";
 
 import Faqs from "~/components/common/Faqs";
-import AdditionalInquiriesForm from "../inquiries-form/AdditionalInquiriesForm";
+import AdditionalInquiriesForm from "./inquiries-form/AdditionalInquiriesForm";
 
 const faq: React.FC = () => {
   return (
