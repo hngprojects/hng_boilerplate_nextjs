@@ -2,8 +2,7 @@ import { FC } from "react";
 
 import { Card, CardContent, CardFooter } from "~/components/ui/card";
 import { Skeleton } from "~/components/ui/skeleton";
-import CustomButton from "../button/button";
-
+import CustomButton from "../common-button/common-button";
 
 interface CareerCardProperties {
   isLoading: boolean;
