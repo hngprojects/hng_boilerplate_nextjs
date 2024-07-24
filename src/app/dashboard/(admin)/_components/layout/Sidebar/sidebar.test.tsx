@@ -1,7 +1,7 @@
+import Sidebar from ".";
 import { Box, House, Mail, Settings, Users } from "lucide-react";
 
 import { render, screen } from "~/test/utils";
-import Sidebar from ".";
 
 const sideItems = [
   {
