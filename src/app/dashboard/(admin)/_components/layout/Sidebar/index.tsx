@@ -1,6 +1,14 @@
 "use client";
 
-import { Box, House, LucideProps, Mail, Settings, Users } from "lucide-react";
+import {
+  Box,
+  House,
+  List,
+  LucideProps,
+  Mail,
+  Settings,
+  Users,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FC, ForwardRefExoticComponent, RefAttributes } from "react";
@@ -10,43 +18,43 @@ import DashboardLogo from "../logo";
 const sideItems = [
   {
     route: "Dashboard",
-    link: "/admin/dashboard",
+    link: "/dashboard/admin/dashboard",
     icon: House,
     id: "dashboard",
   },
   {
     route: "Products",
-    link: "/admin/products",
+    link: "/dashboard/admin/products",
     icon: Box,
     id: "products",
   },
   {
     route: "Users",
-    link: "/admin/users",
+    link: "/dashboard/admin/users",
     icon: Users,
     id: "users",
   },
   {
     route: "Email Templates",
-    link: "/admin/email",
+    link: "/dashboard/admin/email",
     icon: Mail,
     id: "email",
   },
   {
     route: "Squeeze Pages",
-    link: "/admin/squeeze-pages",
+    link: "/dashboard/admin/squeeze-pages",
     icon: Users,
     id: "squeeze",
   },
   {
     route: "Waitlist Page",
-    link: "/admin/waitlist-page",
-    icon: Mail,
+    link: "/dashboard/admin/waitlist-page",
+    icon: List,
     id: "waitlist",
   },
   {
     route: "Settings",
-    link: "/admin/settings",
+    link: "/dashboard/admin/settings",
     icon: Settings,
     id: "settings",
   },
