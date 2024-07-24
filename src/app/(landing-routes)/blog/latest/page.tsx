@@ -1,5 +1,5 @@
 import BlogCard from "~/components/common/blogCard/BlogCard";
-import CustomButton from "~/components/common/Button/button";
+import CustomButton from "~/components/common/common-button/common-button";
 import { articlesData } from "./data/dummy-article-data";
 
 const LatestArticlesPage = () => {

@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import CustomButton from "~/components/common/button/button";
+import CustomButton from "~/components/common/common-button/common-button";
 import { blogHero } from "../../../../public/images/blogPage/utils";
 
 const HeroSection: React.FC = () => {
