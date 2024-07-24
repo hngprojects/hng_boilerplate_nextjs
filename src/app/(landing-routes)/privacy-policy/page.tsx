@@ -7,10 +7,8 @@ import PrivacyPolicyContent from "~/components/layouts/Legal/PrivacyPolicy/Priva
 import SubPageHero from "~/components/layouts/Legal/Terms&Conditions/SubPageHero";
 import TableOfContent from "~/components/layouts/Legal/TableOfContent";
 
-
-
 export default function PrivacyPolicy() {
-  const tableOfContents = getTableOfContents(privacyPolicyData); 
+  const tableOfContents = getTableOfContents(privacyPolicyData);
 
   useEffect(() => {
     const scrollClasses = [
@@ -27,9 +25,6 @@ export default function PrivacyPolicy() {
     };
   }, []);
 
-  // 
-
-
   return (
     <main className="">
       <SubPageHero
@@ -40,17 +35,18 @@ export default function PrivacyPolicy() {
       <div className="mx-auto max-w-7xl px-5 md:px-10 lg:px-10 xl:px-10 py-20 ">
         <Breadcrumb variant="primary" />
 
-        <section className="flex max-w-full flex-col-reverse items-start justify-between pb-10 lg:flex-row my-[70px]" >
+        <section className="flex max-w-full flex-col-reverse items-start justify-between pb-10 lg:flex-row my-[70px]">
           <PrivacyPolicyContent
             content={privacyPolicyData}
             className="text-neutral-dark-1 lg:w-[750px]"
+            data-testid="privacy-policy-content"
           />
 
           <TableOfContent
             listOfContent={tableOfContents}
             className="p-[10px] text-neutral-dark-1 max-lg:mb-14 lg:sticky lg:top-20 lg:w-[350px]"
+            data-testid="table-of-content"
           />
-
         </section>
       </div>
     </main>

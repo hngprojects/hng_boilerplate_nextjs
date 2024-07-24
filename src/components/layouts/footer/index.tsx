@@ -36,8 +36,8 @@ const Footer = () => {
     {
       title: "Legal",
       links: [
-        { route: "Privacy Policy", link: "/" },
-        { route: "Terms and condition", link: "/" },
+        { route: "Privacy Policy", link: "/privacy-policy" },
+        { route: "Terms and condition", link: "/terms-and-conditions" },
       ],
     },
   ];
