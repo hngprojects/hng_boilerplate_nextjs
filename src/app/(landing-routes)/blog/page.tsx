@@ -65,11 +65,11 @@ const BlogHome = () => {
   return (
     <div>
       <HeroSection />
-      <div className="container flex flex-col">
+      <div className="flex w-full flex-col px-[5%]">
         <h1 className="mb-6 mt-12 text-3xl font-bold text-[#525252]">
           Recent Blog Posts
         </h1>
-        <div className="container grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {blogPosts.map((post, index) => (
             <BlogCard
               key={index}
@@ -88,7 +88,7 @@ const BlogHome = () => {
           variant="primary"
           size="lg"
           ariaLabel="Show More Articles"
-          href="#"
+          href="/blog/latest"
         >
           Show More Articles
         </CustomButton>
