@@ -2,8 +2,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Loader2, X } from "lucide-react";
 import { useTransition } from "react";
 
-import { Button } from "~/components/common/button";
 import BlurImage from "~/components/miscellaneous/blur-image";
+import { Button } from "~/components/ui/button";
 import { toast } from "~/components/ui/use-toast";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { useProducts } from "~/hooks/admin-product/use-products.persistence";
