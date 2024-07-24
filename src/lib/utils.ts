@@ -26,10 +26,9 @@ export function formatPrice(
 
 const letters = "!ABCDEFGHIJKLMNOPQRSTUVWXYZ#";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const handleMouseEnter = (element: any) => {
-  if (!element) return;
-  element = element.target as HTMLElement;
+export const handleMouseEnter = (event: MouseEvent) => {
+  if (!event) return;
+  const element = event.target as HTMLDivElement;
   let iteration: number = 0;
   const speed: number = element.dataset.value!.length > 7 ? 30 : 60;
 
@@ -46,7 +45,8 @@ export const handleMouseEnter = (element: any) => {
     const deltaTime = timestamp - lastTimestamp;
 
     if (deltaTime >= speed) {
-      element.textContent = [...element.textContent!]
+      // @ts-expect-error Hacking the type
+      element!.textContent! = [...element!.textContent!]
         .map((_: string, index: number) => {
           if (index < iteration) {
             return element.dataset.value![index];

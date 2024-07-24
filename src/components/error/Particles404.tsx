@@ -24,6 +24,7 @@ const Particles404 = () => {
       <header className="absolute left-0 top-0 w-full bg-white px-10 py-8 font-medium uppercase text-[#f97415] md:text-3xl">
         <h1
           className=""
+          // @ts-expect-error Hacking the type
           onMouseEnter={handleMouseEnter}
           data-value="HNG-BOILERPLATE"
         >
@@ -33,6 +34,7 @@ const Particles404 = () => {
       <div className="absolute bottom-10 left-10 font-sans text-2xl uppercase">
         <p
           className="font-bold text-[#f97415] md:text-6xl lg:text-9xl xl:text-[10rem]"
+          // @ts-expect-error Hacking the type
           onMouseEnter={handleMouseEnter}
           data-value="404!!"
         >
