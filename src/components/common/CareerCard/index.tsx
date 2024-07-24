@@ -16,7 +16,6 @@ const CareerCardParent: FC = () => {
   }, []);
 
   return (
-    <div className="mx-auto flex items-center justify-center px-5">
       <CareerCard
         isLoading={isLoading}
         jobTitle="Frontend Developer"
@@ -24,7 +23,6 @@ const CareerCardParent: FC = () => {
         description="We are seeking a talented Frontend Developer to join our dynamic team. The ideal candidate will have strong skills in React, TypeScript, and modern CSS frameworks."
         amount="$120,000"
       />
-    </div>
   );
 };
 
