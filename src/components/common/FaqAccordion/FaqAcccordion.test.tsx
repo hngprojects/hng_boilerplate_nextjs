@@ -1,8 +1,7 @@
-/* eslint-disable prettier/prettier */
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import FaqAccordion from ".";
+import FaqAccordion from "../FaqAccordion/index";
 import { FAQACCORDION } from "./types";
 
 const faqs: FAQACCORDION[] = [
@@ -28,12 +27,11 @@ describe("faqAccordion", () => {
     expect.hasAssertions();
     render(<FaqAccordion faqs={faqs} />);
 
-    // Check if the questions are rendered
     for (const faq of faqs) {
       expect(screen.getByText(faq.question)).toBeInTheDocument();
     }
   });
-  
+
   it("renders correctly for different screen sizes", () => {
     expect.hasAssertions();
     render(
@@ -43,7 +41,6 @@ describe("faqAccordion", () => {
       />,
     );
 
-    // Check if the container class includes responsive width
     const container = screen.getByRole("region");
     expect(container).toHaveClass("w-full");
     expect(container).toHaveClass("md:max-w-[590px]");
