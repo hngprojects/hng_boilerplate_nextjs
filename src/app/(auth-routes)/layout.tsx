@@ -5,7 +5,9 @@ function Layout({ children }) {
   return (
     <>
       <Navbar />
-      <div className="mx-auto w-5/6">{children}</div>
+      <div className="mx-auto mb-[133px] mt-[85px] flex justify-center px-6">
+        {children}
+      </div>
       <Footer />
     </>
   );
