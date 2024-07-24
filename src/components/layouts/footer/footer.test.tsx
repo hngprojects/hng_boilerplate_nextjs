@@ -1,4 +1,5 @@
 import Footer from ".";
+
 import { render } from "~/test/utils";
 
 describe("page tests", () => {
