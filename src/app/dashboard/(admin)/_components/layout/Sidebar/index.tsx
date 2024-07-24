@@ -87,11 +87,7 @@ const Sidebar: FC<Iproperties> = ({
             href={item.link}
             data-testid={item.id}
             role="sidebar-link"
-<<<<<<< Updated upstream:src/app/dashboard/(admin)/_components/layout/Sidebar/index.tsx
             className={`${currenPathName || currentPath === item.id ? "bg-primary text-white" : "bg-transparent text-neutral-dark-2 hover:bg-gray-200"} flex items-center justify-center gap-2.5 rounded-full px-2.5 py-3 text-sm transition-all duration-300 ease-in md:h-auto md:w-auto md:justify-start md:rounded-sm`}
-=======
-            className={`${currenPathName || currentPath === item.id ? "bg-primary text-white" : "bg-transparent text-neutral-dark-2 hover:bg-gray-200"} flex items-center justify-center gap-2.5 rounded-full px-2.5 py-3 text-sm transition-all duration-300 ease-in md:h-auto md:w-auto md:justify-start md:rounded-[8px]`}
->>>>>>> Stashed changes:src/app/(admin)/_components/layout/Sidebar/index.tsx
           >
             <item.icon className="h-5 w-5" role="sidebar-icon" />
             <span className="hidden md:block">{item.route}</span>
