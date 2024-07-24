@@ -6,8 +6,8 @@ import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { Button } from "~/components/common/Button";
-import Logo from "~/components/common/Logo/logo";
+import Logo from "~/components/common/logo/logo";
+import { Button } from "~/components/ui/button";
 
 const test = () => {
   const { data: session } = useSession();
