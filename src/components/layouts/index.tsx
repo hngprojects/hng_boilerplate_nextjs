@@ -1,7 +1,7 @@
 import React from "react";
 
-import Footer from "./Footer";
-import Navbar from "./Navbar";
+import Footer from "./footer";
+import Navbar from "./navbar";
 
 interface IProperties {
   children: React.ReactNode;
@@ -9,7 +9,7 @@ interface IProperties {
 
 const index: React.FC<IProperties> = ({ children }) => {
   return (
-    <div className="flex min-h-screen flex-col justify-between">
+    <div className="flex min-h-[100dvh] flex-col justify-between">
       <Navbar />
       <div className="flex-1">{children}</div>
       <Footer />
