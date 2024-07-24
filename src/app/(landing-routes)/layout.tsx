@@ -1,5 +1,6 @@
 import Footer from "~/components/layouts/footer";
 import Navbar from "~/components/layouts/navbar";
+import GotoTop from "~/components/miscellaneous/goto-top";
 
 export default function HomeLayout({
   children,
@@ -11,6 +12,7 @@ export default function HomeLayout({
       <Navbar />
       <div className="flex-1">{children}</div>
       <Footer />
+      <GotoTop />
     </div>
   );
 }

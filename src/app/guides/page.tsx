@@ -6,7 +6,6 @@ import { FC } from "react";
 import CustomButton from "~/components/common/button/button";
 
 const StyleGuide: FC = () => {
-
   return (
     <main className="flex min-h-screen flex-col items-start gap-7 overflow-hidden p-6 sm:p-12 md:p-24">
       <h2 className="text-2xl font-semibold">Color Guides</h2>
