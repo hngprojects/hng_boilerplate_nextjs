@@ -4,7 +4,6 @@ import { Card, CardContent, CardFooter } from "~/components/ui/card";
 import { Skeleton } from "~/components/ui/skeleton";
 import CustomButton from "../button/button";
 
-
 interface CareerCardProperties {
   isLoading: boolean;
   jobTitle?: string;
