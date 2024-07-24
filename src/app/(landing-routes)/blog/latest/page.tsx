@@ -7,7 +7,7 @@ const LatestArticlesPage = () => {
 
   return (
     <>
-      <main className="mx-auto max-w-6xl px-5 py-5 md:px-10 md:py-5">
+      <main className="mx-auto px-5 py-5 md:px-10 md:py-5">
         <h1 className="text-[28px] font-[700] leading-[33.89px] text-neutral-dark-1 md:text-center md:text-[30px] md:leading-[43.57px] lg:text-[36px]">
           Latest Articles
         </h1>
@@ -27,7 +27,7 @@ const LatestArticlesPage = () => {
 
               return (
                 <div
-                  className="mx-auto w-fit border-b-neutral-dark-1 md:border-b"
+                  className="mx-auto flex w-full items-center justify-center"
                   key={index}
                 >
                   <BlogCard
