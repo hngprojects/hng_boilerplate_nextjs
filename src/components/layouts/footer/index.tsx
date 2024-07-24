@@ -29,8 +29,8 @@ const Footer = () => {
         { route: "Help center", link: "/" },
         { route: "FAQ", link: "/faqs" },
         { route: "waiting list", link: "/waitlist" },
-        { route: "Pricing Experience", link: "/" },
-        { route: "Contact Us", link: "/contact-us" },
+        { route: "Pricing Experience", link: "/pricing" },
+        { route: "Contact Us", link: "/" },
       ],
     },
     {
