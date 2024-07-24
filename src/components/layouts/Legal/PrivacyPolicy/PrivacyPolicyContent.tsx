@@ -41,7 +41,10 @@ export default function PrivacyPolicyContent({
   };
 
   return (
-    <div className={cn("space-y-6 md:space-y-10", className)}>
+    <div
+      data-testid="privacy-policy-content"
+      className={cn("space-y-6 md:space-y-10", className)}
+    >
       {content.map((section) => (
         <div key={section.id} className="space-y-[10px]">
           <h4
