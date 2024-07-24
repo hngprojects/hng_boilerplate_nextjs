@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 const useWindowWidth = () => {
   const [winWidth, setWinWidth] = useState(0);
   useEffect(() => {
-    setTimeout(() => {
+    const timeOut = setTimeout(() => {
       setWinWidth(window.innerWidth);
     }, 500);
     const handleResize = () => {
@@ -14,6 +14,7 @@ const useWindowWidth = () => {
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
+      clearTimeout(timeOut);
     };
   }, []);
 
