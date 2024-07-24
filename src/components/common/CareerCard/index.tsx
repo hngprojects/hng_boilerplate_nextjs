@@ -16,13 +16,13 @@ const CareerCardParent: FC = () => {
   }, []);
 
   return (
-      <CareerCard
-        isLoading={isLoading}
-        jobTitle="Frontend Developer"
-        location="San Francisco, CA"
-        description="We are seeking a talented Frontend Developer to join our dynamic team. The ideal candidate will have strong skills in React, TypeScript, and modern CSS frameworks."
-        amount="$120,000"
-      />
+    <CareerCard
+      isLoading={isLoading}
+      jobTitle="Frontend Developer"
+      location="San Francisco, CA"
+      description="We are seeking a talented Frontend Developer to join our dynamic team. The ideal candidate will have strong skills in React, TypeScript, and modern CSS frameworks."
+      amount="$120,000"
+    />
   );
 };
 
