@@ -6,4 +6,7 @@
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": "always"
     },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    },
 }
