@@ -2,7 +2,7 @@ import Footer from "~/components/layouts/footer";
 import Navbar from "~/components/layouts/navbar";
 import GotoTop from "~/components/miscellaneous/goto-top";
 
-export default function HomeLayout({
+export default function LandingLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
