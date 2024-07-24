@@ -101,23 +101,18 @@ describe("loginPage", () => {
     render(<LoginPage />);
 
     const passwordInput = screen.getByPlaceholderText("Enter Password");
-    const toggleButton = screen.getByRole("button", { name: "" }); // The toggle button doesn't have a name
+    const toggleButton = screen.getByRole("button", { name: "" });
 
-    // Initially, the password should be hidden
     expect(passwordInput).toHaveAttribute("type", "password");
     expect(screen.getByTestId("eye-off-icon")).toBeInTheDocument();
 
-    // Click the toggle button
     fireEvent.click(toggleButton);
 
-    // Now, the password should be visible
     expect(passwordInput).toHaveAttribute("type", "text");
     expect(screen.getByTestId("eye-icon")).toBeInTheDocument();
 
-    // Click the toggle button again
     fireEvent.click(toggleButton);
 
-    // The password should be hidden again
     expect(passwordInput).toHaveAttribute("type", "password");
     expect(screen.getByTestId("eye-off-icon")).toBeInTheDocument();
   });
@@ -175,7 +170,6 @@ describe("loginPage", () => {
 
     fireEvent.click(submitButton);
 
-    // Use vi.waitFor instead of Testing Library's waitFor
     // eslint-disable-next-line testing-library/await-async-utils
     vi.waitFor(
       () => {

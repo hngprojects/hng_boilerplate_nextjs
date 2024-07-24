@@ -98,7 +98,10 @@ const LoginMagicLink: React.FC = () => {
                       {...field}
                     />
                   </FormControl>
-                  <FormMessage className="mt-1 text-sm" />
+                  <FormMessage
+                    className="mt-1 text-sm"
+                    data-testid="email-error"
+                  />
                 </FormItem>
               )}
             />
