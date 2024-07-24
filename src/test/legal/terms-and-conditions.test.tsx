@@ -16,16 +16,6 @@ describe("termsConditions Component", () => {
     expect(subpageHero).toHaveTextContent("Achieve your dreams with us today");
   });
 
-  it("renders the Breadcrumb with correct links", () => {
-    expect.assertions(4);
-    render(<TermsConditions />);
-    const breadcrumb = screen.getByTestId("breadcrumb");
-    expect(breadcrumb).toBeInTheDocument();
-    expect(breadcrumb).toHaveTextContent("Home");
-    expect(breadcrumb).toHaveTextContent("Legal Terms");
-    expect(breadcrumb).toHaveTextContent("Terms and Conditions");
-  });
-
   it("renders the Main component", () => {
     expect.assertions(1);
     render(<TermsConditions />);

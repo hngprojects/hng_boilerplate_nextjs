@@ -1,4 +1,4 @@
-import { Breadcrumb } from "~/components/common/breadcrumb/breadcrumb";
+import { Breadcrumb } from "~/components/common/breadcrumb";
 import Main from "~/components/layouts/Legal/Terms&Conditions/Main";
 import SubPageHero from "~/components/layouts/Legal/Terms&Conditions/SubPageHero";
 
@@ -6,10 +6,10 @@ const TermsConditions = () => {
   return (
     <div className="" data-testid="terms-conditions">
       <div data-testid="subpage-hero">
-      <SubPageHero
-        heading="Terms and Conditions"
-        description="Achieve your dreams with us today"
-      />
+        <SubPageHero
+          heading="Terms and Conditions"
+          description="Achieve your dreams with us today"
+        />
       </div>
 
       <div
@@ -17,23 +17,22 @@ const TermsConditions = () => {
         data-testid="breadcrumb-container"
       >
         <div data-testid="breadcrumb">
-        <Breadcrumb
-          pages={[
-            { name: "Home", href: "/" },
-            { name: "Legal Terms", href: "/" },
-            {
-              name: "Terms and Conditions",
-              href: "/terms-and-conditions",
-              isCurrent: true,
-            },
-          ]}
-          variant="primary"
-          
-        />
+          <Breadcrumb
+            pages={[
+              { name: "Home", href: "/" },
+              { name: "Legal Terms", href: "/" },
+              {
+                name: "Terms and Conditions",
+                href: "/terms-and-conditions",
+                isCurrent: true,
+              },
+            ]}
+            variant="primary"
+          />
         </div>
 
-        <div data-testid="main-content" >
-        <Main/>
+        <div data-testid="main-content">
+          <Main />
         </div>
       </div>
     </div>
