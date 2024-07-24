@@ -42,7 +42,7 @@ export const NewFeatureAnnouncement = ({
 }: NewFeatureAnnouncementProperties) => {
   return (
     <Layout>
-      <Section className="w-full max-w-[678px] py-12 md:py-14">
+      <Section className="py-[56px]">
         <Section className="mx-auto flex items-center justify-center">
           <Img src={image} alt="marketing" className="h-[178px] w-[178px]" />
         </Section>

@@ -32,7 +32,7 @@ export default function WelcomeEmail(properties: IProperties) {
 
   return (
     <Layout>
-      <Section className="w-full max-w-[678px] py-12 md:py-14">
+      <Section className="w-full max-w-[678px] py-[56px] md:py-14">
         <Section className="mx-auto flex items-center justify-center md:w-[534px]">
           <Img
             src="https://imgur.com/0A9w5YT.png"

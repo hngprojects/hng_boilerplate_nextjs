@@ -40,7 +40,7 @@ export const NewFeatureAnnouncement = ({
 }: NewFeatureAnnouncementProperties) => {
   return (
     <Layout>
-      <Section>
+      <Section className="py-[56px]">
         <Container className="max-w-[680px] px-[48px] md:px-0">
           <Section className="my-[40px] flex flex-col items-center justify-center">
             <Heading
@@ -74,7 +74,7 @@ export const NewFeatureAnnouncement = ({
                     <Img src={star} alt="star" className="h-[24px] w-[24px]" />
                   </div>
                   <div>
-                    <span className="font-[500] text-[#121212]">
+                    <span className="font-[600] text-[#121212]">
                       Efficient Team Collaboration:{" "}
                     </span>
                     <span className="leading-[19.36px] text-[#525252]">
@@ -87,7 +87,7 @@ export const NewFeatureAnnouncement = ({
                     <Img src={star} alt="star" className="h-[24px] w-[24px]" />
                   </div>
                   <div>
-                    <span className="font-[500] text-[#121212]">
+                    <span className="font-[600] text-[#121212]">
                       Improved Accountability:{" "}
                     </span>
                     <span className="leading-[19.36px] text-[#525252]">
@@ -113,7 +113,7 @@ export const NewFeatureAnnouncement = ({
 
         <Section className="text-center">
           <Container className="mb-[40px] max-w-[680px] px-[48px] md:px-0">
-            <Text className="text-left leading-[16.94px] md:text-[16px]">
+            <Text className="text-center leading-[16.94px] md:text-left md:text-[16px]">
               Want to explore all the details? Click the button below to dive
               into our comprehensive guide
             </Text>
