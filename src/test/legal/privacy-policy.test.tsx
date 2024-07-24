@@ -1,7 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { describe, it, expect } from "vitest";
-import PrivacyPolicy from "../../app/(landing-routes)/privacy-policy/page";
+import PrivacyPolicy from "~/app/(landing-routes)/privacy-policy/page";
+
+// 
 
 describe("PrivacyPolicy Component", () => {
     it("renders the SubPageHero", () => {
