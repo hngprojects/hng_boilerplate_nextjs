@@ -1,6 +1,6 @@
-import { Head, Html, Preview, Text } from "@react-email/components";
+import { Preview, Text } from "@react-email/components";
 
-import TailwindWrapper from "~/email/templates/_tailwindWrapper";
+import Layout from "../_components/layout/layout";
 
 interface IProperties {
   name: string;
@@ -10,14 +10,10 @@ export default function Email(properties: IProperties) {
   const { name } = properties;
 
   return (
-    <TailwindWrapper>
-      <Html>
-        <Head />
-        <Preview>Password Reset for {name}</Preview>
-
-        <Text className="mb-6 mt-8">Regards, Boilerplate Team</Text>
-      </Html>
-    </TailwindWrapper>
+    <Layout>
+      <Preview>Password Reset for {name}</Preview>
+      <Text className="mb-6 mt-8">Regards, Boilerplate Team</Text>
+    </Layout>
   );
 }
 
