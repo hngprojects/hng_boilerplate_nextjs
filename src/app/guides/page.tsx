@@ -3,7 +3,7 @@
 import { Orbit, Plus } from "lucide-react";
 import { FC } from "react";
 
-import CustomButton from "~/components/common/button/button";
+import CustomButton from "~/components/common/common-button/common-button";
 
 const StyleGuide: FC = () => {
   return (
