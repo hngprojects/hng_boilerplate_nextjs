@@ -109,18 +109,18 @@ export default function WelcomeEmail(properties: IProperties) {
                 </li>
               </ul>
             </Section>
+            <Section className="mt-[32px] text-center">
+              <Button
+                className="w-[80%] rounded-[8px] bg-[#F97316] px-[2rem] py-[16px] text-[#FAFAFA] md:w-fit"
+                href={learnMoreLink}
+              >
+                Learn More About us
+              </Button>
+            </Section>
           </Section>
         </Container>
 
-        <Section className="text-center">
-          <Button
-            className="rounded-[8px] bg-[#F97316] px-[2rem] py-[16px] text-[#FAFAFA]"
-            href={learnMoreLink}
-          >
-            Learn More About us
-          </Button>
-        </Section>
-        <Section className="mt-[40px]">
+        <Section className="">
           <Container className="max-w-[680px] px-[48px] md:px-0">
             <Text className="font-[600] text-[#121212]">
               Regards,

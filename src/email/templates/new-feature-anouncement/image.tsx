@@ -151,6 +151,7 @@ NewFeatureAnnouncement.PreviewProps = {
   logo: "https://i.imgur.com/9W6zN9U.png",
   image: "https://i.imgur.com/p66l3SQ.png",
   star: "https://i.imgur.com/bmprMwh.png",
+
   featureName: "Boilerplate Pro",
   featureDescription:
     "is designed to help you create shared spaces for collaboration. Invite team members, share files, and work together seamlessly. From project planning to brainstorming sessions, collaborative spaces foster productivity.. Whether you’re a seasoned user or just getting started, this enhancement will transform your experience.",
