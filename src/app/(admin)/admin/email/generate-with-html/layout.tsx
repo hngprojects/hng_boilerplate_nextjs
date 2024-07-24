@@ -1,6 +1,6 @@
 import { FC, ReactNode } from "react";
 
-import { Breadcrumb } from "~/components/common/breadcrumb/breadcrumb";
+import { Breadcrumb } from "~/components/common/breadcrumb";
 
 interface IProperties {
   children: ReactNode;
