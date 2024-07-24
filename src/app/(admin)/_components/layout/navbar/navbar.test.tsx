@@ -1,9 +1,9 @@
+import DashboardNavbar from ".";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-
-import AdminNavbar from "./AdminNavbar";
+import { it } from "vitest";
 
 const renderComponents = () => {
-  render(<AdminNavbar />);
+  render(<DashboardNavbar />);
 
   return {
     helpIcon: screen.getByTestId("help"),
