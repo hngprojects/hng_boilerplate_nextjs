@@ -49,6 +49,7 @@ const ProductPage = () => {
       document.removeEventListener("keydown", handleEscape);
     };
   }, []);
+
   return (
     <div className="flex w-full flex-col gap-y-8 pt-8">
       <ProductHeader />

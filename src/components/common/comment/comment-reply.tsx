@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Textarea } from "~/components/ui/textarea";
-import CustomButton from "../button/button";
+import CustomButton from "../common-button/common-button";
 import ButtonWrapper from "./button-wrapper";
 
 export type ReplyFormProperties = {
