@@ -22,7 +22,7 @@ const HowItWorks = () => {
               </div>
               <div>
                 <h3
-                  className="md-text-2xl font-inter mb-2 text-xl font-bold"
+                  className="font-inter mb-2 text-lg text-xl font-bold md:text-xl lg:text-2xl"
                   data-testid="prebuilt"
                 >
                   Pre-Built Sections
@@ -42,7 +42,7 @@ const HowItWorks = () => {
               </div>
               <div>
                 <h3
-                  className="md-text-2xl font-inter mb-2 text-xl font-bold"
+                  className="font-inter mb-2 text-lg text-xl font-bold md:text-xl lg:text-2xl"
                   data-testid="scalable"
                 >
                   Scalable Foundation
@@ -63,7 +63,7 @@ const HowItWorks = () => {
               </div>
               <div>
                 <h3
-                  className="md-text-2xl font-inter mb-2 text-xl font-bold"
+                  className="font-inter mb-2 text-lg text-xl font-bold md:text-xl lg:text-2xl"
                   data-testid="easy"
                 >
                   Easy Customization

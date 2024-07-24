@@ -53,7 +53,7 @@ const Testimonials = () => {
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
             slidesPerView={1}
-            spaceBetween={30}
+            spaceBetween={20}
             navigation={{
               nextEl: ".custom-next",
               prevEl: ".custom-prev",
@@ -71,11 +71,11 @@ const Testimonials = () => {
               },
               650: {
                 slidesPerView: 2,
-                spaceBetween: 30,
+                spaceBetween: 20,
               },
               1024: {
                 slidesPerView: 3,
-                spaceBetween: 30,
+                spaceBetween: 20,
               },
             }}
             data-testid="swiper"
