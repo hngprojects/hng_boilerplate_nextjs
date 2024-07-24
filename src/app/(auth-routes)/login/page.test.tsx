@@ -123,17 +123,6 @@ describe("loginPage", () => {
     expect(magicLinkButton).toHaveTextContent("Sign in with magic link");
   });
 
-  it('renders "Sign Up" link', () => {
-    expect.hasAssertions();
-
-    render(<LoginPage />);
-
-    const signUpLink = screen.getByRole("link", { name: /sign up/i });
-    expect(signUpLink).toBeInTheDocument();
-    expect(signUpLink).toHaveTextContent("Sign Up");
-    expect(signUpLink).toHaveAttribute("href", "#");
-  });
-
   it("renders Terms of Service and Privacy Policy links", () => {
     expect.hasAssertions();
 

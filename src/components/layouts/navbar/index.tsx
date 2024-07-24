@@ -16,9 +16,9 @@ const navlinks = [
 
 const Navbar = () => {
   const [scrolling, setIsScrolling] = useState<boolean>(false);
-  const router = useRouter()
+  const router = useRouter();
 
-  // 
+  //
 
   const handleScrollEvent = () => {
     if (window.scrollY > 1) {
@@ -66,7 +66,11 @@ const Navbar = () => {
           >
             Log in
           </CustomButton>
-          <CustomButton variant="primary" className="h-[44px] w-[142px]" onClick={() => router.push("/sign-up")}>
+          <CustomButton
+            variant="primary"
+            className="h-[44px] w-[142px]"
+            onClick={() => router.push("/sign-up")}
+          >
             Get Started
           </CustomButton>
         </div>
