@@ -3,35 +3,29 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "~/components/ui/input-otp";
+import { cn } from "~/lib/utils";
 
 interface Properties {
-  onChange?: (value: string) => void;
-  onComplete?: () => void;
+  maxLength?: number;
   slotClassName?: string;
-  slotNumber?: number;
   className?: string;
-  containerClassName?: string;
+  onChange?: (value: string) => void;
+  onComplete?: (value: string) => void;
 }
 
 export function InputOtp({
-  onChange,
-  onComplete,
-  slotNumber = 6,
+  maxLength = 6,
   slotClassName,
   className,
-  // containerClassName,
+  onChange,
+  onComplete,
 }: Properties) {
   return (
-    <InputOTP
-      maxLength={6}
-      onComplete={onComplete}
-      onChange={onChange}
-      containerClassName={className}
-    >
-      <InputOTPGroup className={"flex gap-[10px] md:gap-4"}>
-        {/* eslint-disable unicorn/no-new-array */}
+    <InputOTP maxLength={maxLength} onChange={onChange} onComplete={onComplete}>
+      <InputOTPGroup className={cn("flex gap-[10px] md:gap-4", className)}>
         {/* eslint-disable unicorn/no-useless-spread */}
-        {[...new Array(slotNumber)].map((_, index) => (
+        {/* eslint-disable unicorn/no-new-array */}
+        {[...new Array(maxLength)].map((_, index) => (
           <InputOTPSlot key={index} index={index} className={slotClassName} />
         ))}
       </InputOTPGroup>

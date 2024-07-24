@@ -6,7 +6,7 @@ import { CircleCheck, X } from "lucide-react";
 import Link from "next/link";
 import { ReactNode, useState } from "react";
 
-import CustomButton from "~/components/common/button/button";
+import CustomButton from "~/components/common/common-button/common-button";
 import { InputOtp } from "~/components/common/input-otp";
 import CustomInput from "~/components/common/input/input";
 import {
@@ -32,6 +32,7 @@ const registeredEmails = [
   "jack@example.com",
   "karen@example.com",
   "leo@example.com",
+  "markessien@gmail.com",
   "mike@example.com",
   "nancy@example.com",
   "oliver@example.com",
@@ -80,6 +81,12 @@ const ForgotPassword = () => {
   const [showSuccessMessage, setShowSuccessMessage] = useState(true);
   const [emailTooltipContent, setEmailTooltipContent] = useState("");
 
+  const emailError =
+    email &&
+    !registeredEmails.some((registeredEmail) =>
+      registeredEmail.includes(email),
+    );
+
   const Default = (
     <>
       <div className="text-center">
@@ -108,17 +115,14 @@ const ForgotPassword = () => {
               variant="border"
               label="Email"
               placeholder="Enter your email"
-              className="h-12 rounded-lg text-sm placeholder:text-sm focus:border-primary focus:bg-zinc-50 focus:placeholder:text-neutral-dark-2 sm:h-16 sm:text-lg sm:placeholder:text-lg"
+              className={`h-12 rounded-lg text-sm placeholder:text-sm focus:bg-zinc-50 focus:placeholder:text-neutral-dark-2 sm:h-16 sm:text-lg sm:placeholder:text-lg ${emailError ? "border-error" : "focus:border-primary"}`}
               labelClassName="sm:text-xl text-[13px] text-neutral-dark-2"
             />
-            {email &&
-              !registeredEmails.some((registeredEmail) =>
-                registeredEmail.includes(email),
-              ) && (
-                <Error className="mt-2 cursor-default font-normal">
-                  This email doesn&apos;t match our records please try again
-                </Error>
-              )}
+            {emailError && (
+              <Error className="mt-2 cursor-default font-normal">
+                This email doesn&apos;t match our records please try again
+              </Error>
+            )}
           </TooltipTrigger>
           <TooltipContent
             sideOffset={-46}
@@ -235,13 +239,15 @@ const ForgotPassword = () => {
           password
         </Description>
       </div>
-      <CustomButton
-        type="submit"
-        variant="primary"
-        className="h-12 rounded-lg text-sm font-bold shadow-none sm:h-16 sm:text-base sm:font-medium"
-      >
-        Reset Password
-      </CustomButton>
+      <Link href={"/reset-password"} className="w-full max-w-[551px]">
+        <CustomButton
+          type="submit"
+          variant="primary"
+          className="h-12 w-full rounded-lg text-sm font-bold shadow-none sm:h-16 sm:text-base sm:font-medium"
+        >
+          Reset Password
+        </CustomButton>
+      </Link>
     </>
   );
 
@@ -254,7 +260,7 @@ const ForgotPassword = () => {
         height: 0,
         transition: { duration: 0.3 },
       }}
-      className="overflow-hidden"
+      className="w-full max-w-[552px] overflow-hidden"
     >
       <div className="flex h-[60px] items-center justify-between rounded-sm border border-[#5FC96A] bg-[#E7F7E9] px-6 sm:h-[72px]">
         <div className="flex items-center gap-x-2">
@@ -291,7 +297,7 @@ const ForgotPassword = () => {
   ];
 
   return (
-    <div>
+    <div className="mb-[133px] mt-[85px] flex flex-col items-center justify-center px-6">
       <AnimatePresence>
         {currentStage === 2 &&
           showSuccessMessage &&
