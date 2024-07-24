@@ -173,6 +173,7 @@ const ForgotPassword = () => {
         <InputOtp
           slotClassName={`size-10 sm:size-[60px] !rounded-lg border duration-300 font-bold text-xs sm:text-lg ${isCodeComplete && isCodeCorrect ? "border-primary ring-none" : !isCodeCorrect && isCodeComplete ? "border-error" : "border-stroke-colors-stroke ring-primary"}`}
           className="justify-center"
+          data-testid="forgot-password-otp-input"
           onChange={(value) => {
             setCode(value);
             setIsCodeComplete(value.length === 6);
@@ -282,7 +283,9 @@ const ForgotPassword = () => {
     {
       element: Default,
       stage: 0,
-      onSubmit: () => setCurrentStage(1),
+      onSubmit: () => {
+        if (!emailError) setCurrentStage(1);
+      },
     },
     {
       element: VerificationCode,

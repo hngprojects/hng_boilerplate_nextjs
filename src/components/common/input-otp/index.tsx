@@ -13,15 +13,22 @@ interface Properties {
   onComplete?: (value: string) => void;
 }
 
-export function InputOtp({
-  maxLength = 6,
-  slotClassName,
-  className,
-  onChange,
-  onComplete,
-}: Properties) {
+export function InputOtp(properties: Properties) {
+  const {
+    maxLength = 6,
+    slotClassName,
+    className,
+    onChange,
+    onComplete,
+    ...rest
+  } = properties;
   return (
-    <InputOTP maxLength={maxLength} onChange={onChange} onComplete={onComplete}>
+    <InputOTP
+      maxLength={maxLength}
+      onChange={onChange}
+      onComplete={onComplete}
+      {...rest}
+    >
       <InputOTPGroup className={cn("flex gap-[10px] md:gap-4", className)}>
         {/* eslint-disable unicorn/no-useless-spread */}
         {/* eslint-disable unicorn/no-new-array */}
