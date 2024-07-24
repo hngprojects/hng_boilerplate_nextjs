@@ -75,7 +75,8 @@ const Sidebar: FC<Iproperties> = ({
   currenPathName,
 }) => {
   const pathname = usePathname();
-  const currentPath = pathname?.split("/")[2];
+  const currentPath = pathname?.split("/")[3];
+
   return (
     <div className="fixed bottom-0 left-0 top-0 z-50 flex h-screen w-[50px] flex-col items-center justify-start border-r bg-[#FDFDFD] md:block md:w-[220px] md:px-4 lg:w-[252px]">
       <DashboardLogo />
@@ -86,7 +87,7 @@ const Sidebar: FC<Iproperties> = ({
             href={item.link}
             data-testid={item.id}
             role="sidebar-link"
-            className={`${currenPathName || currentPath === item.id ? "bg-primary text-white" : "bg-transparent text-neutral-dark-2"} flex items-center justify-center gap-2.5 rounded-full px-2.5 py-3 text-sm transition-all duration-300 ease-in hover:bg-gray-200 md:h-auto md:w-auto md:justify-start md:rounded-[8px]`}
+            className={`${currenPathName || currentPath === item.id ? "bg-primary text-white" : "bg-transparent text-neutral-dark-2 hover:bg-gray-200"} flex items-center justify-center gap-2.5 rounded-full px-2.5 py-3 text-sm transition-all duration-300 ease-in md:h-auto md:w-auto md:justify-start md:rounded-sm`}
           >
             <item.icon className="h-5 w-5" role="sidebar-icon" />
             <span className="hidden md:block">{item.route}</span>
