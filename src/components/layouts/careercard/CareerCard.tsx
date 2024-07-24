@@ -1,8 +1,9 @@
 import { FC } from "react";
+import { Button } from "~/components/ui/button";
 
 import { Card, CardContent, CardFooter } from "~/components/ui/card";
 import { Skeleton } from "~/components/ui/skeleton";
-import CustomButton from "../Button/button";
+
 
 interface CareerCardProperties {
   isLoading: boolean;
@@ -54,7 +55,7 @@ const CareerCard: FC<CareerCardProperties> = ({
               {amount}
               <span className="font-normal">/month</span>
             </span>
-            <CustomButton variant="primary">View Details</CustomButton>
+            <Button variant="primary">View Details</Button>
           </>
         )}
       </CardFooter>
