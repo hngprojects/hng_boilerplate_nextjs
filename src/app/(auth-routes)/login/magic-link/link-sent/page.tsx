@@ -4,7 +4,7 @@ import { Check } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
 
-const handleOpenEmail = () => {
+export const handleOpenEmail = () => {
   window.location.href = "mailto:";
 };
 const MagicLinkSuccess = () => {
@@ -17,7 +17,10 @@ const MagicLinkSuccess = () => {
           </h1>
 
           <div className="mx-auto mt-5 flex h-24 w-24 items-center justify-center rounded-full bg-success">
-            <Check className="mx-auto h-20 w-20 text-center text-white" />
+            <Check
+              className="mx-auto h-20 w-20 text-center text-white"
+              data-testid="check-icon"
+            />
           </div>
 
           <p className="font-inter text-neutralColor-dark-2 mt-8 text-center text-base font-normal leading-6">
