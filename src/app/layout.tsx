@@ -9,6 +9,7 @@ import { Toaster } from "~/components/ui/toaster";
 
 import "./globals.css";
 
+import Providers from "~/components/providers";
 import { Toaster } from "~/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -25,9 +26,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {children}
-
-        <Toaster />
+        <Providers>
+          {children}
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );
