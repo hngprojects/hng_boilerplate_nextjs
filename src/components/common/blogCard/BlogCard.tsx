@@ -29,10 +29,10 @@ const BlogCard = (properties: blogCardProperties) => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex w-[70%] items-center justify-center border-b border-b-neutral-dark-1 py-3">
       <Card
         data-testid="mobile-element"
-        className="flex w-[100%] flex-col-reverse items-center border-none bg-transparent shadow-none md:w-[70%] lg:w-[890px] lg:flex-row"
+        className="flex w-full flex-col-reverse items-center border-none bg-transparent shadow-none lg:flex-row"
       >
         <CardHeader className="flex-auto lg:flex-1">
           <div
@@ -86,7 +86,7 @@ const BlogCard = (properties: blogCardProperties) => {
             src={properties.blogImage}
             alt="author"
             className="rounded-0 h-full w-full object-cover md:rounded-[8px]"
-            width={900}
+            width={600}
             height={100}
           />
         </Link>
