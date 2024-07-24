@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff, ShieldCheck } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -18,7 +19,6 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
-import { useToast } from "~/components/ui/use-toast";
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Invalid email format" }),
@@ -44,10 +44,11 @@ const getInputClassName = (hasError: boolean, isValid: boolean) => {
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { toast } = useToast();
+  const router = useRouter();
 
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
+    mode: "onChange",
     defaultValues: {
       email: "",
       password: "",
@@ -56,10 +57,7 @@ const LoginPage = () => {
   });
 
   const onSubmit = () => {
-    toast({
-      title: "Login successful",
-      description: "You have been logged in successfully.",
-    });
+    router.push("/");
   };
 
   const togglePasswordVisibility = () => {
@@ -107,7 +105,7 @@ const LoginPage = () => {
                       )}
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage data-testid="email-error" />
                 </FormItem>
               )}
             />
@@ -135,14 +133,20 @@ const LoginPage = () => {
                         className="absolute inset-y-0 right-0 flex items-center pr-3"
                       >
                         {showPassword ? (
-                          <Eye className="h-5 w-5 text-gray-400" />
+                          <Eye
+                            className="h-5 w-5 text-gray-400"
+                            data-testid="eye-icon"
+                          />
                         ) : (
-                          <EyeOff className="h-5 w-5 text-gray-400" />
+                          <EyeOff
+                            className="h-5 w-5 text-gray-400"
+                            data-testid="eye-off-icon"
+                          />
                         )}
                       </button>
                     </div>
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage data-testid="password-error" />
                 </FormItem>
               )}
             />
