@@ -10,7 +10,7 @@ import Logo from "~/components/common/logo";
 const navlinks = [
   { route: "Home", link: "/" },
   { route: "Pricing", link: "/pricing" },
-  { route: "Features", link: "/" },
+  { route: "Careers", link: "/career" },
 ];
 
 const Navbar = () => {
