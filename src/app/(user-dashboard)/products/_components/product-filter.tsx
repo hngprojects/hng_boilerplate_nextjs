@@ -90,13 +90,13 @@ const ProductFilter = ({
             variant="outline"
             size="icon"
             className={cn(
-              "flex items-center gap-x-2 bg-transparent text-sm hover:!bg-black hover:text-white disabled:!opacity-85",
+              "flex items-center gap-x-2 bg-transparent p-1 text-sm hover:!bg-black hover:text-white disabled:!opacity-85 md:rounded-[6px] md:p-2",
               view === "grid"
                 ? "bg-black text-white transition-all duration-300 hover:!opacity-80 active:scale-90"
                 : "",
             )}
           >
-            <Grid className="size-5 min-[500px]:size-10" />
+            <Grid className="size-5 min-[500px]:size-8" />
           </Button>
           <Button
             onClick={() => setView("list")}
@@ -104,13 +104,13 @@ const ProductFilter = ({
             variant="outline"
             size="icon"
             className={cn(
-              "flex items-center gap-x-2 text-sm hover:!bg-black hover:text-white disabled:!cursor-not-allowed disabled:!opacity-85",
+              "flex items-center gap-x-2 p-1 text-sm hover:!bg-black hover:text-white disabled:!cursor-not-allowed disabled:!opacity-85 md:rounded-[6px] md:p-2",
               view === "list"
                 ? "bg-black text-white transition-all duration-300 hover:!opacity-80 active:scale-90"
                 : "",
             )}
           >
-            <List className="size-5 min-[500px]:size-10" />
+            <List className="size-5 min-[500px]:size-8" />
           </Button>
         </div>
         <span className="h-[30px] w-[1px] flex-1 bg-[#E4E4E7] min-[500px]:h-[36px]" />
@@ -120,7 +120,7 @@ const ProductFilter = ({
           variant="outline"
           className="relative grid w-8 place-items-center gap-x-2 bg-transparent text-sm min-[500px]:flex min-[500px]:w-fit min-[500px]:items-center"
         >
-          <Filter className="size-5 min-[500px]:size-10" />
+          <Filter className="size-5 min-[500px]:size-6" />
           <span className="hidden min-[500px]:inline">Filter</span>
         </Button>
 
@@ -131,7 +131,7 @@ const ProductFilter = ({
               animate={{ opacity: 1, y: 0, x: 0 }}
               exit={{ opacity: 0, y: -20, x: 20 }}
               ref={filterReference}
-              className="absolute -bottom-[12rem] right-0 z-30 flex w-full max-w-[185px] flex-col gap-y-1 rounded-[6px] border border-gray-300 bg-white/80 shadow-[0px_1px_18px_0px_rgba(10,_57,_176,_0.12)] backdrop-blur-sm"
+              className="absolute -bottom-[12rem] right-0 z-30 flex w-[150px] flex-col gap-y-1 rounded-[6px] border border-gray-300 bg-white/80 shadow-[0px_1px_18px_0px_rgba(10,_57,_176,_0.12)] backdrop-blur-sm min-[500px]:-bottom-[14rem] sm:w-full sm:max-w-[185px]"
             >
               <span className="border-b border-gray-300 px-2 py-2 text-sm font-semibold text-neutral-dark-2 md:px-4">
                 Filters
@@ -141,7 +141,7 @@ const ProductFilter = ({
                   variant="ghost"
                   key={filter.value}
                   className={cn(
-                    "flex h-8 cursor-pointer items-center justify-start gap-x-2 px-2 py-2 text-sm md:px-4",
+                    "flex h-8 cursor-pointer items-center justify-start gap-x-2 px-2 py-1 text-xs min-[500px]:py-2 min-[500px]:text-sm md:px-4",
                     active_filter === filter.value
                       ? "text-black"
                       : "text-neutral-dark-1",
@@ -154,7 +154,7 @@ const ProductFilter = ({
                 >
                   <Check
                     className={cn(
-                      "opacity-0",
+                      "size-5 opacity-0",
                       active_filter === filter.value && "opacity-100",
                     )}
                   />

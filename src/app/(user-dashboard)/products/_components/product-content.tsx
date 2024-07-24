@@ -88,6 +88,11 @@ const ProductContent = ({
       return;
     }
   }, []);
+  useEffect(() => {
+    document.title = `Products - ${subset.length} Product${
+      subset.length > 1 ? "s" : ""
+    }`;
+  }, [subset.length]);
 
   return (
     <div className="relative flex w-full flex-col overflow-hidden pb-10">
