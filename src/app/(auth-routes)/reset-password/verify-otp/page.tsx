@@ -1,7 +1,7 @@
 "use client";
 
 import CustomButton from "~/components/common/common-button/common-button";
-import { InputOtp } from "~/components/common/Input-otp";
+import { InputOtp } from "~/components/common/input-otp";
 
 export default function VerifyCodePage() {
   return (
