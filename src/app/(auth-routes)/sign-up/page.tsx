@@ -3,8 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import FacebookIcon from "../../../public/signup/icons/bi_facebook.svg";
-import GoogleIcon from "../../../public/signup/icons/flat-color-icons_google.svg";
 import SignupForm from "./_component/SignupForm";
 
 const page = () => {
@@ -26,7 +24,7 @@ const page = () => {
           <div className="mt-6 flex flex-col items-center gap-2 text-center sm:flex-row md:gap-[18px]">
             <button className="flex w-full flex-row items-center justify-center gap-2.5 rounded-lg border border-border px-4 py-3 md:w-fit md:px-8 md:py-4">
               <Image
-                src={GoogleIcon}
+                src={"/signup/icons/flat-color-icons_google.svg"}
                 alt="Google Icon"
                 width={24}
                 height={24}
@@ -37,7 +35,7 @@ const page = () => {
             </button>
             <button className="flex w-full flex-row items-center justify-center gap-2.5 rounded-lg border border-border px-4 py-3 md:w-fit md:px-8 md:py-4">
               <Image
-                src={FacebookIcon}
+                src={"/signup/icons/bi_facebook.svg"}
                 alt="Facebook Icon"
                 width={24}
                 height={24}
