@@ -9,7 +9,7 @@ const Logo = () => {
       data-testid="logo"
     >
       <Image
-        src="/images/HNG Boilerplate-Logo.png"
+        src="/home/HNG Boilerplate-Logo.png"
         alt="Hgn boiler plate logo"
         height={52}
         width={283}

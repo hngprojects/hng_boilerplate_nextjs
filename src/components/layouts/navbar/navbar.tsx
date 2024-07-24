@@ -1,12 +1,13 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
-import Logo from "@/components/common/logo/logo";
-import { Button } from "@/components/ui/button";
 import { AlignJustify, BellIcon, User } from "lucide-react";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
+import Logo from "~/components/common/logo/logo";
+import { Button } from "~/components/ui/button";
 
 const test = () => {
   const { data: session } = useSession();

@@ -1,6 +1,7 @@
 /* eslint-disable testing-library/prefer-screen-queries */
 import Navbar from ".";
-import { render } from "@/test/utils";
+
+import { render } from "~/test/utils";
 
 describe("page tests", () => {
   it("navbar renders", () => {
