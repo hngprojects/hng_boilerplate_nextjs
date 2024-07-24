@@ -42,8 +42,8 @@ export const NewFeatureAnnouncement = ({
 }: NewFeatureAnnouncementProperties) => {
   return (
     <Layout>
-      <Section>
-        <Section className="mx-auto mt-[40px] flex items-center justify-center">
+      <Section className="w-full max-w-[678px] py-12 md:py-14">
+        <Section className="mx-auto flex items-center justify-center">
           <Img src={image} alt="marketing" className="h-[178px] w-[178px]" />
         </Section>
 
@@ -125,13 +125,13 @@ export const NewFeatureAnnouncement = ({
             </Text>
           </Container>
           <Button
-            className="w-[119px] rounded-[8px] bg-[#F97316] px-[8px] py-[16px] text-[#FAFAFA]"
+            className="rounded-[8px] bg-[#F97316] px-[2rem] py-[16px] text-[#FAFAFA]"
             href={learnMoreLink}
           >
             Learn More
           </Button>
         </Section>
-        <Section className="mb-[40px]">
+        <Section className="mt-[40px]">
           <Container className="max-w-[680px] px-[48px] md:px-0">
             <Text className="font-[600] text-[#121212]">
               Regards,

@@ -119,13 +119,13 @@ export const NewFeatureAnnouncement = ({
             </Text>
           </Container>
           <Button
-            className="w-[119px] rounded-[8px] bg-[#F97316] px-[8px] py-[16px] text-[#FAFAFA]"
+            className="rounded-[8px] bg-[#F97316] px-[2rem] py-[16px] text-[#FAFAFA]"
             href={learnMoreLink}
           >
             Learn More
           </Button>
         </Section>
-        <Section className="mb-[40px]">
+        <Section className="mt-[40px]">
           <Container className="max-w-[680px] px-[48px] md:px-0">
             <Text className="font-[600] text-[#121212]">
               Regards,
@@ -152,11 +152,6 @@ NewFeatureAnnouncement.PreviewProps = {
   benefitTwo:
     "With Collaborative Spaces, accountability becomes clearer. Each team member’s contributions are visible within the shared space.",
   learnMoreLink: "",
-  linkedinIcon: "https://i.imgur.com/jBHlv7Y.png",
-  redditIcon: "https://i.imgur.com/ONXC0iw.png",
-  tiktokIcon: "https://i.imgur.com/sui2yFV.png",
-  igIcon: "https://i.imgur.com/MVsmHn7.png",
-  xIcon: "https://i.imgur.com/KfwJgPL.png",
 } as NewFeatureAnnouncementProperties;
 
 export default NewFeatureAnnouncement;
