@@ -4,7 +4,7 @@ import { Card, CardContent, CardFooter } from "~/components/ui/card";
 import { Skeleton } from "~/components/ui/skeleton";
 import CustomButton from "../common-button/common-button";
 
-// 
+//
 interface CareerCardProperties {
   isLoading: boolean;
   jobTitle?: string;
@@ -26,7 +26,7 @@ const CareerCard: FC<CareerCardProperties> = ({
         {isLoading ? (
           <div className="flex w-full max-w-6xl flex-col space-y-3">
             <Skeleton
-              className="w-full h-20 rounded-lg md:w-full"
+              className="h-20 w-full rounded-lg md:w-full"
               data-testid="skeleton"
             />
             <div className="space-y-2">
@@ -36,7 +36,7 @@ const CareerCard: FC<CareerCardProperties> = ({
           </div>
         ) : (
           <>
-            <h3 className="text-xl font-semibold mb-2">{jobTitle}</h3>
+            <h3 className="mb-2 text-xl font-semibold">{jobTitle}</h3>
             <p className="text-sm">{location}</p>
             <p className="mt-4 line-clamp-2 text-sm">{description}</p>
           </>
