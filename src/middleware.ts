@@ -17,7 +17,7 @@ export default async function middleware(request: NextRequest) {
   const url = request.nextUrl;
   let hostname = request.headers
     .get("host")!
-    .replace(".localhost:3000", ".hng-boilerplate.com");
+    .replace(/\.localhost(:\d+)?/, ".hng-boilerplate.com");
 
   hostname = hostname.replace("www.", ""); // remove www. from domain
   const searchParameters = request.nextUrl.searchParams.toString();
