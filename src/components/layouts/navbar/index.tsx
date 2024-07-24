@@ -2,6 +2,7 @@
 
 import { BellIcon, Menu, User } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import CustomButton from "~/components/common/common-button/common-button";
@@ -15,6 +16,9 @@ const navlinks = [
 
 const Navbar = () => {
   const [scrolling, setIsScrolling] = useState<boolean>(false);
+  const router = useRouter()
+
+  // 
 
   const handleScrollEvent = () => {
     if (window.scrollY > 1) {
@@ -58,10 +62,11 @@ const Navbar = () => {
           <CustomButton
             variant="outline"
             className="h-[44px] w-[105px] border-primary text-primary"
+            onClick={() => router.push("/login")}
           >
             Log in
           </CustomButton>
-          <CustomButton variant="primary" className="h-[44px] w-[142px]">
+          <CustomButton variant="primary" className="h-[44px] w-[142px]" onClick={() => router.push("/sign-up")}>
             Get Started
           </CustomButton>
         </div>
