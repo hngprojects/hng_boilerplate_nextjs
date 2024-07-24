@@ -1,12 +1,7 @@
-import Footer from "../../components/layouts/footer/index.tsx";
-import Navbar from "../../components/layouts/navbar/index.tsx";
-
-function Layout({ children }) {
+function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Navbar />
       <div className="mx-auto w-5/6">{children}</div>
-      <Footer />
     </>
   );
 }

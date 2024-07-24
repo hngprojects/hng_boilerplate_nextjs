@@ -6,13 +6,13 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "~/components/ui/popover";
-import UnreadNotificationCard from "../unread-notification-card/UnreadNotificationCard";
+import UnreadNotificationCard from "../../unread-notification-card/UnreadNotificationCard";
 
-const AdminNavbar = () => {
+const DashboardNavbar = () => {
   return (
     <nav className="border-b-[0.5px] border-border" role="navbar">
       <div className="flex items-center justify-between gap-2 bg-background px-[10px] py-[14px]">
-        <div className="flex h-10 items-center justify-between gap-2 rounded-[6px] border border-[#E4E4E7] bg-white px-3 text-sm font-normal placeholder:text-sm">
+        <div className="flex h-10 items-center justify-between gap-2 rounded-[6px] border border-border bg-white px-3 text-sm font-normal placeholder:text-sm">
           <SearchIcon
             data-testid="search"
             className="h-4 w-4 text-neutral-dark-2"
@@ -71,4 +71,4 @@ const AdminNavbar = () => {
   );
 };
 
-export default AdminNavbar;
+export default DashboardNavbar;

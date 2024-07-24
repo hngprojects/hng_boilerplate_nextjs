@@ -46,8 +46,13 @@ const ProductDetailModal = () => {
     deleteProduct(id);
     toast({
       title: `Product deleted`,
-      description: `${product?.name} has been deleted.`,
+      description: (
+        <span>
+          <b>{product?.name}</b> has been deleted.
+        </span>
+      ),
       variant: "default",
+      className: "z-[99999]",
     });
     updateOpen(false);
     updateProductId("null");
@@ -100,7 +105,7 @@ const ProductDetailModal = () => {
           >
             <div
               className={cn(
-                "absolute left-1/2 top-1/2 flex w-full max-w-[90%] -translate-x-1/2 -translate-y-1/2 flex-col gap-y-5 border bg-white/80 py-5 shadow-[0px_1px_18px_0px_rgba(10,_57,_176,_0.12)] backdrop-blur transition-all duration-300",
+                "absolute left-1/2 top-1/2 flex w-full max-w-[90%] -translate-x-1/2 -translate-y-1/2 flex-col gap-y-5 border bg-white/80 px-2 py-5 shadow-[0px_1px_18px_0px_rgba(10,_57,_176,_0.12)] backdrop-blur transition-all duration-300",
                 isDelete
                   ? "pointer-events-auto scale-100 opacity-100"
                   : "pointer-events-none scale-50 opacity-0",
