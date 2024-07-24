@@ -10,8 +10,11 @@ import UnreadNotificationCard from "../../unread-notification-card/UnreadNotific
 
 const DashboardNavbar = () => {
   return (
-    <nav className="border-b-[0.5px] border-border" role="navbar">
-      <div className="flex items-center justify-between gap-2 bg-background px-[10px] py-[14px]">
+    <nav
+      className="fixed left-[50px] right-0 top-0 z-50 border-b-[0.5px] border-border md:left-[220px] lg:left-[252px]"
+      role="navbar"
+    >
+      <div className="flex items-center justify-between gap-2 bg-[#FDFDFD] px-[10px] py-[14px]">
         <div className="flex h-10 items-center justify-between gap-2 rounded-[6px] border border-border bg-white px-3 text-sm font-normal placeholder:text-sm">
           <SearchIcon
             data-testid="search"

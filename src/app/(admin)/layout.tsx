@@ -9,11 +9,11 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="grid min-h-screen grid-cols-[60px_1fr] md:grid-cols-[252px_1fr]">
+    <div className="min-h-screen w-full pl-[50px] md:pl-[220px] lg:pl-[252px]">
       <Sidebar />
-      <div className="grid grid-rows-[auto_1fr]">
-        <DashboardNavbar />
-        <main className="p-8">
+      <DashboardNavbar />
+      <div className="">
+        <main className="mt-12 p-3 pt-6 md:p-5 md:pt-8">
           <Suspense>{children}</Suspense>
         </main>
       </div>
