@@ -26,7 +26,7 @@ const DashboardNavbar = () => {
             data-testid="input"
           />
         </div>
-        <div className="flex w-full max-w-[152px] items-center justify-between gap-1">
+        <div className="flex items-center justify-between gap-1 md:gap-2 lg:gap-4">
           <div className="relative flex items-center justify-center">
             <Popover>
               <PopoverTrigger>
