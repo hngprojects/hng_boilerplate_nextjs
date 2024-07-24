@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import { Breadcrumb } from "~/components/common/breadcrumb";
-import { Button } from "~/components/common/button";
+import { Button } from "~/components/common/common-button";
 import PageHeader from "../../../_components/page-header";
 import { templateOne } from "./template-example";
 import TemplateViewer from "./TemplateViewer";

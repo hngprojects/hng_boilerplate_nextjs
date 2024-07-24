@@ -1,7 +1,7 @@
 import { BellRing } from "lucide-react";
 import { FC } from "react";
 
-import CustomButton from "~/components/common/button/button";
+import CustomButton from "~/components/common/common-button/common-button";
 import {
   Card,
   CardContent,

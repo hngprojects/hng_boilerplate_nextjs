@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-import CustomButton from "~/components/common/button/button";
+import CustomButton from "~/components/common/common-button/common-button";
 import { Input } from "~/components/ui/input";
 
 const Footer = () => {
@@ -30,7 +30,7 @@ const Footer = () => {
         { route: "FAQ", link: "/faqs" },
         { route: "waiting list", link: "/waitlist" },
         { route: "Pricing Experience", link: "/" },
-        { route: "Contact Us", link: "/" },
+        { route: "Contact Us", link: "/contact-us" },
       ],
     },
     {

@@ -6,7 +6,7 @@ import {
   ThumbsUp,
 } from "lucide-react";
 
-import CustomButton from "~/components/common/button/button";
+import CustomButton from "../common-button/common-button";
 import ButtonWrapper from "./button-wrapper";
 
 type CommentActionsProperties = {
