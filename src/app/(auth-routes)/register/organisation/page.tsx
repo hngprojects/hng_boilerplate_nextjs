@@ -1,5 +1,10 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { z } from "zod";
+
 import { Button } from "~/components/ui/button";
 import {
   Form,
@@ -17,34 +22,29 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+
+const formSchema = z.object({
+  fullname: z.string().min(2, {
+    message: "Fullname must be at least 2 characters.",
+  }),
+  email: z.string().min(2, {
+    message: "Email must be at least 2 characters.",
+  }),
+  password: z.string().min(2, {
+    message: "Password must be at least 2 characters.",
+  }),
+});
+
+type FormData = z.infer<typeof formSchema>;
+
+const onSubmit: SubmitHandler<FormData> = (data) => {
+  // Handle form submission
+};
 
 function Organisation() {
-  const formSchema = z.object({
-    fullname: z.string().min(2, {
-      message: "Fullname must be at least 2 characters.",
-    }),
-    email: z.string().min(2, {
-      message: "Email must be at least 2 characters.",
-    }),
-    password: z.string().min(2, {
-      message: "Password must be at least 2 characters.",
-    }),
-  });
-
-  const form = useForm({
+  const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
   });
-
-  const [open, setOpen] = useState(false);
-
-  const onSubmit = (data: any) => {
-    console.log(data);
-  };
 
   return (
     <>
@@ -61,7 +61,7 @@ function Organisation() {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <FormField
                 control={form.control}
-                name="username"
+                name="fullname"
                 render={({ field }) => (
                   <FormItem className="flex flex-col gap-2">
                     <div>

@@ -1,5 +1,11 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
 import AuthProvider from "~/components/authproviders/AuthProvider";
 import { DialogDemo } from "~/components/common/Dialog";
 import { Button } from "~/components/ui/button";
@@ -17,11 +23,6 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "~/components/ui/input-otp";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 
 const formSchema = z.object({
   fullname: z.string().min(2, {
@@ -35,15 +36,18 @@ const formSchema = z.object({
   }),
 });
 
+type FormData = z.infer<typeof formSchema>;
+
 const SignUp = () => {
-  const form = useForm({
+  const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
   });
 
   const [open, setOpen] = useState(false);
 
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const onSubmit = (data: FormData) => {
+    // Handle form submission
+    setOpen(true);
   };
 
   return (
@@ -69,7 +73,7 @@ const SignUp = () => {
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <FormField
               control={form.control}
-              name="username"
+              name="fullname"
               render={({ field }) => (
                 <FormItem className="flex flex-col gap-2">
                   <div>
@@ -99,11 +103,7 @@ const SignUp = () => {
                 </FormItem>
               )}
             />
-            <Button
-              type="submit"
-              className="w-full"
-              onClick={() => setOpen(true)}
-            >
+            <Button type="submit" className="w-full">
               Create Account
             </Button>
             <DialogDemo open={open} onOpenChanged={setOpen}>
@@ -147,7 +147,7 @@ const SignUp = () => {
             </DialogDemo>
             <div className="flex justify-center gap-2">
               <p className="text-sm">Already Have An Account?</p>
-              <Link className="text-sm text-orange-500" href={"#"}>
+              <Link className="text-sm text-orange-500" href="#">
                 Login
               </Link>
             </div>
