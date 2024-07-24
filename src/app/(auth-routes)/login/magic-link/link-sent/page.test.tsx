@@ -3,10 +3,8 @@ import { describe, expect, it, vi } from "vitest";
 
 import MagicLinkSuccess from "./page";
 
-// Define the type for the module
 type ModuleType = typeof import("./page");
 
-// Mock the handleOpenEmail function
 vi.mock("./page", async () => {
   const actualModule: ModuleType = await vi.importActual("./page");
   return {
@@ -43,13 +41,4 @@ describe("magicLinkSuccess", () => {
       screen.getByRole("button", { name: "Open Email" }),
     ).toBeInTheDocument();
   });
-
-  // it('calls handleOpenEmail when the "Open Email" button is clicked', async () => {
-  //   expect.hasAssertions();
-  //   const { handleOpenEmail } = await import("./page");
-  //   render(<MagicLinkSuccess />);
-  //   const openEmailButton = screen.getByRole("button", { name: "Open Email" });
-  //   fireEvent.click(openEmailButton);
-  //   expect(handleOpenEmail).toHaveBeenCalledTimes(1);
-  // });
 });

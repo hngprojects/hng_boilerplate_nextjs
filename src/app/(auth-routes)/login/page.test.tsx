@@ -5,12 +5,10 @@ import { describe, expect, it, vi } from "vitest";
 
 import LoginPage from "./page";
 
-// Mock the next/link component
 vi.mock("next/link", () => ({
   default: ({ children }: { children: React.ReactNode }) => children,
 }));
 
-// Mock the useRouter hook
 const mockPush = vi.fn();
 vi.mock("next/navigation", () => ({
   useRouter: () => ({
@@ -18,7 +16,6 @@ vi.mock("next/navigation", () => ({
   }),
 }));
 
-// Define a type for the field object
 type FieldType = {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur: () => void;
@@ -27,7 +24,6 @@ type FieldType = {
   ref: React.RefCallback<HTMLInputElement> | null;
 };
 
-// Mock UI components
 vi.mock("~/components/ui/form", () => ({
   Form: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
   FormField: ({
@@ -78,7 +74,6 @@ vi.mock("~/components/ui/button", () => ({
 }));
 
 describe("loginPage", () => {
-  // Ensure mocks are reset after each test
   afterEach(() => {
     vi.clearAllMocks();
   });
