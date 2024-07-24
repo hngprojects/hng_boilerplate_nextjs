@@ -1,8 +1,8 @@
 "use client";
 
-import AuthProvider from "@/components/authproviders/AuthProvider";
-import { DialogDemo } from "@/components/common/Dialog";
-import { Button } from "@/components/ui/button";
+import AuthProvider from "~/components/authproviders/AuthProvider";
+import { DialogDemo } from "~/components/common/Dialog";
+import { Button } from "~/components/ui/button";
 import {
   Form,
   FormControl,
@@ -10,13 +10,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from "~/components/ui/form";
+import { Input } from "~/components/ui/input";
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
-} from "@/components/ui/input-otp";
+} from "~/components/ui/input-otp";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useState } from "react";
