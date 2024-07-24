@@ -1,9 +1,7 @@
-import blogCard1 from "../blogCard1.png";
-import blogCard2 from "../blogCard2.png";
-import blogCard4 from "../blogCard4.png";
-import blogCard5 from "../blogCard5.png";
-import blogCard6 from "../blogCard6.png";
-import blogCard3 from "../blogCard3.png";
-import blogHero from "../blogHero.png";
-
-export { blogHero, blogCard1, blogCard2, blogCard3, blogCard4, blogCard5, blogCard6 }
+export { default as blogCard1 } from "../../blogPage/blogCard1.png";
+export { default as blogCard3 } from "../../blogPage/blogCard3.png";
+export { default as blogCard2 } from "../../blogPage/blogCard2.png";
+export { default as blogCard4 } from "../../blogPage/blogCard4.png";
+export { default as blogCard5 } from "../../blogPage/blogCard5.png";
+export { default as blogCard6 } from "../../blogPage/blogCard1.png";
+export { default as blogHero } from "../../blogPage/blogHero.png";
