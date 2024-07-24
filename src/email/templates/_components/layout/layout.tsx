@@ -27,9 +27,7 @@ export default function Layout({
 
         <Body>
           <EmailHeader />
-          <Container className="max-w-[680px] px-[48px] md:px-0">
-            {children}
-          </Container>
+          <Container className="max-w-[792px]">{children}</Container>
           <EmailFooter />
         </Body>
       </TailwindWrapper>

@@ -23,6 +23,7 @@ type Variant =
 type Size = "default" | "sm" | "lg" | "link" | "icon" | "circle";
 
 interface ButtonProperties {
+  type?: "submit" | "button" | "reset";
   /** Specifies the button style variant */
   variant?: Variant;
   /** Specifies the size of the button */
@@ -58,6 +59,7 @@ interface ButtonProperties {
  * @returns {JSX.Element} The rendered button component.
  */
 const CustomButton: FC<ButtonProperties> = ({
+  type = "button",
   variant,
   size,
   children,
@@ -109,6 +111,7 @@ const CustomButton: FC<ButtonProperties> = ({
           aria-label={ariaLabel}
         >
           <Button
+            type={type}
             variant={variant}
             size={size}
             disabled={isDisabled}

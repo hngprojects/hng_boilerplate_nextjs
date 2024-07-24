@@ -29,15 +29,15 @@ const Footer = () => {
         { route: "Help center", link: "/" },
         { route: "FAQ", link: "/faqs" },
         { route: "waiting list", link: "/waitlist" },
-        { route: "Pricing Experience", link: "/" },
-        { route: "Contact Us", link: "/contact-us" },
+        { route: "Pricing Experience", link: "/pricing" },
+        { route: "Contact Us", link: "/" },
       ],
     },
     {
       title: "Legal",
       links: [
-        { route: "Privacy Policy", link: "/" },
-        { route: "Terms and condition", link: "/" },
+        { route: "Privacy Policy", link: "/privacy-policy" },
+        { route: "Terms and condition", link: "/terms-and-conditions" },
       ],
     },
   ];
