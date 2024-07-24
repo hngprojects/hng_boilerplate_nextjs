@@ -115,6 +115,7 @@ export default function WelcomeEmail(properties: IProperties) {
             </Section>
             <Section className="mt-[32px] text-center">
               <Button
+                target={"_blank"}
                 className="w-[80%] rounded-[8px] bg-[#F97316] px-[2rem] py-[16px] text-[#FAFAFA] md:w-fit"
                 href={learnMoreLink}
               >
@@ -140,7 +141,7 @@ export default function WelcomeEmail(properties: IProperties) {
 WelcomeEmail.PreviewProps = {
   offer:
     "Enjoy special promotions and discounts available only to our members.",
-  learnMoreLink: "",
+  learnMoreLink: "http://localhost:3001/about-us",
   username: "John Doe",
   mainHeading: "Welcome to Boilerplate",
   subHeading: "Thanks for signing up",
