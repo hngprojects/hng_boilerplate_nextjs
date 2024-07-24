@@ -1,13 +1,5 @@
-import Client from "./client";
-
-export const metadata = {
-  title: "Dashboard",
-  description:
-    "Super Admin Dashboard using ShadCN UI components, adhering to design specifications and best practices for accessibility.",
+const page = () => {
+  return <div>Admin dashboard</div>;
 };
 
-const AdminDashboardPage = () => {
-  return <Client />;
-};
-
-export default AdminDashboardPage;
+export default page;
