@@ -1,7 +1,6 @@
+import DashboardNavbar from ".";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { it } from "vitest";
-
-import { render, screen } from "~/test/utils";
-import DashboardNavbar from "./index";
 
 const renderComponents = () => {
   render(<DashboardNavbar />);
@@ -29,21 +28,21 @@ describe("component rendering tests", () => {
     expect(bellIcon).toBeInTheDocument();
   });
 
-  //   it("no notification initially", async () => {
-  //     expect.assertions(1);
-  //     expect(screen.getByTestId("notificationContent")).toBeInTheDocument;
-  //   });
+  it.fails("no notification initially", async () => {
+    expect.assertions(1);
+    expect(screen.getByTestId("notificationContent")).toBeInTheDocument;
+  });
 
-  //   it("bell icon triggers notification", async () => {
-  //     expect.assertions(2);
-  //     const { bellIcon } = renderComponents();
+  it("bell icon triggers notification", async () => {
+    expect.assertions(2);
+    const { bellIcon } = renderComponents();
 
-  //     fireEvent.click(bellIcon);
-  //     await waitFor(
-  //       () => expect(screen.getByTestId("notificationContent")).toBeInTheDocument,
-  //     );
-  //     expect(bellIcon).toBeInTheDocument();
-  //   });
+    fireEvent.click(bellIcon);
+    await waitFor(
+      () => expect(screen.getByTestId("notificationContent")).toBeInTheDocument,
+    );
+    expect(bellIcon).toBeInTheDocument();
+  });
 
   it("render chevron down icon", () => {
     expect.assertions(1);

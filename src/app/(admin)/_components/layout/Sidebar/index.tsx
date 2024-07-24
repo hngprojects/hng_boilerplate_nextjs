@@ -52,7 +52,7 @@ const sideItems = [
   },
 ];
 interface Iproperties {
-  sideNavitems: {
+  sideNavitems?: {
     route: string;
     link: string;
     icon: ForwardRefExoticComponent<

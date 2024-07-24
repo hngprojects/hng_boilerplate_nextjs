@@ -1,16 +1,14 @@
 import {
   Button,
   Column,
-  Head,
   Heading,
-  Html,
   Link,
   Preview,
   Section,
   Text,
 } from "@react-email/components";
 
-import TailwindWrapper from "../_tailwindWrapper";
+import Layout from "../_components/layout/layout";
 
 interface IProperties {
   title: string;
@@ -34,64 +32,61 @@ export default function Email(properties: IProperties) {
   } = properties;
 
   return (
-    <TailwindWrapper>
-      <Html>
-        <Head />
-        <Preview>Password Reset for {username}</Preview>
-        <Column align="center" className="px-14">
-          <Section className="w-full max-w-[678px] py-12 md:py-14">
+    <Layout>
+      <Preview>Password Reset for {username}</Preview>
+      <Column align="center">
+        <Section className="w-full max-w-[678px] py-12 md:py-14">
+          <Heading
+            as="h1"
+            className="text-center text-[20px] text-[#0A0A0A] md:text-2xl"
+          >
+            {title}
+          </Heading>
+          <Section>
             <Heading
-              as="h1"
-              className="text-center text-[20px] text-[#0A0A0A] md:text-2xl"
+              as="h2"
+              className="mb-8 text-left text-base text-[#111111] md:text-lg"
             >
-              {title}
+              Hi John Doe,
             </Heading>
-            <Section>
-              <Heading
-                as="h2"
-                className="mb-8 text-left text-base text-[#111111] md:text-lg"
+            <Text className="mb-7 text-justify text-sm text-[#434343] md:text-base">
+              {statementOne}
+            </Text>
+            <Text className="mb-7 text-justify text-sm text-[#434343] md:text-base">
+              {statementTwo}
+            </Text>
+            <Text className="text-justify text-sm text-[#434343] md:text-base">
+              {statementThree}
+            </Text>
+            <div className="flex items-center justify-center">
+              <Button
+                className="w-full rounded-[8px] bg-[#F97316] px-10 py-3 text-center text-base font-medium text-[#FAF8F8] md:w-auto"
+                href={buttonLink}
               >
-                Hi John Doe,
-              </Heading>
-              <Text className="mb-7 text-justify text-sm text-[#434343] md:text-base">
-                {statementOne}
-              </Text>
-              <Text className="mb-7 text-justify text-sm text-[#434343] md:text-base">
-                {statementTwo}
-              </Text>
-              <Text className="text-justify text-sm text-[#434343] md:text-base">
-                {statementThree}
-              </Text>
-              <div className="flex items-center justify-center">
-                <Button
-                  className="w-full rounded-[8px] bg-[#F97316] px-10 py-3 text-center text-base font-medium text-[#FAF8F8] md:w-auto"
-                  href={buttonLink}
-                >
-                  {buttonTitle}
-                </Button>
-              </div>
-              <Text className="text-xs text-[#0F172A] md:text-base">
-                Or copy this link:
-                <Link
-                  className="text-[Primary/Primary Color] underline"
-                  href={buttonLink}
-                >
-                  {buttonLink}
-                </Link>
-              </Text>
-            </Section>
-            <Section>
-              <Heading as="h3" className="text-sm font-medium text-[#111111]">
-                Regards,
-              </Heading>
-              <Heading as="h3" className="text-sm font-medium text-[#111111]">
-                Boilerplate
-              </Heading>
-            </Section>
+                {buttonTitle}
+              </Button>
+            </div>
+            <Text className="text-xs text-[#0F172A] md:text-base">
+              Or copy this link:
+              <Link
+                className="text-[Primary/Primary Color] underline"
+                href={buttonLink}
+              >
+                {buttonLink}
+              </Link>
+            </Text>
           </Section>
-        </Column>
-      </Html>
-    </TailwindWrapper>
+          <Section>
+            <Heading as="h3" className="text-sm font-medium text-[#111111]">
+              Regards,
+            </Heading>
+            <Heading as="h3" className="text-sm font-medium text-[#111111]">
+              Boilerplate
+            </Heading>
+          </Section>
+        </Section>
+      </Column>
+    </Layout>
   );
 }
 

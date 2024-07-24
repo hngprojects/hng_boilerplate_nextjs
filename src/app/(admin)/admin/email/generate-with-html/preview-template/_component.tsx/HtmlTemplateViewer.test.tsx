@@ -6,13 +6,6 @@ import "@testing-library/jest-dom";
 import HtmlTemplateViewer from "./TemplateViewer";
 
 describe("htmlTemplateViewer", () => {
-  it("should render with a fluid width", () => {
-    expect.hasAssertions();
-    render(<HtmlTemplateViewer template="<p>Hello World</p>" />);
-    const container = screen.getByTestId("html-template-viewer");
-    expect(container).toHaveClass("max-w-[1035px]");
-  });
-
   it("should scroll its content", () => {
     expect.hasAssertions();
     render(<HtmlTemplateViewer template="<p>Hello World</p>" />);

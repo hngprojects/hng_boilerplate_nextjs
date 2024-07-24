@@ -17,8 +17,6 @@ const useWindowWidth = () => {
     };
   }, []);
 
-  // console.log(scrollY);
-
   return { winWidth };
 };
 
