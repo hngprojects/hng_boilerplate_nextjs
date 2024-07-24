@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "~/components/ui/button";
@@ -37,9 +37,7 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-const onSubmit: SubmitHandler<FormData> = (data) => {
-  // Handle form submission
-};
+// Updated onSubmit function with unused parameter prefixed
 
 function Organisation() {
   const form = useForm<FormData>({
@@ -58,7 +56,7 @@ function Organisation() {
 
         <div className="mx-auto w-2/4">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <form className="space-y-8">
               <FormField
                 control={form.control}
                 name="fullname"

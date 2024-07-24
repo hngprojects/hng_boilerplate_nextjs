@@ -1,18 +1,11 @@
 "use client";
 
-<<<<<<< HEAD
-import { cn } from "@/lib/utils";
-=======
->>>>>>> upstream/clean
 import { OTPInput, OTPInputContext } from "input-otp";
 import { Dot } from "lucide-react";
 import * as React from "react";
 
-<<<<<<< HEAD
-=======
 import { cn } from "~/lib/utils";
 
->>>>>>> upstream/clean
 const InputOTP = React.forwardRef<
   React.ElementRef<typeof OTPInput>,
   React.ComponentPropsWithoutRef<typeof OTPInput>

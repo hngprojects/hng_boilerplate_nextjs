@@ -6,6 +6,8 @@ import SignUp from "~/app/(auth-routes)/register/page"; // Adjust the path as ne
 
 describe("signUp Component", () => {
   it("renders sign-up form", () => {
+    expect.assertions(4);
+
     render(<SignUp />);
 
     expect(screen.getByText("Sign Up")).toBeInTheDocument();
@@ -21,6 +23,8 @@ describe("signUp Component", () => {
   });
 
   it("validates form inputs", async () => {
+    expect.assertions(3);
+
     render(<SignUp />);
 
     fireEvent.change(screen.getByPlaceholderText("Enter your fullname"), {
@@ -47,6 +51,8 @@ describe("signUp Component", () => {
   });
 
   it("opens dialog on form submit", async () => {
+    expect.assertions(1);
+
     render(<SignUp />);
 
     fireEvent.change(screen.getByPlaceholderText("Enter your fullname"), {
