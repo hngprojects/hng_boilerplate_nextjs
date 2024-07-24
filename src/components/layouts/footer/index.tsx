@@ -17,18 +17,18 @@ const Footer = () => {
       title: "Navigation",
       links: [
         { route: "Home", link: "/" },
-        { route: "About us", link: "/" },
-        { route: "Career", link: "/" },
+        { route: "About us", link: "/about-us" },
+        { route: "Career", link: "/career" },
         { route: "Feature updates", link: "/" },
-        { route: "Blog", link: "/" },
+        { route: "Blog", link: "/blog" },
       ],
     },
     {
       title: "Support",
       links: [
         { route: "Help center", link: "/" },
-        { route: "FAQ", link: "/" },
-        { route: "waiting list", link: "/" },
+        { route: "FAQ", link: "/faqs" },
+        { route: "waiting list", link: "/waitlist" },
         { route: "Pricing Experience", link: "/" },
         { route: "Contact Us", link: "/" },
       ],
