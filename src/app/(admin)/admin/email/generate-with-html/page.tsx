@@ -9,13 +9,6 @@ const page = () => {
         description="Paste your HTML code below to generate your email template."
       />
       <div className="w-full max-w-[666px]">
-        <div className="mb-6">
-          <label>HTML Link</label>
-          <div>
-            <input />
-            <button>Generate</button>
-          </div>
-        </div>
         <TipsCard />
       </div>
     </div>

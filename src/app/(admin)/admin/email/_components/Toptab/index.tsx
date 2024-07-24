@@ -19,6 +19,7 @@ const Toptab: FC<IProperties> = ({ tabs }) => {
         {tabs?.map((tab, item) => {
           return (
             <TabsTrigger
+              data-testid="trigger-btn"
               key={item}
               value={tab.value}
               className="rounded-none bg-transparent text-sm text-[#8E8E93] data-[state=active]:bg-[#F6F7F9] data-[state=active]:text-primary"
@@ -30,7 +31,12 @@ const Toptab: FC<IProperties> = ({ tabs }) => {
       </TabsList>
       {tabs?.map((tab, item) => {
         return (
-          <TabsContent key={item} value={tab.value} className="w-auto">
+          <TabsContent
+            data-testid="toptab-content"
+            key={item}
+            value={tab.value}
+            className="w-auto"
+          >
             {tab.content}
           </TabsContent>
         );
