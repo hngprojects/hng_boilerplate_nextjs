@@ -1,117 +1,118 @@
-import { Slot } from "@radix-ui/react-slot";
-import { ChevronRight, MoreHorizontal } from "lucide-react";
-import * as React from "react";
+"use client";
 
-import { cn } from "~/lib/utils";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Fragment } from "react";
 
-const Breadcrumb = React.forwardRef<
-  HTMLElement,
-  React.ComponentPropsWithoutRef<"nav"> & {
-    separator?: React.ReactNode;
-  }
->(({ ...properties }, reference) => (
-  <nav ref={reference} aria-label="breadcrumb" {...properties} />
-));
-Breadcrumb.displayName = "Breadcrumb";
-
-const BreadcrumbList = React.forwardRef<
-  HTMLOListElement,
-  React.ComponentPropsWithoutRef<"ol">
->(({ className, ...properties }, reference) => (
-  <ol
-    ref={reference}
-    className={cn(
-      "flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5",
-      className,
-    )}
-    {...properties}
-  />
-));
-BreadcrumbList.displayName = "BreadcrumbList";
-
-const BreadcrumbItem = React.forwardRef<
-  HTMLLIElement,
-  React.ComponentPropsWithoutRef<"li">
->(({ className, ...properties }, reference) => (
-  <li
-    ref={reference}
-    className={cn("inline-flex items-center gap-1.5", className)}
-    {...properties}
-  />
-));
-BreadcrumbItem.displayName = "BreadcrumbItem";
-
-const BreadcrumbLink = React.forwardRef<
-  HTMLAnchorElement,
-  React.ComponentPropsWithoutRef<"a"> & {
-    asChild?: boolean;
-  }
->(({ asChild, className, ...properties }, reference) => {
-  const Comp = asChild ? Slot : "a";
-
-  return (
-    <Comp
-      ref={reference}
-      className={cn("transition-colors hover:text-foreground", className)}
-      {...properties}
-    />
-  );
-});
-BreadcrumbLink.displayName = "BreadcrumbLink";
-
-const BreadcrumbPage = React.forwardRef<
-  HTMLSpanElement,
-  React.ComponentPropsWithoutRef<"span">
->(({ className, ...properties }, reference) => (
-  <span
-    ref={reference}
-    role="link"
-    aria-disabled="true"
-    aria-current="page"
-    className={cn("font-normal text-foreground", className)}
-    {...properties}
-  />
-));
-BreadcrumbPage.displayName = "BreadcrumbPage";
-
-const BreadcrumbSeparator = ({
-  children,
-  className,
-  ...properties
-}: React.ComponentProps<"li">) => (
-  <li
-    role="presentation"
-    aria-hidden="true"
-    className={cn("[&>svg]:size-3.5", className)}
-    {...properties}
-  >
-    {children ?? <ChevronRight />}
-  </li>
-);
-BreadcrumbSeparator.displayName = "BreadcrumbSeparator";
-
-const BreadcrumbEllipsis = ({
-  className,
-  ...properties
-}: React.ComponentProps<"span">) => (
-  <span
-    role="presentation"
-    aria-hidden="true"
-    className={cn("flex h-9 w-9 items-center justify-center", className)}
-    {...properties}
-  >
-    <MoreHorizontal className="h-4 w-4" />
-    <span className="sr-only">More</span>
-  </span>
-);
-BreadcrumbEllipsis.displayName = "BreadcrumbElipssis";
-
-export {
-  Breadcrumb,
-  BreadcrumbList,
+import {
+  Breadcrumb as BreadcrumbBase,
+  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
+  BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-  BreadcrumbEllipsis,
+} from "~/components/common/Breadcrumb/breadcrumb";
+import { cn } from "~/lib/utils";
+
+type PagesList = {
+  /** Specifies the page name */
+  name: string;
+  /** Specifies the page URL */
+  href: string;
+  /** Specifies if the page is the current page */
+  isCurrent?: boolean;
 };
+
+export type BreadcrumbProperties = {
+  /** Specifies the pages to display in the breadcrumb */
+  pages?: PagesList[];
+  /** Specifies the maximum number of pages to display in the breadcrumb */
+  maxPages?: number;
+  /** Specifies the breadcrumb style variant */
+  variant?: "primary" | "default";
+};
+
+export function Breadcrumb({
+  pages,
+  maxPages = 3,
+  variant = "default",
+}: BreadcrumbProperties) {
+  const paths = usePathname()?.split("/");
+
+  const generatedPages: PagesList[] =
+    paths?.map((path, index, _paths) => {
+      const isHomePath = path.trim().length === 0;
+      return {
+        name: isHomePath ? "Home" : path.replaceAll("-", " "),
+        href: isHomePath ? "/" : "" + _paths.slice(0, index + 1).join("/"),
+        isCurrent: index === _paths.length - 1,
+      };
+    }) ?? [];
+  const isStatic = pages && pages.length > 0;
+  const breadcrumbs = isStatic ? pages : generatedPages;
+  const firstBreadcrumb = breadcrumbs[0];
+  const hasEllipsis = breadcrumbs.length > maxPages;
+  const isPrimary = variant === "primary";
+
+  return (
+    <BreadcrumbBase>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          {firstBreadcrumb.isCurrent ? (
+            <BreadcrumbPage className={cn(isPrimary && "text-primary")}>
+              {firstBreadcrumb.name}
+            </BreadcrumbPage>
+          ) : (
+            <BreadcrumbLink
+              className={cn(isPrimary && "text-neutral-dark-1")}
+              asChild
+            >
+              <Link href={firstBreadcrumb.href}>{firstBreadcrumb.name}</Link>
+            </BreadcrumbLink>
+          )}
+        </BreadcrumbItem>
+        {hasEllipsis && (
+          <>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink
+                className={cn(isPrimary && "text-neutral-dark-1")}
+                asChild
+              >
+                <Link href={breadcrumbs[breadcrumbs.length - maxPages].href}>
+                  <BreadcrumbEllipsis />
+                </Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+          </>
+        )}
+        {breadcrumbs
+          .slice(hasEllipsis ? -maxPages + 1 : 1)
+          .map(({ name, href, isCurrent }) => {
+            return (
+              <Fragment key={name}>
+                <BreadcrumbSeparator />
+                {isCurrent ? (
+                  <BreadcrumbItem>
+                    <BreadcrumbPage className={cn(isPrimary && "text-primary")}>
+                      {name}
+                    </BreadcrumbPage>
+                  </BreadcrumbItem>
+                ) : (
+                  <BreadcrumbItem>
+                    <BreadcrumbLink
+                      className={cn(isPrimary && "text-neutral-dark-1")}
+                      asChild
+                    >
+                      <Link href={href}>{name}</Link>
+                    </BreadcrumbLink>
+                  </BreadcrumbItem>
+                )}
+              </Fragment>
+            );
+          })}
+      </BreadcrumbList>
+    </BreadcrumbBase>
+  );
+}
