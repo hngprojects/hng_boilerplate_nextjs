@@ -12,7 +12,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "~/components/common/Breadcrumb/breadcrumb";
+} from "~/components/common/breadcrumb/breadcrumb";
 import { cn } from "~/lib/utils";
 
 type PagesList = {
