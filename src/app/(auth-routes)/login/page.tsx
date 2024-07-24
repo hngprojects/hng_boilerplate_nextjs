@@ -229,4 +229,4 @@ const LoginPage = () => {
   );
 };
 
-export default MagicLogin;
+export default LoginPage;
