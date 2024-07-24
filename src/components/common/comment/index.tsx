@@ -1,5 +1,7 @@
 "use client";
 
+import { AnimatePresence, AnimationProps, motion } from "framer-motion";
+import { Session } from "next-auth";
 import React, { useState } from "react";
 
 import { cn } from "../../../lib/utils";
@@ -18,11 +20,12 @@ export type CommentProperties = React.ComponentProps<typeof Card> & {
   likes: number;
   dislikes: number;
   className?: string;
+  session: Session | null;
 };
 
 export type ReplyProperties = Omit<CommentProperties, "date">;
 
-const HBPCommentBox = ({
+const Comment = ({
   id,
   className,
   avatar,
@@ -30,9 +33,9 @@ const HBPCommentBox = ({
   username,
   content,
   timestamp,
-  // date,
   likes: initialLikes,
   dislikes: initialDislikes,
+  session,
   ...properties
 }: CommentProperties) => {
   const [showReply, setShowReply] = useState(false);
@@ -40,19 +43,30 @@ const HBPCommentBox = ({
   const [likes, setLikes] = useState(initialLikes);
   const [dislikes, setDislikes] = useState(initialDislikes);
 
+  const animation: AnimationProps = {
+    initial: { opacity: 0, height: 0 },
+    animate: { opacity: 1, height: "auto" },
+    exit: {
+      opacity: 0,
+      height: 0,
+      transition: { duration: 0.3 },
+    },
+  };
+
   const handleReplySubmit = (replyContent: string) => {
     if (replyContent.trim()) {
       const newReply: ReplyProperties = {
         id: Date.now().toString(),
         avatar: "/path/to/default/avatar.png",
-        name: "Current User",
-        username: "currentuser",
+        name: session?.user?.name ?? "Current User",
+        username: session?.user?.name?.[0]?.toLowerCase() ?? "currentuser",
         content: replyContent,
-        timestamp: new Date().toLocaleString(),
+        timestamp: new Date().toISOString(),
         likes: 0,
         dislikes: 0,
+        session,
       };
-      setReplies([...replies, newReply]);
+      setReplies([newReply, ...replies]);
       setShowReply(false);
     }
   };
@@ -83,7 +97,7 @@ const HBPCommentBox = ({
 
   return (
     <div
-      className="flex w-full max-w-[864px] flex-col gap-y-3 sm:gap-y-6"
+      className="flex w-full max-w-[864px] flex-col"
       data-testid="comment-box-container"
     >
       <Card
@@ -105,48 +119,61 @@ const HBPCommentBox = ({
             timestamp={timestamp}
             likes={likes}
             dislikes={dislikes}
+            session={session}
             onLike={() => handleLike("comment", id)}
             onDislike={() => handleDislike("comment", id)}
             onReply={() => setShowReply(!showReply)}
+            isReplyActive={showReply}
           />
         </CardContent>
       </Card>
 
-      {showReply && (
-        <div className="relative" data-testid="reply-form-container">
-          <ReplyForm onSubmit={handleReplySubmit} />
-        </div>
-      )}
-
-      {replies.map((reply) => (
-        <div
-          key={reply.id}
-          className="relative ml-4 sm:ml-12"
-          data-testid={`reply-${reply.id}`}
-        >
-          {/* TODO: remove the absolute positioning if it does nothing */}
-          <div className="lbottom-0 top absolute left-0 w-px bg-gray-200" />
-          <Card className="w-full">
-            <CardContent className="p-3 sm:p-4">
-              <CommentBody
-                type="reply"
-                id={reply.id}
-                avatar={reply.avatar}
-                name={reply.name}
-                username={reply.username}
-                content={reply.content}
-                timestamp={reply.timestamp}
-                likes={reply.likes}
-                dislikes={reply.dislikes}
-                onLike={() => handleLike("reply", reply.id)}
-                onDislike={() => handleDislike("reply", reply.id)}
-              />
-            </CardContent>
-          </Card>
-        </div>
-      ))}
+      <div
+        className={`duration-300 ${replies.length > 0 || showReply ? "pt-3 sm:pt-6" : "pt-0"}`}
+      >
+        <AnimatePresence>
+          {showReply && (
+            <motion.div
+              {...animation}
+              className="overflow-hidden"
+              data-testid="reply-form-container"
+            >
+              <ReplyForm session={session} onSubmit={handleReplySubmit} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+        {replies.length > 0 && (
+          <div className="flex flex-col gap-y-3 sm:gap-y-6">
+            {replies.map((reply) => (
+              <div
+                key={reply.id}
+                className="ml-[39px] sm:ml-[135px]"
+                data-testid={`reply-${reply.id}`}
+              >
+                <Card
+                  className={cn(
+                    "w-full rounded border-[0.8px] border-stroke-colors-stroke bg-popover px-4 py-[18px]",
+                    className,
+                  )}
+                >
+                  <CardContent className="p-0">
+                    <CommentBody
+                      {...reply}
+                      isReplyActive={showReply}
+                      type="reply"
+                      session={session}
+                      onLike={() => handleLike("reply", reply.id)}
+                      onDislike={() => handleDislike("reply", reply.id)}
+                    />
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
-export default HBPCommentBox;
+export default Comment;

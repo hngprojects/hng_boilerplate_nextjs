@@ -1,3 +1,6 @@
+import moment from "moment";
+import { Session } from "next-auth";
+
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import CommentActions from "./comment-actions";
 
@@ -11,6 +14,8 @@ export type CommentBodyProperties = {
   timestamp: string;
   likes: number;
   dislikes: number;
+  session: Session | null;
+  isReplyActive: boolean;
   onLike: () => void;
   onDislike: () => void;
   onReply?: () => void;
@@ -26,6 +31,8 @@ export function CommentBody({
   timestamp,
   likes,
   dislikes,
+  isReplyActive,
+  session,
   onLike,
   onDislike,
   onReply,
@@ -73,19 +80,25 @@ export function CommentBody({
             className="text-xs text-neutral-dark-1 sm:text-sm"
             data-testid="comment-timestamp"
           >
-            {timestamp}
+            <span>{moment(timestamp).format("DD MMM, YYYY")}</span>
+            <span className="ml-3">
+              {moment(timestamp).format("ddd hh:mma")}
+            </span>
           </p>
         </div>
-        <div data-testid="action-buttons-container">
-          <CommentActions
-            type={type}
-            likes={likes}
-            dislikes={dislikes}
-            onLike={onLike}
-            onDislike={onDislike}
-            onReply={onReply}
-          />
-        </div>
+        {session && (
+          <div data-testid="action-buttons-container">
+            <CommentActions
+              type={type}
+              isReplyActive={isReplyActive}
+              likes={likes}
+              dislikes={dislikes}
+              onLike={onLike}
+              onDislike={onDislike}
+              onReply={onReply}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

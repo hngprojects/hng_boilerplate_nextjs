@@ -5,7 +5,6 @@ import {
   ThumbsDown,
   ThumbsUp,
 } from "lucide-react";
-import { useState } from "react";
 
 import CustomButton from "~/components/common/button/button";
 import ButtonWrapper from "./button-wrapper";
@@ -14,6 +13,7 @@ type CommentActionsProperties = {
   type: "comment" | "reply";
   likes: number;
   dislikes: number;
+  isReplyActive: boolean;
   onLike: () => void;
   onDislike: () => void;
   onReply?: () => void;
@@ -26,14 +26,8 @@ const CommentActions = ({
   onLike,
   onDislike,
   onReply,
+  isReplyActive,
 }: CommentActionsProperties) => {
-  const [isActive, setIsActive] = useState(false);
-
-  const handleReplyClick = () => {
-    setIsActive(!isActive);
-    onReply?.();
-  };
-
   return (
     <div
       className="flex items-center gap-x-2 text-sm"
@@ -101,9 +95,9 @@ const CommentActions = ({
       </ButtonWrapper>
 
       {type === "comment" && onReply && (
-        <ButtonWrapper data-testid="reply-button" onClick={handleReplyClick}>
+        <ButtonWrapper data-testid="reply-button" onClick={() => onReply?.()}>
           <CustomButton
-            className={`group h-[24.96px] min-w-8 gap-1.5 rounded-[6px] border-[1.5px] border-stroke-colors-stroke bg-zinc-50 py-1 pl-[5.33px] pr-[10.67px] text-neutral-dark-1 hover:border-primary hover:bg-primary hover:text-white sm:h-9 sm:min-w-12 sm:py-1.5 sm:pl-2 sm:pr-4 ${isActive ? "border-primary bg-primary text-white" : ""}`}
+            className={`group h-[24.96px] min-w-8 gap-1.5 rounded-[6px] border-[1.5px] border-stroke-colors-stroke bg-zinc-50 py-1 pl-[5.33px] pr-[10.67px] text-neutral-dark-1 hover:border-primary hover:bg-primary hover:text-white sm:h-9 sm:min-w-12 sm:py-1.5 sm:pl-2 sm:pr-4 ${isReplyActive ? "border-primary bg-primary text-white" : ""}`}
             aria-label="Reply Button"
             variant="outline"
             size="icon"
