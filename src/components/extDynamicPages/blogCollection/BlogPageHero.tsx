@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-import CustomButton from "~/components/common/Button/button";
 import { blogHero } from "../../../../public/images/blogPage/utils";
+import CustomButton from "~/components/common/button/button";
 
 const HeroSection: React.FC = () => {
   return (

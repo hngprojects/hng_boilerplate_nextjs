@@ -10,8 +10,8 @@ In order to run this app locally, you should have the following programs install
 ##### Clone this repository
 
 ```
-git clone git@github.com/hngprojects/hng_boilerplate_nextjs.git
-cd hng_boilerplate_nextjs
+git clone <git@github.com:hngprojects/<repo-name>.git
+cd <repo-name>
 ```
 
 ##### Install dependencies
@@ -59,8 +59,7 @@ htpp://localhost:3000/guides
 - Modal components should be stored in `~/components/modals`
 - Layout components should be stored in `~/components/layouts`
 - All tests should be stored in `~/test`
-- All emails are to be built with react email components and tailwind and stored in `~/emails/templates`
 
 ## Contributing
 
-Please read the [CONTRIBUTING](./CONTRIBUTING.md) file before making any contributions.
+Please read the [CONTRIBUTING](CONTRIBUTING.md) file before making any contributions.

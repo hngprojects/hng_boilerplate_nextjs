@@ -1,4 +1,3 @@
-import CustomButton from "~/components/common/Button/button";
 import BlogCard from "~/components/layouts/BlogCards";
 import {
   blogCard1,
@@ -9,6 +8,7 @@ import {
   blogCard6,
 } from "../../../public/images/blogPage/utils";
 import HeroSection from "../../components/extDynamicPages/blogCollection/BlogPageHero";
+import CustomButton from "~/components/common/button/button";
 
 const BlogHome = () => {
   const blogPosts = [
