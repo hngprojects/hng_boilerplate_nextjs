@@ -2,7 +2,7 @@ import { render } from "~/test/utils";
 import Page from "./page";
 
 describe("page tests", () => {
-  it("should render correctly", () => {
+  it("admin email page renders correctly", () => {
     expect.assertions(1);
 
     render(<Page />);
