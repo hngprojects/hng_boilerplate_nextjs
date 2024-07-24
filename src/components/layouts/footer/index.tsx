@@ -8,8 +8,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-import CustomButton from "~/components/common/Button/button";
-import { Input } from "~/components/common/Input";
+import CustomButton from "~/components/common/button/button";
+import { Input } from "~/components/ui/input";
 
 const Footer = () => {
   const footerLinks = [

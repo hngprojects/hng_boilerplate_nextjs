@@ -8,7 +8,7 @@ import {
   ReactNode,
 } from "react";
 
-import { Button } from "~/components/common/Button";
+import { Button } from "~/components/common/button";
 
 type Variant =
   | "default"
