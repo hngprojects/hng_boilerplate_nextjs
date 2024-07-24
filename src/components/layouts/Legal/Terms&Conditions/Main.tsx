@@ -39,7 +39,6 @@ const formattedDate = (date: Date) => {
 const Main = () => {
   const lastUpdate = new Date("2024-07-20");
 
-
   useEffect(() => {
     document.documentElement.style.scrollPaddingTop = "80px";
     document.documentElement.style.scrollBehavior = "smooth";
@@ -49,16 +48,13 @@ const Main = () => {
     };
   }, []);
 
-  // 
+  //
 
   return (
     <section className="relative my-[70px] scroll-smooth text-left">
       <div className="flex max-w-full flex-col-reverse items-start justify-between pb-10 lg:flex-row">
         <div className="text-neutral-dark-1 lg:w-[750px]">
-          <div
-            className="max-w-full self-stretch"
-            id="introduction"
-          >
+          <div className="max-w-full self-stretch" id="introduction">
             <h2 className="relative mb-[10px] self-stretch text-2xl font-bold sm:text-[28px]">
               Introduction
             </h2>

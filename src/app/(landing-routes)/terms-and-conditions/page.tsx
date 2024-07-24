@@ -1,6 +1,6 @@
-import { Breadcrumb } from '~/components/common/breadcrumb/breadcrumb';
-import SubPageHero from "~/components/layouts/Legal/Terms&Conditions/SubPageHero";
+import { Breadcrumb } from "~/components/common/breadcrumb/breadcrumb";
 import Main from "~/components/layouts/Legal/Terms&Conditions/Main";
+import SubPageHero from "~/components/layouts/Legal/Terms&Conditions/SubPageHero";
 
 const TermsConditions = () => {
   return (
@@ -10,7 +10,10 @@ const TermsConditions = () => {
         description="Achieve your dreams with us today"
         data-testid="subpage-hero"
       />
-      <div className="mx-auto max-w-7xl px-5 md:px-10 lg:px-10 xl:px-10 py-20" data-testid="breadcrumb-container">
+      <div
+        className="mx-auto max-w-7xl px-5 py-20 md:px-10 lg:px-10 xl:px-10"
+        data-testid="breadcrumb-container"
+      >
         <Breadcrumb
           pages={[
             { name: "Home", href: "/" },

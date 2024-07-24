@@ -1,11 +1,14 @@
 "use client";
 
 import { useEffect } from "react";
-import { Breadcrumb } from '~/components/common/breadcrumb/breadcrumb';
-import privacyPolicyData, { getTableOfContents } from "~/components/layouts/Legal/PrivacyPolicy/constants/privacyPolicyData";
+
+import { Breadcrumb } from "~/components/common/breadcrumb/breadcrumb";
+import privacyPolicyData, {
+  getTableOfContents,
+} from "~/components/layouts/Legal/PrivacyPolicy/constants/privacyPolicyData";
 import PrivacyPolicyContent from "~/components/layouts/Legal/PrivacyPolicy/PrivacyPolicyContent";
-import SubPageHero from "~/components/layouts/Legal/Terms&Conditions/SubPageHero";
 import TableOfContent from "~/components/layouts/Legal/TableOfContent";
+import SubPageHero from "~/components/layouts/Legal/Terms&Conditions/SubPageHero";
 
 export default function PrivacyPolicy() {
   const tableOfContents = getTableOfContents(privacyPolicyData);
@@ -32,10 +35,10 @@ export default function PrivacyPolicy() {
         description="Achieve your dreams with us today"
       />
 
-      <div className="mx-auto max-w-7xl px-5 md:px-10 lg:px-10 xl:px-10 py-20 ">
+      <div className="mx-auto max-w-7xl px-5 py-20 md:px-10 lg:px-10 xl:px-10">
         <Breadcrumb variant="primary" />
 
-        <section className="flex max-w-full flex-col-reverse items-start justify-between pb-10 lg:flex-row my-[70px]">
+        <section className="my-[70px] flex max-w-full flex-col-reverse items-start justify-between pb-10 lg:flex-row">
           <PrivacyPolicyContent
             content={privacyPolicyData}
             className="text-neutral-dark-1 lg:w-[750px]"
