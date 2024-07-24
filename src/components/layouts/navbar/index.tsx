@@ -31,7 +31,7 @@ const Navbar = () => {
   });
   return (
     <nav
-      className={`${scrolling ? "shadow-md" : "shadow-none"} sticky left-0 right-0 top-0 z-[10000000000000] bg-background px-4`}
+      className={`${scrolling ? "shadow-md" : "shadow-none"} sticky left-0 right-0 top-0 z-10 bg-background px-4`}
     >
       <div
         className={`${scrolling ? "py-2" : "py-4 md:py-9"} mx-auto flex w-full max-w-[1200px] items-center justify-between gap-2 transition-all duration-500`}
