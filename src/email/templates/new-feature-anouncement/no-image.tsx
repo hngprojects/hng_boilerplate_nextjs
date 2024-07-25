@@ -4,6 +4,7 @@ import {
   Container,
   Heading,
   Img,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -40,6 +41,7 @@ export const NewFeatureAnnouncement = ({
 }: NewFeatureAnnouncementProperties) => {
   return (
     <Layout>
+      <Preview>Subscription Confirmation</Preview>
       <Section className="py-[56px]">
         <Container className="max-w-[680px] px-[48px] md:px-0">
           <Section className="my-[40px] flex flex-col items-center justify-center">
