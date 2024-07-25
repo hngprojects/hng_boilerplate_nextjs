@@ -9,6 +9,7 @@ interface BlogCardProperties {
   category: string;
   image: StaticImageData;
   labelClassName: string;
+  onClick?: () => void;
 }
 
 const BlogCard: React.FC<BlogCardProperties> = ({
@@ -18,9 +19,10 @@ const BlogCard: React.FC<BlogCardProperties> = ({
   category,
   image,
   labelClassName,
+  onClick,
 }) => {
   return (
-    <Card>
+    <Card onClick={onClick}>
       <div className="relative hover:cursor-pointer">
         <Image
           src={image}
