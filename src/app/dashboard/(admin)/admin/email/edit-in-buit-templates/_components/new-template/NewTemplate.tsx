@@ -1,8 +1,11 @@
-import { CodeIcon, FileIcon, LucideProps } from "lucide-react";
+import { LucideProps } from "lucide-react";
 import Link from "next/link";
 import { FC, ForwardRefExoticComponent } from "react";
 
-import PageHeader from "../page-header";
+import { Breadcrumb } from "~/components/common/breadcrumb/breadcrumb";
+import PageHeader from "../../../_components/page-header";
+import TemplateCard from "../../../_components/template-card/TemplateCard";
+import PreviewCard from "../preview-card";
 
 interface IOption {
   data: {
@@ -14,23 +17,6 @@ interface IOption {
     link: string;
   };
 }
-
-const options = [
-  {
-    title: "Generate with HTML",
-    description:
-      "Create an email template by pasting your custom-coded template",
-    icon: CodeIcon,
-    link: "email/generate-with-html",
-  },
-  {
-    title: "Edit in-built Template",
-    description:
-      "Create an email template by choosing from our custom template library",
-    icon: FileIcon,
-    link: "email/edit-in-buit-templates",
-  },
-];
 
 export const Options: FC<IOption> = ({ data }) => {
   return (
@@ -57,15 +43,19 @@ export const Options: FC<IOption> = ({ data }) => {
 };
 const NewTemplate = () => {
   return (
-    <div className="max-w-[670px]">
-      <PageHeader
-        title="Create a New Template"
-        description="Choose an option below to begin crafting your email design."
-      />
-      <div className="grid grid-cols-2 gap-6">
-        {options.map((option, index) => {
-          return <Options key={index} data={option} />;
-        })}
+    <div>
+      <section className="mb-8">
+        <PageHeader
+          title="Create a New Template"
+          description="Choose an option below to begin crafting your email design."
+        />
+        <Breadcrumb />
+      </section>
+      <div className="grid grid-cols-[1fr_447px]">
+        <section className="min-h-[700px] overflow-hidden rounded-[19px] border-[1px] border-border">
+          <TemplateCard />
+        </section>
+        <PreviewCard />
       </div>
     </div>
   );
