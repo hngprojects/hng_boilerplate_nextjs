@@ -1,10 +1,10 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import Image from "next/image";
 import { DialogContent, DialogTitle } from "@radix-ui/react-dialog";
+import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -38,10 +38,6 @@ const formSchema = z.object({
 });
 
 type FormData = z.infer<typeof formSchema>;
-
-const onSubmit = (event: React.FormEvent) => {
-  event.preventDefault();
-};
 
 const SignUp = () => {
   const form = useForm<FormData>({
@@ -97,7 +93,7 @@ const SignUp = () => {
           Sign in with Google
         </Button>
       </div>
-      <div className="mx-auto md:w-2/4 py-4">
+      <div className="mx-auto py-4 md:w-2/4">
         <Form {...form}>
           <form
             className="space-y-8"
