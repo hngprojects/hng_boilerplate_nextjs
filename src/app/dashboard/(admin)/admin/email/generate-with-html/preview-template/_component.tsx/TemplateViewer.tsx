@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
+import { templateOne, templateTwo } from "./template-example";
+
 interface PreviewComponentProperties {
   template?: string;
   mode?: "preview" | "edit";
@@ -7,7 +9,7 @@ interface PreviewComponentProperties {
 }
 
 const TemplateViewer: React.FC<PreviewComponentProperties> = ({
-  template = "",
+  template = templateTwo,
   mode = "preview",
   onEdit,
 }) => {
@@ -35,13 +37,13 @@ const TemplateViewer: React.FC<PreviewComponentProperties> = ({
   return (
     <div
       data-testid="html-template-viewer"
-      className="rounded-[19px] border border-[#CBD5E180] p-4"
+      className="h-full rounded-[19px] border border-[#CBD5E180] p-4"
     >
       <div
         data-testid="scroll-container"
-        className="relative overflow-y-auto rounded-lg lg:max-h-[719px]"
+        className="relative overflow-y-auto rounded-lg"
       >
-        <div className="flex w-[98%] items-center justify-center overflow-auto rounded-lg border border-[#CBD5E1] bg-white p-[1rem] lg:p-[3rem]">
+        <div className="flex h-[700px] w-[98%] items-center justify-center overflow-auto rounded-lg border border-[#CBD5E1] bg-white">
           {mode === "edit" ? (
             <textarea
               style={{ scrollbarWidth: "none" }}
