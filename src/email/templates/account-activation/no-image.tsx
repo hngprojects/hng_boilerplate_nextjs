@@ -2,34 +2,30 @@ import {
   Button,
   Container,
   Heading,
-  Img,
   Section,
   Text,
 } from "@react-email/components";
 
 import Layout from "../_components/layout/layout";
 
-interface PasswordResetProperties {
+interface AccountVerificationProperties {
   title?: string;
   username?: string;
-  image?: string;
   description?: string;
+  descriptionOne?: string;
   link?: string;
 }
 
-export const PasswordReset = ({
+export const AccountVerification = ({
   title = "",
   username = "",
-  image = "",
   description = "",
+  descriptionOne = "",
   link = "",
-}: PasswordResetProperties) => {
+}: AccountVerificationProperties) => {
   return (
     <Layout>
       <Section className="py-[56px]">
-        <Section className="mx-auto flex items-center justify-center md:w-[316px]">
-          <Img src={image} alt="hello" className="h-[100%] w-[100%]" />
-        </Section>
         <Section className="mx-auto flex items-center justify-center"></Section>
 
         <Container className="max-w-[680px] px-[48px] md:px-0">
@@ -42,22 +38,20 @@ export const PasswordReset = ({
             </Heading>
 
             <Section>
-              <Text className="my-0 text-[16px] font-[600] text-[#121212] md:text-[18px]">
+              <Text className="md:text-[18px]mt-[32px] my-0 text-[16px] font-[600] text-[#121212]">
                 Hi {username},
               </Text>
               <Text className="text-justify text-[14px] leading-[19.36px] text-[#525252] md:text-[16px]">
                 {description}
+              </Text>
+              <Text className="text-justify text-[14px] leading-[19.36px] text-[#525252] md:text-[16px]">
+                {descriptionOne}
               </Text>
             </Section>
           </Section>
         </Container>
 
         <Section className="text-center">
-          <Container className="mb-[40px] max-w-[680px] px-[48px] md:px-0">
-            <Text className="text-left leading-[19px] text-[#525252] md:text-[16px]">
-              To reset your password, please click the button below.
-            </Text>
-          </Container>
           <Section className="mt-[32px] w-[100%] text-center">
             <Container className="mb-[40px] max-w-[680px] px-[48px] md:px-0">
               <Button
@@ -65,7 +59,7 @@ export const PasswordReset = ({
                 className="w-[100%] rounded-[8px] bg-[#F97316] py-[16px] text-[#FAFAFA] md:w-fit md:px-[2rem]"
                 href={link}
               >
-                Learn More About us
+                Activate Account
               </Button>
             </Container>
           </Section>
@@ -84,13 +78,14 @@ export const PasswordReset = ({
   );
 };
 
-PasswordReset.PreviewProps = {
-  title: "Reset Your Password",
+AccountVerification.PreviewProps = {
+  title: "Activate Your Account",
   username: "John Doe",
-  image: "https://imgur.com/uPk3aq2.png",
   link: "/",
   description:
-    "You recently requested to reset your password.  If you did not make this request, you can ignore this email.",
-} as PasswordResetProperties;
+    "We recently detected a login attempt to your account from an unfamiliar device. To ensure the security of your account, we haven't granted access.",
+  descriptionOne:
+    "To activate your account and secure it, please click the button below:",
+} as AccountVerificationProperties;
 
-export default PasswordReset;
+export default AccountVerification;

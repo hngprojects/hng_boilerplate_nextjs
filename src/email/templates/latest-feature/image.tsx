@@ -61,7 +61,7 @@ export default function Email(properties: IProperties) {
           <Section>
             <Heading
               as="h2"
-              className="mb-8 text-left text-base text-[#111111] md:text-lg"
+              className="my-0 mb-8 text-left text-base text-[#111111] md:text-lg"
             >
               Hi John Doe,
             </Heading>

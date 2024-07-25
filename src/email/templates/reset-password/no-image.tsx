@@ -35,7 +35,7 @@ export const PasswordReset = ({
             </Heading>
 
             <Section>
-              <Text className="text-[16px] font-[600] text-[#121212] md:text-[18px]">
+              <Text className="my-0 text-[16px] font-[600] text-[#121212] md:text-[18px]">
                 Hi {username},
               </Text>
               <Text className="text-justify text-[14px] leading-[19.36px] text-[#525252] md:text-[16px]">

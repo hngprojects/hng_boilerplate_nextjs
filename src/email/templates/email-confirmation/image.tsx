@@ -44,7 +44,7 @@ export const EmailVerification = ({
             </Heading>
 
             <Section>
-              <Text className="md:text-[18px]mt-[32px] text-[16px] font-[600] text-[#121212]">
+              <Text className="md:text-[18px]mt-[32px] my-0 text-[16px] font-[600] text-[#121212]">
                 Hi {username},
               </Text>
               <Text className="text-justify text-[14px] leading-[19.36px] text-[#525252] md:text-[16px]">
