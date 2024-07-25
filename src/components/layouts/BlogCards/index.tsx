@@ -25,20 +25,20 @@ const BlogCard: React.FC<BlogCardProperties> = ({
         <Image
           src={image}
           height={288}
-          width={512}
-          style={{ objectFit: "contain" }}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          width={620}
           className="rounded-t-lg object-cover"
           alt={title}
         />
         <span
-          className={`max-w-1/2 absolute left-4 top-4 flex w-1/4 items-center justify-center rounded-full px-2 py-1.5 text-xs font-semibold capitalize tracking-wide text-white ${labelClassName}`}
+          className={`absolute left-4 top-4 flex items-center justify-center rounded-full px-2 py-1.5 text-xs font-semibold capitalize tracking-wide text-white ${labelClassName}`}
         >
           {category}
         </span>
       </div>
       <CardHeader>
-        <CardTitle>{title}</CardTitle>
+        <CardTitle>
+          <div className="text-lg">{title}</div>
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="flex items-center justify-between text-sm text-[#0A0A0A] text-muted-foreground">

@@ -52,7 +52,7 @@ const page = () => {
           />
           <p className="mt-4 text-center text-[13px]">
             Already Have An Account?{" "}
-            <Link href="" className="text-primary">
+            <Link href="/login" className="text-primary">
               Login
             </Link>
           </p>

@@ -1,6 +1,14 @@
 "use client";
 
-import { Box, House, LucideProps, Mail, Settings, Users } from "lucide-react";
+import {
+  Box,
+  House,
+  List,
+  LucideProps,
+  Mail,
+  Settings,
+  Users,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FC, ForwardRefExoticComponent, RefAttributes } from "react";
@@ -41,7 +49,7 @@ const sideItems = [
   {
     route: "Waitlist Page",
     link: "/admin/waitlist-page",
-    icon: Mail,
+    icon: List,
     id: "waitlist",
   },
   {
@@ -68,17 +76,18 @@ const Sidebar: FC<Iproperties> = ({
 }) => {
   const pathname = usePathname();
   const currentPath = pathname?.split("/")[2];
+
   return (
-    <div className="flex flex-col items-center justify-start border-r bg-muted/40 md:block md:px-4">
+    <div className="fixed bottom-0 left-0 top-0 z-50 flex h-screen w-[50px] flex-col items-center justify-start border-r bg-[#FDFDFD] md:block md:w-[220px] md:px-4 lg:w-[252px]">
       <DashboardLogo />
-      <section className="flex flex-col items-center gap-5 pt-6 md:items-stretch">
+      <section className="flex flex-col items-center gap-y-3 pt-6 md:items-stretch">
         {sideNavitems.map((item, index) => (
           <Link
             key={index}
             href={item.link}
             data-testid={item.id}
             role="sidebar-link"
-            className={`${currenPathName || currentPath === item.id ? "bg-primary text-white" : "bg-transparent text-neutral-dark-2"} flex h-10 w-10 items-center justify-center gap-3 rounded-full px-2.5 py-4 transition-all duration-300 hover:bg-primary hover:text-white md:h-auto md:w-auto md:justify-start md:rounded-[8px]`}
+            className={`${currenPathName || currentPath === item.id ? "bg-primary text-white" : "bg-transparent text-neutral-dark-2 hover:bg-gray-200"} flex items-center justify-center gap-2.5 rounded-full px-2.5 py-3 text-sm transition-all duration-300 ease-in md:h-auto md:w-auto md:justify-start md:rounded-sm`}
           >
             <item.icon className="h-5 w-5" role="sidebar-icon" />
             <span className="hidden md:block">{item.route}</span>

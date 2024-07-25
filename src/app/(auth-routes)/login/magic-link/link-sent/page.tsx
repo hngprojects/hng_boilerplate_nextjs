@@ -4,7 +4,7 @@ import { Check } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
 
-export const handleOpenEmail = () => {
+const handleOpenEmail = () => {
   window.location.href = "mailto:";
 };
 const MagicLinkSuccess = () => {

@@ -9,7 +9,7 @@ import {
 import Link from "next/link";
 
 import CustomButton from "~/components/common/common-button/common-button";
-import { Input } from "~/components/ui/input";
+import { Input } from "~/components/common/input";
 
 const Footer = () => {
   const footerLinks = [
