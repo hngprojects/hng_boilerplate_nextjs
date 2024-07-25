@@ -14,7 +14,7 @@ interface IProperties {
 
 const Toptab: FC<IProperties> = ({ tabs }) => {
   return (
-    <Tabs defaultValue={tabs[0].value} className="max-w-[670px]">
+    <Tabs defaultValue={tabs[0].value}>
       <TabsList className="mb-6 rounded-[8px] border-[1px] border-[#CBD5E1B2]/70 bg-transparent p-0">
         {tabs?.map((tab, item) => {
           return (

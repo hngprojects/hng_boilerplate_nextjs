@@ -28,7 +28,7 @@ const options = [
     description:
       "Create an email template by choosing from our custom template library",
     icon: FileIcon,
-    link: "generate-with-html",
+    link: "email/edit-in-buit-templates",
   },
 ];
 
@@ -57,7 +57,7 @@ export const Options: FC<IOption> = ({ data }) => {
 };
 const NewTemplate = () => {
   return (
-    <div>
+    <div className="max-w-[670px]">
       <PageHeader
         title="Create a New Template"
         description="Choose an option below to begin crafting your email design."
