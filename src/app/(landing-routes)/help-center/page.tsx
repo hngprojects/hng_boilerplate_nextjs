@@ -1,6 +1,7 @@
 "use client";
 
 import { Search } from "lucide-react";
+import Link from "next/link";
 
 import { Button } from "~/components/common/common-button";
 import { Input } from "~/components/common/input";
@@ -86,14 +87,11 @@ const HelpCenter = () => {
                 {` We couldn’t answer your question?`}
               </p>
 
-              <Button
-                onClick={handleButtonClickTest}
-                variant="outline"
-                className="h-[50px] w-[150px]"
-                size="lg"
+              <Link href="/contact-us"
+                className="py-4 flex align-center justify-center w-[150px] bg-primary text-background rounded-md"
               >
                 Contact us
-              </Button>
+              </Link>
             </div>
 
             <FaqAccordion faqs={faqData} containerClassName="px-0 py-0 " />
@@ -110,14 +108,11 @@ const HelpCenter = () => {
             Contact us for more inquiries and information about our services.
           </p>
 
-          <Button
-            onClick={handleButtonClickTest}
-            variant="primary"
-            size="lg"
-            className="h-[50px] w-[150px]"
-          >
-            Contact Us
-          </Button>
+           <Link href="/contact-us"
+                className="px-10 py-4 bg-primary text-background rounded-md mt-4 inline-block"
+              >
+                Contact us
+              </Link>
         </div>
       </div>
     </div>
