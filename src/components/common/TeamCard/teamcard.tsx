@@ -4,7 +4,6 @@ import Link from "next/link";
 
 import { Card, CardContent, CardFooter, CardTitle } from "~/components/ui/card";
 
-
 interface TeamCardProperties {
   name: string;
   imageSrc: string;
@@ -27,7 +26,7 @@ const TeamCard: React.FC<TeamCardProperties> = ({
   twitterURL,
 }) => {
   return (
-    <Card className="flex w-[277px] h-[400px] flex-col gap-4 border-none bg-subtle shadow-none">
+    <Card className="flex h-[400px] w-[277px] flex-col gap-4 border-none bg-subtle shadow-none">
       <div className="relative h-[205px] bg-neutral-300">
         <Image
           src={imageSrc}
@@ -52,44 +51,35 @@ const TeamCard: React.FC<TeamCardProperties> = ({
 
         <CardFooter className="flex h-8 gap-3.5 p-0">
           {facebookURL && (
-            
-              <Link
-              
-                href={facebookURL}
-                aria-label="Facebook"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                <Facebook strokeWidth={1} />
-              </Link>
-            
+            <Link
+              href={facebookURL}
+              aria-label="Facebook"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <Facebook strokeWidth={1} />
+            </Link>
           )}
 
           {instagramURL && (
-            
-              <Link
-              
-                href={instagramURL}
-                aria-label="Instagram"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                <Instagram strokeWidth={1} />
-              </Link>
-            
+            <Link
+              href={instagramURL}
+              aria-label="Instagram"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <Instagram strokeWidth={1} />
+            </Link>
           )}
           {twitterURL && (
-            
-              <Link
-              
-                href={twitterURL}
-                target="_blank"
-                aria-label="Twitter"
-                rel="noreferrer noopener"
-              >
-                <Twitter strokeWidth={1} />
-              </Link>
-            
+            <Link
+              href={twitterURL}
+              target="_blank"
+              aria-label="Twitter"
+              rel="noreferrer noopener"
+            >
+              <Twitter strokeWidth={1} />
+            </Link>
           )}
         </CardFooter>
       </CardContent>

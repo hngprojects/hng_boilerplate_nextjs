@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Mission = () => {
   return (
-    <div className="mx-auto max-w-7xl px-5 md:px-10 lg:px-10 xl:px-10 py-10 md:py-20">
+    <div className="mx-auto max-w-7xl px-5 py-10 md:px-10 md:py-20 lg:px-10 xl:px-10">
       <div className="flex flex-col-reverse items-center lg:flex-row">
         <div className="w-full md:pr-10 lg:mb-0 lg:w-3/4">
           <Image

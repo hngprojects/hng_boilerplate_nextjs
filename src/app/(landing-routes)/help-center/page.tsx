@@ -3,16 +3,12 @@
 import { Search } from "lucide-react";
 import Link from "next/link";
 
-import { Button } from "~/components/common/common-button";
 import { Input } from "~/components/common/input";
 import FaqAccordion from "~/components/layouts/accordion/FaqsAccordion";
 import TopicsAccordions from "~/components/layouts/accordion/TopicAccordion";
 import { faqData } from "~/constants/faqsdata";
 
 //
-const handleButtonClickTest = () => {
-  alert("Contact Button Click Test");
-};
 
 const HelpCenter = () => {
   //
@@ -87,8 +83,9 @@ const HelpCenter = () => {
                 {` We couldn’t answer your question?`}
               </p>
 
-              <Link href="/contact-us"
-                className="py-4 flex align-center justify-center w-[150px] bg-primary text-background rounded-md"
+              <Link
+                href="/contact-us"
+                className="align-center flex w-[150px] justify-center rounded-md bg-primary py-4 text-background"
               >
                 Contact us
               </Link>
@@ -108,11 +105,12 @@ const HelpCenter = () => {
             Contact us for more inquiries and information about our services.
           </p>
 
-           <Link href="/contact-us"
-                className="px-10 py-4 bg-primary text-background rounded-md mt-4 inline-block"
-              >
-                Contact us
-              </Link>
+          <Link
+            href="/contact-us"
+            className="mt-4 inline-block rounded-md bg-primary px-10 py-4 text-background"
+          >
+            Contact us
+          </Link>
         </div>
       </div>
     </div>
