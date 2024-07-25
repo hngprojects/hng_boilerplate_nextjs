@@ -1,4 +1,12 @@
+"use client";
+
+import Link from "next/link";
+
+//
+
 const PerfectFit = () => {
+  //
+
   return (
     <div className="perfect-fit bg-[#FBF3F3] py-24 text-center">
       <div className="mx-auto max-w-7xl px-5 md:px-10 lg:px-10 xl:px-10">
@@ -8,9 +16,13 @@ const PerfectFit = () => {
           budget. All plans include access to our comprehensive library of
           pre-built sections, drag-and-drop customization.
         </p>
-        <button className="rounded-md border-none bg-primary px-7 py-3 text-background">
+        <Link
+          href="/pricing"
+          className="rounded-md border-none bg-primary px-7 py-3 text-background"
+          data-testid="pricing"
+        >
           See Our Pricing Plan
-        </button>
+        </Link>
       </div>
     </div>
   );
