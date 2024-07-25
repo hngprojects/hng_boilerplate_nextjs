@@ -126,7 +126,8 @@ const ProductTable = () => {
           <PaginationContent>
             <PaginationItem>
               <Button variant={"ghost"}>
-                <ChevronLeft /> Previous
+                <ChevronLeft />{" "}
+                <span className="hidden md:inline">Previous</span>
               </Button>
             </PaginationItem>
             <PaginationItem>
@@ -149,7 +150,7 @@ const ProductTable = () => {
             </PaginationItem>
             <PaginationItem>
               <Button variant={"ghost"}>
-                Next <ChevronRight />
+                <span className="hidden md:inline">Next</span> <ChevronRight />
               </Button>
             </PaginationItem>
           </PaginationContent>
