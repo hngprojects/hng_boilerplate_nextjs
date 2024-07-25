@@ -39,7 +39,7 @@ const ProjectLogo = ({ form, name }: Properties) => {
   };
 
   return (
-    <div className="relative grid aspect-square size-[inherit] place-items-center rounded-xl bg-[#585858]">
+    <div className="relative grid aspect-square size-[inherit] place-items-center rounded-xl">
       <div
         data-upload
         className="absolute inset-0 z-10 flex items-center justify-center rounded-xl bg-white/30 text-black"
