@@ -13,7 +13,7 @@ const handleButtonClickTest = () => {
   alert("Contact Button Click Test");
 };
 
-const HelpCenterPage = () => {
+const HelpCenter = () => {
   return (
     <div className="w-full bg-background">
       <div className="w-full bg-primary/10">
@@ -122,4 +122,4 @@ const HelpCenterPage = () => {
   );
 };
 
-export default HelpCenterPage;
+export default HelpCenter;

@@ -10,10 +10,15 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import { useRouter } from "next/navigation";
 
 import Link from "next/link";
 
 const Hero = () => {
+  const router = useRouter()
+
+  // 
+
   return (
     <div className="py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
