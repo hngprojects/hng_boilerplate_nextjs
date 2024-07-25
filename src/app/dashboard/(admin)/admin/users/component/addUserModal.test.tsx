@@ -39,18 +39,10 @@ describe("addProductModal", () => {
     fireEvent.click(screen.getByText("Open Modal"));
 
     // Check if form fields are rendered
+    await expect(screen.findByLabelText("Name")).resolves.toBeInTheDocument();
+    await expect(screen.findByLabelText("Email")).resolves.toBeInTheDocument();
     await expect(
-      screen.findByLabelText("Product name"),
-    ).resolves.toBeInTheDocument();
-    await expect(
-      screen.findByLabelText("Product Description"),
-    ).resolves.toBeInTheDocument();
-    await expect(screen.findByLabelText("Price")).resolves.toBeInTheDocument();
-    await expect(
-      screen.findByLabelText("Quantity"),
-    ).resolves.toBeInTheDocument();
-    await expect(
-      screen.findByText("Upload Images"),
+      screen.findByLabelText("Phone number"),
     ).resolves.toBeInTheDocument();
   });
 
@@ -67,7 +59,7 @@ describe("addProductModal", () => {
 
     // Check if the submit button is rendered
     await expect(
-      screen.findByRole("button", { name: "Add Product" }),
+      screen.findByRole("button", { name: "Add new user" }),
     ).resolves.toBeInTheDocument();
   });
 });

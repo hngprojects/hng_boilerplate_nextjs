@@ -105,7 +105,7 @@ const AddUserModal = ({ children }: AddProductModalProperties) => {
         </div>
         <DialogFooter className="mt-3">
           <Button variant={"primary"} type="submit">
-            Add Product
+            Add new user
           </Button>
         </DialogFooter>
       </DialogContent>
