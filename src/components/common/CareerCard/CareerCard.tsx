@@ -1,9 +1,9 @@
+import { useRouter } from "next/navigation";
 import { FC } from "react";
 
 import { Card, CardContent, CardFooter } from "~/components/ui/card";
 import { Skeleton } from "~/components/ui/skeleton";
-import CustomButton from "../common-button/common-button";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 //
 interface CareerCardProperties {
@@ -20,13 +20,10 @@ const CareerCard: FC<CareerCardProperties> = ({
   location,
   description,
   amount,
-
 }) => {
 
-  const router = useRouter()
+  //
 
-  // 
-  
   return (
     <Card className="max-w-full text-foreground">
       <CardContent className="pt-6">
@@ -62,7 +59,12 @@ const CareerCard: FC<CareerCardProperties> = ({
               {amount}
               <span className="font-normal">/month</span>
             </span>
-            <CustomButton onClick={() => router.push(`/career/${jobTitle}`)} variant="primary">View Details</CustomButton>
+            <Link
+              href={`/career/${jobTitle}`}
+              className="rounded bg-primary px-8 py-4 text-background"
+            >
+              View Details
+            </Link>
           </>
         )}
       </CardFooter>

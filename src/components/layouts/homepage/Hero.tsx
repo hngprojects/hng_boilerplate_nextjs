@@ -10,14 +10,11 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { useRouter } from "next/navigation";
-
 import Link from "next/link";
 
 const Hero = () => {
-  const router = useRouter()
 
-  // 
+  //
 
   return (
     <div className="py-14 sm:py-20">
@@ -43,10 +40,12 @@ const Hero = () => {
               and optimal productivity.
             </p>
 
-            <Link href="/register">
-              <button className="rounded bg-primary px-8 py-4 text-background">
-                Get Started
-              </button>
+            <Link
+             href="/register"
+              className="rounded bg-primary px-8 py-4 text-background"
+              data-testid="get-started"
+            >
+              Get Started
             </Link>
           </div>
 
