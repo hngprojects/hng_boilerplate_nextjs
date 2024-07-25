@@ -5,9 +5,12 @@ import { useEffect, useRef, useState } from "react";
 
 import CardComponent from "~/components/adminDashboard/CardComponent";
 import CustomButton from "~/components/common/common-button/common-button";
+import { Pagination } from "~/components/ui/pagination";
 import DropdownMenu from "../../_components/ui/dropdownMenu";
 import UserTable from "./component/userTable";
 import { userCardData } from "./data/user-dummy-data";
+
+import "./assets/style.css";
 
 interface FilterDataProperties {
   title: string;
@@ -133,6 +136,10 @@ const UserPage = () => {
 
           <div className="user-table mt-6 h-full w-full overflow-x-auto overflow-y-visible">
             <UserTable />
+          </div>
+
+          <div className="mt-5">
+            <Pagination />
           </div>
         </div>
       </section>

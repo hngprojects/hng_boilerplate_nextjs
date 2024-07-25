@@ -33,7 +33,7 @@ const UserTableBody = () => {
 
   return (
     <>
-      <tbody>
+      <tbody className="user-table">
         {userData.map((data, index) => {
           const { avatar, date, email, fullName, phone, status } = data;
 
