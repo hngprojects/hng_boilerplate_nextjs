@@ -66,14 +66,16 @@ function Organisation() {
   return (
     <>
       <div>
-        <div className="flex flex-col items-center gap-2">
-          <h1 className="text-2xl font-bold">Create Organisation Account</h1>
+        <div className="flex-col items-center gap-2 py-4 md:flex">
+          <h1 className="text-xl font-bold md:text-2xl">
+            Create Organisation Account
+          </h1>
           <p className="text-gray-500">
             Create an account to get started with us.
           </p>
         </div>
 
-        <div className="mx-auto w-2/4">
+        <div className="mx-auto md:w-2/4">
           <Form {...form}>
             <form className="space-y-6">
               <FormField
@@ -112,7 +114,7 @@ function Organisation() {
                   </FormItem>
                 )}
               />
-              <div className="flex gap-4">
+              <div className="flex flex-col gap-4 md:flex-row">
                 <FormField
                   control={form.control}
                   name="industry"
@@ -170,7 +172,7 @@ function Organisation() {
               </div>
               <div className="flex flex-col gap-2">
                 <h1 className="text-md">Company Address</h1>
-                <div className="flex gap-4">
+                <div className="flex flex-col gap-4 md:flex-row">
                   <FormField
                     control={form.control}
                     name="country"

@@ -28,7 +28,7 @@ const Footer = () => {
       links: [
         { route: "Help center", link: "/help-center" },
         { route: "FAQ", link: "/faqs" },
-        { route: "waiting list", link: "/waitlist" },
+        { route: "Waiting List", link: "/waitlist" },
         { route: "Pricing Experience", link: "/pricing" },
         { route: "Contact Us", link: "/contact-us" },
       ],
@@ -75,21 +75,21 @@ const Footer = () => {
         <div className="mx-auto w-full max-w-[1200px] items-start justify-between gap-[60px] pb-[130px] pt-[28px] sm:grid-cols-2 md:gap-4 md:pb-[46px] md:pt-[72px] lg:flex">
           <div className="mb-[100px] lg:mb-0">
             <div className="mb-[47px] flex w-full flex-col items-center justify-center sm:mb-[60px] md:block md:max-w-[254px] lg:mb-0">
-              <h5 className="text-nuetral-dark-2 mb-[34px] text-center text-xl font-bold sm:text-left">
+              <h5 className="text-nuetral-dark-2 text-md mb-[34px] text-center font-bold sm:text-left">
                 Boiler plate
               </h5>
-              <p className="text-nuetral-dark-2 text-center text-[16px] font-medium sm:text-left">
+              <p className="text-nuetral-dark-2 text-center text-[12px] font-medium sm:text-left">
                 Logo subject details and address
               </p>
             </div>
             <div className="flex flex-col items-center justify-center md:block lg:hidden">
-              <h5 className="text-neurtal-dark-2 mb-4 text-center text-[20px] font-semibold sm:text-left md:mb-[36px]">
+              <h5 className="text-neurtal-dark-2 text-md mb-4 text-center font-semibold sm:text-left md:mb-[36px]">
                 Sign Up For Newsletter
               </h5>
               <div className="item flex h-[46px] w-full items-center justify-start md:max-w-[283px]">
                 <Input
                   placeholder="Enter your email"
-                  className="border-r-none h-[46px] rounded-r-none border-r-0 border-r-transparent bg-transparent active:border-transparent"
+                  className="border-r-none text-md h-[46px] rounded-r-none border-r-0 border-r-transparent bg-transparent active:border-transparent"
                 />
                 <CustomButton variant="primary" className="h-full">
                   Subscibe
@@ -101,7 +101,7 @@ const Footer = () => {
             {footerLinks.map((item, index) => {
               return (
                 <div key={index}>
-                  <h5 className="text-neurtal-dark-2 mb-[37px] text-[20px] font-semibold">
+                  <h5 className="text-neurtal-dark-2 mb-[37px] text-[16px] font-semibold">
                     {item.title}
                   </h5>
                   <ul className="flex flex-col gap-4">
@@ -110,7 +110,7 @@ const Footer = () => {
                         <li key={index}>
                           <Link
                             href={item.link}
-                            className="cursor-pointer text-lg text-neutral-dark-2 transition-colors duration-300 hover:text-primary hover:underline dark:text-white"
+                            className="cursor-pointer text-sm text-neutral-dark-2 transition-colors duration-300 hover:text-primary hover:underline dark:text-white"
                           >
                             {item.route}
                           </Link>
@@ -122,7 +122,7 @@ const Footer = () => {
               );
             })}
             <div className="hidden lg:block">
-              <h5 className="text-neurtal-dark-2 mb-4 text-[20px] font-semibold md:mb-[36px]">
+              <h5 className="text-neurtal-dark-2 text-md mb-4 font-semibold md:mb-[36px]">
                 Sign Up For Newsletter
               </h5>
               <div className="item flex h-[46px] w-full max-w-[283px] items-center justify-start">

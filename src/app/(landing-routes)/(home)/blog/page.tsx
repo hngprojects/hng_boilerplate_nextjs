@@ -11,8 +11,8 @@ import {
   blogCard4,
   blogCard5,
   blogCard6,
-} from "../../../../public/images/blogPage/utils";
-import HeroSection from "../../../components/extDynamicPages/blogCollection/BlogPageHero";
+} from "../../../../../public/images/blogPage/utils";
+import HeroSection from "../../../../components/extDynamicPages/blogCollection/BlogPageHero";
 
 export const blogPosts = [
   {
