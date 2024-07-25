@@ -11,6 +11,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
+import Link from "next/link";
+
 const Hero = () => {
   return (
     <div className="py-14 sm:py-20">
@@ -36,9 +38,11 @@ const Hero = () => {
               and optimal productivity.
             </p>
 
-            <button className="rounded bg-primary px-8 py-4 text-background">
-              Get Started
-            </button>
+            <Link href="/register">
+              <button className="rounded bg-primary px-8 py-4 text-background">
+                Get Started
+              </button>
+            </Link>
           </div>
 
           <div className="mt-14 flex w-full justify-end rounded-lg lg:mt-0 lg:w-1/2">

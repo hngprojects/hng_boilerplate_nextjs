@@ -64,7 +64,7 @@ const Navbar = ({ is_auth_path = false }: { is_auth_path?: boolean }) => {
               Log in
             </Link>
             <Link
-              href="/sign-up"
+              href="/register"
               className="grid h-[44px] place-items-center whitespace-nowrap rounded-md border border-primary bg-primary px-4 text-white lg:px-8"
             >
               Get Started
