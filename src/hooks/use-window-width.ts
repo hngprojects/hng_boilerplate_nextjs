@@ -21,7 +21,7 @@ const useWindowWidth = () => {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const timeout = setTimeout(() => {
+      setTimeout(() => {
         setWinWidth(window.innerWidth);
       }, 500);
 
@@ -31,7 +31,6 @@ const useWindowWidth = () => {
 
       window.addEventListener("resize", handleResize);
       return () => {
-        clearTimeout(timeout);
         window.removeEventListener("resize", handleResize);
       };
     }
