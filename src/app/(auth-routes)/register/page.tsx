@@ -112,7 +112,7 @@ const SignUp = () => {
               )}
             />
             <Button
-              type="submit"
+              
               className="w-full"
               onClick={() => setOpen(true)}
             >
