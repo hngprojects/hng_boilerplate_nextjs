@@ -1,6 +1,7 @@
 import {
   Button,
   Column,
+  Container,
   Heading,
   Img,
   Link,
@@ -19,7 +20,7 @@ interface IProperties {
   statementTwo: string;
   statementThree: string;
   buttonTitle: string;
-  buttonLink: string;
+  link: string;
 }
 
 export default function Email(properties: IProperties) {
@@ -30,15 +31,14 @@ export default function Email(properties: IProperties) {
     statementOne,
     statementTwo,
     statementThree,
-    buttonTitle,
-    buttonLink,
+    link,
   } = properties;
 
   return (
     <Layout>
       <Preview>Password Reset for {username}</Preview>
-      <Column align="center">
-        <Section className="w-full max-w-[678px] py-12 md:py-14">
+      <Section className="py-[56px]">
+        <Container className="max-w-[680px] px-[48px] md:px-0">
           <Section className="mb-10 md:mb-14">
             <Column align="center">
               <div className="md:h[178px] h-[142px] w-full max-w-[142px] md:max-w-[178px]">
@@ -54,7 +54,7 @@ export default function Email(properties: IProperties) {
           </Section>
           <Heading
             as="h1"
-            className="text-center text-[20px] text-[#0A0A0A] md:text-2xl"
+            className="mb-[56px] text-center text-[20px] text-[#0A0A0A] md:text-2xl"
           >
             {title}
           </Heading>
@@ -74,21 +74,26 @@ export default function Email(properties: IProperties) {
             <Text className="text-justify text-sm text-[#434343] md:text-base">
               {statementThree}
             </Text>
-            <div className="flex items-center justify-center">
-              <Button
-                className="w-full rounded-[8px] bg-[#F97316] px-10 py-3 text-center text-base font-medium text-[#FAF8F8] md:w-auto"
-                href={buttonLink}
-              >
-                {buttonTitle}
-              </Button>
-            </div>
+            <Section className="text-center">
+              <Section className="mt-[32px] w-[100%] text-center">
+                <Container className="mb-[40px] max-w-[680px] px-[48px] md:px-0">
+                  <Button
+                    target={"_blank"}
+                    className="w-[100%] rounded-[8px] bg-[#F97316] py-[16px] text-[#FAFAFA] md:w-fit md:px-[2rem]"
+                    href={link}
+                  >
+                    Verify Account
+                  </Button>
+                </Container>
+              </Section>
+            </Section>
             <Text className="text-xs text-[#0F172A] md:text-base">
               Or copy this link:
               <Link
                 className="text-[Primary/Primary Color] underline"
-                href={buttonLink}
+                href={link}
               >
-                {buttonLink}
+                {link}
               </Link>
             </Text>
           </Section>
@@ -100,8 +105,8 @@ export default function Email(properties: IProperties) {
               Boilerplate
             </Heading>
           </Section>
-        </Section>
-      </Column>
+        </Container>
+      </Section>
     </Layout>
   );
 }
@@ -116,6 +121,5 @@ Email.PreviewProps = {
     "Collaborative Spaces allow you to create dedicated areas for teamwork. Whether it’s a project, brainstorming session, or ongoing discussion, team members can collaborate seamlessly within these spaces.",
   statementThree:
     "With Collaborative Spaces, accountability becomes clearer. Each team member’s contributions are visible within the shared space.",
-  buttonTitle: "Verify Account",
-  buttonLink: "https://i.imgur.com/jBHlv7Y.png",
+  link: "https://i.imgur.com/jBHlv7Y.png",
 } as IProperties;

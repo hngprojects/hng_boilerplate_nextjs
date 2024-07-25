@@ -1,6 +1,6 @@
 import {
   Button,
-  Column,
+  Container,
   Heading,
   Link,
   Preview,
@@ -34,8 +34,8 @@ export default function Email(properties: IProperties) {
   return (
     <Layout>
       <Preview>Password Reset for {username}</Preview>
-      <Column align="center">
-        <Section className="w-full max-w-[678px] py-12 md:py-14">
+      <Section className="py-[56px]">
+        <Container className="max-w-[680px] px-[48px] md:px-0">
           <Heading
             as="h1"
             className="text-center text-[20px] text-[#0A0A0A] md:text-2xl"
@@ -84,8 +84,8 @@ export default function Email(properties: IProperties) {
               Boilerplate
             </Heading>
           </Section>
-        </Section>
-      </Column>
+        </Container>
+      </Section>
     </Layout>
   );
 }

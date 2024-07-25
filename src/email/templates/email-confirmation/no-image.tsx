@@ -2,7 +2,6 @@ import {
   Button,
   Container,
   Heading,
-  Link,
   Section,
   Text,
 } from "@react-email/components";
@@ -14,6 +13,7 @@ interface EmailVerificationProperties {
   username?: string;
   image?: string;
   description?: string;
+  descriptionOne?: string;
   link?: string;
 }
 
@@ -21,57 +21,47 @@ export const EmailVerification = ({
   title = "",
   username = "",
   description = "",
+  descriptionOne = "",
   link = "",
 }: EmailVerificationProperties) => {
   return (
     <Layout>
       <Section className="py-[56px]">
+        <Section className="mx-auto flex items-center justify-center"></Section>
+
         <Container className="max-w-[680px] px-[48px] md:px-0">
           <Section className="mt-[56px] flex flex-col items-center justify-center">
             <Heading
               as="h5"
-              className="my-0 text-center text-[24px] leading-[28px] text-[#121212]"
+              className="my-0 mb-[56px] text-center text-[24px] leading-[28px] text-[#121212]"
             >
               {title}
             </Heading>
 
             <Section>
-              <Text className="text-[16px] font-[600] text-[#121212] md:text-[18px]">
+              <Text className="md:text-[18px]mt-[32px] text-[16px] font-[600] text-[#121212]">
                 Hi {username},
               </Text>
               <Text className="text-justify text-[14px] leading-[19.36px] text-[#525252] md:text-[16px]">
                 {description}
+              </Text>
+              <Text className="text-justify text-[14px] leading-[19.36px] text-[#525252] md:text-[16px]">
+                {descriptionOne}
               </Text>
             </Section>
           </Section>
         </Container>
 
         <Section className="text-center">
-          <Container className="mb-[40px] max-w-[680px] px-[48px] md:px-0">
-            <Text className="text-left leading-[19px] text-[#525252] md:text-[16px]">
-              To verify your email, please click the button below.
-            </Text>
-          </Container>
-          <Section className="w-[100%] text-center">
+          <Section className="mt-[32px] w-[100%] text-center">
             <Container className="mb-[40px] max-w-[680px] px-[48px] md:px-0">
               <Button
                 target={"_blank"}
                 className="w-[100%] rounded-[8px] bg-[#F97316] py-[16px] text-[#FAFAFA] md:w-fit md:px-[2rem]"
                 href={link}
               >
-                Learn More About us
+                Proceed to Account
               </Button>
-
-              <Text className="mt-[40px] text-left">
-                Or copy this link:
-                <Link
-                  className="text-[#F97316]"
-                  href={` https://carbonated-umbra-a35.notion.site/Language-Learning-AI-game-608b687875cf4b48a9a0194ee82ae17d`}
-                >
-                  {" "}
-                  https://carbonated-umbra-a35.notion.site/Language-Learning-AI-game-608b687875cf4b48a9a0194ee82ae17d
-                </Link>
-              </Text>
             </Container>
           </Section>
         </Section>
@@ -90,14 +80,14 @@ export const EmailVerification = ({
 };
 
 EmailVerification.PreviewProps = {
-  title: "Email Verification",
+  title: "Email Confirmation",
   username: "John Doe",
-  image: "https://imgur.com/NbCnF9l.png",
+  image: "https://imgur.com/TEvsjBU.png",
   link: "/",
   description:
-    "Thanks for registering your account with us Boilerplate. Before we get started, we just need to confirm that this is you.",
+    "We are thrilled to inform you that your email has been successfully verified and confirmed!",
   descriptionOne:
-    "This link will expire 30 minutes after this email has been sent. If you did not make this request, you can ignore this email",
+    "You can now fully enjoy all the features and benefits we offer, including exclusive access to key features, Special discount and personalized content.",
 } as EmailVerificationProperties;
 
 export default EmailVerification;
