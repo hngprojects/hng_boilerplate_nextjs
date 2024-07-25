@@ -12,7 +12,6 @@ import Layout from "../_components/layout/layout";
 interface AccountDeactivationProperties {
   title?: string;
   username?: string;
-  image?: string;
   expireTime?: string;
   bullet?: string;
   description?: string;
@@ -26,7 +25,6 @@ interface AccountDeactivationProperties {
 export const AccountDeactivation = ({
   title = "",
   username = "",
-  image = "",
   bullet = "",
   description = "",
   data,
@@ -34,9 +32,6 @@ export const AccountDeactivation = ({
   return (
     <Layout>
       <Section className="py-[56px]">
-        <Section className="mx-auto flex items-center justify-center md:w-[178px]">
-          <Img src={image} alt="hello" className="h-[100%] w-[100%]" />
-        </Section>
         <Section className="mx-auto flex items-center justify-center"></Section>
 
         <Container className="max-w-[680px] px-[48px] md:px-0">
@@ -131,7 +126,6 @@ export const AccountDeactivation = ({
 AccountDeactivation.PreviewProps = {
   title: "Account Successfully Deactivated",
   username: "John Doe",
-  image: "https://imgur.com/WQaP91T.png",
   bullet: "https://imgur.com/Lolu1on.png",
   expireTime: "17th September, 2024",
   link: "",

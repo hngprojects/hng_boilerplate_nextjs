@@ -131,7 +131,7 @@ export const AccountDeactivation = ({
 AccountDeactivation.PreviewProps = {
   title: "Account Successfully Deactivated",
   username: "John Doe",
-  image: "https://imgur.com/WQaP91T.png",
+  image: "https://imgur.com/zkXwuyQ.png",
   bullet: "https://imgur.com/Lolu1on.png",
   expireTime: "17th September, 2024",
   link: "",

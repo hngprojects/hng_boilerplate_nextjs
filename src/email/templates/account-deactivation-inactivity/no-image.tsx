@@ -12,7 +12,6 @@ import Layout from "../_components/layout/layout";
 interface AccountDeactivationProperties {
   title?: string;
   username?: string;
-  image?: string;
   expireTime?: string;
   bullet?: string;
   description?: string;
@@ -26,7 +25,6 @@ interface AccountDeactivationProperties {
 export const AccountDeactivation = ({
   title = "",
   username = "",
-  image = "",
   bullet = "",
   description = "",
   data,
@@ -34,9 +32,6 @@ export const AccountDeactivation = ({
   return (
     <Layout>
       <Section className="py-[56px]">
-        <Section className="mx-auto flex items-center justify-center md:w-[178px]">
-          <Img src={image} alt="hello" className="h-[100%] w-[100%]" />
-        </Section>
         <Section className="mx-auto flex items-center justify-center"></Section>
 
         <Container className="max-w-[680px] px-[48px] md:px-0">
@@ -66,7 +61,7 @@ export const AccountDeactivation = ({
                   return (
                     <li
                       key={index}
-                      className="items-bullett my-[1rem] flex items-center text-[14px] md:text-[16px]"
+                      className="items-bullet my-[1rem] flex items-center text-[14px] md:text-[16px]"
                     >
                       <div className="mr-2 flex-shrink-0">
                         <Img
@@ -129,18 +124,21 @@ export const AccountDeactivation = ({
 };
 
 AccountDeactivation.PreviewProps = {
-  title: "Account Successfully Deactivated",
+  title: "Account Deactivated Due To Inactivity",
   username: "John Doe",
-  image: "https://imgur.com/WQaP91T.png",
   bullet: "https://imgur.com/Lolu1on.png",
   expireTime: "17th September, 2024",
   link: "",
   description:
-    "We wanted to let you know that your Boilerplate account has been successfully deactivated as per your request.",
+    "We hope this email finds you well. We wanted to inform you that your Boilerplate account has been deactivated due to a prolonged period of inactivity.",
   data: [
     {
       key: "Account Email",
       value: "johndoe@gmail.com",
+    },
+    {
+      key: "Last Active",
+      value: "17th June, 2024 / 11:56pm",
     },
     {
       key: "Deactivation Date",
