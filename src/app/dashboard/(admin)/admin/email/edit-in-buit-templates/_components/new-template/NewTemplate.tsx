@@ -6,6 +6,7 @@ import { FC, ForwardRefExoticComponent, useState } from "react";
 
 import { Breadcrumb } from "~/components/common/breadcrumb";
 import PageHeader from "../../../_components/page-header";
+import Pagination from "../../../_components/pagination";
 import TemplateCard from "../../../_components/template-card/TemplateCard";
 import PreviewCard from "../preview-card";
 
@@ -44,7 +45,11 @@ export const Options: FC<IOption> = ({ data }) => {
   );
 };
 const NewTemplate = () => {
+  const isloading: boolean = false;
+  const data = 100;
   const [togglePreview, setTogglePreview] = useState<boolean>(false);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const totalPage = Math.ceil(data / 10);
   return (
     <div>
       <section className="mb-8">
@@ -57,11 +62,21 @@ const NewTemplate = () => {
       <div
         className={`${togglePreview ? "grid grid-cols-1 justify-items-center gap-6 lg:grid-cols-[1fr_447px]" : "block"} `}
       >
-        <section className="min-h-[700px] w-full justify-items-center overflow-hidden rounded-[19px] border-[1px] border-border">
-          <TemplateCard
-            togglePreview={togglePreview}
-            setTogglePreview={setTogglePreview}
-          />
+        <section className="w-full justify-items-center overflow-hidden rounded-[19px] border-[1px] border-border">
+          <div className="grid min-h-[700px] grid-rows-[1fr_auto]">
+            <div>
+              <TemplateCard
+                togglePreview={togglePreview}
+                setTogglePreview={setTogglePreview}
+              />
+            </div>
+            <Pagination
+              isloading={isloading}
+              totalPage={totalPage}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
+          </div>
         </section>
         {togglePreview && <PreviewCard />}
       </div>
