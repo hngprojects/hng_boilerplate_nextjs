@@ -84,7 +84,7 @@ const Sidebar: FC<Iproperties> = ({ sideNavitems = sideItems }) => {
             href={item.link}
             data-testid={item.id}
             role="sidebar-link"
-            className={`${currentPath === item.link ? "bg-primary text-white" : "bg-transparent text-neutral-dark-2 hover:bg-gray-200"} flex items-center justify-center gap-2.5 rounded-full px-2.5 py-3 text-sm transition-all duration-300 ease-in md:h-auto md:w-auto md:justify-start md:rounded-sm`}
+            className={`${currentPath === item.id ? "bg-primary text-white" : "bg-transparent text-neutral-dark-2 hover:bg-gray-200"} flex items-center justify-center gap-2.5 rounded-full px-2.5 py-3 text-sm transition-all duration-300 ease-in md:h-auto md:w-auto md:justify-start md:rounded-sm`}
           >
             <item.icon className="h-5 w-5" role="sidebar-icon" />
             <span className="hidden md:block">{item.route}</span>
