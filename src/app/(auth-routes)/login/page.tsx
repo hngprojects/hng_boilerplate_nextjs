@@ -6,7 +6,7 @@ import { useRouter } from "next-nprogress-bar";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
@@ -80,7 +80,9 @@ const LoginPage = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
+  useEffect(() => {
+    document.title = "Login";
+  }, []);
   return (
     <div className="flex min-h-full items-center justify-center px-4 py-10 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
