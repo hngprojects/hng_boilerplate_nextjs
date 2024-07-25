@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from "react";
 
 import CardComponent from "~/components/adminDashboard/CardComponent";
 import CustomButton from "~/components/common/common-button/common-button";
-import { Pagination } from "~/components/ui/pagination";
 import DropdownMenu from "../../_components/ui/dropdownMenu";
 import UserTable from "./component/userTable";
 import { userCardData } from "./data/user-dummy-data";
@@ -138,9 +137,7 @@ const UserPage = () => {
             <UserTable />
           </div>
 
-          <div className="mt-5">
-            <Pagination />
-          </div>
+          <div className="mt-5"></div>
         </div>
       </section>
     </>
