@@ -1,25 +1,27 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
 import "@testing-library/jest-dom";
 
-import SignUp from "~/app/(auth-routes)/register/page"; // Adjust the path as needed
+import SignUp from "~/app/(auth-routes)/register/page";
 
 describe("signUp Component", () => {
-  it("renders sign-up form", () => {
+  it("renders sign-up form", async () => {
     expect.assertions(4);
 
     render(<SignUp />);
 
-    expect(screen.getByText("Sign Up")).toBeInTheDocument();
-    expect(
-      screen.getByPlaceholderText("Enter your fullname"),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByPlaceholderText("Enter your email address"),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByPlaceholderText("Enter your password"),
-    ).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText("Sign Up")).toBeInTheDocument();
+      expect(
+        screen.getByPlaceholderText("Enter your fullname"),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByPlaceholderText("Enter your email address"),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByPlaceholderText("Enter your password"),
+      ).toBeInTheDocument();
+    });
   });
 
   it("validates form inputs", async () => {
@@ -39,15 +41,17 @@ describe("signUp Component", () => {
 
     fireEvent.click(screen.getByText("Create Account"));
 
-    await expect(
-      screen.findByText("Fullname must be at least 2 characters."),
-    ).resolves.toBeInTheDocument();
-    await expect(
-      screen.findByText("Email must be at least 2 characters."),
-    ).resolves.toBeInTheDocument();
-    await expect(
-      screen.findByText("Password must be at least 2 characters."),
-    ).resolves.toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        screen.getByText("Fullname must be at least 2 characters."),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText("Email must be at least 2 characters."),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText("Password must be at least 2 characters."),
+      ).toBeInTheDocument();
+    });
   });
 
   it("opens dialog on form submit", async () => {
@@ -67,8 +71,10 @@ describe("signUp Component", () => {
 
     fireEvent.click(screen.getByText("Create Account"));
 
-    await expect(
-      screen.findByText("Choose your sign-up method:"),
-    ).resolves.toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        screen.getByText("Choose your sign-up method:"),
+      ).toBeInTheDocument();
+    });
   });
 });
