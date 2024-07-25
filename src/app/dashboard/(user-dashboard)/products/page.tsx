@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { useProducts } from "~/hooks/admin-product/use-products.persistence";
+import NewProductModal from "./_components/new-product-modal";
 import ProductDetailModal from "./_components/product-detail-modal";
 import ProductDetailView from "./_components/product-detail-view";
 import ProductHeader from "./_components/product-header";
@@ -23,8 +24,14 @@ const ProductPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [view, setView] = useState<"list" | "grid">("list");
   const { addProducts } = useProducts();
-  const { isOpen, updateProductId, updateOpen, updateFilterModal } =
-    useProductModal();
+  const {
+    isOpen,
+    updateProductId,
+    updateOpen,
+    updateFilterModal,
+    setIsNewModal,
+    isNewModal,
+  } = useProductModal();
 
   useEffect(() => {
     const is_saved = localStorage.getItem("admin_products");
@@ -41,6 +48,7 @@ const ProductPage = () => {
       if (event.key === "Escape") {
         updateOpen(false);
         updateFilterModal(false);
+        setIsNewModal(false);
         updateProductId("null");
       }
     };
@@ -50,9 +58,14 @@ const ProductPage = () => {
     };
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = isNewModal ? "hidden" : "unset";
+  }, [isNewModal]);
+
   return (
-    <div className="flex w-full flex-col gap-y-8 pt-8">
+    <div className="relative flex w-full flex-col gap-y-8 pt-8">
       <ProductHeader />
+      <NewProductModal />
       <AnimatePresence>
         <div className="relative flex w-full items-start gap-x-8 pt-4 xl:gap-x-10">
           <motion.div
