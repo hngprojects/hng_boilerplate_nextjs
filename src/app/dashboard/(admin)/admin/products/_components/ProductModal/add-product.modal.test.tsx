@@ -12,13 +12,10 @@ describe("addProductModal", () => {
       </AddProductModal>,
     );
 
-    // Check if the trigger button is rendered
     expect(screen.getByText("Open Modal")).toBeInTheDocument();
 
-    // Open the modal
     fireEvent.click(screen.getByText("Open Modal"));
 
-    // Check if the modal title and description are rendered
     await expect(
       screen.findByText("Add new product"),
     ).resolves.toBeInTheDocument();
@@ -35,10 +32,8 @@ describe("addProductModal", () => {
       </AddProductModal>,
     );
 
-    // Open the modal
     fireEvent.click(screen.getByText("Open Modal"));
 
-    // Check if form fields are rendered
     await expect(
       screen.findByLabelText("Product name"),
     ).resolves.toBeInTheDocument();
@@ -62,10 +57,8 @@ describe("addProductModal", () => {
       </AddProductModal>,
     );
 
-    // Open the modal
     fireEvent.click(screen.getByText("Open Modal"));
 
-    // Check if the submit button is rendered
     await expect(
       screen.findByRole("button", { name: "Add Product" }),
     ).resolves.toBeInTheDocument();
