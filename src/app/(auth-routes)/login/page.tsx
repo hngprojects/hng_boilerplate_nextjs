@@ -103,7 +103,7 @@ const LoginPage = () => {
             className="flex items-center rounded-md border border-gray-300 bg-white px-4 py-4 text-gray-700 shadow-sm hover:bg-gray-50"
           >
             <Image
-              src="/images/goggle.svg"
+              src="/images/google.svg"
               width={20}
               height={20}
               alt="Goggle"
