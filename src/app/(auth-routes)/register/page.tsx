@@ -23,6 +23,8 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "~/components/ui/input-otp";
+import Facebook from "../../../../public/images/facebook.svg";
+import Google from "../../../../public/images/google.svg";
 
 const formSchema = z.object({
   fullname: z.string().min(2, {
@@ -53,14 +55,8 @@ const SignUp = () => {
         </p>
       </div>
       <div className="flex justify-center gap-4 p-4">
-        <AuthProvider
-          title="Sign in with Google"
-          icon="/public/images/google.png"
-        />
-        <AuthProvider
-          title="Sign in with Google"
-          icon="/public/images/google.png"
-        />
+        <AuthProvider title="Sign in with Google" icon={Google} />
+        <AuthProvider title="Sign in with Facebook" icon={Facebook} />
       </div>
       <div className="mx-auto w-2/4">
         <Form {...form}>

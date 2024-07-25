@@ -4,7 +4,6 @@ import { persist, PersistStorage } from "zustand/middleware";
 type UserProperties = {
   name: string | undefined;
   email: string | undefined;
-  id: string | undefined;
 };
 
 type ProductsStateProperties = {
@@ -25,13 +24,12 @@ const storage: PersistStorage<ProductsStateProperties> = {
   removeItem: (name) => localStorage.removeItem(name),
 };
 
-export const useProductsFilters = create<ProductsStateProperties>()(
+export const useUser = create<ProductsStateProperties>()(
   persist(
     (set) => ({
       user: {
         name: undefined,
         email: undefined,
-        id: undefined,
       },
       updateUser: (user) => set({ user }),
     }),
