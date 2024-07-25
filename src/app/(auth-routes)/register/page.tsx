@@ -23,8 +23,8 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "~/components/ui/input-otp";
-import Google from "../../../../public/images/google.svg";
 import Facebook from "../../../../public/images/facebook.svg";
+import Google from "../../../../public/images/google.svg";
 
 const formSchema = z.object({
   fullname: z.string().min(2, {
