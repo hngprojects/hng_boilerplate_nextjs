@@ -17,19 +17,12 @@ interface IProperties {
   statementTwo: string;
   statementThree: string;
   buttonTitle: string;
-  buttonLink: string;
+  link: string;
 }
 
 export default function Email(properties: IProperties) {
-  const {
-    title,
-    username,
-    statementOne,
-    statementTwo,
-    statementThree,
-    buttonTitle,
-    buttonLink,
-  } = properties;
+  const { title, username, statementOne, statementTwo, statementThree, link } =
+    properties;
 
   return (
     <Layout>
@@ -58,21 +51,26 @@ export default function Email(properties: IProperties) {
             <Text className="text-justify text-sm text-[#434343] md:text-base">
               {statementThree}
             </Text>
-            <div className="flex items-center justify-center">
-              <Button
-                className="w-full rounded-[8px] bg-[#F97316] px-10 py-3 text-center text-base font-medium text-[#FAF8F8] md:w-auto"
-                href={buttonLink}
-              >
-                {buttonTitle}
-              </Button>
-            </div>
+            <Section className="text-center">
+              <Section className="mt-[32px] w-[100%] text-center">
+                <Container className="mb-[40px] max-w-[680px] md:px-0">
+                  <Button
+                    target={"_blank"}
+                    className="w-[100%] rounded-[8px] bg-[#F97316] py-[16px] text-[#FAFAFA] md:w-fit md:px-[2rem]"
+                    href={link}
+                  >
+                    Verify Account
+                  </Button>
+                </Container>
+              </Section>
+            </Section>
             <Text className="text-xs text-[#0F172A] md:text-base">
               Or copy this link:
               <Link
                 className="text-[Primary/Primary Color] underline"
-                href={buttonLink}
+                href={link}
               >
-                {buttonLink}
+                {link}
               </Link>
             </Text>
           </Section>
@@ -100,5 +98,5 @@ Email.PreviewProps = {
   statementThree:
     "With Collaborative Spaces, accountability becomes clearer. Each team member’s contributions are visible within the shared space.",
   buttonTitle: "Verify Account",
-  buttonLink: "https://i.imgur.com/jBHlv7Y.png",
+  link: "https://i.imgur.com/jBHlv7Y.png",
 } as IProperties;

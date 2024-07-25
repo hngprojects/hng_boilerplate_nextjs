@@ -43,7 +43,7 @@ export default function WelcomeEmail(properties: IProperties) {
 
         <Container className="max-w-[680px] px-[48px] md:px-0">
           <Section className="my-[40px] flex flex-col items-center justify-center">
-            <Section className="text-center">
+            <Section className="mb-[56px] text-center">
               <Heading
                 as="h5"
                 className="my-0 text-center text-[24px] leading-[28px] text-[#121212]"

@@ -76,7 +76,7 @@ export default function Email(properties: IProperties) {
             </Text>
             <Section className="text-center">
               <Section className="mt-[32px] w-[100%] text-center">
-                <Container className="mb-[40px] max-w-[680px] px-[48px] md:px-0">
+                <Container className="mb-[40px] max-w-[680px] md:px-0">
                   <Button
                     target={"_blank"}
                     className="w-[100%] rounded-[8px] bg-[#F97316] py-[16px] text-[#FAFAFA] md:w-fit md:px-[2rem]"

@@ -46,7 +46,7 @@ export const SubscriptionConfirmation = ({
           <Section className="my-[40px] flex flex-col items-center justify-center">
             <Heading
               as="h5"
-              className="my-0 text-center text-[24px] leading-[28px] text-[#121212]"
+              className="my-0 mb-[56px] text-center text-[24px] leading-[28px] text-[#121212]"
             >
               {title}
             </Heading>
