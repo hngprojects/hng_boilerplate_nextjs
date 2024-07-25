@@ -20,6 +20,7 @@ const UserTableBody = () => {
         !menuReference.current.contains(event.target as Node)
       ) {
         setShowDropdown(undefined);
+        setOpen(false);
       }
     };
 
