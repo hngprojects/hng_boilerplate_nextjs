@@ -30,7 +30,7 @@ const Footer = () => {
         { route: "FAQ", link: "/faqs" },
         { route: "waiting list", link: "/waitlist" },
         { route: "Pricing Experience", link: "/pricing" },
-        { route: "Contact Us", link: "/" },
+        { route: "Contact Us", link: "/contact-us" },
       ],
     },
     {

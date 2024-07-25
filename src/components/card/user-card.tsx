@@ -1,7 +1,5 @@
 import { TooltipArrow, TooltipPortal } from "@radix-ui/react-tooltip";
 import { motion } from "framer-motion";
-import { usePathname } from "next/navigation";
-import { useMemo, useState } from "react";
 
 import { deleteUserCookie } from "~/actions/login";
 import { useUser } from "~/hooks/user/use-user";
@@ -14,32 +12,8 @@ import {
   TooltipTrigger,
 } from "../ui/tooltip";
 
-const generateTailwindBGs = () => {
-  const colors = [
-    "bg-red-500",
-    "bg-orange-500",
-    "bg-yellow-500",
-    "bg-green-500",
-    "bg-teal-500",
-    "bg-blue-500",
-    "bg-indigo-500",
-    "bg-purple-500",
-    "bg-pink-500",
-  ];
-  const randomColor = colors[Math.floor(Math.random() * colors.length)];
-  return randomColor;
-};
-
 const UserCard = ({ email }: { email: string }) => {
   const { updateUser } = useUser();
-  const [bgColor, setBgColor] = useState("bg-red-500");
-  const pathname = usePathname();
-
-  useMemo(() => {
-    if (pathname === "/") {
-      setBgColor(generateTailwindBGs());
-    }
-  }, [pathname]);
 
   return (
     <div className="relative flex w-fit">
@@ -50,8 +24,7 @@ const UserCard = ({ email }: { email: string }) => {
               variant={"ghost"}
               size={"icon"}
               className={cn(
-                "grid size-9 place-items-center rounded-full text-white sm:text-2xl sm:font-bold",
-                bgColor,
+                "grid size-9 place-items-center rounded-full bg-orange-500 text-xl font-medium text-white sm:text-2xl sm:font-bold",
               )}
             >
               {email[0]}
