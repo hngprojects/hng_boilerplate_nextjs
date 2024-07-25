@@ -2,13 +2,16 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff, ShieldCheck } from "lucide-react";
+import { useRouter } from "next-nprogress-bar";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+import { loginUser } from "~/actions/login";
+import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import { Button } from "~/components/ui/button";
 import { Checkbox } from "~/components/ui/checkbox";
 import {
@@ -20,6 +23,7 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
+import { simulateDelay } from "~/lib/utils";
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Invalid email format" }),
@@ -46,6 +50,9 @@ const getInputClassName = (hasError: boolean, isValid: boolean) => {
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+  const searchP = useSearchParams();
+  const callback_url = searchP.get("callbackUrl");
+  const [isLoading, startTransition] = useTransition();
 
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
@@ -57,14 +64,25 @@ const LoginPage = () => {
     },
   });
 
-  const onSubmit = () => {
-    router.push("/");
+  const onSubmit = async (values: z.infer<typeof loginSchema>) => {
+    startTransition(async () => {
+      await simulateDelay(3);
+      await loginUser(values);
+
+      if (callback_url) {
+        router.push(callback_url);
+      } else {
+        router.push("/");
+      }
+    });
   };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
+  useEffect(() => {
+    document.title = "Login";
+  }, []);
   return (
     <div className="flex min-h-full items-center justify-center px-4 py-10 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
@@ -78,7 +96,10 @@ const LoginPage = () => {
         </div>
 
         <div className="flex flex-col justify-center space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
-          <Button className="flex items-center rounded-md border border-gray-300 bg-white px-4 py-4 text-gray-700 shadow-sm hover:bg-gray-50">
+          <Button
+            disabled
+            className="flex items-center rounded-md border border-gray-300 bg-white px-4 py-4 text-gray-700 shadow-sm hover:bg-gray-50"
+          >
             <Image
               src="/images/goggle.svg"
               width={20}
@@ -88,7 +109,10 @@ const LoginPage = () => {
             />
             Sign in with Google
           </Button>
-          <Button className="flex items-center rounded-md border border-gray-300 bg-white px-4 py-4 text-gray-700 shadow-sm hover:bg-gray-50">
+          <Button
+            disabled
+            className="flex items-center rounded-md border border-gray-300 bg-white px-4 py-4 text-gray-700 shadow-sm hover:bg-gray-50"
+          >
             <Image
               src="/images/facebook.svg"
               width={20}
@@ -120,6 +144,7 @@ const LoginPage = () => {
                   </FormLabel>
                   <FormControl>
                     <Input
+                      disabled={isLoading}
                       placeholder="Enter Email Address"
                       {...field}
                       className={getInputClassName(
@@ -142,6 +167,7 @@ const LoginPage = () => {
                   <FormControl>
                     <div className="relative">
                       <Input
+                        disabled={isLoading}
                         type={showPassword ? "text" : "password"}
                         placeholder="Enter Password"
                         {...field}
@@ -207,12 +233,20 @@ const LoginPage = () => {
               size="default"
               className="h-12 w-full rounded-md bg-primary px-4 py-3 text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
             >
-              Login
+              {isLoading ? (
+                <span className="flex items-center gap-x-2">
+                  <span className="animate-pulse">Logging in...</span>{" "}
+                  <LoadingSpinner className="size-4 animate-spin sm:size-5" />
+                </span>
+              ) : (
+                <span>Login</span>
+              )}
             </Button>
           </form>
         </Form>
 
         <Button
+          disabled
           type="button"
           variant="outline"
           size="default"

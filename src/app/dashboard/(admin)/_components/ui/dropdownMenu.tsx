@@ -1,3 +1,6 @@
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 const DropdownMenu = ({
   width,
   active,
@@ -14,8 +17,36 @@ const DropdownMenu = ({
       >
         {children}
       </div>
+=======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+const dropdownMenu = () => {
+  return (
+    <>
+      <div className="absolute"></div>
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     </>
   );
 };
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 export default DropdownMenu;
+=======
+export default dropdownMenu;
+>>>>>>> Stashed changes
+=======
+export default dropdownMenu;
+>>>>>>> Stashed changes
+=======
+export default dropdownMenu;
+>>>>>>> Stashed changes

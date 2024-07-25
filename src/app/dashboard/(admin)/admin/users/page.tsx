@@ -1,7 +1,19 @@
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 "use client";
 
 import { Check, CirclePlus, Filter } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+=======
+import { CirclePlus } from "lucide-react";
+>>>>>>> Stashed changes
+=======
+import { CirclePlus } from "lucide-react";
+>>>>>>> Stashed changes
+=======
+import { CirclePlus } from "lucide-react";
+>>>>>>> Stashed changes
 
 import CardComponent from "~/components/adminDashboard/CardComponent";
 import CustomButton from "~/components/common/common-button/common-button";
@@ -82,6 +94,9 @@ const UserPage = () => {
             </div>
 
             <div className="flex flex-row items-center gap-3">
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
               <div className="relative" ref={menuReference}>
                 <CustomButton
                   onClick={() => setShowDropdown(!showDropdown)}
@@ -123,6 +138,12 @@ const UserPage = () => {
                 </DropdownMenu>
               </div>
 
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
               <CustomButton size="lg" className="p-3" variant="primary">
                 <div className="flex flex-row items-center gap-2">
                   <CirclePlus size={16} color="#FFFFFF" />

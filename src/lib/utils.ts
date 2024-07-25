@@ -4,6 +4,16 @@ import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+/**
+ * Returns a simulated promise that resolves after the specified number of seconds.
+ *
+ * @param sec The number of seconds to wait before resolving the promise.
+ * @returns A promise that resolves after the specified number of seconds.
+ */
+export const simulateDelay = (sec: number) =>
+  new Promise((resolve) => setTimeout(resolve, sec * 1000));
+
 export function formatPrice(
   price: number | string,
   options: {
