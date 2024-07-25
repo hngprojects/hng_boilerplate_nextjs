@@ -15,6 +15,8 @@ const navlinks = [
 const Navbar = () => {
   const [scrolling, setIsScrolling] = useState<boolean>(false);
 
+  // 
+
   const handleScrollEvent = () => {
     if (window.scrollY > 1) {
       setIsScrolling(true);
