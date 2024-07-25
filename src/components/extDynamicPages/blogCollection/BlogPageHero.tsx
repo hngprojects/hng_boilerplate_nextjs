@@ -9,7 +9,7 @@ const HeroSection: React.FC = () => {
       <div className="absolute inset-0 z-20 h-full w-full bg-black/20"></div>
       <Image
         src={blogHero}
-        layout="fill"
+        fill
         className="absolute inset-0 object-cover"
         alt="Hero Background"
       />
