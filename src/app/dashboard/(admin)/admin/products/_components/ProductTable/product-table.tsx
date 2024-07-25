@@ -94,7 +94,7 @@ const ProductTable = () => {
           A list of your recent invoices.
         </TableCaption>
         <TableHeader>
-          <TableRow className="border-b-0 bg-primary/10 shadow-none *:text-center *:text-base *:text-neutral-950 *:shadow-none hover:bg-primary/10">
+          <TableRow className="border-none bg-primary/10 shadow-none *:text-center *:text-base *:text-neutral-950 *:shadow-none hover:bg-primary/10">
             <TableHead className="w-[316px]">Name</TableHead>
             <TableHead>Price</TableHead>
             <TableHead>Total Sold</TableHead>
