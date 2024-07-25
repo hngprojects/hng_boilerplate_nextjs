@@ -26,7 +26,7 @@ const Footer = () => {
     {
       title: "Support",
       links: [
-        { route: "Help center", link: "/" },
+        { route: "Help center", link: "/help-center" },
         { route: "FAQ", link: "/faqs" },
         { route: "waiting list", link: "/waitlist" },
         { route: "Pricing Experience", link: "/pricing" },

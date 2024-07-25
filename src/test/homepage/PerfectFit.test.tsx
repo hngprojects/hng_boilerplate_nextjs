@@ -29,9 +29,7 @@ describe("perfectFit Component", () => {
     expect.assertions(1);
 
     render(<PerfectFit />);
-    const button = screen.getByRole("button", {
-      name: /see our pricing plan/i,
-    });
+    const button = screen.getByTestId("pricing");
     expect(button).toBeInTheDocument();
   });
 
