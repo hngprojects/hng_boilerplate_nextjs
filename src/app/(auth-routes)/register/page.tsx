@@ -61,17 +61,14 @@ const SignUp = () => {
     <div>
       <div className="flex flex-col items-center gap-2">
         <h1 className="text-2xl font-bold">Sign Up</h1>
-        <p className="text-gray-500">
+        <p className="my-4 text-gray-500">
           Create an account to get started with us.
         </p>
       </div>
       <div className="flex flex-col justify-center space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
-        <Button
-          disabled
-          className="flex items-center rounded-md border border-gray-300 bg-white px-4 py-4 text-gray-700 shadow-sm hover:bg-gray-50"
-        >
+        <Button className="flex items-center rounded-md border border-gray-300 bg-white px-4 py-4 text-gray-700 shadow-sm hover:bg-gray-50">
           <Image
-            src="/images/goggle.png"
+            src="/images/google.svg"
             width={20}
             height={20}
             alt="Goggle"
@@ -79,10 +76,7 @@ const SignUp = () => {
           />
           Sign in with Google
         </Button>
-        <Button
-          disabled
-          className="flex items-center rounded-md border border-gray-300 bg-white p-4 px-4 text-gray-700 shadow-sm hover:bg-gray-50"
-        >
+        <Button className="flex items-center rounded-md border border-gray-300 bg-white p-4 px-4 text-gray-700 shadow-sm hover:bg-gray-50">
           <Image
             src="/images/facebook.svg"
             width={20}

@@ -56,7 +56,7 @@ const UserNavbar = () => {
             <Menu className="h-[18px] w-[18px] text-neutral-dark-2 transition-all duration-300 hover:text-neutral-dark-2/50" />
             <Logo />
           </div>
-          <div className="flex w-full max-w-[220px] items-center justify-between gap-1">
+          <div className="flex w-full max-w-[290px] items-center justify-between gap-1">
             {navlinks.map((item, index) => (
               <Link
                 key={index}
