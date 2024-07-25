@@ -1,8 +1,9 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { DialogContent, DialogTitle } from "@radix-ui/react-dialog";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -46,6 +47,22 @@ const SignUp = () => {
   });
   const [open, setOpen] = useState(false);
 
+  const handleFormSubmit = () => {
+    form.handleSubmit((data: FormData) => {
+      if (form.formState.isValid) {
+        setOpen(true);
+      }
+    })();
+  };
+
+  const handleSubmit = () => {
+    form.handleSubmit(handleFormSubmit)();
+  };
+
+  useEffect(() => {
+    console.log("Form Validity:", form.formState.isValid);
+  }, [form.formState.isValid]);
+
   return (
     <div>
       <div className="flex flex-col items-center gap-2">
@@ -60,7 +77,13 @@ const SignUp = () => {
       </div>
       <div className="mx-auto w-2/4">
         <Form {...form}>
-          <form className="space-y-8">
+          <form
+            className="space-y-8"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSubmit();
+            }}
+          >
             <FormField
               control={form.control}
               name="fullname"
@@ -69,7 +92,12 @@ const SignUp = () => {
                   <div className="flex flex-col gap-2">
                     <FormLabel>Fullname</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter your fullname" {...field} />
+                      <Input
+                        placeholder="Enter your fullname"
+                        {...field}
+                        value={field.value || ""}
+                        onChange={field.onChange}
+                      />
                     </FormControl>
                     <FormMessage />
                   </div>
@@ -87,6 +115,8 @@ const SignUp = () => {
                       <Input
                         placeholder="Enter your email address"
                         {...field}
+                        value={field.value || ""}
+                        onChange={field.onChange}
                       />
                     </FormControl>
                     <FormMessage />
@@ -106,6 +136,8 @@ const SignUp = () => {
                         placeholder="Enter your password"
                         type="password"
                         {...field}
+                        value={field.value || ""}
+                        onChange={field.onChange}
                       />
                     </FormControl>
                     <FormMessage />
@@ -113,16 +145,14 @@ const SignUp = () => {
                 </FormItem>
               )}
             />
-            <Button
-              type="submit"
-              className="w-full"
-              onClick={() => setOpen(true)}
-            >
+            <Button type="submit" className="w-full" onClick={handleSubmit}>
               Create Account
             </Button>
             <DialogDemo open={open} onOpenChanged={setOpen}>
-              <div className="flex w-full flex-col items-center gap-4">
-                <h1 className="text-xl font-bold text-[#0F172A]">Sign Up</h1>
+              <DialogContent aria-labelledby="dialog-title" aria-describedby="dialog-description" className="flex w-full flex-col items-center gap-4">
+                <DialogTitle className="text-xl font-bold text-[#0F172A]">
+                  Sign Up
+                </DialogTitle>
                 <div className="flex flex-col items-center">
                   <p className="text-xs text-gray-600">
                     Choose your sign-up method:
@@ -157,11 +187,11 @@ const SignUp = () => {
                   We would process your data as set forth in our Terms of Use,
                   Privacy Policy and Data Processing Agreement
                 </p>
-              </div>
+              </DialogContent>
             </DialogDemo>
             <div className="flex justify-center gap-2">
               <p className="text-sm">Already Have An Account?</p>
-              <Link className="text-sm text-orange-500" href={"#"}>
+              <Link className="text-sm text-orange-500" href="/login">
                 Login
               </Link>
             </div>
