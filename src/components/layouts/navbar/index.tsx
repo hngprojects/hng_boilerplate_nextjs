@@ -1,6 +1,6 @@
 "use client";
 
-import { BellIcon, Menu, User } from "lucide-react";
+import { Menu } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -73,10 +73,6 @@ const Navbar = ({ is_auth_path = false }: { is_auth_path?: boolean }) => {
           </div>
         )}
         {user.email && <UserCard email={user.email} />}
-        <div className="flex w-full max-w-[80px] items-center justify-between gap-2 md:hidden">
-          <BellIcon className="text-nuetral-black-1 h-5 w-5 cursor-pointer transition-colors duration-300 hover:text-neutral-dark-1/50" />
-          <User className="text-nuetral-black-1 h-5 w-5 cursor-pointer transition-colors duration-300 hover:text-neutral-dark-1/50" />
-        </div>
       </div>
     </nav>
   );
