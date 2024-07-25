@@ -14,8 +14,8 @@ const HeroSection: React.FC = () => {
         alt="Hero Background"
       />
       <div className="relative z-30 flex h-full flex-col items-start justify-end px-[5%] pb-16 text-center md:text-left">
-        <div className="w-full py-5 md:w-[50%]">
-          <h1 className="mb-4 text-left text-3xl font-bold leading-[2.3rem] lg:leading-[2.4rem] 2xl:text-6xl">
+        <div className="w-full py-5 pr-6 md:w-[55%]">
+          <h1 className="mb-4 text-left text-3xl font-bold leading-[2.3rem] md:leading-[2.6rem] 2xl:text-5xl">
             Unlock Industry Insights: Get Essential Tips & Boilerplate Hacks
           </h1>
         </div>
