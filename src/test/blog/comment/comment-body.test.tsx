@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import moment from "moment";
 import { Session } from "next-auth";
 
-import { CommentBody } from "~/components/common/comment/comment-body";
+import { CommentBody } from "~/components/common/comment-component/comment-body";
 
 describe("comment body component", () => {
   const mockSession: Session = {
