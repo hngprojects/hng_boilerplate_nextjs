@@ -1,12 +1,12 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import AuthProvider from "~/components/authproviders/AuthProvider";
 import { DialogDemo } from "~/components/common/Dialog";
 import { Button } from "~/components/ui/button";
 import {
@@ -38,6 +38,10 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
+const onSubmit = (event: React.FormEvent) => {
+  event.preventDefault();
+};
+
 const SignUp = () => {
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -52,13 +56,37 @@ const SignUp = () => {
           Create an account to get started with us.
         </p>
       </div>
-      <div className="flex justify-center gap-4 p-4">
-        <AuthProvider title="Sign in with Google" />
-        <AuthProvider title="Sign in with Facebook" />
+      <div className="flex flex-col justify-center space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
+        <Button
+          disabled
+          className="flex items-center rounded-md border border-gray-300 bg-white px-4 py-4 text-gray-700 shadow-sm hover:bg-gray-50"
+        >
+          <Image
+            src="/images/goggle.png"
+            width={20}
+            height={20}
+            alt="Goggle"
+            className="mr-2"
+          />
+          Sign in with Google
+        </Button>
+        <Button
+          disabled
+          className="flex items-center rounded-md border border-gray-300 bg-white p-4 px-4 text-gray-700 shadow-sm hover:bg-gray-50"
+        >
+          <Image
+            src="/images/facebook.svg"
+            width={20}
+            height={20}
+            alt="Facebook"
+            className="mr-2"
+          />
+          Sign in with Google
+        </Button>
       </div>
-      <div className="mx-auto w-2/4">
+      <div className="mx-auto md:w-2/4">
         <Form {...form}>
-          <form className="space-y-8">
+          <form className="space-y-8" onSubmit={(event) => onSubmit(event)}>
             <FormField
               control={form.control}
               name="fullname"
@@ -112,7 +140,7 @@ const SignUp = () => {
               )}
             />
             <Button
-              
+              type="submit"
               className="w-full"
               onClick={() => setOpen(true)}
             >
