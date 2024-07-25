@@ -11,11 +11,11 @@ const ExecutiveTeam = () => {
           The Executive Team
         </h3>
 
-        <p className="text-center text-[16px] leading-[19px] text-neutral-600 md:text-[18px] md:leading-[22px]">
+        <p className="text-center text-[16px] text-neutral-600 md:text-[18px]">
           Meet Our Exclusive team that have been trained to meet your needs.
         </p>
 
-        <div className="mx-auto mt-20 flex flex-wrap justify-center gap-[20px] pb-10 xl:justify-between">
+        <div className="mx-auto mt-10 flex flex-wrap justify-center gap-[20px] pb-10 xl:justify-between">
           <div className=" ">
             <TeamCard
               name="John Abraham"
