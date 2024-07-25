@@ -10,7 +10,7 @@ import ProductTable from "./_components/ProductTable/product-table";
 
 const page = () => {
   return (
-    <main className="md:4 px-1 py-3">
+    <main className="px-1 py-3">
       <div className="grid h-auto grid-cols-1 gap-4 md:grid-cols-3 lg:h-[134px]">
         {[0, 1, 2].map((_, index) => (
           <CardComponent
