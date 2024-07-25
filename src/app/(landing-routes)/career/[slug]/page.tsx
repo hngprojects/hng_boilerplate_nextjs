@@ -24,17 +24,17 @@ const JobDetails = () => {
         { name: "Career", href: "/career" },
         {
           name: "Job Details",
-          href: "/job-details",
+          href: "/career/2",
           isCurrent: true,
           style: { color: "hsl(25, 95%, 53%)" },
         },
       ]
     : [
         { name: "Home", href: "/" },
-        { name: "Job Listings", href: "/job-listings" },
+        { name: "Job Listings", href: "/career" },
         {
           name: "Job Details",
-          href: "/job-listings/job-detail",
+          href: "/career/2",
           isCurrent: true,
         },
       ];

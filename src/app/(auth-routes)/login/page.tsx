@@ -25,6 +25,8 @@ import {
 import { Input } from "~/components/ui/input";
 import { useUser } from "~/hooks/user/use-user";
 import { simulateDelay } from "~/lib/utils";
+import Facebook from "../../../../public/images/facebook.svg";
+import Google from "../../../../public/images/google.svg";
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Invalid email format" }),
@@ -103,7 +105,7 @@ const LoginPage = () => {
             className="flex items-center rounded-md border border-gray-300 bg-white px-4 py-4 text-gray-700 shadow-sm hover:bg-gray-50"
           >
             <Image
-              src="/images/google.svg"
+              src={Google}
               width={20}
               height={20}
               alt="Goggle"
@@ -116,7 +118,7 @@ const LoginPage = () => {
             className="flex items-center rounded-md border border-gray-300 bg-white px-4 py-4 text-gray-700 shadow-sm hover:bg-gray-50"
           >
             <Image
-              src="/images/facebook.svg"
+              src={Facebook}
               width={20}
               height={20}
               alt="Facebook"
@@ -260,7 +262,7 @@ const LoginPage = () => {
         <p className="font-inter text-neutralColor-dark-1 mt-5 text-center text-sm font-normal leading-[15.6px]">
           Don&apos;t Have An Account?{" "}
           <Link
-            href="/sign-up"
+            href="/register"
             className="font-inter ms-1 text-left text-base font-bold leading-[19.2px] text-primary hover:text-orange-400"
             data-testid="link"
           >
