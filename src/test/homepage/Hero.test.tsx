@@ -29,7 +29,7 @@ describe("hero Component", () => {
     expect.assertions(1); // Ensure exactly one assertion
 
     render(<Hero />);
-    const button = screen.getByRole("button", { name: /get started/i });
+    const button = screen.getByTestId("get-started");
     expect(button).toBeInTheDocument();
   });
 

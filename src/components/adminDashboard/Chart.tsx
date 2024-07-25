@@ -18,7 +18,10 @@ export function Chart({ chartData = [], chartConfig }: ChartProperties) {
     <>
       <div className="h-full w-full">
         <CardContent className="h-full w-full pl-0">
-          <ChartContainer className="h-full w-full p-0" config={chartConfig}>
+          <ChartContainer
+            className="h-[250px] w-full p-0 md:h-full"
+            config={chartConfig}
+          >
             <BarChart
               className="w-full"
               accessibilityLayer

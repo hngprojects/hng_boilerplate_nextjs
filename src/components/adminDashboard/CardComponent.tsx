@@ -3,7 +3,7 @@ import { FC } from "react";
 
 interface CardProperties {
   title: string;
-  value: string;
+  value: string | number;
   description: string;
   icon: string;
 }
