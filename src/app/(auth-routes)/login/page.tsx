@@ -23,6 +23,7 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
+import { useUser } from "~/hooks/user/use-user";
 import { simulateDelay } from "~/lib/utils";
 
 const loginSchema = z.object({
@@ -53,6 +54,7 @@ const LoginPage = () => {
   const searchP = useSearchParams();
   const callback_url = searchP.get("callbackUrl");
   const [isLoading, startTransition] = useTransition();
+  const { updateUser } = useUser();
 
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
@@ -68,7 +70,7 @@ const LoginPage = () => {
     startTransition(async () => {
       await simulateDelay(3);
       await loginUser(values);
-
+      updateUser({ email: values.email, name: values.email.split("@")[0] });
       if (callback_url) {
         router.push(callback_url);
       } else {

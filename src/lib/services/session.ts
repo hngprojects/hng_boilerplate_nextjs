@@ -78,5 +78,6 @@ export async function updateSession() {
 }
 
 export async function deleteSession() {
+  deleteCookie("session");
   deleteCookie("session", { cookies });
 }
