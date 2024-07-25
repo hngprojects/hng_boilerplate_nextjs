@@ -22,33 +22,33 @@ describe("signUp Component", () => {
     ).toBeInTheDocument();
   });
 
-  // it("validates form inputs", async () => {
-  //   expect.assertions(3);
+  it("validates form inputs", async () => {
+    expect.assertions(3);
 
-  //   render(<SignUp />);
+    render(<SignUp />);
 
-  //   fireEvent.change(screen.getByPlaceholderText("Enter your fullname"), {
-  //     target: { value: "A" },
-  //   });
-  //   fireEvent.change(screen.getByPlaceholderText("Enter your email address"), {
-  //     target: { value: "a" },
-  //   });
-  //   fireEvent.change(screen.getByPlaceholderText("Enter your password"), {
-  //     target: { value: "a" },
-  //   });
+    fireEvent.change(screen.getByPlaceholderText("Enter your fullname"), {
+      target: { value: "A" },
+    });
+    fireEvent.change(screen.getByPlaceholderText("Enter your email address"), {
+      target: { value: "a" },
+    });
+    fireEvent.change(screen.getByPlaceholderText("Enter your password"), {
+      target: { value: "a" },
+    });
 
-  //   fireEvent.click(screen.getByText("Create Account"));
+    fireEvent.click(screen.getByText("Create Account"));
 
-  //   await expect(
-  //     screen.findByText("Fullname must be at least 2 characters."),
-  //   ).resolves.toBeInTheDocument();
-  //   await expect(
-  //     screen.findByText("Email must be at least 2 characters."),
-  //   ).resolves.toBeInTheDocument();
-  //   await expect(
-  //     screen.findByText("Password must be at least 2 characters."),
-  //   ).resolves.toBeInTheDocument();
-  // });
+    await expect(
+      screen.findByText("Fullname must be at least 2 characters."),
+    ).resolves.toBeInTheDocument();
+    await expect(
+      screen.findByText("Email must be at least 2 characters."),
+    ).resolves.toBeInTheDocument();
+    await expect(
+      screen.findByText("Password must be at least 2 characters."),
+    ).resolves.toBeInTheDocument();
+  });
 
   it("opens dialog on form submit", async () => {
     expect.assertions(1);
