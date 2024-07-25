@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DialogContent, DialogTitle } from "@radix-ui/react-dialog";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -59,10 +59,6 @@ const SignUp = () => {
     form.handleSubmit(handleFormSubmit)();
   };
 
-  useEffect(() => {
-    console.log("Form Validity:", form.formState.isValid);
-  }, [form.formState.isValid]);
-
   return (
     <div>
       <div className="flex flex-col items-center gap-2">
@@ -79,8 +75,8 @@ const SignUp = () => {
         <Form {...form}>
           <form
             className="space-y-8"
-            onSubmit={(e) => {
-              e.preventDefault();
+            onSubmit={(event) => {
+              event.preventDefault();
               handleSubmit();
             }}
           >
