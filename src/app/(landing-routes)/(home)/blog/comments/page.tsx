@@ -1,7 +1,7 @@
 import { Session } from "next-auth";
 
-import Comment from "~/components/common/comment";
-import { sampleComments } from "~/components/common/comment/sample-comments";
+import Comment from "~/components/common/Comment";
+import { sampleComments } from "~/components/common/Comment/sample-comments";
 
 const CommentPage = () => {
   const mockSession: Session = {
