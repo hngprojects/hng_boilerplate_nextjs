@@ -80,6 +80,7 @@ export const SubscriptionConfirmation = ({
                           {userData.key}:
                         </span>
                         <span className="leading-[19.36px] text-[#525252]">
+                          {" "}
                           {userData.value}
                         </span>
                       </div>

@@ -13,7 +13,6 @@ import Layout from "../_components/layout/layout";
 interface SubscriptionConfirmationProperties {
   title?: string;
   username?: string;
-  image?: string;
   expireTime?: string;
   star?: string;
   description?: string;
@@ -27,7 +26,6 @@ interface SubscriptionConfirmationProperties {
 export const SubscriptionConfirmation = ({
   title = "",
   username = "",
-  image = "",
   star = "",
   description = "",
   unsubcribeLink = "",
@@ -77,6 +75,7 @@ export const SubscriptionConfirmation = ({
                           {userData.key}:
                         </span>
                         <span className="leading-[19.36px] text-[#525252]">
+                          {" "}
                           {userData.value}
                         </span>
                       </div>

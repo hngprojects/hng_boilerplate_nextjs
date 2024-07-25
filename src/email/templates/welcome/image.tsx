@@ -15,13 +15,13 @@ interface IProperties {
   welcomeMessage: string;
   username: string;
   offer: string;
-  learnMoreLink: string;
+  link: string;
   star: string;
 }
 
 export default function WelcomeEmail(properties: IProperties) {
   const {
-    learnMoreLink,
+    link,
     star,
     offer,
     username,
@@ -113,14 +113,16 @@ export default function WelcomeEmail(properties: IProperties) {
                 </li>
               </ul>
             </Section>
-            <Section className="mt-[32px] text-center">
-              <Button
-                target={"_blank"}
-                className="w-[80%] rounded-[8px] bg-[#F97316] px-[2rem] py-[16px] text-[#FAFAFA] md:w-fit"
-                href={learnMoreLink}
-              >
-                Learn More About us
-              </Button>
+            <Section className="mt-[32px] w-[100%] text-center">
+              <Container className="mb-[40px] max-w-[680px] md:px-0">
+                <Button
+                  target={"_blank"}
+                  className="w-[100%] rounded-[8px] bg-[#F97316] py-[16px] text-[#FAFAFA] md:w-fit md:px-[2rem]"
+                  href={link}
+                >
+                  Learn More About us
+                </Button>
+              </Container>
             </Section>
           </Section>
         </Container>
@@ -141,7 +143,7 @@ export default function WelcomeEmail(properties: IProperties) {
 WelcomeEmail.PreviewProps = {
   offer:
     "Enjoy special promotions and discounts available only to our members.",
-  learnMoreLink: "http://localhost:3001/about-us",
+  link: "http://localhost:3001/about-us",
   username: "John Doe",
   mainHeading: "Welcome to Boilerplate",
   subHeading: "Thanks for signing up",

@@ -1,16 +1,18 @@
-import { Button } from "@react-email/components";
-import { FC } from "react";
+import { Link } from "@react-email/components";
+import { ButtonHTMLAttributes, FC } from "react";
 
-interface IProperties {
+interface IProperties extends ButtonHTMLAttributes<HTMLButtonElement> {
   title: string;
   link: string;
 }
 
-const CustomButton: FC<IProperties> = ({ title, link }) => {
+const CustomButton: FC<IProperties> = ({ title, link, ...properties }) => {
   return (
-    <Button href={link} className="rounded-2 bg-primary px-10 py-3">
-      {title}
-    </Button>
+    <Link href={link}>
+      <button className="rounded-2 bg-primary px-10 py-3" {...properties}>
+        {title}
+      </button>
+    </Link>
   );
 };
 
