@@ -226,6 +226,7 @@ const LoginPage = () => {
           <Link
             href="/sign-up"
             className="font-inter ms-1 text-left text-base font-bold leading-[19.2px] text-primary hover:text-orange-400"
+            data-testid="link"
           >
             Sign Up
           </Link>
