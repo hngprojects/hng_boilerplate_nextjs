@@ -53,7 +53,7 @@ export const PasswordReset = ({
                 {descriptionTwo}
               </Text>
             </Section>
-            <ol className="m-0">
+            <ol className="m-0 pl-4">
               <li className="my-[1rem]">
                 Recover your account here:
                 <Link
