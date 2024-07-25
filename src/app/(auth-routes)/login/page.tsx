@@ -223,12 +223,13 @@ const LoginPage = () => {
 
         <p className="font-inter text-neutralColor-dark-1 mt-5 text-center text-sm font-normal leading-[15.6px]">
           Don&apos;t Have An Account?{" "}
-          <a
-            href="#"
+          <Link
+            href="/sign-up"
             className="font-inter ms-1 text-left text-base font-bold leading-[19.2px] text-primary hover:text-orange-400"
+            data-testid="link"
           >
             Sign Up
-          </a>
+          </Link>
         </p>
 
         <p className="mt-2 text-center text-xs text-gray-500">
