@@ -1,9 +1,15 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 import CustomButton from "~/components/common/common-button/common-button";
+import HeroSection from "~/components/extDynamicPages/blogCollection/BlogPageHero";
 import BlogCard from "~/components/layouts/BlogCards";
-import HeroSection from "../../../components/extDynamicPages/blogCollection/BlogPageHero";
 import { blogPosts } from "./data/mock";
 
 const BlogHome = () => {
+  const router = useRouter();
+
   return (
     <div>
       <HeroSection />
@@ -21,6 +27,10 @@ const BlogHome = () => {
               category={post.category}
               image={post.image}
               labelClassName={post.labelClassName}
+              onClick={() => {
+                localStorage.setItem("currentBlogPost", JSON.stringify(post));
+                router.push(`/blog/$?id=${post.id}`);
+              }}
             />
           ))}
         </div>
