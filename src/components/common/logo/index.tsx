@@ -5,7 +5,7 @@ const Logo = () => {
   return (
     <Link
       href="/"
-      className="h-[37px] w-full max-w-[283px] md:h-[52px]"
+      className="h-[37px] w-full max-w-[200px] md:h-[52px] lg:max-w-[283px]"
       data-testid="logo"
     >
       <Image

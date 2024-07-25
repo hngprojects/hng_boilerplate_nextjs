@@ -81,6 +81,16 @@
   }
 }
 
+#nprogress .bar {
+  background: linear-gradient(90deg, #fff0bf, #f85318) !important;
+  box-shadow: 10px 0px 20px rgba(255, 240, 191, 0.641) !important;
+  position: fixed;
+  z-index: 99999999 !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px !important;
+}
 @layer base {
   * {
     @apply border-border;
@@ -143,6 +153,16 @@
   }
 }
 
+.show_scrollbar::-webkit-scrollbar {
+  height: 8px;
+}
+.show_scrollbar ::-webkit-scrollbar-thumb {
+  border-radius: 12px;
+}
+.hide_scrollbar::-webkit-scrollbar {
+  height: 0.1px;
+  width: 0.1px;
+}
 /* Custom Scrollbar Styling */
 /* For Webkit Browsers */
 ::-webkit-scrollbar {
