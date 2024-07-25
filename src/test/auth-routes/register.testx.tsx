@@ -12,12 +12,21 @@ describe("signUp Component", () => {
 
     await waitFor(() => {
       expect(screen.getByText("Sign Up")).toBeInTheDocument();
+    });
+
+    await waitFor(() => {
       expect(
         screen.getByPlaceholderText("Enter your fullname"),
       ).toBeInTheDocument();
+    });
+
+    await waitFor(() => {
       expect(
         screen.getByPlaceholderText("Enter your email address"),
       ).toBeInTheDocument();
+    });
+
+    await waitFor(() => {
       expect(
         screen.getByPlaceholderText("Enter your password"),
       ).toBeInTheDocument();
@@ -45,9 +54,15 @@ describe("signUp Component", () => {
       expect(
         screen.getByText("Fullname must be at least 2 characters."),
       ).toBeInTheDocument();
+    });
+
+    await waitFor(() => {
       expect(
         screen.getByText("Email must be at least 2 characters."),
       ).toBeInTheDocument();
+    });
+
+    await waitFor(() => {
       expect(
         screen.getByText("Password must be at least 2 characters."),
       ).toBeInTheDocument();
