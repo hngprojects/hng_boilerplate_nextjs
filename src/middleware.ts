@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { apiAuthPrefix, authRoutes, publicRoutes } from "~/lib/routes";
 
-const NEXT_PUBLIC_ROOT_DOMAIN = "hng-boilerplate.com";
+const NEXT_PUBLIC_ROOT_DOMAIN = "deployment.nextjs.boilerplate.hng.tech";
 export default async function middleware(request: NextRequest) {
   const { nextUrl } = request;
 
@@ -17,7 +17,7 @@ export default async function middleware(request: NextRequest) {
   const url = request.nextUrl;
   let hostname = request.headers
     .get("host")!
-    .replace(/\.localhost(:\d+)?/, ".hng-boilerplate.com");
+    .replace(/\.localhost(:\d+)?/, `.${NEXT_PUBLIC_ROOT_DOMAIN}`);
 
   hostname = hostname.replace("www.", ""); // remove www. from domain
   const searchParameters = request.nextUrl.searchParams.toString();

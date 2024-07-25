@@ -1,6 +1,15 @@
-import { SessionProvider } from "next-auth/react";
+"use client";
 
-const Providers = ({ children }: { children: React.ReactNode }) => {
-  return <SessionProvider>{children}</SessionProvider>;
+import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
+
+const Providers = () => {
+  return (
+    <ProgressBar
+      style="style"
+      options={{ showSpinner: false }}
+      shallowRouting
+    />
+  );
 };
+
 export default Providers;
