@@ -14,6 +14,8 @@ const handleButtonClickTest = () => {
 };
 
 const HelpCenter = () => {
+  //
+
   return (
     <div className="w-full bg-background">
       <div className="w-full bg-primary/10">

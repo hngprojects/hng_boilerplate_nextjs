@@ -1,9 +1,8 @@
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { FC } from "react";
 
 import { Card, CardContent, CardFooter } from "~/components/ui/card";
 import { Skeleton } from "~/components/ui/skeleton";
-import Link from "next/link";
 
 //
 interface CareerCardProperties {
@@ -21,7 +20,6 @@ const CareerCard: FC<CareerCardProperties> = ({
   description,
   amount,
 }) => {
-
   //
 
   return (
@@ -61,7 +59,7 @@ const CareerCard: FC<CareerCardProperties> = ({
             </span>
             <Link
               href={`/career/${jobTitle}`}
-              className="rounded bg-primary px-8 py-4 text-background"
+              className="rounded bg-primary px-4 py-2 text-[14px] text-background"
             >
               View Details
             </Link>
