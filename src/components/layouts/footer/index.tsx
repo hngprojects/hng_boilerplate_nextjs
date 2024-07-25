@@ -9,7 +9,7 @@ import {
 import Link from "next/link";
 
 import CustomButton from "~/components/common/common-button/common-button";
-import { Input } from "~/components/ui/input";
+import { Input } from "~/components/common/input";
 
 const Footer = () => {
   const footerLinks = [
@@ -26,11 +26,11 @@ const Footer = () => {
     {
       title: "Support",
       links: [
-        { route: "Help center", link: "/" },
+        { route: "Help center", link: "/help-center" },
         { route: "FAQ", link: "/faqs" },
         { route: "waiting list", link: "/waitlist" },
         { route: "Pricing Experience", link: "/pricing" },
-        { route: "Contact Us", link: "/" },
+        { route: "Contact Us", link: "/contact-us" },
       ],
     },
     {
