@@ -4,7 +4,6 @@ import { BellIcon, Menu, User } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import CustomButton from "~/components/common/common-button/common-button";
 import Logo from "~/components/common/logo";
 
 const navlinks = [
@@ -15,6 +14,8 @@ const navlinks = [
 
 const Navbar = () => {
   const [scrolling, setIsScrolling] = useState<boolean>(false);
+
+  //
 
   const handleScrollEvent = () => {
     if (window.scrollY > 1) {
@@ -55,15 +56,18 @@ const Navbar = () => {
           })}
         </div>
         <div className="hidden w-full max-w-[280px] items-center justify-between gap-2 md:flex">
-          <CustomButton
-            variant="outline"
-            className="h-[44px] w-[105px] border-primary text-primary"
+          <Link
+            href="/login"
+            className="grid h-[44px] place-items-center rounded-md border border-primary px-8 text-primary"
           >
             Log in
-          </CustomButton>
-          <CustomButton variant="primary" className="h-[44px] w-[142px]">
+          </Link>
+          <Link
+            href="/sign-up"
+            className="grid h-[44px] place-items-center rounded-md border border-primary bg-primary px-8 text-white"
+          >
             Get Started
-          </CustomButton>
+          </Link>
         </div>
         <div className="flex w-full max-w-[80px] items-center justify-between gap-2 md:hidden">
           <BellIcon className="text-nuetral-black-1 h-5 w-5 cursor-pointer transition-colors duration-300 hover:text-neutral-dark-1/50" />

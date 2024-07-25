@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff, ShieldCheck } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -74,6 +75,29 @@ const LoginPage = () => {
           <p className="font-inter text-neutralColor-dark-2 mt-2 text-center text-sm font-normal leading-6">
             Welcome back, you&apos;ve been missed!
           </p>
+        </div>
+
+        <div className="flex flex-col justify-center space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
+          <Button className="flex items-center rounded-md border border-gray-300 bg-white px-4 py-4 text-gray-700 shadow-sm hover:bg-gray-50">
+            <Image
+              src="/images/goggle.svg"
+              width={20}
+              height={20}
+              alt="Goggle"
+              className="mr-2"
+            />
+            Sign in with Google
+          </Button>
+          <Button className="flex items-center rounded-md border border-gray-300 bg-white px-4 py-4 text-gray-700 shadow-sm hover:bg-gray-50">
+            <Image
+              src="/images/facebook.svg"
+              width={20}
+              height={20}
+              alt="Facebook"
+              className="mr-2"
+            />
+            Sign in with Google
+          </Button>
         </div>
 
         <div className="flex items-center justify-center">
@@ -199,12 +223,13 @@ const LoginPage = () => {
 
         <p className="font-inter text-neutralColor-dark-1 mt-5 text-center text-sm font-normal leading-[15.6px]">
           Don&apos;t Have An Account?{" "}
-          <a
-            href="#"
+          <Link
+            href="/sign-up"
             className="font-inter ms-1 text-left text-base font-bold leading-[19.2px] text-primary hover:text-orange-400"
+            data-testid="link"
           >
             Sign Up
-          </a>
+          </Link>
         </p>
 
         <p className="mt-2 text-center text-xs text-gray-500">

@@ -1,4 +1,4 @@
-import HtmlTemplateViewer from "./_component.tsx/index.jsx";
+import HtmlTemplateViewer from "./_component.tsx";
 
 const page = () => {
   return <HtmlTemplateViewer />;
