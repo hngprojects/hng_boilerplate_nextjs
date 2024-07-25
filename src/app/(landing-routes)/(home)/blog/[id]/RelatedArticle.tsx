@@ -1,7 +1,7 @@
 import { useRouter } from "next/navigation";
 
 import BlogCard from "~/components/layouts/BlogCards";
-import { blogPosts } from "../page";
+import { blogPosts } from "~/types/blog.types";
 
 export type New = {
   id: number;
