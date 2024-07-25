@@ -1,13 +1,12 @@
 "use client";
 
-import RelatedArticle from "./RelatedArticle";
+import BlogDetails from "./BlogDetails";
 
 const BlogDetailsPage = () => {
   return (
     <div>
-      <div className="flex flex-col pl-[30px] md:pl-[0]">
-        Blog Details Section
-        <RelatedArticle />
+      <div className="flex flex-col">
+        <BlogDetails />
       </div>
     </div>
   );
