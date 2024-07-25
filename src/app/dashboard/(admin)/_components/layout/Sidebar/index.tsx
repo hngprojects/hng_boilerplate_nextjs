@@ -7,6 +7,7 @@ import {
   LucideProps,
   Mail,
   Settings,
+  TabletSmartphone,
   Users,
 } from "lucide-react";
 import Link from "next/link";
@@ -43,13 +44,13 @@ const sideItems = [
   {
     route: "Squeeze Pages",
     link: "/dashboard/admin/squeeze-pages",
-    icon: Users,
+    icon: List,
     id: "squeeze",
   },
   {
     route: "Waitlist Page",
     link: "/dashboard/admin/waitlist-page",
-    icon: List,
+    icon: TabletSmartphone,
     id: "waitlist",
   },
   {
