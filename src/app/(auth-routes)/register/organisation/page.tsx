@@ -27,17 +27,36 @@ const formSchema = z.object({
   fullname: z.string().min(2, {
     message: "Fullname must be at least 2 characters.",
   }),
-  email: z.string().min(2, {
-    message: "Email must be at least 2 characters.",
+  email: z.string().email({
+    message: "Email must be a valid email address.",
   }),
   password: z.string().min(2, {
     message: "Password must be at least 2 characters.",
   }),
+  companyName: z.string().min(2, {
+    message: "Company name must be at least 2 characters.",
+  }),
+  companyEmail: z.string().email({
+    message: "Company email must be a valid email address.",
+  }),
+  industry: z.string().min(1, {
+    message: "Please select an industry.",
+  }),
+  organizationType: z.string().min(1, {
+    message: "Please select an organization type.",
+  }),
+  country: z.string().min(1, {
+    message: "Please select a country.",
+  }),
+  state: z.string().min(1, {
+    message: "Please select a state.",
+  }),
+  address: z.string().min(1, {
+    message: "Please enter company address.",
+  }),
 });
 
 type FormData = z.infer<typeof formSchema>;
-
-// Updated onSubmit function with unused parameter prefixed
 
 function Organisation() {
   const form = useForm<FormData>({
@@ -56,10 +75,10 @@ function Organisation() {
 
         <div className="mx-auto w-2/4">
           <Form {...form}>
-            <form className="space-y-8">
+            <form className="space-y-6">
               <FormField
                 control={form.control}
-                name="fullname"
+                name="companyName"
                 render={({ field }) => (
                   <FormItem className="flex flex-col gap-2">
                     <div>
@@ -72,6 +91,14 @@ function Organisation() {
                       </FormControl>
                       <FormMessage />
                     </div>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="companyEmail"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col gap-2">
                     <div>
                       <FormLabel>Company Email Address</FormLabel>
                       <FormControl>
@@ -82,62 +109,123 @@ function Organisation() {
                       </FormControl>
                       <FormMessage />
                     </div>
-                    <div className="flex gap-4">
+                  </FormItem>
+                )}
+              />
+              <div className="flex gap-4">
+                <FormField
+                  control={form.control}
+                  name="industry"
+                  render={({ field }) => (
+                    <FormItem className="flex w-full flex-col gap-2">
                       <div className="w-full">
                         <FormLabel>Industry</FormLabel>
-                        <Select>
-                          <SelectTrigger className="">
-                            <SelectValue placeholder="Select" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="light">Technology</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <FormControl>
+                          <Select
+                            onValueChange={field.onChange}
+                            value={field.value || ""}
+                          >
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="Technology">
+                                Technology
+                              </SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </FormControl>
+                        <FormMessage />
                       </div>
-
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="organizationType"
+                  render={({ field }) => (
+                    <FormItem className="flex w-full flex-col gap-2">
                       <div className="w-full">
                         <FormLabel>Organization Type</FormLabel>
-                        <Select>
-                          <SelectTrigger className="">
-                            <SelectValue placeholder="Select" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="light">Entertainment</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-col gap-2">
-                      <h1 className="text-md">Company Address</h1>
-                      <div className="flex gap-4">
-                        <div className="w-full">
-                          <FormLabel>Country</FormLabel>
-                          <Select>
-                            <SelectTrigger className="">
+                        <FormControl>
+                          <Select
+                            onValueChange={field.onChange}
+                            value={field.value || ""}
+                          >
+                            <SelectTrigger>
                               <SelectValue placeholder="Select" />
                             </SelectTrigger>
                             <SelectContent>
-                              <SelectItem value="light">Nigeria</SelectItem>
+                              <SelectItem value="Entertainment">
+                                Entertainment
+                              </SelectItem>
                             </SelectContent>
                           </Select>
-                        </div>
-
-                        <div className="w-full">
-                          <FormLabel>State</FormLabel>
-                          <Select>
-                            <SelectTrigger className="">
+                        </FormControl>
+                        <FormMessage />
+                      </div>
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <h1 className="text-md">Company Address</h1>
+                <div className="flex gap-4">
+                  <FormField
+                    control={form.control}
+                    name="country"
+                    render={({ field }) => (
+                      <div className="w-full">
+                        <FormLabel>Country</FormLabel>
+                        <FormControl>
+                          <Select
+                            onValueChange={field.onChange}
+                            value={field.value || ""}
+                          >
+                            <SelectTrigger>
                               <SelectValue placeholder="Select" />
                             </SelectTrigger>
                             <SelectContent>
-                              <SelectItem value="light">Lagos</SelectItem>
+                              <SelectItem value="Nigeria">Nigeria</SelectItem>
                             </SelectContent>
                           </Select>
-                        </div>
+                        </FormControl>
+                        <FormMessage />
                       </div>
-                    </div>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="state"
+                    render={({ field }) => (
+                      <div className="w-full">
+                        <FormLabel>State</FormLabel>
+                        <FormControl>
+                          <Select
+                            onValueChange={field.onChange}
+                            value={field.value || ""}
+                          >
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="Lagos">Lagos</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </FormControl>
+                        <FormMessage />
+                      </div>
+                    )}
+                  />
+                </div>
+              </div>
+              <FormField
+                control={form.control}
+                name="address"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col gap-2">
                     <div>
-                      <FormLabel>Address</FormLabel>
+                      <FormLabel>Company Address</FormLabel>
                       <FormControl>
                         <Input
                           placeholder="Enter your company address"
@@ -152,7 +240,6 @@ function Organisation() {
               <Button type="submit" className="w-full">
                 Create Account
               </Button>
-
               <div className="flex justify-center gap-2">
                 <p className="text-sm">Already Have An Account?</p>
                 <Link className="text-sm text-orange-500" href={"#"}>
