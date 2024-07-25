@@ -96,10 +96,7 @@ const Comment = ({
   };
 
   return (
-    <div
-      className="flex w-full max-w-[864px] flex-col"
-      data-testid="comment-box-container"
-    >
+    <div className="flex w-full flex-col" data-testid="comment-box-container">
       <Card
         className={cn(
           "w-full rounded border-[0.8px] border-stroke-colors-stroke bg-popover px-4 py-[18px]",

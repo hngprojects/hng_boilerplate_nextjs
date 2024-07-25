@@ -87,7 +87,7 @@ const NewProductModal = () => {
       <div
         onClick={() => setIsNewModal(false)}
         className={cn(
-          "fixed left-0 top-0 z-[99999] min-h-screen w-full overflow-hidden bg-[rgba(10,10,10,0.40)] transition-all duration-300",
+          "fixed left-0 top-0 z-[99] min-h-screen w-full overflow-hidden bg-[rgba(10,10,10,0.40)] transition-all duration-300",
           isNewModal
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0",
@@ -113,11 +113,11 @@ const NewProductModal = () => {
               scale: 2,
             }}
             className={cn(
-              "fixed left-1/2 top-1/2 z-[99999] grid h-[350px] w-full max-w-[349px] -translate-x-1/2 -translate-y-1/2 transform-gpu place-items-center items-center overflow-hidden rounded-xl bg-white min-[360px]:max-w-[480px] sm:py-6 lg:h-[800px] lg:max-w-[491px]",
+              "fixed left-1/2 top-1/2 z-[999] grid h-[550px] w-full max-w-[95%] -translate-x-1/2 -translate-y-1/2 transform-gpu place-items-center items-center overflow-y-auto rounded-md bg-white pb-6 min-[500px]:max-w-[480px] min-[500px]:rounded-xl sm:h-[650px] lg:h-[800px] lg:max-w-[491px]",
             )}
           >
             <div className="flex h-full w-full flex-col items-center gap-y-4">
-              <div className="flex w-full items-center justify-between border-b border-neutral-200 px-6 pb-6">
+              <div className="sticky top-0 z-50 flex w-full items-center justify-between border-b border-neutral-200 bg-white/70 px-2 py-2 backdrop-blur min-[500px]:px-6 min-[500px]:py-4 lg:py-6">
                 <p className="font-semibold sm:text-lg">Add a Product</p>
                 <Button
                   variant="ghost"
@@ -130,7 +130,7 @@ const NewProductModal = () => {
               <Form {...new_product_form}>
                 <form
                   onSubmit={new_product_form.handleSubmit(onSubmit)}
-                  className="flex w-full flex-col gap-y-4 overflow-y-auto px-6"
+                  className="flex h-full w-full flex-col gap-y-4 px-2 min-[500px]:px-6"
                 >
                   <FormField
                     control={new_product_form.control}

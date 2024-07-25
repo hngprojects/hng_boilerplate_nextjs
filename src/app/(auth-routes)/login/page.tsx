@@ -40,14 +40,14 @@ type LoginFormData = z.infer<typeof loginSchema>;
 
 const getInputClassName = (hasError: boolean, isValid: boolean) => {
   const baseClasses =
-    "font-inter w-full rounded-md border px-3 py-3 text-sm font-normal leading-[21.78px] transition duration-150 ease-in-out focus:outline-none focus:ring-1 focus:ring-opacity-50";
+    "font-inter w-full rounded-md border px-3 py-6 text-sm font-normal leading-[21.78px] transition duration-150 ease-in-out focus:outline-none";
 
   if (hasError) {
     return `${baseClasses} border-red-500 focus:border-red-500 focus:ring-red-500 text-red-900`;
   } else if (isValid) {
-    return `${baseClasses} border-orange-500 focus:border-orange-500 focus:ring-orange-500 text-neutralColor-dark-2`;
+    return `${baseClasses} border-orange-500 focus:border-orange-500  text-neutralColor-dark-2`;
   }
-  return `${baseClasses} border-gray-300 focus:border-orange-500 focus:ring-orange-500 text-neutralColor-dark-2`;
+  return `${baseClasses} border-gray-300 focus:border-orange-500  text-neutralColor-dark-2`;
 };
 
 const LoginPage = () => {
@@ -100,10 +100,7 @@ const LoginPage = () => {
         </div>
 
         <div className="flex flex-col justify-center space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
-          <Button
-            disabled
-            className="flex items-center rounded-md border border-gray-300 bg-white px-4 py-4 text-gray-700 shadow-sm hover:bg-gray-50"
-          >
+          <Button className="flex items-center rounded-md border border-gray-300 bg-white px-4 py-4 text-gray-700 shadow-sm hover:bg-gray-50">
             <Image
               src={Google}
               width={20}
@@ -113,10 +110,7 @@ const LoginPage = () => {
             />
             Sign in with Google
           </Button>
-          <Button
-            disabled
-            className="flex items-center rounded-md border border-gray-300 bg-white px-4 py-4 text-gray-700 shadow-sm hover:bg-gray-50"
-          >
+          <Button className="flex items-center rounded-md border border-gray-300 bg-white px-4 py-4 text-gray-700 shadow-sm hover:bg-gray-50">
             <Image
               src={Facebook}
               width={20}
@@ -143,7 +137,7 @@ const LoginPage = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-neutralColor-dark-2 sr-only">
+                  <FormLabel className="text-neutralColor-dark-2">
                     Email
                   </FormLabel>
                   <FormControl>
@@ -167,7 +161,9 @@ const LoginPage = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="sr-only">Password</FormLabel>
+                  <FormLabel className="text-neutralColor-dark-2">
+                    Password
+                  </FormLabel>
                   <FormControl>
                     <div className="relative">
                       <Input
@@ -235,7 +231,7 @@ const LoginPage = () => {
               type="submit"
               variant="default"
               size="default"
-              className="h-12 w-full rounded-md bg-primary px-4 py-3 text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+              className="h-12 w-full rounded-md bg-primary px-4 py-6 text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
             >
               {isLoading ? (
                 <span className="flex items-center gap-x-2">
@@ -250,11 +246,10 @@ const LoginPage = () => {
         </Form>
 
         <Button
-          disabled
           type="button"
           variant="outline"
           size="default"
-          className="text-neutralColor-dark-2 hover:bg-gray50 w-full rounded-md border border-stroke-colors-stroke bg-white px-4 py-3 text-sm font-medium focus:outline-none"
+          className="text-neutralColor-dark-2 hover:bg-gray50 w-full rounded-md border border-stroke-colors-stroke bg-white px-4 py-6 text-sm font-medium focus:outline-none"
         >
           <Link href="/login/magic-link">Sign in with magic link</Link>
         </Button>
