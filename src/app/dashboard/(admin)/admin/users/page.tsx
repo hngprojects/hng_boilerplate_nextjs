@@ -25,6 +25,8 @@ import { userCardData } from "./data/user-dummy-data";
 
 import "./assets/style.css";
 
+import AddUserModal from "./component/userModal";
+
 interface FilterDataProperties {
   title: string;
   selected: boolean;
@@ -110,7 +112,11 @@ const UserPage = () => {
                   </div>
                 </CustomButton>
 
-                <DropdownMenu width="w-[150px]" active={showDropdown}>
+                <DropdownMenu
+                  position="md:right-0"
+                  width="w-[150px]"
+                  active={showDropdown}
+                >
                   {filterData.map((data, index) => {
                     const { selected, title } = data;
 
@@ -136,22 +142,24 @@ const UserPage = () => {
                 </DropdownMenu>
               </div>
 
-              <CustomButton size="lg" className="p-3" variant="primary">
-                <div className="flex flex-row items-center gap-2">
-                  <CirclePlus size={16} color="#FFFFFF" />
-                  <div className="text-base font-normal leading-5">
-                    Add new user
+              <AddUserModal>
+                <CustomButton size="lg" className="p-3" variant="primary">
+                  <div className="flex flex-row items-center gap-2">
+                    <CirclePlus size={16} color="#FFFFFF" />
+                    <div className="text-base font-normal leading-5">
+                      Add new user
+                    </div>
                   </div>
-                </div>
-              </CustomButton>
+                </CustomButton>
+              </AddUserModal>
             </div>
           </div>
 
-          <div className="user-table mt-6 h-full w-full overflow-x-auto overflow-y-visible">
+          <div className="user-table mt-6 h-full w-full overflow-x-auto md:overflow-y-hidden">
             <UserTable />
           </div>
 
-          <div className="mt-5">
+          <div className="mt-8">
             <Pagination>
               <PaginationContent>
                 <PaginationItem>
