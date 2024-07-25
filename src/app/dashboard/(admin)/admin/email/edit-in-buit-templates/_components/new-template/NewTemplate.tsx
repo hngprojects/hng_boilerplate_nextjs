@@ -1,8 +1,10 @@
+"use client";
+
 import { LucideProps } from "lucide-react";
 import Link from "next/link";
-import { FC, ForwardRefExoticComponent } from "react";
+import { FC, ForwardRefExoticComponent, useState } from "react";
 
-import { Breadcrumb } from "~/components/common/breadcrumb/breadcrumb";
+import { Breadcrumb } from "~/components/common/breadcrumb";
 import PageHeader from "../../../_components/page-header";
 import TemplateCard from "../../../_components/template-card/TemplateCard";
 import PreviewCard from "../preview-card";
@@ -42,6 +44,7 @@ export const Options: FC<IOption> = ({ data }) => {
   );
 };
 const NewTemplate = () => {
+  const [togglePreview, setTogglePreview] = useState<boolean>(false);
   return (
     <div>
       <section className="mb-8">
@@ -51,11 +54,16 @@ const NewTemplate = () => {
         />
         <Breadcrumb />
       </section>
-      <div className="grid grid-cols-[1fr_447px]">
-        <section className="min-h-[700px] overflow-hidden rounded-[19px] border-[1px] border-border">
-          <TemplateCard />
+      <div
+        className={`${togglePreview ? "grid grid-cols-1 justify-items-center gap-6 lg:grid-cols-[1fr_447px]" : "block"} `}
+      >
+        <section className="min-h-[700px] w-full justify-items-center overflow-hidden rounded-[19px] border-[1px] border-border">
+          <TemplateCard
+            togglePreview={togglePreview}
+            setTogglePreview={setTogglePreview}
+          />
         </section>
-        <PreviewCard />
+        {togglePreview && <PreviewCard />}
       </div>
     </div>
   );
