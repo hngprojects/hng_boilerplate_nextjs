@@ -70,7 +70,7 @@ const TopProductsComponent: React.FC<TopProductsProperties> = ({
             </div>
             <p
               data-testid={`product-amount-${index}`}
-              className="text-[16px] font-semibold"
+              className="text-sm font-medium md:text-base md:font-semibold"
             >
               {item.amount}
             </p>
