@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import CardComponent from "~/components/adminDashboard/CardComponent";
 import CustomButton from "~/components/common/common-button/common-button";
 import DropdownMenu from "../../_components/ui/dropdownMenu";
+import UserTable from "./component/userTable";
 import { userCardData } from "./data/user-dummy-data";
 
 interface FilterDataProperties {
@@ -67,12 +68,12 @@ const UserPage = () => {
         </div>
 
         <div className="mt-8">
-          <div className="flex flex-row items-center">
+          <div className="flex flex-col gap-3 md:flex-row md:items-center">
             <div className="mr-auto">
-              <h3 className="text-2xl font-semibold leading-8 text-neutral-dark-2">
+              <h3 className="whitespace-nowrap text-2xl font-semibold leading-8 text-neutral-dark-2">
                 Users
               </h3>
-              <h5 className="text-base font-normal leading-4 text-neutral-dark-2">
+              <h5 className="whitespace-nowrap text-base font-normal leading-4 text-neutral-dark-2">
                 Manage Users & Track Activity
               </h5>
             </div>
@@ -128,6 +129,10 @@ const UserPage = () => {
                 </div>
               </CustomButton>
             </div>
+          </div>
+
+          <div className="user-table mt-6 h-full w-full overflow-x-auto overflow-y-visible">
+            <UserTable />
           </div>
         </div>
       </section>

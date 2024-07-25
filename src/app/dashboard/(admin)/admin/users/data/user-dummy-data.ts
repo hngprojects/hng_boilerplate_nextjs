@@ -7,10 +7,9 @@ interface UserCardData {
 
 interface UserStatusProperties {
   active: boolean;
-  inActive: boolean;
 }
 
-interface UserDataProperties {
+export interface UserDataProperties {
   avatar: string;
   fullName: string;
   email: string;
@@ -49,7 +48,6 @@ export const userData: UserDataProperties[] = [
     date: "02/07/2024",
     status: {
       active: true,
-      inActive: false,
     },
   },
 
@@ -61,7 +59,6 @@ export const userData: UserDataProperties[] = [
     date: "02/07/2024",
     status: {
       active: false,
-      inActive: true,
     },
   },
 
@@ -73,7 +70,6 @@ export const userData: UserDataProperties[] = [
     date: "02/07/2024",
     status: {
       active: false,
-      inActive: true,
     },
   },
 
@@ -85,7 +81,6 @@ export const userData: UserDataProperties[] = [
     date: "02/07/2024",
     status: {
       active: false,
-      inActive: true,
     },
   },
 
@@ -96,8 +91,7 @@ export const userData: UserDataProperties[] = [
     phone: "09123456789",
     date: "02/07/2024",
     status: {
-      active: false,
-      inActive: true,
+      active: true,
     },
   },
 ];

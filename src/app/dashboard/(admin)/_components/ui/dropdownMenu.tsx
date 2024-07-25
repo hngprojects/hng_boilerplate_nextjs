@@ -10,7 +10,7 @@ const DropdownMenu = ({
   return (
     <>
       <div
-        className={`absolute bottom-0 right-0 top-full mt-2 h-fit overflow-hidden rounded-md bg-white p-2 shadow ring-1 ring-border duration-200 ease-in ${width} ${active ? "visible translate-y-0 opacity-100" : "invisible -translate-y-[10px] opacity-0"}`}
+        className={`absolute bottom-0 top-full z-20 mt-2 h-fit overflow-hidden rounded-md bg-white p-2 shadow ring-1 ring-border duration-200 ease-in md:right-0 ${width} ${active ? "visible translate-y-0 opacity-100" : "invisible -translate-y-[10px] opacity-0"}`}
       >
         {children}
       </div>
