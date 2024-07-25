@@ -9,6 +9,8 @@ type ModalProperties = {
   setIsDelete: (isDelete: boolean) => void;
   updateFilterModal: (isOpenFilterModal: boolean) => void;
   isOpenFilterModal: boolean;
+  isNewModal: boolean;
+  setIsNewModal: (isNewModal: boolean) => void;
 };
 
 export const useProductModal = create<ModalProperties>()((set) => ({
@@ -16,6 +18,8 @@ export const useProductModal = create<ModalProperties>()((set) => ({
   product_id: "",
   isDelete: false,
   isOpenFilterModal: false,
+  isNewModal: false,
+  setIsNewModal: (isNewModal) => set({ isNewModal }),
   updateFilterModal: (isOpenFilterModal) =>
     set({ isOpenFilterModal: isOpenFilterModal }),
   setIsDelete: (isDelete) => set({ isDelete }),
