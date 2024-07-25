@@ -7,8 +7,10 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import Comment, { CommentProperties } from "~/components/common/Comment";
-import { sampleComments } from "~/components/common/Comment/sample-comments";
+import Comment, {
+  CommentProperties,
+} from "~/components/common/comment-component";
+import { sampleComments } from "~/components/common/comment-component/sample-comments";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import RelatedArticle from "./RelatedArticle";
 
