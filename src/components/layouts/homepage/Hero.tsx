@@ -41,7 +41,7 @@ const Hero = () => {
             </p>
 
             <Link
-             href="/register"
+              href="/register"
               className="rounded bg-primary px-8 py-4 text-background"
               data-testid="get-started"
             >
