@@ -27,7 +27,7 @@ const options: Option[] = [
     description:
       "Create an email template by choosing from our custom template library",
     icon: FileIcon,
-    link: "generate-with-html",
+    link: "email/edit-in-buit-templates",
   },
 ];
 
@@ -68,7 +68,7 @@ describe("newTemplate component", () => {
     );
     expect(screen.getAllByRole("link")[1]).toHaveAttribute(
       "href",
-      "generate-with-html",
+      "email/edit-in-buit-templates",
     );
   });
 });

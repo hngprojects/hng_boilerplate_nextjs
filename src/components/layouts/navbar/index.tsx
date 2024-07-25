@@ -12,7 +12,7 @@ const navlinks = [
   { route: "Careers", link: "/career" },
 ];
 
-const Navbar = () => {
+const Navbar = ({ is_auth_path = false }: { is_auth_path?: boolean }) => {
   const [scrolling, setIsScrolling] = useState<boolean>(false);
 
   //
@@ -55,20 +55,22 @@ const Navbar = () => {
             );
           })}
         </div>
-        <div className="hidden w-full max-w-[280px] items-center justify-between gap-2 md:flex">
-          <Link
-            href="/login"
-            className="grid h-[44px] place-items-center rounded-md border border-primary px-8 text-primary"
-          >
-            Log in
-          </Link>
-          <Link
-            href="/sign-up"
-            className="grid h-[44px] place-items-center rounded-md border border-primary bg-primary px-8 text-white"
-          >
-            Get Started
-          </Link>
-        </div>
+        {!is_auth_path && (
+          <div className="hidden w-full max-w-[280px] items-center justify-between gap-2 md:flex">
+            <Link
+              href="/login"
+              className="grid h-[44px] place-items-center rounded-md border border-primary px-8 text-primary"
+            >
+              Log in
+            </Link>
+            <Link
+              href="/sign-up"
+              className="grid h-[44px] place-items-center rounded-md border border-primary bg-primary px-8 text-white"
+            >
+              Get Started
+            </Link>
+          </div>
+        )}
         <div className="flex w-full max-w-[80px] items-center justify-between gap-2 md:hidden">
           <BellIcon className="text-nuetral-black-1 h-5 w-5 cursor-pointer transition-colors duration-300 hover:text-neutral-dark-1/50" />
           <User className="text-nuetral-black-1 h-5 w-5 cursor-pointer transition-colors duration-300 hover:text-neutral-dark-1/50" />
