@@ -10,7 +10,7 @@ import { cn } from "~/lib/utils";
 import { NAV_LINKS } from "./links";
 import MobileNav from "./mobile-navbar";
 
-const Navbar = ({ is_auth_path = false }: { is_auth_path?: boolean }) => {
+const Navbar = () => {
   const [scrolling, setIsScrolling] = useState<boolean>(false);
   const { user } = useUser();
 
@@ -55,7 +55,7 @@ const Navbar = ({ is_auth_path = false }: { is_auth_path?: boolean }) => {
             );
           })}
         </div>
-        {is_auth_path && !user.email && (
+        {!user.email && (
           <div className="w-fullx hidden items-center justify-end gap-x-4 justify-self-end md:flex lg:gap-x-8">
             <Link
               href="/login"
