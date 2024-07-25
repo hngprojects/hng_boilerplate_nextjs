@@ -2,36 +2,32 @@ import {
   Button,
   Container,
   Heading,
-  Img,
   Section,
   Text,
 } from "@react-email/components";
 
 import Layout from "../_components/layout/layout";
 
-interface AccountActivationProperties {
+interface AccountActivationSuccessfulProperties {
   title?: string;
   username?: string;
-  image?: string;
   description?: string;
   descriptionOne?: string;
+  descriptionTwo?: string;
   link?: string;
 }
 
-export const AccountActivation = ({
+export const AccountActivationSuccessful = ({
   title = "",
   username = "",
-  image = "",
   description = "",
   descriptionOne = "",
+  descriptionTwo = "",
   link = "",
-}: AccountActivationProperties) => {
+}: AccountActivationSuccessfulProperties) => {
   return (
     <Layout>
       <Section className="py-[56px]">
-        <Section className="mx-auto flex items-center justify-center md:w-[316px]">
-          <Img src={image} alt="hello" className="h-[100%] w-[100%]" />
-        </Section>
         <Section className="mx-auto flex items-center justify-center"></Section>
 
         <Container className="max-w-[680px] px-[48px] md:px-0">
@@ -53,7 +49,13 @@ export const AccountActivation = ({
               <Text className="text-justify text-[14px] leading-[19.36px] text-[#525252] md:text-[16px]">
                 {descriptionOne}
               </Text>
+              <Text className="text-justify text-[14px] leading-[19.36px] text-[#525252] md:text-[16px]">
+                {descriptionTwo}
+              </Text>
             </Section>
+            <Text className="text-justify text-[14px] leading-[19.36px] text-[#525252] md:text-[16px]">
+              Thank you for joining Boilerplate!
+            </Text>
           </Section>
         </Container>
 
@@ -84,15 +86,16 @@ export const AccountActivation = ({
   );
 };
 
-AccountActivation.PreviewProps = {
-  title: "Activate Your Account",
+AccountActivationSuccessful.PreviewProps = {
+  title: "Your Account is Now Active!",
   username: "John Doe",
-  image: "https://imgur.com/1PeoUqN.png",
   link: "/",
   description:
-    "We recently detected a login attempt to your account from an unfamiliar device. To ensure the security of your account, we haven't granted access.",
+    "Congratulations! Your account with Boilerplate is now active and ready to use.",
   descriptionOne:
-    "To activate your account and secure it, please click the button below:",
-} as AccountActivationProperties;
+    "We're thrilled to have you as part of our community and look forward to helping you make the most out of your experience with us.",
+  descriptionTwo:
+    "You can now log in and start exploring all the features and benefits we have to offer. ",
+} as AccountActivationSuccessfulProperties;
 
-export default AccountActivation;
+export default AccountActivationSuccessful;
