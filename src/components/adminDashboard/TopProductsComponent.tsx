@@ -39,7 +39,8 @@ const TopProductsComponent: React.FC<TopProductsProperties> = ({
             Top Products
           </h2>
           <p className="text-xs font-normal text-neutral-dark-1">
-            Your top selling products appear here.
+            Your top selling products <br className="block md:hidden" /> appear
+            here.
           </p>
         </div>
         <button className="flex items-center justify-center gap-2 whitespace-nowrap rounded-md bg-orange-500 px-4 py-2 text-sm font-medium text-neutral-50">
