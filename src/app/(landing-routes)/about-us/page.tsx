@@ -7,7 +7,6 @@ import Mission from "~/components/layouts/aboutUs/Mission";
 import OurServices from "~/components/layouts/aboutUs/OurServices";
 import Vision from "~/components/layouts/aboutUs/Vision";
 
-
 const AboutUs = () => {
   return (
     <>
