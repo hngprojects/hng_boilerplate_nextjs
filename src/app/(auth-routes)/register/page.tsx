@@ -48,7 +48,7 @@ const SignUp = () => {
   const [open, setOpen] = useState(false);
 
   const handleFormSubmit = () => {
-    form.handleSubmit((data: FormData) => {
+    form.handleSubmit(() => {
       if (form.formState.isValid) {
         setOpen(true);
       }
@@ -149,7 +149,11 @@ const SignUp = () => {
               Create Account
             </Button>
             <DialogDemo open={open} onOpenChanged={setOpen}>
-              <DialogContent aria-labelledby="dialog-title" aria-describedby="dialog-description" className="flex w-full flex-col items-center gap-4">
+              <DialogContent
+                aria-labelledby="dialog-title"
+                aria-describedby="dialog-description"
+                className="flex w-full flex-col items-center gap-4"
+              >
                 <DialogTitle className="text-xl font-bold text-[#0F172A]">
                   Sign Up
                 </DialogTitle>

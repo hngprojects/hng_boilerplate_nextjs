@@ -25,8 +25,8 @@ import {
 import { Input } from "~/components/ui/input";
 import { useUser } from "~/hooks/user/use-user";
 import { simulateDelay } from "~/lib/utils";
-import Google from "../../../../public/images/google.svg"
-import Facebook from "../../../../public/images/facebook.svg"
+import Google from "../../../../public/images/google.svg";
+import Facebook from "../../../../public/images/facebook.svg";
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Invalid email format" }),

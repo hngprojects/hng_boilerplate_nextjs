@@ -9,12 +9,18 @@ describe("signUp Component", () => {
     expect.assertions(4);
 
     render(<SignUp />);
-    
+
     await waitFor(() => {
       expect(screen.getByText("Sign Up")).toBeInTheDocument();
-      expect(screen.getByPlaceholderText("Enter your fullname")).toBeInTheDocument();
-      expect(screen.getByPlaceholderText("Enter your email address")).toBeInTheDocument();
-      expect(screen.getByPlaceholderText("Enter your password")).toBeInTheDocument();
+      expect(
+        screen.getByPlaceholderText("Enter your fullname"),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByPlaceholderText("Enter your email address"),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByPlaceholderText("Enter your password"),
+      ).toBeInTheDocument();
     });
   });
 
@@ -36,9 +42,15 @@ describe("signUp Component", () => {
     fireEvent.click(screen.getByText("Create Account"));
 
     await waitFor(() => {
-      expect(screen.getByText("Fullname must be at least 2 characters.")).toBeInTheDocument();
-      expect(screen.getByText("Email must be at least 2 characters.")).toBeInTheDocument();
-      expect(screen.getByText("Password must be at least 2 characters.")).toBeInTheDocument();
+      expect(
+        screen.getByText("Fullname must be at least 2 characters."),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText("Email must be at least 2 characters."),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText("Password must be at least 2 characters."),
+      ).toBeInTheDocument();
     });
   });
 
@@ -58,9 +70,11 @@ describe("signUp Component", () => {
     });
 
     fireEvent.click(screen.getByText("Create Account"));
-    
+
     await waitFor(() => {
-      expect(screen.getByText("Choose your sign-up method:")).toBeInTheDocument();
+      expect(
+        screen.getByText("Choose your sign-up method:"),
+      ).toBeInTheDocument();
     });
   });
 });
