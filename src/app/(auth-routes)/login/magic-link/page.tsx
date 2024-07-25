@@ -3,10 +3,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ShieldCheck } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import { Button } from "~/components/ui/button";
 import {
   Form,
@@ -27,7 +28,7 @@ type FormValues = z.infer<typeof formSchema>;
 
 const getInputClassName = (hasError: boolean, isValid: boolean) => {
   const baseClasses =
-    "font-inter w-full rounded-md border px-3 py-3 text-sm font-normal leading-[21.78px] transition duration-150 ease-in-out focus:outline-none focus:ring-1 focus:ring-opacity-50";
+    "font-inter w-full rounded-md border px-3 py-6 text-sm font-normal leading-[21.78px] transition duration-150 ease-in-out focus:outline-none focus:ring-1 focus:ring-opacity-50";
 
   if (hasError) {
     return `${baseClasses} border-red-500 focus:border-red-500 focus:ring-red-500 text-red-900`;
@@ -40,6 +41,7 @@ const getInputClassName = (hasError: boolean, isValid: boolean) => {
 const LoginMagicLink: React.FC = () => {
   const router = useRouter();
   const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -48,8 +50,9 @@ const LoginMagicLink: React.FC = () => {
   });
 
   const onSubmit = async () => {
+    setIsLoading(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 3000));
       router.push("/login/magic-link/link-sent");
     } catch (error: unknown) {
       toast({
@@ -58,11 +61,13 @@ const LoginMagicLink: React.FC = () => {
           error instanceof Error ? error.message : "An unknown error occurred",
         variant: "destructive",
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-0 sm:px-6 lg:px-8">
+    <div className="my-8 flex min-h-full items-center justify-center bg-gray-50 px-0 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
         <div className="text-center">
           <h1 className="font-inter text-neutralColor-dark-2 mb-5 text-center text-2xl font-semibold leading-tight">
@@ -80,10 +85,7 @@ const LoginMagicLink: React.FC = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <Label
-                    htmlFor="email"
-                    className="text-neutralColor-dark-2 sr-only"
-                  >
+                  <Label htmlFor="email" className="text-neutralColor-dark-2">
                     Email
                   </Label>
                   <FormControl>
@@ -110,9 +112,16 @@ const LoginMagicLink: React.FC = () => {
               type="submit"
               variant="default"
               size="default"
-              className="h-12 w-full rounded-md bg-primary px-4 py-3 text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+              className="h-12 w-full rounded-md bg-primary px-4 py-6 text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
             >
-              Get Magic Link
+              {isLoading ? (
+                <span className="flex items-center gap-x-2">
+                  <span className="animate-pulse">Getting Link...</span>{" "}
+                  <LoadingSpinner className="size-4 animate-spin sm:size-5" />
+                </span>
+              ) : (
+                <span>Get Magic Link</span>
+              )}
             </Button>
           </form>
         </Form>

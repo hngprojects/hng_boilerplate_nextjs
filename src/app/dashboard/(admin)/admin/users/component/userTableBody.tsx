@@ -20,7 +20,7 @@ const UserTableBody = () => {
         !menuReference.current.contains(event.target as Node)
       ) {
         setShowDropdown(undefined);
-        setOpen(false);
+        // setOpen(false);
       }
     };
 
@@ -34,7 +34,7 @@ const UserTableBody = () => {
 
   return (
     <>
-      <tbody className="user-table">
+      <tbody className="user-table z-10">
         {userData.map((data, index) => {
           const { avatar, date, email, fullName, phone, status } = data;
 
@@ -109,6 +109,7 @@ const UserTableBody = () => {
                   </button>
 
                   <DropdownMenu
+                    position="md:right-0 right-ful"
                     width="w-[100px]"
                     active={showDropdown?.fullName === fullName && open}
                   >

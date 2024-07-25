@@ -2,7 +2,9 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { Session } from "next-auth";
 import { describe, expect, it } from "vitest";
 
-import Comment, { CommentProperties } from "~/components/common/comment";
+import Comment, {
+  CommentProperties,
+} from "~/components/common/comment-component";
 
 describe("comment box component", () => {
   const mockSession: Session = {

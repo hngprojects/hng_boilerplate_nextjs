@@ -1,8 +1,11 @@
 import { Plus } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
+import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 
 const ProductHeader = () => {
+  const { setIsNewModal } = useProductModal();
+
   return (
     <div className="flex w-full items-center justify-between">
       <div className="flex flex-col gap-y-2">
@@ -12,7 +15,11 @@ const ProductHeader = () => {
         </p>
       </div>
       <div className="flex">
-        <Button variant="default" className="flex items-center gap-x-2 text-sm">
+        <Button
+          onClick={() => setIsNewModal(true)}
+          variant="default"
+          className="flex items-center gap-x-2 text-sm"
+        >
           <Plus />
           <span>Add a Product</span>
         </Button>

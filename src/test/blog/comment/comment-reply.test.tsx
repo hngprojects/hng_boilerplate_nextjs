@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Session } from "next-auth";
 
-import { ReplyForm } from "~/components/common/comment/comment-reply";
+import { ReplyForm } from "~/components/common/comment-component/comment-reply";
 
 describe("comment reply component", () => {
   const mockSession: Session = {

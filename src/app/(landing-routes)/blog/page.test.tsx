@@ -1,11 +1,11 @@
 import { render } from "~/test/utils";
-import Page from "./comments/page";
+import CommentPage from "./comments/page";
 
 describe("page tests", () => {
   it("should render correctly", () => {
     expect.assertions(1);
 
-    render(<Page />);
+    render(<CommentPage />);
 
     expect(true).toBeTruthy();
   });
