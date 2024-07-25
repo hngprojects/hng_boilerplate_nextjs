@@ -163,7 +163,7 @@ importers:
         specifier: ^14.5.2
         version: 14.5.2(@testing-library/dom@10.4.0)
       '@types/node':
-        specifier: ^20.14.11
+        specifier: ^20.14.12
         version: 20.14.12
       '@types/prop-types':
         specifier: ^15.7.12
@@ -238,7 +238,7 @@ importers:
         specifier: ^3.4.1
         version: 3.4.6
       typescript:
-        specifier: ^5.5.3
+        specifier: ^5.5.4
         version: 5.5.4
       vitest:
         specifier: ^1.6.0

@@ -33,9 +33,7 @@ const Navbar = ({ is_auth_path = false }: { is_auth_path?: boolean }) => {
   });
   return (
     <nav
-
       className={`${scrolling ? "shadow-md" : "shadow-none"} sticky left-0 right-0 top-0 z-10 bg-background px-4`}
-
     >
       <div
         className={`${scrolling ? "py-2" : "py-4 md:py-9"} flex w-full items-center justify-between gap-x-4 transition-all duration-500`}
