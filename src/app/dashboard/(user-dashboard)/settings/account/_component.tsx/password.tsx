@@ -40,11 +40,15 @@ const Password = () => {
           />
         </div>
         <div className="flex items-center justify-start gap-6">
-          <CustomButton variant="outline">Cancel</CustomButton>
-          <CustomButton className="bg-primary">Update Password</CustomButton>
+          <CustomButton variant="outline" onClick={() => setOpen(false)}>
+            Cancel
+          </CustomButton>
+          <CustomButton className="bg-primary" onClick={() => setOpen(true)}>
+            Update Password
+          </CustomButton>
         </div>
       </div>
-      <PasswordSuccessfulModal onClose={setOpen} show={open} />
+      <PasswordSuccessfulModal onClose={() => setOpen(!open)} show={open} />
     </div>
   );
 };

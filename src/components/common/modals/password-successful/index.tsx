@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 
 import CustomButton from "~/components/common/common-button/common-button";
 import {
@@ -13,7 +13,7 @@ import {
 
 interface ModalProperties {
   show: boolean;
-  onClose: Dispatch<SetStateAction<boolean>>;
+  onClose: () => void;
 }
 
 const PasswordSuccessfulModal: React.FC<ModalProperties> = ({
@@ -38,7 +38,7 @@ const PasswordSuccessfulModal: React.FC<ModalProperties> = ({
           your new password.
         </DialogDescription>
         <div className="flex justify-end">
-          <div onClick={() => onClose(!show)}>
+          <div onClick={onClose}>
             <CustomButton variant="primary">Continue</CustomButton>
           </div>
         </div>
