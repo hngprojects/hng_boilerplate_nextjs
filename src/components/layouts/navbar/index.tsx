@@ -4,7 +4,9 @@ import { BellIcon, Menu, User } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import UserCard from "~/components/card/user-card";
 import Logo from "~/components/common/logo";
+import { useUser } from "~/hooks/user/use-user";
 
 const navlinks = [
   { route: "Home", link: "/" },
@@ -14,6 +16,7 @@ const navlinks = [
 
 const Navbar = ({ is_auth_path = false }: { is_auth_path?: boolean }) => {
   const [scrolling, setIsScrolling] = useState<boolean>(false);
+  const { user } = useUser();
 
   //
 
@@ -33,9 +36,7 @@ const Navbar = ({ is_auth_path = false }: { is_auth_path?: boolean }) => {
   });
   return (
     <nav
-
       className={`${scrolling ? "shadow-md" : "shadow-none"} sticky left-0 right-0 top-0 z-10 bg-background px-4`}
-
     >
       <div
         className={`${scrolling ? "py-2" : "py-4 md:py-9"} flex w-full items-center justify-between gap-x-4 transition-all duration-500`}
@@ -57,7 +58,7 @@ const Navbar = ({ is_auth_path = false }: { is_auth_path?: boolean }) => {
             );
           })}
         </div>
-        {!is_auth_path && (
+        {!is_auth_path && !user.email && (
           <div className="w-fullx hidden items-center justify-end gap-x-4 justify-self-end md:flex lg:gap-x-8">
             <Link
               href="/login"
@@ -73,6 +74,7 @@ const Navbar = ({ is_auth_path = false }: { is_auth_path?: boolean }) => {
             </Link>
           </div>
         )}
+        {user.email && <UserCard email={user.email} />}
         <div className="flex w-full max-w-[80px] items-center justify-between gap-2 md:hidden">
           <BellIcon className="text-nuetral-black-1 h-5 w-5 cursor-pointer transition-colors duration-300 hover:text-neutral-dark-1/50" />
           <User className="text-nuetral-black-1 h-5 w-5 cursor-pointer transition-colors duration-300 hover:text-neutral-dark-1/50" />
