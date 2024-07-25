@@ -24,13 +24,15 @@ type FieldType = {
 };
 
 vi.mock("~/components/ui/form", () => ({
-  Form: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
-  FormField: ({
+  Form: function Form({ children }: { children: React.ReactNode }) {
+    return <div>{children}</div>;
+  },
+  FormField: function FormField({
     render,
   }: {
     render: (properties: { field: FieldType }) => React.ReactNode;
-  }) =>
-    render({
+  }) {
+    return render({
       field: {
         onChange: vi.fn(),
         onBlur: vi.fn(),
@@ -38,17 +40,27 @@ vi.mock("~/components/ui/form", () => ({
         name: "",
         ref: () => {},
       },
-    }),
-  FormItem: ({ children }: { children: React.ReactNode }) => (
-    <div>{children}</div>
-  ),
-  FormLabel: ({ children }: { children: React.ReactNode }) => (
-    <label>{children}</label>
-  ),
-  FormControl: ({ children }: { children: React.ReactNode }) => (
-    <div>{children}</div>
-  ),
-  FormMessage: ({ children }: { children: React.ReactNode }) => children,
+    });
+  },
+  FormItem: function FormItem({ children }: { children: React.ReactNode }) {
+    return <div>{children}</div>;
+  },
+  FormLabel: function FormLabel({ children }: { children: React.ReactNode }) {
+    return <label>{children}</label>;
+  },
+  FormControl: React.forwardRef(function FormControl(
+    { children }: { children: React.ReactNode },
+    reference: React.Ref<HTMLDivElement>,
+  ) {
+    return <div ref={reference}>{children}</div>;
+  }),
+  FormMessage: function FormMessage({
+    children,
+  }: {
+    children: React.ReactNode;
+  }) {
+    return children;
+  },
 }));
 
 vi.mock("~/components/ui/input", () => ({
