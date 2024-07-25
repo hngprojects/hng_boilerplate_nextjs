@@ -221,12 +221,12 @@ const LoginPage = () => {
                 )}
               />
               <div className="text-sm">
-                <a
-                  href="#"
+                <Link
+                  href="/forgot-password"
                   className="text-neutralColor-dark-2 text-sm font-medium"
                 >
                   Forgot Password?
-                </a>
+                </Link>
               </div>
             </div>
             <Button
