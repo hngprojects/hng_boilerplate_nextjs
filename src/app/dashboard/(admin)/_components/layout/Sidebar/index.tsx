@@ -18,43 +18,43 @@ import DashboardLogo from "../logo";
 const sideItems = [
   {
     route: "Dashboard",
-    link: "/admin/dashboard",
+    link: "/dashboard/admin/dashboard",
     icon: House,
     id: "dashboard",
   },
   {
     route: "Products",
-    link: "/admin/products",
+    link: "/dashboard/admin/products",
     icon: Box,
     id: "products",
   },
   {
     route: "Users",
-    link: "/admin/users",
+    link: "/dashboard/admin/users",
     icon: Users,
     id: "users",
   },
   {
     route: "Email Templates",
-    link: "/admin/email",
+    link: "/dashboard/admin/email",
     icon: Mail,
     id: "email",
   },
   {
     route: "Squeeze Pages",
-    link: "/admin/squeeze-pages",
+    link: "/dashboard/admin/squeeze-pages",
     icon: Users,
     id: "squeeze",
   },
   {
     route: "Waitlist Page",
-    link: "/admin/waitlist-page",
+    link: "/dashboard/admin/waitlist-page",
     icon: List,
     id: "waitlist",
   },
   {
     route: "Settings",
-    link: "/admin/settings",
+    link: "/dashboard/admin/settings",
     icon: Settings,
     id: "settings",
   },
@@ -75,7 +75,7 @@ const Sidebar: FC<Iproperties> = ({
   currenPathName,
 }) => {
   const pathname = usePathname();
-  const currentPath = pathname?.split("/")[2];
+  const currentPath = pathname?.split("/")[3];
 
   return (
     <div className="fixed bottom-0 left-0 top-0 z-50 flex h-screen w-[50px] flex-col items-center justify-start border-r bg-[#FDFDFD] md:block md:w-[220px] md:px-4 lg:w-[252px]">
