@@ -13,7 +13,9 @@ const Client = () => {
     <section>
       <div className="mb-4 md:mb-0">
         <div className="flex flex-col items-start justify-start">
-          <h1 className="text-2xl font-bold text-neutral-dark-1">Overview</h1>
+          <h1 className="text-2xl font-semibold text-neutral-dark-1">
+            Overview
+          </h1>
           <p className="text-base font-normal leading-[19.36px] text-neutral-dark-1">
             Showing records from the last .....
           </p>
@@ -34,7 +36,7 @@ const Client = () => {
 
       <div className="mt-8 flex w-full flex-col gap-4 xl:flex-row">
         <Card className="basis-2/3 rounded-xl border border-border bg-white px-1.5 py-3 shadow-spread md:px-2 md:py-5">
-          <h2 className="mb-2 ml-3 text-base font-semibold leading-[19.36px] text-zinc-950">
+          <h2 className="mb-2 ml-3 text-xl font-semibold leading-4 text-zinc-950">
             Overview
           </h2>
           <Chart chartData={chartData} chartConfig={chartConfig} />
