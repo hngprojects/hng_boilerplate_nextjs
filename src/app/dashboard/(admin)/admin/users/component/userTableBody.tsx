@@ -30,7 +30,7 @@ const UserTableBody = () => {
                 className={`whitespace-nowrap p-4 text-left text-base font-normal capitalize leading-4 text-neutral-dark-2`}
               >
                 <div className="flex flex-row items-center gap-2">
-                  <div className="h-10 w-10 overflow-hidden rounded-full">
+                  <div className="h-10 w-10 overflow-hidden rounded-full bg-gray-200">
                     <Image
                       src={avatar}
                       className="object-cover"
