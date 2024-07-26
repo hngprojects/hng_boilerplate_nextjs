@@ -94,23 +94,11 @@ const ProductTable = () => {
           A list of your recent invoices.
         </TableCaption>
         <TableHeader>
-          <TableRow className="border-b-0 bg-primary/10 shadow-none *:text-center *:text-base *:text-neutral-950 *:shadow-none hover:bg-primary/10">
+          <TableRow className="border-none bg-primary/10 shadow-none *:text-center *:text-base *:text-neutral-950 *:shadow-none hover:bg-primary/10">
             <TableHead className="w-[316px]">Name</TableHead>
             <TableHead>Price</TableHead>
             <TableHead>Total Sold</TableHead>
-
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <TableHead className="cursor-pointer">Status</TableHead>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuLabel className="sr-only">
-                  Actions
-                </DropdownMenuLabel>
-                <DropdownMenuItem>Draft</DropdownMenuItem>
-                <DropdownMenuItem>Active</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <TableHead>Status</TableHead>
             <TableHead>Created at</TableHead>
             <TableHead>Action</TableHead>
           </TableRow>
@@ -126,7 +114,8 @@ const ProductTable = () => {
           <PaginationContent>
             <PaginationItem>
               <Button variant={"ghost"}>
-                <ChevronLeft /> Previous
+                <ChevronLeft />{" "}
+                <span className="hidden md:inline">Previous</span>
               </Button>
             </PaginationItem>
             <PaginationItem>
@@ -149,7 +138,7 @@ const ProductTable = () => {
             </PaginationItem>
             <PaginationItem>
               <Button variant={"ghost"}>
-                Next <ChevronRight />
+                <span className="hidden md:inline">Next</span> <ChevronRight />
               </Button>
             </PaginationItem>
           </PaginationContent>
