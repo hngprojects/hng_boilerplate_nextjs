@@ -34,17 +34,17 @@ const TopProductsComponent: React.FC<TopProductsProperties> = ({
   return (
     <Card className="basis-1/2 rounded-xl border border-border bg-white p-3 md:p-5">
       <div className="mb-6 flex items-center justify-between">
-        <div className="flex flex-col items-start gap-2">
-          <h2 className="text-xl font-semibold text-neutral-dark-2 md:text-2xl">
+        <div className="flex flex-col items-start">
+          <h2 className="text-xl font-semibold text-neutral-dark-2">
             Top Products
           </h2>
-          <p className="text-xs font-normal text-neutral-dark-1">
+          <p className="text-xs font-normal text-neutral-dark-1 md:text-sm">
             Your top selling products <br className="block md:hidden" /> appear
             here.
           </p>
         </div>
         <button className="flex items-center justify-center gap-2 whitespace-nowrap rounded-md bg-orange-500 px-4 py-2 text-sm font-medium text-neutral-50">
-          <div className="text-base font-[500] leading-[24px]">View All</div>
+          <div className="text-sm font-semibold leading-6">View All</div>
           <ExternalLinkIcon />
         </button>
       </div>
@@ -62,7 +62,7 @@ const TopProductsComponent: React.FC<TopProductsProperties> = ({
               <div>
                 <p
                   data-testid={`product-name-${index}`}
-                  className="text-xs font-medium md:text-base"
+                  className="text-sm font-medium"
                 >
                   {item.name}
                 </p>
@@ -70,7 +70,7 @@ const TopProductsComponent: React.FC<TopProductsProperties> = ({
             </div>
             <p
               data-testid={`product-amount-${index}`}
-              className="text-sm font-medium md:text-base md:font-semibold"
+              className="text-sm font-medium"
             >
               {item.amount}
             </p>
