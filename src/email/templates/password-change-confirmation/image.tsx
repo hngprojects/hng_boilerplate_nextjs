@@ -18,7 +18,7 @@ interface PasswordChangeConfirmation {
   link?: string;
 }
 
-export const PasswordReset = ({
+export const PasswordConfirmation = ({
   title = "",
   username = "",
   image = "",
@@ -85,7 +85,7 @@ export const PasswordReset = ({
   );
 };
 
-PasswordReset.PreviewProps = {
+PasswordConfirmation.PreviewProps = {
   title: "Password Reset Complete",
   username: "John Doe",
   image: "https://imgur.com/zkXwuyQ.png",
@@ -96,4 +96,4 @@ PasswordReset.PreviewProps = {
     "If this wasn't done by you, please immediately reset the password to your Boilerplate account by following the steps below:",
 } as PasswordChangeConfirmation;
 
-export default PasswordReset;
+export default PasswordConfirmation;

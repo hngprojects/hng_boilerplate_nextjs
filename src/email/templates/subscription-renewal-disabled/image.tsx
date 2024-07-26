@@ -9,7 +9,7 @@ import {
 
 import Layout from "../_components/layout/layout";
 
-interface AccountLinkExpiredProperties {
+interface SubscriptionenewalDisabledProperties {
   title?: string;
   username?: string;
   image?: string;
@@ -19,7 +19,7 @@ interface AccountLinkExpiredProperties {
   upgradeLink?: string;
 }
 
-export const AccountLinkExpired = ({
+export const SubscriptionenewalDisabled = ({
   title = "",
   username = "",
   image = "",
@@ -27,7 +27,7 @@ export const AccountLinkExpired = ({
   descriptionOne = "",
   upgradeLink = "",
   link = "",
-}: AccountLinkExpiredProperties) => {
+}: SubscriptionenewalDisabledProperties) => {
   return (
     <Layout>
       <Section className="py-[56px]">
@@ -104,7 +104,7 @@ export const AccountLinkExpired = ({
   );
 };
 
-AccountLinkExpired.PreviewProps = {
+SubscriptionenewalDisabled.PreviewProps = {
   title: "Subscription Renewal Disabled",
   username: "John Doe",
   image: "https://imgur.com/DJVBH0U.png",
@@ -114,6 +114,6 @@ AccountLinkExpired.PreviewProps = {
     "    As requested, your next subscription renewal for Bi-monthly Features has been disabled. You will continue to enjoy benefits of this subscription until 17th August,",
   descriptionOne:
     "We are so sad to see you go. However, if you change your mind, you can always reactivate your subscription or upgrade your subscription plan. 2024.",
-} as AccountLinkExpiredProperties;
+} as SubscriptionenewalDisabledProperties;
 
-export default AccountLinkExpired;
+export default SubscriptionenewalDisabled;

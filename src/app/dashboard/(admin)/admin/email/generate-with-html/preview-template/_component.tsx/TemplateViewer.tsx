@@ -1,23 +1,25 @@
-import React, { useEffect, useRef, useState } from "react";
-
-import { templateOne, templateTwo } from "./template-example";
+import { usePathname } from "next/navigation";
+import React, { ReactNode, useEffect, useRef, useState } from "react";
 
 interface PreviewComponentProperties {
-  template?: string;
+  template?: string | ReactNode;
   mode?: "preview" | "edit";
   onEdit?: (content: string) => void;
 }
 
 const TemplateViewer: React.FC<PreviewComponentProperties> = ({
-  template = templateTwo,
+  template,
   mode = "preview",
   onEdit,
 }) => {
-  const [content, setContent] = useState<string>(template);
+  const [content, setContent] = useState<string>(template as string);
   const contentReference = useRef<HTMLTextAreaElement>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
-    setContent(template);
+    if (typeof template === "string") {
+      setContent(template);
+    }
   }, [template]);
 
   useEffect(() => {
@@ -30,20 +32,22 @@ const TemplateViewer: React.FC<PreviewComponentProperties> = ({
     event: React.ChangeEvent<HTMLTextAreaElement>,
   ) => {
     const newContent = event.target.value;
-    setContent(newContent);
-    onEdit?.(newContent);
+    if (newContent !== content) {
+      setContent(newContent);
+      onEdit?.(newContent);
+    }
   };
 
   return (
     <div
       data-testid="html-template-viewer"
-      className="h-full rounded-[19px] border border-[#CBD5E180] p-4"
+      className="rounded-[19px] border border-[#CBD5E180] p-4"
     >
       <div
         data-testid="scroll-container"
-        className="relative overflow-y-auto rounded-lg"
+        className="relative overflow-y-auto rounded-lg lg:max-h-[719px]"
       >
-        <div className="flex h-[700px] w-[98%] items-center justify-center overflow-auto rounded-lg border border-[#CBD5E1] bg-white">
+        <div className="flex w-[98%] items-center justify-center overflow-auto rounded-lg border border-[#CBD5E1] bg-white p-[1rem]">
           {mode === "edit" ? (
             <textarea
               style={{ scrollbarWidth: "none" }}
@@ -55,10 +59,16 @@ const TemplateViewer: React.FC<PreviewComponentProperties> = ({
             />
           ) : (
             <div
-              data-testid="template-content"
-              dangerouslySetInnerHTML={{ __html: content }}
-              className="h-full w-fit"
-            />
+              className={
+                pathname?.includes("preview-template") ? `my-[48px]` : undefined
+              }
+            >
+              <div
+                data-testid="template-content"
+                dangerouslySetInnerHTML={{ __html: content }}
+                className="h-full w-fit"
+              />
+            </div>
           )}
         </div>
       </div>

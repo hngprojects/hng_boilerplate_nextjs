@@ -8,7 +8,7 @@ import {
 
 import Layout from "../_components/layout/layout";
 
-interface AccountActivationProperties {
+interface ActivationLinkSentProperties {
   title?: string;
   username?: string;
   image?: string;
@@ -16,12 +16,12 @@ interface AccountActivationProperties {
   link?: string;
 }
 
-export const AccountActivation = ({
+export const ActivationLinkSent = ({
   title = "",
   username = "",
   description = "",
   link = "",
-}: AccountActivationProperties) => {
+}: ActivationLinkSentProperties) => {
   return (
     <Layout>
       <Section className="py-[56px]">
@@ -74,12 +74,12 @@ export const AccountActivation = ({
   );
 };
 
-AccountActivation.PreviewProps = {
+ActivationLinkSent.PreviewProps = {
   title: "New Activation Link Sent",
   username: "John Doe",
   link: "/",
   description:
     "We have sent you a new activation link for your Boilerplate account. Please click the button below to activate your account:",
-} as AccountActivationProperties;
+} as ActivationLinkSentProperties;
 
-export default AccountActivation;
+export default ActivationLinkSent;

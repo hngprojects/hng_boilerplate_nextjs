@@ -10,7 +10,7 @@ import {
 
 import Layout from "../_components/layout/layout";
 
-interface SubscriptionConfirmationProperties {
+interface SubscriptionCancelConfirmationProperties {
   title?: string;
   username?: string;
   image?: string;
@@ -24,7 +24,7 @@ interface SubscriptionConfirmationProperties {
   }>;
 }
 
-export const SubscriptionConfirmation = ({
+export const SubscriptionCancelConfirmation = ({
   title = "",
   username = "",
   image = "",
@@ -32,7 +32,7 @@ export const SubscriptionConfirmation = ({
   description = "",
   link = "",
   data,
-}: SubscriptionConfirmationProperties) => {
+}: SubscriptionCancelConfirmationProperties) => {
   return (
     <Layout>
       <Section className="py-[56px]">
@@ -131,7 +131,7 @@ export const SubscriptionConfirmation = ({
   );
 };
 
-SubscriptionConfirmation.PreviewProps = {
+SubscriptionCancelConfirmation.PreviewProps = {
   title: "Subscription Cancellation Confirmation",
   username: "John Doe",
   image: "https://imgur.com/K5yvea6.png",
@@ -154,6 +154,6 @@ SubscriptionConfirmation.PreviewProps = {
       value: "17th July, 2024",
     },
   ],
-} as SubscriptionConfirmationProperties;
+} as SubscriptionCancelConfirmationProperties;
 
-export default SubscriptionConfirmation;
+export default SubscriptionCancelConfirmation;

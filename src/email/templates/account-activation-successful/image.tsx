@@ -20,17 +20,17 @@ interface AccountActivationSuccessfulProperties {
 }
 
 export const AccountActivationSuccessful = ({
-  title = "",
-  username = "",
-  image = "",
-  description = "",
-  descriptionOne = "",
-  descriptionTwo = "",
-  link = "",
+  title,
+  username,
+  image,
+  description,
+  descriptionOne,
+  descriptionTwo,
+  link,
 }: AccountActivationSuccessfulProperties) => {
   return (
     <Layout>
-      <Section className="py-[56px]">
+      <Section className="my-[56px]">
         <Section className="mx-auto flex items-center justify-center md:w-[316px]">
           <Img src={image} alt="hello" className="h-[100%] w-[100%]" />
         </Section>
@@ -95,7 +95,7 @@ export const AccountActivationSuccessful = ({
 AccountActivationSuccessful.PreviewProps = {
   title: "Your Account is Now Active!",
   username: "John Doe",
-  image: "https://imgur.com/fPh2Hwy.png",
+  image: "https://imgur.com/3Yymb22.png",
   link: "/",
   description:
     "Congratulations! Your account with Boilerplate is now active and ready to use.",

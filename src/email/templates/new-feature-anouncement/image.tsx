@@ -30,15 +30,15 @@ interface NewFeatureAnnouncementProperties {
 }
 
 export const NewFeatureAnnouncement = ({
-  title = "",
-  username = "",
-  image = "",
-  star = "",
-  featureName = "",
-  learnMoreLink = "",
-  featureDescription = "",
-  benefitOne = "",
-  benefitTwo = "",
+  title,
+  username,
+  image,
+  star,
+  featureName,
+  learnMoreLink,
+  featureDescription,
+  benefitOne,
+  benefitTwo,
 }: NewFeatureAnnouncementProperties) => {
   return (
     <Layout>

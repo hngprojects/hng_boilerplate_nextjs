@@ -9,7 +9,7 @@ import {
 
 import Layout from "../_components/layout/layout";
 
-interface AccountDeactivationProperties {
+interface AccountDeactivationSuccessfulProperties {
   title?: string;
   username?: string;
   image?: string;
@@ -23,14 +23,14 @@ interface AccountDeactivationProperties {
   }>;
 }
 
-export const AccountDeactivation = ({
+export const AccountDeactivationSuccessful = ({
   title = "",
   username = "",
   image = "",
   bullet = "",
   description = "",
   data,
-}: AccountDeactivationProperties) => {
+}: AccountDeactivationSuccessfulProperties) => {
   return (
     <Layout>
       <Section className="py-[56px]">
@@ -128,7 +128,7 @@ export const AccountDeactivation = ({
   );
 };
 
-AccountDeactivation.PreviewProps = {
+AccountDeactivationSuccessful.PreviewProps = {
   title: "Account Successfully Deactivated",
   username: "John Doe",
   image: "https://imgur.com/zkXwuyQ.png",
@@ -147,6 +147,6 @@ AccountDeactivation.PreviewProps = {
       value: "20th July, 2024 / 11:56pm",
     },
   ],
-} as AccountDeactivationProperties;
+} as AccountDeactivationSuccessfulProperties;
 
-export default AccountDeactivation;
+export default AccountDeactivationSuccessful;

@@ -10,7 +10,7 @@ import {
 
 import Layout from "../_components/layout/layout";
 
-interface NewFeatureAnnouncementProperties {
+interface SubscriptionenewaleminderProperties {
   title?: string;
   username?: string;
   image?: string;
@@ -18,12 +18,12 @@ interface NewFeatureAnnouncementProperties {
   description?: string;
 }
 
-export const NewFeatureAnnouncement = ({
+export const Subscriptionenewaleminder = ({
   title = "",
   username = "",
   link = "",
   description = "",
-}: NewFeatureAnnouncementProperties) => {
+}: SubscriptionenewaleminderProperties) => {
   return (
     <Layout>
       <Section className="py-[56px]">
@@ -116,7 +116,7 @@ export const NewFeatureAnnouncement = ({
   );
 };
 
-NewFeatureAnnouncement.PreviewProps = {
+Subscriptionenewaleminder.PreviewProps = {
   title: "Subscription Renewal Reminder",
   username: "John Doe",
   star: "https://i.imgur.com/bmprMwh.png",
@@ -124,6 +124,6 @@ NewFeatureAnnouncement.PreviewProps = {
     "We hope you are enjoying your subscription, which will renew soon.",
 
   link: "",
-} as NewFeatureAnnouncementProperties;
+} as SubscriptionenewaleminderProperties;
 
-export default NewFeatureAnnouncement;
+export default Subscriptionenewaleminder;

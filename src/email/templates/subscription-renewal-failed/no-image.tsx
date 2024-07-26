@@ -10,7 +10,7 @@ import {
 
 import Layout from "../_components/layout/layout";
 
-interface SubscriptionConfirmationProperties {
+interface SubscriptionenewalFailedProperties {
   title?: string;
   username?: string;
   image?: string;
@@ -24,14 +24,14 @@ interface SubscriptionConfirmationProperties {
   }>;
 }
 
-export const SubscriptionConfirmation = ({
+export const SubscriptionenewalFailed = ({
   title = "",
   username = "",
   star = "",
   description = "",
   link = "",
   data,
-}: SubscriptionConfirmationProperties) => {
+}: SubscriptionenewalFailedProperties) => {
   return (
     <Layout>
       <Section className="py-[56px]">
@@ -127,7 +127,7 @@ export const SubscriptionConfirmation = ({
   );
 };
 
-SubscriptionConfirmation.PreviewProps = {
+SubscriptionenewalFailed.PreviewProps = {
   title: "Subscription Cancellation Confirmation",
   username: "John Doe",
   image: "https://imgur.com/DJVBH0U.png",
@@ -147,6 +147,6 @@ SubscriptionConfirmation.PreviewProps = {
       value: "You have insufficient funds in your account.",
     },
   ],
-} as SubscriptionConfirmationProperties;
+} as SubscriptionenewalFailedProperties;
 
-export default SubscriptionConfirmation;
+export default SubscriptionenewalFailed;

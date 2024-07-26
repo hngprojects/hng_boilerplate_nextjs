@@ -14,9 +14,7 @@ const GenerateField = () => {
         isButtonVisible={true}
         buttonContent="Generate"
         onButtonClick={() =>
-          router.push(
-            "/dashboard/admin/email/generate-with-html/preview-template",
-          )
+          router.push("/admin/email/generate-with-html/preview-template")
         }
       />
     </div>

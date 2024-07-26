@@ -8,7 +8,7 @@ import {
 
 import Layout from "../_components/layout/layout";
 
-interface EmailVerificationProperties {
+interface EmailConfirmationProperties {
   title?: string;
   username?: string;
   image?: string;
@@ -17,13 +17,13 @@ interface EmailVerificationProperties {
   link?: string;
 }
 
-export const EmailVerification = ({
+export const EmailConfirmation = ({
   title = "",
   username = "",
   description = "",
   descriptionOne = "",
   link = "",
-}: EmailVerificationProperties) => {
+}: EmailConfirmationProperties) => {
   return (
     <Layout>
       <Section className="py-[56px]">
@@ -79,7 +79,7 @@ export const EmailVerification = ({
   );
 };
 
-EmailVerification.PreviewProps = {
+EmailConfirmation.PreviewProps = {
   title: "Email Confirmation",
   username: "John Doe",
   image: "https://imgur.com/TEvsjBU.png",
@@ -88,6 +88,6 @@ EmailVerification.PreviewProps = {
     "We are thrilled to inform you that your email has been successfully verified and confirmed!",
   descriptionOne:
     "You can now fully enjoy all the features and benefits we offer, including exclusive access to key features, Special discount and personalized content.",
-} as EmailVerificationProperties;
+} as EmailConfirmationProperties;
 
-export default EmailVerification;
+export default EmailConfirmation;

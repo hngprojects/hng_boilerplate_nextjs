@@ -30,7 +30,7 @@ interface IProperties {
   }>;
 }
 
-export default function WelcomeEmail(properties: IProperties) {
+export default function Newsletter(properties: IProperties) {
   const {
     link,
     star,
@@ -219,7 +219,7 @@ export default function WelcomeEmail(properties: IProperties) {
   );
 }
 
-WelcomeEmail.PreviewProps = {
+Newsletter.PreviewProps = {
   offer:
     "Enjoy special promotions and discounts available only to our members.",
   link: "http://localhost:3001/about-us",
