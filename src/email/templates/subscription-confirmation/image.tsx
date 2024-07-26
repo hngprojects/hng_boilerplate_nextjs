@@ -4,6 +4,7 @@ import {
   Heading,
   Img,
   Link,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -11,13 +12,13 @@ import {
 import Layout from "../_components/layout/layout";
 
 interface SubscriptionConfirmationProperties {
-  title?: string;
-  username?: string;
-  image?: string;
-  expireTime?: string;
-  star?: string;
-  description?: string;
-  link?: string;
+  title: string;
+  username: string;
+  image: string;
+  expireTime: string;
+  star: string;
+  description: string;
+  link: string;
   data: Array<{
     key: string;
     value: string;
@@ -25,22 +26,22 @@ interface SubscriptionConfirmationProperties {
 }
 
 export const SubscriptionConfirmation = ({
-  title = "",
-  username = "",
-  image = "",
-  star = "",
-  description = "",
-  link = "",
-  expireTime = "",
+  title,
+  username,
+  image,
+  star,
+  description,
+  link,
+  expireTime,
   data,
 }: SubscriptionConfirmationProperties) => {
   return (
     <Layout>
-      <Section className="py-[56px]">
+      <Preview>{username}, subsription cancelled </Preview>
+      <Section className="my-[56px]">
         <Section className="mx-auto flex items-center justify-center md:w-[178px]">
           <Img src={image} alt="hello" className="h-[100%] w-[100%]" />
         </Section>
-        <Section className="mx-auto flex items-center justify-center"></Section>
 
         <Container className="max-w-[680px] px-[48px] md:px-0">
           <Section className="my-[40px] flex flex-col items-center justify-center">
@@ -151,7 +152,7 @@ SubscriptionConfirmation.PreviewProps = {
   image: "https://imgur.com/3p3JubF.png",
   star: "https://i.imgur.com/bmprMwh.png",
   expireTime: "17th September, 2024",
-  link: "",
+  link: "www.boilerplate.com",
   description:
     "Your payment was processed successfully. Thank you for subscribing to our Bi-monthly feature! We’re excited to have you on board. You’ll receive a separate receipt via email. Below are the details of your subscription:",
   data: [
@@ -176,6 +177,6 @@ SubscriptionConfirmation.PreviewProps = {
       value: "17th July, 2024",
     },
   ],
-} as SubscriptionConfirmationProperties;
+} satisfies SubscriptionConfirmationProperties;
 
 export default SubscriptionConfirmation;

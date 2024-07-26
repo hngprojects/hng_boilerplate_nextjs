@@ -3,6 +3,7 @@ import {
   Container,
   Heading,
   Img,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -10,27 +11,27 @@ import {
 import Layout from "../_components/layout/layout";
 
 interface PasswordResetProperties {
-  title?: string;
-  username?: string;
-  image?: string;
-  description?: string;
-  link?: string;
+  title: string;
+  username: string;
+  image: string;
+  description: string;
+  link: string;
 }
 
 export const PasswordReset = ({
-  title = "",
-  username = "",
-  image = "",
-  description = "",
-  link = "",
+  title,
+  username,
+  image,
+  description,
+  link,
 }: PasswordResetProperties) => {
   return (
     <Layout>
-      <Section className="py-[56px]">
+      <Preview>{username}, reset your password.</Preview>
+      <Section className="my-[56px]">
         <Section className="mx-auto flex items-center justify-center md:w-[316px]">
           <Img src={image} alt="hello" className="h-[100%] w-[100%]" />
         </Section>
-        <Section className="mx-auto flex items-center justify-center"></Section>
 
         <Container className="max-w-[680px] px-[48px] md:px-0">
           <Section className="mt-[56px] flex flex-col items-center justify-center">
@@ -88,9 +89,9 @@ PasswordReset.PreviewProps = {
   title: "Reset Your Password",
   username: "John Doe",
   image: "https://imgur.com/uPk3aq2.png",
-  link: "/",
+  link: "www.boilerplate.com",
   description:
     "You recently requested to reset your password.  If you did not make this request, you can ignore this email.",
-} as PasswordResetProperties;
+} satisfies PasswordResetProperties;
 
 export default PasswordReset;

@@ -2,6 +2,7 @@ import {
   Container,
   Heading,
   Link,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -9,27 +10,28 @@ import {
 import Layout from "../_components/layout/layout";
 
 interface SubscriptionenewalDisabledProperties {
-  title?: string;
-  username?: string;
-  description?: string;
-  descriptionOne?: string;
-  link?: string;
-  upgradeLink?: string;
+  title: string;
+  username: string;
+  description: string;
+  descriptionOne: string;
+  link: string;
+  upgradeLink: string;
 }
 
-export const SubscriptionenewalDisabled = ({
-  title = "",
-  username = "",
-  description = "",
-  descriptionOne = "",
-  upgradeLink = "",
-  link = "",
+const SubscriptionenewalDisabled = ({
+  title,
+  username,
+  description,
+  descriptionOne,
+  upgradeLink,
+  link,
 }: SubscriptionenewalDisabledProperties) => {
   return (
     <Layout>
-      <Section className="py-[56px]">
+      <Preview>{username}, subscription renewal disabled</Preview>
+      <Section className="my-[56px]">
         <Container className="max-w-[680px] px-[48px] md:px-0">
-          <Section className="flex flex-col items-center justify-center">
+          <Section className="mt-[56px] flex flex-col items-center justify-center">
             <Heading
               as="h5"
               className="my-0 mb-[56px] text-center text-[24px] leading-[28px] text-[#121212]"
@@ -99,12 +101,12 @@ export const SubscriptionenewalDisabled = ({
 SubscriptionenewalDisabled.PreviewProps = {
   title: "Subscription Renewal Disabled",
   username: "John Doe",
-  link: "/",
-  upgradeLink: "/",
+  link: "www.boilerplate.com",
+  upgradeLink: "www.boilerplate.com",
   description:
     "    As requested, your next subscription renewal for Bi-monthly Features has been disabled. You will continue to enjoy benefits of this subscription until 17th August,",
   descriptionOne:
     "We are so sad to see you go. However, if you change your mind, you can always reactivate your subscription or upgrade your subscription plan. 2024.",
-} as SubscriptionenewalDisabledProperties;
+} satisfies SubscriptionenewalDisabledProperties;
 
 export default SubscriptionenewalDisabled;

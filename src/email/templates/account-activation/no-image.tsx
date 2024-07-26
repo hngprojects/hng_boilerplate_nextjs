@@ -2,6 +2,7 @@ import {
   Button,
   Container,
   Heading,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -9,25 +10,24 @@ import {
 import Layout from "../_components/layout/layout";
 
 interface AccountVerificationProperties {
-  title?: string;
-  username?: string;
-  description?: string;
-  descriptionOne?: string;
-  link?: string;
+  title: string;
+  username: string;
+  description: string;
+  descriptionOne: string;
+  link: string;
 }
 
-export const AccountVerification = ({
-  title = "",
-  username = "",
-  description = "",
-  descriptionOne = "",
-  link = "",
+const AccountVerification = ({
+  title,
+  username,
+  description,
+  descriptionOne,
+  link,
 }: AccountVerificationProperties) => {
   return (
     <Layout>
-      <Section className="py-[56px]">
-        <Section className="mx-auto flex items-center justify-center"></Section>
-
+      <Preview>t{username}, Activate your account</Preview>
+      <Section className="my-[56px]">
         <Container className="max-w-[680px] px-[48px] md:px-0">
           <Section className="flex flex-col items-center justify-center">
             <Heading
@@ -81,11 +81,11 @@ export const AccountVerification = ({
 AccountVerification.PreviewProps = {
   title: "Activate Your Account",
   username: "John Doe",
-  link: "/",
+  link: "www.boilerplate.com",
   description:
     "We recently detected a login attempt to your account from an unfamiliar device. To ensure the security of your account, we haven't granted access.",
   descriptionOne:
     "To activate your account and secure it, please click the button below:",
-} as AccountVerificationProperties;
+} satisfies AccountVerificationProperties;
 
 export default AccountVerification;

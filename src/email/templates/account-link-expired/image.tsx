@@ -3,6 +3,7 @@ import {
   Container,
   Heading,
   Img,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -10,29 +11,29 @@ import {
 import Layout from "../_components/layout/layout";
 
 interface AccountLinkExpiredProperties {
-  title?: string;
-  username?: string;
-  image?: string;
-  description?: string;
-  descriptionOne?: string;
-  link?: string;
+  title: string;
+  username: string;
+  image: string;
+  description: string;
+  descriptionOne: string;
+  link: string;
 }
 
 export const AccountLinkExpired = ({
-  title = "",
-  username = "",
-  image = "",
-  description = "",
-  descriptionOne = "",
-  link = "",
+  title,
+  username,
+  image,
+  description,
+  descriptionOne,
+  link,
 }: AccountLinkExpiredProperties) => {
   return (
     <Layout>
-      <Section className="py-[56px]">
+      <Preview>t{username}, account link expired</Preview>
+      <Section className="my-[56px]">
         <Section className="mx-auto flex items-center justify-center md:w-[316px]">
           <Img src={image} alt="hello" className="h-[100%] w-[100%]" />
         </Section>
-        <Section className="mx-auto flex items-center justify-center"></Section>
 
         <Container className="max-w-[680px] px-[48px] md:px-0">
           <Section className="mt-[56px] flex flex-col items-center justify-center">
@@ -88,11 +89,11 @@ AccountLinkExpired.PreviewProps = {
   title: "Activation Link Expired",
   username: "John Doe",
   image: "https://imgur.com/5KobknJ.png",
-  link: "/",
+  link: "www.boilerplate.com",
   description:
     "We noticed that your account activation link has expired. For your security, activation links are only valid for a specific time period.",
   descriptionOne:
     "Don’t worry, you can easily request a new activation link by clicking the button below:",
-} as AccountLinkExpiredProperties;
+} satisfies AccountLinkExpiredProperties;
 
 export default AccountLinkExpired;

@@ -4,6 +4,7 @@ import {
   Heading,
   Img,
   Link,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -11,34 +12,31 @@ import {
 import Layout from "../_components/layout/layout";
 
 interface SubscriptionenewalFailedProperties {
-  title?: string;
-  username?: string;
-  image?: string;
-  expireTime?: string;
-  star?: string;
-  description?: string;
-  link?: string;
+  title: string;
+  username: string;
+  expireTime: string;
+  star: string;
+  description: string;
+  link: string;
   data: Array<{
-    key: string;
     value: string;
   }>;
 }
 
 export const SubscriptionenewalFailed = ({
-  title = "",
-  username = "",
-  star = "",
-  description = "",
-  link = "",
+  title,
+  username,
+  star,
+  description,
+  link,
   data,
 }: SubscriptionenewalFailedProperties) => {
   return (
     <Layout>
-      <Section className="py-[56px]">
-        <Section className="mx-auto flex items-center justify-center"></Section>
-
+      <Preview>{username}, subscription renewal failed</Preview>
+      <Section className="my-[56px]">
         <Container className="max-w-[680px] px-[48px] md:px-0">
-          <Section className="flex flex-col items-center justify-center">
+          <Section className="my-[40px] flex flex-col items-center justify-center">
             <Heading
               as="h5"
               className="my-0 mb-[56px] text-center text-[24px] leading-[28px] text-[#121212]"
@@ -128,14 +126,13 @@ export const SubscriptionenewalFailed = ({
 };
 
 SubscriptionenewalFailed.PreviewProps = {
-  title: "Subscription Cancellation Confirmation",
+  title: "Subscription Renewal Failed",
   username: "John Doe",
-  image: "https://imgur.com/DJVBH0U.png",
   star: "https://i.imgur.com/bmprMwh.png",
   expireTime: "17th September, 2024",
-  link: "",
+  link: "www.boilerplate.com",
   description:
-    "We regret to inform you that your subscription to Bi-monthly features has been cancelled. We appreciate your support and hope you’ve enjoyed our services during your subscription period.",
+    "We are having some trouble processing your subscription renewal payment for your Bi-monthly Features. This could be because of either of the following reasons:",
   data: [
     {
       value: "Your payment card has been blocked by your bank.",
@@ -147,6 +144,6 @@ SubscriptionenewalFailed.PreviewProps = {
       value: "You have insufficient funds in your account.",
     },
   ],
-} as SubscriptionenewalFailedProperties;
+} satisfies SubscriptionenewalFailedProperties;
 
 export default SubscriptionenewalFailed;

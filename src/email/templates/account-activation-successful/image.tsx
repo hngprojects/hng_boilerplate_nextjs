@@ -3,6 +3,7 @@ import {
   Container,
   Heading,
   Img,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -10,16 +11,16 @@ import {
 import Layout from "../_components/layout/layout";
 
 interface AccountActivationSuccessfulProperties {
-  title?: string;
-  username?: string;
-  image?: string;
-  description?: string;
-  descriptionOne?: string;
-  descriptionTwo?: string;
-  link?: string;
+  title: string;
+  username: string;
+  image: string;
+  description: string;
+  descriptionOne: string;
+  descriptionTwo: string;
+  link: string;
 }
 
-export const AccountActivationSuccessful = ({
+const AccountActivationSuccessful = ({
   title,
   username,
   image,
@@ -30,11 +31,11 @@ export const AccountActivationSuccessful = ({
 }: AccountActivationSuccessfulProperties) => {
   return (
     <Layout>
+      <Preview>t{username}, your account was activated successfully</Preview>
       <Section className="my-[56px]">
         <Section className="mx-auto flex items-center justify-center md:w-[316px]">
           <Img src={image} alt="hello" className="h-[100%] w-[100%]" />
         </Section>
-        <Section className="mx-auto flex items-center justify-center"></Section>
 
         <Container className="max-w-[680px] px-[48px] md:px-0">
           <Section className="mt-[56px] flex flex-col items-center justify-center">
@@ -96,13 +97,13 @@ AccountActivationSuccessful.PreviewProps = {
   title: "Your Account is Now Active!",
   username: "John Doe",
   image: "https://imgur.com/3Yymb22.png",
-  link: "/",
+  link: "www.boilerplate.com",
   description:
     "Congratulations! Your account with Boilerplate is now active and ready to use.",
   descriptionOne:
     "We're thrilled to have you as part of our community and look forward to helping you make the most out of your experience with us.",
   descriptionTwo:
     "You can now log in and start exploring all the features and benefits we have to offer. ",
-} as AccountActivationSuccessfulProperties;
+} satisfies AccountActivationSuccessfulProperties;
 
 export default AccountActivationSuccessful;

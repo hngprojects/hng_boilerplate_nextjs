@@ -4,6 +4,7 @@ import {
   Heading,
   Img,
   Link,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -11,13 +12,13 @@ import {
 import Layout from "../_components/layout/layout";
 
 interface SubscriptionCancelConfirmationProperties {
-  title?: string;
-  username?: string;
-  image?: string;
-  expireTime?: string;
-  star?: string;
-  description?: string;
-  link?: string;
+  title: string;
+  username: string;
+  image: string;
+  expireTime: string;
+  star: string;
+  description: string;
+  link: string;
   data: Array<{
     key: string;
     value: string;
@@ -25,21 +26,21 @@ interface SubscriptionCancelConfirmationProperties {
 }
 
 export const SubscriptionCancelConfirmation = ({
-  title = "",
-  username = "",
-  image = "",
-  star = "",
-  description = "",
-  link = "",
+  title,
+  username,
+  image,
+  star,
+  description,
+  link,
   data,
 }: SubscriptionCancelConfirmationProperties) => {
   return (
     <Layout>
-      <Section className="py-[56px]">
+      <Preview>{username}, subscription cancelled</Preview>
+      <Section className="my-[56px]">
         <Section className="mx-auto flex items-center justify-center md:w-[178px]">
           <Img src={image} alt="hello" className="h-[100%] w-[100%]" />
         </Section>
-        <Section className="mx-auto flex items-center justify-center"></Section>
 
         <Container className="max-w-[680px] px-[48px] md:px-0">
           <Section className="my-[40px] flex flex-col items-center justify-center">
@@ -137,7 +138,7 @@ SubscriptionCancelConfirmation.PreviewProps = {
   image: "https://imgur.com/K5yvea6.png",
   star: "https://i.imgur.com/bmprMwh.png",
   expireTime: "17th September, 2024",
-  link: "",
+  link: "www.boilerplate.com",
   description:
     "We regret to inform you that your subscription to Bi-monthly features has been cancelled. We appreciate your support and hope you’ve enjoyed our services during your subscription period.",
   data: [
@@ -154,6 +155,6 @@ SubscriptionCancelConfirmation.PreviewProps = {
       value: "17th July, 2024",
     },
   ],
-} as SubscriptionCancelConfirmationProperties;
+} satisfies SubscriptionCancelConfirmationProperties;
 
 export default SubscriptionCancelConfirmation;

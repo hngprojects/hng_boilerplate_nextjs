@@ -3,6 +3,7 @@ import {
   Container,
   Heading,
   Img,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -10,29 +11,29 @@ import {
 import Layout from "../_components/layout/layout";
 
 interface AccountActivationProperties {
-  title?: string;
-  username?: string;
-  image?: string;
-  description?: string;
-  descriptionOne?: string;
-  link?: string;
+  title: string;
+  username: string;
+  image: string;
+  description: string;
+  descriptionOne: string;
+  link: string;
 }
 
-export const AccountActivation = ({
-  title = "",
-  username = "",
-  image = "",
-  description = "",
-  descriptionOne = "",
-  link = "",
+const AccountActivation = ({
+  title,
+  username,
+  image,
+  description,
+  descriptionOne,
+  link,
 }: AccountActivationProperties) => {
   return (
     <Layout>
-      <Section className="py-[56px]">
+      <Preview>t{username}, Activate your account</Preview>
+      <Section className="my-[56px]">
         <Section className="mx-auto flex items-center justify-center md:w-[316px]">
           <Img src={image} alt="hello" className="h-[100%] w-[100%]" />
         </Section>
-        <Section className="mx-auto flex items-center justify-center"></Section>
 
         <Container className="max-w-[680px] px-[48px] md:px-0">
           <Section className="mt-[56px] flex flex-col items-center justify-center">
@@ -88,11 +89,11 @@ AccountActivation.PreviewProps = {
   title: "Activate Your Account",
   username: "John Doe",
   image: "https://imgur.com/1PeoUqN.png",
-  link: "/",
+  link: "www.boilerplate.com",
   description:
     "We recently detected a login attempt to your account from an unfamiliar device. To ensure the security of your account, we haven't granted access.",
   descriptionOne:
     "To activate your account and secure it, please click the button below:",
-} as AccountActivationProperties;
+} satisfies AccountActivationProperties;
 
 export default AccountActivation;

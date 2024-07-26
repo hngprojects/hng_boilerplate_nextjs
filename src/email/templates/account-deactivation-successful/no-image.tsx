@@ -3,6 +3,7 @@ import {
   Heading,
   Img,
   Link,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -10,12 +11,12 @@ import {
 import Layout from "../_components/layout/layout";
 
 interface AccountDeactivationSuccessfulProperties {
-  title?: string;
-  username?: string;
-  expireTime?: string;
-  bullet?: string;
-  description?: string;
-  link?: string;
+  title: string;
+  username: string;
+  expireTime: string;
+  bullet: string;
+  description: string;
+  link: string;
   data: Array<{
     key: string;
     value: string;
@@ -23,17 +24,16 @@ interface AccountDeactivationSuccessfulProperties {
 }
 
 export const AccountDeactivationSuccessful = ({
-  title = "",
-  username = "",
-  bullet = "",
-  description = "",
+  title,
+  username,
+  bullet,
+  description,
   data,
 }: AccountDeactivationSuccessfulProperties) => {
   return (
     <Layout>
-      <Section className="py-[56px]">
-        <Section className="mx-auto flex items-center justify-center"></Section>
-
+      <Preview>t{username}, your account was activated successfully</Preview>
+      <Section className="my-[56px]">
         <Container className="max-w-[680px] px-[48px] md:px-0">
           <Section className="flex flex-col items-center justify-center">
             <Heading
@@ -128,7 +128,7 @@ AccountDeactivationSuccessful.PreviewProps = {
   username: "John Doe",
   bullet: "https://imgur.com/Lolu1on.png",
   expireTime: "17th September, 2024",
-  link: "",
+  link: "www.boilerplate.com",
   description:
     "We wanted to let you know that your Boilerplate account has been successfully deactivated as per your request.",
   data: [
@@ -141,6 +141,6 @@ AccountDeactivationSuccessful.PreviewProps = {
       value: "20th July, 2024 / 11:56pm",
     },
   ],
-} as AccountDeactivationSuccessfulProperties;
+} satisfies AccountDeactivationSuccessfulProperties;
 
 export default AccountDeactivationSuccessful;

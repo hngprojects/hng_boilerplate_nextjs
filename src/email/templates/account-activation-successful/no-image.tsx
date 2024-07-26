@@ -2,6 +2,7 @@ import {
   Button,
   Container,
   Heading,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -9,27 +10,26 @@ import {
 import Layout from "../_components/layout/layout";
 
 interface AccountActivationSuccessfulProperties {
-  title?: string;
-  username?: string;
-  description?: string;
-  descriptionOne?: string;
-  descriptionTwo?: string;
-  link?: string;
+  title: string;
+  username: string;
+  description: string;
+  descriptionOne: string;
+  descriptionTwo: string;
+  link: string;
 }
 
-export const AccountActivationSuccessful = ({
-  title = "",
-  username = "",
-  description = "",
-  descriptionOne = "",
-  descriptionTwo = "",
-  link = "",
+const AccountActivationSuccessful = ({
+  title,
+  username,
+  description,
+  descriptionOne,
+  descriptionTwo,
+  link,
 }: AccountActivationSuccessfulProperties) => {
   return (
     <Layout>
-      <Section className="py-[56px]">
-        <Section className="mx-auto flex items-center justify-center"></Section>
-
+      <Preview>t{username}, your account was activated successfully</Preview>
+      <Section className="my-[56px]">
         <Container className="max-w-[680px] px-[48px] md:px-0">
           <Section className="flex flex-col items-center justify-center">
             <Heading
@@ -89,13 +89,13 @@ export const AccountActivationSuccessful = ({
 AccountActivationSuccessful.PreviewProps = {
   title: "Your Account is Now Active!",
   username: "John Doe",
-  link: "/",
+  link: "www.boilerplate.com",
   description:
     "Congratulations! Your account with Boilerplate is now active and ready to use.",
   descriptionOne:
     "We're thrilled to have you as part of our community and look forward to helping you make the most out of your experience with us.",
   descriptionTwo:
     "You can now log in and start exploring all the features and benefits we have to offer. ",
-} as AccountActivationSuccessfulProperties;
+} satisfies AccountActivationSuccessfulProperties;
 
 export default AccountActivationSuccessful;

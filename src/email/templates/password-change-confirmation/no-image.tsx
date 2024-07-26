@@ -2,6 +2,7 @@ import {
   Container,
   Heading,
   Link,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -9,23 +10,23 @@ import {
 import Layout from "../_components/layout/layout";
 
 interface PasswordChangeConfirmation {
-  title?: string;
-  username?: string;
-  image?: string;
-  description?: string;
-  descriptionTwo?: string;
-  link?: string;
+  title: string;
+  username: string;
+  description: string;
+  descriptionTwo: string;
+  link: string;
 }
 
 export const PasswordConfirmation = ({
-  title = "",
-  username = "",
-  description = "",
-  descriptionTwo = "",
+  title,
+  username,
+  description,
+  descriptionTwo,
 }: PasswordChangeConfirmation) => {
   return (
     <Layout>
-      <Section className="py-[56px]">
+      <Preview>{username}, password reset completed</Preview>
+      <Section className="my-[56px]">
         <Container className="max-w-[680px] md:px-0">
           <Section className="flex flex-col items-center justify-center">
             <Heading
@@ -81,11 +82,11 @@ export const PasswordConfirmation = ({
 PasswordConfirmation.PreviewProps = {
   title: "Password Reset Complete",
   username: "John Doe",
-  link: "/",
+  link: "www.boilerplate.com",
   description:
     "The password for your Boilerplate account has been successfully changed. You can now continue to access your account as usual.",
   descriptionTwo:
     "If this wasn't done by you, please immediately reset the password to your Boilerplate account by following the steps below:",
-} as PasswordChangeConfirmation;
+} satisfies PasswordChangeConfirmation;
 
 export default PasswordConfirmation;

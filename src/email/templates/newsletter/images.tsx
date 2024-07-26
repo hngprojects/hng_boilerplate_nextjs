@@ -4,6 +4,7 @@ import {
   Heading,
   Img,
   Link,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -14,7 +15,6 @@ interface IProperties {
   mainHeading: string;
   image: string;
   imageOne: string;
-  subHeading: string;
   description: string;
   username: string;
   offer: string;
@@ -45,6 +45,7 @@ export default function Newsletter(properties: IProperties) {
 
   return (
     <Layout>
+      <Preview>t{username}, our Newletter.</Preview>
       <Section className="w-full max-w-[678px] py-[56px] md:py-14">
         <Section className="mx-auto flex items-center justify-center md:w-[534px]">
           <Img src={image} alt="marketing" className="h-[100%] w-[100%]" />
@@ -235,7 +236,7 @@ export default function Newsletter(properties: IProperties) {
 Newsletter.PreviewProps = {
   offer:
     "Enjoy special promotions and discounts available only to our members.",
-  link: "http://localhost:3001/about-us",
+  link: "www.boilerData.com",
   image: "https://imgur.com/qZADxEg.png",
   imageOne: " https://imgur.com/ViexxCL.png",
   username: "John Doe",
@@ -278,4 +279,4 @@ Newsletter.PreviewProps = {
         "Our team is always here to assist you with any questions or concerns.",
     },
   ],
-} as IProperties;
+} satisfies IProperties;

@@ -3,6 +3,7 @@ import {
   Container,
   Heading,
   Img,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -10,33 +11,32 @@ import {
 import Layout from "../_components/layout/layout";
 
 interface AccountDeactivationProperties {
-  title?: string;
-  deactivationDaysLeft?: string;
-  username?: string;
-  expireTime?: string;
-  star?: string;
-  description?: string;
-  link?: string;
+  title: string;
+  deactivationDaysLeft: string;
+  username: string;
+  expireTime: string;
+  star: string;
+  description: string;
+  link: string;
   data: Array<{
     key: string;
     value: string;
   }>;
 }
 
-export const AccountDeactivation = ({
-  title = "",
-  username = "",
-  deactivationDaysLeft = "",
-  star = "",
-  description = "",
-  link = "",
+const AccountDeactivation = ({
+  title,
+  username,
+  deactivationDaysLeft,
+  star,
+  description,
+  link,
   data,
 }: AccountDeactivationProperties) => {
   return (
     <Layout>
-      <Section className="py-[56px]">
-        <Section className="mx-auto flex items-center justify-center"></Section>
-
+      <Preview>{username}, account deactivation notice</Preview>
+      <Section className="my-[56px]">
         <Container className="max-w-[680px] px-[48px] md:px-0">
           <Section className="flex flex-col items-center justify-center">
             <Heading
@@ -133,7 +133,7 @@ AccountDeactivation.PreviewProps = {
   username: "John Doe",
   star: "https://i.imgur.com/bmprMwh.png",
   expireTime: "17th September, 2024",
-  link: "",
+  link: "www.boilerplate.com",
   description:
     "We hope this email finds you well. We noticed that you haven't logged into your Boilerplate account for quite some time. As part of our ongoing efforts to maintain a secure and efficient service, we will be deactivating inactive accounts.",
   data: [
@@ -150,6 +150,6 @@ AccountDeactivation.PreviewProps = {
       value: "20th July, 2024 / 11:56pm",
     },
   ],
-} as AccountDeactivationProperties;
+} satisfies AccountDeactivationProperties;
 
 export default AccountDeactivation;

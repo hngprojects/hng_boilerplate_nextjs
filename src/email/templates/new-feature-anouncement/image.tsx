@@ -4,6 +4,7 @@ import {
   Container,
   Heading,
   Img,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -11,22 +12,15 @@ import {
 import Layout from "../_components/layout/layout";
 
 interface NewFeatureAnnouncementProperties {
-  title?: string;
-  username?: string;
-  image?: string;
-  logo?: string;
-  star?: string;
-  marketing?: string;
-  featureName?: string;
-  learnMoreLink?: string;
-  featureDescription?: string;
-  benefitOne?: string;
-  benefitTwo?: string;
-  linkedinIcon?: string;
-  redditIcon?: string;
-  tiktokIcon?: string;
-  igIcon?: string;
-  xIcon?: string;
+  title: string;
+  username: string;
+  image: string;
+  star: string;
+  featureName: string;
+  link: string;
+  featureDescription: string;
+  benefitOne: string;
+  benefitTwo: string;
 }
 
 export const NewFeatureAnnouncement = ({
@@ -35,14 +29,15 @@ export const NewFeatureAnnouncement = ({
   image,
   star,
   featureName,
-  learnMoreLink,
+  link,
   featureDescription,
   benefitOne,
   benefitTwo,
 }: NewFeatureAnnouncementProperties) => {
   return (
     <Layout>
-      <Section className="py-[56px]">
+      <Preview>t{username}, our latest features.</Preview>
+      <Section className="my-[56px]">
         <Section className="mx-auto flex items-center justify-center">
           <Img src={image} alt="marketing" className="h-[178px] w-[178px]" />
         </Section>
@@ -126,7 +121,7 @@ export const NewFeatureAnnouncement = ({
           </Container>
           <Button
             className="rounded-[8px] bg-[#F97316] px-[2rem] py-[16px] text-[#FAFAFA]"
-            href={learnMoreLink}
+            href={link}
           >
             Learn More
           </Button>
@@ -148,7 +143,6 @@ export const NewFeatureAnnouncement = ({
 NewFeatureAnnouncement.PreviewProps = {
   title: "Introducing Our Latest Feature:",
   username: "John Doe",
-  logo: "https://i.imgur.com/9W6zN9U.png",
   image: "https://i.imgur.com/p66l3SQ.png",
   star: "https://i.imgur.com/bmprMwh.png",
 
@@ -159,12 +153,7 @@ NewFeatureAnnouncement.PreviewProps = {
     "Collaborative Spaces allow you to create dedicated areas for teamwork. Whether it’s a project, brainstorming session, or ongoing discussion, team members can collaborate seamlessly within these spaces.",
   benefitTwo:
     "With Collaborative Spaces, accountability becomes clearer. Each team member’s contributions are visible within the shared space.",
-  learnMoreLink: "",
-  linkedinIcon: "https://i.imgur.com/jBHlv7Y.png",
-  redditIcon: "https://i.imgur.com/ONXC0iw.png",
-  tiktokIcon: "https://i.imgur.com/sui2yFV.png",
-  igIcon: "https://i.imgur.com/MVsmHn7.png",
-  xIcon: "https://i.imgur.com/KfwJgPL.png",
-} as NewFeatureAnnouncementProperties;
+  link: "www.boilerplate.com",
+} satisfies NewFeatureAnnouncementProperties;
 
 export default NewFeatureAnnouncement;

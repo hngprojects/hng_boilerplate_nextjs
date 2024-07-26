@@ -4,6 +4,7 @@ import {
   Container,
   Heading,
   Link,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -11,22 +12,24 @@ import {
 import Layout from "../_components/layout/layout";
 
 interface SubscriptionenewaleminderProperties {
-  title?: string;
-  username?: string;
-  image?: string;
-  link?: string;
-  description?: string;
+  title: string;
+  username: string;
+
+  link: string;
+  description: string;
 }
 
-export const Subscriptionenewaleminder = ({
-  title = "",
-  username = "",
-  link = "",
-  description = "",
+const Subscriptionenewaleminder = ({
+  title,
+  username,
+
+  link,
+  description,
 }: SubscriptionenewaleminderProperties) => {
   return (
     <Layout>
-      <Section className="py-[56px]">
+      <Preview>{username}, Subscription Renewal Reminder</Preview>
+      <Section className="my-[56px]">
         <Section>
           <Container className="max-w-[680px] px-[48px] md:px-0">
             <Heading
@@ -119,11 +122,10 @@ export const Subscriptionenewaleminder = ({
 Subscriptionenewaleminder.PreviewProps = {
   title: "Subscription Renewal Reminder",
   username: "John Doe",
-  star: "https://i.imgur.com/bmprMwh.png",
   description:
     "We hope you are enjoying your subscription, which will renew soon.",
 
-  link: "",
-} as SubscriptionenewaleminderProperties;
+  link: "wwww.boilerplate.com",
+} satisfies SubscriptionenewaleminderProperties;
 
 export default Subscriptionenewaleminder;

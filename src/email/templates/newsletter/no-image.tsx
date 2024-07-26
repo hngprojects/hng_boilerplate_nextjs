@@ -4,6 +4,7 @@ import {
   Heading,
   Img,
   Link,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -12,9 +13,6 @@ import Layout from "../_components/layout/layout";
 
 interface IProperties {
   mainHeading: string;
-  image: string;
-  imageOne: string;
-  subHeading: string;
   description: string;
   username: string;
   offer: string;
@@ -43,9 +41,10 @@ export default function Newsletter(properties: IProperties) {
 
   return (
     <Layout>
+      <Preview>t{username}, our Newletter.</Preview>
       <Section className="w-full max-w-[678px] py-[56px] md:py-14">
         <Container className="max-w-[680px] px-[48px] md:px-0">
-          <Section className="flex flex-col items-center justify-center">
+          <Section className="my-[40px] flex flex-col items-center justify-center">
             <Section className="mb-[56px] text-center">
               <Heading
                 as="h5"
@@ -151,15 +150,15 @@ export default function Newsletter(properties: IProperties) {
               </Link>{" "}
               for more information.
             </Text>
-            <Section>
+            <Section className="">
               <Heading
                 as="h6"
-                className="mb-[24px] mt-[28px] text-[16px] text-[#121212] md:text-[18px]"
+                className="mt-[16px] text-[16px] text-[#121212] md:text-[18px]"
               >
                 How To Redeem Your Offer
               </Heading>
               <ol className="m-0 pl-4 text-[14px] text-[#525252] md:text-[16px]">
-                <li className="mb-2">
+                <li className="mb-1">
                   Recover your account here:{" "}
                   <Link
                     className="text-[#F97316]"
@@ -168,11 +167,11 @@ export default function Newsletter(properties: IProperties) {
                     www.boilerplate.com
                   </Link>
                 </li>
-                <li className="mb-2">
+                <li className="mb-1">
                   Browse our selection of cutting-edge tech.
                 </li>
-                <li className="mb-2">Add your desired products to the cart.</li>
-                <li className="mb-2">
+                <li className="mb-1">Add your desired products to the cart.</li>
+                <li className="mb-1">
                   Enter the code TECHSAVVY at checkout to apply your discount.
                   Don’t miss out on this opportunity to upgrade your tech and
                   stay ahead of the game. This exclusive offer is valid until
@@ -222,7 +221,7 @@ export default function Newsletter(properties: IProperties) {
 Newsletter.PreviewProps = {
   offer:
     "Enjoy special promotions and discounts available only to our members.",
-  link: "http://localhost:3001/about-us",
+  link: "www.boilerData.com",
   username: "John Doe",
   mainHeading: "Stay Ahead: Exclusive Offer on Cutting-Edge Tech!",
   star: "https://i.imgur.com/bmprMwh.png",
@@ -263,4 +262,4 @@ Newsletter.PreviewProps = {
         "Our team is always here to assist you with any questions or concerns.",
     },
   ],
-} as IProperties;
+} satisfies IProperties;

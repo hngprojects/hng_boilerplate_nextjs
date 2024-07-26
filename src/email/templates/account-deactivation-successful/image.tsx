@@ -3,6 +3,7 @@ import {
   Heading,
   Img,
   Link,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -10,34 +11,34 @@ import {
 import Layout from "../_components/layout/layout";
 
 interface AccountDeactivationSuccessfulProperties {
-  title?: string;
-  username?: string;
-  image?: string;
-  expireTime?: string;
-  bullet?: string;
-  description?: string;
-  link?: string;
+  title: string;
+  username: string;
+  image: string;
+  expireTime: string;
+  bullet: string;
+  description: string;
+  link: string;
   data: Array<{
     key: string;
     value: string;
   }>;
 }
 
-export const AccountDeactivationSuccessful = ({
-  title = "",
-  username = "",
-  image = "",
-  bullet = "",
-  description = "",
+const AccountDeactivationSuccessful = ({
+  title,
+  username,
+  image,
+  bullet,
+  description,
   data,
 }: AccountDeactivationSuccessfulProperties) => {
   return (
     <Layout>
-      <Section className="py-[56px]">
+      <Preview>t{username}, your account was deactivated successfully</Preview>
+      <Section className="my-[56px]">
         <Section className="mx-auto flex items-center justify-center md:w-[178px]">
           <Img src={image} alt="hello" className="h-[100%] w-[100%]" />
         </Section>
-        <Section className="mx-auto flex items-center justify-center"></Section>
 
         <Container className="max-w-[680px] px-[48px] md:px-0">
           <Section className="mt-[40px] flex flex-col items-center justify-center">
@@ -134,7 +135,7 @@ AccountDeactivationSuccessful.PreviewProps = {
   image: "https://imgur.com/zkXwuyQ.png",
   bullet: "https://imgur.com/Lolu1on.png",
   expireTime: "17th September, 2024",
-  link: "",
+  link: "www.boilerplate.com",
   description:
     "We wanted to let you know that your Boilerplate account has been successfully deactivated as per your request.",
   data: [
@@ -147,6 +148,6 @@ AccountDeactivationSuccessful.PreviewProps = {
       value: "20th July, 2024 / 11:56pm",
     },
   ],
-} as AccountDeactivationSuccessfulProperties;
+} satisfies AccountDeactivationSuccessfulProperties;
 
 export default AccountDeactivationSuccessful;

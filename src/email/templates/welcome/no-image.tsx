@@ -3,6 +3,7 @@ import {
   Container,
   Heading,
   Img,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -32,6 +33,7 @@ export default function WelcomeEmail(properties: IProperties) {
 
   return (
     <Layout>
+      <Preview>{username}, welcome to Boilerplate.</Preview>
       <Section className="w-full max-w-[678px] py-12 md:py-14">
         <Container className="max-w-[680px] px-[48px] md:px-0">
           <Section className="flex flex-col items-center justify-center">
@@ -136,11 +138,11 @@ export default function WelcomeEmail(properties: IProperties) {
 WelcomeEmail.PreviewProps = {
   offer:
     "Enjoy special promotions and discounts available only to our members.",
-  link: "http://localhost:3001/about-us",
+  link: "www.boilerplate.com",
   username: "John Doe",
   mainHeading: "Welcome to Boilerplate",
   subHeading: "Thanks for signing up",
   star: "https://i.imgur.com/bmprMwh.png",
   welcomeMessage:
     "We're thrilled to have you join us. Experience quality and innovation like never before. Our product is made to fit your needs and make your life easier.",
-} as IProperties;
+} satisfies IProperties;

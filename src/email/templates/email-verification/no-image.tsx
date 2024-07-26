@@ -3,6 +3,7 @@ import {
   Container,
   Heading,
   Link,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -10,22 +11,22 @@ import {
 import Layout from "../_components/layout/layout";
 
 interface EmailVerificationProperties {
-  title?: string;
-  username?: string;
-  image?: string;
-  description?: string;
-  link?: string;
+  title: string;
+  username: string;
+  description: string;
+  link: string;
 }
 
 export const EmailVerification = ({
-  title = "",
-  username = "",
-  description = "",
-  link = "",
+  title,
+  username,
+  description,
+  link,
 }: EmailVerificationProperties) => {
   return (
     <Layout>
-      <Section className="py-[56px]">
+      <Preview>t{username}, email verified</Preview>
+      <Section className="my-[56px]">
         <Container className="max-w-[680px] px-[48px] md:px-0">
           <Section className="flex flex-col items-center justify-center">
             <Heading
@@ -92,12 +93,9 @@ export const EmailVerification = ({
 EmailVerification.PreviewProps = {
   title: "Email Verification",
   username: "John Doe",
-  image: "https://imgur.com/NbCnF9l.png",
   link: "/",
   description:
     "Thanks for registering your account with us Boilerplate. Before we get started, we just need to confirm that this is you.",
-  descriptionOne:
-    "This link will expire 30 minutes after this email has been sent. If you did not make this request, you can ignore this email",
-} as EmailVerificationProperties;
+} satisfies EmailVerificationProperties;
 
 export default EmailVerification;

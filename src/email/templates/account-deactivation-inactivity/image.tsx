@@ -3,6 +3,7 @@ import {
   Heading,
   Img,
   Link,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -10,37 +11,39 @@ import {
 import Layout from "../_components/layout/layout";
 
 interface AccountDeactivationInactivityProperties {
-  title?: string;
-  username?: string;
-  image?: string;
-  expireTime?: string;
-  bullet?: string;
-  description?: string;
-  link?: string;
+  title: string;
+  image: string;
+  username: string;
+  expireTime: string;
+  bullet: string;
+  description: string;
+  link: string;
   data: Array<{
     key: string;
     value: string;
   }>;
 }
 
-export const AccountDeactivationInactivity = ({
-  title = "",
-  username = "",
-  image = "",
-  bullet = "",
-  description = "",
+const AccountDeactivationInactivity = ({
+  title,
+  username,
+  bullet,
+  image,
+  description,
   data,
 }: AccountDeactivationInactivityProperties) => {
   return (
     <Layout>
-      <Section className="py-[56px]">
+      <Preview>
+        {username}, your account was deactivated due to inactivity
+      </Preview>
+      <Section className="my-[56px]">
         <Section className="mx-auto flex items-center justify-center md:w-[178px]">
           <Img src={image} alt="hello" className="h-[100%] w-[100%]" />
         </Section>
-        <Section className="mx-auto flex items-center justify-center"></Section>
-
+        ;
         <Container className="max-w-[680px] px-[48px] md:px-0">
-          <Section className="mt-[40px] flex flex-col items-center justify-center">
+          <Section className="flex flex-col items-center justify-center">
             <Heading
               as="h5"
               className="my-0 mb-[56px] text-center text-[24px] leading-[28px] text-[#121212]"
@@ -66,7 +69,7 @@ export const AccountDeactivationInactivity = ({
                   return (
                     <li
                       key={index}
-                      className="items-bullett my-[1rem] flex items-center text-[14px] md:text-[16px]"
+                      className="items-bullet my-[1rem] flex items-center text-[14px] md:text-[16px]"
                     >
                       <div className="mr-2 flex-shrink-0">
                         <Img
@@ -91,7 +94,6 @@ export const AccountDeactivationInactivity = ({
             </Section>
           </Section>
         </Container>
-
         <Section className="text-center">
           <Container className="mb-[28px] max-w-[680px] px-[48px] md:px-0">
             <Text className="my-0 text-left leading-[19px] text-[#525252] md:text-[16px]">
@@ -129,24 +131,28 @@ export const AccountDeactivationInactivity = ({
 };
 
 AccountDeactivationInactivity.PreviewProps = {
-  title: "Account Successfully Deactivated",
+  title: "Account Deactivated Due To Inactivity",
   username: "John Doe",
-  image: "https://imgur.com/WQaP91T.png",
+  image: "https://imgur.com/q3SkJ3S.png",
   bullet: "https://imgur.com/Lolu1on.png",
   expireTime: "17th September, 2024",
-  link: "",
+  link: "www.boilerplate.com",
   description:
-    "We wanted to let you know that your Boilerplate account has been successfully deactivated as per your request.",
+    "We hope this email finds you well. We wanted to inform you that your Boilerplate account has been deactivated due to a prolonged period of inactivity.",
   data: [
     {
       key: "Account Email",
       value: "johndoe@gmail.com",
     },
     {
+      key: "Last Active",
+      value: "17th June, 2024 / 11:56pm",
+    },
+    {
       key: "Deactivation Date",
       value: "20th July, 2024 / 11:56pm",
     },
   ],
-} as AccountDeactivationInactivityProperties;
+} satisfies AccountDeactivationInactivityProperties;
 
 export default AccountDeactivationInactivity;

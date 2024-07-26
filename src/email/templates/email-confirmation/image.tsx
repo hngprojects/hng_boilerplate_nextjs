@@ -3,6 +3,7 @@ import {
   Container,
   Heading,
   Img,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -10,29 +11,29 @@ import {
 import Layout from "../_components/layout/layout";
 
 interface EmailConfirmationProperties {
-  title?: string;
-  username?: string;
-  image?: string;
-  description?: string;
-  descriptionOne?: string;
-  link?: string;
+  title: string;
+  username: string;
+  image: string;
+  description: string;
+  descriptionOne: string;
+  link: string;
 }
 
-export const EmailConfirmation = ({
-  title = "",
-  username = "",
-  image = "",
-  description = "",
-  descriptionOne = "",
-  link = "",
+const EmailConfirmation = ({
+  title,
+  username,
+  image,
+  description,
+  descriptionOne,
+  link,
 }: EmailConfirmationProperties) => {
   return (
     <Layout>
-      <Section className="py-[56px]">
+      <Preview>t{username}, email confirmed</Preview>
+      <Section className="my-[56px]">
         <Section className="mx-auto flex items-center justify-center md:w-[316px]">
           <Img src={image} alt="hello" className="h-[100%] w-[100%]" />
         </Section>
-        <Section className="mx-auto flex items-center justify-center"></Section>
 
         <Container className="max-w-[680px] px-[48px] md:px-0">
           <Section className="mt-[56px] flex flex-col items-center justify-center">
@@ -88,11 +89,11 @@ EmailConfirmation.PreviewProps = {
   title: "Email Confirmation",
   username: "John Doe",
   image: "https://imgur.com/TEvsjBU.png",
-  link: "/",
+  link: "www.boilerplate.com",
   description:
     "We are thrilled to inform you that your email has been successfully verified and confirmed!",
   descriptionOne:
     "You can now fully enjoy all the features and benefits we offer, including exclusive access to key features, Special discount and personalized content.",
-} as EmailConfirmationProperties;
+} satisfies EmailConfirmationProperties;
 
 export default EmailConfirmation;

@@ -2,6 +2,7 @@ import {
   Button,
   Container,
   Heading,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -9,22 +10,22 @@ import {
 import Layout from "../_components/layout/layout";
 
 interface ActivationLinkSentProperties {
-  title?: string;
-  username?: string;
-  image?: string;
-  description?: string;
-  link?: string;
+  title: string;
+  username: string;
+  description: string;
+  link: string;
 }
 
-export const ActivationLinkSent = ({
-  title = "",
-  username = "",
-  description = "",
-  link = "",
+const ActivationLinkSent = ({
+  title,
+  username,
+  description,
+  link,
 }: ActivationLinkSentProperties) => {
   return (
     <Layout>
-      <Section className="py-[56px]">
+      <Preview>t{username}, account link sent.</Preview>
+      <Section className="my-[56px]">
         <Section className="mx-auto flex items-center justify-center"></Section>
 
         <Container className="max-w-[680px] px-[48px] md:px-0">
@@ -77,9 +78,9 @@ export const ActivationLinkSent = ({
 ActivationLinkSent.PreviewProps = {
   title: "New Activation Link Sent",
   username: "John Doe",
-  link: "/",
+  link: "www.boilerplate.com",
   description:
     "We have sent you a new activation link for your Boilerplate account. Please click the button below to activate your account:",
-} as ActivationLinkSentProperties;
+} satisfies ActivationLinkSentProperties;
 
 export default ActivationLinkSent;

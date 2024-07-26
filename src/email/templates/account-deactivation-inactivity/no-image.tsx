@@ -3,6 +3,7 @@ import {
   Heading,
   Img,
   Link,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -10,30 +11,31 @@ import {
 import Layout from "../_components/layout/layout";
 
 interface AccountDeactivationInactivityProperties {
-  title?: string;
-  username?: string;
-  expireTime?: string;
-  bullet?: string;
-  description?: string;
-  link?: string;
+  title: string;
+  username: string;
+  expireTime: string;
+  bullet: string;
+  description: string;
+  link: string;
   data: Array<{
     key: string;
     value: string;
   }>;
 }
 
-export const AccountDeactivationInactivity = ({
-  title = "",
-  username = "",
-  bullet = "",
-  description = "",
+const AccountDeactivationInactivity = ({
+  title,
+  username,
+  bullet,
+  description,
   data,
 }: AccountDeactivationInactivityProperties) => {
   return (
     <Layout>
-      <Section className="py-[56px]">
-        <Section className="mx-auto flex items-center justify-center"></Section>
-
+      <Preview>
+        {username}, your account was deactivated due to inactivity
+      </Preview>
+      <Section className="my-[56px]">
         <Container className="max-w-[680px] px-[48px] md:px-0">
           <Section className="flex flex-col items-center justify-center">
             <Heading
@@ -128,7 +130,7 @@ AccountDeactivationInactivity.PreviewProps = {
   username: "John Doe",
   bullet: "https://imgur.com/Lolu1on.png",
   expireTime: "17th September, 2024",
-  link: "",
+  link: "www.boilerplate.com",
   description:
     "We hope this email finds you well. We wanted to inform you that your Boilerplate account has been deactivated due to a prolonged period of inactivity.",
   data: [
@@ -145,6 +147,6 @@ AccountDeactivationInactivity.PreviewProps = {
       value: "20th July, 2024 / 11:56pm",
     },
   ],
-} as AccountDeactivationInactivityProperties;
+} satisfies AccountDeactivationInactivityProperties;
 
 export default AccountDeactivationInactivity;

@@ -3,6 +3,7 @@ import {
   Heading,
   Img,
   Link,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -10,31 +11,31 @@ import {
 import Layout from "../_components/layout/layout";
 
 interface SubscriptionenewalDisabledProperties {
-  title?: string;
-  username?: string;
-  image?: string;
-  description?: string;
-  descriptionOne?: string;
-  link?: string;
-  upgradeLink?: string;
+  title: string;
+  username: string;
+  image: string;
+  description: string;
+  descriptionOne: string;
+  link: string;
+  upgradeLink: string;
 }
 
-export const SubscriptionenewalDisabled = ({
-  title = "",
-  username = "",
-  image = "",
-  description = "",
-  descriptionOne = "",
-  upgradeLink = "",
-  link = "",
+const SubscriptionenewalDisabled = ({
+  title,
+  username,
+  image,
+  description,
+  descriptionOne,
+  upgradeLink,
+  link,
 }: SubscriptionenewalDisabledProperties) => {
   return (
     <Layout>
-      <Section className="py-[56px]">
+      <Preview>{username}, subscription renewal disabled</Preview>
+      <Section className="my-[56px]">
         <Section className="mx-auto flex items-center justify-center md:w-[316px]">
           <Img src={image} alt="hello" className="h-[100%] w-[100%]" />
         </Section>
-        <Section className="mx-auto flex items-center justify-center"></Section>
 
         <Container className="max-w-[680px] px-[48px] md:px-0">
           <Section className="mt-[56px] flex flex-col items-center justify-center">
@@ -108,12 +109,12 @@ SubscriptionenewalDisabled.PreviewProps = {
   title: "Subscription Renewal Disabled",
   username: "John Doe",
   image: "https://imgur.com/DJVBH0U.png",
-  link: "/",
-  upgradeLink: "/",
+  link: "www.boilerplate.com",
+  upgradeLink: "www.boilerplate.com",
   description:
     "    As requested, your next subscription renewal for Bi-monthly Features has been disabled. You will continue to enjoy benefits of this subscription until 17th August,",
   descriptionOne:
     "We are so sad to see you go. However, if you change your mind, you can always reactivate your subscription or upgrade your subscription plan. 2024.",
-} as SubscriptionenewalDisabledProperties;
+} satisfies SubscriptionenewalDisabledProperties;
 
 export default SubscriptionenewalDisabled;

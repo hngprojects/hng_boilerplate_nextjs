@@ -4,6 +4,7 @@ import {
   Heading,
   Img,
   Link,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -11,34 +12,33 @@ import {
 import Layout from "../_components/layout/layout";
 
 interface SubscriptionConfirmationProperties {
-  title?: string;
-  username?: string;
-  expireTime?: string;
-  star?: string;
-  description?: string;
-  unsubcribeLink?: string;
+  title: string;
+  username: string;
+  expireTime: string;
+  star: string;
+  description: string;
+  link: string;
   data: Array<{
     key: string;
     value: string;
   }>;
 }
 
-export const SubscriptionConfirmation = ({
-  title = "",
-  username = "",
-  star = "",
-  description = "",
-  unsubcribeLink = "",
-  expireTime = "",
+const SubscriptionConfirmation = ({
+  title,
+  username,
+  star,
+  description,
+  link,
+  expireTime,
   data,
 }: SubscriptionConfirmationProperties) => {
   return (
     <Layout>
-      <Section className="py-[56px]">
-        <Section className="mx-auto flex items-center justify-center"></Section>
-
+      <Preview>{username}, subsription cancelled </Preview>
+      <Section className="my-[56px]">
         <Container className="max-w-[680px] px-[48px] md:px-0">
-          <Section className="mb-[40px] flex flex-col items-center justify-center">
+          <Section className="my-[40px] flex flex-col items-center justify-center">
             <Heading
               as="h5"
               className="my-0 mb-[56px] text-center text-[24px] leading-[28px] text-[#121212]"
@@ -114,12 +114,17 @@ export const SubscriptionConfirmation = ({
               Thank you for choosing our product!
             </Text>
           </Container>
-          <Button
-            className="rounded-[8px] bg-[#F97316] px-[2rem] py-[16px] text-[#FAFAFA]"
-            href={unsubcribeLink}
-          >
-            Learn More
-          </Button>
+          <Section className="mt-[32px] w-[100%] text-center">
+            <Container className="mb-[40px] max-w-[680px] px-[48px] md:px-0">
+              <Button
+                target={"_blank"}
+                className="w-[100%] rounded-[8px] bg-[#F97316] py-[16px] text-[#FAFAFA] md:w-fit md:px-[2rem]"
+                href={link}
+              >
+                Learn More About us
+              </Button>
+            </Container>
+          </Section>
         </Section>
         <Section className="mt-[40px]">
           <Container className="max-w-[680px] px-[48px] md:px-0">
@@ -138,10 +143,9 @@ export const SubscriptionConfirmation = ({
 SubscriptionConfirmation.PreviewProps = {
   title: "Subscription Confirmation",
   username: "John Doe",
-  image: "https://imgur.com/3p3JubF.png",
   star: "https://i.imgur.com/bmprMwh.png",
   expireTime: "17th September, 2024",
-  unsubcribeLink: "",
+  link: "www.boilerplate.com",
   description:
     "Your payment was processed successfully. Thank you for subscribing to our Bi-monthly feature! We’re excited to have you on board. You’ll receive a separate receipt via email. Below are the details of your subscription:",
   data: [
@@ -166,6 +170,6 @@ SubscriptionConfirmation.PreviewProps = {
       value: "17th July, 2024",
     },
   ],
-} as SubscriptionConfirmationProperties;
+} satisfies SubscriptionConfirmationProperties;
 
 export default SubscriptionConfirmation;
