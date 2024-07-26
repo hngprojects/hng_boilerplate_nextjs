@@ -38,7 +38,7 @@ const DashboardNavbar = () => {
               <PopoverContent
                 data-testid="notificationContent"
                 align="end"
-                className="w-[380px] border-none p-0 shadow-none"
+                className="w-fit border-none p-0 shadow-none"
               >
                 <UnreadNotificationCard
                   notificationsPreview={[
