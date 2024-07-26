@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 
 import AddUserModal from "./userModal";
 
-describe("addProductModal", () => {
+describe("addUserModal", () => {
   it("renders the modal with correct title and description", async () => {
     expect.hasAssertions();
     render(
