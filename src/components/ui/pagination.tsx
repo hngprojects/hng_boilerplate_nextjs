@@ -23,7 +23,7 @@ const PaginationContent = React.forwardRef<
 >(({ className, ...properties }, reference) => (
   <ul
     ref={reference}
-    className={cn("flex flex-row items-center gap-1", className)}
+    className={cn("flex flex-row items-center gap-0 md:gap-1", className)}
     {...properties}
   />
 ));
@@ -58,7 +58,7 @@ const PaginationLink = ({
         size,
       }),
       isActive
-        ? "border-solid border-primary bg-primary/20"
+        ? "border-solid border-border bg-transparent"
         : "bg-white text-[#98A2B3]",
       className,
     )}
