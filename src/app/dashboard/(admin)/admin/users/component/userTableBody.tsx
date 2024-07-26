@@ -1,36 +1,22 @@
 import { EllipsisVertical } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
-import DropdownMenu from "../../../_components/ui/dropdownMenu";
-import { userData, UserDataProperties } from "../data/user-dummy-data";
+import { Button } from "~/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "~/components/ui/dropdown-menu";
+import { userData } from "../data/user-dummy-data";
+import DeleteDialog from "./dialogue/delete-dialog";
 
 const UserTableBody = () => {
-  const [showDropdown, setShowDropdown] = useState<
-    UserDataProperties | undefined
-  >();
-  const menuReference = useRef<HTMLDivElement>(null);
-  const [open, setOpen] = useState<boolean>(false);
-
-  useEffect(() => {
-    const handler = (event: MouseEvent) => {
-      if (
-        menuReference.current &&
-        !menuReference.current.contains(event.target as Node)
-      ) {
-        setShowDropdown(undefined);
-        // setOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handler);
-
-    // Cleanup function
-    return () => {
-      document.removeEventListener("mousedown", handler);
-    };
-  }, []);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const handleOpenDialog = () => setIsDialogOpen(true);
+  const handleCloseDialog = () => setIsDialogOpen(false);
 
   return (
     <>
@@ -97,7 +83,7 @@ const UserTableBody = () => {
               </td>
 
               <td className="whitespace-nowrap p-4 text-center text-base font-normal capitalize leading-4 text-neutral-dark-2">
-                <div className="relative" ref={menuReference}>
+                {/* <div className="relative" ref={menuReference}>
                   <button
                     onClick={() => {
                       setShowDropdown(userData[index]);
@@ -123,12 +109,33 @@ const UserTableBody = () => {
                       Delete
                     </button>
                   </DropdownMenu>
-                </div>
+                </div> */}
+
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      className="bg-transparent text-neutral-dark-2 hover:bg-transparent focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+                      size={"icon"}
+                    >
+                      <EllipsisVertical size={16} color="#09090b" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuLabel className="sr-only">
+                      Actions
+                    </DropdownMenuLabel>
+                    <DropdownMenuItem>Edit</DropdownMenuItem>
+                    <DropdownMenuItem onClick={handleOpenDialog}>
+                      Delete
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </td>
             </tr>
           );
         })}
       </tbody>
+      {isDialogOpen && <DeleteDialog onClose={handleCloseDialog} />}
     </>
   );
 };
