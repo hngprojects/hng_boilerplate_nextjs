@@ -107,7 +107,7 @@ export const AccountLinkExpired = ({
 AccountLinkExpired.PreviewProps = {
   title: "Subscription Renewal Disabled",
   username: "John Doe",
-  image: "https://imgur.com/5KobknJ.png",
+  image: "https://imgur.com/DJVBH0U.png",
   link: "/",
   upgradeLink: "/",
   description:
