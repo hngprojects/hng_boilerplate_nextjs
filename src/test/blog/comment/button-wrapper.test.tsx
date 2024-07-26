@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import ButtonWrapper from "~/components/common/comment/button-wrapper";
+import ButtonWrapper from "~/components/common/comment-component/button-wrapper";
 
 describe("button wrapper component", () => {
   it("should render children correctly", () => {

@@ -33,7 +33,7 @@ const Client = () => {
       </div>
 
       <div className="mt-8 flex w-full flex-col gap-4 xl:flex-row">
-        <Card className="basis-2/3 rounded-xl border border-border bg-white px-[24px] pb-[28px] pt-[23px] shadow-spread">
+        <Card className="basis-2/3 rounded-xl border border-border bg-white px-1.5 py-3 shadow-spread md:px-2 md:py-5">
           <h2 className="mb-2 ml-3 text-base font-semibold leading-[19.36px] text-zinc-950">
             Overview
           </h2>

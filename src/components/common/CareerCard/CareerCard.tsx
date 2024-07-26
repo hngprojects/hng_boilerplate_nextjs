@@ -1,8 +1,8 @@
+import Link from "next/link";
 import { FC } from "react";
 
 import { Card, CardContent, CardFooter } from "~/components/ui/card";
 import { Skeleton } from "~/components/ui/skeleton";
-import CustomButton from "../common-button/common-button";
 
 //
 interface CareerCardProperties {
@@ -20,6 +20,8 @@ const CareerCard: FC<CareerCardProperties> = ({
   description,
   amount,
 }) => {
+  //
+
   return (
     <Card className="max-w-full text-foreground">
       <CardContent className="pt-6">
@@ -55,7 +57,12 @@ const CareerCard: FC<CareerCardProperties> = ({
               {amount}
               <span className="font-normal">/month</span>
             </span>
-            <CustomButton variant="primary">View Details</CustomButton>
+            <Link
+              href={`/career/${jobTitle}`}
+              className="rounded bg-primary px-4 py-2 text-[14px] text-background"
+            >
+              View Details
+            </Link>
           </>
         )}
       </CardFooter>

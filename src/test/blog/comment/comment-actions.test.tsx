@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 
-import CommentActions from "~/components/common/comment/comment-actions";
+import CommentActions from "~/components/common/comment-component/comment-actions";
 
 describe("comment actions component", () => {
   const mockOnLike = vi.fn();

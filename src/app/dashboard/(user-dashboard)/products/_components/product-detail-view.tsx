@@ -1,15 +1,15 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Loader2, X } from "lucide-react";
+import { X } from "lucide-react";
 import { useTransition } from "react";
 
 import BlurImage from "~/components/miscellaneous/blur-image";
+import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import { Button } from "~/components/ui/button";
 import { toast } from "~/components/ui/use-toast";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { useProducts } from "~/hooks/admin-product/use-products.persistence";
-import { cn, formatPrice } from "~/lib/utils";
+import { cn, formatPrice, simulateDelay } from "~/lib/utils";
 
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const ProductDetailView = () => {
   const { products, deleteProduct } = useProducts();
   const [isLoading, startTransition] = useTransition();
@@ -34,7 +34,7 @@ const ProductDetailView = () => {
 
     setIsDelete(true);
     startTransition(async () => {
-      await delay(3000);
+      await simulateDelay(3);
       updateOpen(false);
       deleteProduct(id);
       toast({
@@ -150,7 +150,7 @@ const ProductDetailView = () => {
               {isLoading ? (
                 <span className="flex items-center gap-x-2">
                   <span className="animate-pulse">Deleting...</span>{" "}
-                  <Loader2 className="size-4 animate-spin sm:size-5" />
+                  <LoadingSpinner className="size-4 animate-spin sm:size-5" />
                 </span>
               ) : (
                 <span>Delete</span>

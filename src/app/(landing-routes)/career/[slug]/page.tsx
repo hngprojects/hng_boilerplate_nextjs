@@ -24,17 +24,17 @@ const JobDetails = () => {
         { name: "Career", href: "/career" },
         {
           name: "Job Details",
-          href: "/job-details",
+          href: "/career/2",
           isCurrent: true,
           style: { color: "hsl(25, 95%, 53%)" },
         },
       ]
     : [
         { name: "Home", href: "/" },
-        { name: "Job Listings", href: "/job-listings" },
+        { name: "Job Listings", href: "/career" },
         {
           name: "Job Details",
-          href: "/job-listings/job-detail",
+          href: "/career/2",
           isCurrent: true,
         },
       ];
@@ -51,10 +51,10 @@ const JobDetails = () => {
             </h1>
             <div className="flex flex-col gap-8">
               <div className="flex flex-col gap-2">
-                <h3 className="mt-4 text-[18px] font-bold text-neutral-dark-1 md:text-[25px] md:text-neutral-dark-2">
+                <h3 className="mt-4 text-[16px] font-bold text-neutral-dark-1 md:text-[25px] md:text-neutral-dark-2">
                   Job Description
                 </h3>
-                <p className="text-[18px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
+                <p className="text-[16px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
                   We are looking for a talented and passionate Product Designer
                   to join our dynamic team. As a Product Designer at the
                   Company, you will play a critical role in shaping the user
@@ -66,64 +66,64 @@ const JobDetails = () => {
                 </p>
               </div>
               <div className="flex flex-col gap-2">
-                <h3 className="text-[18px] font-bold text-neutral-dark-1 md:text-[25px] md:text-neutral-dark-2">
+                <h3 className="text-[16px] font-bold text-neutral-dark-1 md:text-[25px] md:text-neutral-dark-2">
                   Key Responsibilities
                 </h3>
                 <ul className="styled-list list-disc pl-8">
-                  <li className="mb-3 text-[18px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
+                  <li className="mb-3 text-[16px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
                     Conduct user research and gather insights to inform design
                     decisions
                   </li>
-                  <li className="mb-3 text-[18px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
+                  <li className="mb-3 text-[16px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
                     Create wireframes, prototypes, and high-fidelity mockups for
                     new features and product enhancements
                   </li>
-                  <li className="mb-3 text-[18px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
+                  <li className="mb-3 text-[16px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
                     Collaborate with the product team to define design
                     requirements and ensure alignment with business objectives
                   </li>
-                  <li className="mb-3 text-[18px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
+                  <li className="mb-3 text-[16px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
                     Develop and maintain design systems to ensure consistency
                     across all products
                   </li>
-                  <li className="mb-3 text-[18px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
+                  <li className="mb-3 text-[16px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
                     Conduct usability testing and iterate on designs based on
                     user feedback
                   </li>
-                  <li className="mb-3 text-[18px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
+                  <li className="mb-3 text-[16px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
                     Stay up-to-date with industry trends and best practices in
                     design and user experience
                   </li>
                 </ul>
               </div>
               <div className="flex flex-col gap-2">
-                <h3 className="text-[18px] font-bold text-neutral-dark-1 md:text-[25px] md:text-neutral-dark-2">
+                <h3 className="text-[16px] font-bold text-neutral-dark-1 md:text-[25px] md:text-neutral-dark-2">
                   Qualifications
                 </h3>
                 <ul className="styled-list list-disc pl-8">
-                  <li className="mb-3 text-[18px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
+                  <li className="mb-3 text-[16px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
                     Bachelor&apos;s degree in Design, Human-Computer
                     Interaction, or a related field
                   </li>
-                  <li className="mb-3 text-[18px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
+                  <li className="mb-3 text-[16px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
                     3+ years of experience in product design or a similar role
                   </li>
-                  <li className="mb-3 text-[18px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
+                  <li className="mb-3 text-[16px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
                     Proficiency in design tools such as Figma, Sketch, Adobe XD,
                     or similar
                   </li>
-                  <li className="mb-3 text-[18px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
+                  <li className="mb-3 text-[16px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
                     Strong portfolio showcasing your design process,
                     problem-solving skills, and final products
                   </li>
-                  <li className="mb-3 text-[18px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
+                  <li className="mb-3 text-[16px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
                     Excellent communication and collaboration skills
                   </li>
-                  <li className="mb-3 text-[18px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
+                  <li className="mb-3 text-[16px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
                     Ability to think critically and solve complex design
                     challenges
                   </li>
-                  <li className="text-[18px] font-normal text-neutral-dark-1 md:text-neutral-dark-2">
+                  <li className="text-[16px] font-normal text-neutral-dark-1 md:text-neutral-dark-2">
                     Knowledge of HTML, CSS, and JavaScript is a plus
                   </li>
                 </ul>
@@ -133,73 +133,73 @@ const JobDetails = () => {
         </div>
         <div className="col-span-1 flex flex-col gap-5 self-start xl:ml-[6rem]">
           <div className="flex max-w-[282px] flex-col items-start justify-start rounded-sm border border-stroke-colors-stroke px-6 py-6 sm:max-w-full">
-            <h5 className="mb-3 text-[18px] font-semibold text-neutral-dark-1 md:md:text-neutral-dark-2">
+            <h5 className="mb-3 text-[16px] font-semibold text-neutral-dark-1 md:md:text-neutral-dark-2">
               About the job
             </h5>
 
             <div className="mb-2 flex flex-col">
-              <p className="text-[16px] text-neutral-dark-1 md:text-neutral-dark-2">
+              <p className="text-[14px] text-neutral-dark-1 md:text-neutral-dark-2">
                 <b> Deadline</b>
               </p>
-              <p className="text-[16px] md:text-neutral-dark-2">
+              <p className="text-[14px] md:text-neutral-dark-2">
                 July 19th, 2024
               </p>
             </div>
 
             <div className="mb-2 flex flex-col">
-              <p className="text-[16px] text-neutral-dark-1 md:text-neutral-dark-2">
+              <p className="text-[14px] text-neutral-dark-1 md:text-neutral-dark-2">
                 <b>Work mode</b>
               </p>
-              <p className="text-[16px] md:text-neutral-dark-2">On-site</p>
+              <p className="text-[14px] md:text-neutral-dark-2">On-site</p>
             </div>
 
             <div className="mb-2 flex flex-col">
-              <p className="text-[16px] text-neutral-dark-1 md:text-neutral-dark-2">
+              <p className="text-[14px] text-neutral-dark-1 md:text-neutral-dark-2">
                 <b>Job-type</b>
               </p>
-              <p className="text-[16px] md:text-neutral-dark-2">Internship</p>
+              <p className="text-[14px] md:text-neutral-dark-2">Internship</p>
             </div>
 
             <div className="mb-2 flex flex-col">
-              <p className="text-[16px] text-neutral-dark-1 md:text-neutral-dark-2">
+              <p className="text-[14px] text-neutral-dark-1 md:text-neutral-dark-2">
                 <b>Experience level</b>
               </p>
-              <p className="text-[16px] md:text-neutral-dark-2">2-3years</p>
+              <p className="text-[14px] md:text-neutral-dark-2">2-3years</p>
             </div>
 
             <div className="mb-2 flex flex-col">
-              <p className="text-[16px] text-neutral-dark-1 md:text-neutral-dark-2">
+              <p className="text-[14px] text-neutral-dark-1 md:text-neutral-dark-2">
                 <b>Salary</b>
               </p>
-              <p className="text-[16px] md:text-neutral-dark-2">$500k-$900k</p>
+              <p className="text-[14px] md:text-neutral-dark-2">$500k-$900k</p>
             </div>
           </div>
 
           <div className="flex max-w-[282px] flex-col items-start justify-start rounded-[6px] border border-stroke-colors-stroke px-6 py-6 sm:max-w-full">
-            <h5 className="mb-3 text-[18px] font-semibold text-neutral-dark-1 md:text-neutral-dark-2">
+            <h5 className="mb-3 text-[16px] font-semibold text-neutral-dark-1 md:text-neutral-dark-2">
               What we offer
             </h5>
             <ul className="styled-list list-disc pl-6">
-              <li className="mb-3 text-[16px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
+              <li className="mb-3 text-[14px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
                 Competitive salary and benefits
               </li>
-              <li className="mb-3 text-[16px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
+              <li className="mb-3 text-[14px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
                 Flexible working hours and remote work options
               </li>
-              <li className="mb-3 text-[16px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
+              <li className="mb-3 text-[14px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
                 Opportunities for professional growth and development
               </li>
-              <li className="mb-3 text-[16px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
+              <li className="mb-3 text-[14px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
                 A collaborative and inclusive work environment
               </li>
             </ul>
           </div>
           <div className="flex max-w-[282px] flex-col items-start justify-start rounded-[6px] border border-stroke-colors-stroke px-6 py-6 sm:max-w-full">
-            <h5 className="mb-3 text-[18px] font-semibold text-neutral-dark-1 md:text-neutral-dark-2">
+            <h5 className="mb-3 text-[16px] font-semibold text-neutral-dark-1 md:text-neutral-dark-2">
               How to Apply
             </h5>
 
-            <p className="text-[16px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
+            <p className="text-[14px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
               Send your CV and cover letter to this email{" "}
               <span className="font-medium text-neutral-dark-1 md:text-neutral-dark-2">
                 hng123@gmail.com

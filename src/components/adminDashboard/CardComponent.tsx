@@ -3,7 +3,7 @@ import { FC } from "react";
 
 interface CardProperties {
   title: string;
-  value: string;
+  value: string | number;
   description: string;
   icon: string;
 }
@@ -16,7 +16,7 @@ const CardComponent: FC<CardProperties> = ({
 }) => {
   return (
     <>
-      <div className="rounded-xl bg-white px-[24px] pb-[28px] pt-[23px] shadow-spread ring-1 ring-border">
+      <div className="w-full rounded-xl bg-white px-[24px] pb-[28px] pt-[23px] shadow-spread ring-1 ring-border">
         <div className="flex flex-row items-center justify-between">
           <h4 className="text-sm font-[500] leading-[16.94px] text-neutral-dark-2">
             {title}

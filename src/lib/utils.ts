@@ -1,9 +1,44 @@
 import { clsx, type ClassValue } from "clsx";
+import moment from "moment";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+export function getCurrentDateTime() {
+  const now = new Date();
+
+  // Using moment to format the date and time
+  const date_added = moment(now).format("YYYY-MM-DD");
+  const time = moment(now).format("HH:mm:ss");
+
+  return {
+    date_added,
+    time,
+  };
+}
+export const generateId = (length: number = 14): string => {
+  let result = "";
+  const characters = "ab_cdefghijklmnopqrstuvwxyz0123456789";
+  const charactersLength = characters.length;
+
+  for (let index = 0; index < length; index++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+
+  return result;
+};
+
+/**
+ * Returns a simulated promise that resolves after the specified number of seconds.
+ *
+ * @param sec The number of seconds to wait before resolving the promise.
+ * @returns A promise that resolves after the specified number of seconds.
+ */
+export const simulateDelay = (sec: number) =>
+  new Promise((resolve) => setTimeout(resolve, sec * 1000));
+
 export function formatPrice(
   price: number | string,
   options: {
