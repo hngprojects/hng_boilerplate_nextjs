@@ -110,7 +110,7 @@ export const SubscriptionConfirmation = ({
                   className="w-[100%] rounded-[8px] bg-[#F97316] py-[16px] text-[#FAFAFA] md:w-fit md:px-[2rem]"
                   href={link}
                 >
-                  Learn More About us
+                  Proceed to Account
                 </Button>
               </Container>
             </Section>
@@ -119,7 +119,7 @@ export const SubscriptionConfirmation = ({
 
         <Section className="mt-[40px]">
           <Container className="max-w-[680px] px-[48px] md:px-0">
-            <Text className="font-[600] text-[#121212]">
+            <Text className="my-0 font-[600] text-[#121212]">
               Regards,
               <br />
               Boilerplate

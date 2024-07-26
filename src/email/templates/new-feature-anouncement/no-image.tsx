@@ -44,7 +44,7 @@ export const NewFeatureAnnouncement = ({
       <Preview>Subscription Confirmation</Preview>
       <Section className="py-[56px]">
         <Container className="max-w-[680px] px-[48px] md:px-0">
-          <Section className="my-[40px] flex flex-col items-center justify-center">
+          <Section className="mb-[40px] flex flex-col items-center justify-center">
             <Heading
               as="h5"
               className="my-0 mb-[56px] text-center text-[24px] leading-[28px] text-[#121212]"
@@ -129,7 +129,7 @@ export const NewFeatureAnnouncement = ({
         </Section>
         <Section className="mt-[40px]">
           <Container className="max-w-[680px] px-[48px] md:px-0">
-            <Text className="font-[600] text-[#121212]">
+            <Text className="my-0 font-[600] text-[#121212]">
               Regards,
               <br />
               Boilerplate

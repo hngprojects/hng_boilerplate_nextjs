@@ -1,8 +1,8 @@
 import {
-  Button,
   Container,
   Heading,
   Img,
+  Link,
   Section,
   Text,
 } from "@react-email/components";
@@ -16,6 +16,7 @@ interface AccountLinkExpiredProperties {
   description?: string;
   descriptionOne?: string;
   link?: string;
+  upgradeLink?: string;
 }
 
 export const AccountLinkExpired = ({
@@ -24,6 +25,7 @@ export const AccountLinkExpired = ({
   image = "",
   description = "",
   descriptionOne = "",
+  upgradeLink = "",
   link = "",
 }: AccountLinkExpiredProperties) => {
   return (
@@ -56,26 +58,44 @@ export const AccountLinkExpired = ({
             </Section>
           </Section>
         </Container>
-
-        <Section className="text-center">
-          <Section className="mt-[32px] w-[100%] text-center">
-            <Container className="mb-[40px] max-w-[680px] px-[48px] md:px-0">
-              <Button
-                target={"_blank"}
-                className="w-[100%] rounded-[8px] bg-[#F97316] py-[16px] text-[#FAFAFA] md:w-fit md:px-[2rem]"
-                href={link}
-              >
-                Send Another Active Link
-              </Button>
-            </Container>
-          </Section>
-        </Section>
-        <Section className="mt-[28px]">
+        <section className="item-center mx-auto mt-[32px] flex max-w-[679px] flex-col justify-center gap-[20px] px-[48px] md:flex-row">
+          <Link href={link} target="_blank">
+            <button
+              style={{ boxShadow: "none" }}
+              className="border-1 w-[100%] rounded-[8px] border border-[#F97316] bg-[#F97316] px-[2rem] py-[16px] text-[#FAFAFA] shadow-none md:w-fit"
+            >
+              Send Another Active Link
+            </button>
+          </Link>
+          <Link href={upgradeLink} target="_blank">
+            <button
+              style={{ boxShadow: "none" }}
+              className="border-1 w-[100%] rounded-[8px] border border-[#F97316] bg-[transparent] py-[16px] text-[#F97316] shadow-none md:w-fit md:px-[2rem]"
+            >
+              Upgrade Plan
+            </button>
+          </Link>
+        </section>
+        <Section className="my-[56px]">
           <Container className="max-w-[680px] px-[48px] md:px-0">
             <Text className="my-0 font-[600] text-[#121212]">
               Regards,
               <br />
               Boilerplate
+            </Text>
+          </Container>
+        </Section>
+        <Section>
+          <Container className="max-w-[680px] px-[48px] md:px-0">
+            <Text className="my-0 text-justify text-[14px] leading-[19.36px] text-[#525252] md:text-[16px]">
+              If you have questions, please visit our{" "}
+              <Link className="text-[#F67316]">FAQs</Link>, or email us at{" "}
+              <Link className="text-[#F67316]">help@boilerplate.com</Link>. Our
+              team can answer questions about your subscription status. To
+              unsubscribe from future subscription renewal reminders,{" "}
+              <Link className="font-[600] text-[#525252] text-[#F67316] underline">
+                click here.
+              </Link>
             </Text>
           </Container>
         </Section>
@@ -85,14 +105,15 @@ export const AccountLinkExpired = ({
 };
 
 AccountLinkExpired.PreviewProps = {
-  title: "Activation Link Expired",
+  title: "Subscription Renewal Disabled",
   username: "John Doe",
   image: "https://imgur.com/5KobknJ.png",
   link: "/",
+  upgradeLink: "/",
   description:
-    "We noticed that your account activation link has expired. For your security, activation links are only valid for a specific time period.",
+    "    As requested, your next subscription renewal for Bi-monthly Features has been disabled. You will continue to enjoy benefits of this subscription until 17th August,",
   descriptionOne:
-    "Don’t worry, you can easily request a new activation link by clicking the button below:",
+    "We are so sad to see you go. However, if you change your mind, you can always reactivate your subscription or upgrade your subscription plan. 2024.",
 } as AccountLinkExpiredProperties;
 
 export default AccountLinkExpired;

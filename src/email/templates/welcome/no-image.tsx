@@ -33,12 +33,8 @@ export default function WelcomeEmail(properties: IProperties) {
   return (
     <Layout>
       <Section className="w-full max-w-[678px] py-12 md:py-14">
-        {/* <Section className="mx-auto flex items-center justify-center">
-          <Img src={image} alt="marketing" className="h-[178px] w-[178px]" />
-        </Section> */}
-
         <Container className="max-w-[680px] px-[48px] md:px-0">
-          <Section className="my-[40px] flex flex-col items-center justify-center">
+          <Section className="flex flex-col items-center justify-center">
             <Section className="mb-[56px] text-center">
               <Heading
                 as="h5"
@@ -125,7 +121,7 @@ export default function WelcomeEmail(properties: IProperties) {
 
         <Section className="">
           <Container className="max-w-[680px] px-[48px] md:px-0">
-            <Text className="font-[600] text-[#121212]">
+            <Text className="my-0 font-[600] text-[#121212]">
               Regards,
               <br />
               Boilerplate

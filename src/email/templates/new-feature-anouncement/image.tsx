@@ -133,7 +133,7 @@ export const NewFeatureAnnouncement = ({
         </Section>
         <Section className="mt-[40px]">
           <Container className="max-w-[680px] px-[48px] md:px-0">
-            <Text className="font-[600] text-[#121212]">
+            <Text className="my-0 font-[600] text-[#121212]">
               Regards,
               <br />
               Boilerplate

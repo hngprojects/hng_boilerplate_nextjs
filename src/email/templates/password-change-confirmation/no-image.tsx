@@ -27,7 +27,7 @@ export const PasswordReset = ({
     <Layout>
       <Section className="py-[56px]">
         <Container className="max-w-[680px] md:px-0">
-          <Section className="mt-[56px] flex flex-col items-center justify-center">
+          <Section className="flex flex-col items-center justify-center">
             <Heading
               as="h5"
               className="my-0 mb-[56px] text-center text-[24px] leading-[28px] text-[#121212]"
@@ -66,7 +66,7 @@ export const PasswordReset = ({
         </Container>
         <Section className="mt-[28px]">
           <Container className="max-w-[680px] px-[48px] md:px-0">
-            <Text className="font-[600] text-[#121212]">
+            <Text className="my-0 font-[600] text-[#121212]">
               Regards,
               <br />
               Boilerplate

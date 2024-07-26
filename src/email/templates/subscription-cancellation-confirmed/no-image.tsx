@@ -37,7 +37,7 @@ export const SubscriptionConfirmation = ({
         <Section className="mx-auto flex items-center justify-center"></Section>
 
         <Container className="my-0 max-w-[680px] px-[48px] md:px-0">
-          <Section className="my-[40px] flex flex-col items-center justify-center">
+          <Section className="mb-[40px] flex flex-col items-center justify-center">
             <Heading
               as="h5"
               className="my-0 mb-[56px] text-center text-[24px] leading-[28px] text-[#121212]"
@@ -115,7 +115,7 @@ export const SubscriptionConfirmation = ({
 
         <Section className="mt-[40px]">
           <Container className="max-w-[680px] px-[48px] md:px-0">
-            <Text className="font-[600] text-[#121212]">
+            <Text className="my-0 font-[600] text-[#121212]">
               Regards,
               <br />
               Boilerplate
