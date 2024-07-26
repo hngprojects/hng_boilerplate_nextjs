@@ -98,19 +98,7 @@ const ProductTable = () => {
             <TableHead className="w-[316px]">Name</TableHead>
             <TableHead>Price</TableHead>
             <TableHead>Total Sold</TableHead>
-
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <TableHead className="cursor-pointer">Status</TableHead>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuLabel className="sr-only">
-                  Actions
-                </DropdownMenuLabel>
-                <DropdownMenuItem>Draft</DropdownMenuItem>
-                <DropdownMenuItem>Active</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <TableHead>Status</TableHead>
             <TableHead>Created at</TableHead>
             <TableHead>Action</TableHead>
           </TableRow>
