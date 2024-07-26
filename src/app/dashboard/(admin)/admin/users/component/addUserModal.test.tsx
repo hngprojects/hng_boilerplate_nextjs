@@ -20,10 +20,10 @@ describe("addProductModal", () => {
 
     // Check if the modal title and description are rendered
     await expect(
-      screen.findByText("Add new product"),
+      screen.findByText("Add new user"),
     ).resolves.toBeInTheDocument();
     await expect(
-      screen.findByText("Create a new product"),
+      screen.findByText("Create a new user"),
     ).resolves.toBeInTheDocument();
   });
 
