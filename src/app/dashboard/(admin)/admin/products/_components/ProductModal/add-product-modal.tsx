@@ -28,7 +28,7 @@ const AddProductModal = ({ children }: AddProductModalProperties) => {
             Create a new product
           </DialogDescription>
         </DialogHeader>
-        <div className="flex flex-col gap-3 px-2">
+        <div className="flex flex-col gap-2 px-2">
           <div className="items-left flex flex-col gap-1">
             <Label
               htmlFor="productname"
@@ -57,47 +57,51 @@ const AddProductModal = ({ children }: AddProductModalProperties) => {
               className="col-span-3 inline-flex h-10 items-start justify-start gap-2 border bg-transparent text-primary focus:outline-none focus:ring-1 focus:ring-primary focus-visible:ring-1 focus-visible:ring-primary focus-visible:ring-offset-0"
             />
           </div>
-          <div className="items-left flex flex-col gap-1">
-            <Label
-              htmlFor="price"
-              className="left-0 text-left text-sm font-medium text-slate-900"
-            >
-              Price
-            </Label>
-            <Input
-              type="number"
-              id="price"
-              required
-              placeholder="e.g 2000.00"
-              className="col-span-3 inline-flex h-10 items-start justify-start gap-2"
-            />
+          <div className="grid w-full grid-cols-2 gap-2">
+            <div className="items-left flex flex-col gap-1">
+              <Label
+                htmlFor="price"
+                className="left-0 text-left text-sm font-medium text-slate-900"
+              >
+                Price
+              </Label>
+              <Input
+                type="number"
+                id="price"
+                required
+                placeholder="e.g 2000.00"
+                className="col-span-3 inline-flex h-10 items-start justify-start gap-2"
+              />
+            </div>
+            <div className="items-left flex flex-col gap-1">
+              <Label
+                htmlFor="quantity"
+                className="left-0 text-left text-sm font-medium text-slate-900"
+              >
+                Quantity
+              </Label>
+              <Input
+                type="number"
+                id="quantity"
+                required
+                placeholder="e.g 1000"
+                className="col-span-3 inline-flex h-10 items-start justify-start gap-2"
+              />
+            </div>
           </div>
-          <div className="items-left flex flex-col gap-1">
-            <Label
-              htmlFor="quantity"
-              className="left-0 text-left text-sm font-medium text-slate-900"
-            >
-              Quantity
-            </Label>
-            <Input
-              type="number"
-              id="quantity"
-              required
-              placeholder="e.g 1000"
-              className="col-span-3 inline-flex h-10 items-start justify-start gap-2"
-            />
-          </div>
-          <div className="items-left flex flex-col gap-1">
-            <span className="left-0 text-left text-sm font-medium text-slate-900">
-              Upload Images
-            </span>
-            <Button className="w-48" variant={"subtle"} size={"sm"}>
-              Choose file No file choosen
-            </Button>
-            <div className="mt-4 inline-flex h-[56px] items-start justify-start gap-[15px]">
-              <div className="h-14 w-14 rounded bg-neutral-50" />
-              <div className="h-14 w-14 rounded bg-neutral-50" />
-              <div className="h-14 w-14 rounded bg-neutral-50" />
+          <div className="grid w-full grid-cols-2 gap-2">
+            <div className="flex flex-col gap-1">
+              <span className="left-0 text-left text-sm font-medium text-slate-900">
+                Upload Images
+              </span>
+              <Button className="w-48" variant={"subtle"} size={"sm"}>
+                Choose file No file choosen
+              </Button>
+            </div>
+            <div className="flex w-full items-end justify-start gap-[15px]">
+              <div className="h-8 w-8 rounded bg-neutral-50" />
+              <div className="h-8 w-8 rounded bg-neutral-50" />
+              <div className="h-8 w-8 rounded bg-neutral-50" />
             </div>
           </div>
         </div>
