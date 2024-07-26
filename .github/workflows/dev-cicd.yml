@@ -65,4 +65,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            ./deploy_dev.sh next
+            ./deploy_dev.sh next 
