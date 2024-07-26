@@ -5,6 +5,13 @@ import { CirclePlus, Filter } from "lucide-react";
 import CardComponent from "~/components/adminDashboard/CardComponent";
 import { cardData } from "~/components/adminDashboard/cardData";
 import { Button } from "~/components/common/common-button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "~/components/ui/dropdown-menu";
 import AddProductModal from "./_components/ProductModal/add-product-modal";
 import ProductTable from "./_components/ProductTable/product-table";
 
@@ -33,10 +40,19 @@ const page = () => {
           </p>
         </div>
         <div className="ml-0 flex w-full items-center justify-start gap-[10px] md:justify-end lg:ml-auto lg:w-fit">
-          <Button className="inline-flex h-10 items-center justify-center rounded border border-slate-300 bg-transparent p-2.5 text-base text-neutral-600 shadow-none hover:border-primary hover:text-primary">
-            <Filter />
-            Filter
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button className="inline-flex h-10 items-center justify-center rounded border border-slate-300 bg-transparent p-2.5 text-base text-neutral-600 shadow-none hover:border-primary hover:text-primary">
+                <Filter />
+                Filter
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel className="sr-only">Actions</DropdownMenuLabel>
+              <DropdownMenuItem>Draft</DropdownMenuItem>
+              <DropdownMenuItem>Active</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <AddProductModal>
             <Button className="inline-flex h-10 items-center justify-center bg-primary">
               <CirclePlus />
