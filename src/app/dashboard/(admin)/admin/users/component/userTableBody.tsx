@@ -40,10 +40,10 @@ const UserTableBody = () => {
                     />
                   </div>
                   <div>
-                    <h3 className="text-base font-[500] leading-6 text-neutral-dark-2">
+                    <h3 className="text-sm font-[500] leading-6 text-neutral-dark-2">
                       {fullName}
                     </h3>
-                    <div className="text-sm font-normal lowercase leading-4 text-neutral-dark-1">
+                    <div className="text-xs font-normal lowercase leading-4 text-neutral-dark-1">
                       {email}
                     </div>
                   </div>
@@ -51,66 +51,38 @@ const UserTableBody = () => {
               </td>
 
               <td
-                className={`gap-2 whitespace-nowrap p-4 text-left text-base font-normal capitalize leading-4 text-neutral-dark-2`}
+                className={`gap-2 whitespace-nowrap p-4 text-left text-sm font-normal capitalize leading-4 text-neutral-dark-2`}
               >
                 {phone}
               </td>
 
               <td
-                className={`whitespace-nowrap p-4 text-left text-base font-normal capitalize leading-4 text-neutral-dark-2`}
+                className={`whitespace-nowrap p-4 text-left text-sm font-normal capitalize leading-4 text-neutral-dark-2`}
               >
                 {date}
               </td>
 
               <td
-                className={`whitespace-nowrap p-4 text-left text-base font-normal capitalize leading-4 text-neutral-dark-2`}
+                className={`whitespace-nowrap p-4 text-left text-sm font-normal capitalize leading-4 text-neutral-dark-2`}
               >
                 <div className="flex items-center gap-1">
                   {status.active && (
                     <>
                       <div className="h-3 w-3 rounded-full bg-success"></div>
-                      <div>Active</div>
+                      <div className="text-sm">Active</div>
                     </>
                   )}
 
                   {!status.active && (
                     <>
                       <div className="h-3 w-3 rounded-full bg-error"></div>
-                      <div>Inactive</div>
+                      <div className="text-sm">Inactive</div>
                     </>
                   )}
                 </div>
               </td>
 
               <td className="whitespace-nowrap p-4 text-center text-base font-normal capitalize leading-4 text-neutral-dark-2">
-                {/* <div className="relative" ref={menuReference}>
-                  <button
-                    onClick={() => {
-                      setShowDropdown(userData[index]);
-                      setOpen(!open);
-                    }}
-                    className="outline-none"
-                  >
-                    <EllipsisVertical size={16} color="#09090b" />
-                  </button>
-
-                  <DropdownMenu
-                    position="md:right-0 right-ful"
-                    width="w-[100px]"
-                    active={showDropdown?.fullName === fullName && open}
-                  >
-                    <Link href={"#"} className="outline-none">
-                      <button className="block w-full px-2 py-1.5 text-left text-sm font-normal leading-5 text-neutral-dark-2">
-                        Edit
-                      </button>
-                    </Link>
-
-                    <button className="block w-full px-2 py-1.5 text-left text-sm font-normal leading-5 text-neutral-dark-2">
-                      Delete
-                    </button>
-                  </DropdownMenu>
-                </div> */}
-
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button
