@@ -33,7 +33,7 @@ jobs:
         with:
           version: 9
       - run: pnpm install
-      - uses: reviewdog/action-eslint@v1
+      - uses: reviewdog/action-eslint@v1 
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           fail_on_error: true
