@@ -4,6 +4,7 @@ import {
   Container,
   Heading,
   Img,
+  Preview,
   Section,
   Text,
 } from "@react-email/components";
@@ -11,47 +12,41 @@ import {
 import Layout from "../_components/layout/layout";
 
 interface NewFeatureAnnouncementProperties {
-  title?: string;
-  username?: string;
-  logo?: string;
-  star?: string;
-  marketing?: string;
-  featureName?: string;
-  learnMoreLink?: string;
-  featureDescription?: string;
-  benefitOne?: string;
-  benefitTwo?: string;
-  linkedinIcon?: string;
-  redditIcon?: string;
-  tiktokIcon?: string;
-  igIcon?: string;
-  xIcon?: string;
+  title: string;
+  username: string;
+  star: string;
+  featureName: string;
+  link: string;
+  featureDescription: string;
+  benefitOne: string;
+  benefitTwo: string;
 }
 
 export const NewFeatureAnnouncement = ({
-  title = "",
-  username = "",
-  star = "",
-  featureName = "",
-  learnMoreLink = "",
-  featureDescription = "",
-  benefitOne = "",
-  benefitTwo = "",
+  title,
+  username,
+  star,
+  featureName,
+  link,
+  featureDescription,
+  benefitOne,
+  benefitTwo,
 }: NewFeatureAnnouncementProperties) => {
   return (
     <Layout>
-      <Section>
+      <Preview>t{username}, our latest features.</Preview>
+      <Section className="my-[56px]">
         <Container className="max-w-[680px] px-[48px] md:px-0">
-          <Section className="my-[40px] flex flex-col items-center justify-center">
+          <Section className="mb-[40px] flex flex-col items-center justify-center">
             <Heading
               as="h5"
-              className="my-0 text-center text-[24px] leading-[28px] text-[#121212]"
+              className="my-0 mb-[56px] text-center text-[24px] leading-[28px] text-[#121212]"
             >
               {title} <br /> {featureName}
             </Heading>
 
             <Section>
-              <Text className="text-[16px] font-[600] text-[#121212] md:text-[18px]">
+              <Text className="my-0 text-[16px] font-[600] text-[#121212] md:text-[18px]">
                 Hi {username},
               </Text>
               <Text className="text-justify text-[14px] leading-[19.36px] text-[#525252] md:text-[16px]">
@@ -74,7 +69,7 @@ export const NewFeatureAnnouncement = ({
                     <Img src={star} alt="star" className="h-[24px] w-[24px]" />
                   </div>
                   <div>
-                    <span className="font-[500] text-[#121212]">
+                    <span className="font-[600] text-[#121212]">
                       Efficient Team Collaboration:{" "}
                     </span>
                     <span className="leading-[19.36px] text-[#525252]">
@@ -87,7 +82,7 @@ export const NewFeatureAnnouncement = ({
                     <Img src={star} alt="star" className="h-[24px] w-[24px]" />
                   </div>
                   <div>
-                    <span className="font-[500] text-[#121212]">
+                    <span className="font-[600] text-[#121212]">
                       Improved Accountability:{" "}
                     </span>
                     <span className="leading-[19.36px] text-[#525252]">
@@ -113,21 +108,21 @@ export const NewFeatureAnnouncement = ({
 
         <Section className="text-center">
           <Container className="mb-[40px] max-w-[680px] px-[48px] md:px-0">
-            <Text className="text-left leading-[16.94px] md:text-[16px]">
+            <Text className="text-center leading-[16.94px] md:text-left md:text-[16px]">
               Want to explore all the details? Click the button below to dive
               into our comprehensive guide
             </Text>
           </Container>
           <Button
             className="rounded-[8px] bg-[#F97316] px-[2rem] py-[16px] text-[#FAFAFA]"
-            href={learnMoreLink}
+            href={link}
           >
             Learn More
           </Button>
         </Section>
         <Section className="mt-[40px]">
           <Container className="max-w-[680px] px-[48px] md:px-0">
-            <Text className="font-[600] text-[#121212]">
+            <Text className="my-0 font-[600] text-[#121212]">
               Regards,
               <br />
               Boilerplate
@@ -142,7 +137,6 @@ export const NewFeatureAnnouncement = ({
 NewFeatureAnnouncement.PreviewProps = {
   title: "Introducing Our Latest Feature:",
   username: "John Doe",
-  logo: "https://i.imgur.com/9W6zN9U.png",
   star: "https://i.imgur.com/bmprMwh.png",
   featureName: "Boilerplate Pro",
   featureDescription:
@@ -151,7 +145,7 @@ NewFeatureAnnouncement.PreviewProps = {
     "Collaborative Spaces allow you to create dedicated areas for teamwork. Whether it’s a project, brainstorming session, or ongoing discussion, team members can collaborate seamlessly within these spaces.",
   benefitTwo:
     "With Collaborative Spaces, accountability becomes clearer. Each team member’s contributions are visible within the shared space.",
-  learnMoreLink: "",
-} as NewFeatureAnnouncementProperties;
+  link: "www.boilerplate.com",
+} satisfies NewFeatureAnnouncementProperties;
 
 export default NewFeatureAnnouncement;

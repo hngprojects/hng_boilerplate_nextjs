@@ -2,7 +2,7 @@ import { Container, Link } from "@react-email/components";
 
 const EmailFooter: React.FC = () => {
   return (
-    <section className="mx-auto flex max-w-[792px] items-center justify-center bg-[#E1D6D666] px-[48px] py-[32px] text-left font-sans text-sm text-gray-600 md:px-0">
+    <section className="mx-[48px] mx-auto flex max-w-[792px] items-center justify-center bg-[#E1D6D666] py-[32px] text-left font-sans text-sm text-gray-600 md:px-0">
       <Container className="max-w-[680px]">
         <div>
           <section className="mb-6 mt-2 flex flex-wrap justify-center gap-8 text-center">
