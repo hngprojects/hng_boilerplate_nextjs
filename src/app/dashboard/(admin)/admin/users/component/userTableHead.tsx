@@ -15,7 +15,7 @@ const UserTableHead = () => {
             return (
               <th
                 key={index}
-                className={`whitespace-nowrap p-4 text-left text-base font-normal capitalize leading-4 text-neutral-dark-2 ${data === "name" ? "w-[300px]" : data === "action" ? "w-[86px]" : "w-[202px]"}`}
+                className={`whitespace-nowrap p-4 text-left text-sm font-normal capitalize leading-4 text-neutral-dark-2 ${data === "name" ? "w-[300px]" : data === "action" ? "w-[86px]" : "w-[202px]"}`}
               >
                 {data}
               </th>
