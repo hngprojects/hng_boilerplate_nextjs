@@ -1,26 +1,23 @@
-name: Team Deployment
+name: Matrix Environment Print
 
 on:
-  workflow_run:
-    workflows: ["Build and Push"]
-    types:
-      - completed
+  push:
+    branches:
+      - dev
 
 jobs:
-  team_deployment:
-    if: github.event.repository.fork == false
+  print_values:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        environment: [kimiko-golang]
+        environment: [kimiko-golang, cyborgs-java]
 
     steps:
-      - name: Deploy to ${{ matrix.environment }} environment
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets["HOST_" + matrix.environment] }}
-          username: ${{ secrets["USERNAME_" + matrix.environment] }}
-          password: ${{ secrets["PASSWORD_" + matrix.environment] }}
-          script: |
-            cd hng_boilerplate_nextjs
-            ./scripts/team_deploy.sh ${{ matrix.environment }} ${{ vars.PORT }}
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Print secrets and environment variables
+        run: |
+          echo "Environment: ${{ matrix.environment }}"
+          echo "Username: ${{ secrets.USERNAME }}"
+          echo "Port: ${{ vars.PORT }}"
