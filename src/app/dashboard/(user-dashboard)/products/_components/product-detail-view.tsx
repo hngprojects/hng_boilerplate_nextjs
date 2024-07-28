@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
-import { useTransition } from "react";
+import { useEffect, useTransition } from "react";
 
 import BlurImage from "~/components/miscellaneous/blur-image";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
@@ -46,6 +46,12 @@ const ProductDetailView = () => {
       setIsDelete(false);
     });
   };
+  useEffect(() => {
+    document.title = isOpen
+      ? `Product - ${product?.name}`
+      : "Products - HNG Boilerplate";
+  }, [isOpen, product?.name]);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -65,7 +71,7 @@ const ProductDetailView = () => {
             )}
           >
             <p className="text-center text-sm">
-              Are you sure you want to delete this <b>{product?.name}</b>?
+              Are you sure you want to delete <b>{product?.name}</b>?
             </p>
             <div className="flex w-full items-center justify-center gap-x-2">
               <Button
