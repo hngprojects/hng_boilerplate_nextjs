@@ -78,7 +78,7 @@ const ProductBodyShadcn = ({
             )}
           </span>
         </TableCell>
-        <TableCell>{product.product_id}</TableCell>
+        <TableCell className="uppercase">{product.product_id}</TableCell>
         <TableCell
           role="button"
           onClick={() => {
