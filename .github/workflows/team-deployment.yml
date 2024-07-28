@@ -16,14 +16,15 @@ jobs:
 
     environment:
       name: ${{ matrix.environment }}
+      url: ${{ secrets.URL }}
 
     steps:
       - name: Deploy to ${{ matrix.environment }} environment
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets["HOST_" + matrix.environment] }}
-          username: ${{ secrets["USERNAME_" + matrix.environment] }}
-          password: ${{ secrets["PASSWORD_" + matrix.environment] }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
           script: |
             cd hng_boilerplate_nextjs
             ./scripts/team_deploy.sh ${{ matrix.environment }} ${{ vars.PORT }}
