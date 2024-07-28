@@ -20,8 +20,7 @@ fi
 TEAM_NAME=$1
 PORT=$2
 
+cd "$(git rev-parse --show-toplevel)"
 git pull origin dev
-docker pull hngdevops/nextjs-boilerplate:dev
-docker stop $TEAM_NAME || true
-docker rm $TEAM_NAME -f || true
-docker run -d --name "$TEAM_NAME" -p "$PORT:3000" hngdevops/nextjs-boilerplate:dev
+docker compose -f docker/team-deploy/docker-compose.yml up -d 
+# docker run -d --name "$TEAM_NAME" -p "$PORT:3000" hngdevops/nextjs-boilerplate:dev
