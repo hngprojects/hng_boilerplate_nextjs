@@ -23,5 +23,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
+            whoami
             cd hng_boilerplate_nextjs
+            pwd
             ./scripts/team_deploy.sh kimiko-golang ${{ vars.PORT }}
