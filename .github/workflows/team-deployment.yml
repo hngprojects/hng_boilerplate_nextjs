@@ -19,5 +19,5 @@ jobs:
       - name: Print secrets and environment variables
         run: |
           echo "Environment: ${{ matrix.environment }}"
-          echo "Username: ${{ secrets["USERNAME_" + matrix.environment] }}"
-          echo "Port: ${{ vars["PORT_"KIMIKO_GOLANG }}"
+          echo "Username: ${{ secrets["USERNAME_KIMIKO_GOLANG" }}"
+          echo "Port: ${{ vars["PORT_KIMIKO_GOLANG" }}"
