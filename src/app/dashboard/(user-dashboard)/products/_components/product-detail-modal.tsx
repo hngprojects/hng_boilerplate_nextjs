@@ -154,7 +154,7 @@ const ProductDetailModal = () => {
             <div className="flex w-full flex-col gap-y-4">
               <p className="flex w-full items-center justify-between">
                 <span className="text-neutral-dark-1">Product ID</span>
-                <span className="text-neutral-dark-2">
+                <span className="uppercase text-neutral-dark-2">
                   {product?.product_id}
                 </span>
               </p>

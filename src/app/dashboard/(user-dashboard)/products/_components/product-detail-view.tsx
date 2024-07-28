@@ -110,7 +110,9 @@ const ProductDetailView = () => {
           <div className="flex flex-col gap-y-4">
             <p className="flex w-full items-center justify-between text-sm lg:text-base">
               <span className="text-neutral-dark-1">Product ID</span>
-              <span className="text-neutral-dark-2">{product?.product_id}</span>
+              <span className="uppercase text-neutral-dark-2">
+                {product?.product_id}
+              </span>
             </p>
             <p className="flex w-full items-center justify-between text-sm lg:text-base">
               <span className="text-neutral-dark-1">Category</span>

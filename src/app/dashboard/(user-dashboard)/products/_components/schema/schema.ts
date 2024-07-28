@@ -5,7 +5,7 @@ export const NewProductSchema = z.object({
   description: z
     .string()
     .min(3, { message: "Description is required" })
-    .max(200, { message: "Description is too long" }),
+    .max(160, { message: "Description is too long" }),
   category: z.string().min(3, { message: "Category is required" }),
   price: z
     .string()
@@ -35,10 +35,13 @@ export const NewProductSchema = z.object({
         message: "Quantity must be a positive number",
       },
     ),
-  media: z.object({
-    url: z.string().min(1, { message: "Media is required" }),
-    id: z.string().min(1, { message: "Media is required" }),
-  }),
+  media: z.object(
+    {
+      url: z.string(),
+      id: z.string(),
+    },
+    { message: "Media is required" },
+  ),
 });
 
 export type NewProduct = z.infer<typeof NewProductSchema>;
