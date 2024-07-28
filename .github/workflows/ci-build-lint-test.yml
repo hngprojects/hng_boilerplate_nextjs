@@ -1,19 +1,10 @@
-
-name: Development CI/CD Pipeline
+name: CI Build, Lint, and Test
 
 on:
-  push:
-    branches:
-      - dev
-    paths-ignore:
-      - .github/workflows/**
-
-concurrency:
-  group: ${{ github.ref }}
-  cancel-in-progress: true
+  pull_request
 
 jobs:
-  build:
+  build_lint_test:
     runs-on: ubuntu-latest
 
     steps:
@@ -52,17 +43,3 @@ jobs:
 
       - name: Run tests
         run: pnpm run test:ci
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - name: Deploy to dev environment
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          script: |
-            ./deploy_dev.sh next 
