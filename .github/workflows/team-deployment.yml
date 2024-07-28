@@ -1,9 +1,10 @@
 name: Team Deployment
 
 on:
-  push:
-    branches:
-      - team-deploy
+  workflow_run:
+    workflows: ["Build and Push"]
+    types:
+      - completed
 
 jobs:
   team_deployment:
