@@ -2,12 +2,12 @@ name: Coverage Report
 
 on:
   workflow_run:
-    workflows: ["Build, Lint, and Test"]
+    workflows: ["build-lint-test"]
     types:
       - completed
 
 jobs:
-  report-test:
+  coverage_report:
     runs-on: ubuntu-latest
 
     permissions:

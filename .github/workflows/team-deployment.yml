@@ -18,8 +18,12 @@ jobs:
       name: ${{ matrix.environment }}
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Print Environment
-        run: echo "Current environment is ${{ matrix.environment }}"
+      - name: Deploy to ${{ matrix.environment }} environment
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets["HOST_" + matrix.environment] }}
+          username: ${{ secrets["USERNAME_" + matrix.environment] }}
+          password: ${{ secrets["PASSWORD_" + matrix.environment] }}
+          script: |
+            cd hng_boilerplate_nextjs
+            ./scripts/team_deploy.sh ${{ matrix.environment }} ${{ vars.PORT }}
