@@ -18,9 +18,8 @@ fi
 
 # Assign arguments to variables for clarity
 TEAM_NAME=$1
-PORT=$2
+export PORT=$2
 
 cd "$(git rev-parse --show-toplevel)"
 git pull origin dev
-docker compose -f docker/team-deploy/docker-compose.yml up -d 
-# docker run -d --name "$TEAM_NAME" -p "$PORT:3000" hngdevops/nextjs-boilerplate:dev
+docker compose --project-name $TEAM_NAME -f docker/team-deploy/docker-compose.yml up -d
