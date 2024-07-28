@@ -1,0 +1,30 @@
+name: Team Deployment
+
+on:
+  push:
+    branches:
+      - team-deploy
+    paths-ignore:
+      - .github/workflows/**
+
+jobs:
+  team_deployment:
+    if: github.event.repository.fork == false
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [kimiko, cyborgs, starlight]
+
+    environment:
+      name: ${{ matrix.environment }}
+      url: ${{ secrets.URL }}
+
+    steps:
+      - name: Deploy to ${{ matrix.environment }} environment
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            ./deploy_${{ matrix.environment }}.sh
