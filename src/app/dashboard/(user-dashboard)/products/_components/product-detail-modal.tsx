@@ -116,7 +116,7 @@ const ProductDetailModal = () => {
               )}
             >
               <p className="text-center text-sm">
-                Are you sure you want to delete this <b>{product?.name}</b>?
+                Are you sure you want to delete <b>{product?.name}</b>?
               </p>
               <div className="flex w-full items-center justify-center gap-x-2">
                 <Button

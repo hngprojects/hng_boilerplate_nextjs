@@ -1,5 +1,4 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect } from "react";
 
 import { Button } from "~/components/ui/button";
 import { toast } from "~/components/ui/use-toast";
@@ -48,10 +47,6 @@ const ProductDeleteModal = () => {
     updateProductId("null");
   };
 
-  useEffect(() => {
-    document.body.style.overflow = isDelete ? "hidden" : "unset";
-  }, [isDelete]);
-
   return (
     <>
       <div
@@ -89,7 +84,7 @@ const ProductDeleteModal = () => {
             }}
             transition={{ duration: 0.2 }}
             className={cn(
-              "fixed left-1/2 top-1/2 z-[99999] grid w-full min-w-[350px] max-w-[349px] -translate-x-1/2 -translate-y-1/2 transform-gpu flex-col place-items-center items-center min-[360px]:max-w-[480px] sm:max-w-[403px] lg:hidden",
+              "fixed left-1/2 top-1/2 z-[99999] grid w-full min-w-[350px] max-w-[349px] -translate-x-1/2 -translate-y-1/2 transform-gpu flex-col place-items-center items-center min-[360px]:max-w-[480px] sm:max-w-[403px]",
             )}
           >
             <div
@@ -101,7 +96,7 @@ const ProductDeleteModal = () => {
               )}
             >
               <p className="text-center text-sm">
-                Are you sure you want to delete this <b>{product?.name}</b>?
+                Are you sure you want to delete <b>{product?.name}</b>?
               </p>
               <div className="flex w-full items-center justify-center gap-x-2">
                 <Button

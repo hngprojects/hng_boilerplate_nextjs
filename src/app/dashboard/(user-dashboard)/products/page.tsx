@@ -68,7 +68,7 @@ const ProductPage = () => {
   useEffect(() => {
     document.body.style.overflow =
       isNewModal || isActionModal || isDelete ? "hidden" : "unset";
-  }, [isNewModal, isActionModal]);
+  }, [isNewModal, isActionModal, isDelete]);
 
   return (
     <div className="relative flex w-full flex-col gap-y-8 pt-8">
