@@ -7,7 +7,7 @@ on:
       - completed
 
 jobs:
-  report-test:
+  coverage_report:
     runs-on: ubuntu-latest
 
     permissions:
