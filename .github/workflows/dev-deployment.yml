@@ -2,7 +2,7 @@ name: Dev Deployment
 
 on:
   workflow_run:
-    workflows: ["Build, Lint, and Test"]
+    workflows: ["Build and Push"]
     types:
       - completed
 
