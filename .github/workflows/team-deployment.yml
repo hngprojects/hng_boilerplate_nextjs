@@ -44,3 +44,79 @@ jobs:
           script: |
             cd hng_boilerplate_nextjs
             ./scripts/team_deploy.sh cyborgs-java ${{ vars.PORT }}
+
+  cyborgs-python:
+    if: github.event.repository.fork == false
+    runs-on: ubuntu-latest
+
+    environment:
+      name: "cyborgs-python"
+      url: ${{ vars.URL }}
+
+    steps:
+      - name: Deploy to cyborgs-python environment
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd hng_boilerplate_nextjs
+            ./scripts/team_deploy.sh cyborgs-python ${{ vars.PORT }}
+
+  bulldozer-php:
+    if: github.event.repository.fork == false
+    runs-on: ubuntu-latest
+
+    environment:
+      name: "bulldozer-php"
+      url: ${{ vars.URL }}
+
+    steps:
+      - name: Deploy to bulldozer-php environment
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd hng_boilerplate_nextjs
+            ./scripts/team_deploy.sh bulldozer-php ${{ vars.PORT }}
+
+  starlight-nestjs:
+    if: github.event.repository.fork == false
+    runs-on: ubuntu-latest
+
+    environment:
+      name: "starlight-nestjs"
+      url: ${{ vars.URL }}
+
+    steps:
+      - name: Deploy to starlight-nestjs environment
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd hng_boilerplate_nextjs
+            ./scripts/team_deploy.sh starlight-nestjs ${{ vars.PORT }}
+
+  panther-expressjs:
+    if: github.event.repository.fork == false
+    runs-on: ubuntu-latest
+
+    environment:
+      name: "panther-expressjs"
+      url: ${{ vars.URL }}
+
+    steps:
+      - name: Deploy to panther-expressjs environment
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd hng_boilerplate_nextjs
+            ./scripts/team_deploy.sh panther-expressjs ${{ vars.PORT }}
