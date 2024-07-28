@@ -28,6 +28,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: docker/development
+          context: ../../
+          dockerfile: docker/development/Dockerfile
           push: true
           tags: hngdevops/nextjs-boilerplate:dev
