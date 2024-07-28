@@ -1,4 +1,4 @@
-name: Kimiko Golang Deployment
+name: Team Deployment
 
 on:
   workflow_run:
@@ -7,7 +7,7 @@ on:
       - completed
 
 jobs:
-  team_deployment:
+  kimiko-golang:
     if: github.event.repository.fork == false
     runs-on: ubuntu-latest
 
@@ -23,7 +23,24 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            whoami
             cd hng_boilerplate_nextjs
-            pwd
             ./scripts/team_deploy.sh kimiko-golang ${{ vars.PORT }}
+
+  cyborgs-java:
+    if: github.event.repository.fork == false
+    runs-on: ubuntu-latest
+
+    environment:
+      name: "cyborgs-java"
+      url: ${{ vars.URL }}
+
+    steps:
+      - name: Deploy to cyborgs-java environment
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd hng_boilerplate_nextjs
+            ./scripts/team_deploy.sh cyborgs-java ${{ vars.PORT }}
