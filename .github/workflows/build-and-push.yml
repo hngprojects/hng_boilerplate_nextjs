@@ -11,11 +11,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Create .env file
-        run: |
-          cp .env.sample .env
-
+        
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
