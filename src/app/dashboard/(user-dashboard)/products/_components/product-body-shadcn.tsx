@@ -36,7 +36,7 @@ const ProductBodyShadcn = ({
 
   useEffect(() => {
     if (!isActionModal || !modalReference.current) return;
-
+    modalReference.current.scrollIntoView({ behavior: "smooth" });
     // handle click outside modal
     const handleOutsideClick = (event: MouseEvent) => {
       if (
