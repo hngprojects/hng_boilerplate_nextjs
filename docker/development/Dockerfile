@@ -20,6 +20,7 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+RUN cp .env.sample .env
 
 # Build the application
 RUN corepack enable pnpm && pnpm run build
