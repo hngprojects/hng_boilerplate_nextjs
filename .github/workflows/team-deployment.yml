@@ -12,19 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        environment: [kimiko-golang, cyborgs-java]
-
-    environment:
-      name: ${{ matrix.environment }}
-      url: ${{ secrets["URL"] }}
+        environment: [kimiko-golang]
 
     steps:
       - name: Deploy to ${{ matrix.environment }} environment
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets["HOST"] }}
-          username: ${{ secrets["USERNAME"] }}
-          password: ${{ secrets["PASSWORD"] }}
+          host: ${{ secrets["HOST_" + matrix.environment] }}
+          username: ${{ secrets["USERNAME_" + matrix.environment] }}
+          password: ${{ secrets["PASSWORD_" + matrix.environment] }}
           script: |
             cd hng_boilerplate_nextjs
             ./scripts/team_deploy.sh ${{ matrix.environment }} ${{ vars.PORT }}
