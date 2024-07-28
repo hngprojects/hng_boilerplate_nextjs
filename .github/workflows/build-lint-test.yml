@@ -1,4 +1,4 @@
-name: build-lint-test
+name: Build, Lint and Test
 
 on:
   pull_request
@@ -11,35 +11,35 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # - name: Set up Node.js
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: "20"
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
 
-      # - name: Cache pnpm modules
-      #   uses: actions/cache@v3
-      #   with:
-      #     path: ~/.pnpm-store
-      #     key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-pnpm-
+      - name: Cache pnpm modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
 
-      # - name: Install pnpm
-      #   uses: pnpm/action-setup@v4
-      #   with:
-      #     version: 9
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
 
-      # - name: Install dependencies
-      #   run: pnpm install
+      - name: Install dependencies
+        run: pnpm install
 
-      # - name: Lint code
-      #   run: pnpm lint
+      - name: Lint code
+        run: pnpm lint
 
-      # - name: Build email
-      #   run: pnpm email:build
+      - name: Build email
+        run: pnpm email:build
 
-      # - name: Build project
-      #   run: pnpm build
+      - name: Build project
+        run: pnpm build
 
-      # - name: Run tests
-      #   run: pnpm run test:ci
+      - name: Run tests
+        run: pnpm run test:ci
