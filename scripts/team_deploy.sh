@@ -22,4 +22,6 @@ PORT=$2
 
 git pull origin dev
 docker pull hngdevops/nextjs-boilerplate:dev
+docker stop hngdevops/nextjs-boilerplate:dev
+docker rm hngdevops/nextjs-boilerplate:dev -f
 docker run -d --name "$TEAM_NAME" -p "$PORT:3000" hngdevops/nextjs-boilerplate:dev
