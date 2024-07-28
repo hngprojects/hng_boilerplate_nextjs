@@ -2,7 +2,7 @@ name: Coverage Report
 
 on:
   workflow_run:
-    workflows: ["Build, Lint, and Test"]
+    workflows: [Build, Lint, and Test]
     types:
       - completed
 
