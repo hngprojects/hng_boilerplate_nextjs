@@ -15,7 +15,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "20"
-
+          
+      - name: Create .env file
+        run: |
+          cp .env.sample .env
+        
       - name: Cache pnpm modules
         uses: actions/cache@v3
         with:
