@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - team-deploy
-    paths-ignore:
-      - .github/workflows/**
 
 jobs:
   team_deployment:
