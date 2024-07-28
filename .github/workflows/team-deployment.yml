@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        environment: [kimiko, cyborgs, starlight]
+        environment: [kimiko-golang, cyborgs-java]
 
     environment:
       name: ${{ matrix.environment }}
