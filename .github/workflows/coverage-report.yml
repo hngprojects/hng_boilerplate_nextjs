@@ -1,8 +1,8 @@
-name: PR Checks - Report Coverage
+name: Coverage Report
 
 on:
   workflow_run:
-    workflows: ["PR Checks"]
+    workflows: ["CI Build, Lint, and Test"]
     types:
       - completed
 
@@ -19,6 +19,6 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           run-id: ${{ github.event.workflow_run.id }}
-      - name: "Report Coverage"
+      - name: "Coverage Report"
         if: always()
         uses: davelosert/vitest-coverage-report-action@v2
