@@ -1,11 +1,10 @@
 name: Dev Deployment
 
 on:
-  push:
-    branches:
-      - dev
-    paths-ignore:
-      - .github/workflows/**
+  workflow_run:
+    workflows: ["Build, Lint, and Test"]
+    types:
+      - completed
 
 jobs:
   deploy_to_dev:
