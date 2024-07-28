@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        environment: [kimiko-golang, cyborgs-java]
+        environment: [KIMIKO_GOLANG, CYBORGS_JAVA]
 
     steps:
       - name: Checkout code
@@ -19,5 +19,5 @@ jobs:
       - name: Print secrets and environment variables
         run: |
           echo "Environment: ${{ matrix.environment }}"
-          echo "Username: ${{ secrets.USERNAME }}"
-          echo "Port: ${{ vars.PORT_KIMIKO_GOLANG }}"
+          echo "Username: ${{ secrets["USERNAME_" + matrix.environment] }}"
+          echo "Port: ${{ vars["PORT_"KIMIKO_GOLANG }}"
