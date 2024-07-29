@@ -25,6 +25,24 @@ jobs:
           script: |
             cd hng_boilerplate_nextjs
             ./scripts/team_deploy.sh kimiko-golang ${{ vars.PORT }}
+  kimiko-cs:
+    if: github.event.repository.fork == false
+    runs-on: ubuntu-latest
+
+    environment:
+      name: "kimiko-cs"
+      url: ${{ vars.URL }}
+
+    steps:
+      - name: Deploy to kimiko-cs environment
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd hng_boilerplate_nextjs
+            ./scripts/team_deploy.sh kimiko-cs ${{ vars.PORT }}
 
   cyborgs-java:
     if: github.event.repository.fork == false
