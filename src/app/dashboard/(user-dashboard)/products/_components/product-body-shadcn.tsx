@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { AnimatePresence, motion } from "framer-motion";
 import { Edit2, MoreVertical, Trash } from "lucide-react";
-import { useRouter } from "next-nprogress-bar";
 import { useEffect, useRef } from "react";
 
 import BlurImage from "~/components/miscellaneous/blur-image";
@@ -34,7 +33,6 @@ const ProductBodyShadcn = ({
     setIsDelete,
   } = useProductModal();
   const modalReference = useRef<HTMLDivElement>(null);
-  const router = useRouter();
 
   useEffect(() => {
     if (!isActionModal || !modalReference.current) return;
@@ -63,10 +61,6 @@ const ProductBodyShadcn = ({
     setIsActionModal(false);
     updateProductId(id);
     setIsDelete(true);
-  };
-  const handleEditAction = (id: string) => {
-    setIsActionModal(false);
-    router.push(`/dashboard/products/${id}`);
   };
 
   return (
@@ -190,7 +184,6 @@ const ProductBodyShadcn = ({
                 <div className="flex flex-col">
                   <Button
                     variant="ghost"
-                    onClick={() => handleEditAction(product.product_id)}
                     size={"sm"}
                     className={cn(
                       "flex h-8 cursor-pointer items-center justify-start gap-x-2 px-2 py-1 text-xs min-[500px]:text-sm",
