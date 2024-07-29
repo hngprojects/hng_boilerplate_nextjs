@@ -29,7 +29,7 @@ import { Textarea } from "~/components/ui/textarea";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { useProducts } from "~/hooks/admin-product/use-products.persistence";
 import { cn, generateId, getCurrentDateTime, simulateDelay } from "~/lib/utils";
-import { CATEGORIES } from "../data/categories.moct";
+import { CATEGORIES } from "../data/categories.mock";
 import ProjectLogo from "./form-images/project-logo";
 import { NewProductSchema } from "./schema/schema";
 
