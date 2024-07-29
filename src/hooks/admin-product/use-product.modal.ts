@@ -11,6 +11,8 @@ type ModalProperties = {
   isOpenFilterModal: boolean;
   isNewModal: boolean;
   setIsNewModal: (isNewModal: boolean) => void;
+  isActionModal: boolean;
+  setIsActionModal: (isActionModal: boolean) => void;
 };
 
 export const useProductModal = create<ModalProperties>()((set) => ({
@@ -19,6 +21,8 @@ export const useProductModal = create<ModalProperties>()((set) => ({
   isDelete: false,
   isOpenFilterModal: false,
   isNewModal: false,
+  isActionModal: false,
+  setIsActionModal: (isActionModal) => set({ isActionModal }),
   setIsNewModal: (isNewModal) => set({ isNewModal }),
   updateFilterModal: (isOpenFilterModal) =>
     set({ isOpenFilterModal: isOpenFilterModal }),

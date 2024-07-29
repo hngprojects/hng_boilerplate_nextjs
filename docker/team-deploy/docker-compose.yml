@@ -1,0 +1,7 @@
+services:
+  frontend:
+    image: hngdevops/nextjs-boilerplate:dev
+    ports:
+      - "${PORT}:3000"
+    volumes:
+      - ../../.env:/app/.env
