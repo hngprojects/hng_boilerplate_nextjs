@@ -41,8 +41,8 @@ const SettingsPage: React.FC = () => {
 
   return (
     <div className="relative">
-      <div className="flex w-[826px] flex-col gap-4 px-[36px] py-[30px]">
-        <form
+      <form className="flex w-[826px] flex-col gap-4 px-[36px] py-[30px]">
+        <div
           className="flex w-full flex-col gap-6 text-sm"
           onSubmit={(value) => value.preventDefault()}
         >
@@ -135,31 +135,36 @@ const SettingsPage: React.FC = () => {
           <div className="flex w-full flex-col gap-4">
             <div className="flex w-full flex-col gap-2">
               <label className="font-medium">Contact Social links</label>
-              {socialLinks.map((link, index) => (
-                <div key={index} className="relative w-full">
-                  <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-                    <Image
-                      src="/settings/link-icon.svg"
-                      width={24}
-                      height={24}
-                      alt="Link icon"
-                    />
-                  </div>
-                  <input
-                    type="text"
-                    value={link}
-                    placeholder="Link to social platform"
-                    className="w-full rounded-md border border-border px-3 py-2 pl-12 placeholder:text-sm placeholder:text-slate-400"
-                    onChange={(value) =>
-                      setSocialLinks((previousLinks) =>
-                        previousLinks.map((l, index_) =>
-                          index_ === index ? value.target.value : l,
-                        ),
-                      )
-                    }
+              <div className="relative w-full">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3">
+                  <Image
+                    src="/settings/facebook.svg"
+                    width={24}
+                    height={24}
+                    alt="Link icon"
                   />
                 </div>
-              ))}
+                <input
+                  type="text"
+                  placeholder="Link to social platform"
+                  className="w-full rounded-md border border-border px-3 py-2 pl-12 placeholder:text-sm placeholder:text-slate-400"
+                />
+              </div>
+              <div className="relative w-full">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3">
+                  <Image
+                    src="/settings/google.svg"
+                    width={24}
+                    height={24}
+                    alt="Link icon"
+                  />
+                </div>
+                <input
+                  type="text"
+                  placeholder="Link to social platform"
+                  className="w-full rounded-md border border-border px-3 py-2 pl-12 placeholder:text-sm placeholder:text-slate-400"
+                />
+              </div>
             </div>
             <div className="flex items-center gap-4">
               <CustomButton variant="outline" onClick={addSocialLink}>
@@ -167,14 +172,14 @@ const SettingsPage: React.FC = () => {
               </CustomButton>
             </div>
           </div>
-        </form>
+        </div>
         <div className="flex justify-end gap-3">
           <CustomButton variant="outline">Cancel</CustomButton>
           <CustomButton variant="primary" onClick={handleSaveChanges}>
             Save Changes
           </CustomButton>
         </div>
-      </div>
+      </form>
 
       {isModalOpen && (
         <div className="fixed inset-0 z-20 flex items-center justify-center bg-black bg-opacity-50">
