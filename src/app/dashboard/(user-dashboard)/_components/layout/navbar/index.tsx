@@ -51,12 +51,12 @@ const UserNavbar = () => {
       role="navbar"
     >
       <div className="flex items-center justify-between gap-2">
-        <div className="flex w-full max-w-[470px] justify-between gap-1">
-          {/* <Menu className="h-[18px] w-[18px] text-neutral-dark-2 transition-all duration-300 hover:text-neutral-dark-2/50" /> */}
-          <div className="flex w-full max-w-[200px] items-center justify-start gap-1">
+        <div className="flex gap-[50px]">
+          <div className="flex w-full items-center justify-start gap-[15px]">
+            <Menu className="h-[30px] w-[30px] text-neutral-dark-2 transition-all duration-300 hover:text-neutral-dark-2/50" />
             <DashboardLogo />
           </div>
-          <div className="hidden w-full max-w-[290px] items-center justify-between gap-1 lg:flex">
+          <div className="hidden items-center justify-between gap-[22px] lg:flex">
             {navlinks.map((item, index) => (
               <Link
                 key={index}
@@ -68,7 +68,7 @@ const UserNavbar = () => {
             ))}
           </div>
         </div>
-        <div className="flex w-full max-w-[440px] items-center justify-between gap-2 bg-[#FDFDFD]">
+        <div className="flex items-center justify-between gap-2 bg-[#FDFDFD]">
           <div className="flex h-10 items-center justify-between gap-2 rounded-[6px] border border-border bg-white px-3 text-sm font-normal placeholder:text-sm">
             <SearchIcon
               data-testid="search"
