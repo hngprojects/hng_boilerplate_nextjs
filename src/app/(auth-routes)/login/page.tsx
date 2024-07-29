@@ -89,7 +89,7 @@ const LoginPage = () => {
   }, []);
   return (
     <div className="flex min-h-full items-center justify-center px-4 py-10 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8">
+      <div className="w-full max-w-[34.5rem] space-y-8">
         <div className="text-center">
           <h1 className="font-inter text-neutralColor-dark-2 mb-5 text-center text-2xl font-semibold leading-tight">
             Login

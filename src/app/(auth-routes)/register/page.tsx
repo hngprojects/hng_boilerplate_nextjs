@@ -53,8 +53,37 @@ const SignUp = () => {
     })();
   };
 
+  const [data, setData] = useState(null);
   const handleSubmit = () => {
     form.handleSubmit(handleFormSubmit)();
+    // useEffect(() => {
+    const { fullname, email, password } = form.control._formValues;
+    const names = fullname.split(" ");
+    const first_name = names[0];
+    const last_name = names[1];
+    // console.log(form.control._formValues);
+    async function fetchData() {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}api/v1/auth/register`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          method: "POST",
+          body: JSON.stringify({
+            email,
+            first_name,
+            last_name,
+            password,
+          }),
+        },
+      );
+      const result = await response.json();
+      setData(result);
+    }
+
+    fetchData();
+    // // }, []);
   };
 
   return (
