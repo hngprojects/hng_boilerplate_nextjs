@@ -58,161 +58,169 @@ const SignUp = () => {
   };
 
   return (
-    <div>
-      <div className="flex flex-col items-center gap-2">
-        <h1 className="text-2xl font-bold">Sign Up</h1>
-        <p className="my-4 text-gray-500">
-          Create an account to get started with us.
-        </p>
-      </div>
-      <div className="flex flex-col justify-center space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
-        <Button className="flex items-center rounded-md border border-gray-300 bg-white px-4 py-4 text-gray-700 shadow-sm hover:bg-gray-50">
-          <Image
-            src="/images/google.svg"
-            width={20}
-            height={20}
-            alt="Goggle"
-            className="mr-2"
-          />
-          Sign in with Google
-        </Button>
-        <Button className="flex items-center rounded-md border border-gray-300 bg-white p-4 px-4 text-gray-700 shadow-sm hover:bg-gray-50">
-          <Image
-            src="/images/facebook.svg"
-            width={20}
-            height={20}
-            alt="Facebook"
-            className="mr-2"
-          />
-          Sign in with Facebook
-        </Button>
-      </div>
-      <div className="mx-auto py-4 md:w-2/4">
-        <Form {...form}>
-          <form
-            className="space-y-8"
-            onSubmit={(event) => {
-              event.preventDefault();
-              handleSubmit();
-            }}
-          >
-            <FormField
-              control={form.control}
-              name="fullname"
-              render={({ field }) => (
-                <FormItem className="flex flex-col gap-4">
-                  <div className="flex flex-col gap-2">
-                    <FormLabel>Fullname</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Enter your fullname"
-                        {...field}
-                        value={field.value || ""}
-                        onChange={field.onChange}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </div>
-                </FormItem>
-              )}
+    <div className="flex flex-col items-center">
+      <div className="gap- flex w-full max-w-[34.5rem] flex-col gap-6">
+        <div className="flex flex-col items-center gap-4">
+          <h1 className="text-2xl font-bold">Sign Up</h1>
+          <p className="text-gray-500">
+            Create an account to get started with us.
+          </p>
+        </div>
+        <div className="flex h-16 flex-col justify-center space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
+          <Button className="flex !h-full w-full items-center rounded-md border border-gray-300 bg-white px-4 py-4 text-gray-700 shadow-sm hover:bg-gray-50">
+            <Image
+              src="/images/google.svg"
+              width={20}
+              height={20}
+              alt="Goggle"
+              className="mr-2"
             />
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem className="flex flex-col gap-2">
-                  <div className="flex flex-col gap-2">
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Enter your email address"
-                        {...field}
-                        value={field.value || ""}
-                        onChange={field.onChange}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </div>
-                </FormItem>
-              )}
+            Sign in with Google
+          </Button>
+          <Button className="flex !h-full w-full items-center rounded-md border border-gray-300 bg-white p-4 px-4 text-gray-700 shadow-sm hover:bg-gray-50">
+            <Image
+              src="/images/facebook.svg"
+              width={20}
+              height={20}
+              alt="Facebook"
+              className="mr-2"
             />
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem className="flex flex-col gap-2">
-                  <div className="flex flex-col gap-2">
-                    <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Enter your password"
-                        type="password"
-                        {...field}
-                        value={field.value || ""}
-                        onChange={field.onChange}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </div>
-                </FormItem>
-              )}
-            />
-            <Button type="submit" className="w-full" onClick={handleSubmit}>
-              Create Account
-            </Button>
-            <DialogDemo open={open} onOpenChanged={setOpen}>
-              <DialogContent
-                aria-labelledby="dialog-title"
-                aria-describedby="dialog-description"
-                className="flex w-full flex-col items-center gap-4"
+            Sign in with Facebook
+          </Button>
+        </div>
+        <div className="flex flex-col">
+          <Form {...form}>
+            <form
+              className="space-y-8"
+              onSubmit={(event) => {
+                event.preventDefault();
+                handleSubmit();
+              }}
+            >
+              <FormField
+                control={form.control}
+                name="fullname"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-2">
+                      <FormLabel>Fullname</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Enter your fullname"
+                          {...field}
+                          value={field.value || ""}
+                          onChange={field.onChange}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </div>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2">
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Enter your email address"
+                          {...field}
+                          value={field.value || ""}
+                          onChange={field.onChange}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </div>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2">
+                      <FormLabel>Password</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Enter your password"
+                          type="password"
+                          {...field}
+                          value={field.value || ""}
+                          onChange={field.onChange}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </div>
+                  </FormItem>
+                )}
+              />
+              <Button
+                type="submit"
+                className="!h-16 w-full"
+                onClick={handleSubmit}
               >
-                <DialogTitle className="text-xl font-bold text-[#0F172A]">
-                  Sign Up
-                </DialogTitle>
-                <div className="flex flex-col items-center">
-                  <p className="text-xs text-gray-600">
-                    Choose your sign-up method:
+                Create Account
+              </Button>
+              <DialogDemo open={open} onOpenChanged={setOpen}>
+                <DialogContent
+                  aria-labelledby="dialog-title"
+                  aria-describedby="dialog-description"
+                  className="flex w-full flex-col items-center gap-4"
+                >
+                  <DialogTitle className="text-xl font-bold text-[#0F172A]">
+                    Sign Up
+                  </DialogTitle>
+                  <div className="flex flex-col items-center">
+                    <p className="text-xs text-gray-600">
+                      Choose your sign-up method:
+                    </p>
+                    <ul className="flex list-disc flex-col items-center text-xs text-gray-600">
+                      <li>
+                        Use the temporary sign-in code sent to your mail or
+                      </li>
+                      <li>Continue with email and password</li>
+                    </ul>
+                  </div>
+                  <p className="text-xs">
+                    Please paste (or type) your 6-digit code:{" "}
                   </p>
-                  <ul className="flex list-disc flex-col items-center text-xs text-gray-600">
-                    <li>Use the temporary sign-in code sent to your mail or</li>
-                    <li>Continue with email and password</li>
-                  </ul>
-                </div>
-                <p className="text-xs">
-                  Please paste (or type) your 6-digit code:{" "}
-                </p>
-                <InputOTP maxLength={6}>
-                  {...[0, 1, 2, 3, 4, 5].map((number_) => (
-                    <InputOTPGroup key={number_}>
-                      <InputOTPSlot index={number_} />
-                    </InputOTPGroup>
-                  ))}
-                </InputOTP>
-                <Button type="submit" className="w-full">
-                  Continue
-                </Button>
-                <div className="flex flex-col items-center">
-                  <p className="text-xs text-gray-500">
-                    Would you rather use email and password?
+                  <InputOTP maxLength={6}>
+                    {...[0, 1, 2, 3, 4, 5].map((number_) => (
+                      <InputOTPGroup key={number_}>
+                        <InputOTPSlot index={number_} />
+                      </InputOTPGroup>
+                    ))}
+                  </InputOTP>
+                  <Button type="submit" className="w-full">
+                    Continue
+                  </Button>
+                  <div className="flex flex-col items-center">
+                    <p className="text-xs text-gray-500">
+                      Would you rather use email and password?
+                    </p>
+                    <p className="text-xs text-orange-500">
+                      Continue with email and password
+                    </p>
+                  </div>
+                  <p className="text-center text-xs text-gray-500">
+                    We would process your data as set forth in our Terms of Use,
+                    Privacy Policy and Data Processing Agreement
                   </p>
-                  <p className="text-xs text-orange-500">
-                    Continue with email and password
-                  </p>
-                </div>
-                <p className="text-center text-xs text-gray-500">
-                  We would process your data as set forth in our Terms of Use,
-                  Privacy Policy and Data Processing Agreement
-                </p>
-              </DialogContent>
-            </DialogDemo>
-            <div className="flex justify-center gap-2">
-              <p className="text-sm">Already Have An Account?</p>
-              <Link className="text-sm text-orange-500" href="/login">
-                Login
-              </Link>
-            </div>
-          </form>
-        </Form>
+                </DialogContent>
+              </DialogDemo>
+              <div className="flex justify-center gap-2">
+                <p className="text-sm">Already Have An Account?</p>
+                <Link className="text-sm text-orange-500" href="/login">
+                  Login
+                </Link>
+              </div>
+            </form>
+          </Form>
+        </div>
       </div>
     </div>
   );
