@@ -3,15 +3,19 @@ import { unstable_noStore as noStore } from "next/cache";
 export default async function HNGTEST() {
   noStore();
   const API_URL =
-    process.env.API_URL ||
     `${process.env.API_URL}/probe` ||
+    process.env.API_URL ||
     "No API URL provided";
   let result = {} as { message?: string };
   let text = "";
   try {
     const response = await fetch(API_URL);
+    console.log(response);
     text = await response.text();
-    result = response.ok ? await response.json() : {};
+    console.log(text);
+    result = response.ok
+      ? (await response.text()) || (await response.json())
+      : {};
   } catch {
     result = {};
   }
