@@ -23,4 +23,5 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            ./deploy_dev.sh next 
+            cd hng_boilerplate_nextjs
+            ./scripts/dev_deploy.sh

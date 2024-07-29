@@ -1,12 +1,11 @@
 services:
 
-  next-dev-frontend-1:
-    build:
-      context: ../../
-      dockerfile: docker/development/Dockerfile
+  frontend:
+    image: hngdevops/nextjs-boilerplate:dev
     ports:
       - 3100:3000
-    restart: always
+    volumes:
+      - ../../.env:/app/.env
 
   # next-dev-frontend-2:
   #   build:
