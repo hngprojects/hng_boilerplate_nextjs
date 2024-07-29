@@ -4,11 +4,13 @@ import { Facebook, Instagram, Twitter } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { Breadcrumb } from "~/components/common/breadcrumb";
 import TeamCard from "~/components/common/TeamCard/teamcard";
 
 const page = () => {
   return (
     <div className="bg-white">
+      <Breadcrumb />
       <div className="mx-auto max-w-7xl px-5 pt-5 md:px-5 lg:px-10 xl:px-10">
         <h3 className="mb-2 mt-5 text-center text-[36px] font-[700] leading-[normal] md:text-[44px] md:font-[600]">
           Meet <span className="text-primary">Our </span>Team
