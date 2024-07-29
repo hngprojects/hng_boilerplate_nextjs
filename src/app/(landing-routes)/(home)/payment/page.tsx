@@ -1,98 +1,98 @@
-import React from "react";
-
- 
-
 const Payment = () => {
   return (
     <div className="mx-auto max-w-7xl px-5 py-20 md:px-10 lg:px-10 xl:px-10">
       <div className="min-h-screen p-4">
-        <div className="flex w-full flex-col md:gap-20 lg:gap- justify-between md:flex-col lg:flex-row">
+        <div className="lg:gap- flex w-full flex-col justify-between md:flex-col md:gap-20 lg:flex-row">
           {/* Summary Section */}
-          <div className="mb-5  md:mb-0 lg:mb-0 md:w-full lg:w-1/2">
-            <h2 className="text-[20px] font-normal leading-[24.2px] text-[#71717A]">Subscribe to Boilerplates</h2>
-            <p className="mt-2 mb-[18.5px] text-[36px] leading-[43.57px] font-semibold">
+          <div className="mb-5 md:mb-0 md:w-full lg:mb-0 lg:w-1/2">
+            <h2 className="text-[20px] font-normal leading-[24.2px] text-[#71717A]">
+              Subscribe to Boilerplates
+            </h2>
+            <p className="mb-[18.5px] mt-2 text-[36px] font-semibold leading-[43.57px]">
               $3000.00 <span className="text-sm text-[#71717A]">per month</span>
             </p>
             <label className="flex items-center">
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="creditCard"
-                    className="mr-2 h-[24px] w-[24px]"
-                  />
-                  <p>
-                  Pay annually  <span className="text-[#E77F1E]">Save 20%</span>
-                    </p>
-                </label>
+              <input
+                type="radio"
+                name="paymentMethod"
+                value="creditCard"
+                className="mr-2 h-[24px] w-[24px]"
+              />
+              <p>
+                Pay annually <span className="text-[#E77F1E]">Save 20%</span>
+              </p>
+            </label>
             <div className="mt-6 pt-4">
               <div>
                 <div className="flex justify-between pb-[25px]">
-                    <div>
-                  <span className="text-[16px] mb-[4px] font-medium leading-[24px]">
-                    Boilerplates Premium
-                  </span>
-                  <p className="text-[14px] max-w-[345px] text-[#71717A] leading-[16.94px]">
-                  The essentials to provide your best work for clients. Billed monthly
-                </p>
-                    </div>
+                  <div>
+                    <span className="mb-[4px] text-[16px] font-medium leading-[24px]">
+                      Boilerplates Premium
+                    </span>
+                    <p className="max-w-[345px] text-[14px] leading-[16.94px] text-[#71717A]">
+                      The essentials to provide your best work for clients.
+                      Billed monthly
+                    </p>
+                  </div>
                   <span className="text-[16px] font-medium leading-[24px]">
                     $3000.00
                   </span>
                 </div>
-                <hr  className="pb-[25px]"/>
+                <hr className="pb-[25px]" />
                 <div className="flex justify-between pb-[25px]">
-                    <div>
-                  <span className="text-[16px] mb-[4px] font-medium leading-[24px]">
-                    Subtotal
-                  </span>
-                  <p className="text-[14px] max-w-[345px] text-[#71717A] leading-[16.94px]">
-                  Add promotional code
-                </p>
-                    </div>
+                  <div>
+                    <span className="mb-[4px] text-[16px] font-medium leading-[24px]">
+                      Subtotal
+                    </span>
+                    <p className="max-w-[345px] text-[14px] leading-[16.94px] text-[#71717A]">
+                      Add promotional code
+                    </p>
+                  </div>
                   <span className="text-[16px] font-medium leading-[24px]">
                     $3000.00
                   </span>
                 </div>
                 <hr />
-               
               </div>
-              
+
               <div className="flex justify-between pt-[25px]">
-                <span className="text-[16px] mb-[4px] font-medium leading-[24px]">Total due today</span>
-                <span  className="text-[16px] mb-[4px] font-medium leading-[24px]">$3000.00</span>
+                <span className="mb-[4px] text-[16px] font-medium leading-[24px]">
+                  Total due today
+                </span>
+                <span className="mb-[4px] text-[16px] font-medium leading-[24px]">
+                  $3000.00
+                </span>
               </div>
             </div>
           </div>
 
           {/* Form Section */}
-          <div className=" md:w-full lg:w-1/2">
+          <div className="md:w-full lg:w-1/2">
             <form className="space-y-6">
-              <div className="flex  flex-col border border-[#939393] rounded-[8px] ">
+              <div className="flex flex-col rounded-[8px] border border-[#939393]">
                 <div className="px-[12px] py-[16px]">
-                <label className="flex items-center  ">
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="paypal"
-                    className="mr-2 h-[24px] w-[24px]"
-                  />
-                  PayPal
-                </label>
-
+                  <label className="flex items-center">
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      value="paypal"
+                      className="mr-2 h-[24px] w-[24px]"
+                    />
+                    PayPal
+                  </label>
                 </div>
-                 <hr  />
-                 <div className="px-[12px] py-[16px]">
-
-                <label className="flex items-center">
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="creditCard"
-                    className="mr-2 h-[24px] w-[24px]"
-                  />
-                  Debit/Credit Card
-                </label>
-                 </div>
+                <hr />
+                <div className="px-[12px] py-[16px]">
+                  <label className="flex items-center">
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      value="creditCard"
+                      className="mr-2 h-[24px] w-[24px]"
+                    />
+                    Debit/Credit Card
+                  </label>
+                </div>
               </div>
 
               <div className="space-y-4">
@@ -101,7 +101,7 @@ const Payment = () => {
                   <input
                     type="email"
                     placeholder="Johnsmith@gmail.com"
-                    className="mt-1 border-[#B2B0B0] h-[64px] w-full border rounded-[8px] p-3"
+                    className="mt-1 h-[64px] w-full rounded-[8px] border border-[#B2B0B0] p-3"
                   />
                 </label>
 
@@ -110,7 +110,7 @@ const Payment = () => {
                   <input
                     type="email"
                     placeholder="Card Information"
-                    className="mt-1 border-[#B2B0B0] h-[64px] w-full border rounded-[8px] p-3"
+                    className="mt-1 h-[64px] w-full rounded-[8px] border border-[#B2B0B0] p-3"
                   />
                 </label>
 
@@ -118,12 +118,12 @@ const Payment = () => {
                   <input
                     type="text"
                     placeholder="MM / YY"
-                    className="mt-1 h-[64px] border-[#B2B0B0] rounded-[8px] w-1/2 border p-3"
+                    className="mt-1 h-[64px] w-1/2 rounded-[8px] border border-[#B2B0B0] p-3"
                   />
                   <input
                     type="text"
                     placeholder="CVC"
-                    className="mt-1 h-[64px] border-[#B2B0B0] rounded-[8px] w-1/2 border p-3"
+                    className="mt-1 h-[64px] w-1/2 rounded-[8px] border border-[#B2B0B0] p-3"
                   />
                 </div>
 
@@ -132,14 +132,14 @@ const Payment = () => {
                   <input
                     type="text"
                     placeholder="Cardholder Name"
-                    className="mt-1 border-[#B2B0B0] h-[64px] w-full border rounded-[8px] p-3"
+                    className="mt-1 h-[64px] w-full rounded-[8px] border border-[#B2B0B0] p-3"
                   />
                 </label>
 
                 <label htmlFor="countryOrRegion" className="block">
                   <span>Country or Region</span>
                   <select
-                    className="border-[#B2B0B0] h-[64px] w-full border rounded-[8px] pl-[16px] pr-[24px]"
+                    className="h-[64px] w-full rounded-[8px] border border-[#B2B0B0] pl-[16px] pr-[24px]"
                     name=""
                     id=""
                   >
@@ -158,9 +158,14 @@ const Payment = () => {
                 </div>
 
                 <div className="max-w-[531px] pb-[32px]">
-                  <span className="leading-[23.4px] font-inter text-[13px] font-normal">
-                    Your subscription will renew automatically every month as one payment of $800. Cancel it anytime from your subscription settings. By clicking "Confirm and pay" you agree to the{" "}
-                    <span className="text-[#F97316]">Terms and Conditions.</span>
+                  <span className="font-inter text-[13px] font-normal leading-[23.4px]">
+                    Your subscription will renew automatically every month as
+                    one payment of $800. Cancel it anytime from your
+                    subscription settings. By clicking &quot;Confirm and
+                    pay&quot; you agree to the{" "}
+                    <span className="text-[#F97316]">
+                      Terms and Conditions.
+                    </span>
                   </span>
                 </div>
               </div>
