@@ -126,7 +126,7 @@ const ProductDetailsComponent = ({
         onSubmit={new_product_form.handleSubmit(onSubmit)}
         className="relative flex w-full flex-col gap-y-8 md:gap-y-10"
       >
-        <div className="sticky top-0 flex w-full items-center justify-between">
+        <div className="sticky top-0 flex w-full items-center justify-between bg-white/80 py-2 backdrop-blur">
           <div className="flex items-center gap-x-2 md:gap-x-4">
             <Link
               href={"/dashboard/products"}
