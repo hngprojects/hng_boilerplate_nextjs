@@ -5,10 +5,10 @@ import { UseFormReturn } from "react-hook-form";
 import BlurImage from "~/components/miscellaneous/blur-image";
 import { Button } from "~/components/ui/button";
 import { cn } from "~/lib/utils";
-import { NewProduct } from "../../_components/schema/schema";
+import { EditProduct } from "../../_components/schema/schema";
 
 type Properties = {
-  form: UseFormReturn<NewProduct>;
+  form: UseFormReturn<EditProduct>;
   name: string;
 };
 const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -72,12 +72,15 @@ const ProjectLogo = ({ form, name }: Properties) => {
               )}
             />
           </div>
-          <button
+          <Button
             disabled={false}
-            className="absolute right-1 top-1 rounded-full bg-black/40 p-1 backdrop-blur-xl hover:bg-red-500 disabled:cursor-not-allowed disabled:bg-black/40 md:-right-1 md:-top-1 md:bg-white/20 md:disabled:bg-white/20"
+            variant={"ghost"}
+            size={"icon"}
+            type="button"
+            className="absolute right-1 top-1 rounded-full bg-black/40 p-1 backdrop-blur-xl hover:bg-red-500 hover:text-white disabled:cursor-not-allowed disabled:bg-black/40 md:-right-1 md:-top-1 md:bg-white/20 md:disabled:bg-white/20"
           >
             <X className="size-8 min-[500px]:size-10" />
-          </button>
+          </Button>
         </div>
       ) : (
         <div

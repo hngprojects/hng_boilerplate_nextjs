@@ -20,7 +20,7 @@ const ProductDetailsContent = ({ productId }: { productId: string }) => {
     );
 
   return (
-    <div className="flex w-full flex-col gap-y-8 px-2 py-4 sm:px-4 sm:py-8 md:gap-y-16">
+    <div className="relative flex w-full flex-col gap-y-8 px-2 py-4 sm:px-4 sm:py-8 md:gap-y-12 md:pb-20">
       <div className="flex w-fit items-center gap-x-2 rounded-md border bg-[#fafafa] px-2 py-2 text-sm sm:px-4">
         <span className="font-medium text-neutral-dark-2 md:font-semibold">
           Products

@@ -148,10 +148,10 @@ const ProductBodyShadcn = ({
             )}
           >
             <span
-              className={cn("size-4 rounded-full", {
+              className={cn("size-3 rounded-full", {
                 "bg-[#6DC347]": product.status === "in_stock",
-                "bg-[#DC2626]": product.status === "low_on_stock",
-                "bg-[#EAB308]": product.status === "out_of_stock",
+                "bg-[#DC2626]": product.status === "out_of_stock",
+                "bg-[#EAB308]": product.status === "low_on_stock",
               })}
             />
             {product.status === "in_stock" && "In Stock"}
