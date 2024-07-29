@@ -47,7 +47,7 @@ const UserNavbar = () => {
   const currentPath = pathname?.split("/")[2];
   return (
     <nav
-      className="overflow-hidden border-b-[0.5px] border-border bg-background px-5 py-2.5 md:left-[220px] lg:left-[252px]"
+      className="border-b-[0.5px] border-border bg-background px-5 py-2.5 md:left-[220px] lg:left-[252px]"
       role="navbar"
     >
       <div className="flex items-center justify-between gap-2">
