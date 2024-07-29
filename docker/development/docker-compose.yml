@@ -1,6 +1,6 @@
 services:
 
-  next-dev-frontend-1:
+  frontend:
     image: hngdevops/nextjs-boilerplate:dev
     ports:
       - 3100:3000
