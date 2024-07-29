@@ -10,9 +10,7 @@ export default async function HNGTEST() {
   let text = "";
   try {
     const response = await fetch(API_URL);
-    console.log(response);
     text = await response.text();
-    console.log(text);
     result = response.ok
       ? (await response.text()) || (await response.json())
       : {};
