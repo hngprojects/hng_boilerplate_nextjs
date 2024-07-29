@@ -1,10 +1,20 @@
+"use client";
+
 import { Check } from "lucide-react";
+import { useState } from "react";
 
 import CustomButton from "~/components/common/common-button/common-button";
+import NotificationSettingSavedModal from "~/components/common/modals/notification-settings-saved";
 import NotificationHeader from "./_components/header";
 import NotificationSwitchBox from "./_components/notification-switch-box";
 
-const page = () => {
+const NotificationPage = () => {
+  const [isOpen, setOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setOpen(true);
+  };
+
   return (
     <main className="text-neutral-dark-2">
       {/* NOTIFICATION ALERT */}
@@ -99,12 +109,19 @@ const page = () => {
           isLeftIconVisible={true}
           isLoading={false}
           isDisabled={false}
+          onClick={handleOpenModal}
         >
           Save Changes
         </CustomButton>
+        <NotificationSettingSavedModal
+          show={isOpen}
+          onClose={function (): void {
+            setOpen(false);
+          }}
+        />
       </section>
     </main>
   );
 };
 
-export default page;
+export default NotificationPage;
