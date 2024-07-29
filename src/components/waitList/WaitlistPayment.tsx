@@ -102,7 +102,7 @@ const WaitlistPayment: React.FC = () => {
         </h1>
       </div>
 
-      <div className="mt-[30px] flex w-full flex-col items-center justify-center md:mt-[58px] md:w-[774px] md:flex-row md:items-center md:justify-between">
+      <div className="mt-[50px] flex w-full flex-col items-center justify-center md:mt-[58px] md:w-[774px] md:flex-row md:items-center md:justify-between">
         <div
           className="hide-scrollbar flex w-full gap-[15px] overflow-x-auto md:mr-auto md:w-auto md:flex-col md:gap-[27px]"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
