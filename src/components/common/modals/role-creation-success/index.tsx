@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import CustomButton from "~/components/common/common-button/common-button";
 import {
   Dialog,
@@ -8,6 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "~/components/ui/dialog";
+import checkmark from "../../../../../public/images/role-success-checkmark.png";
 
 interface ModalProperties {
   show: boolean;
@@ -23,18 +26,18 @@ const RoleCreationSuccessModal: React.FC<ModalProperties> = ({
       <Dialog open={show} onOpenChange={onClose}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>
-              <h2 className="mb-2 text-left text-lg font-semibold text-neutral-dark-2">
-                Create Role
-              </h2>
-            </DialogTitle>
+            <DialogTitle></DialogTitle>
             <DialogDescription>
-              <div className="flex items-center justify-center">
-                {/* Put checkmark image here */}
-                <h3>Success</h3>
-                <p>You have created a new role successfully</p>
+              <div className="flex flex-col items-center justify-center">
+                <Image src={checkmark} alt="checkmark" priority />
+                <h3 className="mt-4 text-lg font-semibold text-[#0A0A0A]">
+                  Success
+                </h3>
+                <p className="text-sm font-normal text-[#475569]">
+                  You have created a new role successfully
+                </p>
               </div>
-              <div className="mt-8">
+              <div className="mt-4">
                 <CustomButton
                   variant="primary"
                   onClick={onClose}
