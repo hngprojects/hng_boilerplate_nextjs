@@ -113,13 +113,13 @@ const NotificationPage = () => {
         >
           Save Changes
         </CustomButton>
-        <NotificationSettingSavedModal
-          show={isOpen}
-          onClose={function (): void {
-            setOpen(false);
-          }}
-        />
       </section>
+      <NotificationSettingSavedModal
+        show={isOpen}
+        onClose={function (): void {
+          setOpen(false);
+        }}
+      />
     </main>
   );
 };

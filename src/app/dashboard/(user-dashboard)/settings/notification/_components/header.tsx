@@ -4,7 +4,9 @@ interface IProperties {
 
 const NotificationHeader = ({ notificationTitle }: IProperties) => {
   return (
-    <h4 className="mb-[17px] text-[24px] font-[700]">{notificationTitle}</h4>
+    <h4 className="mb-[17px] text-[18px] font-[700] md:text-[24px]">
+      {notificationTitle}
+    </h4>
   );
 };
 
