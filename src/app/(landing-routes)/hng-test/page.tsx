@@ -4,7 +4,7 @@ export default async function HNGTEST() {
   noStore();
   const API_URL =
     process.env.API_URL ||
-    `${process.env.NEXT_PUBLIC_API_URL}/probe` ||
+    `${process.env.API_URL}/probe` ||
     "No API URL provided";
   let result = {} as { message?: string };
   let text = "";
