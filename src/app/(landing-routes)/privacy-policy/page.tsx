@@ -31,12 +31,14 @@ export default function PrivacyPolicy() {
   return (
     <main className="">
       <SubPageHero
-        heading="Privacy Policy"
-        description="Achieve your dreams with us today"
+        subheading="Privacy Policy"
+        heading="How We Protect Your Information"
+        wordToStyleIndex={2}
+        description="Find advice and answers from our support team"
       />
 
-      <div className="mx-auto max-w-7xl px-5 py-20 md:px-10 lg:px-10 xl:px-10">
-        <Breadcrumb variant="primary" />
+      <div className="mx-auto max-w-7xl px-5 py-10 md:px-10 lg:px-10 xl:px-10">
+        {/* <Breadcrumb variant="primary" /> */}
 
         <section className="my-[70px] flex max-w-full flex-col-reverse items-start justify-between pb-10 lg:flex-row">
           <PrivacyPolicyContent
