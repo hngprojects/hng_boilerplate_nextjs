@@ -54,8 +54,8 @@ const NewTemplate = () => {
     <div>
       <section className="mb-8">
         <PageHeader
-          title="Create a New Template"
-          description="Choose an option below to begin crafting your email design."
+          title="Choose In-built Template"
+          description="Explore our library of custom templates."
         />
         <Breadcrumb />
       </section>
