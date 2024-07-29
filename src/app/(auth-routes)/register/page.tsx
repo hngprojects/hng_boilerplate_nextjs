@@ -23,6 +23,7 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "~/components/ui/input-otp";
+import { useToast } from "~/components/ui/use-toast";
 import { getApiUrl } from "~/utils/getApiUrl";
 
 const formSchema = z.object({
@@ -41,19 +42,24 @@ type FormData = z.infer<typeof formSchema>;
 
 const SignUp = () => {
   const [apiUrl, setApiUrl] = useState("");
+  const { toast } = useToast();
 
   useEffect(() => {
     const fetchApiUrl = async () => {
       try {
         const url = await getApiUrl();
         setApiUrl(url);
-      } catch (error) {
-        console.error("Failed to fetch API URL:", error);
+      } catch {
+        toast({
+          title: "Error",
+          description: "Failed to fetch API URL",
+          variant: "destructive",
+        });
       }
     };
 
     fetchApiUrl();
-  }, []);
+  }, [toast]);
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -69,8 +75,6 @@ const SignUp = () => {
   };
 
   const handleSubmit = async () => {
-    console.log(apiUrl);
-
     form.handleSubmit(handleFormSubmit)();
   };
 
