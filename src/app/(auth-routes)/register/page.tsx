@@ -84,7 +84,7 @@ const SignUp = () => {
             alt="Facebook"
             className="mr-2"
           />
-          Sign in with Google
+          Sign in with Facebook
         </Button>
       </div>
       <div className="mx-auto py-4 md:w-2/4">
