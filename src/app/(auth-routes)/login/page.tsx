@@ -100,9 +100,7 @@ const LoginPage = () => {
         </div>
 
         <div className="flex flex-col justify-center space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
-          <Link
-            href={`${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/google`}
-          >
+          <Link href={`${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/google`}>
             <Button className="flex items-center rounded-md border border-gray-300 bg-white px-4 py-4 text-gray-700 shadow-sm hover:bg-gray-50">
               <Image
                 src={Google}
