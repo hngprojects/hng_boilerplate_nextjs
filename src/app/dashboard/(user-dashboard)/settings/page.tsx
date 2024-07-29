@@ -36,8 +36,8 @@ const SettingsPage: React.FC = () => {
 
   return (
     <div className="relative">
-      <form className="flex w-[826px] flex-col gap-4 px-[36px] py-[30px]">
-        <div
+      <div className="flex w-[826px] flex-col gap-4 px-[36px] py-[30px]">
+        <form
           className="flex w-full flex-col gap-6 text-sm"
           onSubmit={(value) => value.preventDefault()}
         >
@@ -162,14 +162,14 @@ const SettingsPage: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </form>
         <div className="flex justify-end gap-3">
           <CustomButton variant="outline">Cancel</CustomButton>
           <CustomButton variant="primary" onClick={handleSaveChanges}>
             Save Changes
           </CustomButton>
         </div>
-      </form>
+      </div>
 
       {isModalOpen && (
         <div className="fixed inset-0 z-20 flex items-center justify-center bg-black bg-opacity-50">
