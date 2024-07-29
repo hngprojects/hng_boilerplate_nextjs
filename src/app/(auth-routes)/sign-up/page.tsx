@@ -22,17 +22,19 @@ const page = () => {
             Create an account to get started with us.
           </p>
           <div className="mt-6 flex flex-col items-center gap-2 text-center sm:flex-row md:gap-[18px]">
-            <button className="flex w-full flex-row items-center justify-center gap-2.5 rounded-lg border border-border px-4 py-3 md:w-fit md:px-8 md:py-4">
-              <Image
-                src={"/signup/icons/flat-color-icons_google.svg"}
-                alt="Google Icon"
-                width={24}
-                height={24}
-              />
-              <p className="text-neutralColor-dark-2 font-medium">
-                Sign in with Google
-              </p>
-            </button>
+            <Link href={process.env.API_URL + "/api/v1/auth/google-login"}>
+              <button className="flex w-full flex-row items-center justify-center gap-2.5 rounded-lg border border-border px-4 py-3 md:w-fit md:px-8 md:py-4">
+                <Image
+                  src={"/signup/icons/flat-color-icons_google.svg"}
+                  alt="Google Icon"
+                  width={24}
+                  height={24}
+                />
+                <p className="text-neutralColor-dark-2 font-medium">
+                  Sign in with Google
+                </p>
+              </button>
+            </Link>
             <button className="flex w-full flex-row items-center justify-center gap-2.5 rounded-lg border border-border px-4 py-3 md:w-fit md:px-8 md:py-4">
               <Image
                 src={"/signup/icons/bi_facebook.svg"}
