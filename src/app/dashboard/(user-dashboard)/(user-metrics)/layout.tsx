@@ -34,7 +34,7 @@ export default function UserMetricsLayout({ children }: PropsWithChildren) {
           </Button>
         </div>
       </div>
-      <div className="flex-1">{children}</div>
+      <div className="flex-1 pb-9">{children}</div>
     </div>
   );
 }
