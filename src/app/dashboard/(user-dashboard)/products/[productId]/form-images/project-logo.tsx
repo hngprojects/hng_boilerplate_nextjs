@@ -5,7 +5,7 @@ import { UseFormReturn } from "react-hook-form";
 import BlurImage from "~/components/miscellaneous/blur-image";
 import { Button } from "~/components/ui/button";
 import { cn } from "~/lib/utils";
-import { NewProduct } from "../schema/schema";
+import { NewProduct } from "../../_components/schema/schema";
 
 type Properties = {
   form: UseFormReturn<NewProduct>;
