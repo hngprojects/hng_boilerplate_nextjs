@@ -14,8 +14,8 @@ In order to run this app locally, you should have the following programs install
 #### Clone this repository
 
 ```
-git clone <git@github.com:hngprojects/<repo-name>.git
-cd <repo-name>
+git clone git@github.com/hngprojects/hng_boilerplate_nextjs.git
+cd hng_boilerplate_nextjs
 ```
 
 #### Install dependencies
@@ -32,4 +32,4 @@ pnpm dev
 
 ## Contributing
 
-Please see [CONTRIBUTING](CONTRIBUTING.md)
+Please see [CONTRIBUTING](./CONTRIBUTING.md)

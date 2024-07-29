@@ -1,11 +1,11 @@
 services:
-  next-staging-frontend-1:
-    build:
-      context: ../../
-      dockerfile: docker/staging/Dockerfile
+  
+  frontend:
+    image: hngdevops/nextjs-boilerplate:staging
     ports:
       - 3200:3000
-    restart: always
+    volumes:
+      - ../../.env:/app/.env
 
   # next-staging-frontend-2:
   #   build:
@@ -13,4 +13,4 @@ services:
   #     dockerfile: docker/staging/Dockerfile
   #   ports:
   #     - 3230:3000
-  #   restart: always
+  #   restart: alwaysraven@frontend:/home/nextjs/staging/hng_boilerplate_nextjs/docker/staging$

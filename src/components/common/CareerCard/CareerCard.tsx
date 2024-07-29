@@ -1,9 +1,10 @@
-import React from "react";
+import Link from "next/link";
+import { FC } from "react";
 
 import { Card, CardContent, CardFooter } from "~/components/ui/card";
 import { Skeleton } from "~/components/ui/skeleton";
-import CustomButton from "../Button/button";
 
+//
 interface CareerCardProperties {
   isLoading: boolean;
   jobTitle?: string;
@@ -12,35 +13,38 @@ interface CareerCardProperties {
   amount?: string;
 }
 
-const CareerCard: React.FC<CareerCardProperties> = ({
+const CareerCard: FC<CareerCardProperties> = ({
   isLoading,
   jobTitle,
   location,
   description,
   amount,
 }) => {
+  //
+
   return (
     <Card className="max-w-full text-foreground">
       <CardContent className="pt-6">
         {isLoading ? (
           <div className="flex w-full max-w-6xl flex-col space-y-3">
             <Skeleton
-              className="h-32 w-full rounded-lg md:w-full"
+              className="h-20 w-full rounded-lg md:w-full"
               data-testid="skeleton"
             />
             <div className="space-y-2">
-              <Skeleton className="h-4 w-60 sm:w-96" data-testid="skeleton" />
+              <Skeleton className="h-4 w-60 md:w-full" data-testid="skeleton" />
               <Skeleton className="h-4 w-60 md:w-full" data-testid="skeleton" />
             </div>
           </div>
         ) : (
           <>
-            <h3 className="text-xl font-semibold">{jobTitle}</h3>
+            <h3 className="mb-2 text-xl font-semibold">{jobTitle}</h3>
             <p className="text-sm">{location}</p>
             <p className="mt-4 line-clamp-2 text-sm">{description}</p>
           </>
         )}
       </CardContent>
+
       <CardFooter className="flex items-center justify-between">
         {isLoading ? (
           <>
@@ -53,7 +57,12 @@ const CareerCard: React.FC<CareerCardProperties> = ({
               {amount}
               <span className="font-normal">/month</span>
             </span>
-            <CustomButton variant="primary">View Details</CustomButton>
+            <Link
+              href={`/career/${jobTitle}`}
+              className="rounded bg-primary px-4 py-2 text-[14px] text-background"
+            >
+              View Details
+            </Link>
           </>
         )}
       </CardFooter>

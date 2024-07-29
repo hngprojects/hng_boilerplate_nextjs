@@ -1,0 +1,27 @@
+const templateTableList = [
+  { id: 1, name: "Alani", image: "" },
+  { id: 2, name: "Alani1", image: "" },
+  { id: 3, name: "Alani2", image: "" },
+  { id: 4, name: "Alani3", image: "" },
+  { id: 5, name: "Alani4", image: "" },
+  { id: 6, name: "Alani5", image: "" },
+  { id: 7, name: "Alani6", image: "" },
+  { id: 8, name: "Alani7", image: "" },
+  { id: 9, name: "Alani8", image: "" },
+  { id: 10, name: "Alani9", image: "" },
+  { id: 11, name: "Alani10", image: "" },
+  { id: 12, name: "Alani11", image: "" },
+  { id: 13, name: "Alani12", image: "" },
+  { id: 14, name: "Alani13", image: "" },
+  { id: 15, name: "Alani14", image: "" },
+  { id: 16, name: "Alani15", image: "" },
+  { id: 17, name: "Alani16", image: "" },
+  { id: 18, name: "Alani17", image: "" },
+  { id: 19, name: "Alani18", image: "" },
+  { id: 20, name: "Alani19", image: "" },
+  { id: 21, name: "Alani20", image: "" },
+  { id: 22, name: "Alani21", image: "" },
+  { id: 23, name: "Alani22", image: "" },
+];
+
+export default templateTableList;

@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 import CareerCard from "./CareerCard";
 
-const CareerCardParent: React.FC = () => {
+const CareerCardParent: FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -16,15 +16,13 @@ const CareerCardParent: React.FC = () => {
   }, []);
 
   return (
-    <div className="mx-auto flex items-center justify-center px-5">
-      <CareerCard
-        isLoading={isLoading}
-        jobTitle="Frontend Developer"
-        location="San Francisco, CA"
-        description="We are seeking a talented Frontend Developer to join our dynamic team. The ideal candidate will have strong skills in React, TypeScript, and modern CSS frameworks."
-        amount="$120,000"
-      />
-    </div>
+    <CareerCard
+      isLoading={isLoading}
+      jobTitle="Frontend Developer"
+      location="San Francisco, CA"
+      description="We are seeking a talented Frontend Developer to join our dynamic team. The ideal candidate will have strong skills in React, TypeScript, and modern CSS frameworks."
+      amount="$120,000"
+    />
   );
 };
 

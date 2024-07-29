@@ -1,10 +1,11 @@
+"use client";
+
 import { Orbit, Plus } from "lucide-react";
-import React from "react";
+import { FC } from "react";
 
-import CustomButton from "~/components/common/Button/button";
-import Sidebar from "~/components/layouts/Sidebar";
+import CustomButton from "~/components/common/common-button/common-button";
 
-const Button: React.FC = () => {
+const StyleGuide: FC = () => {
   return (
     <main className="flex min-h-screen flex-col items-start gap-7 overflow-hidden p-6 sm:p-12 md:p-24">
       <h2 className="text-2xl font-semibold">Color Guides</h2>
@@ -24,23 +25,23 @@ const Button: React.FC = () => {
         <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-subtle px-4 py-4 text-foreground">
           bg-subtle, text-foreground
         </div>
-        <div className="bg-neutral-dark-1 flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
+        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-neutral-dark-1 px-4 py-4 text-background">
           bg-neutral-dark-1, text-background
         </div>
-        <div className="bg-neutral-dark-2 flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
+        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-neutral-dark-2 px-4 py-4 text-background">
           bg-neutral-dark-2, text-background
         </div>
 
-        <div className="bg-error flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
+        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-error px-4 py-4 text-background">
           bg-error, text-background
         </div>
         <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-destructive px-4 py-4 text-background">
           bg-destructive, text-background
         </div>
-        <div className="bg-warning flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
+        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-warning px-4 py-4 text-background">
           bg-warning, text-background
         </div>
-        <div className="bg-success flex w-full items-center justify-center whitespace-nowrap rounded-lg px-4 py-4 text-background">
+        <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-success px-4 py-4 text-background">
           bg-success, text-background
         </div>
         <div className="flex w-full items-center justify-center whitespace-nowrap rounded-lg border border-border px-4 py-4 text-foreground">
@@ -237,7 +238,8 @@ const Button: React.FC = () => {
               <br />
               icon<span className="text-pink-400">?: </span>React.ReactNode;
               <br />
-              children<span className="text-pink-400">?: </span>React.ReactNode;
+              children<span className="text-pink-400">?: </span>
+              React.ReactNode;
               <br />
               isLoading<span className="text-pink-400">?: </span>boolean;
               <br />
@@ -297,24 +299,8 @@ const Button: React.FC = () => {
           </div>
         </div>
       </div>
-
-      <h2 className="text-2xl font-semibold">User Dashboard Sidebar</h2>
-      <p>How to Use:</p>
-      <ul className="list-disc">
-        <li>Import: Import Sidebar from the components/layouts/sidebar.tsx</li>
-        <li>
-          This component uses next/navigation&apos;s usePathname hook,
-          compatible with Next.js app router.
-        </li>
-        <li>
-          Customization: Customize the sidebarItems array in the Sidebar
-          component to match your navigation structure.
-        </li>
-      </ul>
-
-      <Sidebar />
     </main>
   );
 };
 
-export default Button;
+export default StyleGuide;

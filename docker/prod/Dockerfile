@@ -1,4 +1,4 @@
-# Use the official Node.js image based on Alpine Linux for a smaller image size
+Use the official Node.js image based on Alpine Linux for a smaller image size
 FROM node:20-alpine AS base
 
 FROM base AS deps
@@ -53,4 +53,3 @@ ENV PORT 3000
 # server.js is created by next build from the standalone output
 # https://nextjs.org/docs/pages/api-reference/next-config-js/output
 CMD HOSTNAME="0.0.0.0" node server.js
-

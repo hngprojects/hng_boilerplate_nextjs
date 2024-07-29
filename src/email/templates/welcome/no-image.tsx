@@ -1,32 +1,148 @@
-import { Button, Head, Html, Preview, Text } from "@react-email/components";
+import {
+  Button,
+  Container,
+  Heading,
+  Img,
+  Preview,
+  Section,
+  Text,
+} from "@react-email/components";
 
-import Tailwindwrapper from "~/email/templates/_components/tailwindWrapper";
+import Layout from "../_components/layout/layout";
 
 interface IProperties {
-  name: string;
+  mainHeading: string;
+  subHeading: string;
+  welcomeMessage: string;
+  username: string;
+  offer: string;
+  link: string;
+  star: string;
 }
 
-export default function Email(properties: IProperties) {
-  const { name } = properties;
+export default function WelcomeEmail(properties: IProperties) {
+  const {
+    link,
+    star,
+    offer,
+    username,
+    mainHeading,
+    subHeading,
+    welcomeMessage,
+  } = properties;
 
   return (
-    <Html>
-      <Head />
-      <Preview>{`Welcome ${name}`}</Preview>
+    <Layout>
+      <Preview>{username}, welcome to Boilerplate.</Preview>
+      <Section className="w-full max-w-[678px] py-12 md:py-14">
+        <Container className="max-w-[680px] px-[48px] md:px-0">
+          <Section className="flex flex-col items-center justify-center">
+            <Section className="mb-[56px] text-center">
+              <Heading
+                as="h5"
+                className="my-0 text-center text-[24px] leading-[28px] text-[#121212]"
+              >
+                {mainHeading}
+              </Heading>
+              <Text className="my-[12px] text-[1rem] md:text-[18px]">
+                {subHeading}
+              </Text>
+            </Section>
 
-      <Tailwindwrapper>
-        <Text>Hi there, {name}!</Text>
-        <Button
-          href="https://example.com"
-          className="bg-black px-5 py-3 text-white"
-        >
-          Click me
-        </Button>
-      </Tailwindwrapper>
-    </Html>
+            <Section>
+              <Text className="text-[16px] font-[600] text-[#121212] md:text-[18px]">
+                Hi {username},
+              </Text>
+              <Text className="text-justify text-[14px] leading-[19.36px] text-[#525252] md:text-[16px]">
+                {welcomeMessage}
+              </Text>
+            </Section>
+
+            <Section className="">
+              <Heading
+                as="h6"
+                className="mb-[20px] mt-[16px] text-[16px] text-[#121212] md:text-[18px]"
+              >
+                Here’s what you can look forward to
+              </Heading>
+              <ul className="list-none pl-0">
+                <li className="flex items-start text-[14px] md:text-[16px]">
+                  <div className="mr-2 flex-shrink-0">
+                    <Img src={star} alt="star" className="h-[24px] w-[24px]" />
+                  </div>
+                  <div>
+                    <span className="font-[600] text-[#121212]">
+                      Exclusive Offers:{" "}
+                    </span>
+                    <span className="leading-[19.36px] text-[#525252]">
+                      {offer}
+                    </span>
+                  </div>
+                </li>
+                <li className="mt-[20px] flex items-start text-[14px] md:text-[16px]">
+                  <div className="mr-2 flex-shrink-0">
+                    <Img src={star} alt="star" className="h-[24px] w-[24px]" />
+                  </div>
+                  <div>
+                    <span className="font-[600] text-[#121212]">
+                      Exclusive Offers:{" "}
+                    </span>
+                    <span className="leading-[19.36px] text-[#525252]">
+                      {offer}
+                    </span>
+                  </div>
+                </li>
+                <li className="mt-[20px] flex items-start text-[14px] md:text-[16px]">
+                  <div className="mr-2 flex-shrink-0">
+                    <Img src={star} alt="star" className="h-[24px] w-[24px]" />
+                  </div>
+                  <div>
+                    <span className="font-[600] text-[#121212]">
+                      Exclusive Offers:{" "}
+                    </span>
+                    <span className="leading-[19.36px] text-[#525252]">
+                      {offer}
+                    </span>
+                  </div>
+                </li>
+              </ul>
+            </Section>
+            <Section className="mt-[32px] w-[100%] text-center">
+              <Container className="mb-[40px] max-w-[680px] md:px-0">
+                <Button
+                  target={"_blank"}
+                  className="w-[100%] rounded-[8px] bg-[#F97316] py-[16px] text-[#FAFAFA] md:w-fit md:px-[2rem]"
+                  href={link}
+                >
+                  Learn More About us
+                </Button>
+              </Container>
+            </Section>
+          </Section>
+        </Container>
+
+        <Section className="">
+          <Container className="max-w-[680px] px-[48px] md:px-0">
+            <Text className="my-0 font-[600] text-[#121212]">
+              Regards,
+              <br />
+              Boilerplate
+            </Text>
+          </Container>
+        </Section>
+      </Section>
+    </Layout>
   );
 }
 
-Email.PreviewProps = {
-  name: "John Doe",
+WelcomeEmail.PreviewProps = {
+  offer:
+    "Enjoy special promotions and discounts available only to our members.",
+  link: "www.boilerplate.com",
+  username: "John Doe",
+  mainHeading: "Welcome to Boilerplate",
+  subHeading: "Thanks for signing up",
+  star: "https://i.imgur.com/bmprMwh.png",
+  welcomeMessage:
+    "We're thrilled to have you join us. Experience quality and innovation like never before. Our product is made to fit your needs and make your life easier.",
 } satisfies IProperties;
