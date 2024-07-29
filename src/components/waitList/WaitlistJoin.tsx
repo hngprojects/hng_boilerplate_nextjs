@@ -4,7 +4,10 @@ import CustomButton from "~/components/common/common-button/common-button";
 
 const WaitlistJoin: React.FC = () => {
   return (
-    <div className="mt-[10px] flex flex-col items-center justify-center text-neutral-dark-2 md:mt-[30px]">
+    <div className="mt-[10px] flex flex-col items-center justify-center text-neutral-dark-2 md:mt-[10px]">
+      <div className="mb-[10px] rounded-md bg-slate-300 px-3 text-[20px] font-normal">
+        waitlist
+      </div>
       <div className="flex h-auto w-[322px] flex-col items-center justify-center text-center md:w-[1104px] md:gap-[15px]">
         <h1 className="text-[32px] font-bold leading-[38.73px] md:text-[60px] md:leading-[72.61px]">
           Join the waitlist and get early{" "}
