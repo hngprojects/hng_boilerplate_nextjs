@@ -1,0 +1,27 @@
+name: Dev Deployment
+
+on:
+  workflow_run:
+    workflows: ["Build and Push"]
+    types:
+      - completed
+
+jobs:
+  deploy_to_dev:
+    if: github.event.repository.fork == false
+    runs-on: ubuntu-latest
+
+    environment:
+      name: "dev"
+      url: ${{ vars.URL }}
+
+    steps:
+      - name: Deploy to dev environment
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd hng_boilerplate_nextjs
+            ./scripts/dev_deploy.sh
