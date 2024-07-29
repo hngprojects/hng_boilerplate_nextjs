@@ -123,7 +123,7 @@ const WaitlistForm: React.FC = () => {
 
   return (
     <div className="mt-20 flex flex-col items-center justify-center text-neutral-dark-2">
-      <div className="text-center md:mb-[50px] md:w-[623px]">
+      <div className="flex flex-col items-center justify-center text-center md:mb-[50px] md:w-[623px]">
         <div className="mb-4 flex items-center justify-center gap-2 md:mb-[18px]">
           <Image
             width={23}
