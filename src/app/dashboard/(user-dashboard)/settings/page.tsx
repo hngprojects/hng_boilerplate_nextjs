@@ -9,7 +9,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 const pronounsOptions = ["He/Him", "She/Her", "Other"];
 
 const SettingsPage: React.FC = () => {
-  const [socialLinks, setSocialLinks] = useState<string[]>(["", ""]);
   const [selectedPronoun, setSelectedPronoun] = useState<string>("Select");
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -20,11 +19,6 @@ const SettingsPage: React.FC = () => {
       document.body.style.overflow = "auto";
     };
   }, [isModalOpen]);
-
-  const addSocialLink = (value: React.MouseEvent<HTMLButtonElement>) => {
-    value.preventDefault();
-    setSocialLinks([...socialLinks, ""]);
-  };
 
   const handlePronounSelect = (pronoun: string) => {
     setSelectedPronoun(pronoun);
@@ -37,6 +31,7 @@ const SettingsPage: React.FC = () => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    window.location.reload();
   };
 
   return (
@@ -165,11 +160,6 @@ const SettingsPage: React.FC = () => {
                   className="w-full rounded-md border border-border px-3 py-2 pl-12 placeholder:text-sm placeholder:text-slate-400"
                 />
               </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <CustomButton variant="outline" onClick={addSocialLink}>
-                Add Link
-              </CustomButton>
             </div>
           </div>
         </div>
