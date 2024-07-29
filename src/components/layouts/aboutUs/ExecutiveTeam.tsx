@@ -13,7 +13,7 @@ const ExecutiveTeam = () => {
         </p>
 
         <div className="mx-auto mt-10 flex flex-wrap justify-center gap-[20px] pb-10 max-lg:w-3/4 md:justify-between">
-          <div className=" ">
+          <div>
             <TeamCard
               name="John Abraham"
               imageAlt="john image"
@@ -25,7 +25,7 @@ const ExecutiveTeam = () => {
               instagramURL="/"
             />
           </div>
-          <div className=" ">
+          <div>
             <TeamCard
               name="Addison Mark"
               imageAlt="Addison Image"
@@ -37,7 +37,7 @@ const ExecutiveTeam = () => {
               instagramURL="/"
             />
           </div>
-          <div className=" " data-testid="Joy tony">
+          <div data-testid="Joy tony">
             <TeamCard
               name="Joy Tony"
               imageAlt="Joy Image"
@@ -49,7 +49,7 @@ const ExecutiveTeam = () => {
               instagramURL="/"
             />
           </div>
-          <div className=" " data-testid="Joshua Philip">
+          <div data-testid="Joshua Philip">
             <TeamCard
               name="Joshua Philip"
               imageAlt="Joshua Image"
