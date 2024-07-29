@@ -7,7 +7,7 @@ export const EditProductSchema = z.object({
     .string()
     .min(3, { message: "Description is required" })
     .max(MAX_CHAR, { message: "Description is too long" }),
-  category: z.string().min(3, { message: "Category is required" }),
+  category: z.string().min(3, { message: "Availability is required" }),
   price: z
     .string()
     .min(1, { message: "Price is required" })
