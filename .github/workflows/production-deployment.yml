@@ -30,11 +30,12 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          file: docker/staging/Dockerfile
+          file: docker/prod/Dockerfile
           push: true
           tags: hngdevops/nextjs-boilerplate:prod
           
   deploy_to_production:
+    needs: build_and_push
     if: github.event.repository.fork == false
     runs-on: ubuntu-latest
 
