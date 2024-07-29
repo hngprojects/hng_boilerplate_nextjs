@@ -18,7 +18,7 @@ const WaitlistPayment: React.FC = () => {
         return (
           <>
             <Image
-              src="/images/WaitList/phone.jpg"
+              src="/images/WaitList/payment.png"
               alt="Phone for Payment"
               width="292"
               height="344"
@@ -26,8 +26,8 @@ const WaitlistPayment: React.FC = () => {
             <h1 className="text-[24px] font-bold leading-[30px] md:text-[30px] md:font-semibold">
               Easy Payment
             </h1>
-            <p className="mt-6 text-lg">
-              Here you can handle projects together with team virtually
+            <p className="mt-2 text-lg">
+              Handle projects together with team virtually
             </p>
           </>
         );
@@ -36,12 +36,15 @@ const WaitlistPayment: React.FC = () => {
         return (
           <>
             <Image
-              src="/images/WaitList/safety.svg"
+              src="/images/WaitList/safety.png"
               alt="Safety"
               width="292"
               height="344"
             />
-            <p className="mt-4 text-lg">
+            <h1 className="text-[24px] font-bold leading-[30px] md:text-[30px] md:font-semibold">
+              Safe Payment
+            </h1>
+            <p className="mt-2 text-lg">
               Our system ensures the highest level of safety.
             </p>
           </>
@@ -51,12 +54,15 @@ const WaitlistPayment: React.FC = () => {
         return (
           <>
             <Image
-              src="/images/WaitList/database.svg"
+              src="/images/WaitList/database.png"
               alt="Database"
               width="292"
               height="344"
             />
-            <p className="mt-4 text-lg">
+            <h1 className="text-[24px] font-bold leading-[30px] md:text-[30px] md:font-semibold">
+              Flexible Database
+            </h1>
+            <p className="mt-2 text-lg">
               Manage your data efficiently and securely.
             </p>
           </>
@@ -66,12 +72,15 @@ const WaitlistPayment: React.FC = () => {
         return (
           <>
             <Image
-              src="/images/WaitList/email.svg"
+              src="/images/WaitList/emailManagement.jpg"
               alt="Email Management"
-              width="292"
-              height="344"
+              width="300"
+              height="354"
             />
-            <p className="mt-4 text-lg">
+            <h1 className="text-[24px] font-bold leading-[30px] md:text-[30px] md:font-semibold">
+              Email Management
+            </h1>
+            <p className="mt-2 text-lg">
               Email management is streamlined and simple.
             </p>
           </>
@@ -84,20 +93,28 @@ const WaitlistPayment: React.FC = () => {
   };
 
   return (
-    <div className="mt-[121px] flex flex-col items-center justify-center text-neutral-dark-2">
+    <div className="mt-[100px] flex flex-col items-center justify-center px-3 text-neutral-dark-2 md:flex-col">
       <div className="text-center">
-        <p className="text-[14px] md:text-[24px]">We have got you covered</p>
-        <h1 className="h-[87px] w-[332px] text-[24px] leading-[29.05px] md:h-[132px] md:w-[669px] md:text-[36px] md:leading-[43.57px]">
+        <p className="text-[18px] md:text-[24px]">We have got you covered</p>
+        <h1 className="h-[87px] w-[332px] text-[24px] font-bold leading-[29.05px] md:h-[132px] md:w-[669px] md:text-[36px] md:leading-[43.57px]">
           Transform your Deployment the easy and seamless way with our
           boilerplates.
         </h1>
       </div>
 
-      <div className="max- mt-[58px] flex w-full md:w-[774px] md:items-center md:justify-between">
-        <div className="hide-scrollbar flex w-full gap-[27px] overflow-x-auto md:mr-auto md:w-auto md:flex-col">
+      <div className="mt-[58px] flex w-full flex-col items-center justify-center md:w-[774px] md:flex-row md:items-center md:justify-between">
+        <div
+          className="hide-scrollbar flex w-full gap-[15px] overflow-x-auto md:mr-auto md:w-auto md:flex-col md:gap-[27px]"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          <style>{`
+            .hide-scrollbar::-webkit-scrollbar {
+              display: none;
+            }
+          `}</style>
           <CustomButton
             variant="outline"
-            className="h-[72px] min-w-[320px] justify-start gap-[16px] bg-transparent p-[24px] focus:border-primary"
+            className="h-[60px] w-auto justify-start gap-[16px] bg-transparent p-[24px] focus:border-primary md:h-[72px] md:min-w-[320px]"
             onClick={() => handleClick("Payments")}
           >
             <div
@@ -119,7 +136,7 @@ const WaitlistPayment: React.FC = () => {
 
           <CustomButton
             variant="outline"
-            className="h-[72px] min-w-[320px] justify-start gap-[16px] bg-transparent p-[24px] focus:border-primary"
+            className="h-[60px] w-auto justify-start gap-[16px] bg-transparent p-[24px] focus:border-primary md:h-[72px] md:min-w-[320px]"
             onClick={() => handleClick("Safety")}
           >
             <div
@@ -141,7 +158,7 @@ const WaitlistPayment: React.FC = () => {
 
           <CustomButton
             variant="outline"
-            className="h-[72px] min-w-[320px] justify-start gap-[16px] bg-transparent p-[24px] focus:border-primary"
+            className="h-[60px] w-auto justify-start gap-[16px] bg-transparent p-[24px] focus:border-primary md:h-[72px] md:min-w-[320px]"
             onClick={() => handleClick("Database")}
           >
             <div
@@ -163,7 +180,7 @@ const WaitlistPayment: React.FC = () => {
 
           <CustomButton
             variant="outline"
-            className="h-[72px] min-w-[320px] justify-start gap-[16px] bg-transparent p-[24px] focus:border-primary"
+            className="h-[60px] w-auto justify-start gap-[16px] bg-transparent p-[24px] focus:border-primary md:h-[72px] md:min-w-[320px]"
             onClick={() => handleClick("Email management")}
           >
             <div
@@ -186,7 +203,9 @@ const WaitlistPayment: React.FC = () => {
           </CustomButton>
         </div>
 
-        <div className="hidden md:block md:w-[291.2px]">{renderContent()}</div>
+        <div className="mt-4 flex flex-col items-center justify-center md:m-auto md:mt-0 md:w-[291.2px]">
+          {renderContent()}
+        </div>
       </div>
     </div>
   );

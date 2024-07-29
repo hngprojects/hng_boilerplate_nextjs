@@ -4,7 +4,7 @@ import React from "react";
 const WaitlistDialog: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center">
-      <div className="mt-[40px] flex flex-col items-center justify-center gap-[44px] text-neutral-dark-2 md:mt-[60px] md:flex-row md:gap-[57px]">
+      <div className="mt-[40px] flex flex-col items-center justify-center gap-[30px] text-neutral-dark-2 md:mt-[60px] md:flex-row md:gap-[57px]">
         <div className="flex w-[320px] shrink-0 flex-col items-start rounded-[8px] border-[1px] border-neutral-dark-1 p-[24px] transition-transform duration-300 hover:scale-105 hover:bg-gray-50 hover:shadow-lg">
           <div className="flex h-[53px] w-[53px] shrink-0 items-center justify-center rounded-full bg-primary">
             <Image

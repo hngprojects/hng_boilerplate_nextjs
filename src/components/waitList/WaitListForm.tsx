@@ -135,12 +135,12 @@ const WaitlistForm: React.FC = () => {
             Deployment made easy
           </h3>
         </div>
-        <h1 className="mb-2 text-[24px] font-bold leading-7 md:h-[108px] md:w-[623px] md:text-[36px] md:leading-10">
+        <h1 className="mb-2 w-[320px] text-[24px] font-bold leading-7 md:h-[108px] md:w-[623px] md:text-[36px] md:leading-10">
           You can level up your SaaS production today
         </h1>
-        <p className="text-center text-[16px] font-normal leading-5 md:text-[20px] md:leading-7">
+        <h1 className="text-center text-[16px] font-normal leading-5 md:text-[20px] md:leading-7">
           Join our waitlist and get early access to our boilerplates
-        </p>
+        </h1>
       </div>
 
       <div className="mt-[52px] flex h-auto w-[383.344px] shrink-0 items-start gap-[19.2px] rounded-md border border-gray-300 p-7 md:mt-5 md:w-[510px] md:p-2.5">
