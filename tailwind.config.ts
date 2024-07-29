@@ -100,11 +100,19 @@ const config = {
         },
         desaturatedBlue: "hsl(var(--desaturated-blue))",
         grey50: "hsl(var(--grey50))",
+        blog: {
+          relatedBg: "hsl(var(--blog-related-article-bg))",
+          relatedHeading: "hsl(var(--blog-related-article-heading))",
+          relatedTimeReadBg: "hsl(var(--blog-related-article-timeread-bg))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      boxShadow: {
+        spread: "0px 1px 18px 0px #0A39B01F",
       },
       keyframes: {
         "accordion-down": {

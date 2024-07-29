@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
+import { Mail } from "lucide-react";
 import { useEffect, useState } from "react";
 import { z, ZodError } from "zod";
 
-import InputField from "~/components/common/contact-us-form/inputfield";
-import CustomButton from "../Button/button";
+import CustomButton from "../common-button/common-button";
+import InputField from "./inputfield";
 
 const schema = z.object({
   name: z.string().min(5, "Name is required"),
@@ -132,14 +132,14 @@ const ContactForm: React.FC = () => {
 
   return (
     <>
-      <div className="mx-auto w-full max-w-[80%] p-8">
+      <div className="mx-auto w-full lg:max-w-[80%] lg:p-8">
         <form
           onSubmit={handleSubmit}
-          className="mb-4 w-full max-w-[80%] rounded bg-subtle px-8 pb-8 pt-6"
+          className="mb-4 w-full rounded-[8px] p-8 lg:max-w-[80%] lg:border lg:bg-background lg:shadow-sm"
           role="form"
         >
           {inputFields.map((field) => (
-            <div key={field.name} className="mb-4">
+            <div key={field.name} className="mb-6">
               <InputField
                 value={formData[field.name as keyof FormData]}
                 type={field.type}
@@ -156,8 +156,8 @@ const ContactForm: React.FC = () => {
               )}
             </div>
           ))}
-          <div className="mb-4">
-            <label htmlFor="message" className="mb-2 block text-sm">
+          <div className="mb-6">
+            <label htmlFor="message" className="mb-2 block text-lg">
               Message
             </label>
             <input
@@ -166,7 +166,7 @@ const ContactForm: React.FC = () => {
               placeholder="Message..."
               value={formData.message}
               onChange={handleChange}
-              className="w-full appearance-none rounded border-2 bg-subtle px-3 py-2 pb-[112px] leading-tight"
+              className="w-full appearance-none rounded-[8px] border bg-transparent px-3 py-2 pb-[112px] leading-tight outline-none"
             />
             {errors.message && (
               <p className="text-xs italic text-destructive">
@@ -178,9 +178,9 @@ const ContactForm: React.FC = () => {
             variant="primary"
             size="lg"
             isLoading={loading}
-            className="w-full px-4 py-3"
+            className="w-full px-4 py-7"
           >
-            <Image src={"/mail.svg"} width={20} height={10} alt="send icon" />
+            <Mail />
             Send
           </CustomButton>
 

@@ -1,4 +1,3 @@
-// components/InputField.tsx
 import React from "react";
 
 interface InputFieldProperties {
@@ -31,7 +30,7 @@ const InputField: React.FC<InputFieldProperties> = ({
       value={value}
       onChange={onChange}
       placeholder={placeholder}
-      className="w-full appearance-none rounded border px-3 py-5 leading-tight focus:shadow-outline focus:outline-none"
+      className="w-full appearance-none rounded-[8px] border px-3 py-4 leading-tight focus:shadow-outline focus:outline-none"
     />
   </div>
 );

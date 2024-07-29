@@ -1,0 +1,27 @@
+name: Production Deployment
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - .github/workflows/**
+
+jobs:
+  deploy_to_production:
+    if: github.event.repository.fork == false
+    runs-on: ubuntu-latest
+
+    environment:
+      name: "production"
+      url: ${{ vars.URL }}
+
+    steps:
+      - name: Deploy to production environment
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            ./deploy_prod.sh next 

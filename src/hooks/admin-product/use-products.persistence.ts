@@ -5,7 +5,7 @@ import { ProductTableProperties } from "~/types/admin-product.types";
 
 type ProductsStateProperties = {
   products: ProductTableProperties[] | undefined;
-
+  addProduct: (product: ProductTableProperties) => void;
   addProducts: (products: ProductTableProperties[]) => void;
   updateProduct: (product: ProductTableProperties) => void;
   deleteProduct: (id: string) => void;
@@ -29,6 +29,9 @@ export const useProducts = create<ProductsStateProperties>()(
       products: undefined,
 
       addProducts: (products) => set({ products }),
+
+      addProduct: (product) =>
+        set((state) => ({ products: [...state!.products!, product] })),
       updateProduct: (product) =>
         set((state) => {
           if (!state.products) return state;

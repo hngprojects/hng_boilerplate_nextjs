@@ -27,8 +27,10 @@
 <!--
 [x] - Correct; marked as done
 [X] - Correct; marked as done
+[ ] - Correct; marked as **not** done
 
-[ ] - Not correct; marked as **not** done
+[] - Not Correct; syntax error
+[ x] - Not Correct; space between the brackets
 -->
 
 - [ ] My code follows the code style of this project.
