@@ -6,16 +6,12 @@ on:
       - dev
 
 jobs:
-  docker:
+  build_and_push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Create .env file
-        run: |
-          cp .env.sample .env
-
+        
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
