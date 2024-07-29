@@ -93,7 +93,7 @@ const WaitlistPayment: React.FC = () => {
   };
 
   return (
-    <div className="mt-[100px] flex flex-col items-center justify-center px-3 text-neutral-dark-2 md:flex-col">
+    <div className="mt-[60px] flex flex-col items-center justify-center px-3 text-neutral-dark-2 md:mt-[100px] md:flex-col">
       <div className="text-center">
         <p className="text-[18px] md:text-[24px]">We have got you covered</p>
         <h1 className="h-[87px] w-[332px] text-[24px] font-bold leading-[29.05px] md:h-[132px] md:w-[669px] md:text-[36px] md:leading-[43.57px]">
@@ -102,7 +102,7 @@ const WaitlistPayment: React.FC = () => {
         </h1>
       </div>
 
-      <div className="mt-[58px] flex w-full flex-col items-center justify-center md:w-[774px] md:flex-row md:items-center md:justify-between">
+      <div className="mt-[30px] flex w-full flex-col items-center justify-center md:mt-[58px] md:w-[774px] md:flex-row md:items-center md:justify-between">
         <div
           className="hide-scrollbar flex w-full gap-[15px] overflow-x-auto md:mr-auto md:w-auto md:flex-col md:gap-[27px]"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
