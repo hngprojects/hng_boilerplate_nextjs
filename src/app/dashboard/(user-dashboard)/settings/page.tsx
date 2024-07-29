@@ -63,7 +63,7 @@ const SettingsPage: React.FC = () => {
           </div>
           <div className="flex gap-4">
             <div className="flex w-full flex-col gap-2">
-              <label>Username</label>
+              <label className="font-medium">Username</label>
               <input
                 type="text"
                 placeholder="Enter username"
@@ -71,7 +71,7 @@ const SettingsPage: React.FC = () => {
               />
             </div>
             <div className="flex w-full flex-col gap-2">
-              <label>Pronouns</label>
+              <label className="font-medium">Pronouns</label>
               <div className="relative">
                 <div
                   className="w-full cursor-pointer rounded-md border border-border px-3 py-2 placeholder:text-sm placeholder:text-slate-400"
@@ -97,7 +97,7 @@ const SettingsPage: React.FC = () => {
           </div>
           <div className="flex gap-4">
             <div className="flex w-full flex-col gap-2">
-              <label>Your job title</label>
+              <label className="font-medium">Your job title</label>
               <input
                 type="text"
                 placeholder="Enter job title"
@@ -105,7 +105,7 @@ const SettingsPage: React.FC = () => {
               />
             </div>
             <div className="flex w-full flex-col gap-2">
-              <label>Department or team</label>
+              <label className="font-medium">Department or team</label>
               <input
                 type="text"
                 placeholder="Enter department or team"
@@ -114,7 +114,7 @@ const SettingsPage: React.FC = () => {
             </div>
           </div>
           <div className="flex w-full flex-col gap-2">
-            <label>Your email address</label>
+            <label className="font-medium">Your email address</label>
             <input
               type="text"
               placeholder="Enter email address"
@@ -123,7 +123,7 @@ const SettingsPage: React.FC = () => {
           </div>
           <div className="flex w-full flex-col gap-2">
             <div>
-              <label>Bio</label>
+              <label className="font-medium">Bio</label>
               <textarea
                 style={{ resize: "none", height: "80px" }}
                 placeholder="Enter your bio"
@@ -134,7 +134,7 @@ const SettingsPage: React.FC = () => {
           </div>
           <div className="flex w-full flex-col gap-4">
             <div className="flex w-full flex-col gap-2">
-              <label>Social links</label>
+              <label className="font-medium">Contact Social links</label>
               {socialLinks.map((link, index) => (
                 <div key={index} className="relative w-full">
                   <div className="absolute inset-y-0 left-0 flex items-center pl-3">
