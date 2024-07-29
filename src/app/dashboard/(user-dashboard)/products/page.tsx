@@ -6,13 +6,11 @@ import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
-import { useProducts } from "~/hooks/admin-product/use-products.persistence";
 import NewProductModal from "./_components/new-product-modal";
 import ProductDeleteModal from "./_components/product-delete-modal";
 import ProductDetailModal from "./_components/product-detail-modal";
 import ProductDetailView from "./_components/product-detail-view";
 import ProductHeader from "./_components/product-header";
-import { PRODUCT_TABLE } from "./data/product.mock";
 
 const ProductContent = dynamic(() => import("./_components/product-content"), {
   ssr: false,
@@ -24,7 +22,7 @@ const ProductFilter = dynamic(() => import("./_components/product-filter"), {
 const ProductPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [view, setView] = useState<"list" | "grid">("list");
-  const { addProducts } = useProducts();
+
   const {
     isOpen,
     updateProductId,
@@ -38,16 +36,6 @@ const ProductPage = () => {
     setIsDelete,
   } = useProductModal();
 
-  useEffect(() => {
-    const is_saved = localStorage.getItem("admin_products");
-    if (is_saved) {
-      const parse_data = JSON.parse(is_saved);
-      if (parse_data.state.products) return;
-      setTimeout(() => {
-        addProducts(PRODUCT_TABLE);
-      }, 5000);
-    }
-  }, []);
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
