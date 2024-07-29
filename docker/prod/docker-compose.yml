@@ -1,12 +1,11 @@
 services:
 
-  next-prod-frontend-1:
-    build:
-      context: ../../
-      dockerfile: docker/prod/Dockerfile
+  frontend:
+    image: hngdevops/nextjs-boilerplate:prod
     ports:
       - 3000:3000
-    restart: always
+    volumes:
+      - ../../.env:/app/.env
 
   # next-prod-frontend-2:
   #   build:
