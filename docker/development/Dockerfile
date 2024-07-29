@@ -24,6 +24,7 @@ COPY . .
 # Build the application
 RUN corepack enable pnpm && pnpm run build
 
+
 # Production image, copy all the files and run next
 FROM base AS runner
 WORKDIR /app
