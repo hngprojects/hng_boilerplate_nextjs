@@ -42,24 +42,24 @@ const LanguagePage: React.FC = () => {
   const [selectedLanguage, setSelectedLanguage] = useState<string>("Language");
   const [selectedRegion, setSelectedRegion] = useState<string>("Region");
   const [selectedZone, setSelectedZone] = useState<string>("Time-Zone");
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
-  const [message, setMessage] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [openDropdown, setOpenDropdown] = useState<string | undefined>();
+  const [hoveredItem, setHoveredItem] = useState<string | undefined>();
+  const [message, setMessage] = useState<string | null>();
+  const [error, setError] = useState<string | null>();
 
   const handleLanguageSelect = (language: string) => {
     setSelectedLanguage(language);
-    setOpenDropdown(null);
+    setOpenDropdown(undefined);
   };
 
   const handleRegionSelect = (region: string) => {
     setSelectedRegion(region);
-    setOpenDropdown(null);
+    setOpenDropdown(undefined);
   };
 
   const handleZoneSelect = (zone: string) => {
     setSelectedZone(zone);
-    setOpenDropdown(null);
+    setOpenDropdown(undefined);
   };
 
   const handleSave = () => {
@@ -95,7 +95,7 @@ const LanguagePage: React.FC = () => {
                 className="flex w-full cursor-pointer items-center justify-between rounded-md border border-border px-3 py-2 placeholder:text-sm placeholder:text-slate-400"
                 onClick={() =>
                   setOpenDropdown(
-                    openDropdown === "language" ? null : "language",
+                    openDropdown === "language" ? undefined : "language",
                   )
                 }
               >
@@ -118,7 +118,7 @@ const LanguagePage: React.FC = () => {
                           : "flex px-8 hover:bg-gray-50"
                       }`}
                       onMouseEnter={() => setHoveredItem(option)}
-                      onMouseLeave={() => setHoveredItem(null)}
+                      onMouseLeave={() => setHoveredItem(undefined)}
                       onClick={() => handleLanguageSelect(option)}
                     >
                       {hoveredItem === option && (
@@ -141,7 +141,9 @@ const LanguagePage: React.FC = () => {
               <div
                 className="flex w-full cursor-pointer items-center justify-between rounded-md border border-border px-3 py-2 placeholder:text-sm placeholder:text-slate-400"
                 onClick={() =>
-                  setOpenDropdown(openDropdown === "region" ? null : "region")
+                  setOpenDropdown(
+                    openDropdown === "region" ? undefined : "region",
+                  )
                 }
               >
                 <span>{selectedRegion}</span>
@@ -163,7 +165,7 @@ const LanguagePage: React.FC = () => {
                           : "flex px-8 hover:bg-gray-50"
                       }`}
                       onMouseEnter={() => setHoveredItem(option)}
-                      onMouseLeave={() => setHoveredItem(null)}
+                      onMouseLeave={() => setHoveredItem(undefined)}
                       onClick={() => handleRegionSelect(option)}
                     >
                       {hoveredItem === option && (
@@ -185,7 +187,7 @@ const LanguagePage: React.FC = () => {
               <div
                 className="flex w-full cursor-pointer items-center justify-between rounded-md border border-border px-3 py-2 placeholder:text-sm placeholder:text-slate-400"
                 onClick={() =>
-                  setOpenDropdown(openDropdown === "zone" ? null : "zone")
+                  setOpenDropdown(openDropdown === "zone" ? undefined : "zone")
                 }
               >
                 <span>{selectedZone}</span>
@@ -207,7 +209,7 @@ const LanguagePage: React.FC = () => {
                           : "flex px-8 hover:bg-gray-50"
                       }`}
                       onMouseEnter={() => setHoveredItem(option)}
-                      onMouseLeave={() => setHoveredItem(null)}
+                      onMouseLeave={() => setHoveredItem(undefined)}
                       onClick={() => handleZoneSelect(option)}
                     >
                       {hoveredItem === option && (
