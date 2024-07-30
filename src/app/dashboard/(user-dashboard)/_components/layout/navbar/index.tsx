@@ -22,12 +22,12 @@ import {
 const navlinks = [
   {
     route: "Overview",
-    link: "/dashboard",
+    link: "/dashboard/overview",
     id: "dashboard",
   },
   {
     route: "Customers",
-    link: "/dashboard/customer",
+    link: "/dashboard/customers",
     id: "customers",
   },
   {
