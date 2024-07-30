@@ -38,6 +38,3 @@ next-env.d.ts
 
 # react email
 /.react-email
-
-#Environment variables
-.env
