@@ -31,10 +31,12 @@ const PlanUpgradeSuccessfulModal: React.FC<ModalProperties> = ({
         onClick={(event) => event.stopPropagation()}
       >
         <DialogTitle className="text-lg font-semibold">
-        Success! You've Upgraded Your Plan!
+          Success! You&apos;ve Upgraded Your Plan!
         </DialogTitle>
         <DialogDescription className="text-sm font-normal text-muted-foreground">
-        Congratulations! You've successfully upgraded to Basic, This means you now have access to all the powerful features that will help you manage your team effectively
+          Congratulations! You&apos;ve successfully upgraded to Basic, This
+          means you now have access to all the powerful features that will help
+          you manage your team effectively
         </DialogDescription>
         <div className="flex justify-end">
           <div onClick={onClose}>

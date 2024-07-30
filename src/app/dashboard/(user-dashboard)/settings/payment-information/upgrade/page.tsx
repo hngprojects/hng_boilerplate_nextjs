@@ -1,10 +1,7 @@
-import React from 'react'
-import Upgrade from './_components/upgrade'
+import Upgrade from "./_components/upgrade";
 
 const page = () => {
-  return (
-    <Upgrade/>
-  )
-}
+  return <Upgrade />;
+};
 
-export default page
+export default page;

@@ -88,13 +88,13 @@ const Upgrade = () => {
           </label>
 
           <ul className="space-y-4">
-            {billingOption.map((item, idx) => (
-              <li key={idx}>
+            {billingOption.map((item, index) => (
+              <li key={index}>
                 <label htmlFor={item.name} className="relative">
                   <input
                     id={item.name}
                     type="radio"
-                    defaultChecked={idx == 1 ? true : false}
+                    defaultChecked={index == 1 ? true : false}
                     name="billing_option"
                     className="peer sr-only"
                     required
@@ -127,7 +127,6 @@ const Upgrade = () => {
               </CustomButton>
             </span>
 
-            
             {isDetailsVisible && (
               <div className="flex flex-col gap-[10px] text-xs text-neutral-dark-1">
                 <span className="flex justify-between gap-8">
@@ -158,13 +157,13 @@ const Upgrade = () => {
           </label>
 
           <ul className="space-y-4">
-            {paymentMethod.map((item, idx) => (
-              <li key={idx}>
+            {paymentMethod.map((item, index) => (
+              <li key={index}>
                 <label htmlFor={item.name} className="relative">
                   <input
                     id={item.name}
                     type="radio"
-                    defaultChecked={idx == 1 ? true : false}
+                    defaultChecked={index == 1 ? true : false}
                     name="payment_method"
                     className="peer sr-only"
                     required

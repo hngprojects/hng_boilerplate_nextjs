@@ -35,7 +35,7 @@ const PlanUpgradeFailedModal: React.FC<ModalProperties> = ({
         </DialogTitle>
         <DialogDescription className="text-sm font-normal text-muted-foreground">
           We apologize, but there seems to be an issue processing your upgrade
-          to the Basic plan. Don't worry, your current plan remains active.
+          to the Basic plan. Don&apos;t worry, your current plan remains active.
         </DialogDescription>
         <div className="flex justify-end">
           <div onClick={onClose}>
