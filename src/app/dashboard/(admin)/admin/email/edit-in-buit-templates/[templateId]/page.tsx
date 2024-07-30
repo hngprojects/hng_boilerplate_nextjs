@@ -64,7 +64,7 @@ const Page = () => {
           <div className="bg-slate-300 px-9 py-9">Add Logo</div>
         </div>
       </div>
-      <div className="flex items-center justify-center">photo img</div>
+      <div className="flex items-center justify-center">photo img here</div>
       <div className="flex flex-col items-center justify-center gap-4 py-16">
         <h1>Welcome to Boilerplate</h1>
         <p>Thanks for signing up</p>
