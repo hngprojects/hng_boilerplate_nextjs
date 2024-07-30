@@ -1,6 +1,6 @@
 import Image from "next/image";
-import icon from '../../../../../../public/admin-dashboard/icons/icon.svg'
-import React from "react";
+
+import icon from "../../../../../../public/admin-dashboard/icons/icon.svg";
 
 const PricingPage = () => {
   const plans = [
@@ -48,49 +48,55 @@ const PricingPage = () => {
         <span className="text-sm text-[#525252]">$0/month</span>
       </div>
 
-      <div className="mt-10 px-3  flex gap-3">
-        <h1 className="text-base w-[16rem] font-semibold">
+      <div className="mt-10 flex gap-3 px-3">
+        <h1 className="w-[16rem] text-base font-semibold">
           Subscribe to your <br /> desired plan.
         </h1>
 
         {plans.map((plan, index) => (
           <div key={index} className="">
-            <div className="flex flex-col gap-3 items-start justify-center pt-1">
+            <div className="flex flex-col items-start justify-center gap-3 pt-1">
               <h1 className="text-base font-semibold">{plan.title}</h1>
-              <h2 className="text-[25px] font-medium">{plan.price} <span className="text-[13px] font-normal">/month</span></h2>
+              <h2 className="text-[25px] font-medium">
+                {plan.price}{" "}
+                <span className="text-[13px] font-normal">/month</span>
+              </h2>
               <div className="text-sm">
                 <p>{plan.description}</p>
               </div>
-              <button className={`py-[8px] px-[49px] text-sm rounded-lg ${plan.buttonClass}`}>{plan.buttonText}</button>
+              <button
+                className={`rounded-lg px-[49px] py-[8px] text-sm ${plan.buttonClass}`}
+              >
+                {plan.buttonText}
+              </button>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="mt-10 px-3 flex border pb-20 py-5 border-[#FFF8F2] bg-[#FFF8F2] items-start justify-center">
-        <h1 className="text-base w-40 font-semibold">Highlights</h1>
-        
+      <div className="mt-10 flex items-start justify-center border border-[#FFF8F2] bg-[#FFF8F2] px-3 py-5 pb-20">
+        <h1 className="w-40 text-base font-semibold">Highlights</h1>
 
         <div className="flex gap-[3rem] text-sm text-[#0A0A0A]">
-          <ul className="flex flex-col gap-2 list-disc">
+          <ul className="flex list-disc flex-col gap-2">
             <li>10 Projects</li>
             <li>Up to 10 subscribers</li>
             <li>Advanced analytics</li>
           </ul>
-          <ul className="flex pl-6 flex-col gap-2 list-disc">
+          <ul className="flex list-disc flex-col gap-2 pl-6">
             <li>100 projects</li>
             <li>Up to 50 subscribers</li>
             <li>Advanced analytics</li>
             <li>24-hour support</li>
           </ul>
-          <ul className="flex pl-2 flex-col gap-2 list-disc">
+          <ul className="flex list-disc flex-col gap-2 pl-2">
             <li>200 projects</li>
             <li>Up to 100 subscribers</li>
             <li>Advanced analytics</li>
             <li>24-hour support</li>
             <li>Marketing advisor</li>
           </ul>
-          <ul className="pl-3 flex flex-col list-disc gap-2">
+          <ul className="flex list-disc flex-col gap-2 pl-3">
             <li>300 Projects</li>
             <li>Up to 500 subscribers</li>
             <li>Advanced analytics</li>
@@ -100,7 +106,7 @@ const PricingPage = () => {
         </div>
       </div>
 
-      <div className="mt-10 flex justify-center items-center">
+      <div className="mt-10 flex items-center justify-center">
         <h1 className="text-base">Compare all features</h1>
         <Image src={icon} alt="" />
       </div>
