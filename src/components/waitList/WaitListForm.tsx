@@ -79,19 +79,16 @@ const WaitlistForm: React.FC = () => {
     } else {
       setErrors({});
       try {
-        const response = await fetch(
-          process.env.NEXT_PUBLIC_API_URL as string,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              full_name: formData.full_name,
-              email: formData.email,
-            }),
+        const response = await fetch(process.env.API_URL as string, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
           },
-        );
+          body: JSON.stringify({
+            full_name: formData.full_name,
+            email: formData.email,
+          }),
+        });
 
         if (!response.ok) {
           const errorData = await response.json();
