@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
-import { useTransition } from "react";
+import { useRouter } from "next-nprogress-bar";
+import { useEffect, useTransition } from "react";
 
 import BlurImage from "~/components/miscellaneous/blur-image";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
@@ -11,6 +12,7 @@ import { useProducts } from "~/hooks/admin-product/use-products.persistence";
 import { cn, formatPrice, simulateDelay } from "~/lib/utils";
 
 const ProductDetailView = () => {
+  const router = useRouter();
   const { products, deleteProduct } = useProducts();
   const [isLoading, startTransition] = useTransition();
   const {
@@ -46,6 +48,18 @@ const ProductDetailView = () => {
       setIsDelete(false);
     });
   };
+  const handleEditAction = (id: string) => {
+    updateOpen(false);
+    router.push(`/dashboard/products/${id}`);
+    updateProductId("null");
+  };
+
+  useEffect(() => {
+    document.title = isOpen
+      ? `Product - ${product?.name}`
+      : "Products - HNG Boilerplate";
+  }, [isOpen, product?.name]);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -53,8 +67,8 @@ const ProductDetailView = () => {
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 100 }}
-          transition={{ duration: 0.5 }}
-          className="sticky top-0 hidden w-full min-w-[350px] flex-col gap-y-5 rounded-[6px] border border-gray-300 bg-white px-2 py-4 shadow-[0px_1px_18px_0px_rgba(10,_57,_176,_0.12)] lg:flex lg:max-w-[370px] xl:w-[403px] xl:px-4"
+          transition={{ duration: 0.3 }}
+          className="sticky top-0 hidden w-full min-w-[340px] flex-col gap-y-5 rounded-[6px] border border-gray-300 bg-white px-2 py-4 shadow-[0px_1px_18px_0px_rgba(10,_57,_176,_0.12)] lg:flex lg:max-w-[370px] xl:w-[403px] xl:px-4"
         >
           <div
             className={cn(
@@ -65,7 +79,7 @@ const ProductDetailView = () => {
             )}
           >
             <p className="text-center text-sm">
-              Are you sure you want to delete this <b>{product?.name}</b>?
+              Are you sure you want to delete <b>{product?.name}</b>?
             </p>
             <div className="flex w-full items-center justify-center gap-x-2">
               <Button
@@ -110,7 +124,9 @@ const ProductDetailView = () => {
           <div className="flex flex-col gap-y-4">
             <p className="flex w-full items-center justify-between text-sm lg:text-base">
               <span className="text-neutral-dark-1">Product ID</span>
-              <span className="text-neutral-dark-2">{product?.product_id}</span>
+              <span className="uppercase text-neutral-dark-2">
+                {product?.product_id}
+              </span>
             </p>
             <p className="flex w-full items-center justify-between text-sm lg:text-base">
               <span className="text-neutral-dark-1">Category</span>
@@ -156,7 +172,11 @@ const ProductDetailView = () => {
                 <span>Delete</span>
               )}
             </Button>
-            <Button variant="outline" className="bg-white font-medium">
+            <Button
+              onClick={() => handleEditAction(product!.product_id)}
+              variant="outline"
+              className="bg-white font-medium"
+            >
               Edit
             </Button>
           </div>

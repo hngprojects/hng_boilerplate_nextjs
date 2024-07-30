@@ -1,0 +1,141 @@
+name: Team Deployment
+
+on:
+  workflow_run:
+    workflows: ["Build and Push"]
+    types:
+      - completed
+
+jobs:
+  kimiko-golang:
+    if: github.event.repository.fork == false
+    runs-on: ubuntu-latest
+
+    environment:
+      name: "kimiko-golang"
+      url: ${{ vars.URL }}
+
+    steps:
+      - name: Deploy to kimiko-golang environment
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd hng_boilerplate_nextjs
+            ./scripts/team_deploy.sh kimiko-golang ${{ vars.PORT }}
+            
+  kimiko-csharp:
+    if: github.event.repository.fork == false
+    runs-on: ubuntu-latest
+
+    environment:
+      name: "kimiko-csharp"
+      url: ${{ vars.URL }}
+
+    steps:
+      - name: Deploy to kimiko-csharp environment
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd hng_boilerplate_nextjs
+            ./scripts/team_deploy.sh kimiko-csharp ${{ vars.PORT }}
+
+  cyborgs-java:
+    if: github.event.repository.fork == false
+    runs-on: ubuntu-latest
+
+    environment:
+      name: "cyborgs-java"
+      url: ${{ vars.URL }}
+
+    steps:
+      - name: Deploy to cyborgs-java environment
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd hng_boilerplate_nextjs
+            ./scripts/team_deploy.sh cyborgs-java ${{ vars.PORT }}
+
+  cyborgs-python:
+    if: github.event.repository.fork == false
+    runs-on: ubuntu-latest
+
+    environment:
+      name: "cyborgs-python"
+      url: ${{ vars.URL }}
+
+    steps:
+      - name: Deploy to cyborgs-python environment
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd hng_boilerplate_nextjs
+            ./scripts/team_deploy.sh cyborgs-python ${{ vars.PORT }}
+
+  bulldozer-php:
+    if: github.event.repository.fork == false
+    runs-on: ubuntu-latest
+
+    environment:
+      name: "bulldozer-php"
+      url: ${{ vars.URL }}
+
+    steps:
+      - name: Deploy to bulldozer-php environment
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd hng_boilerplate_nextjs
+            ./scripts/team_deploy.sh bulldozer-php ${{ vars.PORT }}
+
+  starlight-nestjs:
+    if: github.event.repository.fork == false
+    runs-on: ubuntu-latest
+
+    environment:
+      name: "starlight-nestjs"
+      url: ${{ vars.URL }}
+
+    steps:
+      - name: Deploy to starlight-nestjs environment
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd hng_boilerplate_nextjs
+            ./scripts/team_deploy.sh starlight-nestjs ${{ vars.PORT }}
+
+  panther-expressjs:
+    if: github.event.repository.fork == false
+    runs-on: ubuntu-latest
+
+    environment:
+      name: "panther-expressjs"
+      url: ${{ vars.URL }}
+
+    steps:
+      - name: Deploy to panther-expressjs environment
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd hng_boilerplate_nextjs
+            ./scripts/team_deploy.sh panther-expressjs ${{ vars.PORT }}
