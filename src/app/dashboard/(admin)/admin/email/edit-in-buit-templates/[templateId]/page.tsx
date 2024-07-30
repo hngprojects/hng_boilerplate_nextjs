@@ -30,7 +30,7 @@ export default function page() {
         </div>
       </div>
       <div className="mt-12 flex items-center sm:mt-20 md:ml-4 lg:mb-[213px] lg:ml-[89px] lg:mt-[156px]">
-        <div className="h-40 w-full border border-red-600 lg:w-10/12">
+        <div className="h-40 w-full">
           {/* YOUR EDIT TEMPLATE COMPONENTS GOES HERE ACCORRDING  */}
           {/* CREATE A FLEX CONTAINER TO HOUSE THE TEMPLATE AREA AND THE SIDEBAR ICONS  */}
         </div>
