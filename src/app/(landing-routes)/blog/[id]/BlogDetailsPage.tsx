@@ -28,6 +28,9 @@ const mockSession: Session = {
   user: {
     name: "Current User",
     email: "user@example.com",
+    id: "Strinf",
+    image: "Strinf",
+    access_token: "access_token",
   },
   expires: "2100-01-01T00:00:00.000Z",
 };
