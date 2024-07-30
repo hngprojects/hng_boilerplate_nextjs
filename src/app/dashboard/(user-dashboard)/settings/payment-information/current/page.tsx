@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import icon from "../../../../../../public/admin-dashboard/icons/icon.svg";
+import icon from "../../../../../../../public/admin-dashboard/icons/icon.svg";
 
 const PricingPage = () => {
   const plans = [
