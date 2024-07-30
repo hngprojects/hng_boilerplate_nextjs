@@ -2,17 +2,19 @@
 import "./menu.css";
 
 import { motion, stagger, useAnimate } from "framer-motion";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import { useUser } from "~/hooks/user/use-user";
+import UserCard from "~/components/card/user-card";
+// import { useUser } from "~/hooks/user/use-user";
 import { cn } from "~/lib/utils";
 import { NAV_LINKS } from "./links";
 
 export default function MobileNav() {
   const [open, setOpen] = useState(false);
   const [scope, animate] = useAnimate();
-  const { user } = useUser();
+  const { data: session } = useSession();
 
   // the stagger effect
   const staggerList = stagger(0.1, { startDelay: 0.25 });
@@ -25,7 +27,7 @@ export default function MobileNav() {
       "ul",
       {
         width: open ? 180 : 0,
-        height: open && user.email ? 140 : open ? 250 : 0,
+        height: open && session?.user?.email ? 200 : open ? 250 : 0,
         opacity: open ? 1 : 0,
       },
       {
@@ -103,29 +105,34 @@ export default function MobileNav() {
               </Link>
             </motion.li>
           ))}
-          <motion.li key={NAV_LINKS.length + 1}>
-            <Link
-              href="/login"
-              className={cn(
-                "grid max-w-[100px] place-items-center whitespace-nowrap rounded-md border border-primary px-2 py-2 text-sm text-primary",
-                user?.email ? "hidden" : "",
-              )}
-            >
-              Log in
-            </Link>
-          </motion.li>
 
-          <motion.li key={NAV_LINKS.length + 2}>
-            <Link
-              href="/register"
-              className={cn(
-                "grid max-w-[100px] place-items-center whitespace-nowrap rounded-md border border-primary bg-primary px-2 py-2 text-sm text-white",
-                user?.email ? "hidden" : "",
-              )}
-            >
-              Get Started
-            </Link>
-          </motion.li>
+          {!session?.user?.email && (
+            <>
+              <motion.li key={NAV_LINKS.length + 1}>
+                <Link
+                  href="/login"
+                  className="grid max-w-[100px] place-items-center whitespace-nowrap rounded-md border border-primary px-2 py-2 text-sm text-primary"
+                >
+                  Log in
+                </Link>
+              </motion.li>
+
+              <motion.li key={NAV_LINKS.length + 2}>
+                <Link
+                  href="/register"
+                  className="grid max-w-[100px] place-items-center whitespace-nowrap rounded-md border border-primary bg-primary px-2 py-2 text-sm text-white"
+                >
+                  Get Started
+                </Link>
+              </motion.li>
+            </>
+          )}
+
+          {session?.user?.email && (
+            <motion.li key={NAV_LINKS.length + 3}>
+              <UserCard image={session.user.image as string} />
+            </motion.li>
+          )}
         </ul>
       </div>
     </>
