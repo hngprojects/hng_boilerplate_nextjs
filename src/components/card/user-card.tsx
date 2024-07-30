@@ -1,6 +1,5 @@
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import { AnimatePresence, motion } from "framer-motion";
-import { signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 import { useUser } from "~/hooks/user/use-user";
@@ -14,7 +13,6 @@ const UserCard = ({ image }: { image: string | undefined }) => {
   const handleLogout = () => {
     updateUser({ email: "", name: "" });
     setIsLogout(false);
-    signOut({ callbackUrl: "/" });
   };
 
   const handleEscapeClick = (event: KeyboardEvent) => {

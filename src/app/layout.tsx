@@ -3,8 +3,6 @@ import { Inter } from "next/font/google";
 
 import "./globals.css";
 
-import { SessionProvider } from "next-auth/react";
-
 import Providers from "~/components/providers";
 import { Toaster } from "~/components/ui/toaster";
 
@@ -24,7 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="mx-auto w-full">
           <Providers />
-          <SessionProvider>{children}</SessionProvider>
+          {children}
           <Toaster />
         </div>
       </body>
