@@ -14,41 +14,30 @@ export default function Faqs() {
   const accordions = [
     <FaqAccordion
       key="1"
-      question="What is an accordion"
+      question="What payment methods do you accept?"
       answer="Accordion is ..."
     />,
-    <FaqAccordion key="2" question="What is a bar" answer="Bar is ..." />,
+    <FaqAccordion key="2" question="Is there a discount for annual subscriptions?" answer="Bar is ..." />,
     <FaqAccordion
       key="3"
-      question="What is search"
+      question="Is there a discount for monthly subscriptions?"
       answer="Search is a term ..."
     />,
     <FaqAccordion
       key="4"
-      question="What is hng"
+      question="How do i create my account?"
       answer="hng is a summer training program ..."
     />,
     <FaqAccordion
       key="5"
-      question="What is a component"
+      question="What is the full fee for an annual subscription"
       answer="A component is a reusable UI element ..."
     />,
     <FaqAccordion
       key="6"
-      question="What is a boilerplate"
-      answer="A boilerplate is a program ..."
-    />,
-    <FaqAccordion
-      key="7"
-      question="What is an accordion"
-      answer="Accordion is ..."
-    />,
-    <FaqAccordion key="8" question="What is a bar" answer="Bar is ..." />,
-    <FaqAccordion
-      key="9"
-      question="What is search"
-      answer="Search is a term ..."
-    />,
+      question="Do you offer a free trial?"
+      answer="Yes, we offer a 14-day free trial for new users. You can explore all the features of our premium plan without any cost during this period."
+    />
   ];
 
   const handleSearch = (value: string) => {
@@ -70,7 +59,6 @@ export default function Faqs() {
 
   return (
     <div className="flex flex-col gap-6 max-md:gap-16">
-      <Search onSearch={handleSearch} />
       <div className="bg-[#FAFAFA] py-11 max-md:px-0 max-md:py-0">
         {searchValue.trim() === "" ? (
           <div className="grid grid-cols-3 gap-x-8 gap-y-6 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-x-4">

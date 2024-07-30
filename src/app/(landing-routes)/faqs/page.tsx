@@ -26,7 +26,7 @@ const faq: React.FC = () => {
               Achieve your dreams with us today
             </p>
           </div>
-          <section className="flex w-full flex-col justify-center max-md:order-3">
+          <section className="flex w-full flex-col justify-center">
             <Faqs />
             <AdditionalInquiriesForm />
           </section>

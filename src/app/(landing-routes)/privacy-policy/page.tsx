@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 
-import { Breadcrumb } from "~/components/common/breadcrumb";
 import privacyPolicyData, {
   getTableOfContents,
 } from "~/components/layouts/Legal/PrivacyPolicy/constants/privacyPolicyData";
@@ -37,10 +36,9 @@ export default function PrivacyPolicy() {
         description="Find advice and answers from our support team"
       />
 
-      <div className="mx-auto max-w-7xl px-5 py-10 md:px-10 lg:px-10 xl:px-10">
-        {/* <Breadcrumb variant="primary" /> */}
+      <div className="mx-auto max-w-7xl px-5 py-[31px] md:py-10 md:px-10 lg:px-10 xl:px-10">
 
-        <section className="my-[70px] flex max-w-full flex-col-reverse items-start justify-between pb-10 lg:flex-row">
+        <section className="flex max-w-full flex-col-reverse items-start justify-between pb-10 lg:flex-row">
           <PrivacyPolicyContent
             content={privacyPolicyData}
             className="text-neutral-dark-1 lg:w-[750px]"

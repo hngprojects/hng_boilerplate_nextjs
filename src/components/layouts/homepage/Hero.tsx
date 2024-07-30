@@ -3,9 +3,9 @@
 import Image from "next/image";
 import { A11y, Autoplay, Pagination, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Dialog, DialogContent } from "~/components/ui/dialog";
 
 import { HeroBoilerPlate, HeroChat, HeroCheckMark } from "./svgs";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -14,9 +14,8 @@ import "swiper/css/scrollbar";
 import Link from "next/link";
 
 const Hero = () => {
-  //
-
   return (
+    <>
     <div className="py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <div className="flex flex-col items-center lg:flex-row">
@@ -153,6 +152,20 @@ const Hero = () => {
         </div>
       </div>
     </div>
+    <div className="fixed flex flex-col bottom-0 px-5 md:px-10 py-[20px] md:py-[40px] h-[200px] md:h-[208px] bg-[#FAFAFA] w-full z-40">
+      <div className="block md:flex items-end justify-between gap-x-[20px] gap-y-[16px] md:justify-between">
+      <div className="flex flex-col gap-y-[16px]">
+      <p className="font-semibold text-[14px] md:text-[20px]">We value your privacy</p>
+        <p className="text-[12px] md:text-[16px]">Our website uses cookies to enhance your browsing experience, provide<br /> personalized content. By clicking "Accept All" you consent to our use of cookies.</p>
+        </div>
+        <div className="flex flex-wrap gap-x-[36px] gap-y-[8px] text-[14px] mt-[16px] md:mt-0">
+          <button className="text-[14px] rounded-[6px] px-[16px] py-[8px] border border-[#F97316] bg-[#FAFAFA] text-[#F97316]">Cookies Settings</button>
+          <button className="text-[14px] rounded-[6px] px-[16px] py-[8px] bg-[#F97316] text-[#FAFAFA]">Reject All</button>
+          <button className="text-[14px] rounded-[6px] px-[16px] py-[8px] bg-[#F97316] text-[#FAFAFA]">Accept All Cookies</button>
+        </div>
+      </div>
+    </div>
+    </>
   );
 };
 

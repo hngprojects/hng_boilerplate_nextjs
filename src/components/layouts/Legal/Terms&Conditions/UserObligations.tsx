@@ -14,7 +14,7 @@ const UserObligations = () => {
       <h2 className="font-inherit relative m-0 self-stretch text-2xl font-bold text-inherit sm:text-[28px]">
         User Obligations
       </h2>
-      <div className="`relative inline-block self-stretch text-base">
+      <div className="relative inline-block self-stretch text-base">
         <div className="mb-[10px]">
           As a user of our services, you are expected to adhere to the following
           obligations to ensure a safe and enjoyable experience for all users:

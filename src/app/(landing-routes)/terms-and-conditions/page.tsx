@@ -15,24 +15,9 @@ const TermsConditions = () => {
       </div>
 
       <div
-        className="mx-auto max-w-7xl px-5 py-[52px] md:px-10 lg:px-10 xl:px-10"
+        className="mx-auto max-w-7xl px-5 md:py-[52px] md:px-10 lg:px-10 xl:px-10"
         data-testid="breadcrumb-container"
       >
-        {/* <div data-testid="breadcrumb">
-          <Breadcrumb
-            pages={[
-              { name: "Home", href: "/" },
-              
-              {
-                name: "Terms and Conditions",
-                href: "/terms-and-conditions",
-                isCurrent: true,
-              },
-            ]}
-            variant="primary"
-          />
-        </div> */}
-
         <div data-testid="main-content">
           <Main />
         </div>
