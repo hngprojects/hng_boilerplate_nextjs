@@ -1,7 +1,5 @@
-import SignUp from ".";
-
 const page = () => {
-  return <SignUp />;
+  return <div>page</div>;
 };
 
 export default page;
