@@ -1,3 +1,5 @@
+"use client";
+
 import { EllipsisVertical, Eye, Redo, Undo } from "lucide-react";
 
 import { Button } from "~/components/common/common-button";
