@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DialogContent, DialogTitle } from "@radix-ui/react-dialog";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -74,7 +75,7 @@ const SignUp = () => {
     })();
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     form.handleSubmit(handleFormSubmit)();
   };
 
@@ -91,11 +92,7 @@ const SignUp = () => {
           isDisabled={!apiUrl}
           variant="outline"
           isLeftIconVisible={true}
-          href={
-            apiUrl === ""
-              ? undefined
-              : `${apiUrl}/api/v1/auth/social/google?provider=google`
-          }
+          onClick={() => signIn("google")}
           icon={
             <svg
               width="25"
@@ -128,11 +125,7 @@ const SignUp = () => {
         <CustomButton
           isDisabled={!apiUrl}
           variant="outline"
-          href={
-            apiUrl === ""
-              ? undefined
-              : `${apiUrl}/api/v1/auth/social/facebook?provider=facebook`
-          }
+          href={apiUrl === "" ? undefined : `${apiUrl}/api/v1/auth/facebook`}
           isLeftIconVisible={true}
           icon={
             <svg
