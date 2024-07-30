@@ -1,3 +1,5 @@
+"use client";
+
 import { BellRing } from "lucide-react";
 import { FC } from "react";
 
