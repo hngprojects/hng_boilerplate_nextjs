@@ -16,6 +16,8 @@ export interface PaginationProperties {
   activeVariant?: "default" | "outline";
   navigationVariant?: "semibold" | "medium";
   onChange?: (page: number) => void;
+  previousText?: string;
+  nextText?: string;
 }
 
 const Pagination = ({
@@ -68,19 +70,34 @@ const Pagination = ({
     <PaginationComponent>
       <PaginationContent>
         <PaginationItem>
-          <PaginationPrevious
+          <div
             onClick={() => currentPage > 1 && handleChange(currentPage - 1)}
-            className={`${
+            className={`flex items-center ${
               navigationVariant === "semibold"
                 ? "text-xl font-semibold leading-normal"
-                : "text-base font-medium leading-6"
+                : "pr-1 text-base font-medium leading-6"
             } ${
               currentPage > 1
                 ? "cursor-pointer"
-                : "cursor-not-allowed text-stroke-colors-stroke hover:bg-transparent hover:text-stroke-colors-stroke"
+                : "cursor-not-allowed text-stroke-colors-stroke"
             }`}
-            href={currentPage > 1 ? `?page=${currentPage - 1}` : "#"}
-          />
+          >
+            {" "}
+            <PaginationPrevious
+              onClick={() => currentPage > 1 && handleChange(currentPage - 1)}
+              className={`${
+                navigationVariant === "semibold"
+                  ? "text-xl font-semibold leading-normal"
+                  : "border-none text-base font-medium leading-6"
+              } ${
+                currentPage > 1
+                  ? "cursor-pointer bg-background"
+                  : "cursor-not-allowed bg-background text-stroke-colors-stroke hover:bg-transparent hover:text-stroke-colors-stroke"
+              }`}
+              href={currentPage > 1 ? `?page=${currentPage - 1}` : "#"}
+            ></PaginationPrevious>
+            Previous
+          </div>
         </PaginationItem>
         {getPageNumbers().map((page, index) =>
           typeof page === "number" ? (
@@ -92,7 +109,7 @@ const Pagination = ({
                 className={
                   currentPage === page && activeVariant === "default"
                     ? "bg-primary"
-                    : ""
+                    : "bg-inherit text-neutral-800"
                 }
               >
                 {page}
@@ -109,8 +126,11 @@ const Pagination = ({
             currentPage < totalPages && handleChange(currentPage + 1)
           }
         >
-          <PaginationNext
-            className={`${
+          <div
+            onClick={() =>
+              currentPage < totalPages && handleChange(currentPage + 1)
+            }
+            className={`flex items-center ${
               navigationVariant === "semibold"
                 ? "text-xl font-semibold leading-normal"
                 : "text-base font-medium leading-6"
@@ -119,8 +139,22 @@ const Pagination = ({
                 ? "cursor-pointer"
                 : "cursor-not-allowed text-stroke-colors-stroke hover:bg-transparent hover:text-stroke-colors-stroke"
             }`}
-            href={currentPage < totalPages ? `?page=${currentPage + 1}` : "#"}
-          />
+          >
+            {" "}
+            Next
+            <PaginationNext
+              className={`${
+                navigationVariant === "semibold"
+                  ? "text-xl font-semibold leading-normal"
+                  : "border-none text-base font-medium leading-6"
+              } ${
+                currentPage < totalPages
+                  ? "cursor-pointer bg-background"
+                  : "cursor-not-allowed text-stroke-colors-stroke hover:bg-transparent hover:text-stroke-colors-stroke"
+              }`}
+              href={currentPage < totalPages ? `?page=${currentPage + 1}` : "#"}
+            ></PaginationNext>
+          </div>
         </PaginationItem>
       </PaginationContent>
     </PaginationComponent>

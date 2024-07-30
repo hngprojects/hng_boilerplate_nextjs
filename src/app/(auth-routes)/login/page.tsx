@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 import { Eye, EyeOff, ShieldCheck } from "lucide-react";
 import { useRouter } from "next-nprogress-bar";
 import Image from "next/image";
@@ -10,7 +11,7 @@ import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-import { loginUser } from "~/actions/login";
+// import { loginUser } from "~/actions/login";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import { Button } from "~/components/ui/button";
 import { Checkbox } from "~/components/ui/checkbox";
@@ -23,8 +24,9 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
+import { toast } from "~/components/ui/use-toast";
 import { useUser } from "~/hooks/user/use-user";
-import { simulateDelay } from "~/lib/utils";
+// import { simulateDelay } from "~/lib/utils";
 import Facebook from "../../../../public/images/facebook.svg";
 import Google from "../../../../public/images/google.svg";
 
@@ -70,13 +72,52 @@ const LoginPage = () => {
 
   const onSubmit = async (values: z.infer<typeof loginSchema>) => {
     startTransition(async () => {
-      await simulateDelay(3);
-      await loginUser(values);
-      updateUser({ email: values.email, name: values.email.split("@")[0] });
-      if (callback_url) {
-        router.push(callback_url);
-      } else {
-        router.push("/");
+      try {
+        const response = await axios.post(
+          "https://deployment.api-nestjs.boilerplate.hng.tech/api/v1/auth/login",
+          {
+            email: values.email,
+            password: values.password,
+          },
+        );
+
+        if (response.status === 200) {
+          // Login successful
+          const userData = response.data;
+          updateUser(userData);
+          // eslint-disable-next-line no-console
+          console.log(userData);
+
+          localStorage.setItem("token", userData.token);
+
+          toast({
+            title: "Success",
+            description: "Logged in successfully!",
+            variant: "default",
+          });
+
+          if (callback_url) {
+            router.push(callback_url);
+          } else {
+            router.push("/");
+          }
+        }
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          toast({
+            title: "Error",
+            description:
+              error.response?.data?.message ||
+              "Login failed. Please try again.",
+            variant: "destructive",
+          });
+        } else {
+          toast({
+            title: "Error",
+            description: "An unexpected error occurred. Please try again.",
+            variant: "destructive",
+          });
+        }
       }
     });
   };

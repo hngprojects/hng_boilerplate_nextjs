@@ -1,6 +1,7 @@
 "use client";
 
 import { Plus } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { Breadcrumb } from "~/components/common/breadcrumb";
@@ -43,7 +44,7 @@ const JobDetails = () => {
     <main className="mx-auto max-w-7xl px-5 py-10 md:px-10 lg:px-10 xl:px-10">
       <Breadcrumb pages={pages} maxPages={isSmallScreen ? 2 : 3} />
 
-      <div className="mb-4 mt-8 mt-[60px] grid w-full auto-rows-min grid-cols-1 pb-2 md:grid-cols-3">
+      <div className="mb-4 mt-[60px] grid w-full auto-rows-min grid-cols-1 pb-2 md:grid-cols-3">
         <div className="col-span-1 mb-6 sm:col-span-2 md:mr-16 xl:mr-40">
           <div className="flex flex-col justify-start">
             <h1 className="mb-3 text-3xl font-bold text-neutral-dark-2 md:text-[38px]">
@@ -209,17 +210,19 @@ const JobDetails = () => {
         </div>
       </div>
 
-      <div className="my-10 mb-40 mb-8 flex flex-row items-center justify-center">
-        <CustomButton
-          variant="primary"
-          size="lg"
-          icon={isSmallScreen ? undefined : <Plus />}
-          isLeftIconVisible={isSmallScreen}
-          isDisabled={false}
-          className={`h-[50px] w-[250px]`}
-        >
-          Apply Now
-        </CustomButton>
+      <div className="my-10 mb-8 flex flex-row items-center justify-center">
+        <Link href="mailto:hng123@gmail.com" passHref>
+          <CustomButton
+            variant="primary"
+            size="lg"
+            icon={isSmallScreen ? undefined : <Plus />}
+            isLeftIconVisible={isSmallScreen}
+            isDisabled={false}
+            className={`h-[50px] w-[250px]`}
+          >
+            Apply Now
+          </CustomButton>
+        </Link>
       </div>
     </main>
   );
