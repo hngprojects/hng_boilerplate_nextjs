@@ -1,5 +1,4 @@
-// import squeezeHeroImgUrl from '~/../public/images/squeeze.png'
-
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
