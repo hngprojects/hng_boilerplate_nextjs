@@ -64,7 +64,7 @@ const ProductPage = () => {
       <NewProductModal />
       <ProductDeleteModal />
       <AnimatePresence>
-        <div className="relative grid w-full grid-cols-[1fr_auto] items-start gap-x-2 pt-4 xl:gap-x-8">
+        <div className="relative flex w-full items-start gap-x-2 pt-4 xl:gap-x-8">
           <motion.div
             layout
             layoutId="products_table"

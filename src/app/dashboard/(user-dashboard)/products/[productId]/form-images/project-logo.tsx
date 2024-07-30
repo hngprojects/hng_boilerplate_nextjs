@@ -17,7 +17,7 @@ const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 const ProjectLogo = ({ form, name }: Properties) => {
   const [isDragging, setIsDragging] = useState(false);
 
-  const projectLogo = form.getValues("media");
+  const productImage = form.getValues("media");
 
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
@@ -55,18 +55,19 @@ const ProjectLogo = ({ form, name }: Properties) => {
 
       {isDragging && (
         <div className="pointer-events-none absolute inset-0 z-20 grid h-full w-full scale-95 place-items-center rounded-xl border-2 border-dashed border-white bg-white/20 backdrop-blur-xl">
-          <p className="text-xl text-white">Drop to upload</p>
+          <p className="text-xl">Drop to upload</p>
         </div>
       )}
 
-      {projectLogo.url && typeof projectLogo.url === "string" ? (
-        <div className="absolute inset-0 h-full w-full rounded-xl">
+      {productImage.url && typeof productImage.url === "string" ? (
+        <div className="inset-0 h-full w-full rounded-xl md:absolute">
           <div className="h-full w-full overflow-hidden rounded-xl">
             <BlurImage
-              src={projectLogo.url}
+              src={productImage.url}
               width={500}
               height={500}
-              alt="nft"
+              alt="product image"
+              quality={100}
               className={cn(
                 "size-full object-cover transition-all duration-300",
               )}
