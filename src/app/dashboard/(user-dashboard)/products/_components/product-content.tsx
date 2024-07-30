@@ -50,15 +50,25 @@ const ProductContent = ({
     setCurrentPage(selected);
     window?.scrollTo({ top: 0, behavior: "smooth" });
   };
-  // filter by active filter
-  const filteredProductsByActiveFilter = useMemo(() => {
+
+  // sort products by date_added new to old
+  const sortedProducts = useMemo(() => {
     if (!products) return [];
     if (products.length === 0) return [];
-    return products.filter((product) => {
+    return products.sort(
+      (a, b) =>
+        new Date(b.date_added).getTime() - new Date(a.date_added).getTime(),
+    );
+  }, [products]);
+  // filter by active filter
+  const filteredProductsByActiveFilter = useMemo(() => {
+    if (!sortedProducts) return [];
+    if (sortedProducts.length === 0) return [];
+    return sortedProducts.filter((product) => {
       if (active_filter === "all") return product;
       return product.status === active_filter;
     });
-  }, [active_filter, products]);
+  }, [active_filter, sortedProducts]);
 
   // filter by search term
   const filteredProducts = useMemo(() => {

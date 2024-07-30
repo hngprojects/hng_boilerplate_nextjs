@@ -1,11 +1,10 @@
 name: Dev Deployment
 
 on:
-  push:
-    branches:
-      - dev
-    paths-ignore:
-      - .github/workflows/**
+  workflow_run:
+    workflows: ["Build and Push"]
+    types:
+      - completed
 
 jobs:
   deploy_to_dev:
@@ -24,4 +23,5 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            ./deploy_dev.sh next 
+            cd hng_boilerplate_nextjs
+            ./scripts/dev_deploy.sh
