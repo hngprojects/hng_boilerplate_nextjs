@@ -1,5 +1,6 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -62,7 +63,6 @@ const Navbar = () => {
             <UserCard image={session?.user?.image as string} />
           </div>
         ) : (
-        {!user.email && (
           <div className="w-fullx hidden items-center justify-end gap-x-4 justify-self-end md:flex lg:gap-x-8">
             <Link
               href="/login"
@@ -78,7 +78,6 @@ const Navbar = () => {
             </Link>
           </div>
         )}
-        {user.email && <UserCard email={user.email} />}
       </div>
     </nav>
   );
