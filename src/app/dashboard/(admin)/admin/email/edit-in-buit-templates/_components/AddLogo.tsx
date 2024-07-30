@@ -20,7 +20,7 @@ const AddLogo: React.FC = () => {
   };
 
   return (
-    <div className="h-52 w-4/5 rounded-sm border bg-white p-4 shadow-md hover:border-orange-500">
+    <div className="h-52 w-full rounded-sm border bg-white p-4 shadow-md hover:border-orange-500 md:w-4/5">
       <label className="flex flex-col items-center">
         <div className="mb-4 flex h-44 w-48 cursor-pointer items-center justify-center bg-gray-50">
           {selectedImage ? (
