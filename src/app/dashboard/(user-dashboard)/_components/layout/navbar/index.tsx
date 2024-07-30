@@ -22,12 +22,12 @@ import {
 const navlinks = [
   {
     route: "Overview",
-    link: "/dashboard",
+    link: "/dashboard/overview",
     id: "dashboard",
   },
   {
     route: "Customers",
-    link: "/dashboard/customer",
+    link: "/dashboard/customers",
     id: "customers",
   },
   {
@@ -45,6 +45,7 @@ const navlinks = [
 const UserNavbar = () => {
   const pathname = usePathname();
   const currentPath = pathname?.split("/")[2];
+
   return (
     <nav
       className="bg-white px-5 py-2.5 md:left-[220px] lg:left-[252px]"
@@ -68,7 +69,7 @@ const UserNavbar = () => {
             ))}
           </div>
         </div>
-        <div className="flex items-center justify-between gap-2 bg-[#FDFDFD]">
+        <div className="flex items-center justify-between gap-[2rem] bg-[#FDFDFD]">
           <div className="flex h-10 items-center justify-between gap-2 rounded-[6px] border border-border bg-white px-3 text-sm font-normal placeholder:text-sm">
             <SearchIcon
               data-testid="search"
