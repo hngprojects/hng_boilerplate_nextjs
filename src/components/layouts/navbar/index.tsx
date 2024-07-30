@@ -45,7 +45,7 @@ const Navbar = () => {
 
         <Logo />
         {session?.user?.email ? (
-          <UserCard image={session?.user?.image as string } />
+          <UserCard image={session?.user?.image as string} />
         ) : (
           <div className="w-fullx hidden items-center justify-end gap-x-4 justify-self-end md:flex lg:gap-x-8">
             <Link href="/login"></Link>
