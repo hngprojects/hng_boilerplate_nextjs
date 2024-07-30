@@ -1,30 +1,28 @@
-'use client'
+"use client";
+
 import { useState } from "react";
 
 const Switcher = () => {
+  const [isOn, setIsOn] = useState(false);
 
-    const [isOn, setIsOn] = useState(false);
+  const toggleSwitch = () => {
+    setIsOn(!isOn);
+  };
 
-    const toggleSwitch = () => {
-      setIsOn(!isOn);
-    };
-  
   return (
     <div
-className={`w-[44px] h-[24px] rounded-full p-[2px] cursor-pointer transition-colors duration-300 ${
-  isOn ? 'bg-[#F97316]' : 'bg-gray-400'
-}`}
-onClick={toggleSwitch}
->
-<div
-  className={`w-[20px] h-[20px] rounded-full bg-white transition-transform duration-300 ${
-    isOn ? 'transform translate-x-[20px]' : 'transform translate-x-0'
-  }`}
-></div>
-</div>
-  )
-}
+      className={`h-[24px] w-[44px] cursor-pointer rounded-full p-[2px] transition-colors duration-300 ${
+        isOn ? "bg-[#F97316]" : "bg-gray-400"
+      }`}
+      onClick={toggleSwitch}
+    >
+      <div
+        className={`h-[20px] w-[20px] rounded-full bg-white transition-transform duration-300 ${
+          isOn ? "translate-x-[20px] transform" : "translate-x-0 transform"
+        }`}
+      ></div>
+    </div>
+  );
+};
 
-export default Switcher
-
-
+export default Switcher;

@@ -15,7 +15,7 @@ const HelpCenter = () => {
 
   return (
     <div className="w-full bg-background">
-      <div className="w-full bg-primary/10">
+      <div className="w-full bg-[#FAFAFA]">
         <div className="mx-auto w-full max-w-[1349px]">
           <section
             className="flex w-full flex-col items-center justify-center gap-4 px-6 py-[24px] text-center md:px-0 md:py-24"

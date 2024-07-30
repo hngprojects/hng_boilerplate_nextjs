@@ -1,4 +1,3 @@
-import { Breadcrumb } from "~/components/common/breadcrumb";
 import Main from "~/components/layouts/Legal/Terms&Conditions/Main";
 import SubPageHero from "~/components/layouts/Legal/Terms&Conditions/SubPageHero";
 
@@ -15,7 +14,7 @@ const TermsConditions = () => {
       </div>
 
       <div
-        className="mx-auto max-w-7xl px-5 md:py-[52px] md:px-10 lg:px-10 xl:px-10"
+        className="mx-auto max-w-7xl px-5 md:px-10 md:py-[52px] lg:px-10 xl:px-10"
         data-testid="breadcrumb-container"
       >
         <div data-testid="main-content">

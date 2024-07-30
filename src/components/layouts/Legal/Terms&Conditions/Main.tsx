@@ -123,11 +123,8 @@ const Main = () => {
           </div>
           <div className="mb-[10px] text-base text-neutral-dark-1">
             For more information about our privacy practices, please visit our{" "}
-            <Link
-              href={"/privacy-policy"}
-              className="text-primary underline"
-            >
-              Privacy Policy page.{" "}
+            <Link href={"/privacy-policy"} className="text-primary underline">
+              Privacy Policy page.
             </Link>
           </div>
         </div>

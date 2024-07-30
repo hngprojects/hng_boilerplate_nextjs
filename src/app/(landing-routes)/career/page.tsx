@@ -26,7 +26,7 @@ export default function Career() {
         ))}
       </div>
 
-      <div className="text-1xl my-5 text-right">Showing 50 of 500</div>
+      <div className="text-1xl my-5 text-right">Showing 3 of 50</div>
 
       <div className="my-20">
         <Pagination total={200} pageSize={10} currentPage={1} />

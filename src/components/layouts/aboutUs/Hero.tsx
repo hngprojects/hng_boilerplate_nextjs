@@ -5,7 +5,7 @@ const Hero = () => {
     <div className="bg-white">
       <div className="mx-auto max-w-7xl px-5 py-20 md:px-10 lg:px-10 xl:px-10">
         <div className="mx-auto flex flex-col items-center">
-          <p className="text-center text-[20px] font-[500] text-neutral-600 sm:text-[22px] md:text-[24px] lg:text-[26px] xl:text-[28px]">
+          <p className="text-center text-[20px] font-[500] sm:text-[22px] md:text-[20px] lg:text-[26px] xl:text-[28px] text-[#0A0A0A]">
             About Us
           </p>
           <p className="text-center text-[30px] font-[700] text-neutral-600 sm:text-[36px] md:text-[42px] lg:text-[48px] xl:text-[54px]">

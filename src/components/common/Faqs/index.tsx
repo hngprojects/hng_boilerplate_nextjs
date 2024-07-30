@@ -1,7 +1,10 @@
 "use client";
+
 import { useEffect, useState } from "react";
+
 import FaqAccordion from "../FaqAccordion";
 import Search from "../SearchFaq";
+
 type FAQ = {
   id: string;
   question: string;
@@ -14,6 +17,7 @@ type FAQ = {
 export default function Faqs() {
   const [faqData, setFaqData] = useState<FAQ[]>([]);
   const [searchValue, setSearchValue] = useState("");
+
   useEffect(() => {
     const getFAQ = async () => {
       const response = await fetch(
@@ -24,9 +28,11 @@ export default function Faqs() {
     };
     getFAQ();
   }, []);
+
   const handleSearch = (value: string) => {
     setSearchValue(value);
   };
+
   const filteredAccordions = faqData
     .filter(
       (faq) =>
@@ -36,6 +42,7 @@ export default function Faqs() {
     .map((faq) => (
       <FaqAccordion key={faq.id} question={faq.question} answer={faq.answer} />
     ));
+
   return (
     <div className="flex flex-col gap-6 max-md:gap-16">
       <Search onSearch={handleSearch} />
