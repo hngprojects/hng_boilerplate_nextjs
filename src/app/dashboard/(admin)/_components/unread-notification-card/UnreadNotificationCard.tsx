@@ -35,8 +35,6 @@ const UnreadNotificationCard: FC<CardProperties> = ({
 
   const handleToggleSwitch = (name: keyof notificationSettingsProperties) => {
     updateSettings({ [name]: !settings[name] });
-    // eslint-disable-next-line no-console
-    console.log("Settings saved:", settings);
   };
 
   return (
