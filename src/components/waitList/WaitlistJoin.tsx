@@ -1,6 +1,15 @@
+"use client";
+
 import React from "react";
 
 import CustomButton from "~/components/common/common-button/common-button";
+
+const scrollToForm = () => {
+  const formElement = document.querySelector("#waitlist-form");
+  if (formElement) {
+    formElement.scrollIntoView({ behavior: "smooth" });
+  }
+};
 
 const WaitlistJoin: React.FC = () => {
   return (
@@ -25,7 +34,10 @@ const WaitlistJoin: React.FC = () => {
         </p>
       </div>
       <div className="mt-[5px] flex items-center gap-4 p-8 md:mt-[20px]">
-        <CustomButton className="p-6 text-2xl transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+        <CustomButton
+          className="p-6 text-2xl transition-transform duration-300 hover:scale-105 hover:shadow-lg"
+          onClick={scrollToForm}
+        >
           Join the waitlist
         </CustomButton>
       </div>
