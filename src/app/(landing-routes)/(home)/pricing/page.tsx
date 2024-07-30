@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import FaqAccordion from "~/components/layouts/accordion/FaqsAccordion";
@@ -17,11 +16,6 @@ const handleButtonClickTest = () => {
 //
 
 export default function Pricing() {
-  const router = useRouter();
-
-  const handleClick = () => {
-    router.push("/payment");
-  };
   const [toggle, setToggle] = useState(1);
 
   return (
@@ -281,7 +275,6 @@ export default function Pricing() {
                   Custom integration
                 </div>
                 <Button
-                  onClick={handleClick}
                   size="lg"
                   className="mt-[51px] w-full bg-primary text-background"
                   data-testid="premium-button"
