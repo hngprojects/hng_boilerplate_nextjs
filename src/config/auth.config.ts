@@ -56,9 +56,13 @@ export default {
       if (account && account.provider === "google" && profile?.email) {
         return profile.email.endsWith("@gmail.com");
       }
+
       return false;
     },
     async jwt({ token, user, account }) {
+      if (account && account.provider !== "google") {
+        return { token, user };
+      }
       const response: ApiResponse = (await googleAuth(
         account as Profile,
       )) as ApiResponse;
@@ -67,12 +71,18 @@ export default {
       }
 
       return { ...token, ...user };
+      user = response?.data?.user;
+
+      return { ...token };
+    },
+    async session({ session }) {
+      return session;
     },
     async redirect({ url, baseUrl }) {
       if (url === "/login") {
         return baseUrl;
       }
-      return "/register/organisation";
+      return "/dashboard/admin";
     },
   },
   pages: {

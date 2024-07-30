@@ -40,6 +40,9 @@ const googleAuth = async (profile: Profile) => {
         },
       },
     };
+    return response.data;
+  } catch (error) {
+    return error;
   }
 };
 

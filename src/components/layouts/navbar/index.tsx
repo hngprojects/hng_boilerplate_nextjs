@@ -6,16 +6,22 @@ import { useEffect, useState } from "react";
 
 import UserCard from "~/components/card/user-card";
 import Logo from "~/components/common/logo";
-import { useUser } from "~/hooks/user/use-user";
 import { cn } from "~/lib/utils";
 import { NAV_LINKS } from "./links";
 import MobileNav from "./mobile-navbar";
+
+interface User {
+  email: string;
+  image: string;
+  name: string;
+}
 
 const Navbar = () => {
   const [scrolling, setIsScrolling] = useState<boolean>(false);
 
   const { data: session } = useSession();
   const { user } = useUser();
+  const { data: session, status } = useSession();
 
   const handleScrollEvent = () => {
     if (window.scrollY > 1) {
@@ -39,7 +45,7 @@ const Navbar = () => {
         className={cn(
           `relative mx-auto flex w-full max-w-[1200px] items-center gap-x-4 transition-all duration-500 md:justify-between`,
           scrolling ? "py-2" : "py-4 md:py-9",
-          user.email && "justify-between",
+          status === "authenticated" && "justify-between md:justify-between",
         )}
       >
         <MobileNav />
@@ -63,6 +69,7 @@ const Navbar = () => {
             <UserCard image={session?.user?.image as string} />
           </div>
         ) : (
+        {status !== "authenticated" && (
           <div className="w-fullx hidden items-center justify-end gap-x-4 justify-self-end md:flex lg:gap-x-8">
             <Link
               href="/login"
@@ -77,6 +84,9 @@ const Navbar = () => {
               Get Started
             </Link>
           </div>
+        )}
+        {status === "authenticated" && (
+          <UserCard user={session?.user as User} />
         )}
       </div>
     </nav>
