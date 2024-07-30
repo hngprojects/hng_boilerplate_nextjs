@@ -1,6 +1,8 @@
 import { BellRing } from "lucide-react";
 import { FC } from "react";
 
+import { NotificationSwitchBox } from "~/app/dashboard/(user-dashboard)/settings/notification/_components/notification-switch-box";
+import { useNotificationStore } from "~/app/dashboard/(user-dashboard)/settings/notification/action/notification-store";
 import CustomButton from "~/components/common/common-button/common-button";
 import {
   Card,
@@ -10,7 +12,6 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
-import { Switch } from "~/components/ui/switch";
 import { cn } from "~/lib/utils";
 
 interface NotificationPreview {
@@ -29,6 +30,14 @@ const UnreadNotificationCard: FC<CardProperties> = ({
   unreadCount = 0,
   ...properties
 }) => {
+  const { settings, updateSettings } = useNotificationStore();
+
+  const handleToggleSwitch = (name: keyof typeof settings) => {
+    updateSettings({ [name]: !settings[name] });
+    // eslint-disable-next-line no-console
+    console.log("Settings saved:", settings);
+  };
+
   return (
     <Card
       data-testid="cardContainer"
@@ -45,7 +54,14 @@ const UnreadNotificationCard: FC<CardProperties> = ({
       <CardContent className="grid gap-4 p-4 pt-0 sm:p-6 sm:pt-0">
         <div className="flex items-center space-x-4 rounded-md border p-2 sm:p-4">
           <BellRing />
-          <div className="flex-1 space-y-1">
+          <NotificationSwitchBox
+            title={"Push Notifications"}
+            description={"Send notifications to device."}
+            name="mobile_push_notifications"
+            isChecked={settings.mobile_push_notifications}
+            onToggle={handleToggleSwitch}
+          />
+          {/* <div className="flex-1 space-y-1">
             <p className="text-sm font-medium leading-none">
               Push Notifications
             </p>
@@ -53,7 +69,7 @@ const UnreadNotificationCard: FC<CardProperties> = ({
               Send notifications to device.
             </p>
           </div>
-          <Switch />
+          <Switch /> */}
         </div>
         <div data-testid="previewBody">
           {notificationsPreview.map((preview, index) => (

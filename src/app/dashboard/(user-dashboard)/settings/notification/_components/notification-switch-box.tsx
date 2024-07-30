@@ -1,11 +1,24 @@
+/* eslint-disable no-console */
+
 import { Switch } from "~/components/ui/switch";
+import { notificationSettingsProperties } from "../types/notification-settings.types";
 
 interface IProperties {
   title: string;
   description: string;
+  name: keyof notificationSettingsProperties;
+  isChecked: boolean;
+  onToggle: (name: keyof notificationSettingsProperties) => void;
+  className?: string; // Add className as an optional property
 }
 
-const NotificationSwitchBox = ({ title, description }: IProperties) => {
+export const NotificationSwitchBox = ({
+  title,
+  description,
+  name,
+  isChecked,
+  onToggle,
+}: IProperties) => {
   return (
     <section className="flex w-full items-center justify-between">
       <div className="w-[70%] md:w-[55%]">
@@ -17,10 +30,8 @@ const NotificationSwitchBox = ({ title, description }: IProperties) => {
         </p>
       </div>
       <div>
-        <Switch />
+        <Switch checked={isChecked} onCheckedChange={() => onToggle(name)} />
       </div>
     </section>
   );
 };
-
-export default NotificationSwitchBox;
