@@ -77,7 +77,7 @@ const ProductBodyShadcn = ({
         key={product.product_id}
         className={cn(
           "relative bg-white",
-          product_id === product.product_id ? "bg-muted/50" : "",
+          product_id === product.product_id ? "bg-[#F1F5F9]" : "",
         )}
       >
         <TableCell className="flex items-center justify-start gap-x-2 whitespace-nowrap md:gap-x-4">
@@ -97,7 +97,7 @@ const ProductBodyShadcn = ({
           <span
             role="button"
             onClick={() => handleOpenDetail(product.product_id)}
-            className="hide_scrollbar w-[110px] whitespace-break-spaces text-[10px] text-neutral-dark-2 min-[500px]:text-xs sm:ml-1 md:w-[200px] md:text-base lg:w-[200px]"
+            className="hide_scrollbar ml-0.5 w-[110px] whitespace-break-spaces text-[10px] text-neutral-dark-2 min-[376px]:text-xs sm:ml-1 md:w-[200px] md:text-base lg:w-[200px]"
           >
             {searchTerm.length > 1 ? (
               <span
@@ -132,14 +132,14 @@ const ProductBodyShadcn = ({
         <TableCell
           role="button"
           onClick={() => handleOpenDetail(product.product_id)}
-          className="text-[10px] min-[500px]:text-xs md:text-base"
+          className="text-[10px] min-[376px]:text-xs md:text-base"
         >
           {product.category}
         </TableCell>
         <TableCell
           role="button"
           onClick={() => handleOpenDetail(product.product_id)}
-          className="text-[10px] min-[500px]:text-xs md:text-base"
+          className="text-[10px] min-[376px]:text-xs md:text-base"
         >
           {formatPrice(product.price)}
         </TableCell>
@@ -149,7 +149,7 @@ const ProductBodyShadcn = ({
         >
           <span
             className={cn(
-              "flex items-center gap-x-1 whitespace-nowrap rounded-full px-2 text-[10px] leading-5 min-[500px]:text-xs md:gap-x-2 md:text-base",
+              "flex items-center gap-x-1 whitespace-nowrap rounded-full px-2 text-[10px] leading-5 min-[376px]:text-xs md:gap-x-2 md:text-base",
             )}
           >
             <span
