@@ -1,12 +1,15 @@
+import { Separator } from "~/components/ui/separator";
+
 interface IProperties {
   notificationTitle: string;
 }
 
 const NotificationHeader = ({ notificationTitle }: IProperties) => {
   return (
-    <h4 className="mb-[17px] text-[18px] font-[700] md:text-[24px]">
-      {notificationTitle}
-    </h4>
+    <header className="mb-[17px] text-[18px] font-[700] md:text-[24px]">
+      <h4 className="mb-[5px] px-[24px] md:px-0">{notificationTitle}</h4>
+      <Separator className="bg-[#BCBCBC66] md:hidden" />
+    </header>
   );
 };
 

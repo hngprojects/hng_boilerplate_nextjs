@@ -1,8 +1,8 @@
 import { BellRing } from "lucide-react";
 import { FC } from "react";
 
-import { NotificationSwitchBox } from "~/app/dashboard/(user-dashboard)/settings/notification/_components/notification-switch-box";
 import { useNotificationStore } from "~/app/dashboard/(user-dashboard)/settings/notification/action/notification-store";
+import { notificationSettingsProperties } from "~/app/dashboard/(user-dashboard)/settings/notification/types/notification-settings.types";
 import CustomButton from "~/components/common/common-button/common-button";
 import {
   Card,
@@ -12,6 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
+import { Switch } from "~/components/ui/switch";
 import { cn } from "~/lib/utils";
 
 interface NotificationPreview {
@@ -32,7 +33,7 @@ const UnreadNotificationCard: FC<CardProperties> = ({
 }) => {
   const { settings, updateSettings } = useNotificationStore();
 
-  const handleToggleSwitch = (name: keyof typeof settings) => {
+  const handleToggleSwitch = (name: keyof notificationSettingsProperties) => {
     updateSettings({ [name]: !settings[name] });
     // eslint-disable-next-line no-console
     console.log("Settings saved:", settings);
@@ -53,15 +54,8 @@ const UnreadNotificationCard: FC<CardProperties> = ({
       </CardHeader>
       <CardContent className="grid gap-4 p-4 pt-0 sm:p-6 sm:pt-0">
         <div className="flex items-center space-x-4 rounded-md border p-2 sm:p-4">
-          <BellRing />
-          <NotificationSwitchBox
-            title={"Push Notifications"}
-            description={"Send notifications to device."}
-            name="mobile_push_notifications"
-            isChecked={settings.mobile_push_notifications}
-            onToggle={handleToggleSwitch}
-          />
-          {/* <div className="flex-1 space-y-1">
+          <BellRing size={16} />
+          <div className="flex-1 space-y-1">
             <p className="text-sm font-medium leading-none">
               Push Notifications
             </p>
@@ -69,7 +63,13 @@ const UnreadNotificationCard: FC<CardProperties> = ({
               Send notifications to device.
             </p>
           </div>
-          <Switch /> */}
+          <Switch
+            checked={settings.mobile_push_notifications}
+            onCheckedChange={() =>
+              handleToggleSwitch("mobile_push_notifications")
+            }
+            name="mobile_push_notifications"
+          />
         </div>
         <div data-testid="previewBody">
           {notificationsPreview.map((preview, index) => (
@@ -102,6 +102,9 @@ const UnreadNotificationCard: FC<CardProperties> = ({
             variant="primary"
             isDisabled={unreadCount === 0}
             className="w-full bg-primary"
+            onClick={() => {
+              // MARK ALL NOTIFICATION LOGIC
+            }}
           >
             Mark all as read
           </CustomButton>

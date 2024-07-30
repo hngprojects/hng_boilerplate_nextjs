@@ -1,7 +1,6 @@
-/* eslint-disable no-console */
 "use client";
 
-import { Check } from "lucide-react";
+import { Check, ChevronLeft } from "lucide-react";
 import { useState } from "react";
 
 import CustomButton from "~/components/common/common-button/common-button";
@@ -16,18 +15,17 @@ const NotificationPage = () => {
 
   const handleToggleSwitch = (name: keyof typeof settings) => {
     updateSettings({ [name]: !settings[name] });
-    console.log("Settings saved:", settings);
   };
 
   const handleSaveChanges = () => {
-    console.log("Settings saved:", settings);
     setOpen(true);
   };
 
   return (
     <main className="text-neutral-dark-2">
-      <div className="mb-[30px] md:hidden">
-        <p className="font-[600] text-muted-foreground">Notification</p>
+      <div className="mx-[24px] mb-[30px] flex w-fit items-center gap-1 md:hidden">
+        <ChevronLeft size="18" className="text-muted-foreground" />
+        <span className="font-[600] text-muted-foreground">Notification</span>
       </div>
       {/* NOTIFICATION ALERT */}
       <section>
@@ -125,7 +123,7 @@ const NotificationPage = () => {
           />
         </section>
       </section>
-      <section className="text-end">
+      <section className="text-center md:text-end">
         <CustomButton
           variant="primary"
           icon={<Check />}
