@@ -1,71 +1,59 @@
 "use client";
-
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
 import FaqAccordion from "../FaqAccordion";
 import Search from "../SearchFaq";
+type FAQ = {
+  id: string;
+  question: string;
+  answer: string;
+  created_at: string;
+  updated_at: string;
+  status: boolean;
+};
 
 export default function Faqs() {
+  const [faqData, setFaqData] = useState<FAQ[]>([]);
   const [searchValue, setSearchValue] = useState("");
-  const [filteredAccordions, setFilteredAccordions] = useState<JSX.Element[]>(
-    [],
-  );
-
-  const accordions = [
-    <FaqAccordion
-      key="1"
-      question="What payment methods do you accept?"
-      answer="Accordion is ..."
-    />,
-    <FaqAccordion key="2" question="Is there a discount for annual subscriptions?" answer="Bar is ..." />,
-    <FaqAccordion
-      key="3"
-      question="Is there a discount for monthly subscriptions?"
-      answer="Search is a term ..."
-    />,
-    <FaqAccordion
-      key="4"
-      question="How do i create my account?"
-      answer="hng is a summer training program ..."
-    />,
-    <FaqAccordion
-      key="5"
-      question="What is the full fee for an annual subscription"
-      answer="A component is a reusable UI element ..."
-    />,
-    <FaqAccordion
-      key="6"
-      question="Do you offer a free trial?"
-      answer="Yes, we offer a 14-day free trial for new users. You can explore all the features of our premium plan without any cost during this period."
-    />
-  ];
-
+  useEffect(() => {
+    const getFAQ = async () => {
+      const response = await fetch(
+        "https://deployment.api-php.boilerplate.hng.tech/api/v1/faqs",
+      );
+      const { data } = await response.json();
+      setFaqData(data);
+    };
+    getFAQ();
+  }, []);
   const handleSearch = (value: string) => {
     setSearchValue(value);
-
-    if (!value.trim()) {
-      setFilteredAccordions([]);
-      return;
-    }
-
-    const filtered = accordions.filter(
-      (accordion) =>
-        accordion.props.question.toLowerCase().includes(value.toLowerCase()) ||
-        accordion.props.answer.toLowerCase().includes(value.toLowerCase()),
-    );
-
-    setFilteredAccordions(filtered);
   };
-
+  const filteredAccordions = faqData
+    .filter(
+      (faq) =>
+        faq.question.toLowerCase().includes(searchValue.toLowerCase()) ||
+        faq.answer.toLowerCase().includes(searchValue.toLowerCase()),
+    )
+    .map((faq) => (
+      <FaqAccordion key={faq.id} question={faq.question} answer={faq.answer} />
+    ));
   return (
     <div className="flex flex-col gap-6 max-md:gap-16">
+      <Search onSearch={handleSearch} />
       <div className="bg-[#FAFAFA] py-11 max-md:px-0 max-md:py-0">
         {searchValue.trim() === "" ? (
           <div className="grid grid-cols-3 gap-x-8 gap-y-6 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-x-4">
-            {accordions}
+            {faqData.map((faq) => (
+              <FaqAccordion
+                key={faq.id}
+                question={faq.question}
+                answer={faq.answer}
+              />
+            ))}
           </div>
         ) : filteredAccordions.length > 0 ? (
-          <div className="grid grid-cols-3">{filteredAccordions}</div>
+          <div className="grid grid-cols-3 gap-x-8 gap-y-6 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-x-4">
+            {filteredAccordions}
+          </div>
         ) : (
           <p className="mt-4 text-center">No results found.</p>
         )}
