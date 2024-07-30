@@ -6,7 +6,13 @@ import { sampleComments } from "~/components/common/comment-component/sample-com
 const CommentPage = () => {
   const mockSession: Session = {
     expires: "1",
-    user: { email: "a", name: "Adeyinka Akinsanya", image: "c" },
+    user: {
+      name: "Current User",
+      email: "user@example.com",
+      id: "Strinf",
+      image: "Strinf",
+      access_token: "access_token",
+    },
   };
   return (
     <div className="my-6 flex items-center justify-center px-3 sm:px-4">
