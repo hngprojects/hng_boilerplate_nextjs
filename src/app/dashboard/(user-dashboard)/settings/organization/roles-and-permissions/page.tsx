@@ -17,11 +17,11 @@ type Permission = {
 };
 
 const rolesData: Role[] = [
-  { id: 1, name: "Guest", description: "Read-only access" },
-  { id: 2, name: "User", description: "Read, write, update" },
-  { id: 3, name: "Manager", description: "Read, write, approve" },
-  { id: 4, name: "Project Lead", description: "Manage, coordinate, oversee" },
-  { id: 5, name: "Administrator", description: "Full access, control" },
+  { id: 1, name: "Administrator", description: "Full access, control" },
+  { id: 2, name: "Guest", description: "Read-only access" },
+  { id: 3, name: "User", description: "Read, write, update" },
+  { id: 4, name: "Manager", description: "Read, write, approve" },
+  { id: 5, name: "Project Lead", description: "Manage, coordinate, oversee" },
 ];
 
 const permissionsData: { [key: number]: Permission[] } = {
@@ -90,33 +90,33 @@ const RolesAndPermission = () => {
   };
 
   return (
-    <div className="min-h-screen p-8">
-      <div className="flex">
-        <div className="w-1/4 pr-6">
+    <div className="">
+      <div className="flex gap-8">
+        <div className="w-1/4">
           <h2 className="mb-10 text-xl font-medium">Roles</h2>
-          <ul>
+          <ul className="rounded-md border border-[#CBD5E1] p-3">
             {rolesData.map((role) => (
               <li
                 key={role.id}
-                className={`mb-6 cursor-pointer border-b border-[#CBD5E1] p-2 ${
+                className={`mb-2 cursor-pointer border-[#CBD5E1] p-2 ${
                   selectedRoleId === role.id
                     ? "rounded-md bg-orange-500 text-white"
-                    : "bg-white text-[#0a0a0a] hover:bg-[#F1F5F9]"
+                    : "border-b bg-white text-[#0a0a0a] hover:bg-[#F1F5F9]"
                 }`}
                 onClick={() => handleRoleClick(role.id)}
               >
-                <div className="text-base font-medium">{role.name}</div>
-                <div
+                <h3 className="text-base font-medium">{role.name}</h3>
+                <p
                   className={`text-xs font-normal ${selectedRoleId === role.id ? "text-white" : "text-[#525252]"}`}
                 >
                   {role.description}
-                </div>
+                </p>
               </li>
             ))}
           </ul>
         </div>
         <div className="w-3/4">
-          <div className="flex justify-end">
+          <div className="mb-2 flex justify-end">
             <CustomButton
               variant="primary"
               className="mb-6"
@@ -125,9 +125,9 @@ const RolesAndPermission = () => {
               + Create roles
             </CustomButton>
           </div>
-          <div className="border-l border-[#CBD5E1] pl-6">
-            <div className="border-b border-[#CBD5E1] pb-4">
-              <h2 className="mb-2 text-xl font-semibold text-[#0A0A0A]">
+          <div className="rounded-md border border-[#CBD5E1] px-5 py-6">
+            <div className="border-b border-[#CBD5E1] pb-4 pl-2">
+              <h2 className="mb-2 text-base font-medium text-[#0A0A0A]">
                 Permissions
               </h2>
               <p className="text-xs font-normal text-[#525252]">
@@ -135,7 +135,7 @@ const RolesAndPermission = () => {
               </p>
             </div>
             {selectedRoleId === undefined ? (
-              <div className="item-center flex flex-col justify-center py-56">
+              <div className="item-center flex flex-col justify-center py-48">
                 <p className="text-center text-sm font-normal text-[#525252]">
                   No list to show
                 </p>
@@ -145,13 +145,10 @@ const RolesAndPermission = () => {
               </div>
             ) : (
               <div className="mt-6">
-                <h3 className="mb-4 font-[#0a0a0a] text-base font-medium">
-                  Transactions Permission
-                </h3>
                 {permissions.map((permission, index) => (
                   <div
                     key={permission.name}
-                    className="mb-6 flex items-center justify-between"
+                    className="mb-4 flex items-center justify-between"
                   >
                     <span className="text-sm font-normal text-[#525252]">
                       {permission.name}
@@ -167,7 +164,7 @@ const RolesAndPermission = () => {
                     </label>
                   </div>
                 ))}
-                <div className="mt-16 flex justify-end">
+                <div className="mt-16 flex justify-center">
                   <button className="rounded border border-[#E2E8F0] bg-[#F1F5F9] px-4 py-2 text-sm font-medium text-[#0F172A] hover:bg-[#c1c9d2]">
                     Save Preferences
                   </button>
