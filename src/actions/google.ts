@@ -9,7 +9,6 @@ const GOOGLE_SIGN_IN = async (profile: any) => {
   try {
     // eslint-disable-next-line unicorn/prevent-abbreviations
     const res = await $http.post("/auth/google", profile);
-
     return {
       user: res.data,
     };

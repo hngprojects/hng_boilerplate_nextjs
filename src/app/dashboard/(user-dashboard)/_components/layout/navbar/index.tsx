@@ -7,6 +7,7 @@ import {
   Menu,
   SearchIcon,
 } from "lucide-react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -44,6 +45,7 @@ const navlinks = [
 
 const UserNavbar = () => {
   const pathname = usePathname();
+  const { data: session } = useSession();
   const currentPath = pathname?.split("/")[2];
   return (
     <nav
@@ -113,7 +115,8 @@ const UserNavbar = () => {
           </div>
           <div className="hover:bg-black-1 flex w-full max-w-[64px] cursor-pointer items-center justify-between gap-2">
             <Avatar data-testid="avatar" className="h-10 w-10">
-              <AvatarImage src="https://github.com/shadcn.png" />
+              {/* @ts-expect-error To be updated when all be has been rectifed */}
+              <AvatarImage src={session?.user.picture} />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
             <ChevronDown

@@ -20,13 +20,6 @@ export default {
   callbacks: {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async signIn({ account, profile, user }: any) {
-      // if (account && account.provider === "google") {
-      //   // eslint-disable-next-line unicorn/prevent-abbreviations
-      //   const res = await GOOGLE_SIGN_IN(profile);
-      //   const use = res.user;
-
-      //   return { user: { ...use } };
-      // }
       return { ...account, ...profile, ...user };
     },
     async jwt({ token, user, account }) {
