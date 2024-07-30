@@ -8,7 +8,7 @@ const WaitlistJoin: React.FC = () => {
       <div className="mb-[10px] rounded-md bg-slate-200 px-3 text-[20px] font-normal">
         waitlist
       </div>
-      <div className="flex h-auto w-[322px] flex-col items-center justify-center text-center md:mt-[25px] md:w-[1104px] md:gap-[15px]">
+      <div className="mt-[10px] flex h-auto w-[322px] flex-col items-center justify-center text-center md:mt-[25px] md:w-[1104px] md:gap-[15px]">
         <h1 className="text-[32px] font-bold leading-[38.73px] md:text-[60px] md:leading-[72.61px]">
           Join the waitlist and get early{" "}
           <span className="text-primary">access!</span>
