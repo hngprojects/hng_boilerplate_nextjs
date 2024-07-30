@@ -35,27 +35,27 @@ const PricingPage = () => {
   ];
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-semibold text-[#0A0A0A]">Current Plan</h1>
+    <div className="">
+      <h1 className="sm:text-2xl text-lg font-semibold text-[#0A0A0A]">Current Plan</h1>
 
       <div className="mt-5 w-full rounded-md border border-[#FFF8F2] bg-[#FFF8F2] px-3 py-5">
-        <h2 className="text-xl font-semibold">Free</h2>
-        <p className="text-sm text-[#0A0A0A]">
+        <h2 className="sm:text-xl text-lg sm:font-semibold font-medium">Free</h2>
+        <p className="sm:text-sm text-xs text-[#0A0A0A]">
           Your account is on a free 90-day trial of our free plan, through
           September 27th. Upgrade anytime to stay on this plan when your trial
           ends.
         </p>
-        <span className="text-sm text-[#525252]">$0/month</span>
+        <span className="text-sm text-[#525252] sm:block hidden">$0/month</span>
       </div>
 
-      <div className="mt-10 flex gap-3 px-3">
-        <h1 className="w-[16rem] text-base font-semibold">
+      <div className="mt-10 flex sm:flex-row flex-col  gap-3 px-3">
+        <h1 className="w-[16rem] text-base font-semibold sm:block hidden">
           Subscribe to your <br /> desired plan.
         </h1>
 
         {plans.map((plan, index) => (
-          <div key={index} className="">
-            <div className="flex flex-col items-start justify-center gap-3 pt-1">
+          <div key={index} className="sm:border-none border py-5 px-6 mx-8 rounded-lg">
+            <div className="flex flex-col sm:items-start justify-center gap-3 pt-1">
               <h1 className="text-base font-semibold">{plan.title}</h1>
               <h2 className="text-[25px] font-medium">
                 {plan.price}{" "}
@@ -74,7 +74,7 @@ const PricingPage = () => {
         ))}
       </div>
 
-      <div className="mt-10 flex items-start justify-center border border-[#FFF8F2] bg-[#FFF8F2] px-3 py-5 pb-20">
+      <div className="mt-10 sm:flex hidden items-start justify-center border border-[#FFF8F2] bg-[#FFF8F2] px-3 py-5 pb-20">
         <h1 className="w-40 text-base font-semibold">Highlights</h1>
 
         <div className="flex gap-[3rem] text-sm text-[#0A0A0A]">
@@ -106,7 +106,7 @@ const PricingPage = () => {
         </div>
       </div>
 
-      <div className="mt-10 flex items-center justify-center">
+      <div className="mt-10 flex sm:items-center sm:justify-center">
         <h1 className="text-base">Compare all features</h1>
         <Image src={icon} alt="" />
       </div>
