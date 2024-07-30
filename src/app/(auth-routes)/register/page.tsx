@@ -4,12 +4,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { DialogContent, DialogTitle } from "@radix-ui/react-dialog";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import CustomButton from "~/components/common/common-button/common-button";
 import { DialogDemo } from "~/components/common/Dialog";
+import { Button } from "~/components/ui/button";
 import {
   Form,
   FormControl,
@@ -24,8 +24,6 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "~/components/ui/input-otp";
-import { useToast } from "~/components/ui/use-toast";
-import { getApiUrl } from "~/utils/getApiUrl";
 
 const formSchema = z.object({
   fullname: z.string().min(2, {
@@ -42,26 +40,6 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 const SignUp = () => {
-  const [apiUrl, setApiUrl] = useState("");
-  const { toast } = useToast();
-
-  useEffect(() => {
-    const fetchApiUrl = async () => {
-      try {
-        const url = await getApiUrl();
-        setApiUrl(url);
-      } catch {
-        toast({
-          title: "Error",
-          description: "Failed to fetch API URL",
-          variant: "destructive",
-        });
-      }
-    };
-
-    fetchApiUrl();
-  }, [toast]);
-
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
   });
@@ -75,7 +53,7 @@ const SignUp = () => {
     })();
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     form.handleSubmit(handleFormSubmit)();
   };
 
@@ -92,7 +70,11 @@ const SignUp = () => {
           isDisabled={!apiUrl}
           variant="outline"
           isLeftIconVisible={true}
-          onClick={() => signIn("google")}
+          href={
+            apiUrl === ""
+              ? undefined
+              : `${apiUrl}/api/v1/auth/social/google?provider=google`
+          }
           icon={
             <svg
               width="25"
@@ -226,14 +208,9 @@ const SignUp = () => {
                 </FormItem>
               )}
             />
-            <CustomButton
-              variant="primary"
-              type="submit"
-              className="w-full"
-              onClick={handleSubmit}
-            >
+            <Button type="submit" className="w-full" onClick={handleSubmit}>
               Create Account
-            </CustomButton>
+            </Button>
             <DialogDemo open={open} onOpenChanged={setOpen}>
               <DialogContent
                 aria-labelledby="dialog-title"
@@ -262,13 +239,9 @@ const SignUp = () => {
                     </InputOTPGroup>
                   ))}
                 </InputOTP>
-                <CustomButton
-                  variant="primary"
-                  type="submit"
-                  className="w-full"
-                >
+                <Button type="submit" className="w-full">
                   Continue
-                </CustomButton>
+                </Button>
                 <div className="flex flex-col items-center">
                   <p className="text-xs text-gray-500">
                     Would you rather use email and password?
