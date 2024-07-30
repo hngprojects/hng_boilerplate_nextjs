@@ -7,7 +7,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import UserCard from "~/components/card/user-card";
-// import { useUser } from "~/hooks/user/use-user";
 import { cn } from "~/lib/utils";
 import { NAV_LINKS } from "./links";
 
@@ -16,11 +15,7 @@ export default function MobileNav() {
   const [scope, animate] = useAnimate();
   const { data: session } = useSession();
 
-  // the stagger effect
   const staggerList = stagger(0.1, { startDelay: 0.25 });
-
-  // create the animations that will be applied
-  // whenever the open state is toggled
 
   useEffect(() => {
     animate(

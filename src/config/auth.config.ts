@@ -65,8 +65,6 @@ export default {
       if (account && account.provider !== "google") {
         return { ...token, ...response.data };
       }
-      /* eslint-disable-next-line no-console */
-      console.log("Google Auth Response:", response.data);
 
       return { ...token, ...user };
     },
