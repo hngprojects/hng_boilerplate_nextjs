@@ -21,7 +21,7 @@ const SqueezeTableBody = () => {
     <>
       <tbody className="squeeze-table z-10">
         {squeezeData.map((data, index) => {
-          const { fullName, phone, status, date, } = data;
+          const { fullName, phone, status, date } = data;
 
           return (
             <tr key={index} className="w-full border-b border-b-border">
@@ -56,14 +56,18 @@ const SqueezeTableBody = () => {
                   {status.active && (
                     <>
                       {/* <div className="h-3 w-3 rounded-full bg-success"></div> */}
-                      <div className="text-sm px-3 py-1 rounded-3xl bg-[#6dc34733]">Online</div>
+                      <div className="rounded-3xl bg-[#6dc34733] px-3 py-1 text-sm">
+                        Online
+                      </div>
                     </>
                   )}
 
                   {!status.active && (
                     <>
                       {/* <div className="h-3 w-3 rounded-full bg-error"></div> */}
-                      <div className="text-sm px-3 py-1 rounded-3xl bg-[#f814041f]">Ofline</div>
+                      <div className="rounded-3xl bg-[#f814041f] px-3 py-1 text-sm">
+                        Ofline
+                      </div>
                     </>
                   )}
                 </div>

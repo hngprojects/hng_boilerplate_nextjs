@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Check,
   ChevronLeft,
@@ -7,8 +5,9 @@ import {
   CirclePlus,
   Filter,
 } from "lucide-react";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+
 import CustomButton from "~/components/common/common-button/common-button";
 import { Button } from "~/components/ui/button";
 import {
@@ -25,11 +24,10 @@ import {
   PaginationLink,
 } from "~/components/ui/pagination";
 
-
 import "./assets/style.css";
 
+import { Input } from "~/components/common/input";
 import SqueezeTable from "./component/squeezeTable";
-import { Input } from '~/components/common/input';
 
 interface FilterDataProperties {
   title: string;
@@ -56,7 +54,7 @@ const SqueezePage = () => {
 
   return (
     <>
-      <section >
+      <section>
         <div className="">
           <div className="flex flex-col gap-3 md:flex-row md:items-center">
             <div className="mr-auto">
@@ -69,14 +67,13 @@ const SqueezePage = () => {
             </div>
 
             <div className="flex flex-row items-center gap-3">
-            <div>
+              <div>
                 <Input
                   id="squeezeEmail"
                   type="email"
                   placeholder="Search option..."
                   className="col-span-3 inline-flex h-11 items-start justify-start gap-2"
                 />
-                
               </div>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -121,16 +118,17 @@ const SqueezePage = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
 
-                <CustomButton size="lg" className="p-3" variant="primary">
-                  <div className="flex flex-row items-center gap-2">
-                    <CirclePlus size={16} color="#FFFFFF" />
-                    <div className="text-base font-normal leading-5" 
-                    onClick={()=>router.push('squeeze-pages/new-squeeze')}
-                    >
-                      Create new Squeeze
-                    </div>
+              <CustomButton size="lg" className="p-3" variant="primary">
+                <div className="flex flex-row items-center gap-2">
+                  <CirclePlus size={16} color="#FFFFFF" />
+                  <div
+                    className="text-base font-normal leading-5"
+                    onClick={() => router.push("squeeze-pages/new-squeeze")}
+                  >
+                    Create new Squeeze
                   </div>
-                </CustomButton>
+                </div>
+              </CustomButton>
             </div>
           </div>
 
