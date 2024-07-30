@@ -1,9 +1,11 @@
 "use client";
-
+import { useState } from "react";
 import Image from "next/image";
+import Switcher from "./switcher";
 import { A11y, Autoplay, Pagination, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Dialog, DialogContent } from "~/components/ui/dialog";
+import { Dialog, DialogTrigger, DialogContent, DialogClose } from "~/components/ui/dialog";
+import { ChevronDown } from "lucide-react";
 
 import { HeroBoilerPlate, HeroChat, HeroCheckMark } from "./svgs";
 import "swiper/css";
@@ -14,10 +16,20 @@ import "swiper/css/scrollbar";
 import Link from "next/link";
 
 const Hero = () => {
+  const [isVisible, setIsVisible] = useState(true);
+
+  const handleAcceptAll = () => {
+    setIsVisible(false); 
+  };
+
+  const handleRejectAll = () => {
+    setIsVisible(false);
+  };
+
   return (
     <>
     <div className="py-14 sm:py-20">
-      <div className="mx-auto max-w-7xl px-5 md:px-10">
+      <div className="mx-auto max-w-7xl px-[16px] lg:px-[120px]">
         <div className="flex flex-col items-center lg:flex-row">
           <div className="w-full text-center sm:text-left lg:w-1/2">
             <h1 className="mb-2 text-4xl font-bold leading-snug lg:text-5xl lg:leading-tight xl:text-6xl">
@@ -152,19 +164,76 @@ const Hero = () => {
         </div>
       </div>
     </div>
-    <div className="fixed flex flex-col bottom-0 px-5 md:px-10 py-[20px] md:py-[40px] h-[200px] md:h-[208px] bg-[#FAFAFA] w-full z-40">
-      <div className="block md:flex items-end justify-between gap-x-[20px] gap-y-[16px] md:justify-between">
-      <div className="flex flex-col gap-y-[16px]">
-      <p className="font-semibold text-[14px] md:text-[20px]">We value your privacy</p>
-        <p className="text-[12px] md:text-[16px]">Our website uses cookies to enhance your browsing experience, provide<br /> personalized content. By clicking "Accept All" you consent to our use of cookies.</p>
-        </div>
-        <div className="flex flex-wrap gap-x-[36px] gap-y-[8px] text-[14px] mt-[16px] md:mt-0">
-          <button className="text-[14px] rounded-[6px] px-[16px] py-[8px] border border-[#F97316] bg-[#FAFAFA] text-[#F97316]">Cookies Settings</button>
-          <button className="text-[14px] rounded-[6px] px-[16px] py-[8px] bg-[#F97316] text-[#FAFAFA]">Reject All</button>
-          <button className="text-[14px] rounded-[6px] px-[16px] py-[8px] bg-[#F97316] text-[#FAFAFA]">Accept All Cookies</button>
+
+    {isVisible && <div className="fixed flex flex-col bottom-0 px-[24px] lg:px-[100px] py-[20px] lg:py-[40px] md:h-[208px] bg-[#FAFAFA] w-full z-40">
+      <div className="flex flex-col md:flex-row items-start justify-normal md:justify-between md:items-end md:gap-x-[20px] gap-y-[16px]">
+  <div className="flex flex-col gap-y-[16px]">
+    <p className="font-semibold text-[14px] md:text-[20px]">We value your privacy</p>
+    <p className="text-[12px] md:text-[16px]">
+      Our website uses cookies to enhance your browsing experience, provide
+      <br />
+      personalized content. By clicking "Accept All" you consent to our use of cookies.
+    </p>
+  </div>
+  <div className="flex flex-wrap items-start md:items-end gap-4 mt-4 md:mt-0 md:flex-row">
+          <Dialog>
+            <DialogTrigger asChild>
+              <button className="order-3 md:order-1 text-[14px] rounded-[6px] px-[16px] py-[8px] border border-[#F97316] bg-[#FAFAFA] text-[#F97316]">
+                Cookies Settings
+              </button>
+            </DialogTrigger>
+            <DialogContent className=" w-[350px] md:w-[645px] rounded-[20px] p-[40px]">
+              <div className="flex flex-col gap-y-[5px]">
+                <h2 className="text-[24px] font-bold">Customize cookies</h2>
+                <p className="mt-2 font-light text-sm">Cookies are small text files that are stored on your device when you visit websites. They are used to remember information about you, such as your login details, preferences, and browsing history. Cookies help enhance your actions and preferences over time, ensuring that you don't have to re-enter information each time you visit a site. Read our <span className="text-[#F97316] underline"><Link href={'/privacy-policy'}>Privacy Policy</Link></span> for more details</p>
+                <div className="flex items-center py-[16px] gap-x-[45px]">
+                <p className="text-[16px] md:text-[18px]">Strictly necessary</p>
+                <ChevronDown />
+                </div>
+                <div className="flex items-center justify-between">
+                <div className="flex items-center py-[16px] gap-x-[17px]">
+                <p className="text-[16px] md:text-[18px]">Performance cookies</p>
+                <ChevronDown />
+                </div>
+                <Switcher />
+                </div>
+                <div className="flex items-center justify-between">
+                <div className="flex items-center py-[16px] gap-x-[18px]">
+                <p className="text-[16px] md:text-[18px]">Functionality cookies</p>
+                <ChevronDown />
+                </div>
+                <Switcher />
+                </div>
+                <div className="flex items-center justify-between">
+                <div className="flex items-center py-[16px] gap-x-[43px]">
+                <p className="text-[16px] md:text-[18px]">Targeting Cookies</p>
+                <ChevronDown />
+                </div>
+                <Switcher />
+                </div>
+                <DialogClose asChild>
+                  <div className="flex justify-end">
+                  <button className="mt-4 text-[#FAFAFA] bg-[#F97316] rounded-[6px] px-[16px] py-[8px]" onClick={handleRejectAll}>Save & Accept</button>
+                  </div>
+                </DialogClose>
+              </div>
+            </DialogContent>
+          </Dialog>
+          <button
+            className="order-2 md:order-2 text-[14px] rounded-[6px] px-[16px] py-[8px] bg-[#F97316] text-[#FAFAFA]"
+            onClick={handleRejectAll}
+          >
+            Reject All
+          </button>
+          <button
+            className="order-1 md:order-3 rounded-[6px] bg-[#F97316] px-[16px] py-[8px] text-[14px] text-[#FAFAFA]"
+            onClick={handleAcceptAll}
+          >
+            Accept All Cookies
+          </button>
         </div>
       </div>
-    </div>
+    </div>}
     </>
   );
 };
