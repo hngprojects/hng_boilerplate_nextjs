@@ -25,7 +25,7 @@ const NotificationPage = () => {
   };
 
   return (
-    <main className="text-neutral-dark-2">
+    <main className="w-full text-neutral-dark-2">
       <div className="mb-[30px] md:hidden">
         <p className="font-[600] text-muted-foreground">Notification</p>
       </div>
