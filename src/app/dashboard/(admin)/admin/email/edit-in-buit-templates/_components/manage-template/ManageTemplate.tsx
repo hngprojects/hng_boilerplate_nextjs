@@ -44,7 +44,7 @@ export const Options: FC<IOption> = ({ data }) => {
     </Link>
   );
 };
-const NewTemplate = () => {
+const ManageTemplate = () => {
   const isloading: boolean = false;
   const data = 100;
   const [togglePreview, setTogglePreview] = useState<boolean>(false);
@@ -54,8 +54,8 @@ const NewTemplate = () => {
     <div>
       <section className="mb-8">
         <PageHeader
-          title="Choose In-built Template"
-          description="Explore our library of custom templates."
+          title="Manage Your Template"
+          description="Explore your library of sent templates."
         />
         <Breadcrumb />
       </section>
@@ -84,4 +84,4 @@ const NewTemplate = () => {
   );
 };
 
-export default NewTemplate;
+export default ManageTemplate;
