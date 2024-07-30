@@ -6,6 +6,7 @@ import CustomButton from "~/components/common/common-button/common-button";
 import HeroSection from "~/components/extDynamicPages/blogCollection/BlogPageHero";
 import BlogCard from "~/components/layouts/BlogCards";
 import { blogPosts } from "./data/mock";
+import Pagination from "~/components/blog/Pagination";
 
 const BlogHome = () => {
   const router = useRouter();
@@ -56,16 +57,7 @@ const BlogHome = () => {
           ))}
         </div>
       </div>
-      <div className="my-10 flex justify-center">
-        <CustomButton
-          variant="primary"
-          size="lg"
-          ariaLabel="Show More Articles"
-          href="/blog/latest"
-        >
-          Show More Articles
-        </CustomButton>
-      </div>
+      <Pagination />
     </div>
   );
 };
