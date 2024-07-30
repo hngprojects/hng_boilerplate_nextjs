@@ -20,7 +20,7 @@ const ImageBody: React.FC = () => {
   };
 
   return (
-    <div className="h-96 w-3/5 rounded-sm border bg-white shadow-md hover:border-orange-500">
+    <div className="mt-4 h-96 w-full rounded-sm border bg-white shadow-md hover:border-orange-500 md:w-3/5">
       <label className="flex flex-col items-center">
         <div className="flex h-48 w-full cursor-pointer items-center justify-center bg-gray-50">
           {selectedImage ? (
