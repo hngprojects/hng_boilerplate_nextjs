@@ -64,7 +64,11 @@ const ProductDetailModal = () => {
     document.body.style.overflow =
       isOpen && winWidth < 1024 ? "hidden" : "unset";
   }, [isOpen, winWidth]);
-
+  useEffect(() => {
+    document.title = isOpen
+      ? `Product - ${product?.name}`
+      : "Products - HNG Boilerplate";
+  }, [isOpen, product?.name]);
   return (
     <>
       <div
@@ -96,7 +100,7 @@ const ProductDetailModal = () => {
             exit={{
               ...variantProperties,
               opacity: 0,
-              scale: 2,
+              scale: 0.5,
             }}
             transition={{ duration: 0.2 }}
             className={cn(
@@ -112,7 +116,7 @@ const ProductDetailModal = () => {
               )}
             >
               <p className="text-center text-sm">
-                Are you sure you want to delete this <b>{product?.name}</b>?
+                Are you sure you want to delete <b>{product?.name}</b>?
               </p>
               <div className="flex w-full items-center justify-center gap-x-2">
                 <Button
