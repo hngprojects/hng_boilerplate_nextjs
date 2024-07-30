@@ -1,3 +1,3 @@
 export default function DashboardAnalytics() {
-  return <div>REPORTS</div>;
+  return <div>ANALYTICS</div>;
 }
