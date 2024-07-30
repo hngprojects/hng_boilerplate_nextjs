@@ -10,8 +10,8 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import DashboardLogo from "~/app/dashboard/(admin)/_components/layout/logo";
 import UnreadNotificationCard from "~/app/dashboard/(admin)/_components/unread-notification-card/UnreadNotificationCard";
-import Logo from "~/components/common/logo";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import {
   Popover,
@@ -47,28 +47,28 @@ const UserNavbar = () => {
   const currentPath = pathname?.split("/")[2];
   return (
     <nav
-      className="border-b-[0.5px] border-border bg-background px-5 py-2.5 md:left-[220px] lg:left-[252px]"
+      className="bg-white px-5 py-2.5 md:left-[220px] lg:left-[252px]"
       role="navbar"
     >
       <div className="flex items-center justify-between gap-2">
-        <div className="flex w-full max-w-[470px] justify-between gap-1">
-          <div className="flex w-full max-w-[200px] items-center justify-start gap-1">
-            <Menu className="h-[18px] w-[18px] text-neutral-dark-2 transition-all duration-300 hover:text-neutral-dark-2/50" />
-            <Logo />
+        <div className="flex gap-[50px]">
+          <div className="flex w-full items-center justify-start gap-[15px]">
+            <Menu className="h-[30px] w-[30px] text-neutral-dark-2 transition-all duration-300 hover:text-neutral-dark-2/50" />
+            <DashboardLogo />
           </div>
-          <div className="flex w-full max-w-[290px] items-center justify-between gap-1">
+          <div className="hidden items-center justify-between gap-[22px] lg:flex">
             {navlinks.map((item, index) => (
               <Link
                 key={index}
                 href={item.link}
-                className={`text-sm font-bold transition-all duration-200 hover:text-primary ${currentPath === item.id ? "text-primary" : "text-neutral-dark-2"}`}
+                className={`text-xs font-bold transition-all duration-200 hover:text-primary ${currentPath === item.id ? "text-primary" : "text-neutral-dark-2"}`}
               >
                 {item.route}
               </Link>
             ))}
           </div>
         </div>
-        <div className="flex w-full max-w-[440px] items-center justify-between gap-2 bg-[#FDFDFD]">
+        <div className="flex items-center justify-between gap-2 bg-[#FDFDFD]">
           <div className="flex h-10 items-center justify-between gap-2 rounded-[6px] border border-border bg-white px-3 text-sm font-normal placeholder:text-sm">
             <SearchIcon
               data-testid="search"
