@@ -40,7 +40,7 @@ const ProjectLogo = ({ form, name }: Properties) => {
   };
 
   return (
-    <div className="relative grid h-full w-[inherit] place-items-center rounded-xl border border-dashed border-[#CBD5E1] bg-[#FAFAFA]">
+    <div className="relative grid h-full w-[inherit] place-items-center rounded-xl bg-[#FAFAFA]">
       <div
         data-upload
         className="flexx absolute inset-0 z-10 hidden items-center justify-center rounded-xl bg-white/30 text-black"
