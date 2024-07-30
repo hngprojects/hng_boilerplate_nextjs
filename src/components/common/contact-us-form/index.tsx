@@ -75,7 +75,7 @@ const ContactForm: React.FC = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        "https://test.gracefilledcollege.com/public/api/v1/contact",
+        `${process.env.NEXT_PUBLIC_BACKEND_PROBE_URL}/api/v1/contact`,
         {
           method: "POST",
           headers: {
@@ -135,7 +135,7 @@ const ContactForm: React.FC = () => {
       <div className="mx-auto w-full lg:max-w-[80%] lg:p-8">
         <form
           onSubmit={handleSubmit}
-          className="mb-4 w-full rounded-[8px] p-8 lg:max-w-[80%] lg:border lg:shadow-sm "
+          className="mb-4 w-full rounded-[8px] p-8 lg:max-w-[80%] lg:border lg:shadow-sm"
           role="form"
         >
           {inputFields.map((field) => (

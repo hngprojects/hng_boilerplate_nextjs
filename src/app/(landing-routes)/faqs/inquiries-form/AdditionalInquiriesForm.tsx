@@ -33,7 +33,6 @@ export default function AdditionalInquiriesForm() {
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async function onSubmit(_values: z.infer<typeof FormSchema>) {
     const response: FormResponse = await submitForm(_values);
 

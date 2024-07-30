@@ -1,21 +1,17 @@
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 import ContactForm from "~/components/common/contact-us-form";
 import { bizTime, contactInfo } from "./constants";
-
 
 const Contact = () => {
   return (
     <main className="bg-white">
       <section className="mx-auto max-w-[1200px] pb-20 text-neutral-dark-1 transition-all lg:container lg:pb-44 lg:pt-9">
         <div className="flex items-center justify-center">
-          <div className="rounded-md bg-subtle p-3 text-center">
-            Contact Us
-          </div>
+          <div className="rounded bg-subtle p-3 text-center">Contact Us</div>
         </div>
 
-        <div className="grid justify-center pt-16 *:text-center lg:gap-3 lg:pb-11 ">
+        <div className="grid justify-center pt-8 *:text-center lg:gap-3 lg:pb-11">
           <h1 className="text-3xl font-bold lg:text-6xl">
             Get in <span className="text-primary">touch with</span> us today
           </h1>

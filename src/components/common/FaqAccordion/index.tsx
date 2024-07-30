@@ -23,7 +23,7 @@ const FaqAccordion: React.FC<FaqAccordionProperties> = ({
           <AccordionTrigger className="p-4 text-xl font-normal hover:no-underline">
             {question}
           </AccordionTrigger>
-          <AccordionContent className="p-6 ">{answer}</AccordionContent>
+          <AccordionContent className="p-6">{answer}</AccordionContent>
         </AccordionItem>
       </Accordion>
     </div>
