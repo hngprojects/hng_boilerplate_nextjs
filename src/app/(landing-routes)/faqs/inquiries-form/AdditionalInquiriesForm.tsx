@@ -35,7 +35,7 @@ export default function AdditionalInquiriesForm() {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async function onSubmit(_values: z.infer<typeof FormSchema>) {
-    const response: FormResponse = await submitForm();
+    const response: FormResponse = await submitForm(_values);
 
     if (response.success) {
       setSuccessMessage(response.message);
