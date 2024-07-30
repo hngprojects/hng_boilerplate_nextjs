@@ -6,12 +6,12 @@ import Link from "next/link";
 const Page: React.FC = () => {
   return (
     <div
-      className="bg-cover bg-center flex justify-center md:justify-start px-8 md:px-32 py-20 md:py-28"
+      className="flex justify-center bg-cover bg-center px-8 py-20 md:justify-start md:px-32 md:py-28"
       style={{ backgroundImage: "url('/images/squeeze.png')" }}
     >
-      <div className="w-[486px] rounded bg-background px-3 md:px-6 py-8 text-neutral-dark-1 ">
+      <div className="w-[486px] rounded bg-background px-3 py-8 text-neutral-dark-1 md:px-6">
         <div className="items-left flex flex-col justify-between px-3">
-          <h1 className="text-[26px] md:text-[32px] font-bold leading-8">
+          <h1 className="text-[26px] font-bold leading-8 md:text-[32px]">
             UNLEASH YOUR CREATIVITY WITH HNG BOILERPLATE
           </h1>
 
@@ -24,7 +24,7 @@ const Page: React.FC = () => {
               </p>
             </div>
 
-            <div className="flex items-center space-x-3 my-3">
+            <div className="my-3 flex items-center space-x-3">
               <Image src="/images/tick.svg" width={24} height={24} alt="tick" />
               <p className="text-lg font-medium leading-6">
                 Stay up-to-date with continuous updates and enhancements.
@@ -41,7 +41,7 @@ const Page: React.FC = () => {
 
           <form className="mb-4">
             <input
-              className="block w-full rounded-md border p-3 bg-background"
+              className="block w-full rounded-md border bg-background p-3"
               type="email"
               placeholder="Enter your email"
             />
@@ -50,7 +50,8 @@ const Page: React.FC = () => {
             </button>
           </form>
           <p className="text-xs font-semibold">
-            We respect your privacy, unsubscribe anytime, view our <Link href="/" className="text-primary">
+            We respect your privacy, unsubscribe anytime, view our{" "}
+            <Link href="/" className="text-primary">
               privacy policy
             </Link>
           </p>
