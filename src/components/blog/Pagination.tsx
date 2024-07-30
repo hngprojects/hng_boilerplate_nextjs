@@ -12,8 +12,16 @@ export default function Pagination() {
         </button>
 
         <button className={`rounded bg-primary px-4 py-2 text-white`}>1</button>
-        <button className={`rounded px-3 py-2 transition duration ease-in hover:bg-primary hover:text-white`}>2</button>
-        <button className={`rounded px-3 py-2 transition duration ease-in hover:bg-primary hover:text-white`}>3</button>
+        <button
+          className={`duration rounded px-3 py-2 transition ease-in hover:bg-primary hover:text-white`}
+        >
+          2
+        </button>
+        <button
+          className={`duration rounded px-3 py-2 transition ease-in hover:bg-primary hover:text-white`}
+        >
+          3
+        </button>
 
         <span>...</span>
 
