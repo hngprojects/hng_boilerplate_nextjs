@@ -69,14 +69,14 @@ export default {
       return { ...token, ...response };
     },
     async redirect({ url, baseUrl }) {
-      if (url === "/auth/login") {
+      if (url === "/login") {
         return baseUrl;
       }
       return "/register/organisation";
     },
   },
   pages: {
-    signIn: "/auth/login",
+    signIn: "/login",
   },
   trustHost: true,
 } satisfies NextAuthConfig;
