@@ -166,7 +166,7 @@
 /* Custom Scrollbar Styling */
 /* For Webkit Browsers */
 ::-webkit-scrollbar {
-  width: 14px; /* Width of the scrollbar */
+  width: 12px; /* Width of the scrollbar */
 }
 
 ::selection {
