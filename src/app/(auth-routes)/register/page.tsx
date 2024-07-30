@@ -2,10 +2,11 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DialogContent, DialogTitle } from "@radix-ui/react-dialog";
-import { signIn } from "next-auth/react";
+import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 
 import CustomButton from "~/components/common/common-button/common-button";
@@ -42,7 +43,10 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 const SignUp = () => {
-  const [apiUrl, setApiUrl] = useState("");
+  const router = useRouter();
+  const [apiUrl, setApiUrl] = useState(
+    "https://deployment.api-nestjs.boilerplate.hng.tech/api/v1/auth/register",
+  );
   const { toast } = useToast();
 
   useEffect(() => {
@@ -50,6 +54,8 @@ const SignUp = () => {
       try {
         const url = await getApiUrl();
         setApiUrl(url);
+        // eslint-disable-next-line no-console
+        console.log("API URL set to:", url);
       } catch {
         toast({
           title: "Error",
@@ -62,22 +68,61 @@ const SignUp = () => {
     fetchApiUrl();
   }, [toast]);
 
+  // eslint-disable-next-line prettier/prettier
+  
+
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
   });
+
   const [open, setOpen] = useState(false);
 
-  const handleFormSubmit = () => {
-    form.handleSubmit(() => {
-      if (form.formState.isValid) {
-        setOpen(true);
+  const handleSubmit = async (data: FormData) => {
+    try {
+      if (!apiUrl) {
+        throw new Error("API URL is not available");
       }
-    })();
+
+      const nameParts = data.fullname.trim().split(/\s+/);
+      const first_name = nameParts[0];
+      const last_name = nameParts.slice(1).join("");
+
+      const apiData = {
+        first_name,
+        last_name,
+        email: data.email,
+        password: data.password,
+      };
+
+      const response = await axios.post(`${apiUrl}`, apiData);
+      if (response.status === 200 || response.status === 201) {
+        toast({
+          title: "Success",
+          description: "Account created successfully!",
+        });
+        // Redirect to login page or dashboard
+        router.push("/login");
+      }
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        toast({
+          title: "Error",
+          description:
+            error.response?.data?.message ||
+            "Failed to create account. Please try again.",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: "An unexpected error occurred. Please try again.",
+          variant: "destructive",
+        });
+      }
+    }
   };
 
-  const handleSubmit = () => {
-    form.handleSubmit(handleFormSubmit)();
-  };
+  const onSubmit: SubmitHandler<FormData> = (data) => handleSubmit(data);
 
   return (
     <div>
@@ -92,7 +137,11 @@ const SignUp = () => {
           isDisabled={!apiUrl}
           variant="outline"
           isLeftIconVisible={true}
-          onClick={() => signIn("google")}
+          href={
+            apiUrl === ""
+              ? undefined
+              : `${apiUrl}/api/v1/auth/social/google?provider=google`
+          }
           icon={
             <svg
               width="25"
@@ -125,7 +174,11 @@ const SignUp = () => {
         <CustomButton
           isDisabled={!apiUrl}
           variant="outline"
-          href={apiUrl === "" ? undefined : `${apiUrl}/api/v1/auth/facebook`}
+          href={
+            apiUrl === ""
+              ? undefined
+              : `${apiUrl}/api/v1/auth/social/facebook?provider=facebook`
+          }
           isLeftIconVisible={true}
           icon={
             <svg
@@ -154,13 +207,7 @@ const SignUp = () => {
       </div>
       <div className="mx-auto py-4 md:w-2/4">
         <Form {...form}>
-          <form
-            className="space-y-8"
-            onSubmit={(event) => {
-              event.preventDefault();
-              handleSubmit();
-            }}
-          >
+          <form className="space-y-8" onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
               control={form.control}
               name="fullname"
@@ -222,12 +269,7 @@ const SignUp = () => {
                 </FormItem>
               )}
             />
-            <CustomButton
-              variant="primary"
-              type="submit"
-              className="w-full"
-              onClick={handleSubmit}
-            >
+            <CustomButton variant="primary" type="submit" className="w-full">
               Create Account
             </CustomButton>
             <DialogDemo open={open} onOpenChanged={setOpen}>
