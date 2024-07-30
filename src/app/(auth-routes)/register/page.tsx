@@ -125,11 +125,7 @@ const SignUp = () => {
         <CustomButton
           isDisabled={!apiUrl}
           variant="outline"
-          href={
-            apiUrl === ""
-              ? undefined
-              : `${apiUrl}/api/v1/auth/social/facebook?provider=facebook`
-          }
+          href={apiUrl === "" ? undefined : `${apiUrl}/api/v1/auth/facebook`}
           isLeftIconVisible={true}
           icon={
             <svg
