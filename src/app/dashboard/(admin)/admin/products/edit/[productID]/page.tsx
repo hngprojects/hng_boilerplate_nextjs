@@ -1,19 +1,10 @@
 import { ArrowLeft } from "lucide-react";
-import Image from "next/image";
 
-import shoeImg from "~/app/dashboard/(admin)/admin/products/edit/[productID]/shoe-pic.jpg";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "~/components/ui/table";
 import { Product, products } from "../../data/mock.products";
+import ProductMedia from "./_components/ProductMedia";
+import StockTable from "./_components/StockTable";
 
 const EditProductDetail = ({ params }: { params: { productID: string } }) => {
-  const productImg = shoeImg;
   const product: Product = products?.filter(
     ({ id }) => id === params.productID,
   )[0];
@@ -27,8 +18,8 @@ const EditProductDetail = ({ params }: { params: { productID: string } }) => {
           </h1>
         </div>
 
-        <div className="flex w-full flex-col gap-8 xl:flex-row">
-          <div className="left-side flex flex-[.5] flex-col gap-6">
+        <div className="flex w-full max-w-[1060px] flex-col gap-8 xl:flex-row">
+          <div className="left-side flex flex-[.30] flex-col gap-6">
             <div className="product-details flex w-full flex-col gap-6 rounded-[0.375rem] border-[1px] border-solid border-[#CBD5E1] p-6">
               <div className="border-b-solid w-full border-b-[1px] border-b-[#CBD5E1] pb-4">
                 <h1 className="text-6 font-semibold text-[#0A0A0A]">
@@ -71,127 +62,23 @@ const EditProductDetail = ({ params }: { params: { productID: string } }) => {
                   />
                 </div>
               </div>
-            </div>
-            <div className="stock flex w-full flex-col gap-6 rounded-[0.375rem] border-[1px] border-solid border-[#CBD5E1] p-6">
-              <div className="border-b-solid w-full border-b-[1px] border-b-[#CBD5E1] pb-4">
-                <h1 className="text-6 font-semibold text-[#0A0A0A]">Stock</h1>
-                <p className="text-[0.875rem] font-normal text-[#525252]">
-                  Add and remove products
-                </p>
-              </div>
-
-              <Table className="max-w-[400px] whitespace-nowrap rounded-lg border-[1px] border-solid border-[#E4E4E7]">
-                <TableHeader className="rounded-lg">
-                  <TableRow className="bg-[#F1F5F9] shadow-none *:text-left *:text-base *:text-neutral-950 *:shadow-none hover:bg-primary/10">
-                    <TableHead className="text-[0.875rem] font-medium text-[#0A0A0A]">
-                      Size
-                    </TableHead>
-                    <TableHead className="text-[0.875rem] font-medium text-[#0A0A0A]">
-                      Stock
-                    </TableHead>
-                    <TableHead className="text-[0.875rem] font-medium text-[#0A0A0A]">
-                      Price
-                    </TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  <TableRow className="border-none bg-white shadow-none *:text-left *:text-base *:text-neutral-950 *:shadow-none hover:bg-primary/10">
-                    <TableCell>Size</TableCell>
-                    <TableCell>
-                      <input
-                        type="text"
-                        name="small"
-                        id="small"
-                        className="rounded-[0.375rem] border-[1px] border-solid border-[#E4E4E7] px-3 py-[0.72rem]"
-                      />
-                    </TableCell>
-                    <TableCell>
-                      <div className="flex w-fit items-center gap-2 rounded-[0.375rem] border-[1px] border-solid border-[#E4E4E7]">
-                        <h1 className="mx-3 my-2 text-2xl font-medium">$</h1>
-                        <input
-                          type="text"
-                          name="small"
-                          id="small"
-                          value={product.price}
-                          className="px-3 py-[0.72rem]"
-                        />
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                  <TableRow className="border-none bg-white shadow-none *:text-left *:text-base *:text-neutral-950 *:shadow-none hover:bg-primary/10">
-                    <TableCell>Standard</TableCell>
-                    <TableCell>
-                      <input
-                        type="text"
-                        name="standard"
-                        id="standard"
-                        className="rounded-[0.375rem] border-[1px] border-solid border-[#E4E4E7] px-3 py-[0.72rem]"
-                      />
-                    </TableCell>
-                    <TableCell>
-                      <div className="flex w-fit items-center gap-2 rounded-[0.375rem] border-[1px] border-solid border-[#E4E4E7]">
-                        <h1 className="mx-3 my-2 text-2xl font-medium">$</h1>
-                        <input
-                          type="text"
-                          name="standard-price"
-                          id="standard-price"
-                          value={product.price}
-                          className="px-3 py-[0.72rem]"
-                        />
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                  <TableRow className="border-none bg-white shadow-none *:text-left *:text-base *:text-neutral-950 *:shadow-none hover:bg-primary/10">
-                    <TableCell>Large</TableCell>
-                    <TableCell>
-                      <input
-                        type="text"
-                        name="large"
-                        id="large"
-                        className="rounded-[0.375rem] border-[1px] border-solid border-[#E4E4E7] px-3 py-[0.72rem]"
-                      />
-                    </TableCell>
-                    <TableCell>
-                      <div className="flex w-fit items-center gap-2 rounded-[0.375rem] border-[1px] border-solid border-[#E4E4E7]">
-                        <h1 className="mx-3 my-2 text-2xl font-medium">$</h1>
-                        <input
-                          type="text"
-                          name="large-price"
-                          id="large-price"
-                          value={product.price}
-                          className="px-3 py-[0.72rem]"
-                        />
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
               <button className="w-fit rounded-[0.375rem] border-[1px] border-solid border-[#E2E8F0] px-4 py-2 text-[0.875rem] font-medium text-[#0F172A]">
-                Add a variant
+                Save changes
               </button>
             </div>
+
+            <StockTable price={product.price} />
           </div>
 
-          <div className="right-side flex flex-1 flex-col gap-6 xl:gap-8">
-            <div className="product-details flex w-full flex-col gap-6 rounded-[0.375rem] border-[1px] border-solid border-[#CBD5E1] p-6">
+          <div className="right-side flex flex-[.70] flex-col gap-6 xl:gap-8">
+            <div className="product-details flex w-full flex-col gap-6 rounded-[0.375rem] border-[1px] border-solid border-[#CBD5E1] px-4 py-6">
               <div className="border-b-solid w-full border-b-[1px] border-b-[#CBD5E1] pb-4">
                 <h1 className="text-6 font-semibold text-[#0A0A0A]">Media</h1>
                 <p className="text-[0.875rem] font-normal text-[#525252]">
                   Upload media for your product
                 </p>
               </div>
-              <div className="imgs-uploader flex flex-col items-center gap-4 xl:flex-row xl:gap-4">
-                <Image
-                  width={287}
-                  height={292}
-                  src={productImg}
-                  alt="product img"
-                  className="bg-[#F1F5F9]"
-                />
-                <div className="m-0 flex w-[15rem] justify-center rounded-[0.375rem] border-[1px] border-solid border-[#CBD5E1] px-1 text-xl font-semibold xl:my-3 xl:h-[15rem] xl:w-fit xl:items-center">
-                  +
-                </div>
-              </div>
+              <ProductMedia />
             </div>
 
             <div className="flex w-full flex-col gap-6 xl:gap-8">
@@ -201,14 +88,23 @@ const EditProductDetail = ({ params }: { params: { productID: string } }) => {
                     Status
                   </h1>
                 </div>
-                <select
-                  name="status"
-                  id="status"
-                  className="w-full rounded-[0.375rem] border-[1px] border-solid border-[#CBD5E1] px-4 py-2"
-                >
-                  <option value="In stock">Draft</option>
-                  <option value="Out of stock">Active</option>
-                </select>
+
+                <div>
+                  <p className="text-sm font-medium text-[#0A0A0A]">
+                    Availability
+                  </p>
+                  <select
+                    name="status"
+                    id="status"
+                    className="w-full rounded-[0.375rem] border-[1px] border-solid border-[#CBD5E1] px-4 py-2"
+                  >
+                    <option value="In stock">Draft</option>
+                    <option value="Out of stock">Active</option>
+                  </select>
+                </div>
+                <button className="w-fit rounded-[0.375rem] border-[1px] border-solid border-[#E2E8F0] px-4 py-2 text-[0.875rem] font-medium text-[#0F172A]">
+                  Save
+                </button>
               </div>
               <div className="product-details flex w-full flex-col gap-6 rounded-[0.375rem] border-[1px] border-solid border-[#CBD5E1] p-6">
                 <div className="border-b-solid w-full border-b-[1px] border-b-[#CBD5E1] pb-4">
