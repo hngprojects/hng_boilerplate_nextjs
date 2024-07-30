@@ -59,14 +59,16 @@ export default {
       return false;
     },
     async jwt({ token, user, account }) {
-      if (account && account.provider !== "google") {
-        return { ...token, ...user };
-      }
       const response: ApiResponse = (await googleAuth(
         account as Profile,
       )) as ApiResponse;
+      if (account && account.provider !== "google") {
+        return { ...token, ...response.data };
+      }
+      /* eslint-disable-next-line no-console */
+      console.log("Google Auth Response:", response.data);
 
-      return { ...token, ...response };
+      return { ...token, ...user };
     },
     async redirect({ url, baseUrl }) {
       if (url === "/login") {

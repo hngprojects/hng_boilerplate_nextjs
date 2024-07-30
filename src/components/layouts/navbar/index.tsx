@@ -7,11 +7,11 @@ import { useEffect, useState } from "react";
 import UserCard from "~/components/card/user-card";
 import Logo from "~/components/common/logo";
 import { cn } from "~/lib/utils";
-import { NAV_LINKS } from "./links";
 import MobileNav from "./mobile-navbar";
 
 const Navbar = () => {
   const [scrolling, setIsScrolling] = useState<boolean>(false);
+
   const { data: session } = useSession();
 
   const handleScrollEvent = () => {
@@ -37,40 +37,18 @@ const Navbar = () => {
           `relative mx-auto flex w-full max-w-[1200px] items-center gap-x-4 transition-all duration-500 md:justify-between`,
           scrolling ? "py-2" : "py-4 md:py-9",
           session?.user?.email && "justify-between",
+          // user.email && "justify-between",
+          session?.user?.email && "justify-between",
         )}
       >
         <MobileNav />
 
         <Logo />
-        <div className="hidden w-full items-center justify-center gap-x-4 md:flex lg:gap-x-8 xl:gap-x-16">
-          {NAV_LINKS.map((item, index) => {
-            return (
-              <Link
-                key={index}
-                href={item.link}
-                className="p-3 text-[16px] font-medium text-neutral-dark-1 transition-all duration-300 hover:text-primary"
-              >
-                {item.route}
-              </Link>
-            );
-          })}
-        </div>
         {session?.user?.email ? (
-          <UserCard email={session?.user?.email} />
+          <UserCard image={session?.user?.image as string } />
         ) : (
           <div className="w-fullx hidden items-center justify-end gap-x-4 justify-self-end md:flex lg:gap-x-8">
-            <Link
-              href="/login"
-              className="grid h-[44px] place-items-center whitespace-nowrap rounded-md border border-primary px-4 text-primary lg:px-8"
-            >
-              Log in
-            </Link>
-            <Link
-              href="/register"
-              className="grid h-[44px] place-items-center whitespace-nowrap rounded-md border border-primary bg-primary px-4 text-white lg:px-8"
-            >
-              Get Started
-            </Link>
+            <Link href="/login"></Link>
           </div>
         )}
       </div>

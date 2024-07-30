@@ -1,3 +1,4 @@
+import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import { AnimatePresence, motion } from "framer-motion";
 import { signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
@@ -6,7 +7,7 @@ import { useUser } from "~/hooks/user/use-user";
 import { cn } from "~/lib/utils";
 import { Button } from "../ui/button";
 
-const UserCard = ({ email }: { email: string }) => {
+const UserCard = ({ image }: { image: string | undefined }) => {
   const { updateUser } = useUser();
   const [isLogout, setIsLogout] = useState(false);
 
@@ -39,7 +40,9 @@ const UserCard = ({ email }: { email: string }) => {
           "grid size-9 place-items-center rounded-full bg-orange-500 text-xl font-medium text-white sm:text-2xl sm:font-bold",
         )}
       >
-        {email[0]}
+        <Avatar className="rounded-full">
+          <AvatarImage src={image} className="rounded-full" />
+        </Avatar>
       </Button>
       <AnimatePresence>
         {isLogout && (
