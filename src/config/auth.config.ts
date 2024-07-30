@@ -69,7 +69,7 @@ export default {
       return { ...token, ...response };
     },
     async redirect({ url, baseUrl }) {
-      if (url === "/auth/login") {
+      if (url === "/login") {
         return baseUrl;
       }
       return "/register/organisation";
