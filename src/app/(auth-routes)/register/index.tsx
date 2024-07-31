@@ -294,7 +294,7 @@ const SignUpPage = () => {
                   <LoadingSpinner className="size-4 animate-spin sm:size-5" />
                 </span>
               ) : (
-                <span>Login</span>
+                <span>Sign Up</span>
               )}
             </CustomButton>
           </form>
