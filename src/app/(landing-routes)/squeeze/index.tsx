@@ -1,10 +1,10 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { Check } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { z, ZodError } from "zod";
-import { Check } from "lucide-react"
 
 import { useToast } from "~/components/ui/use-toast";
 import { getApiUrl } from "~/utils/getApiUrl";
@@ -23,7 +23,7 @@ const Page: React.FC = () => {
   const [errors, setErrors] = useState<{ [key: string]: string } | undefined>();
   const [submitting, setSubmitting] = useState(false);
   const { toast } = useToast();
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
     const fetchApiUrl = async () => {
@@ -53,11 +53,11 @@ const Page: React.FC = () => {
     } catch (error) {
       if (error instanceof ZodError) {
         const errorMap: { [key: string]: string } = {};
-        error.errors.forEach((err) => {
-          if (err.path.length > 0) {
-            errorMap[err.path[0]] = err.message;
+        for (const error_ of error.errors) {
+          if (error_.path.length > 0) {
+            errorMap[error_.path[0]] = error_.message;
           }
-        });
+        }
         return errorMap;
       }
       return undefined;
@@ -102,7 +102,7 @@ const Page: React.FC = () => {
       setFirst_name("");
       setLast_name("");
       setEmail("");
-      router.push('/')
+      router.push("/");
     } catch {
       toast({
         title: "Error",
@@ -127,7 +127,9 @@ const Page: React.FC = () => {
 
           <div className="my-6 pr-2 md:my-10">
             <div className="flex items-center space-x-3">
-            <div><Check size={24} color="#525252" /></div>
+              <div>
+                <Check size={24} color="#525252" />
+              </div>
               <p className="text-lg font-medium leading-6">
                 Eliminate complexity and coding headaches with our intuitive
                 boilerplate
@@ -135,14 +137,18 @@ const Page: React.FC = () => {
             </div>
 
             <div className="my-3 flex items-center space-x-3">
-            <div><Check size={24} color="#525252" /></div>
+              <div>
+                <Check size={24} color="#525252" />
+              </div>
               <p className="text-lg font-medium leading-6">
                 Stay up-to-date with continuous updates and enhancements.
               </p>
             </div>
 
             <div className="flex items-center space-x-3">
-            <div><Check size={24} color="#525252" /></div>
+              <div>
+                <Check size={24} color="#525252" />
+              </div>
               <p className="text-lg font-medium leading-6">
                 Simplify development with an intuitive solution.
               </p>
@@ -171,7 +177,9 @@ const Page: React.FC = () => {
               onChange={(event) => setLast_name(event.target.value)}
             />
             {errors?.last_name && (
-              <div className="mt-1 text-xs text-red-600">{errors.last_name}</div>
+              <div className="mt-1 text-xs text-red-600">
+                {errors.last_name}
+              </div>
             )}
 
             <input
