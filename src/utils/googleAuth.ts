@@ -22,9 +22,7 @@ const googleAuth = async (profile: Profile) => {
       id_token: profile.id_token,
     });
 
-    return {
-      response,
-    };
+    return response.data;
   } catch (error) {
     return error;
   }

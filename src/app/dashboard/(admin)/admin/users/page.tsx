@@ -9,8 +9,8 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
-import CardComponent from "~/components/adminDashboard/CardComponent";
 import CustomButton from "~/components/common/common-button/common-button";
+import CardComponent from "~/components/common/DashboardCard/CardComponent";
 import { Button } from "~/components/ui/button";
 import {
   DropdownMenu,
