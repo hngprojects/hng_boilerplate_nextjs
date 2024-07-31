@@ -22,7 +22,7 @@ declare module "next-auth" {
       email: User["email"];
       image: User["avatar_url"];
       role: User["role"];
-      accessToken: User["access_token"];
+      access_token: User["access_token"];
     } & DefaultSession["user"];
   }
 }
