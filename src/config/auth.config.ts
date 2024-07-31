@@ -1,7 +1,12 @@
-import { NextAuthConfig } from "next-auth";
+import { NextAuthConfig, Session } from "next-auth";
+import { JWT } from "next-auth/jwt";
+import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 
+import { LoginSchema } from "~/schemas";
+import { CustomSession } from "~/types";
 import { googleAuth } from "~/utils/googleAuth";
+import { nextlogin } from "~/utils/login";
 
 interface Profile {
   access_token: string;
@@ -29,11 +34,11 @@ interface Data {
   access_token: string;
   user: User;
 }
-
 interface ApiResponse {
   status: string;
   status_code: number;
   message: string;
+  user: User;
   data: Data;
 }
 
@@ -50,13 +55,34 @@ export default {
         },
       },
     }),
+    Credentials({
+      async authorize(credentials) {
+        const validatedFields = LoginSchema.safeParse(credentials);
+        if (!validatedFields.success) {
+          return;
+        }
+        const { email, password, rememberMe } = validatedFields.data;
+        const response = await nextlogin({ email, password, rememberMe });
+
+        if (!response) {
+          return;
+        }
+        const user = {
+          ...response.user,
+          access_token: response.access_token,
+        };
+
+        return user;
+      },
+    }),
   ],
   callbacks: {
-    async signIn({ account, profile }) {
+    async signIn({ account, profile, user }) {
       if (account && account.provider === "google" && profile?.email) {
         return profile.email.endsWith("@gmail.com");
       }
-      return false;
+
+      return user ? true : false;
     },
     async jwt({ token, user, account }) {
       if (account && account.provider !== "google") {
@@ -66,14 +92,39 @@ export default {
         account as Profile,
       )) as ApiResponse;
 
-      return { ...token, ...response };
+      user = response?.data?.user ?? response.user;
+
+      return { ...token, ...user };
     },
-    async redirect({ url, baseUrl }) {
-      if (url === "/login") {
-        return baseUrl;
-      }
-      return "/register/organisation";
+    async session({
+      session,
+      token,
+    }: {
+      session: Session;
+      token: JWT;
+    }): Promise<CustomSession> {
+      session.user = {
+        id: token.id as string,
+        name: token.name as string,
+        first_name: token.first_name as string,
+        last_name: token.last_name as string,
+        email: token.email as string,
+        image: token.avatar_url as string,
+        role: token.role as string,
+        access_token: token.access_token as string,
+      };
+
+      return session as CustomSession;
     },
+    // async redirect({ url, baseUrl }) {
+    //   if (url === "/login") {
+    //     return baseUrl;
+    //   }
+    //   if (url === `${baseUrl}/api/auth/signout`) {
+    //     return baseUrl;
+    //   }
+    //   return "/dashboard";
+    // },
   },
   pages: {
     signIn: "/login",

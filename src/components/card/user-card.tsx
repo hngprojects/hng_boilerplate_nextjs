@@ -1,79 +1,91 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { ChevronDown } from "lucide-react";
+import type { DefaultSession } from "next-auth";
+import { signOut } from "next-auth/react";
 
-import { useUser } from "~/hooks/user/use-user";
+import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from "~/components/ui/dropdown-menu";
 import { cn } from "~/lib/utils";
-import { Button } from "../ui/button";
 
-const UserCard = ({ email }: { email: string }) => {
-  const { updateUser } = useUser();
-  const [isLogout, setIsLogout] = useState(false);
+const handleLogout = async () => {
+  await signOut({
+    callbackUrl: "/",
+  });
+};
 
-  const handleLogout = () => {
-    updateUser({ email: "", name: "" });
-    setIsLogout(false);
-  };
+type UserCardProperties = {
+  status: "authenticated" | "loading" | "unauthenticated";
+  session: DefaultSession | null;
+};
 
-  const handleEscapeClick = (event: KeyboardEvent) => {
-    if (event.key === "Escape") {
-      setIsLogout(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("keydown", handleEscapeClick);
-    return () => {
-      document.removeEventListener("keydown", handleEscapeClick);
-    };
-  }, []);
-
+const UserCard = ({ session, status }: UserCardProperties) => {
+  const { user } = session ?? {};
+  const loading = status === "loading";
+  const isAuth = status === "authenticated";
   return (
-    <div className="relative w-fit">
-      <Button
-        variant={"ghost"}
-        size={"icon"}
-        onClick={() => setIsLogout(!isLogout)}
-        className={cn(
-          "grid size-9 place-items-center rounded-full bg-orange-500 text-xl font-medium text-white sm:text-2xl sm:font-bold",
-        )}
-      >
-        {email[0]}
-      </Button>
-      <AnimatePresence>
-        {isLogout && (
-          <>
-            <div
-              onClick={() => {
-                setIsLogout(false);
-              }}
-              className={cn(
-                "fixed left-0 top-0 z-[99] min-h-screen w-full overflow-hidden bg-neutral-700/0 transition-all duration-300 lg:hidden",
-                isLogout
-                  ? "pointer-events-auto opacity-100"
-                  : "pointer-events-none opacity-0",
-              )}
-            />
-            <motion.div
-              initial={{ opacity: 0.5, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="absolute -bottom-16 -right-2 z-[999] flex w-[150px] flex-col gap-y-2 rounded-xl bg-white p-2 shadow-lg"
-            >
-              <Button
-                variant={"ghost"}
-                onClick={handleLogout}
-                className={cn(
-                  "w-full text-xl font-medium text-orange-500 sm:font-bold",
-                )}
-              >
-                Logout
-              </Button>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-    </div>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button
+          type="button"
+          className="flex items-center rounded-full p-1 hover:bg-subtle"
+          disabled={loading}
+        >
+          {loading && (
+            <span className="size-8 animate-pulse rounded-full bg-subtle-hover/80 sm:size-10" />
+          )}
+          {isAuth && (
+            <Avatar className="size-8 sm:size-10">
+              <AvatarImage src={user?.image ?? ""} />
+              <AvatarFallback className="bg-primary/30 uppercase">
+                {user?.email?.charAt(0)}
+              </AvatarFallback>
+            </Avatar>
+          )}
+          <ChevronDown
+            data-testid="chevronDown"
+            className={cn(
+              "size-4 text-neutral-dark-2 sm:size-5",
+              !isAuth && "opacity-0",
+            )}
+          />
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="mr-1 w-56" alignOffset={6}>
+        <DropdownMenuLabel className="pb-0 pt-3">
+          {user?.name}
+        </DropdownMenuLabel>
+        <span className="block px-2 pb-1 text-xs text-neutral-dark-1">
+          {user?.email ?? "Signed In"}
+        </span>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem>
+            <span className="font-medium">Profile</span>
+            <DropdownMenuShortcut>⇧P</DropdownMenuShortcut>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <span className="font-medium">Billing</span>
+            <DropdownMenuShortcut>⇧B</DropdownMenuShortcut>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <span className="font-medium">New Team</span>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={handleLogout}>
+          <span className="font-medium">Log out</span>
+          <DropdownMenuShortcut>⇧Q</DropdownMenuShortcut>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 
