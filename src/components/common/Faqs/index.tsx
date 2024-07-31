@@ -48,7 +48,6 @@ export default function Faqs() {
     fetchFaqs(`${process.env.NEXT_PUBLIC_BACKEND_PROBE_URL}/api/v1/faqs`);
   }, [toast]);
 
-
   return (
     <div className="flex w-full max-w-[588px] flex-col gap-6 max-md:gap-16">
       <div className="bg-[#FAFAFA] max-md:px-0 max-md:py-0">
