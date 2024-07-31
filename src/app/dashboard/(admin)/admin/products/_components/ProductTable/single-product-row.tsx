@@ -2,7 +2,6 @@
 
 import clsx from "clsx";
 import { EllipsisVertical } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { Button } from "~/components/ui/button";
@@ -18,7 +17,6 @@ import { Product } from "../../data/mock.products";
 import DeleteDialog from "../ProductModal/delete-dialog";
 
 const ProductRow = ({ product }: { product: Product }) => {
-  const router = useRouter();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const handleOpenDialog = () => setIsDialogOpen(true);
   const handleCloseDialog = () => setIsDialogOpen(false);
@@ -60,13 +58,7 @@ const ProductRow = ({ product }: { product: Product }) => {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel className="sr-only">Actions</DropdownMenuLabel>
-              <DropdownMenuItem
-                onClick={() => {
-                  router.push(`./products/edit/${product.id}`);
-                }}
-              >
-                Edit
-              </DropdownMenuItem>
+              <DropdownMenuItem>Edit</DropdownMenuItem>
               <DropdownMenuItem onClick={handleOpenDialog}>
                 Delete
               </DropdownMenuItem>
