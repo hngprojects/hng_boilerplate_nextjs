@@ -65,10 +65,15 @@ const LoginPage = () => {
         const { email, password } = values;
 
         if (data.status === 200) {
-          await signIn("credentials", {
-            email,
-            password,
-          });
+          await signIn(
+            "credentials",
+            {
+              email,
+              password,
+              redirect: false,
+            },
+            { callbackUrl: "/dashboard" },
+          );
           router.push("/dashboard");
         }
         toast({
