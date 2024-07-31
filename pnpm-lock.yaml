@@ -87,7 +87,7 @@ importers:
         specifier: ^3.6.0
         version: 3.6.0
       framer-motion:
-        specifier: ^11.3.19
+        specifier: ^11.3.8
         version: 11.3.19(@emotion/is-prop-valid@0.8.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       input-otp:
         specifier: ^1.2.4
@@ -99,7 +99,7 @@ importers:
         specifier: ^5.6.3
         version: 5.6.3
       lenis:
-        specifier: ^1.1.9
+        specifier: ^1.1.6
         version: 1.1.9(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       lucide-react:
         specifier: ^0.400.0
@@ -117,13 +117,13 @@ importers:
         specifier: ^2.3.13
         version: 2.3.13
       react:
-        specifier: ^18.3.1
+        specifier: ^18
         version: 18.3.1
       react-day-picker:
         specifier: ^8.10.1
         version: 8.10.1(date-fns@3.6.0)(react@18.3.1)
       react-dom:
-        specifier: ^18.3.1
+        specifier: ^18
         version: 18.3.1(react@18.3.1)
       react-email:
         specifier: 2.1.5
@@ -131,6 +131,9 @@ importers:
       react-hook-form:
         specifier: ^7.52.1
         version: 7.52.1(react@18.3.1)
+      react-icons:
+        specifier: ^5.2.1
+        version: 5.2.1(react@18.3.1)
       react-paginate:
         specifier: ^8.2.0
         version: 8.2.0(react@18.3.1)
@@ -141,10 +144,10 @@ importers:
         specifier: ^0.33.4
         version: 0.33.4
       swiper:
-        specifier: ^11.1.8
+        specifier: ^11.1.5
         version: 11.1.8
       tailwind-merge:
-        specifier: ^2.4.0
+        specifier: ^2.3.0
         version: 2.4.0
       tailwindcss-animate:
         specifier: ^1.0.7
@@ -157,16 +160,16 @@ importers:
         version: 4.5.4(@types/react@18.3.3)(react@18.3.1)
     devDependencies:
       '@ianvs/prettier-plugin-sort-imports':
-        specifier: ^4.3.1
+        specifier: ^4.3.0
         version: 4.3.1(prettier@3.3.3)
       '@mertasan/tailwindcss-variables':
         specifier: ^2.7.0
         version: 2.7.0(autoprefixer@10.4.14(postcss@8.4.40))(postcss@8.4.40)
       '@testing-library/dom':
-        specifier: ^10.4.0
+        specifier: ^10.3.1
         version: 10.4.0
       '@testing-library/jest-dom':
-        specifier: ^6.4.8
+        specifier: ^6.4.6
         version: 6.4.8
       '@testing-library/react':
         specifier: ^16.0.0
@@ -175,7 +178,7 @@ importers:
         specifier: ^14.5.2
         version: 14.5.2(@testing-library/dom@10.4.0)
       '@types/node':
-        specifier: ^20.14.13
+        specifier: ^20.14.12
         version: 20.14.13
       '@types/prop-types':
         specifier: ^15.7.12
@@ -184,13 +187,13 @@ importers:
         specifier: ^18.3.3
         version: 18.3.3
       '@types/react-dom':
-        specifier: ^18.3.0
+        specifier: ^18
         version: 18.3.0
       '@typescript-eslint/eslint-plugin':
-        specifier: ^7.18.0
+        specifier: ^7.15.0
         version: 7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4)
       '@typescript-eslint/parser':
-        specifier: ^7.18.0
+        specifier: ^7.15.0
         version: 7.18.0(eslint@8.57.0)(typescript@5.5.4)
       '@vitejs/plugin-react':
         specifier: ^4.3.1
@@ -214,10 +217,10 @@ importers:
         specifier: ^9.1.0
         version: 9.1.0(eslint@8.57.0)
       eslint-plugin-prettier:
-        specifier: ^5.2.1
+        specifier: ^5.1.3
         version: 5.2.1(@types/eslint@9.6.0)(eslint-config-prettier@9.1.0(eslint@8.57.0))(eslint@8.57.0)(prettier@3.3.3)
       eslint-plugin-react:
-        specifier: ^7.35.0
+        specifier: ^7.34.4
         version: 7.35.0(eslint@8.57.0)
       eslint-plugin-react-hooks:
         specifier: ^4.6.2
@@ -235,19 +238,19 @@ importers:
         specifier: ^0.4.1
         version: 0.4.1(@typescript-eslint/eslint-plugin@7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4)(vitest@1.6.0(@types/node@20.14.13)(@vitest/ui@1.6.0)(jsdom@24.1.1)(terser@5.31.3))
       jsdom:
-        specifier: ^24.1.1
+        specifier: ^24.1.0
         version: 24.1.1
       postcss:
-        specifier: ^8.4.40
+        specifier: ^8
         version: 8.4.40
       prettier:
-        specifier: ^3.3.3
+        specifier: ^3.3.2
         version: 3.3.3
       prettier-plugin-tailwindcss:
         specifier: ^0.6.5
         version: 0.6.5(@ianvs/prettier-plugin-sort-imports@4.3.1(prettier@3.3.3))(prettier@3.3.3)
       tailwindcss:
-        specifier: ^3.4.7
+        specifier: ^3.4.1
         version: 3.4.7
       typescript:
         specifier: ^5.5.4
@@ -4357,6 +4360,11 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
 
+  react-icons@5.2.1:
+    resolution: {integrity: sha512-zdbW5GstTzXaVKvGSyTaBalt7HSfuK5ovrzlpyiWHAFXndXTdd/1hdDHI4xBM1Mn7YriT6aqESucFl9kEXzrdw==}
+    peerDependencies:
+      react: '*'
+
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
@@ -5259,7 +5267,7 @@ snapshots:
       '@babel/helper-compilation-targets': 7.25.2
       '@babel/helper-module-transforms': 7.25.2(@babel/core@7.24.5)
       '@babel/helpers': 7.25.0
-      '@babel/parser': 7.24.5
+      '@babel/parser': 7.25.0
       '@babel/template': 7.25.0
       '@babel/traverse': 7.25.2
       '@babel/types': 7.25.2
@@ -9798,6 +9806,10 @@ snapshots:
       - webpack-cli
 
   react-hook-form@7.52.1(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+
+  react-icons@5.2.1(react@18.3.1):
     dependencies:
       react: 18.3.1
 

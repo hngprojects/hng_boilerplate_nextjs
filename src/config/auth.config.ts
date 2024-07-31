@@ -1,9 +1,10 @@
-import { NextAuthConfig } from "next-auth";
-import { AdapterUser } from "next-auth/adapters";
+import { NextAuthConfig, Session } from "next-auth";
+import { JWT } from "next-auth/jwt";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 
 import { LoginSchema } from "~/schemas";
+import { CustomSession } from "~/types";
 import { googleAuth } from "~/utils/googleAuth";
 import { nextlogin } from "~/utils/login";
 
@@ -41,16 +42,6 @@ interface ApiResponse {
   data: Data;
 }
 
-interface User extends AdapterUser {
-  fullname: string;
-  avatar_url: string;
-  expires_in: string;
-  role: string;
-  first_name?: string;
-  last_name?: string;
-  accessToken?: string;
-  name: string;
-}
 export default {
   providers: [
     Google({
@@ -102,10 +93,25 @@ export default {
 
       return { ...token, ...user };
     },
-    async session({ session, token }) {
-      // @ts-expect-error setting user on login from all response
-      session.user = token;
-      return session;
+    async session({
+      session,
+      token,
+    }: {
+      session: Session;
+      token: JWT;
+    }): Promise<CustomSession> {
+      session.user = {
+        id: token.id as string,
+        name: token.name as string,
+        first_name: token.first_name as string,
+        last_name: token.last_name as string,
+        email: token.email as string,
+        image: token.avatar_url as string,
+        role: token.role as string,
+        accessToken: token.access_token as string,
+      };
+
+      return session as CustomSession;
     },
     async redirect({ url, baseUrl }) {
       if (url === "/login") {
