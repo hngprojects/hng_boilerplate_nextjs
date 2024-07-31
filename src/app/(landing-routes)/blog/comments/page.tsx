@@ -1,3 +1,5 @@
+"use client";
+
 import { Session } from "next-auth";
 
 import Comment from "~/components/common/comment-component";
@@ -6,8 +8,15 @@ import { sampleComments } from "~/components/common/comment-component/sample-com
 const CommentPage = () => {
   const mockSession: Session = {
     expires: "1",
-    user: { email: "a", name: "Adeyinka Akinsanya", image: "c" },
+    user: {
+      id: "123",
+      name: "Adeyinka Akinsanya",
+      email: "a@example.com",
+      image: "c",
+      // access_token: "token123",
+    },
   };
+
   return (
     <div className="my-6 flex items-center justify-center px-3 sm:px-4">
       <div className="flex flex-col gap-y-3 sm:gap-y-6">
