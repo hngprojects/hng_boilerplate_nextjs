@@ -260,7 +260,7 @@ const SignUpPage = () => {
                       />
                       <button
                         type="button"
-                        onClick={() => setShowPassword(true)}
+                        onClick={() => setShowPassword(!showPassword)}
                         className="absolute inset-y-0 right-0 flex items-center pr-3"
                       >
                         {showPassword ? (
