@@ -183,7 +183,7 @@ const Hero = () => {
                 Our website uses cookies to enhance your browsing experience,
                 provide
                 <br />
-                personalized content. By clicking "Accept All" you consent to
+                personalized content. By clicking &quot;Accept All&quot; you consent to
                 our use of cookies.
               </p>
             </div>
@@ -203,7 +203,7 @@ const Hero = () => {
                       information about you, such as your login details,
                       preferences, and browsing history. Cookies help enhance
                       your actions and preferences over time, ensuring that you
-                      don't have to re-enter information each time you visit a
+                      don&apos;st have to re-enter information each time you visit a
                       site. Read our{" "}
                       <span className="text-[#F97316] underline">
                         <Link href={"/privacy-policy"}>Privacy Policy</Link>

@@ -148,11 +148,11 @@ export default function Pricing() {
                   24-hour support response time
                 </div>
                 <div
-                  className="mb-3 flex items-center gap-5 text-[16px]"
+                  className="mb-3 flex items-center gap-5 text-[16px] text-[#ACACAC]"
                   data-testid="basic-feature-5"
                 >
                   <Image
-                    src="/images/checkmark.svg"
+                    src="/images/crossmark.svg"
                     alt=""
                     height={30}
                     width={30}
@@ -160,11 +160,11 @@ export default function Pricing() {
                   Marketing advisor
                 </div>
                 <div
-                  className="mb-3 flex items-center gap-5 text-[16px]"
+                  className="mb-3 flex items-center gap-5 text-[16px] text-[#ACACAC]"
                   data-testid="basic-feature-6"
                 >
                   <Image
-                    src="/images/checkmark.svg"
+                    src="/images/crossmark.svg"
                     alt=""
                     height={30}
                     width={30}
@@ -212,7 +212,7 @@ export default function Pricing() {
                     height={30}
                     width={30}
                   />
-                  2 Projects
+                  25 Projects
                 </div>
                 <div
                   className="mb-3 flex items-center gap-5 text-[16px]"
@@ -224,7 +224,7 @@ export default function Pricing() {
                     height={30}
                     width={30}
                   />
-                  Up to 100 subscribers
+                  Up to 10,000 subscribers
                 </div>
                 <div
                   className="mb-3 flex items-center gap-5 text-[16px]"
@@ -236,7 +236,7 @@ export default function Pricing() {
                     height={30}
                     width={30}
                   />
-                  Basic analytics
+                  Advanced analytics
                 </div>
                 <div
                   className="mb-3 flex items-center gap-5 text-[16px]"
@@ -356,11 +356,11 @@ export default function Pricing() {
                   24-hour support response time
                 </div>
                 <div
-                  className="mb-3 flex items-center gap-5 text-[16px]"
+                  className="mb-3 flex items-center gap-5 text-[16px] text-[#ACACAC]"
                   data-testid="basic-feature-5"
                 >
                   <Image
-                    src="/images/checkmark.svg"
+                    src="/images/crossmark.svg"
                     alt=""
                     height={30}
                     width={30}
@@ -368,11 +368,11 @@ export default function Pricing() {
                   Marketing advisor
                 </div>
                 <div
-                  className="mb-3 flex items-center gap-5 text-[16px]"
+                  className="mb-3 flex items-center gap-5 text-[16px] text-[#ACACAC]"
                   data-testid="basic-feature-6"
                 >
                   <Image
-                    src="/images/checkmark.svg"
+                    src="/images/crossmark.svg"
                     alt=""
                     height={30}
                     width={30}
@@ -420,7 +420,7 @@ export default function Pricing() {
                     height={30}
                     width={30}
                   />
-                  2 Projects
+                  25 Projects
                 </div>
                 <div
                   className="mb-3 flex items-center gap-5 text-[16px]"
@@ -432,7 +432,7 @@ export default function Pricing() {
                     height={30}
                     width={30}
                   />
-                  Up to 100 subscribers
+                  Up to 10,000 subscribers
                 </div>
                 <div
                   className="mb-3 flex items-center gap-5 text-[16px]"
@@ -444,7 +444,7 @@ export default function Pricing() {
                     height={30}
                     width={30}
                   />
-                  Basic analytics
+                  Advanced analytics
                 </div>
                 <div
                   className="mb-3 flex items-center gap-5 text-[16px]"
@@ -511,7 +511,7 @@ export default function Pricing() {
               </h1>
 
               <p className="mb-3 text-[18px] text-neutral-600">
-                We couldn’t answer your question?
+                We couldn&apos;t answer your question?
               </p>
 
               <Button

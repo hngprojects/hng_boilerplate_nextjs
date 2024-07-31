@@ -33,9 +33,8 @@ export default function AdditionalInquiriesForm() {
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async function onSubmit(_values: z.infer<typeof FormSchema>) {
-    const response: FormResponse = await submitForm();
+  async function onSubmit(values: z.infer<typeof FormSchema>) {
+    const response: FormResponse = await submitForm(values);
 
     if (response.success) {
       setSuccessMessage(response.message);
@@ -44,7 +43,6 @@ export default function AdditionalInquiriesForm() {
     } else {
       setErrorMessage(response.message);
       setSuccessMessage("");
-      form.reset();
     }
   }
 
