@@ -8,7 +8,6 @@ import { useState } from "react";
 
 import CustomButton from "~/components/common/common-button/common-button";
 import CustomInput from "~/components/common/input/input";
-// import PlanUpgradeFailedModal from "~/components/common/modals/plan-upgrade-failed";
 import PlanUpgradeSuccessfulModal from "~/components/common/modals/plan-upgrade-successful";
 
 const billingOption = [
@@ -226,8 +225,7 @@ const Upgrade = () => {
       </div>
 
       <PlanUpgradeSuccessfulModal onClose={() => setOpen(!open)} show={open} />
-      {/* <PlanUpgradeFailedModal onClose={() => setOpen(!open)} show={open} /> */}
-    </section>
+          </section>
   );
 };
 
