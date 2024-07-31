@@ -107,12 +107,12 @@ export default {
       session.user = token.user;
       return session;
     },
-    // async redirect({ url, baseUrl }) {
-    //   if (url === "/login") {
-    //     return baseUrl;
-    //   }
-    //   return "/dashboard/admin";
-    // },
+    async redirect({ url, baseUrl }) {
+      if (url === "/login") {
+        return baseUrl;
+      }
+      return "/dashboard/admin";
+    },
   },
   pages: {
     signIn: "/login",
