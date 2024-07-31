@@ -1,18 +1,17 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 import { Eye, EyeOff, ShieldCheck } from "lucide-react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next-nprogress-bar";
+// import { useRouter } from "next-nprogress-bar";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { useEffect, useState, useTransition } from "react";
+// import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-import { loginUser } from "~/actions/login";
 import CustomButton from "~/components/common/common-button/common-button";
-import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import { Checkbox } from "~/components/ui/checkbox";
 import {
   Form,
@@ -24,8 +23,6 @@ import {
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
 import { useToast } from "~/components/ui/use-toast";
-import { useUser } from "~/hooks/user/use-user";
-import { simulateDelay } from "~/lib/utils";
 import { getApiUrl } from "~/utils/getApiUrl";
 
 const loginSchema = z.object({
@@ -52,11 +49,11 @@ const getInputClassName = (hasError: boolean, isValid: boolean) => {
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const router = useRouter();
-  const searchP = useSearchParams();
-  const callback_url = searchP.get("callbackUrl");
-  const [isLoading, startTransition] = useTransition();
-  const { updateUser } = useUser();
+  // const router = useRouter();
+  // const searchP = useSearchParams();
+  // const callback_url = searchP.get("callbackUrl");
+  // const [isLoading, startTransition] = useTransition();
+  // const { updateUser } = useUser();
   const [apiUrl, setApiUrl] = useState("");
   const { toast } = useToast();
   useEffect(() => {
@@ -86,17 +83,21 @@ const LoginPage = () => {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof loginSchema>) => {
-    startTransition(async () => {
-      await simulateDelay(3);
-      await loginUser(values);
-      updateUser({ email: values.email, name: values.email.split("@")[0] });
-      if (callback_url) {
-        router.push(callback_url);
-      } else {
-        router.push("/");
-      }
-    });
+  const handleFormSubmit = async (data: loginSchema) => {
+    console.log(apiUrl);
+    try {
+      const response = await axios.post(`${apiUrl}/api/v1/auth/login`, {
+        email: data.email,
+        password: data.password,
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSubmit = () => {
+    form.handleSubmit(handleFormSubmit)();
   };
 
   const togglePasswordVisibility = () => {
@@ -192,7 +193,10 @@ const LoginPage = () => {
         </div>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form
+            onSubmit={form.handleSubmit(handleSubmit)}
+            className="space-y-6"
+          >
             <FormField
               control={form.control}
               name="email"
@@ -203,7 +207,7 @@ const LoginPage = () => {
                   </FormLabel>
                   <FormControl>
                     <Input
-                      disabled={isLoading}
+                      // disabled={isLoading}
                       placeholder="Enter Email Address"
                       {...field}
                       className={getInputClassName(
@@ -228,7 +232,7 @@ const LoginPage = () => {
                   <FormControl>
                     <div className="relative">
                       <Input
-                        disabled={isLoading}
+                        // disabled={isLoading}
                         type={showPassword ? "text" : "password"}
                         placeholder="Enter Password"
                         {...field}
@@ -294,14 +298,14 @@ const LoginPage = () => {
               size="default"
               className="w-full"
             >
-              {isLoading ? (
+              {/* {isLoading ? (
                 <span className="flex items-center gap-x-2">
                   <span className="animate-pulse">Logging in...</span>{" "}
                   <LoadingSpinner className="size-4 animate-spin sm:size-5" />
                 </span>
               ) : (
                 <span>Login</span>
-              )}
+              )} */}
             </CustomButton>
           </form>
         </Form>

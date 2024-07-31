@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DialogContent, DialogTitle } from "@radix-ui/react-dialog";
+import axios from "axios";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -67,12 +68,19 @@ const SignUp = () => {
   });
   const [open, setOpen] = useState(false);
 
-  const handleFormSubmit = () => {
-    form.handleSubmit(() => {
-      if (form.formState.isValid) {
-        setOpen(true);
-      }
-    })();
+  const handleFormSubmit = async (data: FormData) => {
+    try {
+      console.log(data);
+      const response = await axios.post(`${apiUrl}/api/v1/auth/register`, {
+        email: data.email,
+        first_name: data.fullname,
+        password: data.password,
+        last_name: "Promise",
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleSubmit = () => {
