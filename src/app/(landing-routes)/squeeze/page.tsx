@@ -9,8 +9,8 @@ import { useToast } from "~/components/ui/use-toast";
 import { getApiUrl } from "~/utils/getApiUrl";
 
 const validationSchema = Yup.object({
-  first_name: Yup.string().required("First name is required"),
-  last_name: Yup.string().required("Last name is required"),
+  firstName: Yup.string().required("First name is required"),
+  lastName: Yup.string().required("Last name is required"),
   email: Yup.string()
     .email("Invalid email address")
     .required("Email is required"),
@@ -18,8 +18,8 @@ const validationSchema = Yup.object({
 
 const Page: React.FC = () => {
   const [apiUrl, setApiUrl] = useState("");
-  const [first_name, setFirst_name] = useState<string>("");
-  const [last_name, setLast_name] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [errors, setErrors] = useState<{ [key: string]: string } | undefined>();
   const [submitting, setSubmitting] = useState(false);
@@ -45,7 +45,7 @@ const Page: React.FC = () => {
   const validateForm = async () => {
     try {
       await validationSchema.validate(
-        { first_name, last_name, email },
+        { firstName, lastName, email },
         { abortEarly: false },
       );
       setErrors(undefined);
@@ -74,7 +74,7 @@ const Page: React.FC = () => {
     try {
       const response = await fetch(`${apiUrl}/api/v1/squeeze`, {
         method: "POST",
-        body: JSON.stringify({ first_name, last_name, email }),
+        body: JSON.stringify({ firstName, lastName, email }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -90,8 +90,8 @@ const Page: React.FC = () => {
         variant: "default",
       });
 
-      setFirst_name("");
-      setLast_name("");
+      setFirstName("");
+      setLastName("");
       setEmail("");
     } catch {
       toast({
@@ -144,12 +144,12 @@ const Page: React.FC = () => {
               className="block w-full rounded-md border border-neutral-dark-1 bg-background p-3 text-neutral-dark-1 outline-none"
               type="text"
               placeholder="First Name"
-              value={first_name}
-              onChange={(event) => setFirst_name(event.target.value)}
+              value={firstName}
+              onChange={(event) => setFirstName(event.target.value)}
             />
-            {errors?.first_name && (
+            {errors?.firstName && (
               <div className="mt-1 text-xs text-red-600">
-                {errors.first_name}
+                {errors.firstName}
               </div>
             )}
 
@@ -157,11 +157,11 @@ const Page: React.FC = () => {
               className="mt-2 block w-full rounded-md border border-neutral-dark-1 bg-background p-3 outline-none"
               type="text"
               placeholder="Last Name"
-              value={last_name}
-              onChange={(event) => setLast_name(event.target.value)}
+              value={lastName}
+              onChange={(event) => setLastName(event.target.value)}
             />
-            {errors?.last_name && (
-              <div className="mt-1 text-xs text-red-600">{errors.last_name}</div>
+            {errors?.lastName && (
+              <div className="mt-1 text-xs text-red-600">{errors.lastName}</div>
             )}
 
             <input
