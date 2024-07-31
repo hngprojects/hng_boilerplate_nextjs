@@ -103,7 +103,7 @@ const LoginPage = () => {
             isDisabled={!apiUrl}
             variant="outline"
             isLeftIconVisible={true}
-            onClick={() => signIn("google")}
+            onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
             icon={
               <svg
                 width="25"
@@ -273,6 +273,7 @@ const LoginPage = () => {
               variant="primary"
               size="default"
               className="w-full"
+              isDisabled={isLoading}
             >
               {isLoading ? (
                 <span className="flex items-center gap-x-2">

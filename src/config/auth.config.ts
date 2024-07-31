@@ -92,7 +92,7 @@ export default {
     },
     async jwt({ token, user, account }) {
       if (account && account.provider !== "google") {
-        return { ...token };
+        return { ...token, ...user };
       }
       const response: ApiResponse = (await googleAuth(
         account as Profile,
@@ -100,22 +100,22 @@ export default {
 
       user = response?.data?.user;
 
-      return { ...token, user };
+      return { ...token, ...user };
     },
     async session({ session, token }) {
       // @ts-expect-error setting user on login from all response
-      session.user = token.user;
+      session.user = token;
       return session;
     },
-    async redirect({ url, baseUrl }) {
-      if (url === "/login") {
-        return baseUrl;
-      }
-      if (url === `${baseUrl}/api/auth/signout`) {
-        return baseUrl;
-      }
-      return "/dashboard/admin";
-    },
+    // async redirect({ url, baseUrl }) {
+    //   if (url === "/login") {
+    //     return baseUrl;
+    //   }
+    //   if (url === `${baseUrl}/api/auth/signout`) {
+    //     return baseUrl;
+    //   }
+    //   return "/dashboard/admin";
+    // },
   },
   pages: {
     signIn: "/login",
