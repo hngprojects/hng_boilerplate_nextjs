@@ -2,9 +2,9 @@
 
 import { CirclePlus, Filter } from "lucide-react";
 
-import CardComponent from "~/components/adminDashboard/CardComponent";
 import { cardData } from "~/components/adminDashboard/cardData";
 import { Button } from "~/components/common/common-button";
+import CardComponent from "~/components/common/DashboardCard/CardComponent";
 import {
   DropdownMenu,
   DropdownMenuContent,

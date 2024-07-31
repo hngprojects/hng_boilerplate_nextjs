@@ -132,14 +132,14 @@ const ProductDetailsComponent = ({
               href={"/dashboard/products"}
               className="rounded-sm border p-0.5 hover:bg-gray-200"
             >
-              <ArrowLeft />
+              <ArrowLeft className="size-4 min-[500px]:size-5" />
             </Link>
-            <span className="font-medium text-neutral-dark-2 sm:text-[20px] md:font-semibold">
+            <span className="text-sm font-medium text-neutral-dark-2 sm:text-[20px] md:font-semibold">
               {product.name}
             </span>
             <span
               className={cn(
-                "flex items-center gap-x-1 whitespace-nowrap rounded-full pl-2 text-sm leading-5 text-neutral-dark-1 md:gap-x-2",
+                "flex items-center gap-x-1 whitespace-nowrap rounded-full text-xs leading-5 text-neutral-dark-1 min-[500px]:pl-2 min-[500px]:text-sm md:gap-x-2",
               )}
             >
               <span
@@ -149,28 +149,31 @@ const ProductDetailsComponent = ({
                   "bg-[#EAB308]": product.status === "low_on_stock",
                 })}
               />
-              {product.status === "in_stock" && "In Stock"}
-              {product.status === "low_on_stock" && "Low on Stock"}
-              {product.status === "out_of_stock" && "Out of Stock"}
+              <span className="hidden min-[500px]:inline">
+                {" "}
+                {product.status === "in_stock" && "In Stock"}
+                {product.status === "low_on_stock" && "Low on Stock"}
+                {product.status === "out_of_stock" && "Out of Stock"}
+              </span>
             </span>
           </div>
-          <div className="flex items-center justify-end gap-x-4">
+          <div className="flex items-center justify-end gap-x-2 min-[500px]:gap-x-4">
             <Button
               disabled={isLoading}
               onClick={() => router.push("/dashboard/products")}
               type="button"
-              variant="outline"
+              variant="ghost"
               size="default"
-              className="rounded-md bg-transparent px-4 py-3 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+              className="h-7 rounded-sm border bg-transparent px-1.5 py-1 text-[10px] hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 min-[400px]:!h-8 min-[400px]:rounded-md min-[400px]:px-2 min-[400px]:py-2 min-[400px]:text-xs sm:h-10 sm:px-4 sm:py-3 sm:text-sm"
             >
               Discard
             </Button>
             <Button
               disabled={isLoading}
               type="submit"
-              variant="default"
+              variant="ghost"
               size="default"
-              className="rounded-md bg-primary px-4 py-3 font-normal text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+              className="h-7 rounded-sm border bg-primary px-1.5 py-1 text-[10px] font-normal text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 min-[400px]:!h-8 min-[400px]:rounded-md min-[400px]:px-2 min-[400px]:py-2 min-[400px]:text-xs sm:h-10 sm:px-4 sm:py-3 sm:text-sm"
             >
               {isLoading ? (
                 <span className="flex items-center gap-x-2">
@@ -238,7 +241,7 @@ const ProductDetailsComponent = ({
                           {...field}
                         />
                         <div className="flex w-full items-center justify-between">
-                          <span className="whitespace-nowrap text-sm text-slate-500">
+                          <span className="whitespace-nowrap text-xs text-slate-500 sm:text-sm">
                             Maximum of {MAX_CHAR} characters
                           </span>
                           <WordCounter length={MAX_CHAR} word={field.value} />
@@ -250,8 +253,8 @@ const ProductDetailsComponent = ({
                 )}
               />
             </div>
-            <div className="flex flex-col gap-y-2 rounded-[6px] p-4 shadow-[0_0_10px_rgba(0,0,0,0.1)] sm:gap-y-4 md:gap-y-6 xl:p-6">
-              <div className="flex flex-col border-b border-gray-200 pb-3">
+            <div className="flex flex-col gap-y-2 rounded-[6px] shadow-[0_0_10px_rgba(0,0,0,0.1)] max-sm:pb-4 sm:gap-y-4 sm:p-4 md:gap-y-6 xl:p-6">
+              <div className="flex flex-col border-b border-gray-200 pb-3 max-sm:p-4">
                 <h2 className="text-xl font-medium text-neutral-dark-2 md:text-2xl md:font-semibold">
                   Stock
                 </h2>
@@ -367,7 +370,7 @@ const ProductDetailsComponent = ({
                 type="button"
                 disabled={isLoading || disableAddStockButton}
                 onClick={handleAddNewStock}
-                className="w-fit bg-transparent"
+                className="w-fit bg-transparent max-sm:ml-4"
                 variant="outline"
               >
                 Add a variant
@@ -384,7 +387,7 @@ const ProductDetailsComponent = ({
                   Upload media for your product
                 </p>
               </div>
-              <div className="relative mt-2 flex h-fit min-h-[125px] w-full flex-col gap-y-2 rounded-xl md:min-h-[292px] md:rounded-2xl">
+              <div className="relative mt-2 flex h-fit w-full flex-col gap-y-2 rounded-xl md:min-h-[292px] md:rounded-2xl">
                 <div className="flex size-full items-center justify-center gap-x-1">
                   {" "}
                   <ProjectLogo form={new_product_form} name="media" />
