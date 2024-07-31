@@ -316,7 +316,7 @@ const SignUpPage = () => {
           >
             Login
           </Link>
-          <p className="mt-2 text-center text-xs text-gray-500">
+          <span className="mt-2 text-center text-xs text-gray-500">
             <ShieldCheck className="mr-1 hidden h-4 w-4 text-gray-400 sm:inline-block" />
             By logging in, you agree to the{" "}
             <a
@@ -332,7 +332,7 @@ const SignUpPage = () => {
             >
               Privacy Policy
             </a>
-          </p>
+          </span>
         </p>
       </div>
     </div>

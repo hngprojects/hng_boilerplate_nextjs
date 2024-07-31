@@ -68,7 +68,6 @@ const LoginPage = () => {
           await signIn("credentials", {
             email,
             password,
-            redirect: false,
           });
           router.push("/dashboard");
         }
