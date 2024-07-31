@@ -1,86 +1,48 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import FaqAccordion from "../FaqAccordion";
-import Search from "../SearchFaq";
+
+type FAQ = {
+  id: string;
+  question: string;
+  answer: string;
+  created_at: string;
+  updated_at: string;
+  status: boolean;
+};
 
 export default function Faqs() {
-  const [searchValue, setSearchValue] = useState("");
-  const [filteredAccordions, setFilteredAccordions] = useState<JSX.Element[]>(
-    [],
-  );
+  const [faqData, setFaqData] = useState<FAQ[]>([]);
 
-  const accordions = [
-    <FaqAccordion
-      key="1"
-      question="What is an accordion"
-      answer="Accordion is ..."
-    />,
-    <FaqAccordion key="2" question="What is a bar" answer="Bar is ..." />,
-    <FaqAccordion
-      key="3"
-      question="What is search"
-      answer="Search is a term ..."
-    />,
-    <FaqAccordion
-      key="4"
-      question="What is hng"
-      answer="hng is a summer training program ..."
-    />,
-    <FaqAccordion
-      key="5"
-      question="What is a component"
-      answer="A component is a reusable UI element ..."
-    />,
-    <FaqAccordion
-      key="6"
-      question="What is a boilerplate"
-      answer="A boilerplate is a program ..."
-    />,
-    <FaqAccordion
-      key="7"
-      question="What is an accordion"
-      answer="Accordion is ..."
-    />,
-    <FaqAccordion key="8" question="What is a bar" answer="Bar is ..." />,
-    <FaqAccordion
-      key="9"
-      question="What is search"
-      answer="Search is a term ..."
-    />,
-  ];
-
-  const handleSearch = (value: string) => {
-    setSearchValue(value);
-
-    if (!value.trim()) {
-      setFilteredAccordions([]);
-      return;
-    }
-
-    const filtered = accordions.filter(
-      (accordion) =>
-        accordion.props.question.toLowerCase().includes(value.toLowerCase()) ||
-        accordion.props.answer.toLowerCase().includes(value.toLowerCase()),
-    );
-
-    setFilteredAccordions(filtered);
-  };
+  useEffect(() => {
+    const getFAQ = async () => {
+      try {
+        const response = await fetch(
+          "https://deployment.api-php.boilerplate.hng.tech/api/v1/faqs",
+        );
+        const { data } = await response.json();
+        setFaqData(data);
+      } catch (error) {
+        return error;
+      }
+    };
+    getFAQ();
+  }, []);
 
   return (
-    <div className="flex flex-col gap-6 max-md:gap-16">
-      <Search onSearch={handleSearch} />
-      <div className="bg-[#FAFAFA] py-11 max-md:px-0 max-md:py-0">
-        {searchValue.trim() === "" ? (
-          <div className="grid grid-cols-3 gap-x-8 gap-y-6 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-x-4">
-            {accordions}
-          </div>
-        ) : filteredAccordions.length > 0 ? (
-          <div className="grid grid-cols-3">{filteredAccordions}</div>
-        ) : (
-          <p className="mt-4 text-center">No results found.</p>
-        )}
+    <div className="flex w-full flex-col gap-6 px-4 max-md:gap-6 md:px-0">
+      <div className="bg-[#FAFAFA] py-11 max-md:py-6">
+        <div className="grid grid-cols-1 gap-y-6 text-left">
+          {faqData.map((faq) => (
+            <FaqAccordion
+              key={faq.id}
+              question={faq.question}
+              answer={faq.answer}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

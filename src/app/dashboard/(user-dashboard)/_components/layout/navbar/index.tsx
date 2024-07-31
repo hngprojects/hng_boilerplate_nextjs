@@ -18,6 +18,7 @@ import {
 } from "~/components/ui/popover";
 
 const UserNavbar = () => {
+
   const { data: session, status } = useSession();
   const router = useRouter();
   useEffect(() => {

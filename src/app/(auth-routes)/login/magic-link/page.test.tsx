@@ -44,7 +44,7 @@ describe("loginMagicLink", () => {
     fireEvent.change(emailInput, { target: { value: "invalid-email" } });
     fireEvent.click(submitButton);
 
-    // eslint-disable-next-line testing-library/await-async-utils
+
     vi.waitFor(() => {
       const emailError = screen.queryByTestId("email-error");
       expect(emailError).toBeInTheDocument();
@@ -60,7 +60,6 @@ describe("loginMagicLink", () => {
     fireEvent.change(emailInput, { target: { value: "test@example.com" } });
     fireEvent.click(submitButton);
 
-    // eslint-disable-next-line testing-library/await-async-utils
     vi.waitFor(() => {
       expect(mockPush).toHaveBeenCalledWith("/login/magic-link/link-sent");
     });

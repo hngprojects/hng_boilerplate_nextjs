@@ -19,9 +19,7 @@ describe("additionalQuestionsForm Tests", () => {
 
     await waitFor(() => {
       expect(screen.getByText(/name is required/i)).toBeInTheDocument();
-      // eslint-disable-next-line testing-library/no-wait-for-multiple-assertions
       expect(screen.getByText(/email is required/i)).toBeInTheDocument();
-      // eslint-disable-next-line testing-library/no-wait-for-multiple-assertions
       expect(screen.getByText(/message is required/i)).toBeInTheDocument();
     });
   });

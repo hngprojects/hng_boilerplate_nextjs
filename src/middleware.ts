@@ -45,6 +45,5 @@ export default async function middleware(request: NextRequest) {
 
 // Optionally, don't invoke Middleware on some paths
 export const config = {
-  // eslint-disable-next-line unicorn/prefer-string-raw
   matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };
