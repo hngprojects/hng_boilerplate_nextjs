@@ -53,6 +53,7 @@ interface User {
 const UserNavbar = () => {
   const pathname = usePathname();
   const currentPath = pathname?.split("/")[2];
+
   const { data: session, status } = useSession();
   const router = useRouter();
   useEffect(() => {

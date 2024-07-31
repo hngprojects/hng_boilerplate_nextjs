@@ -1,23 +1,39 @@
+// formSubmitHelper.ts
+import { z } from "zod";
+import FormSchema from "./formSchema";
+
 export interface FormResponse {
   success: boolean;
   message: string;
 }
 
-export async function submitForm(): Promise<FormResponse> {
-  const dummyData = [
-    {
-      success: true,
-      message: "Your question has been submitted successfully",
-    },
-    {
+export async function submitForm(formData: z.infer<typeof FormSchema>): Promise<FormResponse> {
+  try {
+    const response = await fetch(
+      "https://deployment.api-php.boilerplate.hng.tech/api/v1/faqs",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const result = await response.json();
+    return {
+      success: result.success,
+      message: result.message,
+    };
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    return {
       success: false,
-      message: "There was an error submitting your question. Please try again.",
-    },
-  ];
-
-  // Simulate a delay to mimic an actual network request
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
-  // Randomly pick success or error for demonstration
-  return dummyData[Math.floor(Math.random() * dummyData.length)];
+      message: "An error occurred while submitting the form.",
+    };
+  }
 }

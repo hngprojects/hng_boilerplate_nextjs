@@ -15,7 +15,7 @@ const HelpCenter = () => {
 
   return (
     <div className="w-full bg-background">
-      <div className="w-full bg-primary/10">
+      <div className="w-full bg-[#FAFAFA]">
         <div className="mx-auto w-full max-w-[1349px]">
           <section
             className="flex w-full flex-col items-center justify-center gap-4 px-6 py-[24px] text-center md:px-0 md:py-24"
@@ -38,11 +38,11 @@ const HelpCenter = () => {
               <p className="text-center text-base font-normal text-neutral-600 md:text-lg">
                 Find advice and answers from our support team
               </p>
-              <div className="group flex h-[45px] w-full items-center justify-start overflow-hidden rounded-full border border-slate-300 bg-white px-2 py-[2px] text-xs font-normal leading-none text-neutral-600 focus-within:ring-1 focus-within:ring-primary focus-within:ring-offset-0 md:w-[600px]">
+              <div className="flex h-[337px] w-full items-center justify-start overflow-hidden rounded-full border border-slate-300 bg-white px-2 py-[2px] text-xs font-normal leading-none text-neutral-600 focus-within:ring-1 focus-within:ring-primary focus-within:ring-offset-0 md:w-[600px]">
                 <Search className="flex h-8 w-8 items-center justify-center p-1 text-muted-foreground" />
                 <Input
                   isButtonVisible={false}
-                  className="w-full border-none bg-transparent px-2 py-2 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                  className="w-full border-none bg-transparent pl-[20px] pr-[220px] py-[16px] focus-visible:outline-none"
                   type="text"
                   placeholder="Search on any topic..."
                   aria-label="Search on any topic"

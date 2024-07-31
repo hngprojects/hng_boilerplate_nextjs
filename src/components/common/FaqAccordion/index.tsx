@@ -17,14 +17,15 @@ const FaqAccordion: React.FC<FaqAccordionProperties> = ({
   answer,
 }) => {
   return (
-    <div className="m-auto w-full max-md:w-[80%]">
-      <Accordion className="bg-white" type="single" collapsible>
+    <div className="m-auto w-full">
+      <Accordion className="w-full" type="single" collapsible>
         <AccordionItem value="item-1">
-          <AccordionTrigger className="p-6 text-xl font-normal hover:no-underline">
+          <AccordionTrigger className="p-6 text-left text-xl font-normal hover:no-underline">
             {question}
           </AccordionTrigger>
-          <AccordionContent className="p-6">{answer}</AccordionContent>
+          <AccordionContent className="w-full p-6">{answer}</AccordionContent>
         </AccordionItem>
+        {/* Add more AccordionItems as needed */}
       </Accordion>
     </div>
   );
