@@ -5,6 +5,7 @@ import "./globals.css";
 
 import Providers from "~/components/providers";
 import { Toaster } from "~/components/ui/toaster";
+import AuthProvider from "~/contexts/authContext";
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
@@ -20,9 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="mx-auto w-full max-w-[1440px]">
+        <div className="mx-auto h-full w-full max-w-[1440px]">
           <Providers />
-          {children}
+          <AuthProvider>{children}</AuthProvider>
           <Toaster />
         </div>
       </body>
