@@ -63,7 +63,6 @@ const SignUpPage = () => {
   const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
     startTransition(async () => {
       await registerUser(values).then(async (data) => {
- 
         if (data.status === 201) {
           router.push("/login");
         }
