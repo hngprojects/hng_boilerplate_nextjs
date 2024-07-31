@@ -1,11 +1,8 @@
-/* eslint-disable no-console */
-// action/notification.ts
-// "use server";
+import axios from "axios";
 
-import Calls from "~/actions/axios";
-
-const $http = Calls(process.env.NEXT_PUBLIC_API_URL);
-console.log(process.env.NEXT_PUBLIC_API_URL);
+/**
+ * THIS API IMPLEMENTATION ARE NOT WORKING CURRENTLY, THE BACKEND WOULD BE INTEGRTED SHORTLY. ☺️
+ */
 
 const notification_id = undefined;
 
@@ -14,63 +11,56 @@ export const createNotification = async () => {
     message: `Welcome to HNGi8`,
   };
   try {
-    const response = await $http.post("/notifications", data);
-    console.log(response);
+    await axios.post("/notifications", data);
   } catch (error) {
-    console.error(error);
+    return error;
   }
 };
 
 export const RetrieveUserNotificationSettings = async () => {
   try {
-    const response = await $http.get("/notification-settings");
-    return response;
+    await axios.get("/notification-settings");
   } catch (error) {
-    console.error(error);
+    return error;
   }
 };
 
 export const updateUserNotificationSettings = async (settings: object) => {
   try {
-    const response = await $http.patch("/notification-settings", settings);
-    return response;
+    await axios.patch("/notification-settings", settings);
   } catch (error) {
-    console.error(error);
+    return error;
   }
 };
 
 export const RetrieveUserNotificationAll = async () => {
   try {
-    const response = await $http.get("/notifications");
-    console.log(response);
+    await axios.get("/notifications");
   } catch (error) {
-    console.error(error);
+    return error;
   }
 };
 
 export const RetrieveUserUnreadNotification = async () => {
   try {
-    const response = await $http.get("/notifications?_read=false");
-    console.log(response);
+    await axios.get("/notifications?_read=false");
   } catch (error) {
-    console.error(error);
+    return error;
   }
 };
 
 export const markNotificationAsRead = async () => {
   try {
-    const response = await $http.patch(`/notifications/${notification_id}`);
-    console.log(response);
+    await axios.patch(`/notifications/${notification_id}`);
   } catch (error) {
-    console.error(error);
+    return error;
   }
 };
 
 export const markAllNotificationAsRead = async () => {
   try {
-    const response = await $http.patch("/notifications");
-    console.log(response);
+    await axios.patch("/notifications");
   } catch (error) {
-    console.error(error);
+    return error;
   }
 };

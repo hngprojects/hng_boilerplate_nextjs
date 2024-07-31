@@ -1,3 +1,5 @@
+"use client";
+
 import { EllipsisVertical, Eye, Redo, Undo } from "lucide-react";
 
 import { Button } from "~/components/common/common-button";
@@ -30,7 +32,7 @@ export default function page() {
         </div>
       </div>
       <div className="mt-12 flex items-center sm:mt-20 md:ml-4 lg:mb-[213px] lg:ml-[89px] lg:mt-[156px]">
-        <div className="h-40 w-full">
+        <div className="w-full">
           {/* YOUR EDIT TEMPLATE COMPONENTS GOES HERE ACCORRDING  */}
           {/* CREATE A FLEX CONTAINER TO HOUSE THE TEMPLATE AREA AND THE SIDEBAR ICONS  */}
         </div>

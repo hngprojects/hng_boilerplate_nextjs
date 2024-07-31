@@ -17,7 +17,7 @@ export const publicRoutes = [
 ];
 
 export const authRoutes = [
-  "/sign-up",
+  "/register",
   "/login",
   "/forgot-password",
   "/reset-password",
@@ -31,7 +31,7 @@ export const apiAuthPrefix = "/api/";
  * The default redirect after login
  * @type {string}
  */
-export const DEFAULT_LOGIN_REDIRECT = "/dashboard";
+export const DEFAULT_LOGIN_REDIRECT = "/dashboard/admin";
 
 /**
  * An array of routes that are accessible to the client
