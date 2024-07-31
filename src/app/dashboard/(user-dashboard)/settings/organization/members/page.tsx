@@ -2,8 +2,7 @@
 
 import Member from "../../_components/member";
 
-const page = () => {
-  return <Member />;
+const Page = () => {
+  return <Member></Member>;
 };
-
-export default page;
+export default Page;

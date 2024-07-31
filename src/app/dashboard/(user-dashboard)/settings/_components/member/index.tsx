@@ -4,28 +4,33 @@ import { useEffect, useState } from "react";
 import CustomButton from "~/components/common/common-button/common-button";
 import { Card, CardContent, CardTitle } from "~/components/ui/card";
 import { Switch } from "~/components/ui/switch";
+import useApiUrl, {
+  fetchOrganization,
+} from "../../organization/members/action/member";
 import FilterBy from "../filrerBy";
 import MemberCard from "../MemberCard";
 import DeleteSuccessModal from "../MemberDeleteModal";
 import InviteModal from "../MemberInviteModal";
 import SearchInput from "../Search";
 
-const fetchOrganization = async () => {
-  // try {
-  //   const response = await axios.get(`${apiUrl}/api/v1/organisations`);
-  //   console.log(response);
-  // } catch (error) {
-  //   console.error(error);
-  // }
-};
 const Member = () => {
-  // const apiUrl = useApiUrl();
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
   const [showInviteModal, setShowInviteModal] = useState<boolean>(false);
+  const apiUrl = useApiUrl();
 
   useEffect(() => {
-    fetchOrganization();
-  }, []);
+    const fetchData = async () => {
+      if (apiUrl) {
+        try {
+          const data = await fetchOrganization(apiUrl);
+        } catch (error) {
+          console.error("Error fetching organization data:", error);
+        }
+      }
+    };
+
+    fetchData();
+  }, [apiUrl]);
 
   return (
     <section className="bg-white px-6 pb-6">
@@ -49,23 +54,21 @@ const Member = () => {
             onCheckedChange={setShowInviteModal}
           />
         </div>
-        <div className="block items-center justify-between space-x-0 rounded-md pt-6 md:flex md:space-x-4">
+        <div className="flex items-center justify-between space-x-4 rounded-md pt-6">
           <div className="flex-1 space-y-1 rounded border border-gray-300 p-2">
             <p className="text-sm font-medium">
               This provides a unique URL that allows anyone to join your
               workspace
             </p>
           </div>
-          <div className="mx-0 mt-4 md:mt-0">
-            <CustomButton
-              variant="primary"
-              onClick={() => {
-                setShowInviteModal(true);
-              }}
-            >
-              Copy
-            </CustomButton>
-          </div>
+          <CustomButton
+            variant="primary"
+            onClick={() => {
+              //   setShowInviteModal(true);
+            }}
+          >
+            Copy
+          </CustomButton>
         </div>
       </CardContent>
       <CardContent className="mb-0 px-0 py-6">
@@ -87,24 +90,22 @@ const Member = () => {
           </div>
         </div>
       </CardContent>
-      <div className="block items-center justify-between md:flex">
-        <div className="flex items-center justify-between gap-1 md:justify-start">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-1">
           <SearchInput
             placeholder={"Search by name or email"}
             onSearch={() => {}}
           />
           <FilterBy onFilter={() => {}} />
         </div>
-        <div className="mt-4 md:mt-0">
-          <CustomButton
-            variant="primary"
-            onClick={() => {
-              setShowInviteModal(true);
-            }}
-          >
-            Invite People
-          </CustomButton>
-        </div>
+        <CustomButton
+          variant="primary"
+          onClick={() => {
+            setShowInviteModal(true);
+          }}
+        >
+          Invite People
+        </CustomButton>
       </div>
       <MemberCard
         deleteHandle={() => {
