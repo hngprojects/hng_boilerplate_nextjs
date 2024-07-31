@@ -1,6 +1,9 @@
 import { NextAuthConfig } from "next-auth";
+import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 
+import { nextlogin } from "~/actions/login";
+import { LoginSchema } from "~/schemas";
 import { googleAuth } from "~/utils/googleAuth";
 
 interface Profile {
@@ -48,6 +51,23 @@ export default {
           access_type: "offline",
           response_type: "code",
         },
+      },
+    }),
+    Credentials({
+      async authorize(credentials) {
+        const validatedFields = LoginSchema.safeParse(credentials);
+        if (!validatedFields.success) {
+          return;
+        }
+        const { email, password } = validatedFields.data;
+        const response = await nextlogin({ email, password });
+
+        if (!response.data) {
+          return;
+        }
+        const user = response.data;
+
+        return user;
       },
     }),
   ],

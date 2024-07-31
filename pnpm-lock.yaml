@@ -87,11 +87,7 @@ importers:
         specifier: ^3.6.0
         version: 3.6.0
       framer-motion:
-<<<<<<< HEAD
         specifier: ^11.3.19
-=======
-        specifier: ^11.3.8
->>>>>>> 14bd53c95471944a526e48f971b69a617f562d3d
         version: 11.3.19(@emotion/is-prop-valid@0.8.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       input-otp:
         specifier: ^1.2.4
