@@ -1,9 +1,5 @@
 import axios from "axios";
 
-/**
- * THIS API IMPLEMENTATION ARE NOT WORKING CURRENTLY, THE BACKEND WOULD BE INTEGRTED SHORTLY. ☺️
- */
-
 const notification_id = undefined;
 
 export const createNotification = async () => {
