@@ -3,9 +3,9 @@ import { AdapterUser } from "next-auth/adapters";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 
-import { nextlogin } from "~/actions/login";
 import { LoginSchema } from "~/schemas";
 import { googleAuth } from "~/utils/googleAuth";
+import { nextlogin } from "~/utils/login";
 
 interface Profile {
   access_token: string;
@@ -107,15 +107,15 @@ export default {
       session.user = token;
       return session;
     },
-    // async redirect({ url, baseUrl }) {
-    //   if (url === "/login") {
-    //     return baseUrl;
-    //   }
-    //   if (url === `${baseUrl}/api/auth/signout`) {
-    //     return baseUrl;
-    //   }
-    //   return "/dashboard/admin";
-    // },
+    async redirect({ url, baseUrl }) {
+      if (url === "/login") {
+        return baseUrl;
+      }
+      if (url === `${baseUrl}/api/auth/signout`) {
+        return baseUrl;
+      }
+      return "/dashboard";
+    },
   },
   pages: {
     signIn: "/login",

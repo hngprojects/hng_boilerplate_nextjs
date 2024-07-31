@@ -9,7 +9,6 @@ import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-import { loginUser } from "~/actions/login";
 import CustomButton from "~/components/common/common-button/common-button";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import { Checkbox } from "~/components/ui/checkbox";
@@ -26,6 +25,7 @@ import { useToast } from "~/components/ui/use-toast";
 import { cn } from "~/lib/utils";
 import { LoginSchema } from "~/schemas";
 import { getApiUrl } from "~/utils/getApiUrl";
+import { loginUser } from "~/utils/login";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);

@@ -1,17 +1,7 @@
 import NextAuth, { type DefaultSession } from "next-auth";
 
 import authConfig from "~/config/auth.config";
-
-interface User {
-  id: string;
-  email: string;
-  fullname?: string;
-  avatar_url: string;
-  first_name?: string;
-  last_name: string;
-  role: string;
-  access_token: string;
-}
+import { User } from "~/types";
 
 export const {
   handlers: { GET, POST },
