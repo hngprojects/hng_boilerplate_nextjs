@@ -14,7 +14,7 @@ const CommentPage = () => {
       email: "user@example.com",
       image: "path/to/image",
       role: "user",
-      accessToken: "some-token",
+      access_token: "some-token",
     },
   };
   return (
