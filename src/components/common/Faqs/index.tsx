@@ -27,6 +27,7 @@ export default function Faqs() {
             description: `Status: ${response.status}, Response not okay`,
             variant: "destructive",
           });
+          setFaqs([]);
           return;
         }
         const { data } = await response.json();
@@ -40,23 +41,27 @@ export default function Faqs() {
               : "An unknown error occurred",
           variant: "destructive",
         });
-        return [];
+        setFaqs([]);
+        return;
       }
     }
     fetchFaqs(`${process.env.NEXT_PUBLIC_BACKEND_PROBE_URL}/api/v1/faqs`);
   }, [toast]);
 
-  const accordions = faqs?.map((faq) => (
-    <FaqAccordion key={faq.id} question={faq.question} answer={faq.answer} />
-  ));
 
   return (
-    <div className="flex flex-col gap-6 max-md:gap-16">
+    <div className="flex w-full max-w-[588px] flex-col gap-6 max-md:gap-16">
       <div className="bg-[#FAFAFA] max-md:px-0 max-md:py-0">
         <Suspense fallback={<LoadingSpinner />}>
           {faqs?.length > 0 ? (
             <div className="grid items-center justify-center gap-y-6 max-md:grid-cols-1 max-md:gap-x-4">
-              {accordions}
+              {faqs?.map((faq) => (
+                <FaqAccordion
+                  key={faq.id}
+                  question={faq.question}
+                  answer={faq.answer}
+                />
+              ))}
             </div>
           ) : (
             <p className="mt-4 text-center">No results found.</p>
