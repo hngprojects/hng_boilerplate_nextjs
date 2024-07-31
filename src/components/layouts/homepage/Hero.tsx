@@ -26,9 +26,24 @@ import Link from "next/link";
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(true);
 
-  const handleAcceptAll = () => {
-    setIsVisible(false);
-  };
+  return (
+    <div className="py-14 sm:py-20">
+      <div className="mx-auto max-w-7xl px-5 md:px-10">
+        <div className="flex flex-col items-center lg:flex-row">
+          <div className="w-full text-center sm:text-left lg:w-1/2">
+            <h1 className="mb-2 text-4xl font-bold leading-snug lg:text-5xl lg:leading-tight xl:text-6xl">
+              Focus on What Matters. We&apos;ve Got the Foundation Covered.
+            </h1>
+
+            <div className="">
+              <Image
+                src="/images/hero-line.svg"
+                width={100}
+                height={100}
+                className="h-[50px] w-full"
+                alt=""
+              />
+            </div>
 
   const handleRejectAll = () => {
     setIsVisible(false);
