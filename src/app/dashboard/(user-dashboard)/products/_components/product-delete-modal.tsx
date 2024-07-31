@@ -84,7 +84,7 @@ const ProductDeleteModal = () => {
             }}
             transition={{ duration: 0.2 }}
             className={cn(
-              "fixed left-1/2 top-1/2 z-[99999] grid w-full min-w-[350px] max-w-[349px] -translate-x-1/2 -translate-y-1/2 transform-gpu flex-col place-items-center items-center min-[360px]:max-w-[480px] sm:max-w-[403px]",
+              "fixed left-1/2 top-1/2 z-[99999] grid w-full min-w-[350px] max-w-[349px] -translate-x-1/2 -translate-y-1/2 transform-gpu flex-col place-items-center items-center min-[360px]:max-w-[480px] sm:max-w-[403px] lg:hidden",
             )}
           >
             <div
