@@ -5,13 +5,12 @@ import { Eye, EyeOff, ShieldCheck } from "lucide-react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next-nprogress-bar";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-import { loginUser } from "~/actions/login";
 import CustomButton from "~/components/common/common-button/common-button";
+import { Input } from "~/components/common/input";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import { Checkbox } from "~/components/ui/checkbox";
 import {
@@ -22,41 +21,16 @@ import {
   FormLabel,
   FormMessage,
 } from "~/components/ui/form";
-import { Input } from "~/components/ui/input";
 import { useToast } from "~/components/ui/use-toast";
-import { useUser } from "~/hooks/user/use-user";
-import { simulateDelay } from "~/lib/utils";
+import { cn } from "~/lib/utils";
+import { LoginSchema } from "~/schemas";
 import { getApiUrl } from "~/utils/getApiUrl";
+import { loginUser } from "~/utils/login";
 
-const loginSchema = z.object({
-  email: z.string().email({ message: "Invalid email format" }),
-  password: z
-    .string()
-    .min(6, { message: "Password must be at least 6 characters long" }),
-  rememberMe: z.boolean().default(false),
-});
-
-type LoginFormData = z.infer<typeof loginSchema>;
-
-const getInputClassName = (hasError: boolean, isValid: boolean) => {
-  const baseClasses =
-    "font-inter w-full rounded-md border px-3 py-6 text-sm font-normal leading-[21.78px] transition duration-150 ease-in-out focus:outline-none";
-
-  if (hasError) {
-    return `${baseClasses} border-red-500 focus:border-red-500 focus:ring-red-500 text-red-900`;
-  } else if (isValid) {
-    return `${baseClasses} border-orange-500 focus:border-orange-500  text-neutralColor-dark-2`;
-  }
-  return `${baseClasses} border-gray-300 focus:border-orange-500  text-neutralColor-dark-2`;
-};
-
-const LoginPage = () => {
+const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
-  const searchP = useSearchParams();
-  const callback_url = searchP.get("callbackUrl");
   const [isLoading, startTransition] = useTransition();
-  const { updateUser } = useUser();
   const [apiUrl, setApiUrl] = useState("");
   const { toast } = useToast();
   useEffect(() => {
@@ -76,9 +50,8 @@ const LoginPage = () => {
     fetchApiUrl();
   }, [toast]);
 
-  const form = useForm<LoginFormData>({
-    resolver: zodResolver(loginSchema),
-    mode: "onChange",
+  const form = useForm<z.infer<typeof LoginSchema>>({
+    resolver: zodResolver(LoginSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -86,16 +59,28 @@ const LoginPage = () => {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof loginSchema>) => {
+  const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
     startTransition(async () => {
-      await simulateDelay(3);
-      await loginUser(values);
-      updateUser({ email: values.email, name: values.email.split("@")[0] });
-      if (callback_url) {
-        router.push(callback_url);
-      } else {
-        router.push("/");
-      }
+      await loginUser(values).then(async (data) => {
+        const { email, password } = values;
+
+        if (data.status === 200) {
+          await signIn(
+            "credentials",
+            {
+              email,
+              password,
+              redirect: false,
+            },
+            { callbackUrl: "/dashboard" },
+          );
+          router.push("/dashboard");
+        }
+        toast({
+          title: data.status === 200 ? "login success" : "an error occurred",
+          description: data.status === 200 ? "routing now" : data.error,
+        });
+      });
     });
   };
 
@@ -107,7 +92,7 @@ const LoginPage = () => {
   }, []);
   return (
     <div className="flex min-h-full items-center justify-center px-4 py-10 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8">
+      <div className="w-full max-w-md space-y-6">
         <div className="text-center">
           <h1 className="font-inter text-neutralColor-dark-2 mb-5 text-center text-2xl font-semibold leading-tight">
             Login
@@ -119,10 +104,9 @@ const LoginPage = () => {
 
         <div className="flex flex-col justify-center space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
           <CustomButton
-            isDisabled={!apiUrl}
             variant="outline"
             isLeftIconVisible={true}
-            onClick={() => signIn("google")}
+            onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
             icon={
               <svg
                 width="25"
@@ -150,9 +134,10 @@ const LoginPage = () => {
               </svg>
             }
           >
-            Sign in with Google
+            Continue with Google
           </CustomButton>
           <CustomButton
+            className="w-full"
             isDisabled={!apiUrl}
             variant="outline"
             href={apiUrl === "" ? undefined : `${apiUrl}/api/v1/auth/facebook`}
@@ -179,7 +164,7 @@ const LoginPage = () => {
               </svg>
             }
           >
-            Sign in with Facebook
+            Continue with Facebook
           </CustomButton>
         </div>
 
@@ -206,10 +191,9 @@ const LoginPage = () => {
                       disabled={isLoading}
                       placeholder="Enter Email Address"
                       {...field}
-                      className={getInputClassName(
-                        !!form.formState.errors.email,
-                        form.formState.isSubmitted &&
-                          !form.formState.errors.email,
+                      className={cn(
+                        "font-inter w-full rounded-md border px-3 py-6 text-sm font-normal leading-[21.78px] transition duration-150 ease-in-out focus:outline-none",
+                        form.formState.errors.email && "border-destructive",
                       )}
                     />
                   </FormControl>
@@ -232,10 +216,10 @@ const LoginPage = () => {
                         type={showPassword ? "text" : "password"}
                         placeholder="Enter Password"
                         {...field}
-                        className={getInputClassName(
-                          !!form.formState.errors.password,
-                          form.formState.isSubmitted &&
-                            !form.formState.errors.password,
+                        className={cn(
+                          "font-inter w-full rounded-md border px-3 py-6 text-sm font-normal leading-[21.78px] transition duration-150 ease-in-out focus:outline-none",
+                          form.formState.errors.password &&
+                            "border-destructive",
                         )}
                       />
                       <button
@@ -266,7 +250,7 @@ const LoginPage = () => {
                 control={form.control}
                 name="rememberMe"
                 render={({ field }) => (
-                  <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                  <FormItem className="flex flex-row items-start space-x-2 space-y-0">
                     <FormControl>
                       <Checkbox
                         checked={field.value}
@@ -292,7 +276,8 @@ const LoginPage = () => {
               type="submit"
               variant="primary"
               size="default"
-              className="w-full"
+              className="w-full py-6"
+              isDisabled={isLoading}
             >
               {isLoading ? (
                 <span className="flex items-center gap-x-2">
@@ -310,7 +295,7 @@ const LoginPage = () => {
           type="button"
           variant="outline"
           size="default"
-          className="w-full"
+          className="w-full py-6"
         >
           <Link href="/login/magic-link">Sign in with magic link</Link>
         </CustomButton>
@@ -348,4 +333,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Login;
