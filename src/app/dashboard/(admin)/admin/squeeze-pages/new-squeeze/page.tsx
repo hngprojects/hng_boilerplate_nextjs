@@ -1,10 +1,16 @@
+"use client"
 import Image from "next/image";
-
 import { Input } from "~/components/common/input";
+import { useRouter } from 'next/navigation'
 import { Button } from "~/components/ui/button";
 import camera_icon from "../assets/camera_icon.png";
 
 const NewSqueezePage = () => {
+  const router = useRouter()
+  const handleFormSubmit = () => {
+   router.push("new-squeeze-title")
+  };
+
   return (
     <div>
       <div className="mr-auto">
@@ -47,7 +53,7 @@ const NewSqueezePage = () => {
               id="title"
               type="input"
               placeholder="e.g Jonh Doe"
-              className="col-span-3 inline-flex h-11 w-full items-start justify-start gap-2 outline-none"
+              className="col-span-3 text-black inline-flex h-11 w-full items-start justify-start gap-2 outline-none"
             />
           </div>
           <div className="w-full">
@@ -56,7 +62,7 @@ const NewSqueezePage = () => {
               id="title"
               type="input"
               placeholder="e.g Jonh Doe"
-              className="col-span-3 inline-flex h-11 w-full items-start justify-start gap-2 outline-none"
+              className="col-span-3 text-black inline-flex h-11 w-full items-start justify-start gap-2 outline-none"
             />
           </div>
         </div>
@@ -67,7 +73,7 @@ const NewSqueezePage = () => {
             id="title"
             type="input"
             placeholder="e.g Jonh Doe"
-            className="col-span-3 inline-flex h-11 w-full items-start justify-start gap-2"
+            className="col-span-3 text-black inline-flex h-11 w-full items-start justify-start gap-2"
           />
         </div>
         <br />
@@ -77,7 +83,7 @@ const NewSqueezePage = () => {
             id="title"
             type="input"
             placeholder="e.g Jonh Doe"
-            className="col-span-3 inline-flex h-11 w-full items-start justify-start gap-2 outline-none"
+            className="col-span-3 inline-flex text-black h-11 w-full items-start justify-start gap-2 outline-none"
           />
         </div>
         <br />
@@ -90,10 +96,10 @@ const NewSqueezePage = () => {
         </div>
         <br />
         <div className="mr-full absolute right-4 flex items-center gap-2">
-          <button className="h-10 rounded border px-2 text-sm">
+          <button className="h-10 rounded border bg-[#F1F5F9] px-2 text-sm">
             Preview Page
           </button>
-          <Button>Save Page</Button>
+          <Button onClick={handleFormSubmit}>Save Page</Button>
         </div>
       </div>
       <br />
