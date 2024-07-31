@@ -35,17 +35,17 @@ const NotificationSettingSavedModal: React.FC<ModalProperties> = ({
         className={`fixed inset-0 z-50 flex items-center justify-center ${isNotificationPath ? "bg-transparent backdrop-blur-sm" : "bg-black bg-opacity-50"}`}
       />
       <DialogContent
-        className="mx-10 rounded-md bg-white p-6 shadow-md"
+        className="w-full max-w-sm rounded-md bg-white p-6 shadow-md sm:mx-10 md:mx-4 md:max-w-lg"
         onClick={(event) => event.stopPropagation()}
       >
         <DialogTitle className="text-lg font-semibold">
           Notification Updated!
         </DialogTitle>
-        <DialogDescription className="text-sm font-normal text-muted-foreground">
+        <DialogDescription className="mt-2 text-sm font-normal text-muted-foreground">
           Notification preferences updated successfully. Remember, you can
           always adjust these settings later.
         </DialogDescription>
-        <div className="flex justify-end">
+        <div className="mt-4 flex justify-end">
           <div onClick={onClose}>
             <CustomButton variant="primary">Done</CustomButton>
           </div>

@@ -3,10 +3,9 @@ import { Inter } from "next/font/google";
 
 import "./globals.css";
 
-import { SessionProvider } from "next-auth/react";
-
 import Providers from "~/components/providers";
 import { Toaster } from "~/components/ui/toaster";
+import AuthProvider from "~/contexts/authContext";
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
@@ -22,9 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="mx-auto w-full">
+        <div className="mx-auto h-full w-full">
           <Providers />
-          <SessionProvider>{children}</SessionProvider>
+          <AuthProvider>{children}</AuthProvider>
           <Toaster />
         </div>
       </body>
