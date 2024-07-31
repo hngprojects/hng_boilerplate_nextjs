@@ -1,7 +1,7 @@
 "use client";
 
+import { CircleAlert } from "lucide-react";
 import { useEffect } from "react";
-import { FaExclamationTriangle } from "react-icons/fa";
 
 export default function Error({
   error,
@@ -14,7 +14,7 @@ export default function Error({
 
   return (
     <div className="flex h-screen flex-col items-center justify-center gap-5">
-      <FaExclamationTriangle className="mb-2 text-4xl text-red-500" />
+      <CircleAlert className="mb-2 text-4xl text-red-500" />
       <h2 className="text-3xl font-semibold text-black dark:text-white">
         Something went wrong!
       </h2>
