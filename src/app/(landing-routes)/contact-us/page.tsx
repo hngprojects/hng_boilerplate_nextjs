@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import ContactForm from "~/components/common/contact-us-form";
@@ -44,14 +45,19 @@ const Contact = () => {
               </div>
             </div>
             <div className="gap-2 max-lg:grid">
-              <div className="flex justify-between">
+              <div className="flex items-center justify-between">
                 <h2 className="text-xl font-semibold text-primary underline underline-offset-2">
                   FAQs
                 </h2>
 
                 <Link href="/faqs">
                   <div>
-                    <img src="/images/mdi_arrow-right-bold.svg" alt="arrow" />
+                    <Image
+                      src="/images/mdi_arrow-right-bold.svg"
+                      width={20}
+                      height={20}
+                      alt="arrow"
+                    />
                   </div>
                 </Link>
               </div>

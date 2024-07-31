@@ -3,13 +3,27 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import Contact from "~/app/(landing-routes)/contact-us/page";
 
 describe("contact Page tests", () => {
+  // Set up the environment variable
+  const originalEnvironment = process.env;
+
+  beforeEach(() => {
+    process.env = {
+      ...originalEnvironment,
+      NEXT_PUBLIC_BACKEND_PROBE_URL: "test.com",
+    };
+  });
+
+  afterEach(() => {
+    process.env = originalEnvironment;
+  });
+
   it("should render the Contact Us form and content card correctly", () => {
     expect.assertions(4);
     render(<Contact />);
 
     expect(screen.getByRole("form")).toBeInTheDocument();
 
-    expect(screen.getByText("Contact Our Team")).toBeInTheDocument();
+    expect(screen.getByText("Contact Us")).toBeInTheDocument();
 
     expect(screen.getByText(/business hours/i)).toBeInTheDocument();
 
@@ -65,7 +79,7 @@ describe("contact Page tests", () => {
 
     await waitFor(() => {
       expect(fetchMock).toHaveBeenCalledWith(
-        "https://test.gracefilledcollege.com/public/api/v1/contact",
+        `${process.env.NEXT_PUBLIC_BACKEND_PROBE_URL}/api/v1/contact`,
         expect.objectContaining({
           method: "POST",
           headers: { "Content-Type": "application/json" },
