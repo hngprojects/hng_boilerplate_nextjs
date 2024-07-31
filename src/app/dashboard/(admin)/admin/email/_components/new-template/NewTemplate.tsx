@@ -37,7 +37,7 @@ export const Options: FC<IOption> = ({ data }) => {
     <Link
       data-testid="email-home-card"
       href={data.link}
-      className="flex w-full max-w-[310px] cursor-pointer items-center justify-between gap-5 rounded-[8px] border-[1px] border-[#CBD5E1B2] px-5 py-4 transition-all duration-300 hover:border-primary"
+      className="flex w-full cursor-pointer items-center gap-5 rounded-[8px] border-[1px] border-[#CBD5E1B2] px-5 py-4 transition-all duration-300 hover:border-primary sm:max-w-[310px]"
     >
       <div className="flex w-6 items-center justify-center">
         <data.icon
@@ -62,7 +62,7 @@ const NewTemplate = () => {
         title="Create a New Template"
         description="Choose an option below to begin crafting your email design."
       />
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         {options.map((option, index) => {
           return <Options key={index} data={option} />;
         })}
