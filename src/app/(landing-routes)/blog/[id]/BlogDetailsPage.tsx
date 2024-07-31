@@ -26,8 +26,14 @@ interface BlogPost {
 }
 const mockSession: Session = {
   user: {
+    id: "12345",
     name: "Current User",
+    first_name: "Current",
+    last_name: "User",
     email: "user@example.com",
+    image: "path/to/image",
+    role: "user",
+    accessToken: "some-token",
   },
   expires: "2100-01-01T00:00:00.000Z",
 };

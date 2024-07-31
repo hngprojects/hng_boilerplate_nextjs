@@ -1,6 +1,11 @@
-import { BellIcon, ChevronDown, HelpCircle, SearchIcon } from "lucide-react";
+"use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
+import { BellIcon, ChevronDown, HelpCircle, SearchIcon } from "lucide-react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
+import UserCard from "~/components/card/user-card";
 import {
   Popover,
   PopoverContent,
@@ -8,7 +13,21 @@ import {
 } from "~/components/ui/popover";
 import UnreadNotificationCard from "../../unread-notification-card/UnreadNotificationCard";
 
+interface User {
+  email: string;
+  image: string;
+  name: string;
+}
+
 const DashboardNavbar = () => {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/login");
+    }
+  }, [status, router]);
+
   return (
     <nav
       className="fixed left-[50px] right-0 top-0 z-50 border-b-[0.5px] border-border md:left-[220px] lg:left-[252px]"
@@ -59,10 +78,9 @@ const DashboardNavbar = () => {
             />
           </div>
           <div className="hover:bg-black-1 flex w-full max-w-[64px] cursor-pointer items-center justify-between gap-2">
-            <Avatar data-testid="avatar" className="h-10 w-10">
-              <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
+            {status === "authenticated" && (
+              <UserCard user={session?.user as User} />
+            )}
             <ChevronDown
               data-testid="chevronDown"
               className="2-5 h-5 text-neutral-dark-1"

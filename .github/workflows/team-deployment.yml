@@ -45,16 +45,16 @@ jobs:
             cd hng_boilerplate_nextjs
             ./scripts/team_deploy.sh kimiko-csharp ${{ vars.PORT }}
 
-  cyborgs-java:
+  anchor-java:
     if: github.event.repository.fork == false
     runs-on: ubuntu-latest
 
     environment:
-      name: "cyborgs-java"
+      name: "anchor-java"
       url: ${{ vars.URL }}
 
     steps:
-      - name: Deploy to cyborgs-java environment
+      - name: Deploy to anchor-java environment
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.HOST }}
@@ -62,18 +62,18 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd hng_boilerplate_nextjs
-            ./scripts/team_deploy.sh cyborgs-java ${{ vars.PORT }}
+            ./scripts/team_deploy.sh anchor-java ${{ vars.PORT }}
 
-  cyborgs-python:
+  anchor-python:
     if: github.event.repository.fork == false
     runs-on: ubuntu-latest
 
     environment:
-      name: "cyborgs-python"
+      name: "anchor-python"
       url: ${{ vars.URL }}
 
     steps:
-      - name: Deploy to cyborgs-python environment
+      - name: Deploy to anchor-python environment
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.HOST }}
@@ -81,7 +81,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd hng_boilerplate_nextjs
-            ./scripts/team_deploy.sh cyborgs-python ${{ vars.PORT }}
+            ./scripts/team_deploy.sh anchor-python ${{ vars.PORT }}
 
   bulldozer-php:
     if: github.event.repository.fork == false
