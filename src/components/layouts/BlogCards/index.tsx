@@ -57,7 +57,7 @@ const BlogCard: React.FC<BlogCardProperties> = ({
           <div
             className={`flex items-center justify-between text-sm text-[#0A0A0A] text-muted-foreground`}
           >
-            {index !== 0 && <span>{readTime} mins read</span>}
+            {(index !== 0 || !type) && <span>{readTime} mins read</span>}
             <span className="flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-subtle-hover"></span>
               <span>{date}</span>
