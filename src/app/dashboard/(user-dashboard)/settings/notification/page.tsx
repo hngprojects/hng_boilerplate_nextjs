@@ -9,6 +9,38 @@ import NotificationHeader from "./_components/header";
 import { NotificationSwitchBox } from "./_components/notification-switch-box";
 import { useNotificationStore } from "./action/notification-store";
 
+// import { notificationSettingsProperties } from "./types/notification-settings.types";
+
+// Helper function to save notification settings
+// const saveNotificationSettings = async (
+//   settings: notificationSettingsProperties,
+// ) => {
+//   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+//   const endpoint = "/api/v1/settings/notification-settings";
+//   const url = `${baseUrl}${endpoint}`;
+
+//   try {
+//     const response = await fetch(url, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(settings),
+//     });
+
+//     if (!response.ok) {
+//       throw new Error("Failed to save settings");
+//     }
+
+//     const data = await response.json(); // Await the parsed JSON response
+//     // console.log("response:", data);
+//     return data;
+//   } catch (error) {
+//     console.error("Error saving settings:", error);
+//     throw error;
+//   }
+// };
+
 const NotificationPage = () => {
   const { settings, updateSettings } = useNotificationStore();
   const [isOpen, setOpen] = useState(false);
@@ -17,8 +49,15 @@ const NotificationPage = () => {
     updateSettings({ [name]: !settings[name] });
   };
 
-  const handleSaveChanges = () => {
-    setOpen(true);
+  const handleSaveChanges = async () => {
+    try {
+      // await saveNotificationSettings(settings);
+      // console.log("Settings saved:", settings);
+      setOpen(true);
+    } catch {
+      // console.error("Failed to save settings:", error);
+      // Handle error, e.g., show a notification to the user
+    }
   };
 
   return (
