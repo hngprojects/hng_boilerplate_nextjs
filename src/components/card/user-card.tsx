@@ -1,4 +1,5 @@
 import { ChevronDown } from "lucide-react";
+import type { DefaultSession } from "next-auth";
 import { signOut } from "next-auth/react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
@@ -12,34 +13,48 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
+import { cn } from "~/lib/utils";
 
-interface User {
-  email: string;
-  image: string;
-  name: string;
-}
+const handleLogout = async () => {
+  await signOut({
+    callbackUrl: "/",
+  });
+};
 
-const UserCard = ({ user }: { user: User }) => {
-  const handleSignOut = async () => {
-    await signOut({
-        callbackUrl: "/",
-      });
-  };
+type UserCardProperties = {
+  status: "authenticated" | "loading" | "unauthenticated";
+  session: DefaultSession | null;
+};
 
+const UserCard = ({ session, status }: UserCardProperties) => {
+  const { user } = session ?? {};
+  const loading = status === "loading";
+  const isAuth = status === "authenticated";
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button
           type="button"
           className="flex items-center rounded-full p-1 hover:bg-subtle"
+          disabled={loading}
         >
-          <Avatar className="size-8 sm:size-10">
-            <AvatarImage src={user?.image} />
-            <AvatarFallback>{user?.email[0]}</AvatarFallback>
-          </Avatar>
+          {loading && (
+            <span className="size-8 animate-pulse rounded-full bg-subtle-hover/80 sm:size-10" />
+          )}
+          {isAuth && (
+            <Avatar className="size-8 sm:size-10">
+              <AvatarImage src={user?.image ?? ""} />
+              <AvatarFallback className="bg-primary/30 uppercase">
+                {user?.email?.charAt(0)}
+              </AvatarFallback>
+            </Avatar>
+          )}
           <ChevronDown
             data-testid="chevronDown"
-            className="size-4 text-neutral-dark-2 sm:size-5"
+            className={cn(
+              "size-4 text-neutral-dark-2 sm:size-5",
+              !isAuth && "opacity-0",
+            )}
           />
         </button>
       </DropdownMenuTrigger>
@@ -65,7 +80,7 @@ const UserCard = ({ user }: { user: User }) => {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={handleSignOut}>
+        <DropdownMenuItem onClick={handleLogout}>
           <span className="font-medium">Log out</span>
           <DropdownMenuShortcut>⇧Q</DropdownMenuShortcut>
         </DropdownMenuItem>

@@ -1,6 +1,6 @@
 "use client";
 
-import { BellIcon, ChevronDown, HelpCircle, SearchIcon } from "lucide-react";
+import { BellIcon, HelpCircle, SearchIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -12,12 +12,6 @@ import {
   PopoverTrigger,
 } from "~/components/ui/popover";
 import UnreadNotificationCard from "../../unread-notification-card/UnreadNotificationCard";
-
-interface User {
-  email: string;
-  image: string;
-  name: string;
-}
 
 const DashboardNavbar = () => {
   const { data: session, status } = useSession();
@@ -78,13 +72,7 @@ const DashboardNavbar = () => {
             />
           </div>
           <div className="hover:bg-black-1 flex w-full max-w-[64px] cursor-pointer items-center justify-between gap-2">
-            {status === "authenticated" && (
-              <UserCard user={session?.user as User} />
-            )}
-            <ChevronDown
-              data-testid="chevronDown"
-              className="2-5 h-5 text-neutral-dark-1"
-            />
+            <UserCard status={status} session={session} />
           </div>
         </div>
       </div>

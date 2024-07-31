@@ -133,6 +133,7 @@ const LoginPage = () => {
             Continue with Google
           </CustomButton>
           <CustomButton
+            className="w-full"
             isDisabled={!apiUrl}
             variant="outline"
             href={apiUrl === "" ? undefined : `${apiUrl}/api/v1/auth/facebook`}

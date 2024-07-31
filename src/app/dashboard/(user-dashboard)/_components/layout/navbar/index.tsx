@@ -17,12 +17,6 @@ import {
   PopoverTrigger,
 } from "~/components/ui/popover";
 
-interface User {
-  email: string;
-  image: string;
-  name: string;
-}
-
 const UserNavbar = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
@@ -79,9 +73,7 @@ const UserNavbar = () => {
             />
           </div>
           <div className="pr-1">
-            {status === "authenticated" && (
-              <UserCard user={session?.user as User} />
-            )}
+            <UserCard status={status} session={session} />
           </div>
         </div>
       </div>
