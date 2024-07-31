@@ -91,7 +91,7 @@ export default {
 
       user = response?.data?.user;
 
-      return { ...token, ...user };
+      return { ...token, ...user, access_token: response.data.access_token };
     },
     async session({
       session,
@@ -108,7 +108,7 @@ export default {
         email: token.email as string,
         image: token.avatar_url as string,
         role: token.role as string,
-        accessToken: token.access_token as string,
+        access_token: token.access_token as string,
       };
 
       return session as CustomSession;
