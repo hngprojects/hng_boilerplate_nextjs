@@ -1,3 +1,4 @@
+import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import { AnimatePresence, motion } from "framer-motion";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
@@ -6,6 +7,14 @@ import { useEffect, useState } from "react";
 import { cn } from "~/lib/utils";
 import CustomButton from "../common/common-button/common-button";
 
+const UserCard = ({ image }: { image: string | undefined }) => {
+  const { updateUser } = useUser();
+  const [isLogout, setIsLogout] = useState(false);
+
+  const handleLogout = () => {
+    updateUser({ email: "", name: "" });
+    setIsLogout(false);
+  };
 interface User {
   email: string;
   image: string;
@@ -30,6 +39,18 @@ const UserCard = ({ user }: { user: User }) => {
 
   return (
     <div className="relative w-fit">
+      <Button
+        variant={"ghost"}
+        size={"icon"}
+        onClick={() => setIsLogout(!isLogout)}
+        className={cn(
+          "grid size-9 place-items-center rounded-full bg-orange-500 text-xl font-medium text-white sm:text-2xl sm:font-bold",
+        )}
+      >
+        <Avatar className="rounded-full">
+          <AvatarImage src={image} className="rounded-full" />
+        </Avatar>
+      </Button>
       {user?.image ? (
         <div
           className="flex h-full w-full cursor-pointer items-center justify-center overflow-hidden rounded-full"

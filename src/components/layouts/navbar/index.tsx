@@ -18,6 +18,9 @@ interface User {
 
 const Navbar = () => {
   const [scrolling, setIsScrolling] = useState<boolean>(false);
+
+  const { data: session } = useSession();
+  const { user } = useUser();
   const { data: session, status } = useSession();
 
   const handleScrollEvent = () => {
@@ -61,6 +64,11 @@ const Navbar = () => {
             );
           })}
         </div>
+        {session?.user?.email ? (
+          <div className="hidden md:flex">
+            <UserCard image={session?.user?.image as string} />
+          </div>
+        ) : (
         {status !== "authenticated" && (
           <div className="w-fullx hidden items-center justify-end gap-x-4 justify-self-end md:flex lg:gap-x-8">
             <Link

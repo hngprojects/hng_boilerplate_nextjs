@@ -66,7 +66,11 @@ export default {
       const response: ApiResponse = (await googleAuth(
         account as Profile,
       )) as ApiResponse;
+      if (account && account.provider !== "google") {
+        return { ...token, ...response.data };
+      }
 
+      return { ...token, ...user };
       user = response?.data?.user;
 
       return { ...token };

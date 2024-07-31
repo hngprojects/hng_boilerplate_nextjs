@@ -22,6 +22,24 @@ const googleAuth = async (profile: Profile) => {
       id_token: profile.id_token,
     });
 
+    return response?.data;
+  } catch (error) {
+    return {
+      status: "error " + error,
+      status_code: 500,
+      message: "Google authentication failed",
+      data: {
+        id_token: "",
+        user: {
+          id: "",
+          email: "",
+          fullname: "",
+          avatar_url: "",
+          expires_in: "",
+          role: "",
+        },
+      },
+    };
     return response.data;
   } catch (error) {
     return error;
