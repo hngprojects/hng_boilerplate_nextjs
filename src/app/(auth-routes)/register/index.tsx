@@ -3,15 +3,15 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff, ShieldCheck } from "lucide-react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next-nprogress-bar";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import CustomButton from "~/components/common/common-button/common-button";
+import { Input } from "~/components/common/input";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
-import { Checkbox } from "~/components/ui/checkbox";
 import {
   Form,
   FormControl,
@@ -20,19 +20,19 @@ import {
   FormLabel,
   FormMessage,
 } from "~/components/ui/form";
-import { Input } from "~/components/ui/input";
 import { useToast } from "~/components/ui/use-toast";
 import { cn } from "~/lib/utils";
-import { LoginSchema } from "~/schemas";
+import { RegisterSchema } from "~/schemas";
 import { getApiUrl } from "~/utils/getApiUrl";
-import { loginUser } from "~/utils/login";
+import { registerUser } from "~/utils/register";
 
-const LoginPage = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const router = useRouter();
-  const [isLoading, startTransition] = useTransition();
+const SignUpPage = () => {
   const [apiUrl, setApiUrl] = useState("");
   const { toast } = useToast();
+  const [isLoading, startTransition] = useTransition();
+  const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+
   useEffect(() => {
     const fetchApiUrl = async () => {
       try {
@@ -50,54 +50,45 @@ const LoginPage = () => {
     fetchApiUrl();
   }, [toast]);
 
-  const form = useForm<z.infer<typeof LoginSchema>>({
-    resolver: zodResolver(LoginSchema),
+  const form = useForm<z.infer<typeof RegisterSchema>>({
+    resolver: zodResolver(RegisterSchema),
     defaultValues: {
       email: "",
       password: "",
-      rememberMe: false,
+      first_name: "",
+      last_name: "",
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
+  const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
     startTransition(async () => {
-      await loginUser(values).then(async (data) => {
-        const { email, password } = values;
-
-        if (data.status === 200) {
-          await signIn("credentials", {
-            email,
-            password,
-            redirect: false,
-          });
-          router.push("/dashboard");
+      await registerUser(values).then(async (data) => {
+        if (data.status === 201) {
+          router.push("/login");
         }
+
         toast({
-          title: data.status === 200 ? "login success" : "an error occurred",
-          description: data.status === 200 ? "routing now" : data.error,
+          title:
+            data.status === 201
+              ? "Accounted created successfully"
+              : "an error occurred",
+          description: data.status === 201 ? "Continue to login" : data.error,
         });
       });
     });
   };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-  useEffect(() => {
-    document.title = "Login";
-  }, []);
   return (
     <div className="flex min-h-full items-center justify-center px-4 py-10 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
         <div className="text-center">
           <h1 className="font-inter text-neutralColor-dark-2 mb-5 text-center text-2xl font-semibold leading-tight">
-            Login
+            Sign Up
           </h1>
           <p className="font-inter text-neutralColor-dark-2 mt-2 text-center text-sm font-normal leading-6">
-            Welcome back, you&apos;ve been missed!
+            Create an account to get started with us.
           </p>
         </div>
-
         <div className="flex flex-col justify-center space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
           <CustomButton
             variant="outline"
@@ -175,6 +166,55 @@ const LoginPage = () => {
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
               control={form.control}
+              name="first_name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-neutralColor-dark-2">
+                    First Name
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      type="text"
+                      disabled={isLoading}
+                      placeholder="Enter your first name"
+                      {...field}
+                      className={cn(
+                        "font-inter w-full rounded-md border px-3 py-6 text-sm font-normal leading-[21.78px] transition duration-150 ease-in-out focus:outline-none",
+                        form.formState.errors.first_name &&
+                          "border-destructive",
+                      )}
+                    />
+                  </FormControl>
+                  <FormMessage data-testid="email-error" />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="last_name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-neutralColor-dark-2">
+                    Last Name
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      type="text"
+                      disabled={isLoading}
+                      placeholder="Enter your last name"
+                      {...field}
+                      className={cn(
+                        "font-inter w-full rounded-md border px-3 py-6 text-sm font-normal leading-[21.78px] transition duration-150 ease-in-out focus:outline-none",
+                        form.formState.errors.last_name && "border-destructive",
+                      )}
+                    />
+                  </FormControl>
+                  <FormMessage data-testid="email-error" />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
               name="email"
               render={({ field }) => (
                 <FormItem>
@@ -183,6 +223,7 @@ const LoginPage = () => {
                   </FormLabel>
                   <FormControl>
                     <Input
+                      type="email"
                       disabled={isLoading}
                       placeholder="Enter Email Address"
                       {...field}
@@ -219,7 +260,7 @@ const LoginPage = () => {
                       />
                       <button
                         type="button"
-                        onClick={togglePasswordVisibility}
+                        onClick={() => setShowPassword(true)}
                         className="absolute inset-y-0 right-0 flex items-center pr-3"
                       >
                         {showPassword ? (
@@ -240,33 +281,6 @@ const LoginPage = () => {
                 </FormItem>
               )}
             />
-            <div className="flex items-center justify-between">
-              <FormField
-                control={form.control}
-                name="rememberMe"
-                render={({ field }) => (
-                  <FormItem className="flex flex-row items-start space-x-2 space-y-0">
-                    <FormControl>
-                      <Checkbox
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                    <div className="space-y-1 leading-none">
-                      <FormLabel>Remember me</FormLabel>
-                    </div>
-                  </FormItem>
-                )}
-              />
-              <div className="text-sm">
-                <Link
-                  href="/forgot-password"
-                  className="text-neutralColor-dark-2 text-sm font-medium"
-                >
-                  Forgot Password?
-                </Link>
-              </div>
-            </div>
             <CustomButton
               type="submit"
               variant="primary"
@@ -285,7 +299,6 @@ const LoginPage = () => {
             </CustomButton>
           </form>
         </Form>
-
         <CustomButton
           type="button"
           variant="outline"
@@ -294,38 +307,35 @@ const LoginPage = () => {
         >
           <Link href="/login/magic-link">Sign in with magic link</Link>
         </CustomButton>
-
         <p className="font-inter text-neutralColor-dark-1 mt-5 text-center text-sm font-normal leading-[15.6px]">
-          Don&apos;t Have An Account?{" "}
+          Already Have An Account?{" "}
           <Link
-            href="/register"
+            href="/login"
             className="font-inter ms-1 text-left text-base font-bold leading-[19.2px] text-primary hover:text-orange-400"
             data-testid="link"
           >
-            Sign Up
+            Login
           </Link>
-        </p>
-
-        <p className="mt-2 text-center text-xs text-gray-500">
-          <ShieldCheck className="mr-1 hidden h-4 w-4 text-gray-400 sm:inline-block" />
-          By logging in, you agree to the{" "}
-          <a
-            href="#"
-            className="text-sm font-bold text-primary hover:text-orange-500"
-          >
-            Terms of Service
-          </a>{" "}
-          and{" "}
-          <a
-            href="#"
-            className="text-sm font-bold text-primary hover:text-orange-500"
-          >
-            Privacy Policy
-          </a>
+          <p className="mt-2 text-center text-xs text-gray-500">
+            <ShieldCheck className="mr-1 hidden h-4 w-4 text-gray-400 sm:inline-block" />
+            By logging in, you agree to the{" "}
+            <a
+              href="#"
+              className="text-sm font-bold text-primary hover:text-orange-500"
+            >
+              Terms of Service
+            </a>{" "}
+            and{" "}
+            <a
+              href="#"
+              className="text-sm font-bold text-primary hover:text-orange-500"
+            >
+              Privacy Policy
+            </a>
+          </p>
         </p>
       </div>
     </div>
   );
 };
-
-export default LoginPage;
+export default SignUpPage;
