@@ -15,7 +15,6 @@ type FAQ = {
 
 export default function Faqs() {
   const [faqData, setFaqData] = useState<FAQ[]>([]);
-  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     const getFAQ = async () => {
@@ -26,7 +25,7 @@ export default function Faqs() {
         const { data } = await response.json();
         setFaqData(data);
       } catch (error) {
-        console.error("Failed to fetch FAQs:", error);
+        return error;
       }
     };
     getFAQ();

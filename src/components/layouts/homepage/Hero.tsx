@@ -183,8 +183,8 @@ const Hero = () => {
                 Our website uses cookies to enhance your browsing experience,
                 provide
                 <br />
-                personalized content. By clicking &quot;Accept All&quot; you consent to
-                our use of cookies.
+                personalized content. By clicking &quot;Accept All&quot; you
+                consent to our use of cookies.
               </p>
             </div>
             <div className="mt-4 flex flex-wrap items-start gap-4 md:mt-0 md:flex-row md:items-end">
@@ -203,8 +203,8 @@ const Hero = () => {
                       information about you, such as your login details,
                       preferences, and browsing history. Cookies help enhance
                       your actions and preferences over time, ensuring that you
-                      don&apos;st have to re-enter information each time you visit a
-                      site. Read our{" "}
+                      don&apos;st have to re-enter information each time you
+                      visit a site. Read our{" "}
                       <span className="text-[#F97316] underline">
                         <Link href={"/privacy-policy"}>Privacy Policy</Link>
                       </span>{" "}

@@ -134,7 +134,7 @@ const ContactForm: React.FC = () => {
       <div className="mx-auto w-full lg:max-w-[80%] lg:p-8">
         <form
           onSubmit={handleSubmit}
-          className="mb-4 w-full rounded-[8px] p-8 lg:max-w-[80%] lg:border bg-primary-foreground lg:shadow-sm"
+          className="mb-4 w-full rounded-[8px] bg-primary-foreground p-8 lg:max-w-[80%] lg:border"
           role="form"
         >
           {inputFields.map((field) => (

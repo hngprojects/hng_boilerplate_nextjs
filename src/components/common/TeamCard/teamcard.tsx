@@ -36,7 +36,7 @@ const TeamCard: React.FC<TeamCardProperties> = ({
         />
       </div>
 
-      <CardContent className="flex flex-col justify-between gap-5 px-[14.31px] pb-3.5 border-[0.895px] border-[#FAFAFA] border-t-0">
+      <CardContent className="flex flex-col justify-between gap-5 border-[0.895px] border-t-0 border-[#FAFAFA] px-[14.31px] pb-3.5">
         <div>
           <CardTitle className="pb-1 text-lg font-bold leading-[21.78px] text-neutral-600 md:font-semibold">
             {name}

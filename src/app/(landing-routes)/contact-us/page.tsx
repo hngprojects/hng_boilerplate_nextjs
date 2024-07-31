@@ -17,7 +17,7 @@ const Contact = () => {
             Get in <span className="text-primary">touch with</span> us today
           </h1>
           <p className="text-lg max-sm:hidden lg:text-2xl">
-            Let's Build Your Product Together
+            Let&apos;s Build Your Product Together
           </p>
           <p className="text-lg font-medium sm:hidden">
             Achieve your dreams with us today

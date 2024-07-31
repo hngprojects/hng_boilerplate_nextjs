@@ -13,7 +13,8 @@ const Join = () => {
         </h3>
 
         <p className="mx-auto mb-3 w-full text-center text-[14px] text-neutral-600 sm:w-[500px] sm:text-[16px] md:w-[600px] md:text-[18px] lg:w-[700px] lg:text-[18px]">
-          Discover the passionate individuals who drive our vision and bring our projects to life. Our diverse team combines expertise, creativity, and dedication.
+        Discover the passionate individuals who drive our vision and bring our projects to life.
+        Our diverse team combines expertise, creativity, and dedication.
         </p>
 
         <Link

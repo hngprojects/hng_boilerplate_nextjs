@@ -38,7 +38,7 @@ const Pagination = ({
     const pages = [];
     const showEllipsis = totalPages > 3;
 
-    if (showEllipsis === false) {
+    if (!showEllipsis) {
       for (let index = 1; index <= totalPages; index++) {
         pages.push(index);
       }
@@ -90,17 +90,20 @@ const Pagination = ({
                 className={`cursor-pointer ${
                   currentPage === page && activeVariant === "default"
                     ? "bg-primary"
-                    : ""}`
-                }
+                    : ""
+                }`}
               >
                 {page}
               </PaginationLink>
             </PaginationItem>
           ) : (
-            <PaginationItem key={index} className="text-sm cursor-pointer font-medium">
+            <PaginationItem
+              key={index}
+              className="cursor-pointer text-sm font-medium"
+            >
               {page}
             </PaginationItem>
-          )
+          ),
         )}
         <PaginationItem
           onClick={() =>
@@ -116,7 +119,7 @@ const Pagination = ({
               currentPage < totalPages
                 ? "cursor-pointer"
                 : "cursor-not-allowed text-stroke-colors-stroke hover:bg-transparent hover:text-stroke-colors-stroke"
-            }`}            
+            }`}
           />
         </PaginationItem>
       </PaginationContent>
