@@ -1,16 +1,18 @@
+"use client";
+
 import Link from "next/link";
 import { FC } from "react";
 
 import { Card, CardContent, CardFooter } from "~/components/ui/card";
 import { Skeleton } from "~/components/ui/skeleton";
 
-//
 interface CareerCardProperties {
   isLoading: boolean;
   jobTitle?: string;
   location?: string;
   description?: string;
   amount?: string;
+  company?: string;
 }
 
 const CareerCard: FC<CareerCardProperties> = ({
@@ -19,11 +21,10 @@ const CareerCard: FC<CareerCardProperties> = ({
   location,
   description,
   amount,
+  company,
 }) => {
-  //
-
   return (
-    <Card className="max-w-full text-foreground">
+    <Card className="max-w-full bg-inherit text-foreground">
       <CardContent className="pt-6">
         {isLoading ? (
           <div className="flex w-full max-w-6xl flex-col space-y-3">
@@ -39,6 +40,7 @@ const CareerCard: FC<CareerCardProperties> = ({
         ) : (
           <>
             <h3 className="mb-2 text-xl font-semibold">{jobTitle}</h3>
+            <p className="text-sm">{company}</p>
             <p className="text-sm">{location}</p>
             <p className="mt-4 line-clamp-2 text-sm">{description}</p>
           </>
