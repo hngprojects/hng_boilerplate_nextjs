@@ -260,7 +260,7 @@ const SignUpPage = () => {
                       />
                       <button
                         type="button"
-                        onClick={() => setShowPassword(true)}
+                        onClick={() => setShowPassword(!showPassword)}
                         className="absolute inset-y-0 right-0 flex items-center pr-3"
                       >
                         {showPassword ? (
@@ -294,7 +294,7 @@ const SignUpPage = () => {
                   <LoadingSpinner className="size-4 animate-spin sm:size-5" />
                 </span>
               ) : (
-                <span>Login</span>
+                <span>Sign Up</span>
               )}
             </CustomButton>
           </form>
