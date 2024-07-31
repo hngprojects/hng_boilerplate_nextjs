@@ -92,7 +92,7 @@ const SignUp = () => {
           isDisabled={!apiUrl}
           variant="outline"
           isLeftIconVisible={true}
-          onClick={() => signIn("google")}
+          onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
           icon={
             <svg
               width="25"
