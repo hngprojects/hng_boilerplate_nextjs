@@ -7,6 +7,8 @@ const ImageBody: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<
     string | ArrayBuffer | undefined
   >();
+  const [title, setTitle] = useState("Welcome to Boilerplate!");
+  const [description, setDescription] = useState("Thanks for signing up");
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -19,8 +21,18 @@ const ImageBody: React.FC = () => {
     }
   };
 
+  const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(event.target.value);
+  };
+
+  const handleDescriptionChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setDescription(event.target.value);
+  };
+
   return (
-    <div className="mt-4 h-96 w-full rounded-sm border bg-white shadow-md hover:border-orange-500 md:w-3/5">
+    <div className="mt-2 h-96 w-full rounded-sm bg-white hover:border hover:border-orange-500 lg:w-4/5">
       <label className="flex flex-col items-center">
         <div className="flex h-48 w-full cursor-pointer items-center justify-center bg-gray-50">
           {selectedImage ? (
@@ -50,10 +62,18 @@ const ImageBody: React.FC = () => {
         />
       </label>
       <div className="w-full p-5">
-        <h1 className="mt-6 text-center text-2xl font-semibold">
-          Welcome to Boilerplate!
-        </h1>
-        <p className="text-center text-gray-600">Thanks for signing up</p>
+        <input
+          type="text"
+          value={title}
+          onChange={handleTitleChange}
+          className="mt-6 w-full border-none text-center text-2xl font-semibold focus:ring-0"
+        />
+        <input
+          type="text"
+          value={description}
+          onChange={handleDescriptionChange}
+          className="mt-2 w-full border-none text-center text-gray-600 focus:ring-0"
+        />
       </div>
     </div>
   );
