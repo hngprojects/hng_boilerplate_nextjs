@@ -22,7 +22,7 @@ const Hero = () => {
         <div className="flex flex-col items-center lg:flex-row">
           <div className="w-full text-center sm:text-left lg:w-1/2">
             <h1 className="mb-2 text-4xl font-bold leading-snug lg:text-5xl lg:leading-tight xl:text-6xl">
-              {`Focus on What Matters. We've Got the Foundation Covered.`}
+              Focus on What Matters. We&apos;ve Got the Foundation Covered.
             </h1>
 
             <div className="">
