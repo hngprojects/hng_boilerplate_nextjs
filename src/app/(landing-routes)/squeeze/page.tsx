@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { z, ZodError } from "zod";
@@ -22,6 +23,7 @@ const Page: React.FC = () => {
   const [errors, setErrors] = useState<{ [key: string]: string } | undefined>();
   const [submitting, setSubmitting] = useState(false);
   const { toast } = useToast();
+  const router = useRouter()
 
   useEffect(() => {
     const fetchApiUrl = async () => {
@@ -100,6 +102,7 @@ const Page: React.FC = () => {
       setFirst_name("");
       setLast_name("");
       setEmail("");
+      router.push('/')
     } catch {
       toast({
         title: "Error",
