@@ -12,6 +12,12 @@ interface User {
   name: string;
 }
 
+const handleLogout = async () => {
+  await signOut({
+    callbackUrl: "/",
+  });
+};
+
 const UserCard = ({ user }: { user: User }) => {
   const [isLogout, setIsLogout] = useState(false);
 
@@ -70,7 +76,7 @@ const UserCard = ({ user }: { user: User }) => {
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               className="absolute -bottom-16 -right-2 z-[999] flex w-[150px] flex-col gap-y-2 rounded-xl bg-white p-2 shadow-lg"
             >
-              <CustomButton variant="primary" onClick={() => signOut()}>
+              <CustomButton variant="primary" onClick={handleLogout}>
                 Logout
               </CustomButton>
             </motion.div>
