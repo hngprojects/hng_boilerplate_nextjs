@@ -44,6 +44,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cookies-next": "^4.2.1",
+    "date-fns": "^3.6.0",
     "framer-motion": "^11.3.8",
     "input-otp": "^1.2.4",
     "jest-axe": "^9.0.0",
