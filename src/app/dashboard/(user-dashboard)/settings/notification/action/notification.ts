@@ -1,66 +1,86 @@
 import axios from "axios";
+import { NotificationSettingsProperties } from "../types/notification-settings.types";
 
-/**
- * THIS API IMPLEMENTATION ARE NOT WORKING CURRENTLY, THE BACKEND WOULD BE INTEGRTED SHORTLY. ☺️
- */
+// Base URL for your API
+const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3000";
 
-const notification_id = undefined;
+// Axios instance with default settings
+const axiosInstance = axios.create({
+  baseURL: BASE_URL,
+  timeout: 10_000,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
-export const createNotification = async () => {
-  const data = {
-    message: `Welcome to HNGi8`,
-  };
+export const createNotification = async (): Promise<Notification> => {
+  const data = { message: `Welcome to HNGi8` };
   try {
-    await axios.post("/notifications", data);
+    const response = await axiosInstance.post("/notifications", data);
+    return response.data;
   } catch (error) {
-    return error;
+    console.error("Error creating notification:", error);
+    throw error;
   }
 };
 
-export const RetrieveUserNotificationSettings = async () => {
+export const retrieveUserNotificationSettings = async (): Promise<NotificationSettingsProperties> => {
   try {
-    await axios.get("/notification-settings");
+    const response = await axiosInstance.get("/notification-settings");
+    return response.data;
   } catch (error) {
-    return error;
+    console.error("Error retrieving notification settings:", error);
+    throw error;
   }
 };
 
-export const updateUserNotificationSettings = async (settings: object) => {
+export const updateUserNotificationSettings = async (
+  settings: NotificationSettingsProperties,
+): Promise<void> => {
   try {
-    await axios.patch("/notification-settings", settings);
+    await axiosInstance.patch("/notification-settings", settings);
   } catch (error) {
-    return error;
+    console.error("Error updating notification settings:", error);
+    throw error;
   }
 };
 
-export const RetrieveUserNotificationAll = async () => {
+export const retrieveUserNotificationAll = async (): Promise<Notification[]> => {
   try {
-    await axios.get("/notifications");
+    const response = await axiosInstance.get("/notifications");
+    return response.data;
   } catch (error) {
-    return error;
+    console.error("Error retrieving all notifications:", error);
+    throw error;
   }
 };
 
-export const RetrieveUserUnreadNotification = async () => {
+export const retrieveUserUnreadNotification = async (
+  readStatus: boolean = false,
+): Promise<Notification[]> => {
   try {
-    await axios.get("/notifications?_read=false");
+    const response = await axiosInstance.get(`/notifications?_read=${readStatus}`);
+    return response.data;
   } catch (error) {
-    return error;
+    console.error("Error retrieving unread notifications:", error);
+    throw error;
   }
 };
 
-export const markNotificationAsRead = async () => {
+export const markNotificationAsRead = async (id: string): Promise<void> => {
   try {
-    await axios.patch(`/notifications/${notification_id}`);
+    await axiosInstance.patch(`/notifications/${id}`);
   } catch (error) {
-    return error;
+    console.error("Error marking notification as read:", error);
+    throw error;
   }
 };
 
-export const markAllNotificationAsRead = async () => {
+export const markAllNotificationAsRead = async (): Promise<void> => {
   try {
-    await axios.patch("/notifications");
+    await axiosInstance.patch("/notifications");
   } catch (error) {
-    return error;
+    console.error("Error marking all notifications as read:", error);
+    throw error;
   }
 };

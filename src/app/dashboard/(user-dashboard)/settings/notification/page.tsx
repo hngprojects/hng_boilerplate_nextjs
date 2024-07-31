@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Check, ChevronLeft } from "lucide-react";
@@ -13,8 +14,10 @@ const NotificationPage = () => {
   const { settings, updateSettings } = useNotificationStore();
   const [isOpen, setOpen] = useState(false);
 
-  const handleToggleSwitch = (name: keyof typeof settings) => {
-    updateSettings({ [name]: !settings[name] });
+  const handleToggleSwitch = async (name: string) => {
+    // Ensure that the name corresponds to the keys of settings
+    const key = name as keyof typeof settings;
+    await updateSettings({ [key]: !settings[key] });
   };
 
   const handleSaveChanges = () => {
@@ -54,14 +57,12 @@ const NotificationPage = () => {
             onToggle={handleToggleSwitch}
           />
           <NotificationSwitchBox
-            title={"Activity in your workspace"}
+            title={"Always send email notifications"}
             description={
               "Receive emails about activity in your workspace, even when you are active on the app"
             }
             name="email_notification_always_send_email_notifications"
-            isChecked={
-              settings.email_notification_always_send_email_notifications
-            }
+            isChecked={settings.email_notification_always_send_email_notifications}
             onToggle={handleToggleSwitch}
           />
           <NotificationSwitchBox
@@ -79,9 +80,7 @@ const NotificationPage = () => {
               "Receive occasional emails about product launches and new features from notion"
             }
             name="email_notification_announcement_and_update_emails"
-            isChecked={
-              settings.email_notification_announcement_and_update_emails
-            }
+            isChecked={settings.email_notification_announcement_and_update_emails}
             onToggle={handleToggleSwitch}
           />
         </section>
@@ -105,9 +104,7 @@ const NotificationPage = () => {
               "Receive emails about activity in your workspace, even when you are active on the app"
             }
             name="slack_notifications_always_send_email_notifications"
-            isChecked={
-              settings.slack_notifications_always_send_email_notifications
-            }
+            isChecked={settings.slack_notifications_always_send_email_notifications}
             onToggle={handleToggleSwitch}
           />
           <NotificationSwitchBox
@@ -116,9 +113,7 @@ const NotificationPage = () => {
               "Receive email digest every 8 hours for changes to pages you are subscribed to"
             }
             name="slack_notifications_announcement_and_update_emails"
-            isChecked={
-              settings.slack_notifications_announcement_and_update_emails
-            }
+            isChecked={settings.slack_notifications_announcement_and_update_emails}
             onToggle={handleToggleSwitch}
           />
         </section>

@@ -1,38 +1,29 @@
-import { Switch } from "~/components/ui/switch";
-import { notificationSettingsProperties } from "../types/notification-settings.types";
+// src/components/_components/notification-switch-box.tsx
 
-interface IProperties {
+import React from "react";
+
+interface NotificationSwitchBoxProperties {
   title: string;
   description: string;
-  name: keyof notificationSettingsProperties;
+  name: string;
   isChecked: boolean;
-  onToggle: (name: keyof notificationSettingsProperties) => void;
-  className?: string; // Add className as an optional property
+  onToggle: (name: string) => void; // Ensure this type matches
 }
 
-export const NotificationSwitchBox = ({
-  title,
-  description,
-  name,
-  isChecked,
-  onToggle,
-  className, // Add className to the destructured props
-}: IProperties) => {
+export const NotificationSwitchBox: React.FC<
+  NotificationSwitchBoxProperties
+> = ({ title, description, name, isChecked, onToggle }) => {
   return (
-    <section
-      className={`flex w-full items-center justify-between md:gap-[5rem] lg:gap-[15rem] xl:gap-[25rem] ${className}`}
-    >
-      <div className="mx-[24px] md:mx-0">
-        <p className="mb-[8px] text-[12px] font-[600] md:text-[16px]">
-          {title}
-        </p>
-        <p className="text-[10px] text-neutral-dark-1 md:text-[14px]">
-          {description}
-        </p>
-      </div>
+    <div className="flex items-center justify-between">
       <div>
-        <Switch checked={isChecked} onCheckedChange={() => onToggle(name)} />
+        <h3 className="font-semibold">{title}</h3>
+        <p className="text-sm">{description}</p>
       </div>
-    </section>
+      <input
+        type="checkbox"
+        checked={isChecked}
+        onChange={() => onToggle(name)} // Call the onToggle function with the name
+      />
+    </div>
   );
 };
