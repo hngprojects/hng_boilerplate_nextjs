@@ -22,7 +22,7 @@ export const createNotification = async () => {
 export const RetrieveUserNotificationSettings = async () => {
   try {
     const response = await axios.get(
-      `${BASE_URL}/settings/notification-settings/2846e28a-d7a7-43b9-9cba-1b289fd8ebff`,
+      `${BASE_URL}/settings/notification-settings`,
     );
     return response.data;
   } catch (error) {
