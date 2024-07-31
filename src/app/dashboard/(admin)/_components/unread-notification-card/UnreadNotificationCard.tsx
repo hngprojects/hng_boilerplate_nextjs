@@ -1,6 +1,10 @@
+"use client";
+
 import { BellRing } from "lucide-react";
 import { FC } from "react";
 
+import { useNotificationStore } from "~/app/dashboard/(user-dashboard)/settings/notification/action/notification-store";
+import { notificationSettingsProperties } from "~/app/dashboard/(user-dashboard)/settings/notification/types/notification-settings.types";
 import CustomButton from "~/components/common/common-button/common-button";
 import {
   Card,
@@ -29,6 +33,12 @@ const UnreadNotificationCard: FC<CardProperties> = ({
   unreadCount = 0,
   ...properties
 }) => {
+  const { settings, updateSettings } = useNotificationStore();
+
+  const handleToggleSwitch = (name: keyof notificationSettingsProperties) => {
+    updateSettings({ [name]: !settings[name] });
+  };
+
   return (
     <Card
       data-testid="cardContainer"
@@ -44,7 +54,7 @@ const UnreadNotificationCard: FC<CardProperties> = ({
       </CardHeader>
       <CardContent className="grid gap-4 p-4 pt-0 sm:p-6 sm:pt-0">
         <div className="flex items-center space-x-4 rounded-md border p-2 sm:p-4">
-          <BellRing />
+          <BellRing size={16} />
           <div className="flex-1 space-y-1">
             <p className="text-sm font-medium leading-none">
               Push Notifications
@@ -53,7 +63,13 @@ const UnreadNotificationCard: FC<CardProperties> = ({
               Send notifications to device.
             </p>
           </div>
-          <Switch />
+          <Switch
+            checked={settings.mobile_push_notifications}
+            onCheckedChange={() =>
+              handleToggleSwitch("mobile_push_notifications")
+            }
+            name="mobile_push_notifications"
+          />
         </div>
         <div data-testid="previewBody">
           {notificationsPreview.map((preview, index) => (
@@ -86,6 +102,9 @@ const UnreadNotificationCard: FC<CardProperties> = ({
             variant="primary"
             isDisabled={unreadCount === 0}
             className="w-full bg-primary"
+            onClick={() => {
+              // MARK ALL NOTIFICATION LOGIC
+            }}
           >
             Mark all as read
           </CustomButton>
