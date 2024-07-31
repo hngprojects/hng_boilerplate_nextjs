@@ -34,11 +34,11 @@ interface Data {
   access_token: string;
   user: User;
 }
-
 interface ApiResponse {
   status: string;
   status_code: number;
   message: string;
+  user: User;
   data: Data;
 }
 
@@ -64,10 +64,13 @@ export default {
         const { email, password, rememberMe } = validatedFields.data;
         const response = await nextlogin({ email, password, rememberMe });
 
-        if (!response.data) {
+        if (!response) {
           return;
         }
-        const user = response.data;
+        const user = {
+          ...response.user,
+          access_token: response.access_token,
+        };
 
         return user;
       },
@@ -89,9 +92,9 @@ export default {
         account as Profile,
       )) as ApiResponse;
 
-      user = response?.data?.user;
+      user = response?.data?.user ?? response.user;
 
-      return { ...token, ...user, access_token: response.data.access_token };
+      return { ...token, ...user };
     },
     async session({
       session,
@@ -113,15 +116,15 @@ export default {
 
       return session as CustomSession;
     },
-    async redirect({ url, baseUrl }) {
-      if (url === "/login") {
-        return baseUrl;
-      }
-      if (url === `${baseUrl}/api/auth/signout`) {
-        return baseUrl;
-      }
-      return "/dashboard";
-    },
+    // async redirect({ url, baseUrl }) {
+    //   if (url === "/login") {
+    //     return baseUrl;
+    //   }
+    //   if (url === `${baseUrl}/api/auth/signout`) {
+    //     return baseUrl;
+    //   }
+    //   return "/dashboard";
+    // },
   },
   pages: {
     signIn: "/login",

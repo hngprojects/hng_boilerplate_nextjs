@@ -5,13 +5,13 @@ import * as React from "react";
 import CustomButton from "~/components/common/common-button/common-button";
 import { cn } from "~/lib/utils";
 
-const inputVariants = cva("text-sm  rounded-md transition-colors ", {
+const inputVariants = cva("text-sm rounded-md transition-colors", {
   variants: {
     variant: {
       primary:
-        "border-primary text-primary focus:outline-none focus:ring-1 focus:ring-primary",
+        "border-primary text-primary focus:outline-none focus:border-primary",
       border:
-        "border-border text-foreground focus:outline-none focus:ring-1 focus:ring-border",
+        "border-border text-foreground focus:outline-none focus:border-border",
     },
     state: {
       default: "border-border",
@@ -90,11 +90,13 @@ const Input = React.forwardRef<HTMLInputElement, InputProperties>(
             {label}
           </label>
         )}
-        <div className="flex items-center">
+        <div className="flex w-full items-center">
           <Comp
             className={cn(
-              inputVariants({ variant, state, className }),
+              inputVariants({ variant, state }),
               "w-full border px-4 py-2",
+              "flex h-10 rounded-md border-input bg-background text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:border-primary focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
+              className,
             )}
             ref={reference}
             {...properties}
@@ -118,6 +120,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProperties>(
     );
   },
 );
+
 Input.displayName = "Input";
 
 export { Input, inputVariants };
