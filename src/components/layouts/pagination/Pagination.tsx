@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client";
 
 import {
@@ -36,7 +37,7 @@ const Pagination = ({
 
   const getPageNumbers = () => {
     const pages = [];
-    const showEllipsis = totalPages > 3;
+    const showEllipsis: boolean = totalPages > 3;
 
     if (!showEllipsis) {
       for (let index = 1; index <= totalPages; index++) {

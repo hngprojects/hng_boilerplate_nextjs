@@ -9,13 +9,16 @@ export interface FormResponse {
 
 export async function submitForm(formData: z.infer<typeof FormSchema>): Promise<FormResponse> {
   try {
-    const response = await fetch("https://deployment.api-php.boilerplate.hng.tech/api/v1/faqs", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+    const response = await fetch(
+      "https://deployment.api-php.boilerplate.hng.tech/api/v1/faqs",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Network response was not ok");

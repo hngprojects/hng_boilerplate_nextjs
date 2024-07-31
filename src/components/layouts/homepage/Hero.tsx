@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable */
 
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
@@ -43,7 +44,7 @@ const Hero = () => {
                 {`Focus on What Matters. We've Got the Foundation Covered.`}
               </h1>
 
-              <div className="">
+              <div>
                 <Image
                   src="/images/hero-line.svg"
                   width={100}

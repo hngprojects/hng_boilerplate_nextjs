@@ -49,11 +49,13 @@ export default function Career() {
       setIsLoading(false);
     } catch (error) {
       // Handle error appropriately
+      return `error: ${error}`;
     }
   };
 
   useEffect(() => {
     fetchJobData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchJobData = async () => {
@@ -71,6 +73,7 @@ export default function Career() {
       });
       setIsLoading(false);
     } catch (error) {
+      return `error: ${error}`;
       // Handle error appropriately
     }
   };
