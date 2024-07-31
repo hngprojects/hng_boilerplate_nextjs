@@ -7,6 +7,7 @@ import Pagination from "~/components/layouts/pagination/Pagination";
 const PAGE_SIZE = 6; // Number of items per page
 
 export default function Career() {
+
   const [isLoading, setIsLoading] = useState(true);
   const [jobData, setJobData] = useState([
     {
@@ -26,33 +27,53 @@ export default function Career() {
   });
 
   // Function to handle page change
-  const handlePageChange = (page: number) => {
+  const handlePageChange = async (page: number) => {
+    console.log('page', page)
     setPaginationData((prev) => ({ ...prev, current_page: page }));
+    try {
+      setIsLoading(true)
+      const response = await fetch(
+        `https://deployment.api-php.boilerplate.hng.tech/api/v1/jobs?page=${page}&pageSize=${PAGE_SIZE}`
+      );
+      const data = await response.json();
+      setJobData(data?.data || []);
+      
+      setPaginationData({
+        current_page: data?.pagination.current_page || 1,
+        page_size: data?.pagination.page_size || PAGE_SIZE,
+        total_items: data?.pagination.total_items || 0,
+        total_pages: data?.pagination.total_pages || 0
+      });
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error fetching job data:", error);
+      setIsLoading(false);
+    }
   };
 
-  useEffect(() => {
-    const fetchJobData = async () => {
-      try {
-        const response = await fetch(
-          `https://deployment.api-php.boilerplate.hng.tech/api/v1/jobs?page=${paginationData.current_page}&pageSize=${PAGE_SIZE}`
-        );
-        const data = await response.json();
-        setJobData(data?.data || []);
-        setPaginationData({
-          current_page: data?.pagination.current_page || 1,
-          page_size: data?.pagination.page_size || PAGE_SIZE,
-          total_items: data?.pagination.total_items || 0,
-          total_pages: data?.pagination.total_pages || 0
-        });
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Error fetching job data:", error);
-        setIsLoading(false);
-      }
-    };
-
+  useEffect(() => {    
     fetchJobData();
-  }, [paginationData.current_page]);
+  }, []);
+
+  const fetchJobData = async () => {
+    try {
+      const response = await fetch(
+        `https://deployment.api-php.boilerplate.hng.tech/api/v1/jobs?page=${paginationData.current_page}&pageSize=${PAGE_SIZE}`
+      );
+      const data = await response.json();
+      setJobData(data?.data || []);
+      setPaginationData({
+        current_page: data?.pagination.current_page || 1,
+        page_size: data?.pagination.page_size || PAGE_SIZE,
+        total_items: data?.pagination.total_items || 0,
+        total_pages: data?.pagination.total_pages || 0
+      });
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error fetching job data:", error);
+      setIsLoading(false);
+    }
+  };
 
   const currentPageData = jobData.slice(
     (paginationData.current_page - 1) * PAGE_SIZE,

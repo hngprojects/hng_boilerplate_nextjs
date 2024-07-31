@@ -70,7 +70,7 @@ const Pagination = ({
         <PaginationItem>
           <PaginationPrevious
             onClick={() => currentPage > 1 && handleChange(currentPage - 1)}
-            className={`${
+            className={`cursor-pointer ${
               navigationVariant === "semibold"
                 ? "text-xl font-semibold leading-normal"
                 : "text-base font-medium leading-6"
@@ -79,30 +79,28 @@ const Pagination = ({
                 ? "cursor-pointer"
                 : "cursor-not-allowed text-stroke-colors-stroke hover:bg-transparent hover:text-stroke-colors-stroke"
             }`}
-            href={currentPage > 1 ? `?page=${currentPage - 1}` : "#"}
           />
         </PaginationItem>
         {getPageNumbers().map((page, index) =>
           typeof page === "number" ? (
             <PaginationItem key={index} onClick={() => handleChange(page)}>
               <PaginationLink
-                href={`?page=${page}`}
                 isActive={currentPage === page}
                 activeVariant={activeVariant}
-                className={
+                className={`cursor-pointer ${
                   currentPage === page && activeVariant === "default"
                     ? "bg-primary"
-                    : ""
+                    : ""}`
                 }
               >
                 {page}
               </PaginationLink>
             </PaginationItem>
           ) : (
-            <PaginationItem key={index} className="text-sm font-medium">
+            <PaginationItem key={index} className="text-sm cursor-pointer font-medium">
               {page}
             </PaginationItem>
-          ),
+          )
         )}
         <PaginationItem
           onClick={() =>
@@ -110,7 +108,7 @@ const Pagination = ({
           }
         >
           <PaginationNext
-            className={`${
+            className={`cursor-pointer ${
               navigationVariant === "semibold"
                 ? "text-xl font-semibold leading-normal"
                 : "text-base font-medium leading-6"
@@ -118,8 +116,7 @@ const Pagination = ({
               currentPage < totalPages
                 ? "cursor-pointer"
                 : "cursor-not-allowed text-stroke-colors-stroke hover:bg-transparent hover:text-stroke-colors-stroke"
-            }`}
-            href={currentPage < totalPages ? `?page=${currentPage + 1}` : "#"}
+            }`}            
           />
         </PaginationItem>
       </PaginationContent>

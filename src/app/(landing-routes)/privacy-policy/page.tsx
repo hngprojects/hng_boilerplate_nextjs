@@ -36,7 +36,7 @@ export default function PrivacyPolicy() {
         description="Find advice and answers from our support team"
       />
 
-      <div className="px-10 mx-auto max-w-7xl py-[31px] md:py-10 lg:px-10 xl:px-10">
+      <div className="mx-auto max-w-7xl px-10 py-[31px] md:py-10 lg:px-10 xl:px-10">
         <section className="flex max-w-full flex-col-reverse items-start justify-between pb-10 lg:flex-row">
           <PrivacyPolicyContent
             content={privacyPolicyData}
