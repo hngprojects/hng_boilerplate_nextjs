@@ -116,7 +116,7 @@ const Page: React.FC = () => {
 
   return (
     <div
-      className="flex justify-center bg-cover bg-center px-8 py-20 md:justify-start md:px-32 md:py-28"
+      className="flex justify-center bg-cover bg-center px-3 py-10 sm:px-8 sm:py-20 md:justify-start md:px-32 md:py-28"
       style={{ backgroundImage: "url('/images/squeeze.png')" }}
     >
       <div className="w-[480px] rounded-lg bg-background px-3 py-8 text-neutral-dark-1 md:px-6">
