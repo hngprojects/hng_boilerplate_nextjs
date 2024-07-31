@@ -80,7 +80,7 @@ const SignUpPage = () => {
 
   return (
     <div className="flex min-h-full items-center justify-center px-4 py-10 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8">
+      <div className="w-full max-w-md space-y-6">
         <div className="text-center">
           <h1 className="font-inter text-neutralColor-dark-2 mb-5 text-center text-2xl font-semibold leading-tight">
             Sign Up
@@ -185,7 +185,7 @@ const SignUpPage = () => {
                       )}
                     />
                   </FormControl>
-                  <FormMessage data-testid="email-error" />
+                  <FormMessage data-testid="name-error" />
                 </FormItem>
               )}
             />
@@ -209,7 +209,7 @@ const SignUpPage = () => {
                       )}
                     />
                   </FormControl>
-                  <FormMessage data-testid="email-error" />
+                  <FormMessage data-testid="name-error" />
                 </FormItem>
               )}
             />
@@ -285,7 +285,7 @@ const SignUpPage = () => {
               type="submit"
               variant="primary"
               size="default"
-              className="w-full"
+              className="w-full py-6"
               isDisabled={isLoading}
             >
               {isLoading ? (
@@ -294,19 +294,11 @@ const SignUpPage = () => {
                   <LoadingSpinner className="size-4 animate-spin sm:size-5" />
                 </span>
               ) : (
-                <span>Sign Up</span>
+                <span>Create Account</span>
               )}
             </CustomButton>
           </form>
         </Form>
-        <CustomButton
-          type="button"
-          variant="outline"
-          size="default"
-          className="w-full"
-        >
-          <Link href="/login/magic-link">Sign in with magic link</Link>
-        </CustomButton>
         <p className="font-inter text-neutralColor-dark-1 mt-5 text-center text-sm font-normal leading-[15.6px]">
           Already Have An Account?{" "}
           <Link
@@ -316,23 +308,6 @@ const SignUpPage = () => {
           >
             Login
           </Link>
-          <span className="mt-2 text-center text-xs text-gray-500">
-            <ShieldCheck className="mr-1 hidden h-4 w-4 text-gray-400 sm:inline-block" />
-            By logging in, you agree to the{" "}
-            <a
-              href="#"
-              className="text-sm font-bold text-primary hover:text-orange-500"
-            >
-              Terms of Service
-            </a>{" "}
-            and{" "}
-            <a
-              href="#"
-              className="text-sm font-bold text-primary hover:text-orange-500"
-            >
-              Privacy Policy
-            </a>
-          </span>
         </p>
       </div>
     </div>
