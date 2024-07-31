@@ -1,4 +1,5 @@
 import { NextAuthConfig } from "next-auth";
+import { AdapterUser } from "next-auth/adapters";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 
@@ -40,6 +41,16 @@ interface ApiResponse {
   data: Data;
 }
 
+interface User extends AdapterUser {
+  fullname: string;
+  avatar_url: string;
+  expires_in: string;
+  role: string;
+  first_name?: string;
+  last_name?: string;
+  accessToken?: string;
+  name: string;
+}
 export default {
   providers: [
     Google({
@@ -59,8 +70,8 @@ export default {
         if (!validatedFields.success) {
           return;
         }
-        const { email, password } = validatedFields.data;
-        const response = await nextlogin({ email, password });
+        const { email, password, rememberMe } = validatedFields.data;
+        const response = await nextlogin({ email, password, rememberMe });
 
         if (!response.data) {
           return;
@@ -72,12 +83,12 @@ export default {
     }),
   ],
   callbacks: {
-    async signIn({ account, profile }) {
+    async signIn({ account, profile, user }) {
       if (account && account.provider === "google" && profile?.email) {
         return profile.email.endsWith("@gmail.com");
       }
 
-      return false;
+      return user ? true : false;
     },
     async jwt({ token, user, account }) {
       if (account && account.provider !== "google") {
@@ -91,15 +102,17 @@ export default {
 
       return { ...token };
     },
-    async session({ session }) {
+    async session({ session, token }) {
+      // @ts-expect-error setting user on login from all response
+      session.user = token.user;
       return session;
     },
-    async redirect({ url, baseUrl }) {
-      if (url === "/login") {
-        return baseUrl;
-      }
-      return "/dashboard/admin";
-    },
+    // async redirect({ url, baseUrl }) {
+    //   if (url === "/login") {
+    //     return baseUrl;
+    //   }
+    //   return "/dashboard/admin";
+    // },
   },
   pages: {
     signIn: "/login",

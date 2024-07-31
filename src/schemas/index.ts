@@ -20,6 +20,7 @@ export const LoginSchema = z.object({
   password: z.string().min(3, {
     message: "Password is required",
   }),
+  rememberMe: z.boolean().default(false),
 });
 
 export const OtpSchema = z.object({
