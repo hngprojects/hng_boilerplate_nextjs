@@ -9,7 +9,7 @@ interface CustomSession extends Session {
     email: string;
     image: string;
     role: string;
-    accessToken: string;
+    access_token: string;
   };
   expires: DefaultSession["expires"];
 }

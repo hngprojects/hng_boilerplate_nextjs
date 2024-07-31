@@ -110,7 +110,7 @@ const ProductContent = ({
         className={cn(
           "show_scrollbar rounded-xl border border-gray-300 bg-[#F1F5F9] pt-1 sm:pt-4",
           isOpen
-            ? "max-w-full lg:max-w-[600px] min-[1090px]:max-w-[650px] min-[1150px]:max-w-[750px] min-[1200px]:max-w-[800px] xl:max-w-[820px]"
+            ? "max-w-full lg:max-w-[600px] min-[1090px]:max-w-[650px] min-[1150px]:max-w-[750px] min-[1200px]:max-w-[800px] xl:max-w-[820px] min-[1300px]:max-w-full"
             : "max- w-full",
         )}
       >
