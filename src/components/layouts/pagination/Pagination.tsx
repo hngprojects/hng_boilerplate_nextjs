@@ -1,5 +1,4 @@
 "use client";
-/* eslint-disable */
 
 import {
   Pagination as PaginationComponent,
@@ -39,7 +38,7 @@ const Pagination = ({
     const pages = [];
     const showEllipsis: boolean = totalPages > 3;
 
-    if (!showEllipsis) {
+    if (showEllipsis === undefined) {
       for (let index = 1; index <= totalPages; index++) {
         pages.push(index);
       }

@@ -42,7 +42,7 @@ const HelpCenter = () => {
                 <Search className="flex h-8 w-8 items-center justify-center p-1 text-muted-foreground" />
                 <Input
                   isButtonVisible={false}
-                  className="w-full border-none bg-transparent pl-[20px] pr-[220px] py-[16px] focus-visible:outline-none"
+                  className="w-full border-none bg-transparent py-[16px] pl-[20px] pr-[220px] focus-visible:outline-none"
                   type="text"
                   placeholder="Search on any topic..."
                   aria-label="Search on any topic"

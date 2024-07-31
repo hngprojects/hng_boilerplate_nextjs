@@ -1,5 +1,6 @@
 // formSubmitHelper.ts
 import { z } from "zod";
+
 import FormSchema from "./formSchema";
 
 export interface FormResponse {
@@ -7,7 +8,9 @@ export interface FormResponse {
   message: string;
 }
 
-export async function submitForm(formData: z.infer<typeof FormSchema>): Promise<FormResponse> {
+export async function submitForm(
+  formData: z.infer<typeof FormSchema>,
+): Promise<FormResponse> {
   try {
     const response = await fetch(
       "https://deployment.api-php.boilerplate.hng.tech/api/v1/faqs",
@@ -17,7 +20,7 @@ export async function submitForm(formData: z.infer<typeof FormSchema>): Promise<
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
-      }
+      },
     );
 
     if (!response.ok) {
@@ -29,8 +32,7 @@ export async function submitForm(formData: z.infer<typeof FormSchema>): Promise<
       success: result.success,
       message: result.message,
     };
-  } catch (error) {
-    console.error("Error submitting form:", error);
+  } catch {
     return {
       success: false,
       message: "An error occurred while submitting the form.",

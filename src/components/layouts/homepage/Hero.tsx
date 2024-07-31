@@ -1,5 +1,4 @@
 "use client";
-/* eslint-disable */
 
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
