@@ -56,7 +56,7 @@ const NotificationPage = () => {
             onToggle={handleToggleSwitch}
           />
           <NotificationSwitchBox
-            title={"Activity in your workspace"}
+            title={"Always send email notifications"}
             description={
               "Receive emails about activity in your workspace, even when you are active on the app"
             }
