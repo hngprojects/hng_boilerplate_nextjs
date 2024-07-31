@@ -225,7 +225,7 @@ const Upgrade = () => {
       </div>
 
       <PlanUpgradeSuccessfulModal onClose={() => setOpen(!open)} show={open} />
-          </section>
+    </section>
   );
 };
 
