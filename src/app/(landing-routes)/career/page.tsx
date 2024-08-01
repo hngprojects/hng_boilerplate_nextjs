@@ -29,7 +29,7 @@ export default function Career() {
       setIsLoading(true);
       try {
         const response = await fetch(
-          `https://deployment.api-nestjs.boilerplate.hng.tech/api/v1/jobs`,
+          `${process.env.NEXT_PUBLIC_API_URL}/api/v1/jobs`,
           {
             method: "GET",
             headers: {
