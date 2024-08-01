@@ -106,7 +106,6 @@ const WaitlistForm: React.FC = () => {
         setFormData({ full_name: "", email: "" });
         setIsSubmitted(true);
 
-        // Set a timeout to reset the form after 5 seconds
         timeoutReference.current = setTimeout(() => {
           setIsSubmitted(false);
         }, 6000);
