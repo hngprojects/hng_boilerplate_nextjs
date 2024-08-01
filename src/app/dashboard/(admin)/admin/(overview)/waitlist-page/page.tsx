@@ -12,7 +12,6 @@ import Link from "next/link";
 import { useState } from "react";
 
 import CustomButton from "~/components/common/common-button/common-button";
-// import CardComponent from "~/components/common/DashboardCard/CardComponent";
 import { Button } from "~/components/ui/button";
 import {
   DropdownMenu,
@@ -30,8 +29,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import WaitList from "./_components/waitList";
 import WaitListTable from "./_components/waitListTable";
-
-// import { waitListCardData } from "./data/waitlist-dummy";
+import { waitListCardData } from "./data/waitlist-dummy";
 
 interface FilterDataProperties {
   title: string;
@@ -63,15 +61,22 @@ const WaitListPage = () => {
     <>
       <section>
         <div className="mb-6 mt-4 grid w-full grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {/* {waitListCardData.map((card, index) => (
-            <CardComponent
-              key={index}
-              title="Total waitlisted users"
-              value={card.value}
-              description={card.description}
-              icon={card.icon}
-            />
-          ))} */}
+          {waitListCardData.map((card, index) => {
+            return (
+              <div
+                key={index}
+                className="flex w-full items-start justify-between rounded-xl p-6 shadow-lg"
+              >
+                <div className="flex flex-col gap-1">
+                  <h4 className="text-sm font-medium">{card.title}</h4>
+                  <h2 className="text-2xl font-semibold">{card.value}</h2>
+                  <span className="text-xs font-normal">
+                    {card.description}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         <div className="mt-8">
@@ -168,11 +173,6 @@ const WaitListPage = () => {
               <WaitListTable />
             </TabsContent>
           </Tabs>
-
-          {/* <div className="user-table mt-6 h-full w-full overflow-x-auto md:overflow-y-hidden">
-            <WaitListTable />
-          </div> */}
-
           <div className="mt-8">
             <Pagination>
               <PaginationContent>
