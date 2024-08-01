@@ -80,12 +80,6 @@ const UserCard = () => {
               <DropdownMenuShortcut>⇧P</DropdownMenuShortcut>
             </DropdownMenuItem>
           </Link>
-          <Link href="/dashboard/settings" passHref legacyBehavior>
-            <DropdownMenuItem className="cursor-pointer">
-              <span className="font-medium">Settings</span>
-              <DropdownMenuShortcut>⇧S</DropdownMenuShortcut>
-            </DropdownMenuItem>
-          </Link>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
