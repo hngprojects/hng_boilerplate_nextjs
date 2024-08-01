@@ -14,7 +14,6 @@ import MobileNav from "./mobile-navbar";
 const Navbar = () => {
   const [scrolling, setIsScrolling] = useState<boolean>(false);
   const { status } = useSession();
-
   const version = "v1.0";
   useVersionSync(version);
 

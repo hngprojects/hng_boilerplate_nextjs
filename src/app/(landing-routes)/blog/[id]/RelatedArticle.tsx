@@ -1,7 +1,7 @@
-import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 import BlogCard from "~/components/layouts/BlogCards";
-import { blogPosts } from "../data/mock";
+import { useGetBlogs } from "~/hooks/blog/use-blogs";
 
 export type New = {
   id: number;
@@ -9,7 +9,11 @@ export type New = {
 };
 
 const RelatedArticle = () => {
-  const router = useRouter();
+  const { fetchBlogs, data } = useGetBlogs();
+  const blogs = data?.data;
+  useEffect(() => {
+    fetchBlogs();
+  }, [fetchBlogs]);
   return (
     <>
       <div className="">
@@ -17,21 +21,10 @@ const RelatedArticle = () => {
           Related Articles
         </h1>
         <div className="mt-6 grid gap-6 sm:mt-8 sm:gap-8">
-          {blogPosts.slice(0, 3).map((post, index) => (
-            <BlogCard
-              key={index}
-              title={post.title}
-              date={post.date}
-              readTime={post.readTime}
-              category={post.category}
-              image={post.image}
-              labelClassName={post.labelClassName}
-              onClick={() => {
-                localStorage.setItem("currentBlogPost", JSON.stringify(post));
-                router.push(`/blog/${post.id}`);
-              }}
-            />
-          ))}
+          {blogs &&
+            blogs
+              .slice(0, 3)
+              .map((post, index) => <BlogCard key={index} {...post} />)}
         </div>
       </div>
     </>

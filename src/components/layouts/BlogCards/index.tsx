@@ -1,34 +1,30 @@
-import Image, { StaticImageData } from "next/image";
+"use client";
+
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import BlogLabel from "~/app/(landing-routes)/blog/_component/label";
 import { Card, CardHeader, CardTitle } from "~/components/ui/card";
+import { dateFormated, readingTimeCalc } from "~/hooks/util-hooks/date";
+import { ISingleBlog } from "~/types/blog.types";
 
-interface BlogCardProperties {
-  title: string;
-  date: string;
-  readTime: string;
-  category: string;
-  image: StaticImageData;
-  labelClassName: string;
-  onClick?: () => void;
-}
-
-const BlogCard: React.FC<BlogCardProperties> = ({
+const BlogCard: React.FC<ISingleBlog> = ({
   title,
-  date,
-  readTime,
+  created_at,
   category,
-  image,
-  onClick,
+  image_url,
+  content,
+  id,
 }) => {
+  const router = useRouter();
   return (
     <Card
-      onClick={onClick}
+      onClick={() => router.push(`/blog/${id}`)}
       className="w-full max-w-[400px] cursor-pointer rounded-none shadow-none"
     >
       <div className="relative h-[260px] w-full hover:cursor-pointer md:h-40">
         <Image
-          src={image}
+          src={`https://deployment.api-php.boilerplate.hng.tech/${image_url}`}
           height={288}
           width={620}
           className="h-full w-full object-cover"
@@ -43,8 +39,8 @@ const BlogCard: React.FC<BlogCardProperties> = ({
           <div className="line-clamp-2 text-lg">{title}</div>
         </CardTitle>
         <div className="flex items-center justify-between text-xs text-neutral-dark-1">
-          <span>{date}</span>
-          <span>{readTime} mins read</span>
+          <span>{dateFormated(created_at)}</span>
+          <span>{readingTimeCalc(content)} mins read</span>
         </div>
       </CardHeader>
     </Card>

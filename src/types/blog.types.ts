@@ -69,3 +69,25 @@ export const blogPosts = [
     author: "Nora Nora",
   },
 ];
+
+export interface IGetLatestBlogs {
+  data: ISingleBlog[];
+  message: string;
+  status_code: number;
+}
+
+export interface ISingleBlogResponse {
+  data: ISingleBlog;
+  message: string;
+  status_code: number;
+}
+
+export interface ISingleBlog {
+  id?: string;
+  title: string;
+  content: string;
+  author: string;
+  created_at: string;
+  category: string;
+  image_url: string;
+}
