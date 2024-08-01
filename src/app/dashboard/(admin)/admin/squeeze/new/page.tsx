@@ -1,6 +1,6 @@
 "use client";
 
-import { Camera, Plus } from "lucide-react";
+import { Camera, Plus, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
@@ -45,6 +45,12 @@ export default function New() {
     }
   };
 
+  const clearImage = (event: React.MouseEvent<HTMLDivElement>) => {
+    event?.stopPropagation();
+    setImage(undefined);
+    setPreview(undefined);
+  };
+
   const previewPage = () => {
     router.push("/dashboard/admin/squeeze/preview");
   };
@@ -62,11 +68,21 @@ export default function New() {
         <form className="space-y-2">
           <div>
             <div
-              className="flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg bg-[#f4f4f4] p-4"
+              className="relative flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg bg-[#f4f4f4] p-4"
               onDrop={handleDrop}
               onDragOver={handleDragOver}
               onClick={handleClick}
             >
+              {image && (
+                <div
+                  className="absolute left-0 top-0 z-20 flex h-full w-full items-center justify-center bg-black/50"
+                  onClick={clearImage}
+                >
+                  <span className="bg-opacity/70 cursor-pointer rounded-md bg-error p-2">
+                    <Trash2 className="text-3xl text-white" />
+                  </span>
+                </div>
+              )}
               {preview ? (
                 <Image
                   src={preview}
@@ -95,7 +111,7 @@ export default function New() {
               className="hidden"
             />
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid gap-4 md:grid-cols-2">
             <div>
               <Label>Page Title</Label>
               <Input type="text" placeholder="e.g John Doe" />
@@ -129,7 +145,6 @@ export default function New() {
           </div>
         </form>
       </section>
-      <div>{image?.name}</div>
     </main>
   );
 }

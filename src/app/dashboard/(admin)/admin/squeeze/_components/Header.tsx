@@ -5,13 +5,13 @@ import { Button } from "~/components/ui/button";
 
 export default function Header() {
   return (
-    <header className="mt-4 flex justify-between text-neutral-dark-1">
+    <header className="mt-4 flex flex-wrap gap-4 text-neutral-dark-1 lg:justify-between">
       <div>
         <h2 className="text-2xl font-bold">Squeeze Pages</h2>
         <p>Showing records from the last ...</p>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex flex-wrap items-center gap-4">
         <div className="flex items-center gap-2 rounded border border-border p-2">
           <SearchIcon
             data-testid="search"

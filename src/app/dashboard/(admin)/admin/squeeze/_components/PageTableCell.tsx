@@ -2,6 +2,11 @@ import { EllipsisVertical } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 
 import { Checkbox } from "~/components/ui/checkbox";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "~/components/ui/popover";
 import { Switch } from "~/components/ui/switch";
 import { TableCell, TableRow } from "~/components/ui/table";
 import { Squeeze } from "../data/mock.squeeze";
@@ -80,7 +85,14 @@ export default function PageTableCell({
         />
       </TableCell>
       <TableCell className="text-neutral-dark-2">
-        <EllipsisVertical className="cursor-pointer" />
+        <Popover>
+          <PopoverTrigger asChild>
+            <EllipsisVertical className="cursor-pointer" />
+          </PopoverTrigger>
+          <PopoverContent className="w-24 cursor-pointer rounded border bg-neutral-dark-1 text-white shadow">
+            <button className="w-full px-2 focus:outline-none">Delete</button>
+          </PopoverContent>
+        </Popover>
       </TableCell>
     </TableRow>
   );

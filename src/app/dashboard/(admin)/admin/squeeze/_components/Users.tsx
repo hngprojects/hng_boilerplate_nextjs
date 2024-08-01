@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { Checkbox } from "~/components/ui/checkbox";
 import {
   Table,
@@ -10,6 +12,29 @@ import { squeezeUsers } from "../data/mock.squeeze";
 import UserTableCell from "./UserTableCell";
 
 export default function Users() {
+  const [checked, setChecked] = useState<Record<string, boolean>>({});
+  const [checkAllStatus, setCheckAllStatus] = useState(false);
+
+  const checkAll = () => {
+    const checkMap: Record<string, boolean> = {};
+    for (const each of squeezeUsers) {
+      checkMap[each.email] = true;
+    }
+
+    setChecked(checkMap);
+    setCheckAllStatus(true);
+  };
+
+  const uncheckAll = () => {
+    const checkMap: Record<string, boolean> = {};
+    for (const each of squeezeUsers) {
+      checkMap[each.email] = false;
+    }
+
+    setChecked(checkMap);
+    setCheckAllStatus(false);
+  };
+
   return (
     <section>
       <Table divClassName="text-neutral-dark-2" className="">
@@ -18,8 +43,10 @@ export default function Users() {
             <TableHead className="flex items-center gap-2">
               <Checkbox
                 id="example-checkbox"
-                checked={false}
-                onCheckedChange={() => {}}
+                checked={checkAllStatus}
+                onCheckedChange={() => {
+                  checkAllStatus ? uncheckAll() : checkAll();
+                }}
                 className="h-5 w-5"
               />
               Name
@@ -32,7 +59,14 @@ export default function Users() {
         </TableHeader>
         <TableBody className="text-neutral-dark-2">
           {squeezeUsers.map((each) => {
-            return <UserTableCell key={each.name} user={each} />;
+            return (
+              <UserTableCell
+                key={each.name}
+                user={each}
+                checked={checked}
+                setChecked={setChecked}
+              />
+            );
           })}
         </TableBody>
       </Table>

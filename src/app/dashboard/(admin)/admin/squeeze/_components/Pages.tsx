@@ -16,6 +16,27 @@ import PageTableCell from "./PageTableCell";
 export default function Pages() {
   const [pages, setPages] = useState(squeezePages);
   const [checked, setChecked] = useState<Record<string, boolean>>({});
+  const [checkAllStatus, setCheckAllStatus] = useState(false);
+
+  const checkAll = () => {
+    const checkMap: Record<string, boolean> = {};
+    for (const each of pages) {
+      checkMap[each.title] = true;
+    }
+
+    setChecked(checkMap);
+    setCheckAllStatus(true);
+  };
+
+  const uncheckAll = () => {
+    const checkMap: Record<string, boolean> = {};
+    for (const each of pages) {
+      checkMap[each.title] = false;
+    }
+
+    setChecked(checkMap);
+    setCheckAllStatus(false);
+  };
 
   return (
     <section>
@@ -28,8 +49,10 @@ export default function Pages() {
             >
               <Checkbox
                 id="example-checkbox"
-                checked={false}
-                onCheckedChange={() => {}}
+                checked={checkAllStatus}
+                onCheckedChange={() => {
+                  checkAllStatus ? uncheckAll() : checkAll();
+                }}
                 className="h-5 w-5"
               />
               Page Title
