@@ -21,11 +21,6 @@ const links = [
     link: "/dashboard/products",
     id: "products",
   },
-  {
-    route: "Settings",
-    link: "/dashboard/settings",
-    id: "settings",
-  },
 ];
 
 type NavlinksProperties = {
