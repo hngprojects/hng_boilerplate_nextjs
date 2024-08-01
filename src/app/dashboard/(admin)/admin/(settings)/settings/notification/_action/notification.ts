@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import axios from "axios";
 
 const notification_id = undefined;
@@ -19,8 +20,12 @@ export const RetrieveUserNotificationSettings = async () => {
     const response = await axios.get(
       `${BASE_URL}/settings/notification-settings/2846e28a-d7a7-43b9-9cba-1b289fd8ebff`,
     );
+    console.error("Error updating user notification settings:", response.data);
+
     return response.data;
   } catch (error) {
+    console.error("Error updating user notification settings:", error);
+
     return error;
   }
 };
