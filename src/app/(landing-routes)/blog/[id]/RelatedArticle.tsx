@@ -32,7 +32,7 @@ const RelatedArticle = () => {
               }}
             />
           ))}
-        </div>
+        </div> */}
       </div>
     </>
   );
