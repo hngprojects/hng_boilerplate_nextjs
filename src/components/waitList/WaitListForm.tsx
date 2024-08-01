@@ -189,7 +189,7 @@ const WaitlistForm: React.FC = () => {
                   width={20}
                   height={20}
                   src="/images/WaitList/icon.svg"
-                  alt="Envelope"
+                  alt="Submit Envelope"
                 />
                 Join the Waitlist
               </CustomButton>
