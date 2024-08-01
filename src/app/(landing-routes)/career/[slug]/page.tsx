@@ -1,6 +1,7 @@
 "use client";
 
 import { Plus } from "lucide-react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -42,9 +43,10 @@ const JobDetails = () => {
           isCurrent: true,
         },
       ];
+  const mailtoLink = "mailto:hng123@gmail.com";
 
   return (
-    <main className="mx-auto max-w-7xl px-5 py-10 md:px-10 lg:px-10 xl:px-10">
+    <main className="mx-auto max-w-7xl bg-white px-5 py-10 sm:bg-transparent md:px-10 lg:px-10 xl:px-10">
       <Breadcrumb pages={pages} maxPages={isSmallScreen ? 2 : 3} />
 
       <div className="mb-4 mt-8 grid w-full auto-rows-min grid-cols-1 pb-2 md:grid-cols-3">
@@ -210,16 +212,18 @@ const JobDetails = () => {
       </div>
 
       <div className="my-10 mb-8 flex flex-row items-center justify-center">
-        <CustomButton
-          variant="primary"
-          size="lg"
-          icon={isSmallScreen ? undefined : <Plus />}
-          isLeftIconVisible={isSmallScreen}
-          isDisabled={false}
-          className={`h-[50px] w-[250px]`}
-        >
-          Apply Now
-        </CustomButton>
+        <Link href={mailtoLink} passHref legacyBehavior>
+          <CustomButton
+            variant="primary"
+            size="lg"
+            icon={isSmallScreen ? undefined : <Plus />}
+            isLeftIconVisible={isSmallScreen}
+            isDisabled={false}
+            className={`h-[50px] w-[250px]`}
+          >
+            Apply Now
+          </CustomButton>
+        </Link>
       </div>
     </main>
   );
