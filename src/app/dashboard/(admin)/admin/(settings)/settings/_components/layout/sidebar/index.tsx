@@ -12,6 +12,7 @@ import {
   UserRoundCog,
   UsersIcon,
 } from "lucide-react";
+import { useRouter } from "next-nprogress-bar";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FC, ForwardRefExoticComponent, RefAttributes } from "react";
@@ -93,9 +94,16 @@ const SettingsSidebar: FC<Iproperties> = ({ sideNavitems = sideItems }) => {
     pathname?.split("/").length == 2 ? "general" : pathname?.split("/")[3];
   const organizationPath = pathname?.split("/")[4];
 
+  const router = useRouter();
+
   return (
     <div className="h-screen w-[50px] flex-col items-center justify-center bg-[#FAFAFA] pt-6 md:block md:w-[304px] md:justify-start md:px-4">
-      <div className="mb-6 flex items-center justify-center md:justify-start md:gap-2">
+      <div
+        className="mb-6 flex cursor-pointer items-center justify-center md:justify-start md:gap-2"
+        onClick={() => {
+          router.push("/dashboard/admin");
+        }}
+      >
         <ChevronLeft className="h-5 w-5 text-neutral-dark-2" />
         <h2 className="hidden text-xl text-neutral-dark-2 md:block">
           Settings

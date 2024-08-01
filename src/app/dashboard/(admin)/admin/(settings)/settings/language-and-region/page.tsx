@@ -1,6 +1,7 @@
 "use client";
 
 import axios from "axios";
+import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 import { Button } from "~/components/ui/button";
@@ -11,56 +12,90 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select";
-import { getAccessToken } from "~/utils/getAccessToken";
-import { getApiUrl } from "~/utils/getApiUrl";
-
-const languages = [
-  { value: "en", label: "English" },
-  { value: "es", label: "Spanish" },
-  { value: "fr", label: "French" },
-];
-
-const regions = [
-  { value: "us", label: "United States" },
-  { value: "uk", label: "United Kingdom" },
-  { value: "ca", label: "Canada" },
-];
-
-const timeZones = [
-  { value: "utc+0", label: "(UTC+00:00) Coordinated Universal Time" },
-  { value: "utc+8", label: "(UTC+08:00) Beijing, Hong Kong, Singapore" },
-  { value: "utc-5", label: "(UTC-05:00) Eastern Time (US & Canada)" },
-  { value: "utc-8", label: "(UTC-08:00) Pacific Time (US & Canada)" },
-];
+import { useToast } from "~/components/ui/use-toast";
+import {
+  fetchLanguages,
+  fetchRegions,
+  fetchTimeZones,
+  getApiConfig,
+  Language,
+  Region,
+  Timezone,
+} from "~/utils/getLangauge";
 
 const LanguageRegion = () => {
-  const [timeZoness, setTimeZones] = useState([]);
+  const { data: session } = useSession();
+  const { user } = session ?? {};
+  const { toast } = useToast();
+
+  const [timezones, setTimezones] = useState<Timezone[]>([]);
+  const [languages, setLanguages] = useState<Language[]>([]);
+  const [regions, setRegions] = useState<Region[]>([]);
+  const [selectedRegion, setSelectedRegion] = useState<string>("");
+  const [selectedLanguage, setSelectedLanguage] = useState<string>("");
+  const [selectedTimezone, setSelectedTimezone] = useState<string>("");
 
   useEffect(() => {
-    const fetchTimeZones = async () => {
+    const getTimeZones = async () => {
       try {
-        // First, get the API URL
-        const apiUrl = await getApiUrl();
-        const accessToken = await getAccessToken();
-
-        console.log("API URL:", accessToken); // Log the actual URL for debugging
-
-        // Then use it to fetch the timezones
-        const response = await axios.get(`${apiUrl}/api/v1/timezones`, {
-          headers: {
-            accept: "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
+        const [fetchedTimezones, fetchedLanguages, fetchedRegions] =
+          await Promise.all([
+            fetchTimeZones(toast),
+            fetchLanguages(toast),
+            fetchRegions(toast),
+          ]);
+        setTimezones(fetchedTimezones);
+        setLanguages(fetchedLanguages);
+        setRegions(fetchedRegions);
+      } catch {
+        toast({
+          title: "Error",
+          description: "Failed to fetch timezones, languages, and regions.",
+          variant: "destructive",
         });
-
-        setTimeZones(response.data);
-      } catch (error) {
-        console.error("Error fetching timezones:", error);
       }
     };
 
-    fetchTimeZones();
+    getTimeZones();
   }, []);
+
+  const handleSave = async () => {
+    if (!user?.id) {
+      toast({
+        title: "Error",
+        description: "User not found.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const payload = {
+      region_id: selectedRegion,
+      timezone_id: selectedTimezone,
+      language_id: selectedLanguage,
+    };
+
+    try {
+      const { apiUrl, headers } = await getApiConfig();
+      await axios.put(`${apiUrl}/api/v1/users/${user.id}/regions`, payload, {
+        headers,
+      });
+      toast({
+        title: "Settings saved successfully",
+        description: "Your settings have been saved.",
+      });
+      toast({
+        title: "Settings saved successfully",
+        description: "Your settings have been saved.",
+      });
+    } catch {
+      toast({
+        title: "Error",
+        description: "Failed to save settings.",
+        variant: "destructive",
+      });
+    }
+  };
   return (
     <>
       <div className="font-inter max-w-md">
@@ -76,14 +111,17 @@ const LanguageRegion = () => {
             <label className="mb-1 block text-sm font-medium text-slate-700">
               Language
             </label>
-            <Select>
+            <Select
+              value={selectedLanguage}
+              onValueChange={setSelectedLanguage}
+            >
               <SelectTrigger className="w-full rounded-md border border-slate-300 bg-white text-sm font-medium text-slate-700 focus:border-orange-500 focus:ring-0">
                 <SelectValue placeholder="Select language" />
               </SelectTrigger>
               <SelectContent>
                 {languages.map((lang) => (
-                  <SelectItem key={lang.value} value={lang.value}>
-                    {lang.label}
+                  <SelectItem key={lang.language_id} value={lang.language_id}>
+                    {lang.name}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -94,14 +132,14 @@ const LanguageRegion = () => {
             <label className="mb-1 block text-sm font-medium text-slate-700">
               Region
             </label>
-            <Select>
+            <Select value={selectedRegion} onValueChange={setSelectedRegion}>
               <SelectTrigger className="w-full rounded-md border border-slate-300 bg-white text-sm font-medium text-slate-700 focus:border-orange-500 focus:ring-0">
                 <SelectValue placeholder="Select region" />
               </SelectTrigger>
               <SelectContent>
                 {regions.map((region) => (
-                  <SelectItem key={region.value} value={region.value}>
-                    {region.label}
+                  <SelectItem key={region.region_id} value={region.region_id}>
+                    {region.name}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -112,23 +150,34 @@ const LanguageRegion = () => {
             <label className="mb-1 block text-sm font-medium text-slate-700">
               Time-Zone
             </label>
-            <Select>
+            <Select
+              value={selectedTimezone}
+              onValueChange={setSelectedTimezone}
+            >
               <SelectTrigger className="w-full rounded-md border border-slate-300 bg-white text-sm font-medium text-slate-700 focus:border-orange-500 focus:ring-0">
                 <SelectValue placeholder="Select time zone" />
               </SelectTrigger>
               <SelectContent>
-                {timeZones.map((tz) => (
-                  <SelectItem key={tz.value} value={tz.value}>
-                    {tz.label}
-                  </SelectItem>
-                ))}
+                {Array.isArray(timezones) &&
+                  timezones.map((timezone) => (
+                    <SelectItem
+                      key={timezone.timezone_id}
+                      value={timezone.timezone_id}
+                    >
+                      {`${timezone.identifier} (${timezone.offset})`}
+                    </SelectItem>
+                  ))}
               </SelectContent>
             </Select>
           </div>
         </div>
 
         <div className="mt-6 flex justify-start space-x-4">
-          <Button type="submit" className="bg-orange-500 hover:bg-orange-600">
+          <Button
+            type="submit"
+            className="bg-orange-500 hover:bg-orange-600"
+            onClick={handleSave}
+          >
             Save
           </Button>
           <Button variant="outline">Cancel</Button>
