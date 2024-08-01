@@ -74,7 +74,7 @@ const Sidebar: FC<Iproperties> = ({ sideNavitems = sideItems }) => {
   const currentPath = pathname?.split("/")[3];
 
   return (
-    <div className="flex h-screen w-[50px] flex-col items-center justify-start border-r bg-[#FDFDFD] md:block md:w-[220px] md:px-4 lg:w-[252px]">
+    <div className="flex h-screen w-[50px] flex-col items-center justify-start overflow-y-auto border-r bg-[#FDFDFD] md:block md:w-[220px] md:px-4 lg:w-[252px]">
       <section className="flex flex-col items-center gap-y-3 pt-6 md:items-stretch">
         {sideNavitems.map((item, index) => (
           <Link
