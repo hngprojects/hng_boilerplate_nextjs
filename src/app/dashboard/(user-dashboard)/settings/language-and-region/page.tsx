@@ -57,7 +57,7 @@ const Page = () => {
           Authorization: `Bearer ${access_token}`,
         },
       })
-      .then((response) => console.log(response))
+      .then((response) => setPreferences(response.data))
       .catch(() => {
         toast({
           title: "Error",
@@ -69,12 +69,16 @@ const Page = () => {
 
   const handleSave = () => {
     axios
-      .post(apiUrl + "/v1/regions", preferences)
-      .then((response) => console.log(response))
+      .post(apiUrl + "/v1/regions", preferences, {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+      })
+      .then((response) => setPreferences(response.data))
       .catch((error) => {
         toast({
           title: "Error",
-          description: error,
+          description: "Could not save language and region",
           variant: "destructive",
         });
       });
