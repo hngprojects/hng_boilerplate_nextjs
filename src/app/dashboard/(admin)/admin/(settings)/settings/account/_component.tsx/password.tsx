@@ -12,7 +12,7 @@ const Password = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
-  const [error, setError] = useState<string | undefined>(undefined);
+  const [error, setError] = useState<string>("");
 
   const [isLengthValid, setIsLengthValid] = useState(false);
   const [hasUppercase, setHasUppercase] = useState(false);
@@ -50,8 +50,8 @@ const Password = () => {
       );
 
       setOpen(true);
-      setError(undefined);
-    } catch (error) {
+      setError("");
+    } catch {
       setError("An error occurred while updating the password.");
     }
   };
@@ -61,7 +61,7 @@ const Password = () => {
     setNewPassword("");
     setConfirmNewPassword("");
     setOpen(false);
-    setError(undefined);
+    setError("");
     setIsLengthValid(false);
     setHasUppercase(false);
     setHasNumber(false);
