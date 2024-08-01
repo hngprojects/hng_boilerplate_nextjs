@@ -68,6 +68,9 @@ importers:
       '@t3-oss/env-nextjs':
         specifier: ^0.10.1
         version: 0.10.1(typescript@5.5.4)(zod@3.23.8)
+      '@tanstack/react-query':
+        specifier: ^5.51.16
+        version: 5.51.16(react@18.3.1)
       '@types/jest-axe':
         specifier: ^3.5.9
         version: 3.5.9
@@ -1897,6 +1900,14 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
+
+  '@tanstack/query-core@5.51.16':
+    resolution: {integrity: sha512-zfV+WAtBGm1dUIbL0w/x8qTqVLKU1/Bo1p19J9LF02MmIc4FxzMImMXhFzYJQl5Hx8Wit6RiQ4tB/DvN8y9zaQ==}
+
+  '@tanstack/react-query@5.51.16':
+    resolution: {integrity: sha512-NZnpJ30zkwaA2ZPhxJLs/qoMbd0yNAj6yyb3JTADJx9HjSdtvnNzOY1bDa3bU1B9CZTBBb7W9E1PpWlNXdgESg==}
+    peerDependencies:
+      react: ^18.0.0
 
   '@testing-library/dom@10.4.0':
     resolution: {integrity: sha512-pemlzrSESWbdAloYml3bAJMEfNh1Z7EduzqPKprCH5S341frlpYnUEW0H72dLxa6IsYr+mPno20GiSm+h9dEdQ==}
@@ -6934,6 +6945,13 @@ snapshots:
       zod: 3.23.8
     optionalDependencies:
       typescript: 5.5.4
+
+  '@tanstack/query-core@5.51.16': {}
+
+  '@tanstack/react-query@5.51.16(react@18.3.1)':
+    dependencies:
+      '@tanstack/query-core': 5.51.16
+      react: 18.3.1
 
   '@testing-library/dom@10.4.0':
     dependencies:

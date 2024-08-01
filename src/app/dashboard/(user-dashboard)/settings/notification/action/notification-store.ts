@@ -1,4 +1,4 @@
-import create from "zustand";
+import { create } from "zustand";
 
 import { notificationSettingsProperties } from "../types/notification-settings.types";
 

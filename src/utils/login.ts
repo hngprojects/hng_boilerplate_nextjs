@@ -1,6 +1,8 @@
 "use server";
 
 import axios from "axios";
+import { setCookie } from "cookies-next";
+import { cookies } from "next/headers";
 import * as z from "zod";
 
 import { LoginSchema } from "~/schemas";
@@ -18,6 +20,8 @@ export const loginUser = async (values: z.infer<typeof LoginSchema>) => {
   const payload = { email, password };
   try {
     const response = await axios.post(`${apiUrl}/api/v1/auth/login`, payload);
+
+    setCookie("access_token", response.data.data.access_token, { cookies });
     return {
       status: response.status,
       data: response.data,
