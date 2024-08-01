@@ -1,8 +1,9 @@
+/* eslint-disable no-console */
 "use client";
 
 import axios from "axios";
 import { Check, ChevronLeft } from "lucide-react";
-import { getSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import { useState } from "react";
 
 import CustomButton from "~/components/common/common-button/common-button";
@@ -15,6 +16,8 @@ import { NotificationSwitchBox } from "./_components/notification-switch-box";
 import { notificationSettingsProperties } from "./_types/notification-settings.types";
 
 const NotificationPage = () => {
+  const sessionl = useSession();
+  console.log(sessionl);
   const settings = useNotificationStore((state) => state.settings);
   const updateSettings = useNotificationStore((state) => state.updateSettings);
   // const initializeSettings = useNotificationStore(
@@ -76,7 +79,8 @@ const NotificationPage = () => {
     try {
       await saveNotificationSettings(settings);
       setOpen(true);
-    } catch {
+    } catch (error) {
+      console.log(error);
       throw new Error("Failed to save settings");
     }
   };
