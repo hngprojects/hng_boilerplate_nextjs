@@ -1,10 +1,10 @@
 import axios from "axios";
+
 import { getApiUrl } from "~/utils/getApiUrl";
 
 export const exportMembersEndpoint = async (format: string = "csv") => {
-const apiUrl = await getApiUrl();
-try {
-    console.log(apiUrl)
+  const apiUrl = await getApiUrl();
+  try {
     const response = await axios.get(
       `${apiUrl}/api/v1/organisation/members/export`,
       {
