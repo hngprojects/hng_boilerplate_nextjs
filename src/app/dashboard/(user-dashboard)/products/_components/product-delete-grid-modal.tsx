@@ -2,7 +2,6 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import { Button } from "~/components/ui/button";
 import { toast } from "~/components/ui/use-toast";
-import { useProductsView } from "~/hooks/admin-product/use-product-view";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { useProducts } from "~/hooks/admin-product/use-products.persistence";
 import { useUserProducts } from "~/hooks/admin-product/use-server-products";
@@ -15,20 +14,13 @@ const variantProperties = {
   translateY: "-50%",
 };
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-const ProductDeleteModal = () => {
+const ProductDeleteGridModal = () => {
   const { deleteProduct } = useProducts();
   const { data } = useUserProducts();
-  const { view } = useProductsView();
   const products = data?.products;
 
-  const {
-    product_id,
-    updateProductId,
-    updateOpen,
-    isDelete,
-    setIsDelete,
-    isOpen,
-  } = useProductModal();
+  const { product_id, updateProductId, updateOpen, isDelete, setIsDelete } =
+    useProductModal();
 
   const product = products?.find(
     (product) => product.product_id === product_id,
@@ -68,11 +60,10 @@ const ProductDeleteModal = () => {
           setIsDelete(false);
         }}
         className={cn(
-          "fixed left-0 top-0 z-[99999] min-h-screen w-full overflow-hidden bg-neutral-700/10 transition-all duration-300",
+          "fixed left-0 top-0 z-[99999] min-h-screen w-full overflow-hidden bg-neutral-700/10 transition-all duration-300 lg:hidden",
           isDelete
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0",
-          !isOpen && view === "grid" ? "" : "lg:hidden",
         )}
       />
 
@@ -96,8 +87,7 @@ const ProductDeleteModal = () => {
             }}
             transition={{ duration: 0.2 }}
             className={cn(
-              "fixed left-1/2 top-1/2 z-[99999] grid w-full min-w-[350px] max-w-[349px] -translate-x-1/2 -translate-y-1/2 transform-gpu flex-col place-items-center items-center min-[360px]:max-w-[480px] sm:max-w-[403px]",
-              !isOpen && view === "grid" ? "" : "lg:hidden",
+              "fixed left-1/2 top-1/2 z-[99999] grid w-full min-w-[350px] max-w-[349px] -translate-x-1/2 -translate-y-1/2 transform-gpu flex-col place-items-center items-center min-[360px]:max-w-[480px] sm:max-w-[403px] lg:hidden",
             )}
           >
             <div
@@ -135,4 +125,4 @@ const ProductDeleteModal = () => {
   );
 };
 
-export default ProductDeleteModal;
+export default ProductDeleteGridModal;

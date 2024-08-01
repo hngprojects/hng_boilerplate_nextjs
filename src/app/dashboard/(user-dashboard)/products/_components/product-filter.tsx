@@ -6,24 +6,23 @@ import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
+import { useProductsView } from "~/hooks/admin-product/use-product-view";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { useProductsFilters } from "~/hooks/admin-product/use-products.-filters.persistence";
 import { cn } from "~/lib/utils";
 
 type ProductFilterProperties = {
   searchTerm: string;
-  view: "list" | "grid";
-  setView: Dispatch<SetStateAction<"list" | "grid">>;
   setSearchTerm: Dispatch<SetStateAction<string>>;
 };
 
 const ProductFilter = ({
   searchTerm,
   setSearchTerm,
-  view,
-  setView,
 }: ProductFilterProperties) => {
   const { filters, active_filter, updateFilter } = useProductsFilters();
+  const { view, updateView } = useProductsView();
+
   const { isOpenFilterModal, updateFilterModal } = useProductModal();
   const router = useRouter();
   const search = useSearchParams();
@@ -86,8 +85,8 @@ const ProductFilter = ({
       <div className="relative flex items-center gap-x-2 min-[500px]:gap-x-4">
         <div className="flex items-center gap-x-2">
           <Button
-            onClick={() => setView("grid")}
-            disabled
+            onClick={() => updateView("grid")}
+            disabled={view === "grid"}
             variant="outline"
             size="icon"
             className={cn(
@@ -100,7 +99,7 @@ const ProductFilter = ({
             <Grid className="size-5 min-[500px]:size-8" />
           </Button>
           <Button
-            onClick={() => setView("list")}
+            onClick={() => updateView("list")}
             disabled={view === "list"}
             variant="outline"
             size="icon"

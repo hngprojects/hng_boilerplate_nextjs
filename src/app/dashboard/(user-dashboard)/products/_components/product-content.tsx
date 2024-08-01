@@ -15,32 +15,30 @@ import {
   TableHeader,
   TableRow,
 } from "~/components/ui/table";
+import { useProductsView } from "~/hooks/admin-product/use-product-view";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { useProductsFilters } from "~/hooks/admin-product/use-products.-filters.persistence";
-import { useProducts } from "~/hooks/admin-product/use-products.persistence";
+import { useUserProducts } from "~/hooks/admin-product/use-server-products";
 import { cn } from "~/lib/utils";
 import { ProductTableProperties } from "~/types/admin-product.types";
 import ProductBodyShadcn from "./product-body-shadcn";
+import ProductGridContent from "./product-grid-content";
 
 const Pagination = dynamic(() => import("react-paginate"), {
   ssr: false,
   loading: () => <LoadingSpinner />,
 });
 
-const ProductContent = ({
-  searchTerm,
-  view,
-}: {
-  searchTerm: string;
-  view: "list" | "grid";
-}) => {
+const ProductContent = ({ searchTerm }: { searchTerm: string }) => {
+  const { data } = useUserProducts();
+  const { view } = useProductsView();
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
-  const { products } = useProducts();
+  // const { products } = useProducts();
   const [perPage, setPerPage] = useState("10");
   const { isOpen } = useProductModal();
   const { active_filter } = useProductsFilters();
-
+  const products = data?.products;
   const [subset, setSubset] = useState<ProductTableProperties[]>([]);
 
   const startIndex = currentPage * Number(perPage);
@@ -108,61 +106,80 @@ const ProductContent = ({
     <div className="relative flex w-full flex-col overflow-hidden pb-10">
       <div
         className={cn(
-          "show_scrollbar rounded-xl border border-gray-300 bg-[#F1F5F9] pt-1 sm:pt-4",
-          isOpen
+          "show_scrollbar",
+          isOpen && view === "list"
             ? "max-w-full lg:max-w-[600px] min-[1090px]:max-w-[650px] min-[1150px]:max-w-[750px] min-[1200px]:max-w-[800px] xl:max-w-[820px] min-[1300px]:max-w-full"
-            : "max- w-full",
+            : "w-full",
+          view === "list"
+            ? "rounded-xl border border-gray-300 bg-[#F1F5F9] pt-1 sm:pt-4"
+            : "",
         )}
       >
         <AnimatePresence>
-          {view === "list" && (
-            <Table
-              divClassName={cn(
-                "relative h-full min-h-[400px] xl:min-h-[600px] bg-white",
-              )}
+          {view === "list" ? (
+            <motion.div
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 100 }}
+              layout
+              layoutId="list_view"
             >
-              <TableHeader>
-                <TableRow className="bg-[#F1F5F9]">
-                  <TableHead className="w-[100px]x overflow-x-auto text-center text-xs min-[380px]:text-sm md:w-[200px] md:text-base lg:w-[200px]">
-                    Product Name
-                  </TableHead>
-                  <TableHead className="whitespace-nowrap text-xs min-[380px]:text-sm md:text-base">
-                    Product ID
-                  </TableHead>
-                  <TableHead className="whitespace-nowrap text-xs min-[380px]:text-sm md:text-base">
-                    Category
-                  </TableHead>
-                  <TableHead className="whitespace-nowrap text-xs min-[380px]:text-sm md:text-base">
-                    Price
-                  </TableHead>
-                  <TableHead className="whitespace-nowrap text-xs min-[380px]:text-sm md:text-base">
-                    Status
-                  </TableHead>
-                  <TableHead className="whitespace-nowrap text-xs min-[380px]:text-sm md:text-base">
-                    Actions
-                  </TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody className="w-full">
-                <ProductBodyShadcn
-                  subset={subset}
-                  filteredProducts={filteredProducts}
-                  searchTerm={searchTerm}
-                />
-              </TableBody>
-              {filteredProducts.length === 0 && searchTerm.length > 1 && (
-                <div className="absolute top-1/2 flex w-full items-center justify-center">
-                  <p className="w-full text-center">
-                    No product found for &quot;
-                    <span className="font-bold">{searchTerm}</span>
-                    &quot;
-                  </p>
-                </div>
-              )}
-            </Table>
+              {" "}
+              <Table
+                divClassName={cn(
+                  "relative h-full bg-white",
+                  data ? "min-h-[400px] xl:min-h-[600px] " : "",
+                )}
+              >
+                <TableHeader>
+                  <TableRow className="bg-[#F1F5F9]">
+                    <TableHead className="w-[100px]x overflow-x-auto text-center text-xs min-[380px]:text-sm md:w-[200px] md:text-base lg:w-[200px]">
+                      Product Name
+                    </TableHead>
+                    <TableHead className="whitespace-nowrap text-xs min-[380px]:text-sm md:text-base">
+                      Product ID
+                    </TableHead>
+                    <TableHead className="whitespace-nowrap text-xs min-[380px]:text-sm md:text-base">
+                      Category
+                    </TableHead>
+                    <TableHead className="whitespace-nowrap text-xs min-[380px]:text-sm md:text-base">
+                      Price
+                    </TableHead>
+                    <TableHead className="whitespace-nowrap text-xs min-[380px]:text-sm md:text-base">
+                      Status
+                    </TableHead>
+                    <TableHead className="whitespace-nowrap text-xs min-[380px]:text-sm md:text-base">
+                      Actions
+                    </TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody className="w-full">
+                  <ProductBodyShadcn
+                    subset={subset}
+                    filteredProducts={filteredProducts}
+                    searchTerm={searchTerm}
+                  />
+                </TableBody>
+                {filteredProducts.length === 0 && searchTerm.length > 1 && (
+                  <div className="absolute top-1/2 flex w-full items-center justify-center">
+                    <p className="w-full text-center">
+                      No product found for &quot;
+                      <span className="font-bold">{searchTerm}</span>
+                      &quot;
+                    </p>
+                  </div>
+                )}
+              </Table>
+            </motion.div>
+          ) : (
+            <ProductGridContent
+              subset={subset}
+              filteredProducts={filteredProducts}
+              searchTerm={searchTerm}
+            />
           )}
         </AnimatePresence>
-        {!products && <ProductCardSkeleton count={9} />}
+        {!data && <ProductCardSkeleton count={9} />}
       </div>
       <AnimatePresence>
         {products && filteredProducts.length > 0 && (
@@ -176,10 +193,7 @@ const ProductContent = ({
               <p className="text-xs font-medium text-neutral-dark-1 md:text-sm">
                 Showing{" "}
                 <span className="text-sm font-bold text-neutral-950 md:text-lg">
-                  {startIndex + 1}
-                </span>{" "}
-                to{" "}
-                <span className="text-sm font-bold text-neutral-950 md:text-lg">
+                  {startIndex + 1}-
                   {endIndex > filteredProducts.length
                     ? filteredProducts.length
                     : endIndex}

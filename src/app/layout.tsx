@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="mx-auto h-full w-full max-w-[1920px]">
+        <div className="mx-auto h-full w-full max-w-[1440px]">
           <Providers />
           <AuthProvider>{children}</AuthProvider>
           <Toaster />

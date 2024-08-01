@@ -9,7 +9,7 @@ import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { TableCell, TableRow } from "~/components/ui/table";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
-import { useProducts } from "~/hooks/admin-product/use-products.persistence";
+import { useUserProducts } from "~/hooks/admin-product/use-server-products";
 import { cn, formatPrice } from "~/lib/utils";
 import { ProductTableProperties } from "~/types/admin-product.types";
 
@@ -24,7 +24,9 @@ const ProductBodyShadcn = ({
   filteredProducts,
   searchTerm,
 }: Properties) => {
-  const { products } = useProducts();
+  const { data } = useUserProducts();
+  const products = data?.products;
+
   const {
     updateOpen,
     updateProductId,
@@ -87,7 +89,7 @@ const ProductBodyShadcn = ({
               className="sticky left-0 size-4 min-[500px]:size-5 lg:size-8"
             />
             <BlurImage
-              src={product.image}
+              src={product.imageUrl}
               alt="Product"
               width={40}
               height={40}
@@ -127,14 +129,18 @@ const ProductBodyShadcn = ({
           onClick={() => handleOpenDetail(product.product_id)}
           className="text-sm uppercase md:text-base"
         >
-          {product.product_id}
+          P{product.product_id.slice(-5)}
         </TableCell>
         <TableCell
           role="button"
           onClick={() => handleOpenDetail(product.product_id)}
           className="text-[10px] min-[376px]:text-xs md:text-base"
         >
-          {product.category}
+          {product.category.length > 0
+            ? typeof product.category === "string"
+              ? product.category
+              : product.category[0]
+            : "N/A"}
         </TableCell>
         <TableCell
           role="button"

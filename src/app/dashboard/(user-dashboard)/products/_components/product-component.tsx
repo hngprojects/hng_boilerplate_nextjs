@@ -21,8 +21,6 @@ const ProductFilter = dynamic(() => import("../_components/product-filter"), {
 
 const ProductComponent = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [view, setView] = useState<"list" | "grid">("list");
-  // const { data } = useUserProducts();
 
   const {
     isOpen,
@@ -73,12 +71,10 @@ const ProductComponent = () => {
             className="flex w-full flex-col gap-y-8"
           >
             <ProductFilter
-              view={view}
-              setView={setView}
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
             />
-            <ProductContent searchTerm={searchTerm} view={view} />
+            <ProductContent searchTerm={searchTerm} />
           </motion.div>
 
           {isOpen && <ProductDetailView />}

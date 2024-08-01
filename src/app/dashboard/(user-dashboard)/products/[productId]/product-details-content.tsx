@@ -2,11 +2,13 @@
 
 import { ChevronRight, Loader } from "lucide-react";
 
-import { useProducts } from "~/hooks/admin-product/use-products.persistence";
+import { useUserProducts } from "~/hooks/admin-product/use-server-products";
 import ProductDetailsComponent from "./product-details-component";
 
 const ProductDetailsContent = ({ productId }: { productId: string }) => {
-  const { products } = useProducts();
+  const { data } = useUserProducts();
+  const products = data?.products;
+
   const product = products?.find((p) => p.product_id === productId);
 
   if (!product)

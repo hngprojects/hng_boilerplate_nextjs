@@ -8,6 +8,7 @@ import { Button } from "~/components/ui/button";
 import { toast } from "~/components/ui/use-toast";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { useProducts } from "~/hooks/admin-product/use-products.persistence";
+import { useUserProducts } from "~/hooks/admin-product/use-server-products";
 import useWindowWidth from "~/hooks/use-window-width";
 import { cn, formatPrice } from "~/lib/utils";
 
@@ -20,7 +21,9 @@ const variantProperties = {
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const ProductDetailModal = () => {
   const router = useRouter();
-  const { products, deleteProduct } = useProducts();
+  const { deleteProduct } = useProducts();
+  const { data } = useUserProducts();
+  const products = data?.products;
   const [isLoading, setIsLoading] = useState(false);
   const { winWidth } = useWindowWidth();
   const {
@@ -35,7 +38,8 @@ const ProductDetailModal = () => {
   const product = products?.find(
     (product) => product.product_id === product_id,
   );
-
+  const extract_date = product?.date_added.split("T")[0];
+  const extract_time = product?.date_added.split("T")[1].split(".")[0];
   const handleDelete = async (id: string) => {
     toast({
       title: "Deleting product",
@@ -76,6 +80,8 @@ const ProductDetailModal = () => {
       ? `Product - ${product?.name}`
       : "Products - HNG Boilerplate";
   }, [isOpen, product?.name]);
+  if (!product) return;
+
   return (
     <>
       <div
@@ -156,7 +162,7 @@ const ProductDetailModal = () => {
               </Button>
             </div>
             <BlurImage
-              src={product!.image!}
+              src={product!.imageUrl!}
               alt={product!.name}
               width={403}
               height={153}
@@ -166,7 +172,7 @@ const ProductDetailModal = () => {
               <p className="flex w-full items-center justify-between">
                 <span className="text-neutral-dark-1">Product ID</span>
                 <span className="uppercase text-neutral-dark-2">
-                  {product?.product_id}
+                  P{product?.product_id.slice(-5)}
                 </span>
               </p>
               <p className="flex w-full items-center justify-between">
@@ -176,7 +182,7 @@ const ProductDetailModal = () => {
               <p className="flex w-full items-center justify-between">
                 <span className="text-neutral-dark-1">Date added</span>
                 <span className="text-neutral-dark-2">
-                  {product?.date_added}, {product?.time}
+                  {extract_date},{extract_time}
                 </span>
               </p>
               <p className="flex w-full items-center justify-between">

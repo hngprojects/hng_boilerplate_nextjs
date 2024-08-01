@@ -6,6 +6,20 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export const addDotsToLongString = ({
+  str,
+  len,
+}: {
+  str: string;
+  len: number;
+}): string => {
+  if (!str) return "";
+  if (str.length > len) {
+    return str.slice(0, Math.max(0, len)) + "...";
+  }
+  return str;
+};
+
 export const isMobileDevice = () => {
   if (typeof window === "undefined") {
     return false;

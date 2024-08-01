@@ -7,13 +7,18 @@ import BlurImage from "~/components/miscellaneous/blur-image";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import { Button } from "~/components/ui/button";
 import { toast } from "~/components/ui/use-toast";
+import { useProductsView } from "~/hooks/admin-product/use-product-view";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { useProducts } from "~/hooks/admin-product/use-products.persistence";
+import { useUserProducts } from "~/hooks/admin-product/use-server-products";
 import { cn, formatPrice, simulateDelay } from "~/lib/utils";
 
 const ProductDetailView = () => {
   const router = useRouter();
-  const { products, deleteProduct } = useProducts();
+  const { deleteProduct } = useProducts();
+  const { data } = useUserProducts();
+  const { view } = useProductsView();
+  const products = data?.products;
   const [isLoading, startTransition] = useTransition();
   const {
     product_id,
@@ -27,6 +32,9 @@ const ProductDetailView = () => {
   const product = products?.find(
     (product) => product.product_id === product_id,
   );
+
+  const extract_date = product?.date_added.split("T")[0];
+  const extract_time = product?.date_added.split("T")[1].split(".")[0];
   const handleDelete = async (id: string) => {
     toast({
       title: "Deleting product",
@@ -60,15 +68,35 @@ const ProductDetailView = () => {
       : "Products - HNG Boilerplate";
   }, [isOpen, product?.name]);
 
+  useEffect(() => {
+    document.body.style.overflow =
+      isOpen && view === "grid" ? "hidden" : "unset";
+  }, [isOpen, view]);
+
+  if (!product) return;
   return (
     <AnimatePresence>
+      {isOpen && view === "grid" && (
+        <div
+          onClick={() => {
+            updateOpen(false);
+            updateProductId("null");
+          }}
+          className={cn(
+            "fixed left-0 top-0 z-[999] min-h-screen w-full overflow-hidden bg-neutral-700/0 transition-all duration-300",
+          )}
+        />
+      )}
       {isOpen && (
         <motion.div
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 100 }}
           transition={{ duration: 0.3 }}
-          className="sticky top-0 hidden w-full min-w-[340px] flex-col gap-y-5 rounded-[6px] border border-gray-300 bg-white px-2 py-4 shadow-[0px_1px_18px_0px_rgba(10,_57,_176,_0.12)] lg:flex lg:max-w-[370px] xl:w-[403px] xl:px-4"
+          className={cn(
+            "top-0 hidden w-full min-w-[340px] flex-col gap-y-5 rounded-[6px] border border-gray-300 bg-white px-2 py-4 shadow-[0px_1px_18px_0px_rgba(10,_57,_176,_0.12)] lg:flex lg:max-w-[370px] xl:w-[403px] xl:px-4",
+            view === "grid" ? "fixed right-0 top-10 z-[9999]" : "sticky",
+          )}
         >
           <div
             className={cn(
@@ -114,7 +142,7 @@ const ProductDetailView = () => {
             </Button>
           </div>
           <BlurImage
-            src={product!.image!}
+            src={product!.imageUrl!}
             alt={product!.name}
             width={403}
             height={153}
@@ -125,7 +153,7 @@ const ProductDetailView = () => {
             <p className="flex w-full items-center justify-between text-sm lg:text-base">
               <span className="text-neutral-dark-1">Product ID</span>
               <span className="uppercase text-neutral-dark-2">
-                {product?.product_id}
+                P{product?.product_id.slice(-5)}
               </span>
             </p>
             <p className="flex w-full items-center justify-between text-sm lg:text-base">
@@ -135,7 +163,7 @@ const ProductDetailView = () => {
             <p className="flex w-full items-center justify-between text-sm lg:text-base">
               <span className="text-neutral-dark-1">Date added</span>
               <span className="text-neutral-dark-2">
-                {product?.date_added}, {product?.time}
+                {extract_date},{extract_time}
               </span>
             </p>
             <p className="flex w-full items-center justify-between text-sm lg:text-base">
