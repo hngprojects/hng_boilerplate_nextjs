@@ -12,7 +12,7 @@ const TipsCard = () => {
       </h4>
       <ul>
         {tips.map((tip, index) => (
-          <li key={index} className="text-dark-neutral-dark-2 text-sm">
+          <li key={index} className="mb-2 list-disc text-sm text-[#8E8E93]">
             {tip}
           </li>
         ))}

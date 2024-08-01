@@ -1,9 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useSession } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { renderToString } from "react-dom/server";
 
 import { Button } from "~/components/common/common-button";
+import { useToast } from "~/components/ui/use-toast";
 import AccountActivationSuccessful from "~/email/templates/account-activation-successful/image";
 import PageHeader from "../../../_components/page-header";
 import TemplateViewer from "./TemplateViewer";
@@ -29,8 +32,20 @@ const HtmlTemplateViewer = () => {
     <AccountActivationSuccessful {...previewProperties} />,
   );
 
+  // const [template, setTemplate] = useState<string>("");
   const [template, setTemplate] = useState<string>(welcomeEmailString);
+  const searchParameters = useSearchParams();
   const [mode, setMode] = useState<"preview" | "edit">("preview");
+  const { toast } = useToast();
+  const { data: session } = useSession();
+
+  console.log(session);
+  useEffect(() => {
+    const content = searchParameters.get("content");
+    if (content) {
+      setTemplate(decodeURIComponent(content));
+    }
+  }, [searchParameters]);
 
   const toggleMode = () => {
     setMode((previousMode) =>
@@ -42,17 +57,58 @@ const HtmlTemplateViewer = () => {
     setTemplate(newContent);
   };
 
+  const handleSaveTemplate = async () => {
+    const baseUrl = process.env.API_URL;
+    try {
+      const response = await fetch(`${baseUrl}/api/v1/EmailTemplate`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ template }),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Success",
+          description: "Template has been created successfully",
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: "Failed create template",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: `Error creating template: ${error}`,
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
     <main>
       <section className="flex items-center justify-between">
         <PageHeader
-          title=" Preview Your Generated Template"
+          title="Preview Your Generated Template"
           description="Review the layout and look of your email template generated from the
             pasted HTML code to ensure you have pasted the right template."
         />
-        <Button className="h-[40px] px-[1.5rem]" onClick={toggleMode}>
-          {mode === "preview" ? "Edit Content" : "Preview Content"}
-        </Button>
+        <div className="flex gap-2">
+          <Button
+            variant={"primary"}
+            onClick={handleSaveTemplate}
+            className="h-[40px] px-[1.5rem]"
+          >
+            Save Template
+          </Button>
+          <Button className="h-[40px] px-[1.5rem]" onClick={toggleMode}>
+            {mode === "preview" ? "Edit Content" : "Preview Content"}
+          </Button>
+        </div>
       </section>
       <section>
         <TemplateViewer template={template} mode={mode} onEdit={handleEdit} />
