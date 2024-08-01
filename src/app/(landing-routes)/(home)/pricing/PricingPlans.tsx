@@ -14,11 +14,17 @@ interface BillingPlan {
   price: string;
 }
 
+const getAnnualPrice = (monthlyPrice: string) => {
+  const monthly = Number.parseFloat(monthlyPrice);
+  const annual = monthly * 12 * 0.8;
+  return annual.toFixed(2);
+};
+
 const PricingPlans = () => {
   const [toggle, setToggle] = useState(1);
   const [plans, setPlans] = useState<BillingPlan[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | undefined>();
 
   useEffect(() => {
     const fetchPlans = async () => {
@@ -26,7 +32,7 @@ const PricingPlans = () => {
         const apiUrl = await getApiUrl();
         const response = await axios.get(`${apiUrl}/billing-plans`);
         setPlans(response.data.data);
-      } catch (err) {
+      } catch {
         setError("Failed to fetch billing plans");
       } finally {
         setLoading(false);
@@ -35,12 +41,6 @@ const PricingPlans = () => {
 
     fetchPlans();
   }, []);
-
-  const getAnnualPrice = (monthlyPrice: string) => {
-    const monthly = parseFloat(monthlyPrice);
-    const annual = monthly * 12 * 0.8;
-    return annual.toFixed(2);
-  };
 
   return (
     <div
@@ -98,11 +98,11 @@ const PricingPlans = () => {
         <div className="align-center mt-[50px] flex min-h-[650px] flex-col justify-center gap-5 sm:flex-row">
           <div className="mx-auto flex w-max gap-8">
             <Skeleton
-              className="h-[600px] w-full sm:w-[400px] rounded-xl"
+              className="h-[600px] w-full rounded-xl sm:w-[400px]"
               data-testid="skeleton"
             />
             <Skeleton
-              className="h-[600px] w-full sm:w-[400px] rounded-xl"
+              className="h-[600px] w-full rounded-xl sm:w-[400px]"
               data-testid="skeleton"
             />
           </div>

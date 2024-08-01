@@ -1,8 +1,8 @@
-'use client'
+"use client";
 
 import FaqAccordion from "~/components/layouts/accordion/FaqsAccordion";
-import { faqData } from "~/constants/faqsdata";
 import { Button } from "~/components/ui/button";
+import { faqData } from "~/constants/faqsdata";
 import PricingPlans from "./PricingPlans";
 
 const handleButtonClickTest = () => {
@@ -55,4 +55,3 @@ export default function Pricing() {
     </>
   );
 }
-
