@@ -79,7 +79,7 @@ const Register = () => {
               : "an error occurred",
           description: data.status === 201 ? "Redirecting" : data.error,
         });
-        router.push('/register/organisation')
+        router.push("/register/organisation");
       });
     });
   };

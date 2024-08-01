@@ -1,8 +1,8 @@
 "use server";
 
 import axios from "axios";
+import { cookies } from "next/headers";
 import * as z from "zod";
-import {cookies} from "next/headers"
 
 import { OtpSchema, RegisterSchema } from "~/schemas";
 
@@ -47,8 +47,7 @@ export const verifyOtp = async (values: z.infer<typeof OtpSchema>) => {
   const otp = values.otp;
   const token = values.token;
 
-  const payload =
-  { otp: Number(otp), token: token };
+  const payload = { otp: Number(otp), token: token };
 
   try {
     const response = await axios.post(
