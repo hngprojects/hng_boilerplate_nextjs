@@ -15,7 +15,8 @@ import { NotificationSwitchBox } from "./_components/notification-switch-box";
 import { notificationSettingsProperties } from "./_types/notification-settings.types";
 
 const NotificationPage = () => {
-  const { settings, updateSettings } = useNotificationStore();
+  const settings = useNotificationStore((state) => state.settings);
+  const updateSettings = useNotificationStore((state) => state.updateSettings);
   const [isOpen, setOpen] = useState(false);
   const { toast } = useToast();
 
