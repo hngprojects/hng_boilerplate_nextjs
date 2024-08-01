@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 import { useToast } from "~/components/ui/use-toast";
 import { getApiUrl } from "~/utils/getApiUrl";
 
-// const { data: session, status } = useSession();
-// Custom hook to fetch API URL
 const useApiUrl = () => {
   const [apiUrl, setApiUrl] = useState<string>("");
   const { toast } = useToast();

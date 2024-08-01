@@ -10,6 +10,7 @@ interface MemberCardProperty {
   deleteHandle: () => void;
   setRole: (role: string) => void;
 }
+
 const MemberCard = ({
   name,
   email,
