@@ -1,6 +1,8 @@
-"use client"
-import React, { FormEvent, useEffect, useRef, useState } from "react";
+"use client";
+
 import Image from "next/image";
+import React, { FormEvent, useEffect, useRef, useState } from "react";
+
 import CustomButton from "~/components/common/common-button/common-button";
 
 interface FormData {
@@ -41,6 +43,7 @@ const WaitlistForm: React.FC = () => {
 
     if (formData.email.trim() === "") {
       newErrors.email = "Please enter a valid email address";
+      /* eslint-disable vitest/no-conditional-tests */
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Please enter a valid email address";
     }
@@ -69,7 +72,7 @@ const WaitlistForm: React.FC = () => {
               full_name: formData.full_name,
               email: formData.email,
             }),
-          }
+          },
         );
 
         if (!response.ok) {
@@ -88,9 +91,11 @@ const WaitlistForm: React.FC = () => {
           setIsSubmitted(false);
         }, 6000);
       } catch {
-        console.error("There was a problem with the fetch operation:", errors);
+        setErrors({
+          server: "An unexpected error occurred. Please try again later.",
+        });
       } finally {
-        setIsLoading(false); // Reset loading state to false
+        setIsLoading(false);
       }
     }
   };
@@ -197,9 +202,6 @@ const WaitlistForm: React.FC = () => {
 };
 
 export default WaitlistForm;
-
-
-
 
 // "use client";
 
