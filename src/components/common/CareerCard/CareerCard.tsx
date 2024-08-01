@@ -6,6 +6,7 @@ import { Skeleton } from "~/components/ui/skeleton";
 
 //
 interface CareerCardProperties {
+  id: string;
   isLoading: boolean;
   jobTitle?: string;
   location?: string;
@@ -14,6 +15,7 @@ interface CareerCardProperties {
 }
 
 const CareerCard: FC<CareerCardProperties> = ({
+  id,
   isLoading,
   jobTitle,
   location,
@@ -58,7 +60,7 @@ const CareerCard: FC<CareerCardProperties> = ({
               <span className="font-normal">/month</span>
             </span>
             <Link
-              href={`/career/${jobTitle}`}
+              href={`/career/${id}`}
               className="rounded bg-primary px-4 py-2 text-[14px] text-background"
             >
               View Details

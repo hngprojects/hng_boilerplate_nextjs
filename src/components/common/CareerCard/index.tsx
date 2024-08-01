@@ -5,6 +5,7 @@ import { FC } from "react";
 import CareerCard from "./CareerCard";
 
 interface CareerCardProperties {
+  id: string;
   isLoading: boolean;
   jobTitle?: string;
   location?: string;
@@ -13,6 +14,7 @@ interface CareerCardProperties {
 }
 
 const CareerCardParent: FC<CareerCardProperties> = ({
+  id,
   isLoading,
   jobTitle,
   location,
@@ -21,6 +23,7 @@ const CareerCardParent: FC<CareerCardProperties> = ({
 }) => {
   return (
     <CareerCard
+      id={id}
       isLoading={isLoading}
       jobTitle={jobTitle}
       location={location}

@@ -2,16 +2,23 @@
 
 import { Search } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 import { Input } from "~/components/common/input";
 import FaqAccordion from "~/components/layouts/accordion/FaqsAccordion";
 import TopicsAccordions from "~/components/layouts/accordion/TopicAccordion";
 import { faqData } from "~/constants/faqsdata";
 
+interface Topic {
+  id: string;
+  title: string;
+  content: string;
+}
+
 const HelpCenter = () => {
-  const [topics, setTopics] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [topics, setTopics] = useState<Topic[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [searchValue, setSearchValue] = useState<string>("");
 
   useEffect(() => {
     const fetchTopics = async () => {
@@ -25,7 +32,7 @@ const HelpCenter = () => {
         const data = await response.json();
         setTopics(data.data.topics);
       } catch (error) {
-        return error;
+        return `Error fetching topics: ${error}`;
       } finally {
         setLoading(false);
       }
@@ -33,6 +40,16 @@ const HelpCenter = () => {
 
     fetchTopics();
   }, []);
+
+  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value);
+  };
+
+  const filteredTopics = topics.filter(
+    (topic) =>
+      topic.title.toLowerCase().includes(searchValue.toLowerCase()) ||
+      topic.content.toLowerCase().includes(searchValue.toLowerCase()),
+  );
 
   return (
     <div className="w-full bg-background">
@@ -48,7 +65,7 @@ const HelpCenter = () => {
             >
               Help Center
             </span>
-            <div className="flex h-80 flex-col items-center justify-center gap-5">
+            <div className="flex flex-col items-center justify-center gap-5">
               <h1
                 className="text-4xl font-bold text-neutral-950 md:text-5xl lg:text-6xl"
                 role="heading"
@@ -63,10 +80,12 @@ const HelpCenter = () => {
                 <Search className="flex h-8 w-8 items-center justify-center p-1 text-muted-foreground" />
                 <Input
                   isButtonVisible={false}
-                  className="w-full border-none bg-transparent py-[16px] pl-[20px] pr-[220px] focus:outline-none"
+                  className="w-full border-none bg-transparent py-[16px] pl-[20px] pr-[220px] text-[#0A0A0A] focus:border-none focus:outline-none"
                   type="text"
                   placeholder="Search on any topic..."
                   aria-label="Search on any topic"
+                  value={searchValue}
+                  onChange={handleSearch}
                 />
               </div>
             </div>
@@ -86,7 +105,15 @@ const HelpCenter = () => {
             Browse by topics
           </span>
 
-          {!loading && <TopicsAccordions topics={topics} />}
+          {loading ? (
+            <p>Loading...</p>
+          ) : searchValue.trim() === "" ? (
+            <TopicsAccordions topics={topics} />
+          ) : filteredTopics.length > 0 ? (
+            <TopicsAccordions topics={filteredTopics} />
+          ) : (
+            <p>No results found.</p>
+          )}
         </section>
 
         <section className="pt-12">
@@ -120,7 +147,7 @@ const HelpCenter = () => {
       <div className="bg-white py-40">
         <div className="mx-auto max-w-7xl px-5 text-center md:px-10 lg:px-10 xl:px-10">
           <h1 className="mg-4 text-3xl font-bold text-orange-500">
-            Didn’t find an answer?
+            Didnapos;t find an answer?
           </h1>
           <p className="mb-3 text-lg font-normal text-neutral-600">
             Contact us for more inquiries and information about our services.
@@ -128,7 +155,7 @@ const HelpCenter = () => {
 
           <Link
             href="/contact-us"
-            className="mt-4 inline-block rounded-md bg-[#FFF] px-10 py-4 text-background"
+            className="mt-4 inline-block rounded-md bg-primary px-10 py-4 text-background"
           >
             Contact us
           </Link>
