@@ -1,7 +1,5 @@
-import { useRouter } from "next/navigation";
-
-import BlogCard from "~/components/layouts/BlogCards";
-import { blogPosts } from "../data/mock";
+// import BlogCard from "~/components/layouts/BlogCards";
+// import { blogPosts } from "../data/mock";
 
 export type New = {
   id: number;
@@ -9,7 +7,7 @@ export type New = {
 };
 
 const RelatedArticle = () => {
-  const router = useRouter();
+  // const router = useRouter();
   return (
     <>
       <div className="">
