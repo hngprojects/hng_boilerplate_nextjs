@@ -15,7 +15,12 @@ import { NotificationSwitchBox } from "./_components/notification-switch-box";
 import { notificationSettingsProperties } from "./_types/notification-settings.types";
 
 const NotificationPage = () => {
-  const { settings, updateSettings } = useNotificationStore();
+  const settings = useNotificationStore((state) => state.settings);
+  const updateSettings = useNotificationStore((state) => state.updateSettings);
+  // const initializeSettings = useNotificationStore(
+  //   (state) => state.initializeSettings,
+  // );
+  // const saveSettings = useNotificationStore((state) => state.saveSettings);
   const [isOpen, setOpen] = useState(false);
   const { toast } = useToast();
 
@@ -75,7 +80,6 @@ const NotificationPage = () => {
       throw new Error("Failed to save settings");
     }
   };
-
   return (
     <main className="text-neutral-dark-2">
       <div className="mx-[24px] mb-[30px] flex w-fit items-center gap-1 md:hidden">
