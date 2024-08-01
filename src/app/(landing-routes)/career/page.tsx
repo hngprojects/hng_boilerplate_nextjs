@@ -56,6 +56,7 @@ export default function Career() {
 
   useEffect(() => {
     fetchJobData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchJobData = async () => {

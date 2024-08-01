@@ -6,23 +6,6 @@ import { useEffect, useState } from "react";
 import { Breadcrumb } from "~/components/common/breadcrumb";
 import CustomButton from "~/components/common/common-button/common-button";
 
-// interface jobData {
-//   id: string;
-//   title: string;
-//   description: string;
-//   location: string;
-//   salary: string;
-//   job_type: string;
-//   experience_level: string | null;
-//   work_mode: string | null;
-//   benefits: string | null;
-//   deadline: string | null;
-//   key_responsibilities: string[] | null;
-//   qualifications: string[] | null;
-//   created_at: string;
-//   updated_at: string;
-// }
-
 const JobDetails = ({ params }: { params: { slug: string } }) => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [specificData, setSpecificData] = useState({
@@ -45,6 +28,7 @@ const JobDetails = ({ params }: { params: { slug: string } }) => {
 
   useEffect(() => {
     specificJobData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const specificJobData = async () => {
@@ -242,7 +226,7 @@ const JobDetails = ({ params }: { params: { slug: string } }) => {
         </div>
       </div>
       ;
-      <div className="my-10 mb-40 mb-8 flex flex-row items-center justify-center">
+      <div className="my-10 mb-40 flex flex-row items-center justify-center">
         <CustomButton
           variant="primary"
           size="lg"
