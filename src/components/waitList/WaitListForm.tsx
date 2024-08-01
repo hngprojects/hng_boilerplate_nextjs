@@ -111,7 +111,8 @@ const WaitlistForm: React.FC = () => {
           setIsSubmitted(false);
         }, 6000);
       } catch {
-        // console.error("There was a problem with the fetch operation:", error);
+        // eslint-disable-next-line no-console
+        console.error("There was a problem with the fetch operation:", errors);
       }
     }
   };
