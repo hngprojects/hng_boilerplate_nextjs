@@ -2,7 +2,7 @@
 
 import { BellIcon, HelpCircle } from "lucide-react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-nprogress-bar";
 import { useEffect } from "react";
 
 import DashboardLogo from "~/app/dashboard/(admin)/_components/layout/logo";
@@ -47,7 +47,7 @@ import {
 // }
 
 const UserNavbar = () => {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const router = useRouter();
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -102,7 +102,7 @@ const UserNavbar = () => {
             />
           </div>
           <div className="pr-1">
-            <UserCard status={status} session={session} />
+            <UserCard />
           </div>
         </div>
       </div>

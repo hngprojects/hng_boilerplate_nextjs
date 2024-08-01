@@ -16,7 +16,6 @@ declare module "next-auth" {
   interface Session {
     user: {
       id: User["id"];
-      name: User["fullname"];
       first_name: User["first_name"];
       last_name: User["last_name"];
       email: User["email"];

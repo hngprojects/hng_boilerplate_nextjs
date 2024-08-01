@@ -15,7 +15,7 @@ import UnreadNotificationCard from "../../unread-notification-card/UnreadNotific
 import DashboardLogo from "../logo";
 
 const DashboardNavbar = () => {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const router = useRouter();
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -77,7 +77,7 @@ const DashboardNavbar = () => {
               />
             </div>
             <div className="hover:bg-black-1 flex w-full max-w-[64px] cursor-pointer items-center justify-between gap-2">
-              <UserCard status={status} session={session} />
+              <UserCard />
             </div>
           </div>
         </div>
