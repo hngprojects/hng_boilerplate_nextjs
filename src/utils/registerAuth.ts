@@ -1,14 +1,14 @@
 "use server";
 
 import axios from "axios";
+import { cookies } from "next/headers";
 import * as z from "zod";
 
 import { OtpSchema, RegisterSchema } from "~/schemas";
 
 const apiUrl = process.env.API_URL;
-const team = process.env.TEAM;
-
-export const registerUser = async (values: z.infer<typeof RegisterSchema>) => {
+export const registerAuth = async (values: z.infer<typeof RegisterSchema>) => {
+  const cookie = cookies();
   const validatedFields = RegisterSchema.safeParse(values);
   if (!validatedFields.success) {
     return {
@@ -20,12 +20,17 @@ export const registerUser = async (values: z.infer<typeof RegisterSchema>) => {
       `${apiUrl}/api/v1/auth/register`,
       validatedFields.data,
     );
-    return {
-      team: team,
-      status: response.status,
-      data: response.data,
-      access_token: response.data.access_token,
-    };
+    const access_token =
+      response.data.access_token ?? response.data.data.access_token;
+
+    cookie.set("access_token", access_token, {
+      maxAge: 60 * 60 * 24 * 1,
+      httpOnly: true,
+      path: "/",
+      priority: "high",
+    });
+
+    return response?.data?.user;
   } catch (error) {
     return axios.isAxiosError(error) && error.response
       ? {
@@ -41,10 +46,8 @@ export const registerUser = async (values: z.infer<typeof RegisterSchema>) => {
 export const verifyOtp = async (values: z.infer<typeof OtpSchema>) => {
   const otp = values.otp;
   const token = values.token;
-  const email = values.email;
 
-  const payload =
-    team === "panther" ? { otp: Number(otp), token: token } : { token, email };
+  const payload = { otp: Number(otp), token: token };
 
   try {
     const response = await axios.post(
