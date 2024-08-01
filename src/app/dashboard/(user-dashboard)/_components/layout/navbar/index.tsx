@@ -82,16 +82,7 @@ const UserNavbar = () => {
                 data-testid="notificationContent"
                 align="end"
                 className="w-[380px] border-none p-0 shadow-none"
-              >
-                <UnreadNotificationCard
-                  notificationsPreview={[
-                    { header: "Check mail", time: "1 hour ago" },
-                    { header: "Sign up for offer", time: "2 hours ago" },
-                    { header: "Register for event", time: "1 hour ago" },
-                  ]}
-                  unreadCount={30}
-                />
-              </PopoverContent>
+              ></PopoverContent>
             </Popover>
             <span className="absolute right-1 top-0 h-[6px] w-[6px] rounded-full bg-error"></span>
           </div>

@@ -18,10 +18,6 @@ import { notificationSettingsProperties } from "../../admin/(settings)/settings/
 import { getTimeAgo } from "../../admin/(settings)/settings/notification/utils/date-time-formatter";
 import { useNotificationStore } from "../../admin/(settings)/settings/notification/utils/notification-store";
 
-// interface NotificationPreview {
-//   header: string;
-//   time: string;
-// }
 interface NotificationPreview {
   message: string;
   created_at: string;
