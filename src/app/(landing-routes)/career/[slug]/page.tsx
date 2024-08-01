@@ -13,12 +13,10 @@ const JobDetails = () => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth < 768);
     };
-
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
   const pages = isSmallScreen
     ? [
         { name: "Career", href: "/career" },
@@ -209,7 +207,7 @@ const JobDetails = () => {
         </div>
       </div>
 
-      <div className="my-10  mb-8 flex flex-row items-center justify-center">
+      <div className="my-10 mb-8 flex flex-row items-center justify-center">
         <CustomButton
           variant="primary"
           size="lg"
