@@ -1,8 +1,9 @@
 "use client";
 
+import axios from "axios";
 import { LucideProps } from "lucide-react";
 import Link from "next/link";
-import { FC, ForwardRefExoticComponent, useState } from "react";
+import { FC, ForwardRefExoticComponent, useEffect, useState } from "react";
 
 import { Breadcrumb } from "~/components/common/breadcrumb";
 import PageHeader from "../../../_components/page-header";
@@ -19,6 +20,14 @@ interface IOption {
     >;
     link: string;
   };
+}
+interface EmailTemplate {
+  id: string;
+  title: string;
+  template: string;
+  status: boolean;
+  created_at: string;
+  updated_at: string;
 }
 
 export const Options: FC<IOption> = ({ data }) => {
@@ -45,11 +54,41 @@ export const Options: FC<IOption> = ({ data }) => {
   );
 };
 const NewTemplate = () => {
-  const isloading: boolean = false;
-  const data = 100;
+  const [templates, setTemplates] = useState<EmailTemplate[]>([]);
+  const [error, setError] = useState<string | undefined>();
   const [togglePreview, setTogglePreview] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const totalPage = Math.ceil(data / 10);
+  const [totalPages, setTotalPages] = useState<number>(1);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const templateId = "f47ac10b-58cc-4372-a567-0e02b2c3d479";
+
+  useEffect(() => {
+    const fetchTemplates = async () => {
+      try {
+        const response = await axios.get(
+          "https://virtserver.swaggerhub.com/WILSONABDIEL86/email-templates/1.0.0/email-templates",
+          {
+            headers: {
+              Authorization: `Bearer YOUR_JWT_TOKEN`,
+            },
+            params: {
+              page: currentPage,
+              limit: 10,
+            },
+          },
+        );
+        setTemplates(response.data.templates);
+        setTotalPages(Math.ceil(response.data.total / 10));
+      } catch {
+        setError("Failed to fetch email templates.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchTemplates();
+  }, [currentPage]);
+
   return (
     <div>
       <section className="mb-8">
@@ -60,19 +99,33 @@ const NewTemplate = () => {
         <Breadcrumb />
       </section>
       <div
-        className={`${togglePreview ? "grid grid-cols-1 justify-items-center gap-6 lg:grid-cols-[1fr_447px]" : "block"} `}
+        className={`${
+          togglePreview
+            ? "grid grid-cols-1 justify-items-center gap-6 lg:grid-cols-[1fr_447px]"
+            : "block"
+        } `}
       >
         <section className="w-full justify-items-center overflow-hidden rounded-[19px] border-[1px] border-border">
           <div className="grid min-h-[700px] grid-rows-[1fr_auto]">
             <div>
-              <TemplateCard
-                togglePreview={togglePreview}
-                setTogglePreview={setTogglePreview}
-              />
+              {isLoading ? (
+                <p>Loading...</p>
+              ) : error ? (
+                <p>{error}</p>
+              ) : (
+                templates.map((template) => (
+                  <TemplateCard
+                    templateId={templateId}
+                    key={template.id}
+                    togglePreview={togglePreview}
+                    setTogglePreview={setTogglePreview}
+                  />
+                ))
+              )}
             </div>
             <Pagination
-              isloading={isloading}
-              totalPage={totalPage}
+              isloading={isLoading}
+              totalPage={totalPages}
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
             />

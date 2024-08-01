@@ -83,8 +83,6 @@ export default function Page() {
   const handleDelete = (index: number) => dispatch({ type: "DELETE", index });
   const handleAdd = () => setShowSelectModal(true);
 
-  const handleCloseModal = () => setShowSelectModal(false);
-
   const handleSelectComponent = (component: JSX.Element) => {
     dispatch({ type: "ADD" });
     setShowSelectModal(false);

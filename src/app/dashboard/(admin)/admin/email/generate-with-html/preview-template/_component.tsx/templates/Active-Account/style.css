@@ -1,0 +1,175 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Inter;
+}
+
+body {
+  min-height: 100svh;
+}
+
+header {
+  display: flex;
+  width: 100%;
+  height: 7.625rem;
+  justify-content: center;
+  align-items: center;
+  background: rgba(225, 214, 214, 0.4);
+}
+
+h2 {
+  color: #121a26;
+  font-feature-settings: "liga" off, "clig" off;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.template-main {
+  display: flex;
+  padding: 3.5rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.5rem;
+}
+.heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center;
+  align-items: center; */
+  gap: 2rem;
+}
+.template-header {
+  color: var(--Neutral-Colors-Dark-2, #0a0a0a);
+  text-align: center;
+
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.template-subheader {
+  color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+.template-receiver-name {
+  color: #111;
+
+  /* H6/SemiBold */
+  font-size: 1.125rem;
+
+  font-weight: 600;
+}
+.template-welcome-message {
+  color: rgba(17, 17, 17, 0.9);
+
+  font-size: 1rem;
+
+  font-weight: 400;
+}
+.editable-content-title {
+  color: var(--Neutral-Colors-Dark-2, #0a0a0a);
+  font-size: 1rem;
+
+  font-weight: 600;
+
+  opacity: 0.9;
+  margin-bottom: 1.25rem;
+}
+.editable-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+.editable-content-list p {
+  opacity: 0.9;
+  color: var(--Neutral-Colors-Dark-2, rgba(17, 17, 17, 0.9));
+  font-size: 1rem;
+
+  font-weight: 400;
+
+  margin-bottom: 1rem;
+}
+.editable-content-list span {
+  color: var(--Neutral-Colors-Dark-2, #0a0a0a);
+  font-size: 1rem;
+
+  font-weight: 600;
+}
+
+.template-btn {
+  display: flex;
+  height: 2.75rem;
+  padding: 0.5rem 2.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  border: none;
+  color: White;
+  border-radius: 0.5rem;
+  background: var(--Primary-Color-Primary-Full-500, #f97316);
+}
+.template-btn:hover {
+  background: var(--Primary-Color-Primary-Full-500, #9c4609);
+}
+.template-farewell p {
+  color: #111;
+
+  /* Body/Medium/small */
+  font-family: Inter;
+  font-size: 0.875rem;
+
+  font-weight: 500;
+}
+
+footer {
+  background: #f3efef;
+  display: flex;
+  padding: 2rem 3rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+footer > .heading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2.0625rem;
+}
+
+footer .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.875rem;
+  color: #5b5b5d;
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+footer .content > span {
+  margin-block-start: 1.3em;
+}
+
+footer .contact-support {
+  color: #111;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+footer hr {
+  border-style: dashed;
+  width: 100%;
+  border-color: #969696;
+}

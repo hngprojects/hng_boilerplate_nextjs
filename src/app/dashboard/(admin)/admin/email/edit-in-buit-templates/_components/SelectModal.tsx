@@ -1,11 +1,11 @@
 import { SquarePen } from "lucide-react";
 
 interface SelectModalProperties {
-  onSelect: (component: JSX.Element) => void;
+  onSelect: (component: string) => void;
 }
 
 const SelectModal: React.FC<SelectModalProperties> = ({ onSelect }) => {
-  const handleSelect = (component: JSX.Element) => {
+  const handleSelect = (component: string) => {
     onSelect(component);
   };
   return (
@@ -13,38 +13,30 @@ const SelectModal: React.FC<SelectModalProperties> = ({ onSelect }) => {
       <h1 className="w-full text-center text-xl font-semibold text-gray-400 md:w-7/12 md:text-2xl lg:w-8/12 lg:text-2xl">
         Choose an element to add to this section
       </h1>
-      <div className="mt-10 grid grid-cols-3 gap-1 md:grid-cols-4 lg:grid-cols-5">
+      <div className="mt-10 grid grid-cols-3 gap-1 md:grid-cols-4 lg:grid-cols-4">
         <button
-          onClick={() => handleSelect(<div>Welcome</div>)}
+          onClick={() => handleSelect("AddLogo")}
+          className="flex h-16 w-16 flex-col items-center justify-center rounded-md bg-white p-2 hover:border hover:border-orange-500 md:h-24 md:w-24"
+        >
+          <SquarePen className="h-4 w-4 md:h-9 md:w-9 lg:h-10 lg:w-10" />
+          <p className="text-xs font-semibold md:text-base lg:text-lg">Logo</p>
+        </button>
+        <button
+          onClick={() => handleSelect("ImageBody")}
           className="flex h-16 w-16 flex-col items-center justify-center rounded-md bg-white p-2 hover:border hover:border-orange-500 md:h-24 md:w-24"
         >
           <SquarePen className="h-4 w-4 md:h-9 md:w-9 lg:h-10 lg:w-10" />
           <p className="text-xs font-semibold md:text-base lg:text-lg">
-            Header
+            Image-Body
           </p>
         </button>
-        <button className="flex h-16 w-16 flex-col items-center justify-center rounded-md bg-white p-2 hover:border hover:border-orange-500 md:h-24 md:w-24">
+        <button
+          onClick={() => handleSelect("EditFooter")}
+          className="flex h-16 w-16 flex-col items-center justify-center rounded-md bg-white p-2 hover:border hover:border-orange-500 md:h-24 md:w-24"
+        >
           <SquarePen className="h-4 w-4 md:h-9 md:w-9 lg:h-10 lg:w-10" />
           <p className="text-xs font-semibold md:text-base lg:text-lg">
-            Header
-          </p>
-        </button>
-        <button className="flex h-16 w-16 flex-col items-center justify-center rounded-md bg-white p-2 hover:border hover:border-orange-500 md:h-24 md:w-24">
-          <SquarePen className="h-4 w-4 md:h-9 md:w-9 lg:h-10 lg:w-10" />
-          <p className="text-xs font-semibold md:text-base lg:text-lg">
-            Header
-          </p>
-        </button>
-        <button className="flex h-16 w-16 flex-col items-center justify-center rounded-md bg-white p-2 hover:border hover:border-orange-500 md:h-24 md:w-24">
-          <SquarePen className="h-4 w-4 md:h-9 md:w-9 lg:h-10 lg:w-10" />
-          <p className="text-xs font-semibold md:text-base lg:text-lg">
-            Header
-          </p>
-        </button>
-        <button className="flex h-16 w-16 flex-col items-center justify-center rounded-md bg-white p-2 hover:border hover:border-orange-500 md:h-24 md:w-24">
-          <SquarePen className="h-4 w-4 md:h-9 md:w-9 lg:h-10 lg:w-10" />
-          <p className="text-xs font-semibold md:text-base lg:text-lg">
-            Header
+            Edit-Footer
           </p>
         </button>
       </div>

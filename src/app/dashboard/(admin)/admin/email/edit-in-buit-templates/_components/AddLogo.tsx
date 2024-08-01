@@ -3,29 +3,36 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
-const AddLogo: React.FC = () => {
-  const [selectedImage, setSelectedImage] = useState<
-    string | ArrayBuffer | undefined
-  >();
+interface SelectModalProperties {
+  img: string;
+  index: number;
+  handleImage: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    ind: number,
+  ) => void;
+}
 
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setSelectedImage(reader.result ?? undefined);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+const AddLogo: React.FC<SelectModalProperties> = ({
+  handleImage,
+  img,
+  index,
+}) => {
+  const [_img_, setImg] = useState<string | ArrayBuffer | undefined>(img);
+
+  // console.log("-------------------------");
+  // console.log(img);
+  // console.log("-------------------------");
 
   return (
-    <div className="h-52 w-full rounded-sm border bg-white p-4 shadow-md hover:border-orange-500 lg:w-4/5">
+    <div
+      id="add-logo-mid-con"
+      className="h-52 w-full rounded-sm border bg-white p-4 shadow-md hover:border-orange-500 lg:w-4/5"
+    >
       <label className="flex flex-col items-center">
         <div className="mb-4 flex h-44 w-48 cursor-pointer items-center justify-center bg-gray-50">
-          {selectedImage ? (
+          {_img_ ? (
             <Image
-              src={selectedImage as string}
+              src={_img_ as string}
               alt="Selected"
               className="h-full w-full object-contain"
               width={192}
@@ -38,7 +45,15 @@ const AddLogo: React.FC = () => {
         <input
           type="file"
           accept="image/*"
-          onChange={handleImageChange}
+          onChange={(event_) => {
+            const result = handleImage(event_, index);
+            const reader = new FileReader();
+
+            reader.onloadend = () => {
+              setImg(reader.result ?? "");
+            };
+            reader.readAsDataURL(result);
+          }}
           className="hidden"
         />
       </label>

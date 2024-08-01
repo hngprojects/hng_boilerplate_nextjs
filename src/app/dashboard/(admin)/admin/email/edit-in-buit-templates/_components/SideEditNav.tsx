@@ -14,7 +14,7 @@ const SideEditNav: React.FC<SideEditNavProperties> = ({
   onMoveDown,
   onCopy,
   onDelete,
-  onAdd,
+//   onAdd,
 }) => {
   return (
     <nav className="flex-1 space-y-1">
@@ -42,12 +42,12 @@ const SideEditNav: React.FC<SideEditNavProperties> = ({
       >
         <Delete className="h-3 w-3" />
       </button>
-      <button
+      {/* <button
         onClick={onAdd}
         className="flex items-center rounded-md border border-slate-100 p-3 text-left hover:bg-gray-200"
       >
         <Plus className="h-3 w-3" />
-      </button>
+      </button> */}
     </nav>
   );
 };
