@@ -2,45 +2,12 @@ import { NextAuthConfig, Session } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
+import { cookies } from "next/headers";
 
 import { LoginSchema } from "~/schemas";
-import { CustomSession } from "~/types";
+import { ApiResponse, CustomJWT, CustomSession } from "~/types";
 import { googleAuth } from "~/utils/googleAuth";
-import { nextlogin } from "~/utils/login";
-
-interface Profile {
-  access_token: string;
-  expires_in: number;
-  refresh_token: string;
-  scope: string;
-  token_type: string;
-  id_token: string;
-  expires_at: number;
-  provider: string;
-  type: string;
-  providerAccountId: string;
-}
-
-interface User {
-  id: string;
-  email: string;
-  fullname: string;
-  avatar_url: string;
-  expires_in: string;
-  role: string;
-}
-
-interface Data {
-  access_token: string;
-  user: User;
-}
-interface ApiResponse {
-  status: string;
-  status_code: number;
-  message: string;
-  user: User;
-  data: Data;
-}
+import { loginAuth } from "~/utils/loginAuth";
 
 export default {
   providers: [
@@ -59,42 +26,54 @@ export default {
       async authorize(credentials) {
         const validatedFields = LoginSchema.safeParse(credentials);
         if (!validatedFields.success) {
-          return;
+          throw new Error("Invalid credentials");
         }
         const { email, password, rememberMe } = validatedFields.data;
-        const response = await nextlogin({ email, password, rememberMe });
+        try {
+          const response = await loginAuth({ email, password, rememberMe });
 
-        if (!response) {
-          return;
+          if (!response) {
+            throw new Error("User authentication failed");
+          }
+
+          return {
+            ...response,
+          } as CustomJWT;
+        } catch {
+          throw new Error("Something went wrong");
         }
-        const user = {
-          ...response.user,
-          access_token: response.access_token,
-        };
-
-        return user;
       },
     }),
   ],
   callbacks: {
     async signIn({ account, profile, user }) {
-      if (account && account.provider === "google" && profile?.email) {
+      if (account?.provider === "google" && profile?.email) {
         return profile.email.endsWith("@gmail.com");
       }
 
-      return user ? true : false;
+      return !!user;
     },
     async jwt({ token, user, account }) {
-      if (account && account.provider !== "google") {
-        return { ...token, ...user };
+      if (account?.provider === "google" && account?.id_token) {
+        try {
+          const response: ApiResponse = (await googleAuth(
+            account.id_token ?? "",
+          )) as ApiResponse;
+
+          if (!response) {
+            throw new Error("User authentication failed");
+          }
+
+          return {
+            ...token,
+            ...response,
+          } as CustomJWT;
+        } catch {
+          throw new Error("Something went wrong");
+        }
       }
-      const response: ApiResponse = (await googleAuth(
-        account as Profile,
-      )) as ApiResponse;
 
-      user = response?.data?.user ?? response.user;
-
-      return { ...token, ...user };
+      return { ...token, ...user } as CustomJWT;
     },
     async session({
       session,
@@ -103,28 +82,29 @@ export default {
       session: Session;
       token: JWT;
     }): Promise<CustomSession> {
+      const customToken = token as CustomJWT;
+      const authToken = cookies().get("access_token")?.value;
+
       session.user = {
-        id: token.id as string,
-        name: token.name as string,
-        first_name: token.first_name as string,
-        last_name: token.last_name as string,
-        email: token.email as string,
-        image: token.avatar_url as string,
-        role: token.role as string,
-        access_token: token.access_token as string,
+        id: customToken.id,
+        first_name:
+          customToken.first_name ||
+          customToken.name?.split(" ")[0] ||
+          customToken.fullname?.split(" ")[0] ||
+          "",
+        last_name:
+          customToken.last_name ||
+          customToken.name?.split(" ").slice(1).join(" ") ||
+          customToken.fullname?.split(" ").slice(1).join(" ") ||
+          "",
+        email: customToken.email,
+        image: customToken.picture || customToken.avatar_url || "",
+        role: customToken.role,
       };
+      session.access_token = authToken;
 
       return session as CustomSession;
     },
-    // async redirect({ url, baseUrl }) {
-    //   if (url === "/login") {
-    //     return baseUrl;
-    //   }
-    //   if (url === `${baseUrl}/api/auth/signout`) {
-    //     return baseUrl;
-    //   }
-    //   return "/dashboard";
-    // },
   },
   pages: {
     signIn: "/login",

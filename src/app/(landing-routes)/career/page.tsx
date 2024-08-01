@@ -53,15 +53,15 @@ export default function Career() {
   }, [location]);
 
   return (
-    <div className="mx-auto max-w-7xl px-5 py-20 md:px-10 lg:px-10 xl:px-10">
+    <div className="mx-auto max-w-7xl bg-white px-5 py-10 sm:bg-transparent md:px-10 lg:px-10 xl:px-10">
       <div className="mb-10 text-center md:mx-auto md:mb-12">
-        <p className="mb-6 inline-block rounded-md bg-gray-200 px-2 py-1 text-sm text-black md:text-lg">
+        <p className="mb-4 inline-block rounded-md bg-[#F1F1F1] p-2.5 text-xl font-medium text-neutral-600">
           Career
         </p>
 
-        <h2 className="font-inter mb-6 text-center text-4xl font-bold leading-none tracking-tight text-gray-900 sm:text-[3.2rem]">
+        <h1 className="text-neutral-colors-dark-2 font-inter mb-6 text-center text-4xl font-extrabold text-neutral-950 md:text-5xl lg:text-6xl">
           Available <span className="text-orange-500">Jobs</span> in Our company
-        </h2>
+        </h1>
         <p className="text-1xl md-text-xl text-base text-gray-700">
           Explore job opportunities across various fields that fit your skills
           and career aspirations.

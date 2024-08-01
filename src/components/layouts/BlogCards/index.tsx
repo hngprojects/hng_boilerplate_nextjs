@@ -1,6 +1,7 @@
 import Image, { StaticImageData } from "next/image";
 
-import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import BlogLabel from "~/app/(landing-routes)/blog/_component/label";
+import { Card, CardHeader, CardTitle } from "~/components/ui/card";
 
 interface BlogCardProperties {
   title: string;
@@ -18,36 +19,34 @@ const BlogCard: React.FC<BlogCardProperties> = ({
   readTime,
   category,
   image,
-  labelClassName,
   onClick,
 }) => {
   return (
-    <Card onClick={onClick}>
-      <div className="relative hover:cursor-pointer">
+    <Card
+      onClick={onClick}
+      className="w-full max-w-[400px] cursor-pointer rounded-none shadow-none"
+    >
+      <div className="relative h-[260px] w-full hover:cursor-pointer md:h-40">
         <Image
           src={image}
           height={288}
           width={620}
-          className="rounded-t-lg object-cover"
+          className="h-full w-full object-cover"
           alt={title}
         />
-        <span
-          className={`absolute left-4 top-4 flex items-center justify-center rounded-full px-2 py-1.5 text-xs font-semibold capitalize tracking-wide text-white ${labelClassName}`}
-        >
-          {category}
-        </span>
       </div>
-      <CardHeader>
-        <CardTitle>
-          <div className="text-lg">{title}</div>
+      <CardHeader className="px-4 py-4">
+        <div className="mb-2 flex items-center justify-start">
+          <BlogLabel label={category} />
+        </div>
+        <CardTitle className="pb-2">
+          <div className="line-clamp-2 text-lg">{title}</div>
         </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="flex items-center justify-between text-sm text-[#0A0A0A] text-muted-foreground">
+        <div className="flex items-center justify-between text-xs text-neutral-dark-1">
           <span>{date}</span>
           <span>{readTime} mins read</span>
         </div>
-      </CardContent>
+      </CardHeader>
     </Card>
   );
 };
