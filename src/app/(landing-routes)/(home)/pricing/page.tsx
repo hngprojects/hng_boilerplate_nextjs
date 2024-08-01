@@ -36,7 +36,7 @@ export default function Pricing() {
     const fetchPlans = async () => {
       try {
         const apiUrl = await getApiUrl();
-        const response = await axios.get(`${apiUrl}/billing-plans`);
+        const response = await axios.get(`${apiUrl}/api/v1/billing-plans`);
         setPlans(response.data.data);
       } catch {
         setError("Failed to fetch billing plans");
