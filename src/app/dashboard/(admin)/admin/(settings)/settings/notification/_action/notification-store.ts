@@ -8,9 +8,11 @@ import {
 
 interface NotificationStore {
   settings: notificationSettingsProperties;
+  initializeSettings: () => Promise<void>;
   updateSettings: (
     newSettings: Partial<notificationSettingsProperties>,
   ) => void;
+  saveSettings: () => Promise<void>;
 }
 
 export const useNotificationStore = create<NotificationStore>((set) => ({
