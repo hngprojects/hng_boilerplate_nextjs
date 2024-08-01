@@ -1,4 +1,4 @@
-import AdminPage from "~/app/dashboard/(admin)/admin/client";
+import AdminPage from "~/app/dashboard/(admin)/admin/(overview)/client";
 
 export const metadata = {
   title: "Dashboard",
