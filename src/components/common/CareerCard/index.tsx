@@ -6,11 +6,17 @@ import { Job } from "./Jobs";
 interface CareerCardParentProperties {
   isLoading: boolean;
   job: Job;
+  location?: string;
+  description?: string;
+  amount?: string;
+  company?: string;
+  onViewDetails: () => void;
 }
 
 const CareerCardParent: FC<CareerCardParentProperties> = ({
   isLoading,
   job,
+  onViewDetails,
 }) => {
   return (
     <CareerCard
@@ -20,6 +26,7 @@ const CareerCardParent: FC<CareerCardParentProperties> = ({
       description={job.description}
       amount={job.salary_range}
       company={job.company_name}
+      onViewDetails={onViewDetails}
     />
   );
 };

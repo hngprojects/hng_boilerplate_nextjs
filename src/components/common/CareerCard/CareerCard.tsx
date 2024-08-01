@@ -13,6 +13,7 @@ interface CareerCardProperties {
   description?: string;
   amount?: string;
   company?: string;
+  onViewDetails: () => void;
 }
 
 const CareerCard: FC<CareerCardProperties> = ({
@@ -22,9 +23,10 @@ const CareerCard: FC<CareerCardProperties> = ({
   description,
   amount,
   company,
+  onViewDetails,
 }) => {
   return (
-    <Card className="max-w-full bg-inherit text-foreground">
+    <Card className="max-w-full bg-background text-foreground">
       <CardContent className="pt-6">
         {isLoading ? (
           <div className="flex w-full max-w-6xl flex-col space-y-3">
@@ -61,6 +63,7 @@ const CareerCard: FC<CareerCardProperties> = ({
             </span>
             <Link
               href={`/career/${jobTitle}`}
+              onClick={onViewDetails}
               className="rounded bg-primary px-4 py-2 text-[14px] text-background"
             >
               View Details
