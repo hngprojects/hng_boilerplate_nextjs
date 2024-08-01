@@ -105,11 +105,16 @@ export default {
     }): Promise<CustomSession> {
       session.user = {
         id: token.id as string,
-        name: token.name as string,
-        first_name: token.first_name as string,
-        last_name: token.last_name as string,
+        first_name:
+          (token.first_name as string) ||
+          ((token.name ? token.name.split(" ")[0] : "") as string),
+        last_name:
+          (token.last_name as string) ||
+          ((token.name
+            ? token.name.split(" ").slice(1).join(" ")
+            : "") as string),
         email: token.email as string,
-        image: token.avatar_url as string,
+        image: token.picture || (token.avatar_url as string),
         role: token.role as string,
         access_token: token.access_token as string,
       };

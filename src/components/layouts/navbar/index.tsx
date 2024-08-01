@@ -13,7 +13,7 @@ import MobileNav from "./mobile-navbar";
 
 const Navbar = () => {
   const [scrolling, setIsScrolling] = useState<boolean>(false);
-  const { data: session, status } = useSession();
+  const { status } = useSession();
 
   const version = "v1.0";
   useVersionSync(version);
@@ -75,7 +75,7 @@ const Navbar = () => {
             </Link>
           </div>
         )}
-        <UserCard status={status} session={session} />
+        {status === "authenticated" && <UserCard />}
       </div>
     </nav>
   );
