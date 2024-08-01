@@ -25,7 +25,7 @@ import { useToast } from "~/components/ui/use-toast";
 import { cn } from "~/lib/utils";
 import { LoginSchema } from "~/schemas";
 import { getApiUrl } from "~/utils/getApiUrl";
-import { loginUser } from "~/utils/login";
+import { loginAuth } from "~/utils/loginAuth";
 
 const Login = () => {
   const router = useRouter();
@@ -66,7 +66,7 @@ const Login = () => {
 
   const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
     startTransition(async () => {
-      await loginUser(values).then(async (data) => {
+      await loginAuth(values).then(async (data) => {
         const { email, password } = values;
 
         if (data.status === 200) {
