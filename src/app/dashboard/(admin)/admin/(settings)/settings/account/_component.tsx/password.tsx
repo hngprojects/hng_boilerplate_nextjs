@@ -100,14 +100,15 @@ const Password = () => {
 
           {newPassword && (
             <div className="mb-4 text-sm">
-              <p className={isLengthValid ? "text-green-500" : "text-red-500"}>
-                {isLengthValid ? "✔" : "✘"} At least 8 characters long
-              </p>
+              <p>Weak password. Must contain;</p>
               <p className={hasUppercase ? "text-green-500" : "text-red-500"}>
-                {hasUppercase ? "✔" : "✘"} Contains at least 1 uppercase letter
+                {hasUppercase ? "✔" : "✘"} At least 1 uppercase
               </p>
               <p className={hasNumber ? "text-green-500" : "text-red-500"}>
-                {hasNumber ? "✔" : "✘"} Contains at least 1 number
+                {hasNumber ? "✔" : "✘"} At least 1 number
+              </p>
+              <p className={isLengthValid ? "text-green-500" : "text-red-500"}>
+                {isLengthValid ? "✔" : "✘"} At least 8 characters
               </p>
             </div>
           )}
