@@ -9,4 +9,7 @@ interface Session extends DefaultSession {
   };
 }
 
-export const getSession: () => Promise<Session | null> = getAuthSession;
+export const getSession: () => Promise<Session | null> = async () => {
+  const session = await getAuthSession();
+  return session as Session | null;
+};
