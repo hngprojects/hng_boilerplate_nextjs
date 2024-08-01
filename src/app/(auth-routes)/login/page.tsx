@@ -36,7 +36,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   if (status === "authenticated") {
-    // router.push("/dashboard");
+    router.push("/dashboard");
   }
   useEffect(() => {
     const fetchApiUrl = async () => {
