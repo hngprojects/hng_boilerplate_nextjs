@@ -1,9 +1,13 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next-nprogress-bar";
 import Link from "next/link";
+import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 
 import { Button } from "~/components/ui/button";
 import {
@@ -22,46 +26,72 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select";
-
-const formSchema = z.object({
-  fullname: z.string().min(2, {
-    message: "Fullname must be at least 2 characters.",
-  }),
-  email: z.string().email({
-    message: "Email must be a valid email address.",
-  }),
-  password: z.string().min(2, {
-    message: "Password must be at least 2 characters.",
-  }),
-  companyName: z.string().min(2, {
-    message: "Company name must be at least 2 characters.",
-  }),
-  companyEmail: z.string().email({
-    message: "Company email must be a valid email address.",
-  }),
-  industry: z.string().min(1, {
-    message: "Please select an industry.",
-  }),
-  organizationType: z.string().min(1, {
-    message: "Please select an organization type.",
-  }),
-  country: z.string().min(1, {
-    message: "Please select a country.",
-  }),
-  state: z.string().min(1, {
-    message: "Please select a state.",
-  }),
-  address: z.string().min(1, {
-    message: "Please enter company address.",
-  }),
-});
-
-type FormData = z.infer<typeof formSchema>;
+import { useToast } from "~/components/ui/use-toast";
+import { organizationSchema } from "~/schemas";
+import { createOrg } from "~/utils/createOrg";
+import { getApiUrl } from "~/utils/getApiUrl";
 
 function Organisation() {
-  const form = useForm<FormData>({
-    resolver: zodResolver(formSchema),
+
+  const router = useRouter();
+  const { toast } = useToast();
+  const { status } = useSession();
+  const [apiUrl, setApiUrl] = useState("");
+  const [isLoading, startTransition] = useTransition();
+
+  if (status === "authenticated") {
+    router.push("/dashboard");
+  }
+
+  useEffect(() => {
+    const fetchApiUrl = async () => {
+      try {
+        const url = await getApiUrl();
+        setApiUrl(url);
+      } catch {
+        toast({
+          title: "Error",
+          description: "Failed to fetch API URL",
+          variant: "destructive",
+        });
+      }
+    };
+
+    fetchApiUrl();
+  }, [toast]);
+
+  const form = useForm<z.infer<typeof organizationSchema>>({
+    resolver: zodResolver(organizationSchema),
+    defaultValues: {
+      name: "",
+      description: "Company Description",
+      email: "",
+      industry: "",
+      type: "",
+      country: "",
+      state: "",
+      address: ""
+    },
   });
+
+  const onSubmit = async (values: z.infer<typeof organizationSchema>) => {
+    const token = sessionStorage.getItem('temp_token')
+    startTransition(async () => {
+      await createOrg(values, token).then(async (data) => {
+        if (data.status === 201) {
+          router.push("/dashboard");
+        }
+
+        toast({
+          title:
+            data.status === 201
+              ? "Organization created successfully"
+              : "an error occurred",
+          description: data.status === 201 ? "Continue to dashboard" : data.error,
+        });
+      });
+    });
+  };
 
   return (
     <>
@@ -77,10 +107,10 @@ function Organisation() {
 
         <div className="mx-auto md:w-2/4">
           <Form {...form}>
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
               <FormField
                 control={form.control}
-                name="companyName"
+                name="name"
                 render={({ field }) => (
                   <FormItem className="flex flex-col gap-2">
                     <div>
@@ -98,7 +128,7 @@ function Organisation() {
               />
               <FormField
                 control={form.control}
-                name="companyEmail"
+                name="email"
                 render={({ field }) => (
                   <FormItem className="flex flex-col gap-2">
                     <div>
@@ -144,7 +174,7 @@ function Organisation() {
                 />
                 <FormField
                   control={form.control}
-                  name="organizationType"
+                  name="type"
                   render={({ field }) => (
                     <FormItem className="flex w-full flex-col gap-2">
                       <div className="w-full">
@@ -240,7 +270,14 @@ function Organisation() {
                 )}
               />
               <Button type="submit" className="w-full">
-                Create Account
+              {isLoading ? (
+                <span className="flex items-center gap-x-2">
+                  <span className="animate-pulse">Creating Organization...</span>{" "}
+                  <LoadingSpinner className="size-4 animate-spin sm:size-5" />
+                </span>
+              ) : (
+                <span>Create Organization</span>
+              )}
               </Button>
               <div className="flex justify-center gap-2">
                 <p className="text-sm">Already Have An Account?</p>
