@@ -1,24 +1,54 @@
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 
 interface BlogCardProperties {
   index?: number;
   title: string;
-  date: string;
-  readTime: string;
+  published_date: string;
   category: string;
+  content: string;
   type?: "featured";
-  image: StaticImageData;
-  labelClassName?: string;
+  image: string;
   onClick?: () => void;
+}
+
+function getReadingTime(content: string): string {
+  const wordsPerMinute = 200; // Average reading speed
+  const words = content.trim().split(/\s+/).length;
+  const readingTimeInMinutes = Math.ceil(words / wordsPerMinute);
+  return `${readingTimeInMinutes} mins`;
+}
+
+function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const day = date.getUTCDate();
+  const month = monthNames[date.getUTCMonth()];
+  const year = date.getUTCFullYear();
+
+  return `${month} ${day}, ${year}`;
 }
 
 const BlogCard: React.FC<BlogCardProperties> = ({
   index,
   title,
-  date,
-  readTime,
+  published_date,
+  content,
   category,
-  image,
   type,
   onClick,
 }) => {
@@ -28,7 +58,12 @@ const BlogCard: React.FC<BlogCardProperties> = ({
       className={`${index === 0 && type === "featured" ? "bg-white" : "bg-background"} flex flex-col text-neutral-dark-1 ${index === 0 && type === "featured" ? "h-[576px]" : "h-[280px]"}`}
     >
       <div className="relative shrink-0 grow hover:cursor-pointer">
-        <Image src={image} fill className={`w-full object-cover`} alt={title} />
+        <Image
+          src="/images/blogPage/blog.jpg"
+          fill
+          className={`w-full object-cover`}
+          alt={title}
+        />
       </div>
       <div
         className={`${index === 0 && type === "featured" ? "px-0 pb-4 pt-8" : "px-4 py-2"}`}
@@ -57,10 +92,12 @@ const BlogCard: React.FC<BlogCardProperties> = ({
           <div
             className={`flex items-center justify-between text-sm text-[#0A0A0A] text-muted-foreground`}
           >
-            {(index !== 0 || !type) && <span>{readTime} mins read</span>}
+            {(index !== 0 || !type) && (
+              <span>{getReadingTime(content)} read</span>
+            )}
             <span className="flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-subtle-hover"></span>
-              <span>{date}</span>
+              <span>{formatDate(published_date)}</span>
             </span>
             {index === 0 && type === "featured" && (
               <span className="cursor-pointer">Full story</span>
