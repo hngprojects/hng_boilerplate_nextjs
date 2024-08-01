@@ -2,6 +2,7 @@ import { NextAuthConfig, Session } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
+import { cookies } from "next/headers";
 
 import { LoginSchema } from "~/schemas";
 import { CustomSession } from "~/types";
@@ -22,6 +23,7 @@ interface Profile {
 }
 
 interface User {
+  access_token: string;
   id: string;
   email: string;
   fullname: string;
@@ -34,12 +36,13 @@ interface Data {
   access_token: string;
   user: User;
 }
-
 interface ApiResponse {
   status: string;
   status_code: number;
   message: string;
+  user: User;
   data: Data;
+  access_token: string;
 }
 
 export default {
@@ -64,10 +67,13 @@ export default {
         const { email, password, rememberMe } = validatedFields.data;
         const response = await nextlogin({ email, password, rememberMe });
 
-        if (!response.data) {
+        if (!response) {
           return;
         }
-        const user = response.data;
+        const user = {
+          ...response.user,
+          access_token: response.access_token,
+        };
 
         return user;
       },
@@ -89,7 +95,7 @@ export default {
         account as Profile,
       )) as ApiResponse;
 
-      user = response?.data?.user;
+      user = response?.data?.user ?? response.user;
 
       return { ...token, ...user };
     },
@@ -100,27 +106,26 @@ export default {
       session: Session;
       token: JWT;
     }): Promise<CustomSession> {
+      const authToken = cookies()?.get("access_token")?.value;
       session.user = {
         id: token.id as string,
-        name: token.name as string,
-        first_name: token.first_name as string,
-        last_name: token.last_name as string,
+        first_name:
+          (token.first_name as string) ||
+          ((token.name ? token.name.split(" ")[0] : "") as string),
+        last_name:
+          (token.last_name as string) ||
+          ((token.name
+            ? token.name.split(" ").slice(1).join(" ")
+            : "") as string),
         email: token.email as string,
-        image: token.avatar_url as string,
+        image: token.picture || (token.avatar_url as string),
         role: token.role as string,
-        accessToken: token.access_token as string,
+        access_token: (token.access_token as string) || (authToken as string),
       };
 
+      session.access_token =
+        (token.access_token as string) || (authToken as string);
       return session as CustomSession;
-    },
-    async redirect({ url, baseUrl }) {
-      if (url === "/login") {
-        return baseUrl;
-      }
-      if (url === `${baseUrl}/api/auth/signout`) {
-        return baseUrl;
-      }
-      return "/dashboard";
     },
   },
   pages: {

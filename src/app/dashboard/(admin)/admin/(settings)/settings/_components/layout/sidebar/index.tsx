@@ -19,37 +19,37 @@ import { FC, ForwardRefExoticComponent, RefAttributes } from "react";
 const sideItems = [
   {
     route: "General",
-    link: "/dashboard/settings",
+    link: "/dashboard/admin/settings",
     icon: User,
     id: "general",
   },
   {
     route: "Account",
-    link: "/dashboard/settings/account",
+    link: "/dashboard/admin/settings/account",
     icon: UserRoundCog,
     id: "account",
   },
   {
     route: "Notification",
-    link: "/dashboard/settings/notification",
+    link: "/dashboard/admin/settings/notification",
     icon: Bell,
     id: "notification",
   },
   {
     route: "Payment Information",
-    link: "/dashboard/settings/payment-information",
+    link: "/dashboard/admin/settings/payment-information",
     icon: Banknote,
     id: "payment-information",
   },
   {
     route: "Data and Privacy",
-    link: "/dashboard/settings/data-and-privacy",
+    link: "/dashboard/admin/settings/data-and-privacy",
     icon: Database,
     id: "data-and-privacy",
   },
   {
     route: "Language and Region",
-    link: "/dashboard/settings/language-and-region",
+    link: "/dashboard/admin/settings/language-and-region",
     icon: Globe,
     id: "language-and-region",
   },
@@ -58,19 +58,19 @@ const sideItems = [
 const organizationLinks = [
   {
     route: "Members",
-    link: "/dashboard/settings/organization/members",
+    link: "/dashboard/admin/settings/organization/members",
     icon: UsersIcon,
     id: "members",
   },
   {
     route: "Roles and permissions",
-    link: "/dashboard/settings/organization/roles-and-permissions",
+    link: "/dashboard/admin/settings/organization/roles-and-permissions",
     icon: Bell,
     id: "roles-and-permissions",
   },
   {
     route: "Integrations",
-    link: "/dashboard/settings/organization/integrations",
+    link: "/dashboard/admin/settings/organization/integrations",
     icon: Banknote,
     id: "integrations",
   },
