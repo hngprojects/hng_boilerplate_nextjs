@@ -74,7 +74,7 @@ const ContactForm: React.FC = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        "https://deployment.api-php.boilerplate.hng.tech/api/v1/contact",
+        "https://deployment.api-php.boilerplate.hng.tech/api/v1/inquiries",
         {
           method: "POST",
           headers: {
