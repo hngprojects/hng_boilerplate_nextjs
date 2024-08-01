@@ -68,7 +68,7 @@ const Register = () => {
     startTransition(async () => {
       await registerUser(values).then(async (data) => {
         if (data.status === 201) {
-          router.push("/login");
+          router.push("/register/organisation");
         }
 
         toast({
@@ -97,7 +97,9 @@ const Register = () => {
           <CustomButton
             variant="outline"
             isLeftIconVisible={true}
-            onClick={() => signIn("google", { callbackUrl: "/register/organisation" })}
+            onClick={() =>
+              signIn("google", { callbackUrl: "/register/organisation" })
+            }
             icon={
               <svg
                 width="25"
@@ -157,7 +159,6 @@ const Register = () => {
             Continue with Facebook
           </CustomButton>
         </div>
-
         <div className="flex items-center justify-center">
           <hr className="w-full border-t border-gray-300" />
           <span className="font-inter text-neutralColor-dark-1 px-3 text-xs font-normal leading-tight">
@@ -165,7 +166,6 @@ const Register = () => {
           </span>
           <hr className="w-full border-t border-gray-300" />
         </div>
-
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField

@@ -1,7 +1,7 @@
 "use client";
 
-import AuthProvider from "~/contexts/authContext";
 import Providers from "~/components/providers";
+import AuthProvider from "~/contexts/authContext";
 
 export default function RootLayout({
   children,
