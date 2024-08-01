@@ -14,8 +14,8 @@ import {
 } from "~/components/ui/card";
 import { Switch } from "~/components/ui/switch";
 import { cn } from "~/lib/utils";
-import { useNotificationStore } from "../../(super_admin)/(main)/admin/(settings)/settings/notification/action/notification-store";
-import { notificationSettingsProperties } from "../../(super_admin)/(main)/admin/(settings)/settings/notification/types/notification-settings.types";
+import { useNotificationStore } from "../../admin/(settings)/settings/notification/action/notification-store";
+import { notificationSettingsProperties } from "../../admin/(settings)/settings/notification/types/notification-settings.types";
 
 interface NotificationPreview {
   header: string;
