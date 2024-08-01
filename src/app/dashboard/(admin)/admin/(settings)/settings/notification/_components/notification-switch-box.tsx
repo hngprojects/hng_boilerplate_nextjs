@@ -7,7 +7,7 @@ interface IProperties {
   name: keyof notificationSettingsProperties;
   isChecked: boolean;
   onToggle: (name: keyof notificationSettingsProperties) => void;
-  className?: string; // Add className as an optional property
+  className?: string;
 }
 
 export const NotificationSwitchBox = ({

@@ -1,5 +1,6 @@
 "use client";
 
+import Providers from "~/components/providers";
 import AuthProvider from "~/contexts/authContext";
 
 export default function RootLayout({
@@ -7,5 +8,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <AuthProvider>{children}</AuthProvider>;
+  return (
+    <AuthProvider>
+      <Providers />
+      {children}
+    </AuthProvider>
+  );
 }

@@ -1,4 +1,4 @@
-import Client from "./client";
+import AdminPage from "~/app/dashboard/(admin)/admin/(overview)/client";
 
 export const metadata = {
   title: "Dashboard",
@@ -6,8 +6,8 @@ export const metadata = {
     "Super Admin Dashboard using ShadCN UI components, adhering to design specifications and best practices for accessibility.",
 };
 
-const AdminDashboardPage = () => {
-  return <Client />;
+const Admin = () => {
+  return <AdminPage />;
 };
 
-export default AdminDashboardPage;
+export default Admin;
