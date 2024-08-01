@@ -63,7 +63,10 @@ const CareerCard: FC<CareerCardProperties> = ({
             </span>
             <Link
               href={`/career/${jobTitle}`}
-              onClick={onViewDetails}
+              onClick={(event) => {
+                event.preventDefault();
+                onViewDetails();
+              }}
               className="rounded bg-primary px-4 py-2 text-[14px] text-background"
             >
               View Details

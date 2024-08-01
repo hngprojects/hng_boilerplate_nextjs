@@ -1,6 +1,7 @@
 "use client";
 
 import { Plus } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { Breadcrumb } from "~/components/common/breadcrumb";
@@ -8,6 +9,11 @@ import CustomButton from "~/components/common/common-button/common-button";
 
 const JobDetails = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const searchParameters = useSearchParams();
+
+  const title: string | null = searchParameters.get("title");
+  const description: string | null = searchParameters.get("description");
+  const amount: string | null = searchParameters.get("amount");
 
   useEffect(() => {
     const handleResize = () => {
@@ -45,7 +51,7 @@ const JobDetails = () => {
         <div className="col-span-1 mb-6 sm:col-span-2 md:mr-16 xl:mr-40">
           <div className="flex flex-col justify-start">
             <h1 className="mb-3 text-3xl font-bold text-neutral-dark-2 md:text-[38px]">
-              Product Designer
+              {title}
             </h1>
             <div className="flex flex-col gap-8">
               <div className="flex flex-col gap-2">
@@ -53,14 +59,10 @@ const JobDetails = () => {
                   Job Description
                 </h3>
                 <p className="text-[16px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
-                  We are looking for a talented and passionate Product Designer
-                  to join our dynamic team. As a Product Designer at the
-                  Company, you will play a critical role in shaping the user
-                  experience and visual design of our products. You will
-                  collaborate closely with cross-functional teams, including
-                  product managers, engineers, and marketers, to create
-                  intuitive and aesthetically pleasing designs that meet user
-                  needs and business goals.
+                  {description}You will collaborate closely with
+                  cross-functional teams, including product managers, engineers,
+                  and marketers, to create intuitive and aesthetically pleasing
+                  designs that meet user needs and business goals.
                 </p>
               </div>
               <div className="flex flex-col gap-2">
@@ -169,7 +171,7 @@ const JobDetails = () => {
               <p className="text-[14px] text-neutral-dark-1 md:text-neutral-dark-2">
                 <b>Salary</b>
               </p>
-              <p className="text-[14px] md:text-neutral-dark-2">$500k-$900k</p>
+              <p className="text-[14px] md:text-neutral-dark-2">{amount}</p>
             </div>
           </div>
 
