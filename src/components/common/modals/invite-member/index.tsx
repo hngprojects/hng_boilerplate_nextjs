@@ -1,25 +1,15 @@
 "use client";
 
-import { useState } from 'react';
-import axios from 'axios';
+import axios from "axios";
 import { Link2Icon } from "lucide-react";
+import { useState } from "react";
+
+
 
 import CustomButton from "~/components/common/common-button/common-button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "~/components/ui/dialog";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "~/components/ui/select";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "~/components/ui/dialog";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
+
 
 interface ModalProperties {
   show: boolean;
@@ -29,9 +19,12 @@ interface ModalProperties {
 const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
   const [emails, setEmails] = useState("");
   const [organization, setOrganization] = useState("");
+  const [inviteLink, setInviteLink] = useState("");
+  const [linkGenerated, setLinkGenerated] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmails(e.target.value);
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmails(event.target.value);
   };
 
   const handleOrganizationChange = (value: string) => {
@@ -41,16 +34,29 @@ const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
   const handleSubmit = async () => {
     try {
       const response = await axios.post("/api/v1/invite/create", {
-        emails: emails.split(",").map(email => email.trim()),
+        emails: emails.split(",").map((email) => email.trim()),
         organization,
       });
       if (response.status === 200) {
         alert("Invites sent successfully!");
         onClose();
       }
-    } catch (error) {
-      console.error("Error sending invites:", error);
-      alert("Failed to send invites.");
+    } catch {
+      setError("Failed to send invites.");
+    }
+  };
+
+  const handleInviteWithLink = async () => {
+    try {
+      const response = await axios.post("/api/v1/invite/create");
+      if (response.status === 200) {
+        setInviteLink(response.data.invite_link);
+        setLinkGenerated(true);
+        navigator.clipboard.writeText(response.data.invite_link);
+        alert("Invite link copied to clipboard!");
+      }
+    } catch {
+      setError("Failed to generate invite link.");
     }
   };
 
@@ -101,15 +107,25 @@ const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
                   <Link2Icon className="pointer-events-none absolute ml-3" />
                   <CustomButton
                     variant="subtle"
-                    onClick={onClose}
+                    onClick={handleInviteWithLink}
                     className="pl-10"
                   >
                     Invite with link
                   </CustomButton>
                 </span>
 
-                <CustomButton variant="primary" onClick={handleSubmit}>Send Invites</CustomButton>
+                <CustomButton variant="primary" onClick={handleSubmit}>
+                  Send Invites
+                </CustomButton>
               </div>
+              {linkGenerated && (
+                <div className="mt-4 text-sm text-green-500">
+                  Invite link: {inviteLink}
+                </div>
+              )}
+              {error && (
+                <div className="mt-4 text-sm text-red-500">{error}</div>
+              )}
             </DialogDescription>
           </DialogHeader>
         </DialogContent>
