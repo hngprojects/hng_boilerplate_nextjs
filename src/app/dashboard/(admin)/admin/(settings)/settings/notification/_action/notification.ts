@@ -41,7 +41,6 @@ export const updateUserNotificationSettings = async (settings: object) => {
     return error;
   }
 };
-
 export const RetrieveUserNotificationAll = async () => {
   try {
     await axios.get("/notifications");
