@@ -24,7 +24,7 @@ import { useToast } from "~/components/ui/use-toast";
 import { cn } from "~/lib/utils";
 import { RegisterSchema } from "~/schemas";
 import { getApiUrl } from "~/utils/getApiUrl";
-import { registerUser } from "~/utils/register";
+import { registerAuth } from "~/utils/registerAuth";
 
 const Register = () => {
   const router = useRouter();
@@ -66,8 +66,8 @@ const Register = () => {
 
   const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
     startTransition(async () => {
-      await registerUser(values).then(async (data) => {
-        if (data.status === 201) {
+      await registerAuth(values).then(async (data) => {
+        if (data) {
           sessionStorage.setItem("temp_token", data.access_token);
           router.push("/register/organisation");
         }
@@ -75,10 +75,11 @@ const Register = () => {
         toast({
           title:
             data.status === 201
-              ? "Accounted created successfully"
+              ? "Account created successfully"
               : "an error occurred",
-          description: data.status === 201 ? "Continue to login" : data.error,
+          description: data.status === 201 ? "Redirecting" : data.error,
         });
+        router.push("/register/organisation");
       });
     });
   };

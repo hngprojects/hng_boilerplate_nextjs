@@ -1,5 +1,4 @@
 import { EllipsisVertical } from "lucide-react";
-import Image from "next/image";
 import { useState } from "react";
 
 import { Button } from "~/components/ui/button";
@@ -10,10 +9,10 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
-import { userData } from "../data/user-dummy-data";
+import { UserData } from "../page";
 import DeleteDialog from "./dialogue/delete-dialog";
 
-const UserTableBody = () => {
+const UserTableBody = ({ data }: { data: UserData[] }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const handleOpenDialog = () => setIsDialogOpen(true);
   const handleCloseDialog = () => setIsDialogOpen(false);
@@ -21,8 +20,14 @@ const UserTableBody = () => {
   return (
     <>
       <tbody className="user-table z-10">
-        {userData.map((data, index) => {
-          const { avatar, date, email, fullName, phone, status } = data;
+        {data.map((_data, index) => {
+          const {
+            email,
+            phone,
+            is_active: status,
+            name: fullName,
+            created_at: date,
+          } = _data;
 
           return (
             <tr key={index} className="w-full border-b border-b-border">
@@ -31,13 +36,18 @@ const UserTableBody = () => {
               >
                 <div className="flex flex-row items-center gap-2">
                   <div className="h-10 w-10 overflow-hidden rounded-full bg-gray-200">
-                    <Image
-                      src={avatar}
+                    {/* <Image
+                      src="/images/latest-articles/avatar.png"
                       className="object-cover"
                       height={40}
                       width={40}
                       alt={fullName}
-                    />
+                    /> */}
+                    <div className="grid h-[40px] w-[40px] place-items-center rounded-full bg-[#e1e7ef]">
+                      <h6 className="font-semibold text-neutral-dark-1">
+                        {fullName[0]}
+                      </h6>
+                    </div>
                   </div>
                   <div>
                     <h3 className="text-sm font-[500] leading-6 text-neutral-dark-2">
@@ -53,27 +63,27 @@ const UserTableBody = () => {
               <td
                 className={`gap-2 whitespace-nowrap p-4 text-left text-sm font-normal capitalize leading-4 text-neutral-dark-2`}
               >
-                {phone}
+                {phone ?? "Nil"}
               </td>
 
               <td
                 className={`whitespace-nowrap p-4 text-left text-sm font-normal capitalize leading-4 text-neutral-dark-2`}
               >
-                {date}
+                {formatMongoDate(date)}
               </td>
 
               <td
                 className={`whitespace-nowrap p-4 text-left text-sm font-normal capitalize leading-4 text-neutral-dark-2`}
               >
                 <div className="flex items-center gap-1">
-                  {status.active && (
+                  {status && (
                     <>
                       <div className="h-3 w-3 rounded-full bg-success"></div>
                       <div className="text-sm">Active</div>
                     </>
                   )}
 
-                  {!status.active && (
+                  {!status && (
                     <>
                       <div className="h-3 w-3 rounded-full bg-error"></div>
                       <div className="text-sm">Inactive</div>
@@ -111,5 +121,20 @@ const UserTableBody = () => {
     </>
   );
 };
+
+function formatMongoDate(mongoDateString: string): string {
+  // Parse the date string into a JavaScript Date object
+  const date = new Date(mongoDateString);
+
+  // Extract the day, month, and year
+  const day = date.getUTCDate();
+  const month = date.getUTCMonth() + 1; // Months are zero-based in JavaScript
+  const year = date.getUTCFullYear();
+
+  // Format the values into DD/MM/YYYY
+  const formattedDate = `${String(day).padStart(2, "0")}/${String(month).padStart(2, "0")}/${year}`;
+
+  return formattedDate;
+}
 
 export default UserTableBody;
