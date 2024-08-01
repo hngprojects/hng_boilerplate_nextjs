@@ -1,6 +1,7 @@
 "use server";
 
 import axios from "axios";
+import { cookies } from "next/headers";
 
 const apiUrl = process.env.API_URL;
 interface Profile {
@@ -22,7 +23,21 @@ const googleAuth = async (profile: Profile) => {
       id_token: profile.id_token,
     });
 
-    return response.data;
+    const access_token =
+      response.data.access_token ?? response.data.data.access_token;
+    const cookie = cookies();
+    cookie.set("access_token", access_token, {
+      maxAge: 60 * 60 * 24 * 1, // 1 day
+      httpOnly: true,
+      path: "/",
+      priority: "high",
+    });
+    return {
+      data: response.data,
+      user: response.data.user,
+      access_token:
+        response.data.access_token ?? response.data.data.access_token,
+    };
   } catch (error) {
     return error;
   }
