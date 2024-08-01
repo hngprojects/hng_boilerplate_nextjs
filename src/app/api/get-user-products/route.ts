@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
     res: response,
     req: request,
   });
-  console.log("ACCESS TOKEN:", access_token);
+
   if (!access_token) {
     return;
   }
@@ -21,11 +21,9 @@ export async function GET(request: NextRequest) {
         },
       },
     );
-    console.log("API response_data:", response_data.data);
 
     return NextResponse.json(response_data.data);
   } catch (error) {
-    console.error("API error:", error);
     return { error };
   }
 }
