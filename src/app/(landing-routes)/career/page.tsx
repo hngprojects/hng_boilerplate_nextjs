@@ -2,11 +2,11 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { getApiUrl } from "~/utils/getApiUrl";
 
 import CareerCardParent from "~/components/common/CareerCard";
 import { Job } from "~/components/common/CareerCard/Jobs";
 import Pagination from "~/components/layouts/pagination/Pagination";
+import { getApiUrl } from "~/utils/getApiUrl";
 import Nojobs from "./Nojobs";
 
 export default function Career() {
@@ -19,22 +19,19 @@ export default function Career() {
   const router = useRouter();
 
   useEffect(() => {
-    getApiUrl().then(url => setBaseUrl(url));
+    getApiUrl().then((url) => setBaseUrl(url));
   }, []);
 
   useEffect(() => {
     const fetchJobs = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch(
-          `${baseUrl}/api/v1/jobs`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
+        const response = await fetch(`${baseUrl}/api/v1/jobs`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
           },
-        );
+        });
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
