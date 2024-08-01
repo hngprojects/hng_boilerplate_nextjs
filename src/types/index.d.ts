@@ -18,13 +18,13 @@ export interface CustomJWT extends JWT {
 }
 export interface CustomSession extends Session {
   user: {
-    id?: string;
-    name?: string;
-    first_name?: string;
-    last_name?: string;
-    email?: string;
-    image?: string;
-    role?: string;
+    id: string;
+    name: string;
+    first_name: string;
+    last_name: string;
+    email: string;
+    image: string;
+    role: string;
   };
   expires: DefaultSession["expires"];
 }
