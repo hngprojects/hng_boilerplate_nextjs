@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { Button } from "~/components/ui/button";
 import {
@@ -35,20 +35,21 @@ const LanguageRegion = () => {
   const [selectedLanguage, setSelectedLanguage] = useState<string>("");
   const [selectedTimezone, setSelectedTimezone] = useState<string>("");
 
+  const toastReference = useRef(toast);
   useEffect(() => {
     const getTimeZones = async () => {
       try {
         const [fetchedTimezones, fetchedLanguages, fetchedRegions] =
           await Promise.all([
-            fetchTimeZones(toast),
-            fetchLanguages(toast),
-            fetchRegions(toast),
+            fetchTimeZones(toastReference.current),
+            fetchLanguages(toastReference.current),
+            fetchRegions(toastReference.current),
           ]);
         setTimezones(fetchedTimezones);
         setLanguages(fetchedLanguages);
         setRegions(fetchedRegions);
       } catch {
-        toast({
+        toastReference.current({
           title: "Error",
           description: "Failed to fetch timezones, languages, and regions.",
           variant: "destructive",
