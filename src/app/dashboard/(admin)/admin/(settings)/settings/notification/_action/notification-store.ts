@@ -1,8 +1,7 @@
 import { create } from "zustand";
 
-import { notificationSettingsProperties } from "../types/notification-settings.types";
+import { notificationSettingsProperties } from "../_types/notification-settings.types";
 
-// Define the Zustand store
 interface NotificationStore {
   settings: notificationSettingsProperties;
   updateSettings: (
