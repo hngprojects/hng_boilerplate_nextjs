@@ -11,6 +11,7 @@ interface CareerCardProperties {
   location?: string;
   description?: string;
   amount?: string;
+  id?: string;
 }
 
 const CareerCard: FC<CareerCardProperties> = ({
@@ -19,6 +20,7 @@ const CareerCard: FC<CareerCardProperties> = ({
   location,
   description,
   amount,
+  id,
 }) => {
   //
 
@@ -58,7 +60,7 @@ const CareerCard: FC<CareerCardProperties> = ({
               <span className="font-normal">/month</span>
             </span>
             <Link
-              href={`/career/${jobTitle}`}
+              href={`/career/${id}`}
               className="rounded bg-primary px-4 py-2 text-[14px] text-background"
             >
               View Details
