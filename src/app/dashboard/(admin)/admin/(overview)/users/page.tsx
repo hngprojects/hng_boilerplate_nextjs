@@ -1,15 +1,8 @@
 "use client";
 
-import {
-  Check,
-  ChevronLeft,
-  ChevronRight,
-  CirclePlus,
-  Filter,
-} from "lucide-react";
-import { useState } from "react";
+import { Check, ChevronLeft, ChevronRight, Filter } from "lucide-react";
+import { useEffect, useState } from "react";
 
-import CustomButton from "~/components/common/common-button/common-button";
 import CardComponent from "~/components/common/DashboardCard/CardComponent";
 import { Button } from "~/components/ui/button";
 import {
@@ -21,23 +14,22 @@ import {
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
 } from "~/components/ui/pagination";
 import UserTable from "./component/userTable";
-import { userCardData } from "./data/user-dummy-data";
+import { UserCardData } from "./data/user-dummy-data";
 
 import "./assets/style.css";
 
-import AddUserModal from "./component/userModal";
+import axios from "axios";
 
 interface FilterDataProperties {
   title: string;
   selected: boolean;
 }
 
-const filterData: FilterDataProperties[] = [
+const filterActions: FilterDataProperties[] = [
   {
     title: "Active",
     selected: false,
@@ -49,24 +41,123 @@ const filterData: FilterDataProperties[] = [
   },
 ];
 
+export interface UserData {
+  id: string;
+  email: string;
+  name: string;
+  role: string;
+  phone?: string | number;
+  is_active: boolean;
+  signup_type: string;
+  created_at: string;
+}
+
 const UserPage = () => {
+  const [page, setPage] = useState(1);
+
+  const [data, setData] = useState<UserData[]>([]);
+
+  const [filterData, setFilterData] = useState<UserData[]>([]);
+
+  const [totalUserOverview, setTotalUserOverview] = useState<UserCardData>({
+    title: "Total Users",
+    value: 0,
+    description: "+10% from last month",
+    icon: "user",
+  });
+
+  const [activeUserOverview, setActiveUserOverview] = useState<UserCardData>({
+    title: "Active Users",
+    value: 0,
+    description: "+20% from last month",
+    icon: "box",
+  });
+
+  const [deletedUserOverview, setdeletedUserOverview] = useState<UserCardData>({
+    title: "Deleted Users",
+    value: 0,
+    description: "+150% from last month",
+    icon: "arrow-up",
+  });
+
+  const [isNextPageActive, setIsNextPageActive] = useState(false);
+  const [isPreviousPageActive, setIsPreviousPageActive] = useState(false);
+
   const [selectedFilter, setSelectedFilter] = useState<
     FilterDataProperties | undefined
   >();
+
+  const filterActionsHandler = (title: string) => {
+    if (title === "Active") {
+      const _data = data?.filter((item) => item.is_active);
+      setFilterData(_data);
+    } else {
+      const _data = data?.filter((item) => !item.is_active);
+      setFilterData(_data);
+    }
+  };
+
+  useEffect(() => {
+    (async () => {
+      const API_URL =
+        "https://deployment.api-php.boilerplate.hng.tech/api/v1/users";
+      try {
+        const response = await axios.get(`${API_URL}?page=${page}`);
+
+        setIsNextPageActive(response.data?.next_page_url ? true : false);
+
+        setIsPreviousPageActive(response.data?.prev_page_url ? true : false);
+
+        setData(response.data.data);
+        setFilterData(response.data.data);
+        setTotalUserOverview((previous) => ({
+          ...previous,
+          value: response.data.total,
+        }));
+
+        const userData: UserData[] = response.data.data;
+
+        setdeletedUserOverview((previous) => ({
+          ...previous,
+          value: response.data.total,
+        }));
+
+        setActiveUserOverview((previous) => {
+          let count = 0;
+          for (const user of userData) {
+            if (user.is_active) {
+              count += 1;
+            }
+          }
+
+          return {
+            ...previous,
+            value: count,
+          };
+        });
+
+        // console.log(response);
+      } catch {
+        // console.log(error);
+      }
+    })();
+  }, [page]);
 
   return (
     <>
       <section>
         <div className="mb-6 mt-4 grid w-full grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {userCardData.map((card, index) => (
-            <CardComponent
-              key={index}
-              title={card.title}
-              value={card.value.toLocaleString()}
-              description={card.description}
-              icon={card.icon}
-            />
-          ))}
+          {[totalUserOverview, activeUserOverview, deletedUserOverview].map(
+            (card, index) => (
+              <CardComponent
+                key={index}
+                title={card.title}
+                value={card.value.toLocaleString()}
+                description={card.description}
+                icon={card.icon}
+              />
+            ),
+          )}
         </div>
 
         <div className="mt-8">
@@ -97,7 +188,7 @@ const UserPage = () => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  {filterData.map((data, index) => {
+                  {filterActions.map((data, index) => {
                     const { selected, title } = data;
 
                     selectedFilter?.title === title
@@ -106,7 +197,10 @@ const UserPage = () => {
 
                     return (
                       <DropdownMenuItem
-                        onClick={() => setSelectedFilter(filterData[index])}
+                        onClick={() => {
+                          filterActionsHandler(data.title);
+                          setSelectedFilter(filterActions[index]);
+                        }}
                         key={index}
                       >
                         <div className="flex w-full items-center">
@@ -124,7 +218,7 @@ const UserPage = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
 
-              <AddUserModal>
+              {/* <AddUserModal>
                 <CustomButton size="lg" className="p-3" variant="primary">
                   <div className="flex flex-row items-center gap-2">
                     <CirclePlus size={16} color="#FFFFFF" />
@@ -133,47 +227,43 @@ const UserPage = () => {
                     </div>
                   </div>
                 </CustomButton>
-              </AddUserModal>
+              </AddUserModal> */}
             </div>
           </div>
 
           <div className="user-table mt-6 h-full w-full overflow-x-auto md:overflow-y-hidden">
-            <UserTable />
+            <UserTable data={filterData} />
           </div>
 
           <div className="mt-8">
             <Pagination>
               <PaginationContent>
-                <PaginationItem>
+                <PaginationItem
+                  onClick={() => {
+                    if (isPreviousPageActive) {
+                      setPage((previous) => previous - 1);
+                    }
+                  }}
+                >
                   <Button variant={"ghost"}>
                     <ChevronLeft /> Previous
                   </Button>
                 </PaginationItem>
                 <PaginationItem>
-                  <PaginationLink
-                    className="bg-transparent shadow-none"
-                    href="#"
-                  >
-                    1
-                  </PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
                   <PaginationLink href="#" isActive={true}>
-                    2
+                    {page}
                   </PaginationLink>
                 </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink
-                    className="bg-transparent shadow-none"
-                    href="#"
-                  >
-                    3
-                  </PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
+                {/* <PaginationItem>
                   <PaginationEllipsis />
-                </PaginationItem>
-                <PaginationItem>
+                </PaginationItem> */}
+                <PaginationItem
+                  onClick={() => {
+                    if (isNextPageActive) {
+                      setPage((previous) => previous + 1);
+                    }
+                  }}
+                >
                   <Button variant={"ghost"}>
                     Next <ChevronRight />
                   </Button>
