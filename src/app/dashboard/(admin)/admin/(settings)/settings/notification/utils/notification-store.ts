@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import axios from "axios";
 import create from "zustand";
 
@@ -41,7 +40,7 @@ export const useNotificationStore = create<NotificationStore>((set) => ({
         },
       });
       const response = await axiosInstance.get(
-        `${baseUrl}/api/v1/notifications`,
+        `${baseUrl}/api/v1/notification-settings`,
       );
       set({ allNotifications: response.data.data.notifications });
       console.log(response.data.data.notifications);
