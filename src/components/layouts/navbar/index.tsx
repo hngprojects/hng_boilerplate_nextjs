@@ -59,8 +59,18 @@ const Navbar = () => {
             );
           })}
         </div>
-        {status !== "authenticated" && (
-          <div className="w-fullx hidden items-center justify-end gap-x-4 justify-self-end md:flex lg:gap-x-8">
+        <div
+          className={cn(
+            "relative ml-auto flex items-center",
+            status === "loading" && "pointer-events-none invisible",
+          )}
+        >
+          <div
+            className={cn(
+              "pointer-events-none hidden w-full items-center justify-end gap-x-4 justify-self-end opacity-0 transition-opacity duration-300 md:flex lg:gap-x-8",
+              status === "unauthenticated" && "pointer-events-auto opacity-100",
+            )}
+          >
             <Link
               href="/login"
               className="grid h-[44px] place-items-center whitespace-nowrap rounded-md border border-primary px-4 text-primary lg:px-8"
@@ -74,8 +84,15 @@ const Navbar = () => {
               Get Started
             </Link>
           </div>
-        )}
-        {status === "authenticated" && <UserCard />}
+          <div
+            className={cn(
+              "pointer-events-none opacity-0 transition-opacity duration-300 md:absolute md:right-0",
+              status === "authenticated" && "pointer-events-auto opacity-100",
+            )}
+          >
+            <UserCard />
+          </div>
+        </div>
       </div>
     </nav>
   );
