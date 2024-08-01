@@ -1,3 +1,8 @@
+"use client";
+
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 import { Button } from "~/components/ui/button";
 import {
   Select,
@@ -6,6 +11,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select";
+import { getAccessToken } from "~/utils/getAccessToken";
+import { getApiUrl } from "~/utils/getApiUrl";
 
 const languages = [
   { value: "en", label: "English" },
@@ -27,6 +34,33 @@ const timeZones = [
 ];
 
 const LanguageRegion = () => {
+  const [timeZoness, setTimeZones] = useState([]);
+
+  useEffect(() => {
+    const fetchTimeZones = async () => {
+      try {
+        // First, get the API URL
+        const apiUrl = await getApiUrl();
+        const accessToken = await getAccessToken();
+
+        console.log("API URL:", accessToken); // Log the actual URL for debugging
+
+        // Then use it to fetch the timezones
+        const response = await axios.get(`${apiUrl}/api/v1/timezones`, {
+          headers: {
+            accept: "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+
+        setTimeZones(response.data);
+      } catch (error) {
+        console.error("Error fetching timezones:", error);
+      }
+    };
+
+    fetchTimeZones();
+  }, []);
   return (
     <>
       <div className="font-inter max-w-md">
