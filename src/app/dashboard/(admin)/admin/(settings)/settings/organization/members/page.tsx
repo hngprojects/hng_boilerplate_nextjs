@@ -1,13 +1,5 @@
 "use client";
 
-<<<<<<< HEAD:src/app/dashboard/(user-dashboard)/settings/organization/members/page.tsx
-import Member from "../../_components/member";
-
-const Page = () => {
-  return <Member></Member>;
-};
-export default Page;
-=======
 import { AxiosResponse } from "axios";
 import { EllipsisIcon } from "lucide-react";
 import { useState } from "react";
@@ -284,4 +276,3 @@ const Members = () => {
 };
 
 export default Members;
->>>>>>> 3fd2f5bc6d6f794a572adf7ebb2fe534f976b020:src/app/dashboard/(admin)/admin/(settings)/settings/organization/members/page.tsx
