@@ -1,6 +1,7 @@
 "use client";
 
 import { Check, ChevronLeft } from "lucide-react";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 
 import CustomButton from "~/components/common/common-button/common-button";
@@ -10,6 +11,7 @@ import { NotificationSwitchBox } from "./_components/notification-switch-box";
 import { useNotificationStore } from "./action/notification-store";
 
 const NotificationPage = () => {
+  const { data: session } = useSession(); // Retrieve session data
   const { settings, updateSettings } = useNotificationStore();
   const [isOpen, setOpen] = useState(false);
 
@@ -17,7 +19,9 @@ const NotificationPage = () => {
     updateSettings({ [name]: !settings[name] });
   };
 
-  const handleSaveChanges = () => {
+  const handleSaveChanges = async () => {
+    // eslint-disable-next-line no-console
+    console.log(session);
     setOpen(true);
   };
 
