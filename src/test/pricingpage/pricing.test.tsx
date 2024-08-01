@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 
 import "@testing-library/jest-dom";
 
@@ -14,7 +14,6 @@ describe("pricing Component", () => {
     expect(pricingHeader).toBeInTheDocument();
   });
 
- 
   it("renders FAQ section", () => {
     expect.assertions(1);
     render(<Pricing />);
