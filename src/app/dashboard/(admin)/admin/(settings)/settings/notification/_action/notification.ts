@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const notification_id = undefined;
+const BASE_URL = "https://deployment.api-csharp.boilerplate.hng.tech/api/v1";
 
 export const createNotification = async () => {
   const data = {
@@ -15,7 +16,10 @@ export const createNotification = async () => {
 
 export const RetrieveUserNotificationSettings = async () => {
   try {
-    await axios.get("/notification-settings");
+    const response = await axios.get(
+      `${BASE_URL}/settings/notification-settings/2846e28a-d7a7-43b9-9cba-1b289fd8ebff`,
+    );
+    return response.data;
   } catch (error) {
     return error;
   }
@@ -23,12 +27,15 @@ export const RetrieveUserNotificationSettings = async () => {
 
 export const updateUserNotificationSettings = async (settings: object) => {
   try {
-    await axios.patch("/notification-settings", settings);
+    const response = await axios.post(
+      `${BASE_URL}/settings/notification-settings`,
+      settings,
+    );
+    return response.data;
   } catch (error) {
     return error;
   }
 };
-
 export const RetrieveUserNotificationAll = async () => {
   try {
     await axios.get("/notifications");
