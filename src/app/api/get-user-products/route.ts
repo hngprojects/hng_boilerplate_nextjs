@@ -1,15 +1,12 @@
 import axios from "axios";
-import { getCookie } from "cookies-next";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
-  const response = new NextResponse();
-  const access_token = getCookie("access_token", {
-    res: response,
-    req: request,
-  });
+import { auth } from "~/lib/auth";
 
-  if (!access_token) {
+export async function GET() {
+  const session = await auth();
+
+  if (!session?.access_token) {
     return;
   }
   try {
@@ -17,7 +14,7 @@ export async function GET(request: NextRequest) {
       `${process.env.API_URL}/api/v1/products`,
       {
         headers: {
-          Authorization: `Bearer ${access_token}`,
+          Authorization: `Bearer ${session?.access_token}`,
         },
       },
     );
