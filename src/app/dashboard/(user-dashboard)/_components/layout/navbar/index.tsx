@@ -37,11 +37,11 @@ const navlinks = [
     link: "/dashboard/products",
     id: "products",
   },
-  {
-    route: "Settings",
-    link: "/dashboard/settings",
-    id: "settings",
-  },
+  // {
+  //   route: "Settings",
+  //   link: "/dashboard/settings",
+  //   id: "settings",
+  // },
 ];
 
 interface User {

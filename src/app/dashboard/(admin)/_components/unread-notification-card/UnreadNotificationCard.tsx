@@ -3,8 +3,6 @@
 import { BellRing } from "lucide-react";
 import { FC } from "react";
 
-import { useNotificationStore } from "~/app/dashboard/(user-dashboard)/settings/notification/action/notification-store";
-import { notificationSettingsProperties } from "~/app/dashboard/(user-dashboard)/settings/notification/types/notification-settings.types";
 import CustomButton from "~/components/common/common-button/common-button";
 import {
   Card,
@@ -16,6 +14,8 @@ import {
 } from "~/components/ui/card";
 import { Switch } from "~/components/ui/switch";
 import { cn } from "~/lib/utils";
+import { useNotificationStore } from "../../(super_admin)/(main)/admin/(settings)/settings/notification/action/notification-store";
+import { notificationSettingsProperties } from "../../(super_admin)/(main)/admin/(settings)/settings/notification/types/notification-settings.types";
 
 interface NotificationPreview {
   header: string;
