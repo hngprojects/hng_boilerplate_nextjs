@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from 'react';
+import axios from 'axios';
 import { Link2Icon } from "lucide-react";
 
 import CustomButton from "~/components/common/common-button/common-button";
@@ -25,6 +27,33 @@ interface ModalProperties {
 }
 
 const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
+  const [emails, setEmails] = useState("");
+  const [organization, setOrganization] = useState("");
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmails(e.target.value);
+  };
+
+  const handleOrganizationChange = (value: string) => {
+    setOrganization(value);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post("/api/v1/invite/create", {
+        emails: emails.split(",").map(email => email.trim()),
+        organization,
+      });
+      if (response.status === 200) {
+        alert("Invites sent successfully!");
+        onClose();
+      }
+    } catch (error) {
+      console.error("Error sending invites:", error);
+      alert("Failed to send invites.");
+    }
+  };
+
   return (
     <>
       <Dialog open={show} onOpenChange={onClose}>
@@ -47,13 +76,15 @@ const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
                   type="text"
                   placeholder="email@example.com, email2@example.com..."
                   className="w-full rounded-md border border-border px-3 py-2 shadow-sm outline-none focus:border-primary focus:ring-ring"
+                  value={emails}
+                  onChange={handleEmailChange}
                 />
               </div>
               <div>
                 <label className="mb-2 block text-left text-base text-neutral-dark-2">
                   Add to Organization (Optional)
                 </label>
-                <Select>
+                <Select onValueChange={handleOrganizationChange}>
                   <SelectTrigger className="bg-white">
                     <SelectValue placeholder="Select Organization" />
                   </SelectTrigger>
@@ -77,7 +108,7 @@ const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
                   </CustomButton>
                 </span>
 
-                <CustomButton variant="primary">Send Invites</CustomButton>
+                <CustomButton variant="primary" onClick={handleSubmit}>Send Invites</CustomButton>
               </div>
             </DialogDescription>
           </DialogHeader>
