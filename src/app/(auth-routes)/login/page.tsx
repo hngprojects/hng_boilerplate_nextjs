@@ -69,7 +69,7 @@ const Login = () => {
       await loginAuth(values).then(async (data) => {
         const { email, password } = values;
 
-        if (data.status === 200) {
+        if (data) {
           await signIn(
             "credentials",
             {
@@ -82,8 +82,8 @@ const Login = () => {
           router.push("/dashboard");
         }
         toast({
-          title: data.status === 200 ? "login success" : "an error occurred",
-          description: data.status === 200 ? "routing now" : data.error,
+          title: data ? "login success" : "an error occurred",
+          description: data ? "routing now" : data.error,
         });
       });
     });
