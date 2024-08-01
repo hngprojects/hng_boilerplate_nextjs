@@ -15,6 +15,14 @@ export default function Career() {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 6;
   const router = useRouter();
+  const salaryRange = {
+    below_30k: "below $30k",
+    "30k_to_50k": "$30k - $50k",
+    "50k_to_70k": "$50k - $70k",
+    "70k_to_100k": "$70k - $100k",
+    "100k_to_150k": "$100k - $150k",
+    above_150k: "above $150k",
+  };
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -68,9 +76,13 @@ export default function Career() {
       company: job.company_name,
       location: job.location,
       description: job.description,
-      amount: job.salary_range,
+      amount: mapSalaryRange(job.salary_range),
     });
     router.push(`/career/details?${parameters.toString()}`);
+  };
+
+  const mapSalaryRange = (range: string): string => {
+    return salaryRange[range as keyof typeof salaryRange] || range;
   };
 
   return (
@@ -109,7 +121,7 @@ export default function Career() {
                       job={job}
                       location={job.location}
                       description={job.description}
-                      amount={job.salary_range}
+                      amount={mapSalaryRange(job.salary_range)}
                       company={job.company_name}
                       onViewDetails={() => handleViewDetails(job)}
                     />

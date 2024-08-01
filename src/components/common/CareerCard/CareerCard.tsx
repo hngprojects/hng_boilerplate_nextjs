@@ -6,6 +6,18 @@ import { FC } from "react";
 import { Card, CardContent, CardFooter } from "~/components/ui/card";
 import { Skeleton } from "~/components/ui/skeleton";
 
+const salaryRange = {
+  below_30k: "$30k",
+  "30k_to_50k": "$30k - $50k",
+  "50k_to_70k": "$50k - $70k",
+  "70k_to_100k": "$70k - $100k",
+  "100k_to_150k": "$100k - $150k",
+  above_150k: "above $150k",
+};
+const mapSalaryRange = (range: string): string => {
+  return salaryRange[range as keyof typeof salaryRange] || range;
+};
+
 interface CareerCardProperties {
   isLoading: boolean;
   jobTitle?: string;
@@ -25,6 +37,7 @@ const CareerCard: FC<CareerCardProperties> = ({
   company,
   onViewDetails,
 }) => {
+  const mappedAmount = amount ? mapSalaryRange(amount) : "";
   return (
     <Card className="max-w-full bg-background text-foreground">
       <CardContent className="pt-6">
@@ -58,7 +71,7 @@ const CareerCard: FC<CareerCardProperties> = ({
         ) : (
           <>
             <span className="text-sm font-semibold">
-              {amount}
+              {mappedAmount}
               <span className="font-normal">/month</span>
             </span>
             <Link
