@@ -7,7 +7,7 @@ import { Switch } from "~/components/ui/switch";
 import useApiUrl from "../../organization/members/action/member";
 // import FilterBy from "../filrerBy";
 import MemberCard from "../MemberCard";
-// import DeleteSuccessModal from "../MemberDeleteModal";
+import DeleteSuccessModal from "../MemberDeleteModal";
 import InviteModal from "../MemberInviteModal";
 import SearchInput from "../Search";
 
@@ -136,13 +136,13 @@ const Member = () => {
           <CustomButton variant="primary">Export CSV</CustomButton>
         </div>
       </CardContent>
-      {/* <DeleteSuccessModal
+      <DeleteSuccessModal
         // memberId=""
         show={showDeleteModal}
         onClose={() => {
           setShowDeleteModal(false);
         }}
-      /> */}
+      />
       <InviteModal
         onClose={() => {
           setShowInviteModal(false);
