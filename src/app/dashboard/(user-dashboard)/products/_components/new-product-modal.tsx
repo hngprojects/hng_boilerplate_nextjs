@@ -78,7 +78,7 @@ const NewProductModal = () => {
         name: values.product_name,
         price: Number(values.price),
         stock: Number(values.quantity),
-        image: "/product/product-image.webp",
+        imageUrl: "/product/product-image.webp",
         status: "in_stock",
         date_added: date_data.date_added,
         time: date_data.time,
