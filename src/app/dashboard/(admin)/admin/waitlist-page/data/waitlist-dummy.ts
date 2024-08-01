@@ -85,3 +85,84 @@ export const dummyUsers: WaitListDataProperties[] = [
     date: "2024-07-16 10:36AM",
   },
 ];
+
+export const waitListData: WaitListDataTypes[] = [
+  {
+    pageTitle: "The Lemonade Blender",
+    urlSlug: "Product",
+    status: "active",
+    createdDate: "01-01-24",
+    activate: false,
+  },
+  {
+    pageTitle: "The Lemonade Blender",
+    urlSlug: "Product",
+    status: "active",
+    createdDate: "01-01-24",
+    activate: false,
+  },
+  {
+    pageTitle: "Bean Cake Powder",
+    urlSlug: "Product",
+    status: "active",
+    createdDate: "02-07-24",
+    activate: true,
+  },
+  {
+    pageTitle: "Flour Mixer",
+    urlSlug: "Product",
+    status: "inactive",
+    createdDate: "04-07-24",
+    activate: false,
+  },
+  {
+    pageTitle: "Smoothie Maker",
+    urlSlug: "Product",
+    status: "inactive",
+    createdDate: "06-08-24",
+    activate: false,
+  },
+  {
+    pageTitle: "Blender",
+    urlSlug: "Product",
+    status: "active",
+    createdDate: "12-08-24",
+    activate: true,
+  },
+  {
+    pageTitle: "Cake Powder",
+    urlSlug: "Product",
+    status: "active",
+    createdDate: "13-09-24",
+    activate: true,
+  },
+  {
+    pageTitle: "Coffee Grinder",
+    urlSlug: "Product",
+    status: "inactive",
+    createdDate: "15-09-24",
+    activate: false,
+  },
+  {
+    pageTitle: "Juicer",
+    urlSlug: "Product",
+    status: "active",
+    createdDate: "20-09-24",
+    activate: true,
+  },
+  {
+    pageTitle: "Food Processor",
+    urlSlug: "Product",
+    status: "inactive",
+    createdDate: "25-09-24",
+    activate: false,
+  },
+];
+
+type WaitListDataTypes = {
+  pageTitle: string;
+  urlSlug: string;
+  status: "active" | "inactive";
+  createdDate: string;
+  activate: boolean;
+};

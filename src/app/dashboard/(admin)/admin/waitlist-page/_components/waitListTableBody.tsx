@@ -11,10 +11,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
-import DeleteDialog from "../../users/component/dialogue/delete-dialog";
 import { dummyUsers } from "../data/waitlist-dummy";
-
-// import DeleteDialog from "./dialogue/delete-dialog";
+import DeleteDialog from "./waitListModal";
 
 const WaitListTableBody = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);

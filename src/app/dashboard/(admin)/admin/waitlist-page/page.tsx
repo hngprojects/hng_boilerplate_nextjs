@@ -6,11 +6,13 @@ import {
   ChevronRight,
   CirclePlus,
   Filter,
+  SearchIcon,
 } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 
-import CardComponent from "~/components/adminDashboard/CardComponent";
 import CustomButton from "~/components/common/common-button/common-button";
+// import CardComponent from "~/components/common/DashboardCard/CardComponent";
 import { Button } from "~/components/ui/button";
 import {
   DropdownMenu,
@@ -25,9 +27,11 @@ import {
   PaginationItem,
   PaginationLink,
 } from "~/components/ui/pagination";
-import WaitListModal from "./_components/waitListModal";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
+import WaitList from "./_components/waitList";
 import WaitListTable from "./_components/waitListTable";
-import { waitListCardData } from "./data/waitlist-dummy";
+
+// import { waitListCardData } from "./data/waitlist-dummy";
 
 interface FilterDataProperties {
   title: string;
@@ -54,11 +58,12 @@ const WaitListPage = () => {
   const [selectedFilter, setSelectedFilter] = useState<
     FilterDataProperties | undefined
   >();
+
   return (
     <>
       <section>
         <div className="mb-6 mt-4 grid w-full grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {waitListCardData.map((card, index) => (
+          {/* {waitListCardData.map((card, index) => (
             <CardComponent
               key={index}
               title="Total waitlisted users"
@@ -66,7 +71,7 @@ const WaitListPage = () => {
               description={card.description}
               icon={card.icon}
             />
-          ))}
+          ))} */}
         </div>
 
         <div className="mt-8">
@@ -81,6 +86,17 @@ const WaitListPage = () => {
             </div>
 
             <div className="flex flex-row items-center gap-3">
+              <div className="flex h-10 items-center justify-between gap-2 rounded-[6px] border border-border bg-white px-3 text-sm font-normal placeholder:text-sm">
+                <SearchIcon
+                  data-testid="search"
+                  className="h-4 w-4 text-neutral-dark-2"
+                />
+                <input
+                  className="h-full w-full border-none text-neutral-dark-2 outline-none ring-0 placeholder:text-neutral-dark-1"
+                  placeholder="Search option..."
+                  data-testid="input"
+                />
+              </div>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
@@ -124,7 +140,7 @@ const WaitListPage = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
 
-              <WaitListModal>
+              <Link href="/dashboard/admin/waitlist-page/add-waitlist">
                 <CustomButton size="lg" className="p-3" variant="primary">
                   <div className="flex flex-row items-center gap-2">
                     <CirclePlus size={16} color="#FFFFFF" />
@@ -133,13 +149,29 @@ const WaitListPage = () => {
                     </div>
                   </div>
                 </CustomButton>
-              </WaitListModal>
+              </Link>
             </div>
           </div>
+          <Tabs
+            defaultValue="user"
+            className="user-table mt-6 h-full w-full overflow-x-auto md:overflow-y-hidden"
+          >
+            <TabsList className="mb-2">
+              <TabsTrigger value="waitlist">Waitlist pages</TabsTrigger>
+              <TabsTrigger value="user">Users</TabsTrigger>
+            </TabsList>
 
-          <div className="user-table mt-6 h-full w-full overflow-x-auto md:overflow-y-hidden">
+            <TabsContent value="waitlist">
+              <WaitList />
+            </TabsContent>
+            <TabsContent value="user">
+              <WaitListTable />
+            </TabsContent>
+          </Tabs>
+
+          {/* <div className="user-table mt-6 h-full w-full overflow-x-auto md:overflow-y-hidden">
             <WaitListTable />
-          </div>
+          </div> */}
 
           <div className="mt-8">
             <Pagination>
