@@ -9,7 +9,14 @@ describe("contact Page tests", () => {
 
     expect(screen.getByRole("form")).toBeInTheDocument();
 
-    expect(screen.getByText("Contact Our Team")).toBeInTheDocument();
+    // Use a regex matcher for more flexibility
+    expect(
+      screen.getByText(
+        (content, element) =>
+          content.startsWith("Contact Our Team") &&
+          element!.tagName.toLowerCase() === "h2", // Adjust tag as needed
+      ),
+    ).toBeInTheDocument();
 
     expect(screen.getByText(/business hours/i)).toBeInTheDocument();
 
