@@ -6,12 +6,12 @@ import { useState } from "react";
 
 import CustomButton from "~/components/common/common-button/common-button";
 import NotificationSettingSavedModal from "~/components/common/modals/notification-settings-saved";
+import { useNotificationStore } from "./_action/notification-store";
 import NotificationHeader from "./_components/header";
 import { NotificationSwitchBox } from "./_components/notification-switch-box";
-import { useNotificationStore } from "./action/notification-store";
 
 const NotificationPage = () => {
-  const { data: session } = useSession(); // Retrieve session data
+  const { data: session } = useSession(); //this is what get us the user session data (toke)
   const { settings, updateSettings } = useNotificationStore();
   const [isOpen, setOpen] = useState(false);
 
@@ -58,7 +58,7 @@ const NotificationPage = () => {
             onToggle={handleToggleSwitch}
           />
           <NotificationSwitchBox
-            title={"Activity in your workspace"}
+            title={"Always send email notifications"}
             description={
               "Receive emails about activity in your workspace, even when you are active on the app"
             }
