@@ -24,6 +24,7 @@ const HtmlTemplateViewer = () => {
   };
 
   // Convert the React component to a string with the props
+  // eslint-disable-next-line testing-library/render-result-naming-convention
   const welcomeEmailString = renderToString(
     <AccountActivationSuccessful {...previewProperties} />,
   );

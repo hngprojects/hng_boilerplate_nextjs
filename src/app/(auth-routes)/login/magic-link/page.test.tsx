@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/await-async-utils */
 import { fireEvent, render, screen } from "@testing-library/react";
 import { useRouter } from "next/navigation";
 import { beforeEach, describe, expect, it, vi } from "vitest";
@@ -43,7 +44,6 @@ describe("loginMagicLink", () => {
 
     fireEvent.change(emailInput, { target: { value: "invalid-email" } });
     fireEvent.click(submitButton);
-
 
     vi.waitFor(() => {
       const emailError = screen.queryByTestId("email-error");

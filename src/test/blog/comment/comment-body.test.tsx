@@ -1,6 +1,9 @@
+/* eslint-disable unicorn/no-null */
+/* eslint-disable prettier/prettier */
+ 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { fireEvent, render, screen } from "@testing-library/react";
 import moment from "moment";
-import { Session } from "next-auth";
 
 import { CommentBody } from "~/components/common/comment-component/comment-body";
 
