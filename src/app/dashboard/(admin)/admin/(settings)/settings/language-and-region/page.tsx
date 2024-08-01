@@ -14,13 +14,11 @@ import {
 } from "~/components/ui/select";
 import { useToast } from "~/components/ui/use-toast";
 import {
-  fetchLanguages,
-  fetchRegions,
-  fetchTimeZones,
-  getApiConfig,
   Language,
   Region,
   Timezone,
+  useApi,
+  useApiConfig,
 } from "~/utils/getLangauge";
 
 const LanguageRegion = () => {
@@ -36,14 +34,19 @@ const LanguageRegion = () => {
   const [selectedTimezone, setSelectedTimezone] = useState<string>("");
 
   const toastReference = useRef(toast);
+  const { fetchTimeZones, fetchLanguages, fetchRegions } = useApi(
+    toastReference.current,
+  );
+  const getApiConfig = useApiConfig();
+
   useEffect(() => {
     const getTimeZones = async () => {
       try {
         const [fetchedTimezones, fetchedLanguages, fetchedRegions] =
           await Promise.all([
-            fetchTimeZones(toastReference.current),
-            fetchLanguages(toastReference.current),
-            fetchRegions(toastReference.current),
+            fetchTimeZones(),
+            fetchLanguages(),
+            fetchRegions(),
           ]);
         setTimezones(fetchedTimezones);
         setLanguages(fetchedLanguages);
@@ -58,7 +61,7 @@ const LanguageRegion = () => {
     };
 
     getTimeZones();
-  }, []);
+  }, [fetchLanguages, fetchRegions, fetchTimeZones]);
 
   const handleSave = async () => {
     if (!user?.id) {

@@ -1,6 +1,7 @@
 import axios from "axios";
+import { useSession } from "next-auth/react";
+import { useCallback } from "react";
 
-import { getAccessToken } from "~/utils/getAccessToken";
 import { getApiUrl } from "~/utils/getApiUrl";
 
 export interface Timezone {
@@ -59,63 +60,63 @@ const handleApiError = (
   throw new Error(`${context}: ${errorMessage}`);
 };
 
-export const getApiConfig = async () => {
-  const apiUrl = await getApiUrl();
-  const accessToken = await getAccessToken();
+export const useApiConfig = () => {
+  const { data: session } = useSession();
+  const { access_token } = session ?? {};
 
-  return {
-    apiUrl,
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer ${accessToken}`,
-    },
-  };
-};
-export const fetchTimeZones = async (
-  toast: ToastFunction,
-): Promise<Timezone[]> => {
-  try {
-    const { apiUrl, headers } = await getApiConfig();
-
-    const response = await axios.get<TimezoneApiResponse>(
-      `${apiUrl}/api/v1/timezones`,
-      { headers },
-    );
-
-    return response.data.data;
-  } catch (error) {
-    return handleApiError(error, "fetching timezones", toast);
-  }
+  return useCallback(async () => {
+    const apiUrl = await getApiUrl();
+    return {
+      apiUrl,
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${access_token}`,
+      },
+    };
+  }, [access_token]);
 };
 
-export const fetchLanguages = async (
-  toast: ToastFunction,
-): Promise<Language[]> => {
-  try {
-    const { apiUrl, headers } = await getApiConfig();
+export const useApi = (toast: ToastFunction) => {
+  const getApiConfig = useApiConfig();
 
-    const response = await axios.get<LanguageApiResponse>(
-      `${apiUrl}/api/v1/languages`,
-      { headers },
-    );
+  const fetchTimeZones = useCallback(async (): Promise<Timezone[]> => {
+    try {
+      const { apiUrl, headers } = await getApiConfig();
+      const response = await axios.get<TimezoneApiResponse>(
+        `${apiUrl}/api/v1/timezones`,
+        { headers },
+      );
+      return response.data.data;
+    } catch (error) {
+      return handleApiError(error, "fetching timezones", toast);
+    }
+  }, [getApiConfig, toast]);
 
-    return response.data.data;
-  } catch (error) {
-    return handleApiError(error, "fetching languages", toast);
-  }
-};
+  const fetchLanguages = useCallback(async (): Promise<Language[]> => {
+    try {
+      const { apiUrl, headers } = await getApiConfig();
+      const response = await axios.get<LanguageApiResponse>(
+        `${apiUrl}/api/v1/languages`,
+        { headers },
+      );
+      return response.data.data;
+    } catch (error) {
+      return handleApiError(error, "fetching languages", toast);
+    }
+  }, [getApiConfig, toast]);
 
-export const fetchRegions = async (toast: ToastFunction): Promise<Region[]> => {
-  try {
-    const { apiUrl, headers } = await getApiConfig();
+  const fetchRegions = useCallback(async (): Promise<Region[]> => {
+    try {
+      const { apiUrl, headers } = await getApiConfig();
+      const response = await axios.get<RegionApiResponse>(
+        `${apiUrl}/api/v1/regions`,
+        { headers },
+      );
+      return response.data.data;
+    } catch (error) {
+      return handleApiError(error, "fetching regions", toast);
+    }
+  }, [getApiConfig, toast]);
 
-    const response = await axios.get<RegionApiResponse>(
-      `${apiUrl}/api/v1/regions`,
-      { headers },
-    );
-
-    return response.data.data;
-  } catch (error) {
-    return handleApiError(error, "fetching regions", toast);
-  }
+  return { fetchTimeZones, fetchLanguages, fetchRegions };
 };
