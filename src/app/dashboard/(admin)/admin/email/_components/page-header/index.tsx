@@ -13,10 +13,7 @@ const PageHeader: FC<IProperties> = ({ title, description }) => {
       >
         {title}
       </h1>
-      <p
-        data-testid="page-description"
-        className="text-base text-neutral-dark-2"
-      >
+      <p data-testid="page-description" className="text-base text-[#8E8E93]">
         {description}
       </p>
     </div>

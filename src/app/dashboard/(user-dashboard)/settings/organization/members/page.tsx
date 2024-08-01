@@ -51,7 +51,7 @@ const memberData: Member[] = [
 
 const activeMembers: number = memberData.length;
 
-const Menbers = () => {
+const Members = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { toast } = useToast();
@@ -203,4 +203,4 @@ const Menbers = () => {
   );
 };
 
-export default Menbers;
+export default Members;

@@ -1,8 +1,10 @@
+import type { LucideIconName } from "~/components/common/lucide-icon";
+
 interface UserCardData {
   title: string;
   value: number;
   description: string;
-  icon: string;
+  icon: LucideIconName;
 }
 
 interface UserStatusProperties {
@@ -23,19 +25,19 @@ export const userCardData: UserCardData[] = [
     title: "Total Users",
     value: 4000,
     description: "+10% from last month",
-    icon: `/admin-dashboard/icons/user.svg`,
+    icon: "user",
   },
   {
     title: "Active Users",
     value: 1500,
     description: "+20% from last month",
-    icon: `/admin-dashboard/icons/box.svg`,
+    icon: "box",
   },
   {
     title: "Deleted Users",
     value: 2500,
     description: "+150% from last month",
-    icon: `/admin-dashboard/icons/arrowUp.svg`,
+    icon: "arrow-up",
   },
 ];
 

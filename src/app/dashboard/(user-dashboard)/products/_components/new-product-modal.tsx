@@ -28,15 +28,21 @@ import {
 import { Textarea } from "~/components/ui/textarea";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { useProducts } from "~/hooks/admin-product/use-products.persistence";
-import { cn, generateId, getCurrentDateTime, simulateDelay } from "~/lib/utils";
-import { CATEGORIES } from "../data/categories.moct";
+import {
+  cn,
+  generateId,
+  getCurrentDateTime,
+  isMobileDevice,
+  simulateDelay,
+} from "~/lib/utils";
+import { CATEGORIES } from "../data/categories.mock";
 import ProjectLogo from "./form-images/project-logo";
-import { NewProductSchema } from "./schema/schema";
+import { MAX_CHAR, NewProductSchema } from "./schema/schema";
 
-const MAX_CHAR = 160;
 const NewProductModal = () => {
   const { setIsNewModal, isNewModal } = useProductModal();
   const { addProduct } = useProducts();
+  const isMobile = isMobileDevice();
   const [isLoading, startTransition] = useTransition();
   const variantProperties = {
     left: "50%",
@@ -139,7 +145,7 @@ const NewProductModal = () => {
                       name="product_name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="font-medium text-neutral-dark-2">
+                          <FormLabel className="hidden font-medium text-neutral-dark-2 min-[376px]:inline">
                             Title<span className="text-red-500">*</span>
                           </FormLabel>
                           <FormControl>
@@ -160,7 +166,7 @@ const NewProductModal = () => {
                       name="description"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="font-medium text-neutral-dark-2">
+                          <FormLabel className="hidden font-medium text-neutral-dark-2 min-[376px]:inline">
                             Description
                           </FormLabel>
                           <FormControl>
@@ -196,28 +202,50 @@ const NewProductModal = () => {
                       name="category"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="font-medium text-neutral-dark-2">
+                          <FormLabel className="hidden font-medium text-neutral-dark-2 min-[376px]:inline">
                             Category
                           </FormLabel>
                           <FormControl>
-                            <Select {...field} onValueChange={field.onChange}>
-                              <SelectTrigger className="bg-transparent">
-                                <SelectValue placeholder="Select a category" />
-                              </SelectTrigger>
-                              <SelectContent className="z-[99999]">
-                                <SelectGroup>
-                                  <SelectLabel>Fruits</SelectLabel>
-                                  {CATEGORIES.map((category) => (
-                                    <SelectItem
-                                      key={category.value}
-                                      value={category.value}
-                                    >
-                                      {category.label}
-                                    </SelectItem>
-                                  ))}
-                                </SelectGroup>
-                              </SelectContent>
-                            </Select>
+                            {isMobile ? (
+                              <select
+                                {...field}
+                                onChange={(event) =>
+                                  field.onChange(event.target.value)
+                                }
+                                className="h-10 w-full rounded-md border bg-transparent px-2"
+                              >
+                                <option value="" disabled>
+                                  Select a category
+                                </option>
+                                {CATEGORIES.map((category) => (
+                                  <option
+                                    key={category.value}
+                                    value={category.value}
+                                  >
+                                    {category.label}
+                                  </option>
+                                ))}
+                              </select>
+                            ) : (
+                              <Select {...field} onValueChange={field.onChange}>
+                                <SelectTrigger className="bg-transparent">
+                                  <SelectValue placeholder="Select a category" />
+                                </SelectTrigger>
+                                <SelectContent className="z-[99999]">
+                                  <SelectGroup>
+                                    <SelectLabel>Fruits</SelectLabel>
+                                    {CATEGORIES.map((category) => (
+                                      <SelectItem
+                                        key={category.value}
+                                        value={category.value}
+                                      >
+                                        {category.label}
+                                      </SelectItem>
+                                    ))}
+                                  </SelectGroup>
+                                </SelectContent>
+                              </Select>
+                            )}
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -230,7 +258,7 @@ const NewProductModal = () => {
                         name="price"
                         render={({ field }) => (
                           <FormItem className="relative w-full">
-                            <FormLabel className="font-medium text-neutral-dark-2">
+                            <FormLabel className="hidden font-medium text-neutral-dark-2 min-[376px]:inline">
                               Standard Price
                               <span className="text-red-500">*</span>
                             </FormLabel>
@@ -256,7 +284,7 @@ const NewProductModal = () => {
                         name="quantity"
                         render={({ field }) => (
                           <FormItem className="relative w-full">
-                            <FormLabel className="font-medium text-neutral-dark-2">
+                            <FormLabel className="hidden font-medium text-neutral-dark-2 min-[376px]:inline">
                               Quantity<span className="text-red-500">*</span>
                             </FormLabel>
                             <FormControl>

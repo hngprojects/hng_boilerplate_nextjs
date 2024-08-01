@@ -35,6 +35,7 @@ jobs:
           tags: hngdevops/nextjs-boilerplate:prod
           
   deploy_to_production:
+    needs: build_and_push
     if: github.event.repository.fork == false
     runs-on: ubuntu-latest
 
