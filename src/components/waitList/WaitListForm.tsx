@@ -65,6 +65,7 @@ const WaitlistForm: React.FC = () => {
           process.env.NEXT_PUBLIC_API_URL as string,
           {
             method: "POST",
+            mode: "no-cors",
             headers: {
               "Content-Type": "application/json",
             },
