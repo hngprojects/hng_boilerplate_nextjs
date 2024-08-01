@@ -46,24 +46,42 @@ export default function Pricing() {
 
   return (
     <>
-      <div className="mx-auto max-w-7xl px-5 py-20 md:px-10 lg:px-10 xl:px-10" data-testid="pricing-container">
-        <div className="mb-10 text-center md:mx-auto md:mb-12"  data-testid="pricing-header">
-          <p className="mb-6 inline-block rounded-md bg-gray-200 px-4 py-1 text-sm text-black md:text-lg"   data-testid="pricing-tag">
+      <div
+        className="mx-auto max-w-7xl px-5 py-20 md:px-10 lg:px-10 xl:px-10"
+        data-testid="pricing-container"
+      >
+        <div
+          className="mb-10 text-center md:mx-auto md:mb-12"
+          data-testid="pricing-header"
+        >
+          <p
+            className="mb-6 inline-block rounded-md bg-gray-200 px-4 py-1 text-sm text-black md:text-lg"
+            data-testid="pricing-tag"
+          >
             Pricing
           </p>
-          <h2 className="font-inter mb-6 text-center text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-[3.2rem]"   data-testid="pricing-title">
+          <h2
+            className="font-inter mb-6 text-center text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-[3.2rem]"
+            data-testid="pricing-title"
+          >
             Simple and <span className="text-orange-500">Affordable</span>{" "}
             Pricing Plan
           </h2>
-          <p className="text-1xl md-text-xl mb-10 text-base text-gray-700"    data-testid="pricing-description">
+          <p
+            className="text-1xl md-text-xl mb-10 text-base text-gray-700"
+            data-testid="pricing-description"
+          >
             Our flexible plans are designed to scale with your business. We have
             a plan for you.
           </p>
         </div>
 
-        <div className="align-center mx-auto mt-[100px] flex w-[380px] justify-between rounded-md bg-subtle p-2"  data-testid="pricing-toggle">
+        <div
+          className="align-center mx-auto mt-[100px] flex w-[380px] justify-between rounded-md bg-subtle p-2"
+          data-testid="pricing-toggle"
+        >
           <div
-           data-testid="monthly-toggle"
+            data-testid="monthly-toggle"
             onClick={() => setToggle(1)}
             className={`flex h-[50px] w-[190px] cursor-pointer items-center justify-center rounded-md ${
               toggle === 1 ? "bg-white font-medium" : ""
@@ -76,13 +94,13 @@ export default function Pricing() {
             className={`flex h-[50px] w-[190px] cursor-pointer items-center justify-center rounded-md ${
               toggle === 2 ? "bg-white font-medium" : ""
             }`}
-               data-testid="annual-toggle"
+            data-testid="annual-toggle"
           >
             Annual(save 20%)
           </div>
         </div>
 
-        <div className="align-center mt-[50px] flex flex-col justify-center gap-5 sm:flex-row"     >
+        <div className="align-center mt-[50px] flex flex-col justify-center gap-5 sm:flex-row">
           {plans.map((plan) => (
             <div
               key={plan.id}
