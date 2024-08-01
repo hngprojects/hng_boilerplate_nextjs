@@ -43,9 +43,8 @@ export const useNotificationStore = create<NotificationStore>((set) => ({
         `${baseUrl}/api/v1/notification-settings`,
       );
       set({ allNotifications: response.data.data.notifications });
-      console.log(response.data.data.notifications);
-    } catch (error) {
-      console.error("Failed to fetch settings", error);
+    } catch {
+      /* empty */
     }
   },
 }));
