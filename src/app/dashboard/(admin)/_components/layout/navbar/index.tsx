@@ -1,6 +1,6 @@
 "use client";
 
-import { BellIcon, ChevronDown, HelpCircle, SearchIcon } from "lucide-react";
+import { BellIcon, HelpCircle, SearchIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -13,12 +13,6 @@ import {
 } from "~/components/ui/popover";
 import UnreadNotificationCard from "../../unread-notification-card/UnreadNotificationCard";
 import DashboardLogo from "../logo";
-
-interface User {
-  email: string;
-  image: string;
-  name: string;
-}
 
 const DashboardNavbar = () => {
   const { data: session, status } = useSession();

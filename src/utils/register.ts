@@ -22,7 +22,9 @@ export const registerUser = async (values: z.infer<typeof RegisterSchema>) => {
     );
     return {
       team: team,
+      status: response.status,
       data: response.data,
+      access_token: response.data.access_token,
     };
   } catch (error) {
     return axios.isAxiosError(error) && error.response

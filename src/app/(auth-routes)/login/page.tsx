@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import CustomButton from "~/components/common/common-button/common-button";
+import { Input } from "~/components/common/input";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import { Checkbox } from "~/components/ui/checkbox";
 import {
@@ -20,14 +21,13 @@ import {
   FormLabel,
   FormMessage,
 } from "~/components/ui/form";
-import { Input } from "~/components/ui/input";
 import { useToast } from "~/components/ui/use-toast";
 import { cn } from "~/lib/utils";
 import { LoginSchema } from "~/schemas";
 import { getApiUrl } from "~/utils/getApiUrl";
 import { loginUser } from "~/utils/login";
 
-const LoginPage = () => {
+const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
   const [isLoading, startTransition] = useTransition();
@@ -65,11 +65,15 @@ const LoginPage = () => {
         const { email, password } = values;
 
         if (data.status === 200) {
-          await signIn("credentials", {
-            email,
-            password,
-            redirect: false,
-          });
+          await signIn(
+            "credentials",
+            {
+              email,
+              password,
+              redirect: false,
+            },
+            { callbackUrl: "/dashboard" },
+          );
           router.push("/dashboard");
         }
         toast({
@@ -88,7 +92,7 @@ const LoginPage = () => {
   }, []);
   return (
     <div className="flex min-h-full items-center justify-center px-4 py-10 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8">
+      <div className="w-full max-w-md space-y-6">
         <div className="text-center">
           <h1 className="font-inter text-neutralColor-dark-2 mb-5 text-center text-2xl font-semibold leading-tight">
             Login
@@ -100,7 +104,6 @@ const LoginPage = () => {
 
         <div className="flex flex-col justify-center space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
           <CustomButton
-            isDisabled={!apiUrl}
             variant="outline"
             isLeftIconVisible={true}
             onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
@@ -131,9 +134,10 @@ const LoginPage = () => {
               </svg>
             }
           >
-            Sign in with Google
+            Continue with Google
           </CustomButton>
           <CustomButton
+            className="w-full"
             isDisabled={!apiUrl}
             variant="outline"
             href={apiUrl === "" ? undefined : `${apiUrl}/api/v1/auth/facebook`}
@@ -160,7 +164,7 @@ const LoginPage = () => {
               </svg>
             }
           >
-            Sign in with Facebook
+            Continue with Facebook
           </CustomButton>
         </div>
 
@@ -272,7 +276,7 @@ const LoginPage = () => {
               type="submit"
               variant="primary"
               size="default"
-              className="w-full"
+              className="w-full py-6"
               isDisabled={isLoading}
             >
               {isLoading ? (
@@ -291,7 +295,7 @@ const LoginPage = () => {
           type="button"
           variant="outline"
           size="default"
-          className="w-full"
+          className="w-full py-6"
         >
           <Link href="/login/magic-link">Sign in with magic link</Link>
         </CustomButton>
@@ -329,4 +333,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Login;
