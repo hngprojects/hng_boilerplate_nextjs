@@ -7,8 +7,8 @@ import Link from "next/link";
 import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 
+import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import { Button } from "~/components/ui/button";
 import {
   Form,
@@ -32,7 +32,6 @@ import { createOrg } from "~/utils/createOrg";
 import { getApiUrl } from "~/utils/getApiUrl";
 
 function Organisation() {
-
   const router = useRouter();
   const { toast } = useToast();
   const { status } = useSession();
@@ -70,16 +69,16 @@ function Organisation() {
       type: "",
       country: "",
       state: "",
-      address: ""
+      address: "",
     },
   });
 
   const onSubmit = async (values: z.infer<typeof organizationSchema>) => {
-    const token = sessionStorage.getItem('temp_token')
+    const token = sessionStorage.getItem("temp_token");
     startTransition(async () => {
-      await createOrg(values, token).then(async (data) => {
+      await createOrg(values, token || "").then(async (data) => {
         if (data.status === 201) {
-          router.push("/dashboard");
+          router.push("/login");
         }
 
         toast({
@@ -87,7 +86,7 @@ function Organisation() {
             data.status === 201
               ? "Organization created successfully"
               : "an error occurred",
-          description: data.status === 201 ? "Continue to dashboard" : data.error,
+          description: data.status === 201 ? "Continue to login" : data.error,
         });
       });
     });
@@ -270,14 +269,16 @@ function Organisation() {
                 )}
               />
               <Button type="submit" className="w-full">
-              {isLoading ? (
-                <span className="flex items-center gap-x-2">
-                  <span className="animate-pulse">Creating Organization...</span>{" "}
-                  <LoadingSpinner className="size-4 animate-spin sm:size-5" />
-                </span>
-              ) : (
-                <span>Create Organization</span>
-              )}
+                {isLoading ? (
+                  <span className="flex items-center gap-x-2">
+                    <span className="animate-pulse">
+                      Creating Organization...
+                    </span>{" "}
+                    <LoadingSpinner className="size-4 animate-spin sm:size-5" />
+                  </span>
+                ) : (
+                  <span>Create Organization</span>
+                )}
               </Button>
               <div className="flex justify-center gap-2">
                 <p className="text-sm">Already Have An Account?</p>

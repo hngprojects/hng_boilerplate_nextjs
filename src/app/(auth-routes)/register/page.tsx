@@ -67,9 +67,8 @@ const Register = () => {
   const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
     startTransition(async () => {
       await registerUser(values).then(async (data) => {
-
         if (data.status === 201) {
-          sessionStorage.setItem('temp_token', data.access_token)
+          sessionStorage.setItem("temp_token", data.access_token);
           router.push("/register/organisation");
         }
 

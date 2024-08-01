@@ -8,8 +8,11 @@ import { getApiUrl } from "./getApiUrl";
 
 const team = process.env.TEAM;
 
-export const createOrg = async (values: z.infer<typeof organizationSchema>, token: string) => {
-    const apiUrl = await getApiUrl();
+export const createOrg = async (
+  values: z.infer<typeof organizationSchema>,
+  token: string,
+) => {
+  const apiUrl = await getApiUrl();
 
   const validatedFields = organizationSchema.safeParse(values);
   if (!validatedFields.success) {
@@ -20,11 +23,12 @@ export const createOrg = async (values: z.infer<typeof organizationSchema>, toke
   try {
     const response = await axios.post(
       `${apiUrl}/api/v1/organisations`,
-      validatedFields.data, {
+      validatedFields.data,
+      {
         headers: {
-            Authorization: `Bearer ${token}`
-        }
-      }
+          Authorization: `Bearer ${token}`,
+        },
+      },
     );
     return {
       team: team,
