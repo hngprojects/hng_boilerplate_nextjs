@@ -1,6 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
+import axios from "axios";
 import { AnimatePresence, motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
@@ -22,6 +22,10 @@ const ProductFilter = dynamic(() => import("./_components/product-filter"), {
 const ProductPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [view, setView] = useState<"list" | "grid">("list");
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>();
+  const [orgId, setOrgId] = useState<string | null>(); //
 
   const {
     isOpen,
@@ -35,6 +39,44 @@ const ProductPage = () => {
     isDelete,
     setIsDelete,
   } = useProductModal();
+
+  useEffect(() => {
+    const fetchOrgId = async () => {
+      try {
+        const response = await axios.get(
+          "https://deployment.api-expressjs.boilerplate.hng.tech/api/v1/organisations",
+        );
+        setOrgId(response.data.orgId);
+      } catch (error) {
+        console.error("Error fetching organization ID:", error);
+        setError("Failed to fetch organization ID");
+        setLoading(false);
+      }
+    };
+
+    fetchOrgId();
+  }, []);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      if (!orgId) return;
+
+      try {
+        const response = await axios.get(
+          `https://deployment.api-expressjs.boilerplate.hng.tech/api/v1/products/${orgId}?page=1&limit=3`,
+        );
+        console.log(response.data);
+        setProducts(response.data.data.products);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        setError(error.message || "Something went wrong");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, [orgId]);
 
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
@@ -77,7 +119,17 @@ const ProductPage = () => {
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
             />
-            <ProductContent searchTerm={searchTerm} view={view} />
+            {loading ? (
+              <p>Loading...</p>
+            ) : error ? (
+              <p>{error}</p>
+            ) : (
+              <ProductContent
+                products={products}
+                searchTerm={searchTerm}
+                view={view}
+              />
+            )}
           </motion.div>
 
           {isOpen && <ProductDetailView />}
