@@ -50,7 +50,7 @@ const NotificationPage = () => {
           onToggle={handleToggleSwitch}
         />
       </section>
-      {/* EMAIL NOTIFICATION */}
+      {/* EMAIL NOTIFICATION  */}
       <section className="my-[30px]">
         <NotificationHeader notificationTitle={"Email notifications"} />
         <section className="flex flex-col gap-[24px]">
