@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { getSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 import CustomButton from "~/components/common/common-button/common-button";
@@ -20,6 +21,7 @@ const Member = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+     
       if (apiUrl) {
         try {
           const data = await fetchOrganization(apiUrl);
