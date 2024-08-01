@@ -2,6 +2,7 @@ import { NextAuthConfig, Session } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
+import { cookies } from "next/headers";
 
 import { LoginSchema } from "~/schemas";
 import { CustomSession } from "~/types";
@@ -22,6 +23,7 @@ interface Profile {
 }
 
 interface User {
+  access_token: string;
   id: string;
   email: string;
   fullname: string;
@@ -40,6 +42,7 @@ interface ApiResponse {
   message: string;
   user: User;
   data: Data;
+  access_token: string;
 }
 
 export default {
@@ -103,6 +106,7 @@ export default {
       session: Session;
       token: JWT;
     }): Promise<CustomSession> {
+      const authToken = cookies()?.get("access_token")?.value;
       session.user = {
         id: token.id as string,
         first_name:
@@ -116,20 +120,13 @@ export default {
         email: token.email as string,
         image: token.picture || (token.avatar_url as string),
         role: token.role as string,
-        access_token: token.access_token as string,
+        access_token: (token.access_token as string) || (authToken as string),
       };
 
+      session.access_token =
+        (token.access_token as string) || (authToken as string);
       return session as CustomSession;
     },
-    // async redirect({ url, baseUrl }) {
-    //   if (url === "/login") {
-    //     return baseUrl;
-    //   }
-    //   if (url === `${baseUrl}/api/auth/signout`) {
-    //     return baseUrl;
-    //   }
-    //   return "/dashboard";
-    // },
   },
   pages: {
     signIn: "/login",
