@@ -1,6 +1,6 @@
 "use client";
 
-import { Copy, EllipsisIcon, SearchIcon } from "lucide-react";
+import { EllipsisIcon } from "lucide-react";
 import { useState } from "react";
 
 import CustomButton from "~/components/common/common-button/common-button";
@@ -47,6 +47,20 @@ const memberData: Member[] = [
     email: "ChadBoseW@gmail.com",
     role: "Admin",
   },
+  {
+    avatar: "CB",
+    id: 4,
+    name: "Chad Bosewick",
+    email: "ChadBoseW@gmail.com",
+    role: "Admin",
+  },
+  {
+    avatar: "CB",
+    id: 5,
+    name: "Chad Bosewick",
+    email: "ChadBoseW@gmail.com",
+    role: "Admin",
+  },
 ];
 
 const activeMembers: number = memberData.length;
@@ -71,7 +85,7 @@ const Members = () => {
     setIsModalOpen(false);
   };
   return (
-    <div className="ml-4 flex w-2/6 flex-col space-x-4 text-[#0A0A0A] md:w-3/6 lg:w-5/6">
+    <div className="ml-4 w-5/6 space-x-4 text-[#0A0A0A]">
       <div className="border-b border-[#CBD5E1] p-4">
         <h2 className="text-2xl font-semibold">Members</h2>
         <p className="text-sm text-[#525252]">
@@ -103,16 +117,13 @@ const Members = () => {
           <CustomButton variant="outline" className="w-full overflow-hidden">
             https://www.figma.com/design/7hCSTNzQOJLl9aww6wEEd1/Managing-Users----Team-Learn-AI?node-i
           </CustomButton>
-          <span className="relative flex items-center text-white">
-            <Copy className="pointer-events-none absolute ml-10" size={18} />
-            <CustomButton
-              variant="primary"
-              className="ml-8 space-x-4 pl-8"
-              onClick={handleCopy}
-            >
-              Copy link
-            </CustomButton>
-          </span>
+          <CustomButton
+            variant="primary"
+            className="ml-8 space-x-4"
+            onClick={handleCopy}
+          >
+            Copy link
+          </CustomButton>
         </div>
       </div>
       <div className="w-full space-y-2">
@@ -124,16 +135,10 @@ const Members = () => {
         </p>
       </div>
       <div className="my-8 flex justify-between">
-        <div className="flex gap-2">
-          <span className="relative flex items-center text-gray-500">
-            <SearchIcon className="pointer-events-none absolute" />
-            <Input
-              placeholder="Search by name or email"
-              className="pl-10 text-gray-700"
-            />
-          </span>
+        <div className="flex gap-4">
+          <Input placeholder="Search by name or email" />
           <Select>
-            <SelectTrigger className="w-[100px] bg-white focus:outline-none focus:ring-1 focus:ring-primary">
+            <SelectTrigger className="w-[100px] bg-white">
               <SelectValue placeholder="All" />
             </SelectTrigger>
             <SelectContent>
@@ -170,7 +175,7 @@ const Members = () => {
 
                 <div className="justify-self-end">
                   <Select>
-                    <SelectTrigger className="mx-6 w-[100px] border-none bg-white focus:outline-none focus:ring-1 focus:ring-white">
+                    <SelectTrigger className="mx-6 w-[100px] border-none bg-white">
                       <SelectValue placeholder={member.role} />
                     </SelectTrigger>
                     <SelectContent>
@@ -202,5 +207,3 @@ const Members = () => {
     </div>
   );
 };
-
-export default Members;
