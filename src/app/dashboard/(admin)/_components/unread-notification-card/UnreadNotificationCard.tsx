@@ -3,8 +3,8 @@
 import { BellRing } from "lucide-react";
 import { FC } from "react";
 
-import { useNotificationStore } from "~/app/dashboard/(user-dashboard)/settings/notification/action/notification-store";
-import { notificationSettingsProperties } from "~/app/dashboard/(user-dashboard)/settings/notification/types/notification-settings.types";
+import { useNotificationStore } from "~/app/dashboard/(user-dashboard)/settings/notification/_action/notification-store";
+import { notificationSettingsProperties } from "~/app/dashboard/(user-dashboard)/settings/notification/_types/notification-settings.types";
 import CustomButton from "~/components/common/common-button/common-button";
 import {
   Card,

@@ -1,53 +1,67 @@
 "use client";
 
+import axios from "axios";
 import { Check, ChevronLeft } from "lucide-react";
 import { getSession } from "next-auth/react";
 import { useState } from "react";
-import axios from "axios";
 
 import CustomButton from "~/components/common/common-button/common-button";
 import NotificationSettingSavedModal from "~/components/common/modals/notification-settings-saved";
+import { useToast } from "~/components/ui/use-toast";
+import { getApiUrl } from "~/utils/getApiUrl";
+import { useNotificationStore } from "./_action/notification-store";
 import NotificationHeader from "./_components/header";
 import { NotificationSwitchBox } from "./_components/notification-switch-box";
-
-import { useNotificationStore } from "./action/notification-store";
-import { notificationSettingsProperties } from "./types/notification-settings.types";
-
-const saveNotificationSettings = async (
-  settings: notificationSettingsProperties,
-) => {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-  const endpoint = "/api/v1/settings/notification-settings";
-  const url = `${baseUrl}${endpoint}`;
-
-  try {
-    const session = await getSession();
-    const token = session?.user?.access_token;
-
-    if (!token) {
-      throw new Error("Access token is undefined");
-    }
-
-    const response = await axios.post(url, settings, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    if (response.status !== 200) {
-      throw new Error("Failed to save settings");
-    }
-    const data = response.data;
-    return data;
-  } catch {
-    throw new Error(`Failed to save settings`);
-  }
-};
+import { notificationSettingsProperties } from "./_types/notification-settings.types";
 
 const NotificationPage = () => {
   const { settings, updateSettings } = useNotificationStore();
   const [isOpen, setOpen] = useState(false);
+  const { toast } = useToast();
+
+  const saveNotificationSettings = async (
+    settings: notificationSettingsProperties,
+  ) => {
+    const baseUrl = await getApiUrl();
+    const endpoint = "/api/v1/settings/notification-settings";
+    const url = `${baseUrl}${endpoint}`;
+
+    try {
+      const session = await getSession();
+      const token = session?.user?.access_token;
+
+      if (!token) {
+        toast({
+          title: "Error",
+          description: "No access token",
+          variant: "destructive",
+        });
+      }
+
+      const response = await axios.post(url, settings, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.status !== 200) {
+        toast({
+          title: "Error",
+          description: "Request failed",
+          variant: "destructive",
+        });
+      }
+      const data = response.data;
+      return data;
+    } catch {
+      toast({
+        title: "Error",
+        description: "Failed to save settings",
+        variant: "destructive",
+      });
+    }
+  };
 
   const handleToggleSwitch = (name: keyof typeof settings) => {
     updateSettings({ [name]: !settings[name] });
