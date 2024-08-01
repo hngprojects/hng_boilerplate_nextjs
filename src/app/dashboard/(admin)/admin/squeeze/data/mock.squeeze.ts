@@ -3,7 +3,6 @@ export interface Squeeze {
   uri: string;
   status: boolean;
   created_at: string;
-  activate: boolean;
 }
 
 export interface User {
@@ -19,28 +18,24 @@ export const squeezePages: Squeeze[] = [
     uri: "hypernova-headphones",
     status: true,
     created_at: "2024-07-16 10:36AM",
-    activate: true,
   },
   {
     title: "Galaxy Tablet",
     uri: "galaxy-tablet",
     status: true,
     created_at: "2024-07-14 03:15PM",
-    activate: false,
   },
   {
     title: "Astro Smartwatch",
     uri: "astro-smartwatch",
     status: false,
     created_at: "2024-07-10 09:20AM",
-    activate: true,
   },
   {
     title: "Nebula Laptop",
     uri: "nebula-laptop",
     status: true,
     created_at: "2024-07-08 01:45PM",
-    activate: false,
   },
 ];
 

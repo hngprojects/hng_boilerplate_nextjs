@@ -1,18 +1,63 @@
 import { EllipsisVertical } from "lucide-react";
+import { Dispatch, SetStateAction } from "react";
 
 import { Checkbox } from "~/components/ui/checkbox";
 import { Switch } from "~/components/ui/switch";
 import { TableCell, TableRow } from "~/components/ui/table";
 import { Squeeze } from "../data/mock.squeeze";
 
-export default function PageTableCell({ page }: { page: Squeeze }) {
+interface PageTableCell {
+  page: Squeeze;
+  pages: Squeeze[];
+  setPages: Dispatch<SetStateAction<Squeeze[]>>;
+  checked: Record<string, boolean>;
+  setChecked: Dispatch<SetStateAction<Record<string, boolean>>>;
+}
+
+export default function PageTableCell({
+  page,
+  pages,
+  setPages,
+  checked,
+  setChecked,
+}: PageTableCell) {
+  const setStatus = () => {
+    const newState = pages.map((each) => {
+      if (each.created_at === page.created_at) {
+        return {
+          ...each,
+          status: !each.status,
+        };
+      }
+
+      return each;
+    });
+
+    setPages(newState);
+  };
+
+  const setCheckedStatus = () => {
+    if (!checked[page.title]) {
+      setChecked({
+        ...checked,
+        [page.title]: true,
+      });
+      return;
+    }
+
+    setChecked({
+      ...checked,
+      [page.title]: false,
+    });
+  };
+
   return (
     <TableRow className="">
       <TableCell className="flex items-center gap-2 text-neutral-dark-2">
         <Checkbox
           id="example-checkbox"
-          checked={true}
-          onCheckedChange={() => {}}
+          checked={checked[page.title]}
+          onCheckedChange={() => setCheckedStatus()}
           className="h-5 w-5"
         />
         {page.title}
@@ -29,8 +74,8 @@ export default function PageTableCell({ page }: { page: Squeeze }) {
       <TableCell className="text-neutral-dark-2">
         <Switch
           id="airplane-mode"
-          checked={page.activate}
-          onCheckedChange={() => {}}
+          checked={page.status}
+          onCheckedChange={() => setStatus()}
           className="bg-gray-200"
         />
       </TableCell>
