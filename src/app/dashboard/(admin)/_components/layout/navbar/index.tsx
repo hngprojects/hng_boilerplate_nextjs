@@ -14,7 +14,7 @@ import {
 import UnreadNotificationCard from "../../unread-notification-card/UnreadNotificationCard";
 
 const DashboardNavbar = () => {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const router = useRouter();
   useEffect(() => {
     if (status === "unauthenticated") {
