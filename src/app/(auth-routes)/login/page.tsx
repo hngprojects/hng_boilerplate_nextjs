@@ -25,7 +25,7 @@ import { useToast } from "~/components/ui/use-toast";
 import { cn } from "~/lib/utils";
 import { LoginSchema } from "~/schemas";
 import { getApiUrl } from "~/utils/getApiUrl";
-import { loginUser } from "~/utils/login";
+import { loginUser } from "~/utils/loginAuth";
 
 const Login = () => {
   const router = useRouter();
