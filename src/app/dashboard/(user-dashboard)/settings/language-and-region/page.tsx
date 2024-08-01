@@ -65,17 +65,17 @@ const Page = () => {
           variant: "destructive",
         });
       });
-  }, [apiUrl]);
+  }, [apiUrl, access_token]);
 
   const handleSave = () => {
     axios
       .post(apiUrl + "/v1/regions", preferences, {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
       })
       .then((response) => setPreferences(response.data))
-      .catch((error) => {
+      .catch(() => {
         toast({
           title: "Error",
           description: "Could not save language and region",
