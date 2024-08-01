@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next-nprogress-bar";
 import Link from "next/link";
-import { useEffect, useState, useTransition } from "react";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -29,35 +29,16 @@ import {
 import { useToast } from "~/components/ui/use-toast";
 import { organizationSchema } from "~/schemas";
 import { createOrg } from "~/utils/createOrg";
-import { getApiUrl } from "~/utils/getApiUrl";
 
 function Organisation() {
   const router = useRouter();
   const { toast } = useToast();
   const { status } = useSession();
-  const [apiUrl, setApiUrl] = useState("");
   const [isLoading, startTransition] = useTransition();
 
   if (status === "authenticated") {
     router.push("/dashboard");
   }
-
-  useEffect(() => {
-    const fetchApiUrl = async () => {
-      try {
-        const url = await getApiUrl();
-        setApiUrl(url);
-      } catch {
-        toast({
-          title: "Error",
-          description: "Failed to fetch API URL",
-          variant: "destructive",
-        });
-      }
-    };
-
-    fetchApiUrl();
-  }, [toast]);
 
   const form = useForm<z.infer<typeof organizationSchema>>({
     resolver: zodResolver(organizationSchema),
