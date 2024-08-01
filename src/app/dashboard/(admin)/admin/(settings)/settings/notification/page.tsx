@@ -1,89 +1,36 @@
-/* eslint-disable no-console */
 "use client";
 
-import axios from "axios";
 import { Check, ChevronLeft } from "lucide-react";
-import { getSession, useSession } from "next-auth/react";
-import { useState } from "react";
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 
 import CustomButton from "~/components/common/common-button/common-button";
 import NotificationSettingSavedModal from "~/components/common/modals/notification-settings-saved";
-import { useToast } from "~/components/ui/use-toast";
-import { getApiUrl } from "~/utils/getApiUrl";
-import { useNotificationStore } from "./_action/notification-store";
 import NotificationHeader from "./_components/header";
 import { NotificationSwitchBox } from "./_components/notification-switch-box";
-import { notificationSettingsProperties } from "./_types/notification-settings.types";
+import { useNotificationStore } from "./utils/notification-store";
 
 const NotificationPage = () => {
-  const sessionl = useSession();
-  console.log(sessionl);
-  const settings = useNotificationStore((state) => state.settings);
-  const updateSettings = useNotificationStore((state) => state.updateSettings);
-  // const initializeSettings = useNotificationStore(
-  //   (state) => state.initializeSettings,
-  // );
-  // const saveSettings = useNotificationStore((state) => state.saveSettings);
+  const { data: session } = useSession();
+  const { settings, RetrieveUserNotificationAll, updateSettings } =
+    useNotificationStore();
+
   const [isOpen, setOpen] = useState(false);
-  const { toast } = useToast();
-
-  const saveNotificationSettings = async (
-    settings: notificationSettingsProperties,
-  ) => {
-    const baseUrl = await getApiUrl();
-    const endpoint = "/api/v1/settings/notification-settings";
-    const url = `${baseUrl}${endpoint}`;
-
-    try {
-      const session = await getSession();
-      const token = session?.access_token;
-
-      if (!token) {
-        toast({
-          title: "Error",
-          description: "No access token",
-          variant: "destructive",
-        });
-      }
-
-      const response = await axios.post(url, settings, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (response.status !== 200) {
-        toast({
-          title: "Error",
-          description: "Request failed",
-          variant: "destructive",
-        });
-      }
-      const data = response.data;
-      return data;
-    } catch {
-      toast({
-        title: "Error",
-        description: "Failed to save settings",
-        variant: "destructive",
-      });
-    }
-  };
 
   const handleToggleSwitch = (name: keyof typeof settings) => {
     updateSettings({ [name]: !settings[name] });
   };
 
   const handleSaveChanges = async () => {
-    try {
-      await saveNotificationSettings(settings);
-      setOpen(true);
-    } catch (error) {
-      console.log(error);
-      throw new Error("Failed to save settings");
-    }
+    setOpen(true);
   };
+
+  useEffect(() => {
+    if (session?.access_token) {
+      RetrieveUserNotificationAll(session.access_token);
+    }
+  }, [session, RetrieveUserNotificationAll]);
+
   return (
     <main className="text-neutral-dark-2">
       <div className="mx-[24px] mb-[30px] flex w-fit items-center gap-1 md:hidden">
