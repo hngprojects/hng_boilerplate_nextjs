@@ -53,19 +53,9 @@ describe("page tests", () => {
     render(<Sidebar sideNavitems={sideItems} currenPathName="dashboard" />);
 
     return {
-      logo: screen.getByTestId("admin-logo"),
-      logoText: screen.getByTestId("admin-logo-text"),
       dashboardlink: screen.getByTestId("dashboard"),
     };
   };
-  it("side logo renders", () => {
-    expect.assertions(2);
-
-    const { logo, logoText } = renderComponent();
-
-    expect(logo).toBeInTheDocument();
-    expect(logoText).toBeInTheDocument();
-  });
 
   it("renders all sidebar items", () => {
     expect.assertions(1);

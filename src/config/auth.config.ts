@@ -34,11 +34,11 @@ interface Data {
   access_token: string;
   user: User;
 }
-
 interface ApiResponse {
   status: string;
   status_code: number;
   message: string;
+  user: User;
   data: Data;
 }
 
@@ -64,10 +64,13 @@ export default {
         const { email, password, rememberMe } = validatedFields.data;
         const response = await nextlogin({ email, password, rememberMe });
 
-        if (!response.data) {
+        if (!response) {
           return;
         }
-        const user = response.data;
+        const user = {
+          ...response.user,
+          access_token: response.access_token,
+        };
 
         return user;
       },
@@ -89,7 +92,7 @@ export default {
         account as Profile,
       )) as ApiResponse;
 
-      user = response?.data?.user;
+      user = response?.data?.user ?? response.user;
 
       return { ...token, ...user };
     },
@@ -102,26 +105,31 @@ export default {
     }): Promise<CustomSession> {
       session.user = {
         id: token.id as string,
-        name: token.name as string,
-        first_name: token.first_name as string,
-        last_name: token.last_name as string,
+        first_name:
+          (token.first_name as string) ||
+          ((token.name ? token.name.split(" ")[0] : "") as string),
+        last_name:
+          (token.last_name as string) ||
+          ((token.name
+            ? token.name.split(" ").slice(1).join(" ")
+            : "") as string),
         email: token.email as string,
-        image: token.avatar_url as string,
+        image: token.picture || (token.avatar_url as string),
         role: token.role as string,
-        accessToken: token.access_token as string,
+        access_token: token.access_token as string,
       };
 
       return session as CustomSession;
     },
-    async redirect({ url, baseUrl }) {
-      if (url === "/login") {
-        return baseUrl;
-      }
-      if (url === `${baseUrl}/api/auth/signout`) {
-        return baseUrl;
-      }
-      return "/dashboard";
-    },
+    // async redirect({ url, baseUrl }) {
+    //   if (url === "/login") {
+    //     return baseUrl;
+    //   }
+    //   if (url === `${baseUrl}/api/auth/signout`) {
+    //     return baseUrl;
+    //   }
+    //   return "/dashboard";
+    // },
   },
   pages: {
     signIn: "/login",
