@@ -31,7 +31,6 @@ export default {
         const { email, password, rememberMe } = validatedFields.data;
         try {
           const response = await loginAuth({ email, password, rememberMe });
-          
 
           if (!response) {
             throw new Error("User authentication failed");

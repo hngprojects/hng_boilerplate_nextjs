@@ -21,8 +21,8 @@ export const loginAuth = async (values: z.infer<typeof LoginSchema>) => {
   try {
     const response = await axios.post(`${apiUrl}/api/v1/auth/login`, payload);
     const access_token =
-    response.data.access_token ?? response.data.data.access_token;
-    
+      response.data.access_token ?? response.data.data.access_token;
+
     cookie.set("access_token", access_token, {
       maxAge: 60 * 60 * 24 * 1,
       httpOnly: true,
