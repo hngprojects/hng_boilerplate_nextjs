@@ -28,7 +28,7 @@ const NotificationPage = () => {
 
     try {
       const session = await getSession();
-      const token = session?.user?.access_token;
+      const token = session?.access_token;
 
       if (!token) {
         toast({
