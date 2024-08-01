@@ -28,7 +28,10 @@ const Pagination = ({
 }: PaginationProperties) => {
   const totalPages = Math.ceil(total / pageSize);
 
-  const handleChange = (page: number) => {
+  const handleChange = (page: number, event?: React.MouseEvent) => {
+    if (event) {
+      event.preventDefault();
+    }
     if (onChange) {
       onChange(page);
     }
@@ -68,31 +71,50 @@ const Pagination = ({
     <PaginationComponent>
       <PaginationContent>
         <PaginationItem>
-          <PaginationPrevious
-            onClick={() => currentPage > 1 && handleChange(currentPage - 1)}
-            className={`${
+          <div
+            className={`flex items-center pr-2 ${
               navigationVariant === "semibold"
-                ? "text-xl font-semibold leading-normal"
-                : "text-base font-medium leading-6"
+                ? "pr-1 text-xl font-semibold leading-normal"
+                : "text-base font-medium leading-6 hover:bg-transparent"
             } ${
               currentPage > 1
                 ? "cursor-pointer"
                 : "cursor-not-allowed text-stroke-colors-stroke hover:bg-transparent hover:text-stroke-colors-stroke"
             }`}
-            href={currentPage > 1 ? `?page=${currentPage - 1}` : "#"}
-          />
+            onClick={() => currentPage > 1 && handleChange(currentPage - 1)}
+          >
+            <PaginationPrevious
+              className={`${
+                navigationVariant === "semibold"
+                  ? "border-none bg-inherit text-xl font-semibold leading-normal"
+                  : "border-none bg-inherit text-base font-medium leading-6"
+              } ${
+                currentPage > 1
+                  ? "cursor-pointer border-none bg-inherit"
+                  : "cursor-not-allowed text-stroke-colors-stroke hover:bg-transparent hover:text-stroke-colors-stroke"
+              }`}
+              onClick={(event) => {
+                event.preventDefault();
+                if (currentPage > 1) handleChange(currentPage - 1);
+              }}
+            />
+            Previous
+          </div>
         </PaginationItem>
         {getPageNumbers().map((page, index) =>
           typeof page === "number" ? (
             <PaginationItem key={index} onClick={() => handleChange(page)}>
               <PaginationLink
-                href={`?page=${page}`}
+                onClick={(event) => {
+                  event.preventDefault();
+                  handleChange(page);
+                }}
                 isActive={currentPage === page}
                 activeVariant={activeVariant}
                 className={
                   currentPage === page && activeVariant === "default"
                     ? "bg-primary"
-                    : ""
+                    : "border-none bg-inherit text-neutral-dark-1"
                 }
               >
                 {page}
@@ -109,18 +131,35 @@ const Pagination = ({
             currentPage < totalPages && handleChange(currentPage + 1)
           }
         >
-          <PaginationNext
-            className={`${
+          <div
+            className={`flex items-center pl-2${
               navigationVariant === "semibold"
                 ? "text-xl font-semibold leading-normal"
                 : "text-base font-medium leading-6"
             } ${
               currentPage < totalPages
-                ? "cursor-pointer"
+                ? "cursor-pointer hover:bg-transparent"
                 : "cursor-not-allowed text-stroke-colors-stroke hover:bg-transparent hover:text-stroke-colors-stroke"
             }`}
-            href={currentPage < totalPages ? `?page=${currentPage + 1}` : "#"}
-          />
+          >
+            {" "}
+            Next
+            <PaginationNext
+              className={`${
+                navigationVariant === "semibold"
+                  ? "border-none bg-inherit text-xl font-semibold leading-normal"
+                  : "text-base font-medium leading-6"
+              } ${
+                currentPage < totalPages
+                  ? "cursor-pointer border-none bg-inherit"
+                  : "cursor-not-allowed border-none bg-inherit text-stroke-colors-stroke hover:bg-transparent hover:text-stroke-colors-stroke"
+              }`}
+              onClick={(event) => {
+                event.preventDefault();
+                if (currentPage < totalPages) handleChange(currentPage + 1);
+              }}
+            />{" "}
+          </div>
         </PaginationItem>
       </PaginationContent>
     </PaginationComponent>

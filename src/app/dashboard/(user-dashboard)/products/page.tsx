@@ -21,7 +21,7 @@ const ProductFilter = dynamic(() => import("./_components/product-filter"), {
 
 const ProductPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [view, setView] = useState<"list" | "grid">("list");
+  const [view, setView] = useState<"list" | "grid">("grid");
 
   const {
     isOpen,
