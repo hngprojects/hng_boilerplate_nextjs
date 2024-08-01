@@ -1,6 +1,6 @@
 import { ChevronDown } from "lucide-react";
-import type { DefaultSession } from "next-auth";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import {
@@ -21,31 +21,26 @@ const handleLogout = async () => {
   });
 };
 
-type UserCardProperties = {
-  status: "authenticated" | "loading" | "unauthenticated";
-  session: DefaultSession | null;
-};
-
-const UserCard = ({ session, status }: UserCardProperties) => {
+const UserCard = () => {
+  const { data: session, status } = useSession();
   const { user } = session ?? {};
-  const loading = status === "loading";
-  const isAuth = status === "authenticated";
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button
           type="button"
           className="flex items-center rounded-full p-1 hover:bg-subtle"
-          disabled={loading}
+          disabled={status === "loading"}
         >
-          {loading && (
+          {status === "loading" && (
             <span className="size-8 animate-pulse rounded-full bg-subtle-hover/80 sm:size-10" />
           )}
-          {isAuth && (
+          {status === "authenticated" && (
             <Avatar className="size-8 sm:size-10">
               <AvatarImage src={user?.image ?? ""} />
               <AvatarFallback className="bg-primary/30 uppercase">
-                {user?.email?.charAt(0)}
+                {user?.first_name?.charAt(0)}
               </AvatarFallback>
             </Avatar>
           )}
@@ -53,34 +48,47 @@ const UserCard = ({ session, status }: UserCardProperties) => {
             data-testid="chevronDown"
             className={cn(
               "size-4 text-neutral-dark-2 sm:size-5",
-              !isAuth && "opacity-0",
+              status !== "authenticated" && "opacity-0",
             )}
           />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="mr-1 w-56" alignOffset={6}>
+      <DropdownMenuContent className="mr-1 w-56" align="end">
         <DropdownMenuLabel className="pb-0 pt-3">
-          {user?.name}
+          {user?.first_name} {user?.last_name}
         </DropdownMenuLabel>
         <span className="block px-2 pb-1 text-xs text-neutral-dark-1">
           {user?.email ?? "Signed In"}
         </span>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <span className="font-medium">Profile</span>
-            <DropdownMenuShortcut>⇧P</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <span className="font-medium">Billing</span>
-            <DropdownMenuShortcut>⇧B</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <span className="font-medium">New Team</span>
-          </DropdownMenuItem>
+          <Link href="/dashboard" passHref legacyBehavior>
+            <DropdownMenuItem className="cursor-pointer">
+              <span className="font-medium">Overview</span>
+              <DropdownMenuShortcut>⇧O</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </Link>
+          <Link href="/dashboard/customers" passHref legacyBehavior>
+            <DropdownMenuItem className="cursor-pointer">
+              <span className="font-medium">Customers</span>
+              <DropdownMenuShortcut>⇧C</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </Link>
+          <Link href="/dashboard/products" passHref legacyBehavior>
+            <DropdownMenuItem className="cursor-pointer">
+              <span className="font-medium">Products</span>
+              <DropdownMenuShortcut>⇧P</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </Link>
+          <Link href="/dashboard/settings" passHref legacyBehavior>
+            <DropdownMenuItem className="cursor-pointer">
+              <span className="font-medium">Settings</span>
+              <DropdownMenuShortcut>⇧S</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </Link>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={handleLogout}>
+        <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
           <span className="font-medium">Log out</span>
           <DropdownMenuShortcut>⇧Q</DropdownMenuShortcut>
         </DropdownMenuItem>

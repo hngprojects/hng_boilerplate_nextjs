@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 
+import Providers from "~/components/providers";
 import DashboardNavbar from "./_components/layout/navbar";
 import Sidebar from "./_components/layout/Sidebar";
 
@@ -10,6 +11,7 @@ export default function AdminLayout({
 }) {
   return (
     <div className="min-h-screen w-full pl-[50px] md:pl-[220px] lg:pl-[252px]">
+      <Providers />
       <Sidebar />
       <DashboardNavbar />
       <div className="">

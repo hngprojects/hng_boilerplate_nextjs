@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff, ShieldCheck } from "lucide-react";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next-nprogress-bar";
 import Link from "next/link";
 import { useEffect, useState, useTransition } from "react";
@@ -28,11 +28,16 @@ import { getApiUrl } from "~/utils/getApiUrl";
 import { loginUser } from "~/utils/login";
 
 const Login = () => {
-  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
-  const [isLoading, startTransition] = useTransition();
-  const [apiUrl, setApiUrl] = useState("");
   const { toast } = useToast();
+  const { status } = useSession();
+  const [apiUrl, setApiUrl] = useState("");
+  const [isLoading, startTransition] = useTransition();
+  const [showPassword, setShowPassword] = useState(false);
+
+  if (status === "authenticated") {
+    router.push("/dashboard");
+  }
   useEffect(() => {
     const fetchApiUrl = async () => {
       try {
