@@ -11,15 +11,9 @@ import useVersionSync from "~/utils/useVersionSync";
 import { NAV_LINKS } from "./links";
 import MobileNav from "./mobile-navbar";
 
-interface User {
-  email: string;
-  image: string;
-  name: string;
-}
-
 const Navbar = () => {
   const [scrolling, setIsScrolling] = useState<boolean>(false);
-  const { data: session, status } = useSession();
+  const { status } = useSession();
 
   const version = "v1.0";
   useVersionSync(version);
@@ -81,9 +75,7 @@ const Navbar = () => {
             </Link>
           </div>
         )}
-        {status === "authenticated" && (
-          <UserCard user={session?.user as User} />
-        )}
+        {status === "authenticated" && <UserCard />}
       </div>
     </nav>
   );

@@ -8,7 +8,7 @@ import TopProductsComponent from "~/components/adminDashboard/TopProductsCompone
 import CardComponent from "~/components/common/DashboardCard/CardComponent";
 import { Card } from "~/components/ui/card";
 
-const Client = () => {
+const AdminPage = () => {
   return (
     <section>
       <div className="mb-4 md:mb-0">
@@ -47,4 +47,4 @@ const Client = () => {
   );
 };
 
-export default Client;
+export default AdminPage;

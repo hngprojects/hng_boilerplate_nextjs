@@ -8,8 +8,17 @@ import Comment, {
 
 describe("comment box component", () => {
   const mockSession: Session = {
-    expires: "1",
-    user: { email: "a", name: "skeby", image: "c" },
+    user: {
+      id: "12345",
+      name: "Current User",
+      first_name: "Current",
+      last_name: "User",
+      email: "user@example.com",
+      image: "path/to/image",
+      role: "user",
+      access_token: "some-token",
+    },
+    expires: "2100-01-01T00:00:00.000Z",
   };
   const defaultProps: CommentProperties = {
     id: "1",
