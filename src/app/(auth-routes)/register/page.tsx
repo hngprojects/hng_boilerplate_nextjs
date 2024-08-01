@@ -97,7 +97,7 @@ const Register = () => {
           <CustomButton
             variant="outline"
             isLeftIconVisible={true}
-            onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+            onClick={() => signIn("google", { callbackUrl: "/register/organisation" })}
             icon={
               <svg
                 width="25"
