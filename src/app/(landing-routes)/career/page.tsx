@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { getApiUrl } from "~/utils/getApiUrl";
 
 import CareerCardParent from "~/components/common/CareerCard";
 import { Job } from "~/components/common/CareerCard/Jobs";
@@ -10,6 +11,7 @@ import Nojobs from "./Nojobs";
 
 export default function Career() {
   const [allJobs, setAllJobs] = useState<Job[]>([]);
+  const [baseUrl, setBaseUrl] = useState<string>("");
   const [displayedJobs, setDisplayedJobs] = useState<Job[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,11 +19,15 @@ export default function Career() {
   const router = useRouter();
 
   useEffect(() => {
+    getApiUrl().then(url => setBaseUrl(url));
+  }, []);
+
+  useEffect(() => {
     const fetchJobs = async () => {
       setIsLoading(true);
       try {
         const response = await fetch(
-          `https://deployment.api-nestjs.boilerplate.hng.tech/api/v1/jobs`,
+          `${baseUrl}/api/v1/jobs`,
           {
             method: "GET",
             headers: {
