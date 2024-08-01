@@ -183,10 +183,10 @@ export default function Pricing() {
       </div>
 
       <section className="bg-white">
-        <div className="mx-auto max-w-7xl px-5 py-20 md:px-10 lg:px-10 xl:px-10">
+        <div className="mx-auto max-w-7xl px-5 py-20 md:px-10 lg:px-10 xl:px-10" data-testid="faq-section">
           <div className="mb-20 grid w-full grid-cols-1 gap-y-10 lg:grid-cols-2">
-            <div className="flex flex-col gap-3">
-              <h1 className="self-stretch text-4xl font-semibold text-neutral-600">
+            <div className="flex flex-col gap-3" data-testid="faq-header">
+              <h1 className="self-stretch text-4xl font-semibold text-neutral-600" data-testid="faq-header">
                 Frequently Asked Questions
               </h1>
               <p className="mb-3 text-[18px] text-neutral-600">
@@ -197,12 +197,13 @@ export default function Pricing() {
                 variant="outline"
                 className="h-[50px] w-[150px]"
                 size="lg"
+                data-testid="contact-button"
               >
                 Contact us
               </Button>
             </div>
 
-            <FaqAccordion faqs={faqData} containerClassName="p-8" />
+            <FaqAccordion faqs={faqData} containerClassName="p-8"   data-testid="faq-accordion"/>
           </div>
         </div>
       </section>
