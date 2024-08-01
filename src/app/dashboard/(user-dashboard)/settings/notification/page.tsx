@@ -2,20 +2,16 @@
 
 import { Check, ChevronLeft } from "lucide-react";
 import { getSession } from "next-auth/react";
-import { useState, useEffect
-} from "react";
+import { useState } from "react";
+import axios from "axios";
 
 import CustomButton from "~/components/common/common-button/common-button";
 import NotificationSettingSavedModal from "~/components/common/modals/notification-settings-saved";
 import NotificationHeader from "./_components/header";
 import { NotificationSwitchBox } from "./_components/notification-switch-box";
-import { getApiUrl } from "~/utils/getApiUrl";
-import { useToast } from "~/components/ui/use-toast";
+
 import { useNotificationStore } from "./action/notification-store";
 import { notificationSettingsProperties } from "./types/notification-settings.types";
-
-
-
 
 const saveNotificationSettings = async (
   settings: notificationSettingsProperties,
@@ -23,29 +19,29 @@ const saveNotificationSettings = async (
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   const endpoint = "/api/v1/settings/notification-settings";
   const url = `${baseUrl}${endpoint}`;
-  console.log(`url: ${url}`);
 
   try {
-    // const session = await getSession();
-    // const token = session.access_token;
+    const session = await getSession();
+    const token = session?.user?.access_token;
 
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(settings),
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to save settings");
+    if (!token) {
+      throw new Error("Access token is undefined");
     }
 
-    const data = await response.json();
+    const response = await axios.post(url, settings, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.status !== 200) {
+      throw new Error("Failed to save settings");
+    }
+    const data = response.data;
     return data;
-  } catch (error) {
-    console.error("Error saving settings:", error);
-    throw error;
+  } catch {
+    throw new Error(`Failed to save settings`);
   }
 };
 
@@ -59,28 +55,14 @@ const NotificationPage = () => {
 
   const handleSaveChanges = async () => {
     try {
-      const session = await getSession();
-      console.log("Session:", session); // Log the session object
       await saveNotificationSettings(settings);
       setOpen(true);
-    } catch (error) {
-      console.log(error);
+    } catch {
+      throw new Error("Failed to save settings");
     }
   };
 
-  // const handleSaveChanges = async () => {
-  //   try {
-  //     await saveNotificationSettings(settings);
-  //     // console.log("Settings saved:", settings);
-  //     setOpen(true);
-  //   } catch {
-  //     // console.error("Failed to save settings:", error);
-  //     // Handle error, e.g., show a notification to the user
-  //   }
-  // };
-
   return (
-    <>
     <main className="text-neutral-dark-2">
       <div className="mx-[24px] mb-[30px] flex w-fit items-center gap-1 md:hidden">
         <ChevronLeft size="18" className="text-muted-foreground" />
@@ -197,8 +179,6 @@ const NotificationPage = () => {
         onClose={() => setOpen(false)}
       />
     </main>
-    </>
-    
   );
 };
 
