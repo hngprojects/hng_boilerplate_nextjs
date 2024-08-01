@@ -1,13 +1,10 @@
 import { ArrowRight } from "lucide-react";
-import { getSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 import CustomButton from "~/components/common/common-button/common-button";
 import { Card, CardContent, CardTitle } from "~/components/ui/card";
 import { Switch } from "~/components/ui/switch";
-import useApiUrl, {
-  fetchOrganization,
-} from "../../organization/members/action/member";
+import useApiUrl from "../../organization/members/action/member";
 import FilterBy from "../filrerBy";
 import MemberCard from "../MemberCard";
 import DeleteSuccessModal from "../MemberDeleteModal";
@@ -21,14 +18,13 @@ const Member = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-     
-      if (apiUrl) {
-        try {
-          const data = await fetchOrganization(apiUrl);
-        } catch (error) {
-          console.error("Error fetching organization data:", error);
-        }
-      }
+      // if (apiUrl) {
+      //   try {
+      //     const data = await fetchOrganization(apiUrl);
+      //   } catch (error) {
+      //     console.error("Error fetching organization data:", error);
+      //   }
+      // }
     };
 
     fetchData();
@@ -109,6 +105,15 @@ const Member = () => {
           Invite People
         </CustomButton>
       </div>
+      <MemberCard
+        deleteHandle={() => {
+          setShowDeleteModal(true);
+        }}
+        setRole={() => {}}
+        name="Emosivbe Promise"
+        email="Promiseejiro43@gmail.com"
+        image="https://github.com/shadcn.png"
+      />
       <MemberCard
         deleteHandle={() => {
           setShowDeleteModal(true);
