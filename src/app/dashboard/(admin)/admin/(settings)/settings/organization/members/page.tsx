@@ -1,11 +1,13 @@
 "use client";
 
+import { AxiosResponse } from "axios";
 import { EllipsisIcon } from "lucide-react";
 import { useState } from "react";
 
 import CustomButton from "~/components/common/common-button/common-button";
 import { Input } from "~/components/common/input";
 import InviteMemberModal from "~/components/common/modals/invite-member";
+import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import {
   Select,
   SelectContent,
@@ -16,6 +18,7 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 import { useToast } from "~/components/ui/use-toast";
+import { exportMembersEndpoint } from "../export";
 
 type Member = {
   avatar?: string;
@@ -67,6 +70,8 @@ const activeMembers: number = memberData.length;
 
 const Members = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [exporting, setExporting] = useState(false);
+  const [text, setText] = useState("Export CSV");
 
   const { toast } = useToast();
   const handleCopy = () => {
@@ -84,6 +89,54 @@ const Members = () => {
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
+
+  const exportMembers = async () => {
+    setExporting(true);
+    setText("Exporting...");
+
+    const result = await exportMembersEndpoint();
+
+    if (result.success) {
+      toast({
+        title: "Success",
+        description: result.message || "Exported Successfully",
+        variant: "destructive",
+      });
+      downloadDocument(result);
+    }
+
+    if (result.error) {
+      toast({
+        title: "Error",
+        description: result.message,
+        variant: "destructive",
+      });
+      setExporting(false);
+      setText("Export CSV");
+    }
+  };
+
+  const downloadDocument = (result: {
+    success?: boolean;
+    format: string;
+    response: AxiosResponse<Blob | MediaSource>;
+    error?: undefined;
+    message?: undefined;
+  }) => {
+    setText("Downloading...");
+
+    const link = document.createElement("a");
+
+    link.href = URL.createObjectURL(result.response.data);
+    link.download = `org_members.${result.format}`;
+    document.body.append(link);
+    link.click();
+    link.remove();
+
+    setText("Export CSV");
+    setExporting(false);
+  };
+
   return (
     <div className="ml-4 w-5/6 space-x-4 text-[#0A0A0A]">
       <div className="border-b border-[#CBD5E1] p-4">
@@ -200,7 +253,21 @@ const Members = () => {
               Export a CSV with information of all members of your team
             </p>
           </div>
-          <CustomButton variant="primary">Export CSV</CustomButton>
+          <CustomButton
+            variant="primary"
+            onClick={() => {
+              exportMembers();
+            }}
+          >
+            {exporting ? (
+              <span className="flex items-center gap-x-2">
+                <span className="animate-pulse">{text}</span>{" "}
+                <LoadingSpinner className="size-4 animate-spin sm:size-5" />
+              </span>
+            ) : (
+              <span>{text}</span>
+            )}
+          </CustomButton>
         </div>
       </div>
       <InviteMemberModal show={isModalOpen} onClose={handleModalClose} />
