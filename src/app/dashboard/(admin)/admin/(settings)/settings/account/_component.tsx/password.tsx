@@ -12,14 +12,16 @@ const Password = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | undefined>(undefined);
 
   const [isLengthValid, setIsLengthValid] = useState(false);
   const [hasUppercase, setHasUppercase] = useState(false);
   const [hasNumber, setHasNumber] = useState(false);
 
-  const handleNewPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const password = e.target.value;
+  const handleNewPasswordChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const password = event.target.value;
     setNewPassword(password);
 
     setIsLengthValid(password.length >= 8);
@@ -48,10 +50,9 @@ const Password = () => {
       );
 
       setOpen(true);
-      setError(null);
+      setError(undefined);
     } catch (error) {
       setError("An error occurred while updating the password.");
-      console.error(error);
     }
   };
 
@@ -60,7 +61,7 @@ const Password = () => {
     setNewPassword("");
     setConfirmNewPassword("");
     setOpen(false);
-    setError(null);
+    setError(undefined);
     setIsLengthValid(false);
     setHasUppercase(false);
     setHasNumber(false);
@@ -84,8 +85,8 @@ const Password = () => {
             className="border-border"
             type="password"
             value={currentPassword}
-            onChange={(e: { target: { value: SetStateAction<string> } }) =>
-              setCurrentPassword(e.target.value)
+            onChange={(event: { target: { value: SetStateAction<string> } }) =>
+              setCurrentPassword(event.target.value)
             }
           />
           <CustomInput
@@ -117,8 +118,8 @@ const Password = () => {
             className="border-border"
             type="password"
             value={confirmNewPassword}
-            onChange={(e: { target: { value: SetStateAction<string> } }) =>
-              setConfirmNewPassword(e.target.value)
+            onChange={(event: { target: { value: SetStateAction<string> } }) =>
+              setConfirmNewPassword(event.target.value)
             }
           />
           {error && <p className="text-red-500">{error}</p>}
