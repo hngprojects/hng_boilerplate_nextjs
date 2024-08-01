@@ -2,7 +2,7 @@
 
 import { BellIcon, HelpCircle } from "lucide-react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-nprogress-bar";
 import { useEffect } from "react";
 
 import DashboardLogo from "~/app/dashboard/(admin)/_components/layout/logo";
@@ -17,8 +17,37 @@ import {
   PopoverTrigger,
 } from "~/components/ui/popover";
 
+// const navlinks = [
+//   {
+//     route: "Overview",
+//     link: "/dashboard/overview",
+//     id: "dashboard",
+//   },
+//   {
+//     route: "Customers",
+//     link: "/dashboard/customers",
+//     id: "customers",
+//   },
+//   {
+//     route: "Products",
+//     link: "/dashboard/products",
+//     id: "products",
+//   },
+//   // {
+//   //   route: "Settings",
+//   //   link: "/dashboard/settings",
+//   //   id: "settings",
+//   // },
+// ];
+
+// interface User {
+//   email: string;
+//   image: string;
+//   name: string;
+// }
+
 const UserNavbar = () => {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const router = useRouter();
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -73,7 +102,7 @@ const UserNavbar = () => {
             />
           </div>
           <div className="pr-1">
-            <UserCard status={status} session={session} />
+            <UserCard />
           </div>
         </div>
       </div>

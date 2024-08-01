@@ -7,6 +7,7 @@ interface ArtileDataProperties {
   minsRead: string;
   datePublished: string;
   thumbnail: string;
+  id: string;
 }
 
 export const articlesData: ArtileDataProperties[] = [
@@ -20,6 +21,7 @@ export const articlesData: ArtileDataProperties[] = [
     avatar: "/images/latest-articles/avatar.png",
     tag: "BUSINESS",
     thumbnail: "/images/latest-articles/post-1.png",
+    id: "1",
   },
 
   {
@@ -32,6 +34,7 @@ export const articlesData: ArtileDataProperties[] = [
     avatar: "/images/latest-articles/avatar.png",
     tag: "BUSINESS",
     thumbnail: "/images/latest-articles/post-2.png",
+    id: "2",
   },
 
   {
@@ -44,6 +47,7 @@ export const articlesData: ArtileDataProperties[] = [
     avatar: "/images/latest-articles/avatar.png",
     tag: "BUSINESS",
     thumbnail: "/images/latest-articles/post-3.png",
+    id: "3",
   },
 
   {
@@ -56,6 +60,7 @@ export const articlesData: ArtileDataProperties[] = [
     avatar: "/images/latest-articles/avatar.png",
     tag: "BUSINESS",
     thumbnail: "/images/latest-articles/post-4.png",
+    id: "4",
   },
 
   {
@@ -68,5 +73,6 @@ export const articlesData: ArtileDataProperties[] = [
     avatar: "/images/latest-articles/avatar.png",
     tag: "BUSINESS",
     thumbnail: "/images/latest-articles/post-5.png",
+    id: "5",
   },
 ];
