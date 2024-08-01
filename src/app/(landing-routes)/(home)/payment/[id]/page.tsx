@@ -1,15 +1,66 @@
+"use client";
+
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
+
+import { getApiUrl } from "~/utils/getApiUrl";
+
+interface BillingPlan {
+  id: string;
+  name: string;
+  price: number;
+}
+
 const Payment = () => {
+  const { id } = useParams(); // Assuming the ID is obtained from the URL params
+  const [plan, setPlan] = useState<BillingPlan | undefined>();
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const fetchPlan = async () => {
+      if (!id) return;
+
+      try {
+        const url = await getApiUrl();
+        // console.log("url", url);
+        const response = await fetch(`${url}/api/v1/billing-plans/${id}`);
+        const data = await response.json();
+
+        // console.log("Fetched data:", data); // Log the fetched data
+
+        // Assuming the response data is a single BillingPlan object
+        setPlan(data.data);
+      } catch {
+        // console.error("Failed to fetch plan:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPlan();
+  }, [id]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!plan) {
+    return <div>No plan found</div>;
+  }
+
   return (
     <div className="mx-auto max-w-7xl px-5 py-20 md:px-10 lg:px-10 xl:px-10">
       <div className="min-h-screen p-4">
         <div className="lg:gap- flex w-full flex-col justify-between md:flex-col md:gap-20 lg:flex-row">
           {/* Summary Section */}
+
           <div className="mb-5 md:mb-0 md:w-full lg:mb-0 lg:w-1/2">
             <h2 className="text-[20px] font-normal leading-[24.2px] text-[#71717A]">
               Subscribe to Boilerplates
             </h2>
             <p className="mb-[18.5px] mt-2 text-[36px] font-semibold leading-[43.57px]">
-              $3000.00 <span className="text-sm text-[#71717A]">per month</span>
+              ${plan.price}{" "}
+              <span className="text-sm text-[#71717A]">per month</span>
             </p>
             <label className="flex items-center">
               <input
@@ -27,7 +78,7 @@ const Payment = () => {
                 <div className="flex justify-between pb-[25px]">
                   <div>
                     <span className="mb-[4px] text-[16px] font-medium leading-[24px]">
-                      Boilerplates Premium
+                      Boilerplates {plan.name}
                     </span>
                     <p className="max-w-[345px] text-[14px] leading-[16.94px] text-[#71717A]">
                       The essentials to provide your best work for clients.
@@ -35,7 +86,7 @@ const Payment = () => {
                     </p>
                   </div>
                   <span className="text-[16px] font-medium leading-[24px]">
-                    $3000.00
+                    ${plan.price}
                   </span>
                 </div>
                 <hr className="pb-[25px]" />
@@ -49,7 +100,7 @@ const Payment = () => {
                     </p>
                   </div>
                   <span className="text-[16px] font-medium leading-[24px]">
-                    $3000.00
+                    ${plan.price}
                   </span>
                 </div>
                 <hr />
@@ -60,7 +111,7 @@ const Payment = () => {
                   Total due today
                 </span>
                 <span className="mb-[4px] text-[16px] font-medium leading-[24px]">
-                  $3000.00
+                  ${plan.price}
                 </span>
               </div>
             </div>
@@ -108,7 +159,7 @@ const Payment = () => {
                 <label htmlFor="cardInformation" className="block">
                   <span>Card Information </span>
                   <input
-                    type="email"
+                    type="text"
                     placeholder="Card Information"
                     className="mt-1 h-[64px] w-full rounded-[8px] border border-[#B2B0B0] p-3"
                   />
@@ -140,13 +191,13 @@ const Payment = () => {
                   <span>Country or Region</span>
                   <select
                     className="h-[64px] w-full rounded-[8px] border border-[#B2B0B0] pl-[16px] pr-[24px]"
-                    name=""
-                    id=""
+                    name="countryOrRegion"
+                    id="countryOrRegion"
                   >
-                    <option value="">Nigeria</option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
+                    <option value="Nigeria">Nigeria</option>
+                    <option value="USA">USA</option>
+                    <option value="Canada">Canada</option>
+                    <option value="UK">UK</option>
                   </select>
                 </label>
 
@@ -160,7 +211,7 @@ const Payment = () => {
                 <div className="max-w-[531px] pb-[32px]">
                   <span className="font-inter text-[13px] font-normal leading-[23.4px]">
                     Your subscription will renew automatically every month as
-                    one payment of $800. Cancel it anytime from your
+                    one payment of ${plan.price}. Cancel it anytime from your
                     subscription settings. By clicking &quot;Confirm and
                     pay&quot; you agree to the{" "}
                     <span className="text-[#F97316]">
