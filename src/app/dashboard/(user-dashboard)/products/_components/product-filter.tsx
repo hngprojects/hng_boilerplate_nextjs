@@ -87,7 +87,7 @@ const ProductFilter = ({
         <div className="flex items-center gap-x-2">
           <Button
             onClick={() => setView("grid")}
-            disabled
+            disabled={view === "grid"}
             variant="outline"
             size="icon"
             className={cn(
