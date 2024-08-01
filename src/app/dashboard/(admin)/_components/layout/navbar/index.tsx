@@ -72,7 +72,7 @@ const DashboardNavbar = () => {
             />
           </div>
           <div className="hover:bg-black-1 flex w-full max-w-[64px] cursor-pointer items-center justify-between gap-2">
-            <UserCard status={status} session={session} />
+            <UserCard />
           </div>
         </div>
       </div>
