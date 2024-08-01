@@ -2,17 +2,19 @@
 
 import { Check, ChevronLeft } from "lucide-react";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import CustomButton from "~/components/common/common-button/common-button";
 import NotificationSettingSavedModal from "~/components/common/modals/notification-settings-saved";
-import { useNotificationStore } from "./_action/notification-store";
 import NotificationHeader from "./_components/header";
 import { NotificationSwitchBox } from "./_components/notification-switch-box";
+import { useNotificationStore } from "./utils/notification-store";
 
 const NotificationPage = () => {
-  const { data: session } = useSession(); //this is what get us the user session data (toke)
-  const { settings, updateSettings } = useNotificationStore();
+  const { data: session } = useSession();
+  const { settings, RetrieveUserNotificationAll, updateSettings } =
+    useNotificationStore();
+
   const [isOpen, setOpen] = useState(false);
 
   const handleToggleSwitch = (name: keyof typeof settings) => {
@@ -20,10 +22,14 @@ const NotificationPage = () => {
   };
 
   const handleSaveChanges = async () => {
-    // eslint-disable-next-line no-console
-    console.log(session);
     setOpen(true);
   };
+
+  useEffect(() => {
+    if (session?.access_token) {
+      RetrieveUserNotificationAll(session.access_token);
+    }
+  }, [session, RetrieveUserNotificationAll]);
 
   return (
     <main className="text-neutral-dark-2">

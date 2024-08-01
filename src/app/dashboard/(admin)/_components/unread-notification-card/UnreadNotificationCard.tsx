@@ -14,12 +14,17 @@ import {
 } from "~/components/ui/card";
 import { Switch } from "~/components/ui/switch";
 import { cn } from "~/lib/utils";
-import { useNotificationStore } from "../../admin/(settings)/settings/notification/_action/notification-store";
 import { notificationSettingsProperties } from "../../admin/(settings)/settings/notification/_types/notification-settings.types";
+import { getTimeAgo } from "../../admin/(settings)/settings/notification/utils/date-time-formatter";
+import { useNotificationStore } from "../../admin/(settings)/settings/notification/utils/notification-store";
 
+// interface NotificationPreview {
+//   header: string;
+//   time: string;
+// }
 interface NotificationPreview {
-  header: string;
-  time: string;
+  message: string;
+  created_at: string;
 }
 
 interface CardProperties extends React.ComponentProps<typeof Card> {
@@ -83,13 +88,13 @@ const UnreadNotificationCard: FC<CardProperties> = ({
                   data-testid={`previewHeader${index}`}
                   className="text-sm font-medium leading-none"
                 >
-                  {preview.header}
+                  {preview.message}
                 </p>
                 <p
                   data-testid={`previewTime${index}`}
                   className="text-sm text-muted-foreground"
                 >
-                  {preview.time}
+                  {getTimeAgo(preview.created_at)}
                 </p>
               </div>
             </div>

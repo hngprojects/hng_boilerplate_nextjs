@@ -1,12 +1,17 @@
+/* eslint-disable no-console */
+import axios from "axios";
 import create from "zustand";
 
+import { getApiUrl } from "~/utils/getApiUrl";
 import { notificationSettingsProperties } from "../_types/notification-settings.types";
 
 interface NotificationStore {
+  allNotifications: [];
   settings: notificationSettingsProperties;
   updateSettings: (
     newSettings: Partial<notificationSettingsProperties>,
   ) => void;
+  RetrieveUserNotificationAll: (token: string) => Promise<void>;
 }
 
 export const useNotificationStore = create<NotificationStore>((set) => ({
@@ -20,8 +25,27 @@ export const useNotificationStore = create<NotificationStore>((set) => ({
     slack_notifications_always_send_email_notifications: false,
     slack_notifications_announcement_and_update_emails: false,
   },
+  allNotifications: [],
   updateSettings: (newSettings: Partial<notificationSettingsProperties>) =>
     set((state) => ({
       settings: { ...state.settings, ...newSettings },
     })),
+
+  // notification api endpiont
+  RetrieveUserNotificationAll: async (token: string) => {
+    const baseUrl = await getApiUrl();
+    try {
+      const axiosInstance = axios.create({
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const response = await axiosInstance.get(
+        `${baseUrl}/api/v1/notifications`,
+      );
+      set({ allNotifications: response.data.data.notifications });
+    } catch (error) {
+      console.error("Failed to fetch settings", error);
+    }
+  },
 }));

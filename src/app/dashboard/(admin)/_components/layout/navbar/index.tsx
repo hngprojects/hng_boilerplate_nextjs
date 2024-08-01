@@ -11,10 +11,12 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "~/components/ui/popover";
+import { useNotificationStore } from "../../../admin/(settings)/settings/notification/utils/notification-store";
 import UnreadNotificationCard from "../../unread-notification-card/UnreadNotificationCard";
 import DashboardLogo from "../logo";
 
 const DashboardNavbar = () => {
+  const { allNotifications } = useNotificationStore();
   const { status } = useSession();
   const router = useRouter();
   useEffect(() => {
@@ -59,12 +61,8 @@ const DashboardNavbar = () => {
                   className="w-fit border-none p-0 shadow-none"
                 >
                   <UnreadNotificationCard
-                    notificationsPreview={[
-                      { header: "Check mail", time: "1 hour ago" },
-                      { header: "Sign up for offer", time: "2 hours ago" },
-                      { header: "Register for event", time: "1 hour ago" },
-                    ]}
-                    unreadCount={30}
+                    notificationsPreview={allNotifications}
+                    unreadCount={allNotifications?.length}
                   />
                 </PopoverContent>
               </Popover>
