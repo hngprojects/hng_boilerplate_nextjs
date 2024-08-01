@@ -5,9 +5,9 @@ import CustomButton from "~/components/common/common-button/common-button";
 import { Card, CardContent, CardTitle } from "~/components/ui/card";
 import { Switch } from "~/components/ui/switch";
 import useApiUrl from "../../organization/members/action/member";
-import FilterBy from "../filrerBy";
+// import FilterBy from "../filrerBy";
 import MemberCard from "../MemberCard";
-import DeleteSuccessModal from "../MemberDeleteModal";
+// import DeleteSuccessModal from "../MemberDeleteModal";
 import InviteModal from "../MemberInviteModal";
 import SearchInput from "../Search";
 
@@ -94,7 +94,7 @@ const Member = () => {
             placeholder={"Search by name or email"}
             onSearch={() => {}}
           />
-          <FilterBy onFilter={() => {}} />
+          {/* <FilterBy onFilter={() => {}} /> */}
         </div>
         <CustomButton
           variant="primary"
@@ -136,13 +136,13 @@ const Member = () => {
           <CustomButton variant="primary">Export CSV</CustomButton>
         </div>
       </CardContent>
-      <DeleteSuccessModal
+      {/* <DeleteSuccessModal
         // memberId=""
         show={showDeleteModal}
         onClose={() => {
           setShowDeleteModal(false);
         }}
-      />
+      /> */}
       <InviteModal
         onClose={() => {
           setShowInviteModal(false);
