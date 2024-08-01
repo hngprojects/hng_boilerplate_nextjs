@@ -36,9 +36,9 @@ const Pagination = ({
 
   const getPageNumbers = () => {
     const pages = [];
-    const showEllipsis = totalPages > 3;
+    const showEllipsis: boolean = totalPages > 3;
 
-    if (showEllipsis === false) {
+    if (showEllipsis === undefined) {
       for (let index = 1; index <= totalPages; index++) {
         pages.push(index);
       }
@@ -67,10 +67,10 @@ const Pagination = ({
   return (
     <PaginationComponent>
       <PaginationContent>
-        <PaginationItem>
+        <PaginationItem className="flex items-center gap-x-2">
           <PaginationPrevious
             onClick={() => currentPage > 1 && handleChange(currentPage - 1)}
-            className={`${
+            className={`flex cursor-pointer items-center space-x-2 ${
               navigationVariant === "semibold"
                 ? "text-xl font-semibold leading-normal"
                 : "text-base font-medium leading-6"
@@ -79,38 +79,44 @@ const Pagination = ({
                 ? "cursor-pointer"
                 : "cursor-not-allowed text-stroke-colors-stroke hover:bg-transparent hover:text-stroke-colors-stroke"
             }`}
-            href={currentPage > 1 ? `?page=${currentPage - 1}` : "#"}
-          />
+          >
+            Previous
+          </PaginationPrevious>
+          <span className="text-sm md:text-base">Previous</span>
         </PaginationItem>
         {getPageNumbers().map((page, index) =>
           typeof page === "number" ? (
             <PaginationItem key={index} onClick={() => handleChange(page)}>
               <PaginationLink
-                href={`?page=${page}`}
                 isActive={currentPage === page}
                 activeVariant={activeVariant}
-                className={
+                className={`cursor-pointer ${
                   currentPage === page && activeVariant === "default"
                     ? "bg-primary"
                     : ""
-                }
+                }`}
               >
                 {page}
               </PaginationLink>
             </PaginationItem>
           ) : (
-            <PaginationItem key={index} className="text-sm font-medium">
+            <PaginationItem
+              key={index}
+              className="cursor-pointer text-sm font-medium"
+            >
               {page}
             </PaginationItem>
           ),
         )}
         <PaginationItem
+          className="flex items-center gap-x-2"
           onClick={() =>
             currentPage < totalPages && handleChange(currentPage + 1)
           }
         >
+          <span className="text-sm md:text-base">Next</span>
           <PaginationNext
-            className={`${
+            className={`flex cursor-pointer items-center space-x-2 ${
               navigationVariant === "semibold"
                 ? "text-xl font-semibold leading-normal"
                 : "text-base font-medium leading-6"
@@ -119,8 +125,7 @@ const Pagination = ({
                 ? "cursor-pointer"
                 : "cursor-not-allowed text-stroke-colors-stroke hover:bg-transparent hover:text-stroke-colors-stroke"
             }`}
-            href={currentPage < totalPages ? `?page=${currentPage + 1}` : "#"}
-          />
+          ></PaginationNext>
         </PaginationItem>
       </PaginationContent>
     </PaginationComponent>

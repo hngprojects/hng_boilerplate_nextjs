@@ -8,13 +8,13 @@ interface TermsType {
 const AcceptableUse = () => {
   return (
     <div
-      className="flex flex-col items-start justify-start gap-[10px] self-stretch"
+      className="mt-[20px] flex flex-col items-start justify-start gap-[10px] self-stretch"
       data-testid="acceptable-use"
     >
       <h2 className="font-inherit relative mt-0 self-stretch text-2xl font-bold text-inherit sm:text-[28px]">
         Acceptable Use Policy
       </h2>
-      <div className="relative inline-block self-stretch">
+      <div className="relative inline-block self-stretch text-base">
         <div className="mb-[10px]">
           To maintain a positive and productive environment, we have established
           the following acceptable use policy:

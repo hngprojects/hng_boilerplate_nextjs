@@ -6,8 +6,15 @@ import { useEffect, useState } from "react";
 import { Breadcrumb } from "~/components/common/breadcrumb";
 import CustomButton from "~/components/common/common-button/common-button";
 
-const JobDetails = () => {
+const JobDetails = ({ params }: { params: { slug: string } }) => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [specificData, setSpecificData] = useState({
+    id: "",
+    title: "",
+    description: "",
+    job_type: "",
+    salary: "",
+  });
 
   useEffect(() => {
     const handleResize = () => {
@@ -18,6 +25,24 @@ const JobDetails = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    specificJobData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const specificJobData = async () => {
+    try {
+      const response = await fetch(
+        `https://deployment.api-php.boilerplate.hng.tech/api/v1/jobs/${params?.slug}`,
+      );
+      const data = await response.json();
+      setSpecificData(data);
+    } catch (error) {
+      return `error: ${error}`;
+      // Handle error appropriately
+    }
+  };
 
   const pages = isSmallScreen
     ? [
@@ -42,12 +67,11 @@ const JobDetails = () => {
   return (
     <main className="mx-auto max-w-7xl px-5 py-10 md:px-10 lg:px-10 xl:px-10">
       <Breadcrumb pages={pages} maxPages={isSmallScreen ? 2 : 3} />
-
-      <div className="mb-4 mt-8 mt-[60px] grid w-full auto-rows-min grid-cols-1 pb-2 md:grid-cols-3">
+      <div className="mb-4 mt-8 grid w-full auto-rows-min grid-cols-1 pb-2 md:mt-[60px] md:grid-cols-3">
         <div className="col-span-1 mb-6 sm:col-span-2 md:mr-16 xl:mr-40">
           <div className="flex flex-col justify-start">
             <h1 className="mb-3 text-3xl font-bold text-neutral-dark-2 md:text-[38px]">
-              Product Designer
+              {specificData.title}
             </h1>
             <div className="flex flex-col gap-8">
               <div className="flex flex-col gap-2">
@@ -55,14 +79,7 @@ const JobDetails = () => {
                   Job Description
                 </h3>
                 <p className="text-[16px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
-                  We are looking for a talented and passionate Product Designer
-                  to join our dynamic team. As a Product Designer at the
-                  Company, you will play a critical role in shaping the user
-                  experience and visual design of our products. You will
-                  collaborate closely with cross-functional teams, including
-                  product managers, engineers, and marketers, to create
-                  intuitive and aesthetically pleasing designs that meet user
-                  needs and business goals.
+                  {specificData.description}
                 </p>
               </div>
               <div className="flex flex-col gap-2">
@@ -155,7 +172,7 @@ const JobDetails = () => {
 
             <div className="mb-2 flex flex-col">
               <p className="text-[14px] text-neutral-dark-1 md:text-neutral-dark-2">
-                <b>Job-type</b>
+                <b>{specificData.job_type}</b>
               </p>
               <p className="text-[14px] md:text-neutral-dark-2">Internship</p>
             </div>
@@ -169,7 +186,7 @@ const JobDetails = () => {
 
             <div className="mb-2 flex flex-col">
               <p className="text-[14px] text-neutral-dark-1 md:text-neutral-dark-2">
-                <b>Salary</b>
+                <b>{specificData.salary}</b>
               </p>
               <p className="text-[14px] md:text-neutral-dark-2">$500k-$900k</p>
             </div>
@@ -208,8 +225,8 @@ const JobDetails = () => {
           </div>
         </div>
       </div>
-
-      <div className="my-10 mb-40 mb-8 flex flex-row items-center justify-center">
+      ;
+      <div className="my-10 mb-40 flex flex-row items-center justify-center">
         <CustomButton
           variant="primary"
           size="lg"

@@ -1,11 +1,14 @@
+/* eslint-disable unicorn/no-null */
+/* eslint-disable prettier/prettier */
+ 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { fireEvent, render, screen } from "@testing-library/react";
 import moment from "moment";
-import { Session } from "next-auth";
 
 import { CommentBody } from "~/components/common/comment-component/comment-body";
 
 describe("comment body component", () => {
-  const mockSession: Session = {
+  const mockSession: any = {
     expires: "1",
     user: { email: "a", name: "skeby", image: "c" },
   };
@@ -25,8 +28,7 @@ describe("comment body component", () => {
         dislikes={1}
         onLike={vi.fn()}
         onDislike={vi.fn()}
-        onReply={vi.fn()}
-      />,
+        onReply={vi.fn()} isReplyActive={false}      />,
     );
     expect(screen.getByTestId("comment-text")).toHaveTextContent(
       "This is a reply.",
@@ -54,8 +56,7 @@ describe("comment body component", () => {
         likes={3}
         dislikes={0}
         onLike={mockOnLike}
-        onDislike={mockOnDislike}
-      />,
+        onDislike={mockOnDislike} isReplyActive={false}      />,
     );
 
     const likeButton = screen.getByTestId("like-button");
@@ -83,8 +84,7 @@ describe("comment body component", () => {
         likes={7}
         dislikes={3}
         onLike={vi.fn()}
-        onDislike={vi.fn()}
-      />,
+        onDislike={vi.fn()} isReplyActive={false}      />,
     );
 
     expect(
@@ -108,8 +108,7 @@ describe("comment body component", () => {
         dislikes={4}
         onLike={vi.fn()}
         onDislike={vi.fn()}
-        onReply={vi.fn()}
-      />,
+        onReply={vi.fn()} isReplyActive={false}      />,
     );
 
     expect(screen.getByTestId("reply-button")).toBeInTheDocument();
@@ -119,7 +118,6 @@ describe("comment body component", () => {
     expect.assertions(1);
     render(
       <CommentBody
-        // eslint-disable-next-line unicorn/no-null
         session={null}
         type="comment"
         id="5"
@@ -132,8 +130,7 @@ describe("comment body component", () => {
         dislikes={4}
         onLike={vi.fn()}
         onDislike={vi.fn()}
-        onReply={vi.fn()}
-      />,
+        onReply={vi.fn()} isReplyActive={false}      />,
     );
     expect(
       screen.queryByTestId("action-buttons-container"),

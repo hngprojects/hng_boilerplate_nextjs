@@ -19,10 +19,10 @@ const Mission = () => {
             className="mb-3 text-[24px] font-[700] text-primary sm:text-[26px] md:text-[28px]"
             data-testid="mission web"
           >
-            Our Mission
+            Our Mission & Vision
           </h3>
           <h3 className="mb-5 text-[32px] font-[600] leading-[38px] text-neutral-600 sm:text-[36px] sm:leading-[42px] md:text-[40px] md:leading-[46px] lg:text-[44px] lg:leading-[50px]">
-            We are committed to giving you the best
+            Leading the Way, Redefining Industries
           </h3>
           <p
             className="text-[16px] font-[400] text-neutral-600 sm:text-[17px] md:text-[18px]"

@@ -1,27 +1,34 @@
 "use client";
 
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 
 import CareerCard from "./CareerCard";
 
-const CareerCardParent: FC = () => {
-  const [isLoading, setIsLoading] = useState(true);
+interface CareerCardProperties {
+  id: string;
+  isLoading: boolean;
+  jobTitle?: string;
+  location?: string;
+  description?: string;
+  amount?: string;
+}
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
+const CareerCardParent: FC<CareerCardProperties> = ({
+  id,
+  isLoading,
+  jobTitle,
+  location,
+  description,
+  amount,
+}) => {
   return (
     <CareerCard
+      id={id}
       isLoading={isLoading}
-      jobTitle="Frontend Developer"
-      location="San Francisco, CA"
-      description="We are seeking a talented Frontend Developer to join our dynamic team. The ideal candidate will have strong skills in React, TypeScript, and modern CSS frameworks."
-      amount="$120,000"
+      jobTitle={jobTitle}
+      location={location}
+      description={description}
+      amount={amount}
     />
   );
 };
