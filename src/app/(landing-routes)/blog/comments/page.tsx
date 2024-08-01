@@ -5,7 +5,6 @@ import { sampleComments } from "~/components/common/comment-component/sample-com
 
 const CommentPage = () => {
   const mockSession: Session = {
-    expires: "1",
     user: {
       id: "12345",
       name: "Current User",
@@ -14,8 +13,9 @@ const CommentPage = () => {
       email: "user@example.com",
       image: "path/to/image",
       role: "user",
-      access_token: "some-token",
     },
+    access_token: "some-token",
+    expires: "1",
   };
   return (
     <div className="my-6 flex items-center justify-center px-3 sm:px-4">
