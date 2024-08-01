@@ -47,12 +47,8 @@ import {
 // }
 
 const UserNavbar = () => {
-<<<<<<< HEAD
-
-  const { data: session, status } = useSession();
-=======
   const { status } = useSession();
->>>>>>> upstream/dev
+
   const router = useRouter();
   useEffect(() => {
     if (status === "unauthenticated") {

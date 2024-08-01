@@ -13,7 +13,7 @@ export async function submitForm(
 ): Promise<FormResponse> {
   try {
     const response = await fetch(
-      "https://deployment.api-php.boilerplate.hng.tech/api/v1/faqs",
+      "https://deployment.api-php.boilerplate.hng.tech/api/v1/inquiries",
       {
         method: "POST",
         headers: {

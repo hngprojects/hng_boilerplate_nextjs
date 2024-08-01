@@ -147,7 +147,7 @@ const HelpCenter = () => {
       <div className="bg-white py-40">
         <div className="mx-auto max-w-7xl px-5 text-center md:px-10 lg:px-10 xl:px-10">
           <h1 className="mg-4 text-3xl font-bold text-orange-500">
-            Didnapos;t find an answer?
+            Didn&apos;t find an answer?
           </h1>
           <p className="mb-3 text-lg font-normal text-neutral-600">
             Contact us for more inquiries and information about our services.
