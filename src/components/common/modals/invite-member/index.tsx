@@ -4,12 +4,22 @@ import axios from "axios";
 import { Link2Icon } from "lucide-react";
 import { useState } from "react";
 
-
-
 import CustomButton from "~/components/common/common-button/common-button";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "~/components/ui/dialog";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
-
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "~/components/ui/dialog";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "~/components/ui/select";
 
 interface ModalProperties {
   show: boolean;
