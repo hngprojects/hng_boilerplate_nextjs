@@ -213,17 +213,6 @@ const UserPage = () => {
                     })}
                   </DropdownMenuContent>
                 </DropdownMenu>
-
-                {/* <AddUserModal>
-                <CustomButton size="lg" className="p-3" variant="primary">
-                  <div className="flex flex-row items-center gap-2">
-                    <CirclePlus size={16} color="#FFFFFF" />
-                    <div className="text-base font-normal leading-5">
-                      Add new user
-                    </div>
-                  </div>
-                </CustomButton>
-              </AddUserModal> */}
               </div>
             </div>
 

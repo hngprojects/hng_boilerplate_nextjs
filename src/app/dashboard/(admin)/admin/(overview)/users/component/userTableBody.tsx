@@ -28,7 +28,7 @@ const UserTableBody = ({ data }: { data: UserData[] }) => {
     const API_URL =
       "https://deployment.api-php.boilerplate.hng.tech/api/v1/users";
     try {
-      await axios.get(`${API_URL}/${uid}`);
+      await axios.delete(`${API_URL}/${uid}`);
     } catch {
       setIsPending(false);
     } finally {
