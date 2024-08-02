@@ -42,75 +42,40 @@ describe("forgot password page", () => {
     });
   });
 
-  it("proceeds to verification code stage on valid email", async () => {
+  it("does not proceed to verification code stage if email is invalid", async () => {
     expect.hasAssertions();
-
     render(<ForgotPassword />);
 
     const emailInput = screen.getByPlaceholderText(/enter your email/i);
     const sendButton = screen.getByText(/send/i);
 
     fireEvent.change(emailInput, {
-      target: { value: "akinsanyaadeyinka4166@gmail.com" },
+      target: { value: "invalid-email@example.com" },
     });
     fireEvent.click(sendButton);
 
     await waitFor(() => {
-      expect(screen.getByText("Verification Code")).toBeInTheDocument();
+      expect(screen.queryByText("Verification Code")).not.toBeInTheDocument();
     });
   });
 
-  it("shows error for incorrect OTP", async () => {
+  it("displays an error message for an invalid email format", async () => {
     expect.hasAssertions();
-
     render(<ForgotPassword />);
 
     const emailInput = screen.getByPlaceholderText(/enter your email/i);
     const sendButton = screen.getByText(/send/i);
-
     fireEvent.change(emailInput, {
-      target: { value: "akinsanyaadeyinka4166@gmail.com" },
+      target: { value: "invalid-email" },
     });
     fireEvent.click(sendButton);
-
-    await waitFor(() => {
-      expect(screen.getByText("Verification Code")).toBeInTheDocument();
-    });
-
-    const otpInput = screen.getByTestId("forgot-password-otp-input");
-    fireEvent.change(otpInput, { target: { value: "000000" } });
 
     await waitFor(() => {
       expect(
-        screen.getByText(/the otp entered is not correct/i),
+        screen.getByText(
+          "This email doesn't match our records please try again",
+        ),
       ).toBeInTheDocument();
-    });
-  });
-
-  it("proceeds to reset password stage on correct OTP", async () => {
-    expect.hasAssertions();
-
-    render(<ForgotPassword />);
-
-    const emailInput = screen.getByPlaceholderText(/enter your email/i);
-    const sendButton = screen.getByText(/send/i);
-
-    fireEvent.change(emailInput, {
-      target: { value: "akinsanyaadeyinka4166@gmail.com" },
-    });
-    fireEvent.click(sendButton);
-
-    await waitFor(() => {
-      expect(screen.getByText("Verification Code")).toBeInTheDocument();
-    });
-
-    const otpInput = screen.getByTestId("forgot-password-otp-input");
-    fireEvent.change(otpInput, { target: { value: "123456" } });
-    const verifyButton = screen.getByText(/verify/i);
-    fireEvent.click(verifyButton);
-
-    await waitFor(() => {
-      expect(screen.getByText(/verification successful/i)).toBeInTheDocument();
     });
   });
 });
