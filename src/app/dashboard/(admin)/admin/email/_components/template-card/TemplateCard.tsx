@@ -69,7 +69,10 @@ const TemplateCard: FC<ITemplateCard> = ({
         <span className="duration-all cursor-pointer text-xs font-medium text-neutral-dark-2 transition-all hover:text-primary">
           Preview
         </span>
-        <Link href='/edit-templates' className="duration-all cursor-pointer text-xs font-medium text-neutral-dark-2 transition-all hover:text-primary">
+        <Link
+          href="/edit-templates"
+          className="duration-all cursor-pointer text-xs font-medium text-neutral-dark-2 transition-all hover:text-primary"
+        >
           Edit
         </Link>
       </div>
