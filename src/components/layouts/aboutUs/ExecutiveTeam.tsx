@@ -2,12 +2,9 @@ import TeamCard from "~/components/common/TeamCard/teamcard";
 
 const ExecutiveTeam = () => {
   return (
-    <div
-      className=""
-      style={{ backgroundImage: "url('/images/about-us/background.svg')" }}
-    >
-      <div className="mx-auto max-w-7xl px-5 pt-20 md:px-10 lg:px-10 xl:px-10">
-        <h3 className="mt-5 text-center text-[32px] font-[600] text-neutral-600 md:text-[44px]">
+    <div className="bg-white">
+      <div className="mx-auto max-w-7xl px-5 pt-5 md:px-10 lg:px-10 xl:px-10">
+        <h3 className="mt-5 text-center text-[32px] font-[600] max-sm:text-neutral-600 md:text-[44px]">
           The Executive Team
         </h3>
 
@@ -15,8 +12,8 @@ const ExecutiveTeam = () => {
           Meet Our Exclusive team that have been trained to meet your needs.
         </p>
 
-        <div className="mx-auto mt-10 flex flex-wrap justify-center gap-[20px] pb-10 xl:justify-between">
-          <div className=" ">
+        <div className="mx-auto mt-10 flex flex-wrap justify-center gap-[20px] pb-10 max-lg:w-3/4 md:justify-between">
+          <div>
             <TeamCard
               name="John Abraham"
               imageAlt="john image"
@@ -28,7 +25,7 @@ const ExecutiveTeam = () => {
               instagramURL="/"
             />
           </div>
-          <div className=" ">
+          <div>
             <TeamCard
               name="Addison Mark"
               imageAlt="Addison Image"
@@ -40,7 +37,7 @@ const ExecutiveTeam = () => {
               instagramURL="/"
             />
           </div>
-          <div className=" " data-testid="Joy tony">
+          <div data-testid="Joy tony">
             <TeamCard
               name="Joy Tony"
               imageAlt="Joy Image"
@@ -52,7 +49,7 @@ const ExecutiveTeam = () => {
               instagramURL="/"
             />
           </div>
-          <div className=" " data-testid="Joshua Philip">
+          <div data-testid="Joshua Philip">
             <TeamCard
               name="Joshua Philip"
               imageAlt="Joshua Image"
