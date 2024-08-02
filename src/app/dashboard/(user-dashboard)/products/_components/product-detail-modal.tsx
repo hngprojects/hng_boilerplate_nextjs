@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Loader2, X } from "lucide-react";
+import { useRouter } from "next-nprogress-bar";
 import { useEffect, useState } from "react";
 
 import BlurImage from "~/components/miscellaneous/blur-image";
@@ -18,6 +19,7 @@ const variantProperties = {
 };
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const ProductDetailModal = () => {
+  const router = useRouter();
   const { products, deleteProduct } = useProducts();
   const [isLoading, setIsLoading] = useState(false);
   const { winWidth } = useWindowWidth();
@@ -59,12 +61,21 @@ const ProductDetailModal = () => {
     setIsLoading(false);
     setIsDelete(false);
   };
+  const handleEditAction = (id: string) => {
+    updateOpen(false);
+    router.push(`/dashboard/products/${id}`);
+    updateProductId("null");
+  };
 
   useEffect(() => {
     document.body.style.overflow =
       isOpen && winWidth < 1024 ? "hidden" : "unset";
   }, [isOpen, winWidth]);
-
+  useEffect(() => {
+    document.title = isOpen
+      ? `Product - ${product?.name}`
+      : "Products - HNG Boilerplate";
+  }, [isOpen, product?.name]);
   return (
     <>
       <div
@@ -96,7 +107,7 @@ const ProductDetailModal = () => {
             exit={{
               ...variantProperties,
               opacity: 0,
-              scale: 2,
+              scale: 0.5,
             }}
             transition={{ duration: 0.2 }}
             className={cn(
@@ -112,7 +123,7 @@ const ProductDetailModal = () => {
               )}
             >
               <p className="text-center text-sm">
-                Are you sure you want to delete this <b>{product?.name}</b>?
+                Are you sure you want to delete <b>{product?.name}</b>?
               </p>
               <div className="flex w-full items-center justify-center gap-x-2">
                 <Button
@@ -154,7 +165,7 @@ const ProductDetailModal = () => {
             <div className="flex w-full flex-col gap-y-4">
               <p className="flex w-full items-center justify-between">
                 <span className="text-neutral-dark-1">Product ID</span>
-                <span className="text-neutral-dark-2">
+                <span className="uppercase text-neutral-dark-2">
                   {product?.product_id}
                 </span>
               </p>
@@ -202,7 +213,11 @@ const ProductDetailModal = () => {
                   <span>Delete</span>
                 )}
               </Button>
-              <Button variant="outline" className="bg-white font-medium">
+              <Button
+                onClick={() => handleEditAction(product!.product_id)}
+                variant="outline"
+                className="bg-white font-medium"
+              >
                 Edit
               </Button>
             </div>
