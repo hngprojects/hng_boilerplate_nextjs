@@ -12,12 +12,9 @@ interface CareerCardProperties {
   location?: string;
   description?: string;
   amount?: string;
-<<<<<<< HEAD
   id?: string;
-=======
   company?: string;
   onViewDetails: () => void;
->>>>>>> 6c8d8577041694acd5db98905cde50de5f33cbef
 }
 
 const CareerCard: FC<CareerCardProperties> = ({
@@ -26,12 +23,9 @@ const CareerCard: FC<CareerCardProperties> = ({
   location,
   description,
   amount,
-<<<<<<< HEAD
   id,
-=======
   company,
   onViewDetails,
->>>>>>> 6c8d8577041694acd5db98905cde50de5f33cbef
 }) => {
   return (
     <Card className="max-w-full bg-background text-foreground">
@@ -70,15 +64,11 @@ const CareerCard: FC<CareerCardProperties> = ({
               <span className="font-normal">/month</span>
             </span>
             <Link
-<<<<<<< HEAD
               href={`/career/${id}`}
-=======
-              href={`/career/${jobTitle}`}
               onClick={(event) => {
                 event.preventDefault();
                 onViewDetails();
               }}
->>>>>>> 6c8d8577041694acd5db98905cde50de5f33cbef
               className="rounded bg-primary px-4 py-2 text-[14px] text-background"
             >
               View Details

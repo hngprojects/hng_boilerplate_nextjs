@@ -16,6 +16,7 @@ interface Job {
   location: string;
   description: string;
   salary: string;
+  company: string;
 }
 
 export default function Career() {
@@ -78,6 +79,8 @@ export default function Career() {
             location={job.location}
             description={job.description}
             amount={job.salary}
+            company={job.company}
+            onViewDetails={() => {}}
           />
         ))}
       </div>
