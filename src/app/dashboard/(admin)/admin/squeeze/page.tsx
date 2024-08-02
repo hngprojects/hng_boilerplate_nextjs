@@ -1,19 +1,24 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 import Header from "./_components/Header";
 import Pages from "./_components/Pages";
 import Users from "./_components/Users";
+import { useRouter } from "next/navigation";
 
 export default function Squeeze() {
   const searchParameters = useSearchParams();
   const page = searchParameters.get("page") || "pages";
-
   const router = useRouter();
 
   const handleTabRoute = (route: string) => {
-    router.push(`?page=${route}`);
+    const current = new URLSearchParams(Array.from(searchParameters.entries()))
+    const search = current.toString()
+    const query = search ? `?${search}` : ''
+
+    router.push(`${window.location.pathname}${query}`)
+    current.set("page", route);  
   };
 
   return (

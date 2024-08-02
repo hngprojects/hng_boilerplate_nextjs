@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { Checkbox } from "~/components/ui/checkbox";
 import {
@@ -10,13 +10,24 @@ import {
   TableHeader,
   TableRow,
 } from "~/components/ui/table";
-import { squeezePages } from "../data/mock.squeeze";
+import { Squeeze, squeezePages } from "../data/mock.squeeze";
 import PageTableCell from "./PageTableCell";
+import { useSearchParams } from "next/navigation";
 
 export default function Pages() {
-  const [pages, setPages] = useState(squeezePages);
+
+  const searchParams = useSearchParams();
+  const search = searchParams.get('search');
+
+  const [pages, setPages] = useState<Squeeze[]>([]);
   const [checked, setChecked] = useState<Record<string, boolean>>({});
   const [checkAllStatus, setCheckAllStatus] = useState(false);
+
+  const filteredPages = useMemo(() => search ? squeezePages.filter((each) => each.title.toLowerCase().includes(search.toLowerCase())) : squeezePages, [search]);
+
+  useEffect(() => {
+    setPages(filteredPages);
+  }, [filteredPages]);
 
   const checkAll = () => {
     const checkMap: Record<string, boolean> = {};

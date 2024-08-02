@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import { Checkbox } from "~/components/ui/checkbox";
 import {
@@ -10,10 +10,17 @@ import {
 } from "~/components/ui/table";
 import { squeezeUsers } from "../data/mock.squeeze";
 import UserTableCell from "./UserTableCell";
+import { useSearchParams } from "next/navigation";
 
 export default function Users() {
+
+  const searchParams = useSearchParams();
+  const search = searchParams.get('search');
+
   const [checked, setChecked] = useState<Record<string, boolean>>({});
   const [checkAllStatus, setCheckAllStatus] = useState(false);
+
+  const filteredUsers = useMemo(() => search ? squeezeUsers.filter((each) => each.name.toLowerCase().includes(search.toLowerCase())) : squeezeUsers, [search]);
 
   const checkAll = () => {
     const checkMap: Record<string, boolean> = {};
@@ -58,7 +65,7 @@ export default function Users() {
           </TableRow>
         </TableHeader>
         <TableBody className="text-neutral-dark-2">
-          {squeezeUsers.map((each) => {
+          {filteredUsers.map((each) => {
             return (
               <UserTableCell
                 key={each.name}

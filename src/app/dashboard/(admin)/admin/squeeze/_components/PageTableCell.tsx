@@ -90,7 +90,10 @@ export default function PageTableCell({
             <EllipsisVertical className="cursor-pointer" />
           </PopoverTrigger>
           <PopoverContent className="w-24 cursor-pointer rounded border bg-neutral-dark-1 text-white shadow">
-            <button className="w-full px-2 focus:outline-none">Delete</button>
+            <div className="-m-4">
+            <button className="w-full px-3 py-2 hover:bg-neutral-dark-2/60 focus:outline-none text-start">Edit</button>
+            <button className="w-full px-3 py-2 hover:bg-neutral-dark-2/60 focus:outline-none text-start">Delete</button>
+            </div>
           </PopoverContent>
         </Popover>
       </TableCell>
