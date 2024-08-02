@@ -38,5 +38,5 @@ export default function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/api/v1/waitlist/"], // Apply the middleware to all API routes
+  matcher: ["/api/:path*"], // Apply the middleware to all API routes
 };
