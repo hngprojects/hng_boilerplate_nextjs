@@ -23,34 +23,32 @@ export default function Career() {
   }, []);
 
   useEffect(() => {
-    if (baseUrl) {
-      const fetchJobs = async () => {
-        setIsLoading(true);
-        try {
-          const response = await fetch(`${baseUrl}/api/v1/jobs`, {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-
-          const data = await response.json();
-          const jobsData = Array.isArray(data)
-            ? data
-            : data.items || data.jobs || data.data || [];
-          setAllJobs(jobsData);
-        } catch {
-          setAllJobs([]);
-        } finally {
-          setIsLoading(false);
+    const fetchJobs = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch(`${baseUrl}/api/v1/jobs`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
-      };
-      fetchJobs();
-    }
-  }, [baseUrl]);
+
+        const data = await response.json();
+        const jobsData = Array.isArray(data)
+          ? data
+          : data.items || data.jobs || data.data || [];
+        setAllJobs(jobsData);
+      } catch {
+        setAllJobs([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchJobs();
+  }, []);
 
   useEffect(() => {
     const startIndex = (currentPage - 1) * pageSize;
