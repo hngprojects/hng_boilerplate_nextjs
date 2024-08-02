@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 // List of allowed origins (domains)
-const allowedOrigin = "deployment.nextjs.boilerplate.hng.tech";
+const allowedOrigin = "https://hng-boilerplate-nextjs-x8hn.vercel.app";
 
 export default function middleware(request: NextRequest) {
   const origin = request.headers.get("origin");
