@@ -33,7 +33,7 @@ export default function AdditionalInquiriesForm() {
 
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [baseUrl, setBaseUrl] = useState<string | undefined>("");
+  const [baseUrl, setBaseUrl] = useState<string | undefined>();
 
   useEffect(() => {
     getApiUrl().then((url) => {

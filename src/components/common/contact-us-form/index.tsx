@@ -34,7 +34,7 @@ const ContactForm: React.FC = () => {
   const [message, setMessage] = useState<string | undefined>();
   const [loading, setLoading] = useState<boolean>(false);
 
-  const [baseUrl, setBaseUrl] = useState<string | undefined>("");
+  const [baseUrl, setBaseUrl] = useState<string | undefined>();
 
   useEffect(() => {
     if (status !== undefined) {

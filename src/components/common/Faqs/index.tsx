@@ -17,6 +17,7 @@ export default function Faqs() {
 
   const [faqs, setFaqs] = useState<IFaqs[]>([]);
   const [loading, setLoading] = useState(false);
+  const [baseUrl, setBaseUrl] = useState<string | undefined>();
 
   useEffect(() => {
     async function fetchFaqs(url: string) {
@@ -51,9 +52,10 @@ export default function Faqs() {
       }
     }
     getApiUrl().then((url) => {
-      fetchFaqs(`${url}/api/v1/faqs`);
+      setBaseUrl(url);
     });
-  }, [toast]);
+    fetchFaqs(`${baseUrl}/api/v1/faqs`);
+  }, [toast, baseUrl]);
 
   return (
     <div className="flex w-full flex-col gap-6 max-md:gap-16">
