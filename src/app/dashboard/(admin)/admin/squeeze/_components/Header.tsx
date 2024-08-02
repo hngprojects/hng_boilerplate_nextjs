@@ -1,27 +1,34 @@
 import { CirclePlus, Filter, SearchIcon } from "lucide-react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 import { Button } from "~/components/ui/button";
 import { debounce } from "../utils/funcs";
 
 export default function Header() {
+  const [query, setQuery] = useState<string>("");
+  const searchParameters = useSearchParams();
+  const router = useRouter();
 
-  const [query, setQuery] = useState<string>('');
-  const searchParams = useSearchParams();
-  const current = new URLSearchParams(Array.from(searchParams.entries()))
-  
   const updateURL = useCallback(
     debounce((search: string) => {
+      const current = new URLSearchParams(Object.fromEntries(searchParameters));
       current.set("search", search);
+      const queryValues = current.toString();
+      const query = queryValues ? `?${queryValues}` : "";
+      router.push(`${window.location.pathname}${query}`);
     }, 500),
-    [current]
+    [router, searchParameters],
   );
 
   useEffect(() => {
     updateURL(query);
   }, [query, updateURL]);
+
+  useEffect(() => {
+    if (!searchParameters.get("search") && query) setQuery("");
+  }, [searchParameters]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
@@ -43,6 +50,7 @@ export default function Header() {
           <input
             type="text"
             placeholder="Search"
+            value={query}
             className="flex-grow bg-transparent text-neutral-dark-1 outline-none"
             onChange={handleChange}
           />
@@ -55,7 +63,7 @@ export default function Header() {
         <Link href="/dashboard/admin/squeeze/new">
           <Button>
             <CirclePlus className="mr-2" />
-            Create Squeeze Page
+            <span className="hidden md:block">Create</span> Squeeze Page
           </Button>
         </Link>
       </div>

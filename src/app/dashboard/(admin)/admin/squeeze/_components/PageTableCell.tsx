@@ -1,7 +1,17 @@
 import { EllipsisVertical } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 
+import { Button } from "~/components/ui/button";
 import { Checkbox } from "~/components/ui/checkbox";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "~/components/ui/dialog";
 import {
   Popover,
   PopoverContent,
@@ -91,8 +101,35 @@ export default function PageTableCell({
           </PopoverTrigger>
           <PopoverContent className="w-24 cursor-pointer rounded border bg-neutral-dark-1 text-white shadow">
             <div className="-m-4">
-            <button className="w-full px-3 py-2 hover:bg-neutral-dark-2/60 focus:outline-none text-start">Edit</button>
-            <button className="w-full px-3 py-2 hover:bg-neutral-dark-2/60 focus:outline-none text-start">Delete</button>
+              <button className="w-full px-3 py-2 text-start hover:bg-neutral-dark-2/60 focus:outline-none">
+                Edit
+              </button>
+              <Dialog>
+                <DialogTrigger className="w-full rounded px-3 py-2 text-start hover:bg-neutral-dark-2/60 focus:outline-none">
+                  <span className="w-full">Delete</span>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Are you sure you want to delete?</DialogTitle>
+                  </DialogHeader>
+                  <div>
+                    <p>
+                      This action cannot be undone. This will permanently delete
+                      this product from the database.
+                    </p>
+                  </div>
+                  <DialogFooter>
+                    <>
+                      <DialogClose className="rounded border border-border bg-transparent px-4 text-neutral-dark-1 hover:bg-transparent">
+                        Close
+                      </DialogClose>
+                      <Button className="bg-error text-white hover:bg-error/80">
+                        Delete
+                      </Button>
+                    </>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
             </div>
           </PopoverContent>
         </Popover>

@@ -14,11 +14,27 @@ const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
   event.preventDefault();
 };
 
+interface NewSqueeze {
+  title: string;
+  uri: string;
+  headline: string;
+  subHeadline: string;
+  body: string;
+}
+
 export default function New() {
   const router = useRouter();
 
   const [image, setImage] = useState<File | undefined>();
   const [preview, setPreview] = useState<string | undefined>();
+  const [newSqueeze, setNewSqueeze] = useState<NewSqueeze>({
+    title: "",
+    uri: "",
+    headline: "",
+    subHeadline: "",
+    body: "",
+  });
+  const [loading, setLoading] = useState(false);
   const inputReference = useRef(null);
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,6 +71,33 @@ export default function New() {
     router.push("/dashboard/admin/squeeze/preview");
   };
 
+  const handleInput = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = event.target;
+    setNewSqueeze({
+      ...newSqueeze,
+      [name]: value,
+    });
+  };
+
+  const createSqueeze = (event: React.FormEvent<HTMLFormElement>) => {
+    event?.preventDefault();
+    const { title, uri, headline, subHeadline, body } = newSqueeze;
+
+    if (!title || !uri || !headline || !subHeadline || !body || !image) return;
+    setLoading(true);
+
+    localStorage.setItem("hng_new_squeeze_page", JSON.stringify(newSqueeze));
+    router.push("/dashboard/preview");
+    setLoading(false);
+  };
+
+  const unfilledInputs = () => {
+    const { title, uri, headline, subHeadline, body } = newSqueeze;
+    return !title || !uri || !headline || !subHeadline || !body || !image;
+  };
+
   return (
     <main>
       <header className="mt-4 text-neutral-dark-1">
@@ -65,7 +108,7 @@ export default function New() {
       </header>
 
       <section className="mt-8">
-        <form className="space-y-2">
+        <form className="space-y-2" onSubmit={createSqueeze}>
           <div>
             <div
               className="relative flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg bg-[#f4f4f4] p-4"
@@ -114,34 +157,65 @@ export default function New() {
           <div className="grid gap-4 md:grid-cols-2">
             <div>
               <Label>Page Title</Label>
-              <Input type="text" placeholder="e.g John Doe" />
+              <Input
+                type="text"
+                placeholder="e.g John Doe"
+                value={newSqueeze.title}
+                name="title"
+                onChange={handleInput}
+              />
             </div>
             <div>
               <Label>URI String</Label>
-              <Input type="text" placeholder="e.g John Doe" />
+              <Input
+                type="text"
+                placeholder="e.g John Doe"
+                value={newSqueeze.uri}
+                name="uri"
+                onChange={handleInput}
+              />
             </div>
           </div>
           <div>
             <Label>Headline Text</Label>
-            <Input type="text" placeholder="e.g John Doe" />
+            <Input
+              type="text"
+              placeholder="e.g John Doe"
+              value={newSqueeze.headline}
+              name="headline"
+              onChange={handleInput}
+            />
           </div>
           <div>
             <Label>Sub Headline Text</Label>
-            <Input type="text" placeholder="e.g John Doe" />
+            <Input
+              type="text"
+              placeholder="e.g John Doe"
+              value={newSqueeze.subHeadline}
+              name="subHeadline"
+              onChange={handleInput}
+            />
           </div>
           <div>
             <Label>Body Text</Label>
-            <Textarea placeholder="add product description" rows={4} />
+            <Textarea
+              placeholder="add product description"
+              rows={4}
+              value={newSqueeze.body}
+              name="body"
+              onChange={handleInput}
+            />
           </div>
 
           <div className="mt-2 flex justify-end space-x-4">
             <Button
               onClick={previewPage}
               className="bg-[#F1F5F9] text-neutral-dark-2 hover:text-white"
+              disabled={loading || unfilledInputs()}
             >
               Preview Page
             </Button>
-            <Button>Save Page</Button>
+            <Button disabled={loading || unfilledInputs()}>Save Page</Button>
           </div>
         </form>
       </section>
