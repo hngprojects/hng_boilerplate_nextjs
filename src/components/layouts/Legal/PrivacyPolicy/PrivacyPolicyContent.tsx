@@ -59,7 +59,7 @@ export default function PrivacyPolicyContent({
       <p className="text-base font-normal text-neutral-dark-1">
         For more information about our terms and conditions, please visit
         our&nbsp;
-        <Link href="/" className="text-primary">
+        <Link href="/terms-and-conditions" className="text-primary">
           Terms and Conditions page
         </Link>
         .
