@@ -6,8 +6,17 @@ import { CommentBody } from "~/components/common/comment-component/comment-body"
 
 describe("comment body component", () => {
   const mockSession: Session = {
+    user: {
+      id: "12345",
+      name: "Current User",
+      first_name: "Current",
+      last_name: "User",
+      email: "user@example.com",
+      image: "path/to/image",
+      role: "user",
+    },
+    access_token: "some-token",
     expires: "1",
-    user: { email: "a", name: "skeby", image: "c" },
   };
   it("should display content, timestamp, and action buttons correctly", async () => {
     expect.assertions(3);

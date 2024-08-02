@@ -2,9 +2,9 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next-nprogress-bar";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -24,15 +24,19 @@ import { useToast } from "~/components/ui/use-toast";
 import { cn } from "~/lib/utils";
 import { RegisterSchema } from "~/schemas";
 import { getApiUrl } from "~/utils/getApiUrl";
-import { registerUser } from "~/utils/register";
+import { registerAuth } from "~/utils/registerAuth";
 
 const Register = () => {
-  const [apiUrl, setApiUrl] = useState("");
+  const router = useRouter();
   const { toast } = useToast();
+  const { status } = useSession();
+  const [apiUrl, setApiUrl] = useState("");
   const [isLoading, startTransition] = useTransition();
   const [showPassword, setShowPassword] = useState(false);
-  const router = useRouter();
 
+  if (status === "authenticated") {
+    router.push("/dashboard");
+  }
   useEffect(() => {
     const fetchApiUrl = async () => {
       try {
@@ -62,18 +66,20 @@ const Register = () => {
 
   const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
     startTransition(async () => {
-      await registerUser(values).then(async (data) => {
-        if (data.status === 201) {
-          router.push("/login");
+      await registerAuth(values).then(async (data) => {
+        if (data) {
+          sessionStorage.setItem("temp_token", data.access_token);
+          router.push("/register/organisation");
         }
 
         toast({
           title:
             data.status === 201
-              ? "Accounted created successfully"
+              ? "Account created successfully"
               : "an error occurred",
-          description: data.status === 201 ? "Continue to login" : data.error,
+          description: data.status === 201 ? "Redirecting" : data.error,
         });
+        router.push("/register/organisation");
       });
     });
   };
@@ -93,7 +99,9 @@ const Register = () => {
           <CustomButton
             variant="outline"
             isLeftIconVisible={true}
-            onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+            onClick={() =>
+              signIn("google", { callbackUrl: "/register/organisation" })
+            }
             icon={
               <svg
                 width="25"
@@ -153,7 +161,6 @@ const Register = () => {
             Continue with Facebook
           </CustomButton>
         </div>
-
         <div className="flex items-center justify-center">
           <hr className="w-full border-t border-gray-300" />
           <span className="font-inter text-neutralColor-dark-1 px-3 text-xs font-normal leading-tight">
@@ -161,7 +168,6 @@ const Register = () => {
           </span>
           <hr className="w-full border-t border-gray-300" />
         </div>
-
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField

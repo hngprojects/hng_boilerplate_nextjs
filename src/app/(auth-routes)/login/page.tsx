@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff, ShieldCheck } from "lucide-react";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next-nprogress-bar";
 import Link from "next/link";
 import { useEffect, useState, useTransition } from "react";
@@ -25,14 +25,19 @@ import { useToast } from "~/components/ui/use-toast";
 import { cn } from "~/lib/utils";
 import { LoginSchema } from "~/schemas";
 import { getApiUrl } from "~/utils/getApiUrl";
-import { loginUser } from "~/utils/login";
+import { loginAuth } from "~/utils/loginAuth";
 
 const Login = () => {
-  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
-  const [isLoading, startTransition] = useTransition();
-  const [apiUrl, setApiUrl] = useState("");
   const { toast } = useToast();
+  const { status } = useSession();
+  const [apiUrl, setApiUrl] = useState("");
+  const [isLoading, startTransition] = useTransition();
+  const [showPassword, setShowPassword] = useState(false);
+
+  if (status === "authenticated") {
+    router.push("/dashboard");
+  }
   useEffect(() => {
     const fetchApiUrl = async () => {
       try {
@@ -61,10 +66,10 @@ const Login = () => {
 
   const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
     startTransition(async () => {
-      await loginUser(values).then(async (data) => {
+      await loginAuth(values).then(async (data) => {
         const { email, password } = values;
 
-        if (data.status === 200) {
+        if (data) {
           await signIn(
             "credentials",
             {
@@ -77,8 +82,8 @@ const Login = () => {
           router.push("/dashboard");
         }
         toast({
-          title: data.status === 200 ? "login success" : "an error occurred",
-          description: data.status === 200 ? "routing now" : data.error,
+          title: data.status === 200 ? "Login success" : "An error occurred",
+          description: data.status === 200 ? "Redirecting" : data.error,
         });
       });
     });
@@ -101,7 +106,6 @@ const Login = () => {
             Welcome back, you&apos;ve been missed!
           </p>
         </div>
-
         <div className="flex flex-col justify-center space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
           <CustomButton
             variant="outline"
@@ -167,7 +171,6 @@ const Login = () => {
             Continue with Facebook
           </CustomButton>
         </div>
-
         <div className="flex items-center justify-center">
           <hr className="w-full border-t border-gray-300" />
           <span className="font-inter text-neutralColor-dark-1 px-3 text-xs font-normal leading-tight">
@@ -175,7 +178,6 @@ const Login = () => {
           </span>
           <hr className="w-full border-t border-gray-300" />
         </div>
-
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
