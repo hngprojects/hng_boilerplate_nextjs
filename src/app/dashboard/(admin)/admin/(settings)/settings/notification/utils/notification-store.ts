@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 "use client";
 
 import axios from "axios";
@@ -8,8 +7,7 @@ import { getApiUrl } from "~/utils/getApiUrl";
 import { notificationSettingsProperties } from "../_types/notification-settings.types";
 
 interface NotificationStore {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  allNotifications: any[];
+  allNotifications: [];
   settings: notificationSettingsProperties;
   updateSettings: (
     newSettings: Partial<notificationSettingsProperties>,
@@ -51,8 +49,8 @@ export const useNotificationStore = create<NotificationStore>((set) => ({
         `${baseUrl}/api/v1/notification-settings`,
       );
       set({ allNotifications: response.data.data.notifications });
-    } catch (error) {
-      console.error("Failed to retrieve all notifications", error);
+    } catch {
+      /* empty */
     }
   },
 
@@ -68,8 +66,8 @@ export const useNotificationStore = create<NotificationStore>((set) => ({
         `${baseUrl}/api/v1/settings/notification-settings/${userId}`,
       );
       set({ settings: response.data.data });
-    } catch (error) {
-      console.error("Failed to retrieve user settings by ID", error);
+    } catch {
+      /* empty */
     }
   },
   updateUserNotificationSettings: async (
@@ -94,8 +92,8 @@ export const useNotificationStore = create<NotificationStore>((set) => ({
       set((state) => ({
         settings: { ...state.settings, ...newSettings },
       }));
-    } catch (error) {
-      console.error("Failed to update user notification settings", error);
+    } catch {
+      /* empty */
     }
   },
 }));
