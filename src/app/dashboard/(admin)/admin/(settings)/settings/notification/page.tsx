@@ -15,8 +15,13 @@ const NotificationPage = () => {
   const { data: session } = useSession();
   const { settings, RetrieveUserNotificationAll, updateSettings } =
     useNotificationStore();
-
   const [isOpen, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (session?.access_token) {
+      RetrieveUserNotificationAll(session.access_token);
+    }
+  }, [session, RetrieveUserNotificationAll]);
 
   const handleToggleSwitch = (name: keyof typeof settings) => {
     updateSettings({ [name]: !settings[name] });
@@ -27,12 +32,6 @@ const NotificationPage = () => {
     saveNotificationSettings(acess_token, settings);
     setOpen(true);
   };
-
-  useEffect(() => {
-    if (session?.access_token) {
-      RetrieveUserNotificationAll(session.access_token);
-    }
-  }, [session, RetrieveUserNotificationAll]);
 
   return (
     <main className="text-neutral-dark-2">
