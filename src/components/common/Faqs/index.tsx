@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { useToast } from "~/components/ui/use-toast";
+import { getApiUrl } from "~/utils/getApiUrl";
 import FaqAccordion from "../FaqAccordion";
 
 interface IFaqs {
@@ -49,7 +50,9 @@ export default function Faqs() {
         return;
       }
     }
-    fetchFaqs(`${process.env.NEXT_PUBLIC_BACKEND_PROBE_URL}/api/v1/faqs`);
+    getApiUrl().then((url) => {
+      fetchFaqs(`${url}/api/v1/faqs`);
+    });
   }, [toast]);
 
   return (

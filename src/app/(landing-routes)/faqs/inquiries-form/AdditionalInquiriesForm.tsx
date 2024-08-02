@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -15,6 +15,7 @@ import {
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
 import { Textarea } from "~/components/ui/textarea";
+import { getApiUrl } from "~/utils/getApiUrl";
 import FormSchema from "./formSchema";
 import { FormResponse, submitForm } from "./formSubmitHelper";
 
@@ -32,10 +33,16 @@ export default function AdditionalInquiriesForm() {
 
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [baseUrl, setBaseUrl] = useState<string | undefined>("");
+
+  useEffect(() => {
+    getApiUrl().then((url) => {
+      setBaseUrl(url);
+    });
+  }, []);
 
   async function onSubmit(_values: z.infer<typeof FormSchema>) {
-    const response: FormResponse = await submitForm(_values);
-
+    const response: FormResponse = await submitForm(_values, baseUrl);
     if (response.success) {
       setSuccessMessage(response.message);
       setErrorMessage("");

@@ -3,18 +3,18 @@ export interface FormResponse {
   message: string;
 }
 
-export async function submitForm<T>(data: T): Promise<FormResponse> {
+export async function submitForm<T>(
+  data: T,
+  baseUrl: string | undefined,
+): Promise<FormResponse> {
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_PROBE_URL}/api/v1/contact`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+    const response = await fetch(`${baseUrl}/api/v1/contact`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-    );
+      body: JSON.stringify(data),
+    });
 
     if (!response.ok) {
       throw new Error("Network response was not ok");

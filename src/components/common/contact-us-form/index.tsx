@@ -4,6 +4,7 @@ import { Mail } from "lucide-react";
 import { useEffect, useState } from "react";
 import { z, ZodError } from "zod";
 
+import { getApiUrl } from "~/utils/getApiUrl";
 import CustomButton from "../common-button/common-button";
 import InputField from "./inputfield";
 
@@ -33,6 +34,8 @@ const ContactForm: React.FC = () => {
   const [message, setMessage] = useState<string | undefined>();
   const [loading, setLoading] = useState<boolean>(false);
 
+  const [baseUrl, setBaseUrl] = useState<string | undefined>("");
+
   useEffect(() => {
     if (status !== undefined) {
       const timer = setTimeout(() => {
@@ -40,6 +43,9 @@ const ContactForm: React.FC = () => {
       }, 3000);
       return () => clearTimeout(timer);
     }
+    getApiUrl().then((url) => {
+      setBaseUrl(url);
+    });
   }, [status]);
 
   const validate = () => {
@@ -74,16 +80,19 @@ const ContactForm: React.FC = () => {
     }
     try {
       setLoading(true);
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_PROBE_URL}/api/v1/contact`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
+      const data = {
+        full_name: formData.name,
+        email: formData.email,
+        phone_number: formData.phone,
+        message: formData.message,
+      };
+      const response = await fetch(`${baseUrl}/api/v1/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify(data),
+      });
 
       const responseData = await response.json();
 

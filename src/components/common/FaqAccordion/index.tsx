@@ -18,7 +18,7 @@ const FaqAccordion: React.FC<FaqAccordionProperties> = ({
 }) => {
   return (
     <div className="m-auto w-full max-md:w-[80%]">
-      <Accordion className="" type="single" collapsible>
+      <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
           <AccordionTrigger className="p-4 text-xl font-normal hover:no-underline">
             {question}
