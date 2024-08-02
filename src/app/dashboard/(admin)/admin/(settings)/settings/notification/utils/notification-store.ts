@@ -1,5 +1,3 @@
-"use client";
-
 import axios from "axios";
 import create from "zustand";
 
@@ -13,12 +11,6 @@ interface NotificationStore {
     newSettings: Partial<notificationSettingsProperties>,
   ) => void;
   RetrieveUserNotificationAll: (token: string) => Promise<void>;
-  retrieveUserSettingsById: (userId: string, token: string) => Promise<void>;
-  updateUserNotificationSettings: (
-    userId: string,
-    newSettings: Partial<notificationSettingsProperties>,
-    token: string,
-  ) => Promise<void>;
 }
 
 export const useNotificationStore = create<NotificationStore>((set) => ({
@@ -37,6 +29,7 @@ export const useNotificationStore = create<NotificationStore>((set) => ({
     set((state) => ({
       settings: { ...state.settings, ...newSettings },
     })),
+
   RetrieveUserNotificationAll: async (token: string) => {
     const baseUrl = await getApiUrl();
     try {
@@ -46,54 +39,11 @@ export const useNotificationStore = create<NotificationStore>((set) => ({
         },
       });
       const response = await axiosInstance.get(
-        `${baseUrl}/api/v1/notification-settings`,
+        `${baseUrl}/api/v1/notifications/current-user`,
       );
       set({ allNotifications: response.data.data.notifications });
     } catch {
-      /* empty */
-    }
-  },
-
-  retrieveUserSettingsById: async (userId: string, token: string) => {
-    const baseUrl = await getApiUrl();
-    try {
-      const axiosInstance = axios.create({
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const response = await axiosInstance.get(
-        `${baseUrl}/api/v1/settings/notification-settings/${userId}`,
-      );
-      set({ settings: response.data.data });
-    } catch {
-      /* empty */
-    }
-  },
-  updateUserNotificationSettings: async (
-    userId: string,
-    newSettings: Partial<notificationSettingsProperties>,
-    token: string,
-  ) => {
-    const baseUrl = await getApiUrl();
-    try {
-      const axiosInstance = axios.create({
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      await axiosInstance.post(
-        `${baseUrl}/api/v1/settings/notification-settings`,
-        {
-          user_id: userId,
-          ...newSettings,
-        },
-      );
-      set((state) => ({
-        settings: { ...state.settings, ...newSettings },
-      }));
-    } catch {
-      /* empty */
+      throw new Error("Failed to get all notifications");
     }
   },
 }));

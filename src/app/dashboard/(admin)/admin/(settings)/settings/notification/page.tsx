@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 "use client";
 
 import { Check, ChevronLeft } from "lucide-react";
@@ -10,60 +9,36 @@ import NotificationSettingSavedModal from "~/components/common/modals/notificati
 import NotificationHeader from "./_components/header";
 import { NotificationSwitchBox } from "./_components/notification-switch-box";
 import { useNotificationStore } from "./utils/notification-store";
+import saveNotificationSettings from "./utils/save-notification-settings";
 
 const NotificationPage = () => {
   const { data: session } = useSession();
-  console.log(session);
-  const {
-    settings,
-    retrieveUserSettingsById,
-    updateUserNotificationSettings,
-    updateSettings,
-  } = useNotificationStore();
-
+  const { settings, RetrieveUserNotificationAll, updateSettings } =
+    useNotificationStore();
   const [isOpen, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (session?.access_token) {
+      RetrieveUserNotificationAll(session.access_token);
+    }
+  }, [session, RetrieveUserNotificationAll]);
 
   const handleToggleSwitch = (name: keyof typeof settings) => {
     updateSettings({ [name]: !settings[name] });
-    console.log(`Updated setting ${name} to ${!settings[name]}`);
   };
 
   const handleSaveChanges = async () => {
-    if (session?.user?.id && session?.access_token) {
-      console.log("Saving changes with settings:", settings);
-      await updateUserNotificationSettings(
-        session.user.id,
-        settings,
-        session.access_token,
-      );
-      setOpen(true);
-    } else {
-      console.error("User ID or access token is not available");
-    }
+    const acess_token = session?.access_token;
+    saveNotificationSettings(acess_token, settings);
+    setOpen(true);
   };
 
-  useEffect(() => {
-    console.log("useEffect triggered with session:", session);
-    if (session?.user?.id && session?.access_token) {
-      console.log("Retrieving user settings for user ID:", session.user.id);
-      retrieveUserSettingsById(session.user.id, session.access_token)
-        .then(() => {
-          console.log("User settings retrieved successfully");
-        })
-        .catch((error) => {
-          console.error("Failed to retrieve user settings:", error);
-        });
-    } else {
-      console.log("User ID or access token is missing");
-    }
-  }, [session, retrieveUserSettingsById]);
   return (
     <main className="text-neutral-dark-2">
       <div className="mx-[24px] mb-[30px] flex w-fit items-center gap-1 md:hidden">
         <ChevronLeft size="18" className="text-muted-foreground" />
         <span className="font-[600] text-muted-foreground">Notification</span>
       </div>
-      {/* NOTIFICATION ALERT */}
       <section>
         <NotificationHeader notificationTitle={"Notification Alert"} />
         <NotificationSwitchBox
@@ -76,7 +51,6 @@ const NotificationPage = () => {
           onToggle={handleToggleSwitch}
         />
       </section>
-      {/* EMAIL NOTIFICATION  */}
       <section className="my-[30px]">
         <NotificationHeader notificationTitle={"Email notifications"} />
         <section className="flex flex-col gap-[24px]">
@@ -122,7 +96,6 @@ const NotificationPage = () => {
           />
         </section>
       </section>
-      {/* SLACK NOTIFICATIONS */}
       <section className="my-[30px]">
         <NotificationHeader notificationTitle={"Slack notifications"} />
         <section className="flex flex-col gap-[24px]">
