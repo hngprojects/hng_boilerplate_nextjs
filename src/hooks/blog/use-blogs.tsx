@@ -3,11 +3,13 @@ import { create } from "zustand";
 import { persist, PersistStorage } from "zustand/middleware";
 
 import { IGetLatestBlogs, ISingleBlog } from "~/types/blog.types";
+import { getApiUrl } from "~/utils/getApiUrl";
 import { apiClient } from "./api-client";
 
 export const getBlogs = async (blogId: string) => {
+  const url = await getApiUrl();
   try {
-    const response = await apiClient.get(`/api/v1/blogs/${blogId}`);
+    const response = await apiClient.get(`${url}/api/v1/blogs/${blogId}`);
     return response.data;
   } catch (error) {
     return axios.isAxiosError(error) && error.response
@@ -60,8 +62,9 @@ export const useGetBlogs = create<ISingleBlogProperties>()(
       ...initialState,
       fetchBlogs: async () => {
         set({ ...initialState, loading: true });
+        const url = await getApiUrl();
         try {
-          const response = await apiClient.get(`/api/v1/blogs`);
+          const response = await apiClient.get(`${url}/api/v1/blogs`);
           set({
             ...initialState,
             success: true,

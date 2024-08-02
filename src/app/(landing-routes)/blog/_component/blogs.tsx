@@ -1,11 +1,15 @@
 "use client";
 
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 
 import BlogCard from "~/components/layouts/BlogCards";
 import { useGetBlogs } from "~/hooks/blog/use-blogs";
 
-const Blogs = () => {
+interface IProperties {
+  url: string;
+}
+
+const Blogs: FC<IProperties> = ({ url }) => {
   const { fetchBlogs, data } = useGetBlogs();
   const blogs = data?.data;
   useEffect(() => {
@@ -14,7 +18,10 @@ const Blogs = () => {
 
   return (
     <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
-      {blogs && blogs.map((post, index) => <BlogCard key={index} {...post} />)}
+      {blogs &&
+        blogs.map((post, index) => (
+          <BlogCard key={index} data={post} url={url} />
+        ))}
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { create } from "zustand";
 import { persist, PersistStorage } from "zustand/middleware";
 
 import { IComment, ICreateCommentResponse } from "~/types/comment.types";
+import { getApiUrl } from "~/utils/getApiUrl";
 import { apiClient } from "./api-client";
 
 const initialState = {
@@ -45,9 +46,10 @@ export const useComment = create<ICommentsProperties>()(
       ...initialState,
       createComment: async (blogId: string, comment: IComment) => {
         set({ ...initialState, loading: true });
+        const url = await getApiUrl();
         try {
           const response = await apiClient.post(
-            `/api/v1/blogs/${blogId}/comments`,
+            `${url}/api/v1/blogs/${blogId}/comments`,
           );
           set((state) => ({
             ...initialState,
@@ -75,9 +77,10 @@ export const useComment = create<ICommentsProperties>()(
       },
       getComments: async (blogId: string) => {
         set({ ...initialState, loading: true });
+        const url = await getApiUrl();
         try {
           const response = await apiClient.get(
-            `/api/v1/blogs/${blogId}/comments`,
+            `${url}/api/v1/blogs/${blogId}/comments`,
           );
           set({ ...initialState, success: true, comments: response.data });
         } catch (error) {
