@@ -1,6 +1,6 @@
 import type { LucideIconName } from "~/components/common/lucide-icon";
 
-interface UserCardData {
+export interface UserCardData {
   title: string;
   value: number;
   description: string;
