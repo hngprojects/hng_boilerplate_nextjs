@@ -15,6 +15,7 @@ import { useGetSingleBlog } from "~/hooks/blog/use-blog";
 import { useComment } from "~/hooks/blog/use-comments";
 import { useUser } from "~/hooks/user/use-user";
 import { dateFormated, readingTimeCalc } from "~/hooks/util-hooks/date";
+import { getApiUrl } from "~/utils/getApiUrl";
 import BlogLabel from "../../_component/label";
 import RelatedArticle from "../RelatedArticle";
 
@@ -34,10 +35,10 @@ const mockSession: Session = {
 
 interface IProperties {
   id: string;
-  url: string;
 }
 
-const BlogDetailsPage: FC<IProperties> = ({ id, url }) => {
+const BlogDetailsPage: FC<IProperties> = ({ id }) => {
+  const [url, setUrl] = useState<string | undefined>();
   const { user } = useUser();
   const {
     fetchBlog,
@@ -46,6 +47,12 @@ const BlogDetailsPage: FC<IProperties> = ({ id, url }) => {
   } = useGetSingleBlog();
   const { getComments } = useComment();
   const post = blogPostData?.data;
+
+  useEffect(() => {
+    getApiUrl().then((url) => {
+      setUrl(url);
+    });
+  }, []);
 
   useEffect(() => {
     getComments(id);
@@ -171,7 +178,7 @@ const BlogDetailsPage: FC<IProperties> = ({ id, url }) => {
                 </p>
               </div>
             </div>
-            <RelatedArticle url={url} />
+            {url && <RelatedArticle url={url as string} />}
           </div>
           <div className="mx-auto mt-12 w-full max-w-[1000px]">
             {user && (

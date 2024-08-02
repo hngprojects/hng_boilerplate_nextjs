@@ -1,10 +1,8 @@
 import CustomButton from "~/components/common/common-button/common-button";
 import HeroSection from "~/components/extDynamicPages/blogCollection/BlogPageHero";
-import { getApiUrl } from "~/utils/getApiUrl";
 import Blogs from "./_component/blogs";
 
 const BlogHome = async () => {
-  const url = await getApiUrl();
   return (
     <div>
       <HeroSection />
@@ -12,7 +10,7 @@ const BlogHome = async () => {
         <h1 className="mb-6 mt-12 text-3xl font-bold text-[#525252]">
           Recent Blog Posts
         </h1>
-        <Blogs url={url} />
+        <Blogs />
       </div>
       <div className="my-10 flex justify-center">
         <CustomButton
