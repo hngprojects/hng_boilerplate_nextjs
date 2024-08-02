@@ -71,13 +71,13 @@ const WaitlistForm: React.FC = () => {
           {
             headers: {
               "Content-Type": "application/json",
-              accept: "application/json",
+              "accept": "application/json",
             },
           },
         );
 
-        if (response.data.message.message === "Email already registered") {
-          setErrors({ server: "Email already registered" });
+        if (response.data.message.message === "You're already Signed UP!") {
+          setErrors({ server: "You're already Signed UP!" });
         } else {
           setFormData({ full_name: "", email: "" });
           setIsSubmitted(true);
