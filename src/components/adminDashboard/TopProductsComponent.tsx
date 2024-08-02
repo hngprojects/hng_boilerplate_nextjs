@@ -1,7 +1,8 @@
 import { ArrowUpRightIcon } from "lucide-react";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 
 import { Card } from "../ui/card";
+import { fetchAllProducts, Product } from "./getProductData";
 
 type ProductData = {
   name: string;
@@ -13,10 +14,29 @@ type TopProductsProperties = {
   gradients: string[];
 };
 
-const TopProductsComponent: FC<TopProductsProperties> = ({
-  data,
-  gradients,
-}) => {
+const TopProductsComponent: FC<TopProductsProperties> = ({ gradients }) => {
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | undefined>();
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await fetchAllProducts();
+        setProducts(data);
+      } catch {
+        setError("Failed to fetch products");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
+
   return (
     <Card className="basis-1/2 rounded-xl border border-border bg-white p-3 md:p-5">
       <div className="mb-6 flex items-center justify-between">
@@ -35,7 +55,7 @@ const TopProductsComponent: FC<TopProductsProperties> = ({
         </button>
       </div>
       <ul className="text-[#0A0A0A]">
-        {data.map((item, index) => (
+        {products.map((item, index) => (
           <li
             key={index}
             className="mb-2 flex items-center justify-between py-2"
