@@ -35,8 +35,6 @@ const useWindowHeight = () => {
     };
   }, []);
 
-  // console.log(scrollY);
-
   return dimensions;
 };
 

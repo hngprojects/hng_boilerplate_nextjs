@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 
 import BlogCard from "~/components/layouts/BlogCards";
 import { useGetBlogs } from "~/hooks/blog/use-blogs";
@@ -8,7 +8,11 @@ export type New = {
   thumbnailUrl: string;
 };
 
-const RelatedArticle = () => {
+interface IRelatedArticle {
+  url: string;
+}
+
+const RelatedArticle: FC<IRelatedArticle> = ({ url }) => {
   const { fetchBlogs, data } = useGetBlogs();
   const blogs = data?.data;
   useEffect(() => {
@@ -24,7 +28,9 @@ const RelatedArticle = () => {
           {blogs &&
             blogs
               .slice(0, 3)
-              .map((post, index) => <BlogCard key={index} {...post} />)}
+              .map((post, index) => (
+                <BlogCard key={index} data={post} url={url} />
+              ))}
         </div>
       </div>
     </>

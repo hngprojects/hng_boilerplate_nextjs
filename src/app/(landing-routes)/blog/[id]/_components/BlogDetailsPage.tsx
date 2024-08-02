@@ -34,9 +34,10 @@ const mockSession: Session = {
 
 interface IProperties {
   id: string;
+  url: string;
 }
 
-const BlogDetailsPage: FC<IProperties> = ({ id }) => {
+const BlogDetailsPage: FC<IProperties> = ({ id, url }) => {
   const { user } = useUser();
   const {
     fetchBlog,
@@ -138,17 +139,19 @@ const BlogDetailsPage: FC<IProperties> = ({ id }) => {
             </div>
             <div className="w-full max-w-[620px]">
               <div className="mb-3 h-[300px] w-full overflow-hidden">
-                <Image
-                  src={
-                    post?.image_url
-                      ? `https://deployment.api-php.boilerplate.hng.tech/${post?.image_url}`
-                      : "https://unsplash.com/photos/a-large-mountain-with-a-lake-below-it-3vimzs5Yai8"
-                  }
-                  alt="ENIAC computer, one of the first general-purpose electronic digital computers"
-                  className="h-full w-full object-cover"
-                  width={629}
-                  height={300}
-                />
+                {url && (
+                  <Image
+                    src={
+                      post?.image_url
+                        ? `${url}/${post?.image_url}`
+                        : "https://unsplash.com/photos/a-large-mountain-with-a-lake-below-it-3vimzs5Yai8"
+                    }
+                    alt="ENIAC computer, one of the first general-purpose electronic digital computers"
+                    className="h-full w-full object-cover"
+                    width={629}
+                    height={300}
+                  />
+                )}
               </div>
               <p className="neutral-dark-1">
                 Image: ENIAC computer was the first general-purpose electronic
@@ -168,7 +171,7 @@ const BlogDetailsPage: FC<IProperties> = ({ id }) => {
                 </p>
               </div>
             </div>
-            <RelatedArticle />
+            <RelatedArticle url={url} />
           </div>
           <div className="mx-auto mt-12 w-full max-w-[1000px]">
             {user && (

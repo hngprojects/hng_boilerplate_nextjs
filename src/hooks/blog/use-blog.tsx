@@ -33,7 +33,7 @@ const initialState = {
   blogs: undefined,
 };
 
-type ISingleBlogProperties = {
+export type ISingleBlogProperties = {
   loading: boolean;
   success: boolean;
   data: undefined | ISingleBlogResponse;
