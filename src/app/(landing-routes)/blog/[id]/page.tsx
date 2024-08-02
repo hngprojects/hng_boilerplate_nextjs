@@ -3,7 +3,7 @@
 import { getApiUrl } from "~/utils/getApiUrl";
 import BlogDetailsPage from "./_components/BlogDetailsPage";
 
-const SingleBlogPage = async ({ params }: { params: { id: string } }) => {
+const page = async ({ params }: { params: { id: string } }) => {
   const url = await getApiUrl();
   return (
     <div>
@@ -12,4 +12,4 @@ const SingleBlogPage = async ({ params }: { params: { id: string } }) => {
   );
 };
 
-export default SingleBlogPage;
+export default page;
