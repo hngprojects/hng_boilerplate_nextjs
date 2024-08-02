@@ -3,7 +3,6 @@
 import { Filter } from "lucide-react";
 import { useState } from "react";
 
-import CardComponent from "~/components/adminDashboard/CardComponent";
 import { Button } from "~/components/common/common-button";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import {
@@ -13,6 +12,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
+import CardComponent from "./_components/CardComponent/CardComponent";
 import Rating from "./_components/UserDetailedRatings/user-ratings";
 import ProductTable from "./_components/UserProductTable/product-table";
 import { userDetailedCardData } from "./data/user-detailed-dummy-data";

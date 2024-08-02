@@ -88,7 +88,6 @@ const ProductRow: React.FC<{ product: Product }> = ({ product }) => {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel className="sr-only">Actions</DropdownMenuLabel>
-              <DropdownMenuItem>Edit</DropdownMenuItem>
               <DropdownMenuItem onClick={handleOpenDeleteDialog}>
                 Delete
               </DropdownMenuItem>
