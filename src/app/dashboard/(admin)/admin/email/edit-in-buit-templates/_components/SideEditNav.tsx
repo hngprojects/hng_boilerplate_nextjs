@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowUp, Copy, Delete, Plus } from "lucide-react";
+import { ArrowDown, ArrowUp, Copy, Delete } from "lucide-react";
 import React from "react";
 
 interface SideEditNavProperties {
@@ -6,7 +6,6 @@ interface SideEditNavProperties {
   onMoveDown: () => void;
   onCopy: () => void;
   onDelete: () => void;
-  onAdd: () => void;
 }
 
 const SideEditNav: React.FC<SideEditNavProperties> = ({
@@ -14,7 +13,6 @@ const SideEditNav: React.FC<SideEditNavProperties> = ({
   onMoveDown,
   onCopy,
   onDelete,
-//   onAdd,
 }) => {
   return (
     <nav className="flex-1 space-y-1">
@@ -42,12 +40,6 @@ const SideEditNav: React.FC<SideEditNavProperties> = ({
       >
         <Delete className="h-3 w-3" />
       </button>
-      {/* <button
-        onClick={onAdd}
-        className="flex items-center rounded-md border border-slate-100 p-3 text-left hover:bg-gray-200"
-      >
-        <Plus className="h-3 w-3" />
-      </button> */}
     </nav>
   );
 };

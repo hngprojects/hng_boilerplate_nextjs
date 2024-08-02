@@ -1,7 +1,7 @@
 "use client";
 
 import { EllipsisVertical, Eye, Redo, Undo } from "lucide-react";
-import { useReducer } from "react";
+import { ChangeEvent, useReducer } from "react";
 
 import { Button } from "~/components/common/common-button";
 import AddLogo from "../_components/AddLogo";
@@ -18,8 +18,17 @@ import {
 } from "../_components/Utilities";
 import PageHeader from "../../_components/page-header";
 
-// Define the initial components
-const initialComponents = [
+// Define the types for the components
+interface Component {
+  id: string;
+  img?: string;
+  header?: string;
+  subheader?: string;
+  paragraph?: string;
+}
+
+// Define the initial components with type
+const initialComponents: Component[] = [
   { id: "AddLogo", img: "" },
   {
     id: "ImageBody",
@@ -34,48 +43,19 @@ const initialComponents = [
 ];
 
 // Define the types for actions
-const handleImageChange = (event, ind) => {
-  const file = event.target.files?.[0];
-
-  if (file) {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      initialComponents[ind].img = reader.result ?? "";
-    };
-    reader.readAsDataURL(file);
-  }
-
-  return file;
-};
-
-const handleHeaderChange = (event, ind) => {
-  const value = event.target.value;
-
-  initialComponents[ind].header = value;
-  return value;
-};
-
-const handleSubheaderChange = (event, ind) => {
-  const value = event.target.value;
-
-  initialComponents[ind].subheader = value;
-  return value;
-};
-
-const handleParagraphChange = (event, ind) => {
-  const value = event.target.value;
-
-  initialComponents[ind].paragraph = value;
-  return value;
-};
+interface Action {
+  type: "MOVE_UP" | "MOVE_DOWN" | "COPY" | "DELETE" | "ADD";
+  index?: number; // Make index optional
+  component?: string;
+}
 
 // Define the reducer
-const reducer = (state, action) => {
+const reducer = (state: Component[], action: Action): Component[] => {
   const newState = [...state];
 
   switch (action.type) {
     case "MOVE_UP": {
-      if (action.index > 0) {
+      if (action.index !== undefined && action.index > 0) {
         [newState[action.index], newState[action.index - 1]] = [
           newState[action.index - 1],
           newState[action.index],
@@ -84,7 +64,7 @@ const reducer = (state, action) => {
       break;
     }
     case "MOVE_DOWN": {
-      if (action.index < state.length - 1) {
+      if (action.index !== undefined && action.index < state.length - 1) {
         [newState[action.index], newState[action.index + 1]] = [
           newState[action.index + 1],
           newState[action.index],
@@ -93,17 +73,31 @@ const reducer = (state, action) => {
       break;
     }
     case "COPY": {
-      newState.splice(action.index, 0, state[action.index]);
+      if (
+        action.index !== undefined &&
+        action.index >= 0 &&
+        action.index < state.length
+      ) {
+        newState.splice(action.index, 0, state[action.index]);
+      }
       break;
     }
     case "DELETE": {
-      newState.splice(action.index, 1);
+      if (
+        action.index !== undefined &&
+        action.index >= 0 &&
+        action.index < state.length
+      ) {
+        newState.splice(action.index, 1);
+      }
       break;
     }
     case "ADD": {
-      newState.push({
-        id: action.component,
-      });
+      if (action.component) {
+        newState.push({
+          id: action.component,
+        });
+      }
       break;
     }
     default: {
@@ -113,21 +107,65 @@ const reducer = (state, action) => {
   return newState;
 };
 
+// Define handlers with types
+const handleImageChange = (
+  event: ChangeEvent<HTMLInputElement>,
+  index: number,
+): File | undefined => {
+  const file = event.target.files?.[0];
+
+  if (file) {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      initialComponents[index].img = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  return file;
+};
+
+const handleHeaderChange = (
+  event: ChangeEvent<HTMLInputElement>,
+  index: number,
+): string => {
+  const value = event.target.value;
+
+  initialComponents[index].header = value;
+  return value;
+};
+
+const handleSubheaderChange = (
+  event: ChangeEvent<HTMLInputElement>,
+  index: number,
+): string => {
+  const value = event.target.value;
+
+  initialComponents[index].subheader = value;
+  return value;
+};
+
+const handleParagraphChange = (
+  event: ChangeEvent<HTMLInputElement>,
+  index: number,
+): string => {
+  const value = event.target.value;
+
+  initialComponents[index].paragraph = value;
+  return value;
+};
+
+// Define the saveTemplate function
 const saveTemplate = () => {
-  // console.log("*************");
-  // console.log(initialComponents);
-  // console.log("*************");
   const _data_ = {
     styles: "",
     body: "",
   };
 
   for (const component of initialComponents) {
-    // console.log(component);
-
     switch (component.id) {
       case "AddLogo": {
-        const data = genAddLogo(component.img);
+        const data = genAddLogo(component.img ?? "");
 
         _data_.styles += data.style;
         _data_.body += data.body;
@@ -136,9 +174,9 @@ const saveTemplate = () => {
       }
       case "ImageBody": {
         const data = genImageBody(
-          component.img,
-          component.header,
-          component.subheader,
+          component.img ?? "",
+          component.header ?? "",
+          component.subheader ?? "",
         );
 
         _data_.styles += data.style;
@@ -147,7 +185,7 @@ const saveTemplate = () => {
         break;
       }
       case "EditBody": {
-        const data = genEditBody(component.paragraph);
+        const data = genEditBody(component.paragraph ?? "");
 
         _data_.styles += data.style;
         _data_.body += data.body;
@@ -162,18 +200,19 @@ const saveTemplate = () => {
 
         break;
       }
-      // No default
+      default: {
+        break;
+      }
     }
   }
 
-  const _conplete_data_ = `
+  const _complete_data_ = `
       <!DOCTYPE html>
       <html lang="en">
       <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title>Email-Template</title>
-
           <style>
             .container {
               width: 100%;
@@ -182,19 +221,19 @@ const saveTemplate = () => {
             @media (min-width: 1024px) {
               .container {
                 width: 70%;
-                margin: auto
+                margin: auto;
               }
             }
             @media (min-width: 768px) {
               .container {
                 width: 80%;
-                margin: auto
+                margin: auto;
               }
             }
             @media (min-width: 640px) {
               .container {
                 width: 90%;
-                margin: auto
+                margin: auto;
               }
             }
             ${_data_.styles}
@@ -208,19 +247,17 @@ const saveTemplate = () => {
       </body>
       </html>
     `;
-
-  console.log(_conplete_data_);
 };
 
 export default function Page() {
   const [components, dispatch] = useReducer(reducer, initialComponents);
 
-  const handleMoveUp = (index) => dispatch({ type: "MOVE_UP", index });
-  const handleMoveDown = (index) => dispatch({ type: "MOVE_DOWN", index });
-  const handleCopy = (index) => dispatch({ type: "COPY", index });
-  const handleDelete = (index) => dispatch({ type: "DELETE", index });
-
-  const handleSelectComponent = (comp) => {
+  const handleMoveUp = (index: number) => dispatch({ type: "MOVE_UP", index });
+  const handleMoveDown = (index: number) =>
+    dispatch({ type: "MOVE_DOWN", index });
+  const handleCopy = (index: number) => dispatch({ type: "COPY", index });
+  const handleDelete = (index: number) => dispatch({ type: "DELETE", index });
+  const handleSelectComponent = (comp: string) => {
     dispatch({ type: "ADD", component: comp });
   };
 
@@ -251,7 +288,7 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <div className="mt-12sm:mt-20 md:ml-4 lg:mb-[213px] lg:ml-[89px] lg:mt-[156px]">
+      <div className="mt-12 sm:mt-20 md:ml-4 lg:mb-[213px] lg:ml-[89px] lg:mt-[156px]">
         <div className="flex w-full flex-col items-center">
           {components.map((comp, index) => (
             <div
@@ -263,13 +300,12 @@ export default function Page() {
                 onMoveDown={() => handleMoveDown(index)}
                 onCopy={() => handleCopy(index)}
                 onDelete={() => handleDelete(index)}
-                // onAdd={handleAdd}
               />
               <div className="w-10/12">
                 {comp.id === "AddLogo" ? (
                   <AddLogo
                     handleImage={handleImageChange}
-                    img={comp?.img}
+                    img={comp.img ?? ""}
                     index={index}
                   />
                 ) : comp.id === "ImageBody" ? (
@@ -277,16 +313,16 @@ export default function Page() {
                     handleImage={handleImageChange}
                     handleHeader={handleHeaderChange}
                     handleSubheader={handleSubheaderChange}
-                    img={comp?.img}
+                    img={comp.img ?? ""}
                     index={index}
-                    header={comp?.header}
-                    subheader={comp?.subheader}
+                    header={comp.header ?? ""}
+                    subheader={comp.subheader ?? ""}
                   />
                 ) : comp.id === "EditBody" ? (
                   <FooterIcons
                     handleParagraph={handleParagraphChange}
                     index={index}
-                    paragraph={comp?.paragraph}
+                    paragraph={comp.paragraph ?? ""}
                   />
                 ) : comp.id === "EditFooter" ? (
                   <EditFooter />
@@ -299,7 +335,7 @@ export default function Page() {
         </div>
         <SelectModal
           onSelect={handleSelectComponent}
-          data={initialComponents}
+          data={initialComponents.map((c) => c.id)}
         />
       </div>
     </div>

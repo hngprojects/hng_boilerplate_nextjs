@@ -19,10 +19,6 @@ const AddLogo: React.FC<SelectModalProperties> = ({
 }) => {
   const [_img_, setImg] = useState<string | ArrayBuffer | undefined>(img);
 
-  // console.log("-------------------------");
-  // console.log(img);
-  // console.log("-------------------------");
-
   return (
     <div
       id="add-logo-mid-con"
@@ -46,13 +42,17 @@ const AddLogo: React.FC<SelectModalProperties> = ({
           type="file"
           accept="image/*"
           onChange={(event_) => {
-            const result = handleImage(event_, index);
-            const reader = new FileReader();
+            handleImage(event_, index); // Call handleImage without using its return value
+            const file = event_.target.files?.[0];
 
-            reader.onloadend = () => {
-              setImg(reader.result ?? "");
-            };
-            reader.readAsDataURL(result);
+            if (file) {
+              const reader = new FileReader();
+
+              reader.onloadend = () => {
+                setImg(reader.result ?? "");
+              };
+              reader.readAsDataURL(file); // Use the file object directly
+            }
           }}
           className="hidden"
         />

@@ -1,4 +1,5 @@
 import axios from "axios";
+import Link from "next/link";
 import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
 
 interface ITemplateCard {
@@ -16,9 +17,9 @@ interface EmailTemplate {
   updated_at: string;
 }
 
-const fetchTemplate = async (id: string) => {
+const fetchTemplate = async (id: string): Promise<EmailTemplate> => {
   try {
-    const response = await axios.get(
+    const response = await axios.get<EmailTemplate>(
       `https://virtserver.swaggerhub.com/EzeanyimHenry(Oracus)/GetSingleEmailTemplate/1.0.0/api/v1/email-templates/${id}`,
       {
         headers: {
@@ -28,8 +29,7 @@ const fetchTemplate = async (id: string) => {
     );
     return response.data;
   } catch (error) {
-    console.error("Error fetching template:", error);
-    throw error;
+    throw new Error("Failed to fetch template");
   }
 };
 
@@ -69,9 +69,9 @@ const TemplateCard: FC<ITemplateCard> = ({
         <span className="duration-all cursor-pointer text-xs font-medium text-neutral-dark-2 transition-all hover:text-primary">
           Preview
         </span>
-        <span className="duration-all cursor-pointer text-xs font-medium text-neutral-dark-2 transition-all hover:text-primary">
+        <Link href='/edit-templates' className="duration-all cursor-pointer text-xs font-medium text-neutral-dark-2 transition-all hover:text-primary">
           Edit
-        </span>
+        </Link>
       </div>
     </div>
   );

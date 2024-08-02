@@ -44,12 +44,14 @@ export const Options: FC<IOption> = ({ data }) => {
     </Link>
   );
 };
-const ManageTemplate = () => {
-  const isloading: boolean = false;
+
+const ManageTemplate: FC = () => {
+  const isLoading: boolean = false; 
   const data = 100;
   const [togglePreview, setTogglePreview] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const totalPage = Math.ceil(data / 10);
+
   return (
     <div>
       <section className="mb-8">
@@ -60,7 +62,11 @@ const ManageTemplate = () => {
         <Breadcrumb />
       </section>
       <div
-        className={`${togglePreview ? "grid grid-cols-1 justify-items-center gap-6 lg:grid-cols-[1fr_447px]" : "block"} `}
+        className={`${
+          togglePreview
+            ? "grid grid-cols-1 justify-items-center gap-6 lg:grid-cols-[1fr_447px]"
+            : "block"
+        }`}
       >
         <section className="w-full justify-items-center overflow-hidden rounded-[19px] border-[1px] border-border">
           <div className="grid min-h-[700px] grid-rows-[1fr_auto]">
@@ -68,10 +74,11 @@ const ManageTemplate = () => {
               <TemplateCard
                 togglePreview={togglePreview}
                 setTogglePreview={setTogglePreview}
+                templateId="exampleTemplateId"
               />
             </div>
             <Pagination
-              isloading={isloading}
+              isLoading={isLoading}
               totalPage={totalPage}
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
