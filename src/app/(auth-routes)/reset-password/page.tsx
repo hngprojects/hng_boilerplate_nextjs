@@ -1,9 +1,5 @@
-function ResetPassword() {
-  return (
-    <>
-      <div>reset password</div>
-    </>
-  );
-}
+const Reset = () => {
+  return <div>Reset</div>;
+};
 
-export default ResetPassword;
+export default Reset;

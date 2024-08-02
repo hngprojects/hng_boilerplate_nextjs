@@ -48,7 +48,7 @@ export default function Career() {
       }
     };
     fetchJobs();
-  }, []);
+  }, [baseUrl]);
 
   useEffect(() => {
     const startIndex = (currentPage - 1) * pageSize;

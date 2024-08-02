@@ -65,6 +65,18 @@ export const organizationSchema = z.object({
   }),
 });
 
+export const ResetPasswordSchema = z
+  .object({
+    password: passwordSchema,
+    confirmPassword: z
+      .string()
+      .min(1, { message: "Confirm Password is required" }),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
+
 export const OtpSchema = z.object({
   otp: z.string().optional(),
   token: z.string().optional(),
