@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import Image from "next/image";
 import React, { FormEvent, useEffect, useRef, useState } from "react";
 
@@ -61,37 +62,29 @@ const WaitlistForm: React.FC = () => {
       setIsLoading(true); // Set loading state to true
 
       try {
-        const response = await fetch(
+        const response = await axios.post(
           process.env.NEXT_PUBLIC_API_URL as string,
           {
-            method: "POST",
-            mode: "no-cors",
+            email: formData.email,
+            full_name: formData.full_name,
+          },
+          {
             headers: {
               "Content-Type": "application/json",
               accept: "application/json",
             },
-            body: JSON.stringify({
-              email: formData.email,
-              full_name: formData.full_name,
-            }),
           },
         );
 
-        if (!response.ok) {
-          const errorData = await response.json();
-          if (errorData.message.message === "Email already registered") {
-            setErrors({ server: "Email already registered" });
-          } else {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return;
+        if (response.data.message.message === "Email already registered") {
+          setErrors({ server: "Email already registered" });
+        } else {
+          setFormData({ full_name: "", email: "" });
+          setIsSubmitted(true);
+          timeoutReference.current = setTimeout(() => {
+            setIsSubmitted(false);
+          }, 6000);
         }
-
-        setFormData({ full_name: "", email: "" });
-        setIsSubmitted(true);
-        timeoutReference.current = setTimeout(() => {
-          setIsSubmitted(false);
-        }, 6000);
       } catch {
         setErrors({
           server: "An unexpected error occurred. Please try again later.",
