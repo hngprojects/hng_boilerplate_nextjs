@@ -67,7 +67,7 @@ const Register = () => {
   const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
     startTransition(async () => {
       await registerAuth(values).then(async (data) => {
-        if (data) {
+        if (!data.error) {
           sessionStorage.setItem("temp_token", data.access_token);
           router.push("/register/organisation");
         }
@@ -79,7 +79,6 @@ const Register = () => {
               : "an error occurred",
           description: data.status === 201 ? "Redirecting" : data.error,
         });
-        router.push("/register/organisation");
       });
     });
   };
