@@ -38,6 +38,33 @@ export const LoginSchema = z.object({
   rememberMe: z.boolean().default(false),
 });
 
+export const organizationSchema = z.object({
+  email: z.string().email({
+    message: "Email must be a valid email address.",
+  }),
+  name: z.string().min(2, {
+    message: "Company name must be at least 2 characters.",
+  }),
+  description: z.string().min(2, {
+    message: "Company description must be at least 2 characters.",
+  }),
+  industry: z.string().min(1, {
+    message: "Please select an industry.",
+  }),
+  type: z.string().min(1, {
+    message: "Please select an organization type.",
+  }),
+  country: z.string().min(1, {
+    message: "Please select a country.",
+  }),
+  state: z.string().min(1, {
+    message: "Please select a state.",
+  }),
+  address: z.string().min(1, {
+    message: "Please enter company address.",
+  }),
+});
+
 export const OtpSchema = z.object({
   otp: z.string().optional(),
   token: z.string().optional(),
