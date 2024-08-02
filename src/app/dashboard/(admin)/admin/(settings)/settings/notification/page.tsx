@@ -39,7 +39,6 @@ const NotificationPage = () => {
         <ChevronLeft size="18" className="text-muted-foreground" />
         <span className="font-[600] text-muted-foreground">Notification</span>
       </div>
-      {/* NOTIFICATION ALERT */}
       <section>
         <NotificationHeader notificationTitle={"Notification Alert"} />
         <NotificationSwitchBox
@@ -52,7 +51,6 @@ const NotificationPage = () => {
           onToggle={handleToggleSwitch}
         />
       </section>
-      {/* EMAIL NOTIFICATION */}
       <section className="my-[30px]">
         <NotificationHeader notificationTitle={"Email notifications"} />
         <section className="flex flex-col gap-[24px]">
@@ -98,7 +96,6 @@ const NotificationPage = () => {
           />
         </section>
       </section>
-      {/* SLACK NOTIFICATIONS */}
       <section className="my-[30px]">
         <NotificationHeader notificationTitle={"Slack notifications"} />
         <section className="flex flex-col gap-[24px]">

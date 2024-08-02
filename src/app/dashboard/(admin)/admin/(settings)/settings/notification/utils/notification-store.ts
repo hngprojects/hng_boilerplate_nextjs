@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import axios from "axios";
 import create from "zustand";
 
@@ -31,7 +30,6 @@ export const useNotificationStore = create<NotificationStore>((set) => ({
       settings: { ...state.settings, ...newSettings },
     })),
 
-  // notification api endpiont
   RetrieveUserNotificationAll: async (token: string) => {
     const baseUrl = await getApiUrl();
     try {
@@ -41,11 +39,11 @@ export const useNotificationStore = create<NotificationStore>((set) => ({
         },
       });
       const response = await axiosInstance.get(
-        `${baseUrl}/api/v1/notifications`,
+        `${baseUrl}/api/v1/notifications/current-user`,
       );
       set({ allNotifications: response.data.data.notifications });
-    } catch (error) {
-      console.error("Failed to fetch settings", error);
+    } catch {
+      throw new Error("Failed to get all notifications");
     }
   },
 }));
