@@ -9,8 +9,8 @@ export const getTimeAgo = (dateString: string): string => {
   const hours = Math.floor(minutes / 60);
   const days = Math.floor(hours / 24);
   const weeks = Math.floor(days / 7);
-  const months = Math.floor(days / 30); // Approximate month length
-  const years = Math.floor(days / 365); // Approximate year length
+  const months = Math.floor(days / 30);
+  const years = Math.floor(days / 365);
 
   if (differenceInSeconds < 60) {
     return "now";

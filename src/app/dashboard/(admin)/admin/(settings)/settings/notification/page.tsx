@@ -9,6 +9,7 @@ import NotificationSettingSavedModal from "~/components/common/modals/notificati
 import NotificationHeader from "./_components/header";
 import { NotificationSwitchBox } from "./_components/notification-switch-box";
 import { useNotificationStore } from "./utils/notification-store";
+import saveNotificationSettings from "./utils/save-notification-settings";
 
 const NotificationPage = () => {
   const { data: session } = useSession();
@@ -22,6 +23,8 @@ const NotificationPage = () => {
   };
 
   const handleSaveChanges = async () => {
+    const acess_token = session?.access_token;
+    saveNotificationSettings(acess_token, settings);
     setOpen(true);
   };
 
