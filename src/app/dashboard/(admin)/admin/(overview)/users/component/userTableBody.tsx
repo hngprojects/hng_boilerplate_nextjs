@@ -1,3 +1,4 @@
+import axios from "axios";
 import { EllipsisVertical } from "lucide-react";
 import { useState } from "react";
 
@@ -13,15 +14,35 @@ import { UserData } from "../page";
 import DeleteDialog from "./dialogue/delete-dialog";
 
 const UserTableBody = ({ data }: { data: UserData[] }) => {
+  const [isPending, setIsPending] = useState<boolean>(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const handleOpenDialog = () => setIsDialogOpen(true);
+  const [uid, setUid] = useState<string | null>("");
+  const handleOpenDialog = (id: string) => {
+    setIsDialogOpen(true);
+    setUid(id);
+  };
   const handleCloseDialog = () => setIsDialogOpen(false);
+
+  const deleteHandler = async () => {
+    setIsPending(true);
+    const API_URL =
+      "https://deployment.api-php.boilerplate.hng.tech/api/v1/users";
+    try {
+      await axios.get(`${API_URL}/${uid}`);
+    } catch {
+      setIsPending(false);
+    } finally {
+      setIsPending(false);
+      handleCloseDialog();
+    }
+  };
 
   return (
     <>
       <tbody className="user-table z-10">
         {data.map((_data, index) => {
           const {
+            id,
             email,
             phone,
             is_active: status,
@@ -36,22 +57,15 @@ const UserTableBody = ({ data }: { data: UserData[] }) => {
               >
                 <div className="flex flex-row items-center gap-2">
                   <div className="h-10 w-10 overflow-hidden rounded-full bg-gray-200">
-                    {/* <Image
-                      src="/images/latest-articles/avatar.png"
-                      className="object-cover"
-                      height={40}
-                      width={40}
-                      alt={fullName}
-                    /> */}
                     <div className="grid h-[40px] w-[40px] place-items-center rounded-full bg-[#e1e7ef]">
                       <h6 className="font-semibold text-neutral-dark-1">
-                        {fullName[0]}
+                        {email && email[0]}
                       </h6>
                     </div>
                   </div>
                   <div>
                     <h3 className="text-sm font-[500] leading-6 text-neutral-dark-2">
-                      {fullName}
+                      {fullName ?? "---"}
                     </h3>
                     <div className="text-xs font-normal lowercase leading-4 text-neutral-dark-1">
                       {email}
@@ -106,8 +120,7 @@ const UserTableBody = ({ data }: { data: UserData[] }) => {
                     <DropdownMenuLabel className="sr-only">
                       Actions
                     </DropdownMenuLabel>
-                    <DropdownMenuItem>Edit</DropdownMenuItem>
-                    <DropdownMenuItem onClick={handleOpenDialog}>
+                    <DropdownMenuItem onClick={() => handleOpenDialog(id)}>
                       Delete
                     </DropdownMenuItem>
                   </DropdownMenuContent>
@@ -117,7 +130,13 @@ const UserTableBody = ({ data }: { data: UserData[] }) => {
           );
         })}
       </tbody>
-      {isDialogOpen && <DeleteDialog onClose={handleCloseDialog} />}
+      {isDialogOpen && (
+        <DeleteDialog
+          isPending={isPending}
+          onDelete={deleteHandler}
+          onClose={handleCloseDialog}
+        />
+      )}
     </>
   );
 };
