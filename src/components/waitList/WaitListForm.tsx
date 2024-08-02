@@ -42,7 +42,7 @@ const WaitlistForm: React.FC = () => {
     }
 
     if (formData.email.trim() === "") {
-      newErrors.email = "Please enter a valid email address";
+      newErrors.email = "Your email is required here";
       /* eslint-disable vitest/no-conditional-tests */
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Please enter a valid email address";
@@ -65,13 +65,13 @@ const WaitlistForm: React.FC = () => {
           process.env.NEXT_PUBLIC_API_URL as string,
           {
             method: "POST",
-            mode: "no-cors",
             headers: {
               "Content-Type": "application/json",
+              accept: "application/json",
             },
             body: JSON.stringify({
-              full_name: formData.full_name,
               email: formData.email,
+              full_name: formData.full_name,
             }),
           },
         );
@@ -182,16 +182,20 @@ const WaitlistForm: React.FC = () => {
               <CustomButton
                 variant="primary"
                 isLoading={isLoading}
-                className="flex h-[51.78px] w-[195.6px] items-center justify-between rounded-md px-[19.2px] py-[9.6px] text-[16.8px] font-bold leading-[28.8px] text-white transition-transform duration-300 hover:scale-105 hover:shadow-lg"
+                className="flex h-[51.78px] w-[195.6px] items-center justify-center rounded-md px-[19.2px] py-[9.6px] text-[16.8px] font-bold leading-[28.8px] text-white transition-transform duration-300 hover:scale-105 hover:shadow-lg"
                 type="submit"
               >
-                <Image
-                  width={20}
-                  height={20}
-                  src="/images/WaitList/icon.svg"
-                  alt="Submit Envelope"
-                />
-                Join the Waitlist
+                {!isLoading && (
+                  <>
+                    <Image
+                      width={20}
+                      height={20}
+                      src="/images/WaitList/icon.svg"
+                      alt="Submit Envelope"
+                    />
+                    Join the Waitlist
+                  </>
+                )}
               </CustomButton>
             </div>
           </form>

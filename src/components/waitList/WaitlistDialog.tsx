@@ -19,7 +19,7 @@ const WaitlistDialog: React.FC = () => {
           </h1>
           <p className="w-[252px] text-[14px] font-normal leading-[20px]">
             Tailor your experience to your specific needs and preferences for
-            maximum results
+            maximum results.
           </p>
         </div>
         <div className="flex w-[320px] shrink-0 flex-col items-start rounded-[8px] border-[1px] border-neutral-dark-1 p-[24px] transition-transform duration-300 hover:scale-105 hover:bg-gray-50 hover:shadow-lg">
@@ -36,7 +36,7 @@ const WaitlistDialog: React.FC = () => {
           </h1>
           <p className="w-[252px] text-[14px] font-normal leading-[20px]">
             Easily add new features and functionalities as needed to grow your
-            product
+            product.
           </p>
         </div>
         <div className="flex w-[320px] shrink-0 flex-col items-start rounded-[8px] border-[1px] border-neutral-dark-1 p-[24px] transition-transform duration-300 hover:scale-105 hover:bg-gray-50 hover:shadow-lg">
@@ -53,7 +53,7 @@ const WaitlistDialog: React.FC = () => {
           </h1>
           <p className="w-[252px] text-[14px] font-normal leading-[20px]">
             Leverage our prebuilt resources and sections to showcase your
-            product effectively
+            product effectively.
           </p>
         </div>
       </div>
