@@ -5,9 +5,18 @@ import AdditionalInquiriesForm from "./AdditionalInquiriesForm";
 import * as formSubmitHelper from "./formSubmitHelper";
 
 describe("additionalQuestionsForm Tests", () => {
+  const originalEnvironment = process.env;
+
   beforeEach(() => {
-    // Clear mocks if any
     vi.clearAllMocks();
+    process.env = {
+      ...originalEnvironment,
+      API_URL: "test.com",
+    };
+  });
+
+  afterEach(() => {
+    process.env = originalEnvironment;
   });
 
   it("should display error messages for empty required fields", async () => {
@@ -19,9 +28,13 @@ describe("additionalQuestionsForm Tests", () => {
 
     await waitFor(() => {
       expect(screen.getByText(/name is required/i)).toBeInTheDocument();
-      // eslint-disable-next-line testing-library/no-wait-for-multiple-assertions
+    });
+
+    await waitFor(() => {
       expect(screen.getByText(/email is required/i)).toBeInTheDocument();
-      // eslint-disable-next-line testing-library/no-wait-for-multiple-assertions
+    });
+
+    await waitFor(() => {
       expect(screen.getByText(/message is required/i)).toBeInTheDocument();
     });
   });
@@ -41,7 +54,7 @@ describe("additionalQuestionsForm Tests", () => {
 
   it("should display success message on successful form submission", async () => {
     expect.hasAssertions();
-    // Mock the submitForm function to return a successful response
+
     vi.spyOn(formSubmitHelper, "submitForm").mockResolvedValue({
       success: true,
       message: "Your question has been submitted successfully",
@@ -72,7 +85,7 @@ describe("additionalQuestionsForm Tests", () => {
 
   it("should display error message on failed form submission", async () => {
     expect.hasAssertions();
-    // Mock the submitForm function to return a failed response
+
     vi.spyOn(formSubmitHelper, "submitForm").mockResolvedValue({
       success: false,
       message: "There was an error submitting your question. Please try again.",
