@@ -114,7 +114,7 @@ const WaitlistPayment: React.FC = () => {
           `}</style>
           <CustomButton
             variant="outline"
-            className="h-[60px] w-auto justify-start gap-[16px] bg-transparent p-[24px] focus:border-primary md:h-[72px] md:min-w-[320px] focus:shadow-lg "
+            className="h-[60px] w-auto justify-start gap-[16px] bg-transparent p-[24px] focus:border-primary focus:shadow-lg md:h-[72px] md:min-w-[320px]"
             onClick={() => handleClick("Payments")}
           >
             <div
