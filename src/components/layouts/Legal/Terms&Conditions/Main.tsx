@@ -51,7 +51,7 @@ const Main = () => {
   //
 
   return (
-    <section className="relative my-[70px] scroll-smooth text-left">
+    <section className="relative my-[3.5rem] scroll-smooth text-left">
       <div className="flex max-w-full flex-col-reverse items-start justify-between pb-10 lg:flex-row">
         <div className="text-neutral-dark-1 lg:w-[750px]">
           <div className="max-w-full self-stretch" id="introduction">
@@ -123,11 +123,8 @@ const Main = () => {
           </div>
           <div className="mb-[10px] text-base text-neutral-dark-1">
             For more information about our privacy practices, please visit our{" "}
-            <Link
-              href={"/legal/privacy-policy"}
-              className="text-primary underline"
-            >
-              Privacy Policy page.{" "}
+            <Link href={"/privacy-policy"} className="text-primary underline">
+              Privacy Policy page.
             </Link>
           </div>
         </div>

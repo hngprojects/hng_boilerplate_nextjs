@@ -1,22 +1,52 @@
 "use client";
 
+import axios from "axios";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import FaqAccordion from "~/components/layouts/accordion/FaqsAccordion";
 import { Button } from "~/components/ui/button";
+import { Skeleton } from "~/components/ui/skeleton";
 import { faqData } from "~/constants/faqsdata";
+import { getApiUrl } from "~/utils/getApiUrl";
 
-//
+interface BillingPlan {
+  id: string;
+  name: string;
+  price: string;
+}
+
+const getAnnualPrice = (monthlyPrice: string) => {
+  const monthly = Number.parseFloat(monthlyPrice);
+  const annual = monthly * 12 * 0.8;
+  return annual.toFixed(2);
+};
 
 const handleButtonClickTest = () => {
   alert("Contact Button Click Test");
 };
 
-//
-
 export default function Pricing() {
   const [toggle, setToggle] = useState(1);
+  const [plans, setPlans] = useState<BillingPlan[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | undefined>();
+
+  useEffect(() => {
+    const fetchPlans = async () => {
+      try {
+        const apiUrl = await getApiUrl();
+        const response = await axios.get(`${apiUrl}/api/v1/billing-plans`);
+        setPlans(response.data.data);
+      } catch {
+        setError("Failed to fetch billing plans");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPlans();
+  }, []);
 
   return (
     <>
@@ -71,428 +101,142 @@ export default function Pricing() {
           </div>
         </div>
 
-        <div
-          className="align-center mt-[50px] flex flex-col justify-center gap-5 sm:flex-row"
-          data-testid="pricing-cards"
-        >
-          {toggle === 1 ? (
-            <>
-              <div
-                className="w-full rounded-xl border border-border p-[20px] hover:border-primary sm:w-[400px] md:p-[31px]"
-                data-testid="basic-card-monthly"
-              >
-                <h3
-                  className="mb-[16px] text-[25px] font-semibold"
-                  data-testid="basic-title"
-                >
-                  Basic
-                </h3>
-                <h1
-                  className="mb-[16px] text-[22px] font-bold md:text-[30px] lg:text-[40px]"
-                  data-testid="basic-price"
-                >
-                  $800 /month
-                </h1>
-                <p
-                  className="mb-[46px] text-[14px]"
-                  data-testid="basic-description"
-                >
-                  The essensitals to provide your best work for clients.
-                </p>
-                <div
-                  className="mb-3 flex items-center gap-5"
-                  data-testid="basic-feature-1"
-                >
-                  <Image
-                    src="/images/checkmark.svg"
-                    alt=""
-                    height={30}
-                    width={30}
-                  />
-                  2 Projects
-                </div>
-                <div
-                  className="mb-3 flex items-center gap-5 text-[16px]"
-                  data-testid="basic-feature-2"
-                >
-                  <Image
-                    src="/images/checkmark.svg"
-                    alt=""
-                    height={30}
-                    width={30}
-                  />
-                  Up to 100 subscribers
-                </div>
-                <div
-                  className="mb-3 flex items-center gap-5 text-[16px]"
-                  data-testid="basic-feature-3"
-                >
-                  <Image
-                    src="/images/checkmark.svg"
-                    alt=""
-                    height={30}
-                    width={30}
-                  />
-                  Basic analytics
-                </div>
-                <div
-                  className="mb-3 flex items-center gap-5 text-[16px]"
-                  data-testid="basic-feature-4"
-                >
-                  <Image
-                    src="/images/checkmark.svg"
-                    alt=""
-                    height={30}
-                    width={30}
-                  />
-                  24-hour support response time
-                </div>
-                <div
-                  className="mb-3 flex items-center gap-5 text-[16px]"
-                  data-testid="basic-feature-5"
-                >
-                  <Image
-                    src="/images/checkmark.svg"
-                    alt=""
-                    height={30}
-                    width={30}
-                  />
-                  Marketing advisor
-                </div>
-                <div
-                  className="mb-3 flex items-center gap-5 text-[16px]"
-                  data-testid="basic-feature-6"
-                >
-                  <Image
-                    src="/images/checkmark.svg"
-                    alt=""
-                    height={30}
-                    width={30}
-                  />
-                  Custom integration
-                </div>
-                <Button
-                  size="lg"
-                  className="mt-[51px] w-full bg-primary text-background"
-                  data-testid="basic-button"
-                >
-                  Continue
-                </Button>
-              </div>
+        {loading && (
+          <div className="align-center mt-[50px] flex min-h-[650px] flex-col justify-center gap-5 sm:flex-row">
+            <div className="mx-auto flex w-max gap-8">
+              <Skeleton
+                className="h-[600px] w-full rounded-xl sm:w-[400px]"
+                data-testid="skeleton"
+              />
+              <Skeleton
+                className="h-[600px] w-full rounded-xl sm:w-[400px]"
+                data-testid="skeleton"
+              />
+            </div>
+          </div>
+        )}
 
-              <div
-                className="w-full rounded-xl border border-border p-[20px] hover:border-primary sm:w-[400px] md:p-[31px]"
-                data-testid="premium-card-monthly"
-              >
-                <h3
-                  className="mb-[16px] text-[25px] font-semibold"
-                  data-testid="premium-title"
-                >
-                  Premium
-                </h3>
-                <h1
-                  className="mb-[16px] text-[22px] font-bold md:text-[30px] lg:text-[40px]"
-                  data-testid="premium-price"
-                >
-                  $3,000 /month
-                </h1>
-                <p
-                  className="mb-[46px] text-[14px]"
-                  data-testid="premium-description"
-                >
-                  The essensitals to provide your best work for clients.
-                </p>
-                <div
-                  className="mb-3 flex items-center gap-5"
-                  data-testid="premium-feature-1"
-                >
-                  <Image
-                    src="/images/checkmark.svg"
-                    alt=""
-                    height={30}
-                    width={30}
-                  />
-                  2 Projects
-                </div>
-                <div
-                  className="mb-3 flex items-center gap-5 text-[16px]"
-                  data-testid="premium-feature-2"
-                >
-                  <Image
-                    src="/images/checkmark.svg"
-                    alt=""
-                    height={30}
-                    width={30}
-                  />
-                  Up to 100 subscribers
-                </div>
-                <div
-                  className="mb-3 flex items-center gap-5 text-[16px]"
-                  data-testid="premium-feature-3"
-                >
-                  <Image
-                    src="/images/checkmark.svg"
-                    alt=""
-                    height={30}
-                    width={30}
-                  />
-                  Basic analytics
-                </div>
-                <div
-                  className="mb-3 flex items-center gap-5 text-[16px]"
-                  data-testid="premium-feature-4"
-                >
-                  <Image
-                    src="/images/checkmark.svg"
-                    alt=""
-                    height={30}
-                    width={30}
-                  />
-                  24-hour support response time
-                </div>
-                <div
-                  className="mb-3 flex items-center gap-5 text-[16px]"
-                  data-testid="premium-feature-5"
-                >
-                  <Image
-                    src="/images/checkmark.svg"
-                    alt=""
-                    height={30}
-                    width={30}
-                  />
-                  Marketing advisor
-                </div>
-                <div
-                  className="mb-3 flex items-center gap-5 text-[16px]"
-                  data-testid="premium-feature-6"
-                >
-                  <Image
-                    src="/images/checkmark.svg"
-                    alt=""
-                    height={30}
-                    width={30}
-                  />
-                  Custom integration
-                </div>
-                <Button
-                  size="lg"
-                  className="mt-[51px] w-full bg-primary text-background"
-                  data-testid="premium-button"
-                >
-                  Continue
-                </Button>
-              </div>
-            </>
-          ) : (
-            <>
-              <div
-                className="w-full rounded-xl border border-border p-[20px] hover:border-primary sm:w-[400px] md:p-[31px]"
-                data-testid="basic-card-annual"
-              >
-                <h3
-                  className="mb-[16px] text-[25px] font-semibold"
-                  data-testid="basic-title"
-                >
-                  Basic
-                </h3>
-                <h1
-                  className="mb-[16px] text-[22px] font-bold md:text-[30px] lg:text-[40px]"
-                  data-testid="basic-price"
-                >
-                  $500 /month
-                </h1>
-                <p
-                  className="mb-[46px] text-[14px]"
-                  data-testid="basic-description"
-                >
-                  The essensitals to provide your best work for clients.
-                </p>
-                <div
-                  className="mb-3 flex items-center gap-5"
-                  data-testid="basic-feature-1"
-                >
-                  <Image
-                    src="/images/checkmark.svg"
-                    alt=""
-                    height={30}
-                    width={30}
-                  />
-                  2 Projects
-                </div>
-                <div
-                  className="mb-3 flex items-center gap-5 text-[16px]"
-                  data-testid="basic-feature-2"
-                >
-                  <Image
-                    src="/images/checkmark.svg"
-                    alt=""
-                    height={30}
-                    width={30}
-                  />
-                  Up to 100 subscribers
-                </div>
-                <div
-                  className="mb-3 flex items-center gap-5 text-[16px]"
-                  data-testid="basic-feature-3"
-                >
-                  <Image
-                    src="/images/checkmark.svg"
-                    alt=""
-                    height={30}
-                    width={30}
-                  />
-                  Basic analytics
-                </div>
-                <div
-                  className="mb-3 flex items-center gap-5 text-[16px]"
-                  data-testid="basic-feature-4"
-                >
-                  <Image
-                    src="/images/checkmark.svg"
-                    alt=""
-                    height={30}
-                    width={30}
-                  />
-                  24-hour support response time
-                </div>
-                <div
-                  className="mb-3 flex items-center gap-5 text-[16px]"
-                  data-testid="basic-feature-5"
-                >
-                  <Image
-                    src="/images/checkmark.svg"
-                    alt=""
-                    height={30}
-                    width={30}
-                  />
-                  Marketing advisor
-                </div>
-                <div
-                  className="mb-3 flex items-center gap-5 text-[16px]"
-                  data-testid="basic-feature-6"
-                >
-                  <Image
-                    src="/images/checkmark.svg"
-                    alt=""
-                    height={30}
-                    width={30}
-                  />
-                  Custom integration
-                </div>
-                <Button
-                  size="lg"
-                  className="mt-[51px] w-full bg-primary text-background"
-                  data-testid="basic-button"
-                >
-                  Continue
-                </Button>
-              </div>
+        {error && (
+          <div className="align-center mt-[50px] flex min-h-[650px] flex-col justify-center gap-5 text-lg text-red-400 sm:flex-row">
+            {error}
+          </div>
+        )}
 
-              <div
-                className="w-full rounded-xl border border-border p-[20px] hover:border-primary sm:w-[400px] md:p-[31px]"
-                data-testid="premium-card-annual"
-              >
-                <h3
-                  className="mb-[16px] text-[25px] font-semibold"
-                  data-testid="premium-title"
-                >
-                  Premium
-                </h3>
-                <h1
-                  className="mb-[16px] text-[22px] font-bold md:text-[30px] lg:text-[40px]"
-                  data-testid="premium-price"
-                >
-                  $2,000 /month
-                </h1>
-                <p
-                  className="mb-[46px] text-[14px]"
-                  data-testid="premium-description"
-                >
-                  The essensitals to provide your best work for clients.
-                </p>
+        {!loading && !error && (
+          <>
+            <div
+              className="align-center mt-[50px] flex flex-col justify-center gap-5 sm:flex-row"
+              data-testid="pricing-cards"
+            >
+              {plans.map((plan) => (
                 <div
-                  className="mb-3 flex items-center gap-5"
-                  data-testid="premium-feature-1"
+                  key={plan.id}
+                  className="w-full rounded-xl border border-border p-[20px] hover:border-primary sm:w-[400px] md:p-[31px]"
+                  data-testid={`${plan.name.toLowerCase()}-card-${toggle === 1 ? "monthly" : "annual"}`}
                 >
-                  <Image
-                    src="/images/checkmark.svg"
-                    alt=""
-                    height={30}
-                    width={30}
-                  />
-                  2 Projects
+                  <h3
+                    className="mb-[16px] text-[25px] font-semibold capitalize"
+                    data-testid={`${plan.name.toLowerCase()}-title`}
+                  >
+                    {plan.name}
+                  </h3>
+                  <h1
+                    className="mb-[16px] text-[22px] font-bold md:text-[30px] lg:text-[40px]"
+                    data-testid={`${plan.name.toLowerCase()}-price`}
+                  >
+                    ${toggle === 1 ? plan.price : getAnnualPrice(plan.price)} /{" "}
+                    {toggle === 1 ? "month" : "year"}
+                  </h1>
+                  <p
+                    className="mb-[46px] text-[14px]"
+                    data-testid={`${plan.name.toLowerCase()}-description`}
+                  >
+                    The essentials to provide your best work for clients.
+                  </p>
+                  <div
+                    className="mb-3 flex items-center gap-5"
+                    data-testid={`${plan.name.toLowerCase()}-feature-1`}
+                  >
+                    <Image
+                      src="/images/checkmark.svg"
+                      alt=""
+                      height={30}
+                      width={30}
+                    />
+                    2 Projects
+                  </div>
+                  <div
+                    className="mb-3 flex items-center gap-5 text-[16px]"
+                    data-testid={`${plan.name.toLowerCase()}-feature-2`}
+                  >
+                    <Image
+                      src="/images/checkmark.svg"
+                      alt=""
+                      height={30}
+                      width={30}
+                    />
+                    Up to 100 subscribers
+                  </div>
+                  <div
+                    className="mb-3 flex items-center gap-5 text-[16px]"
+                    data-testid={`${plan.name.toLowerCase()}-feature-3`}
+                  >
+                    <Image
+                      src="/images/checkmark.svg"
+                      alt=""
+                      height={30}
+                      width={30}
+                    />
+                    Basic analytics
+                  </div>
+                  <div
+                    className="mb-3 flex items-center gap-5 text-[16px]"
+                    data-testid={`${plan.name.toLowerCase()}-feature-4`}
+                  >
+                    <Image
+                      src="/images/checkmark.svg"
+                      alt=""
+                      height={30}
+                      width={30}
+                    />
+                    24-hour support response time
+                  </div>
+                  <div
+                    className="mb-3 flex items-center gap-5 text-[16px]"
+                    data-testid={`${plan.name.toLowerCase()}-feature-5`}
+                  >
+                    <Image
+                      src="/images/checkmark.svg"
+                      alt=""
+                      height={30}
+                      width={30}
+                    />
+                    Marketing advisor
+                  </div>
+                  <div
+                    className="mb-3 flex items-center gap-5 text-[16px]"
+                    data-testid={`${plan.name.toLowerCase()}-feature-6`}
+                  >
+                    <Image
+                      src="/images/checkmark.svg"
+                      alt=""
+                      height={30}
+                      width={30}
+                    />
+                    Custom integration
+                  </div>
+                  <Button
+                    size="lg"
+                    className="mt-[51px] w-full bg-primary text-background"
+                    data-testid={`${plan.name.toLowerCase()}-button`}
+                  >
+                    Continue
+                  </Button>
                 </div>
-                <div
-                  className="mb-3 flex items-center gap-5 text-[16px]"
-                  data-testid="premium-feature-2"
-                >
-                  <Image
-                    src="/images/checkmark.svg"
-                    alt=""
-                    height={30}
-                    width={30}
-                  />
-                  Up to 100 subscribers
-                </div>
-                <div
-                  className="mb-3 flex items-center gap-5 text-[16px]"
-                  data-testid="premium-feature-3"
-                >
-                  <Image
-                    src="/images/checkmark.svg"
-                    alt=""
-                    height={30}
-                    width={30}
-                  />
-                  Basic analytics
-                </div>
-                <div
-                  className="mb-3 flex items-center gap-5 text-[16px]"
-                  data-testid="premium-feature-4"
-                >
-                  <Image
-                    src="/images/checkmark.svg"
-                    alt=""
-                    height={30}
-                    width={30}
-                  />
-                  24-hour support response time
-                </div>
-                <div
-                  className="mb-3 flex items-center gap-5 text-[16px]"
-                  data-testid="premium-feature-5"
-                >
-                  <Image
-                    src="/images/checkmark.svg"
-                    alt=""
-                    height={30}
-                    width={30}
-                  />
-                  Marketing advisor
-                </div>
-                <div
-                  className="mb-3 flex items-center gap-5 text-[16px]"
-                  data-testid="premium-feature-6"
-                >
-                  <Image
-                    src="/images/checkmark.svg"
-                    alt=""
-                    height={30}
-                    width={30}
-                  />
-                  Custom integration
-                </div>
-                <Button
-                  size="lg"
-                  className="mt-[51px] w-full bg-primary text-background"
-                  data-testid="premium-button"
-                >
-                  Continue
-                </Button>
-              </div>
-            </>
-          )}
-        </div>
+              ))}
+            </div>
+          </>
+        )}
       </div>
 
       <section className="bg-white">
