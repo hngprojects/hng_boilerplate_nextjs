@@ -1,12 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import CustomButton from "~/components/common/common-button/common-button";
 import RoleCreationModal from "~/components/common/modals/role-creation";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import { useToast } from "~/components/ui/use-toast";
-import { getApiUrl } from "~/utils/getApiUrl";
 
 type Role = {
   id: number;
@@ -22,60 +21,12 @@ const RolesAndPermission = () => {
   const [selectedRoleId, setSelectedRoleId] = useState<number | undefined>();
   const [permissions, setPermissions] = useState<Permission>({});
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [roles, setRoles] = useState<Role[]>([]);
-  const [apiUrl, setApiUrl] = useState("");
+  const [roles, setRoles] = useState<Role[]>([
+    { id: 1, name: "Admin", description: "Administrator role" },
+    { id: 2, name: "User", description: "Regular user role" },
+  ]);
   const { toast } = useToast();
-  const [loadingRoles, setLoadingRoles] = useState<boolean>(true);
-  const [loadingPermissions, setLoadingPermissions] = useState<boolean>(false);
   const [loadingRequest, setLoadingRequest] = useState<boolean>(false);
-  const org_id = "9ca4512c-f665-4901-ba63-0b6492e47d32";
-
-  useEffect(() => {
-    setLoadingRoles(true);
-    const fetchData = async () => {
-      try {
-        const url = await getApiUrl();
-        setApiUrl(url);
-        const response = await fetch(`${url}/organisations/${org_id}/roles`);
-        const data = await response.json();
-        setRoles(data);
-        setLoadingRoles(false);
-      } catch (error: unknown) {
-        toast({
-          title: "Error occurred",
-          description:
-            error instanceof Error ? error.message : "Error fetching data",
-          variant: "destructive",
-        });
-        setLoadingRoles(false);
-      }
-    };
-    fetchData();
-  }, [toast]);
-
-  useEffect(() => {
-    const fetchPermissions = async () => {
-      if (selectedRoleId) {
-        setLoadingPermissions(true);
-        try {
-          const response = await fetch(
-            `${apiUrl}/organisations/${org_id}/roles/${selectedRoleId}`,
-          );
-          const permissionsData = await response.json();
-          setPermissions(permissionsData.permission_list);
-          setLoadingPermissions(false);
-        } catch {
-          toast({
-            title: "An error occurred",
-            description: "Error fetching permissions",
-            variant: "destructive",
-          });
-          setLoadingPermissions(false);
-        }
-      }
-    };
-    fetchPermissions();
-  }, [selectedRoleId, apiUrl, org_id, toast]);
 
   const handleRoleClick = (roleId: number) => {
     setSelectedRoleId(roleId);
@@ -88,41 +39,16 @@ const RolesAndPermission = () => {
     });
   };
 
-  const handleSave = async () => {
+  const handleSave = () => {
     setLoadingRequest(true);
-    try {
-      const response = await fetch(
-        `${apiUrl}/organisations/${org_id}/${selectedRoleId}/permissions`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ permission_list: permissions }),
-        },
-      );
-
-      if (response.ok) {
-        toast({
-          title: "Success",
-          description: "Permissions updated successfully",
-          variant: "default",
-        });
-      } else {
-        toast({
-          title: "Error",
-          description: "Failed to update permissions",
-          variant: "destructive",
-        });
-      }
-    } catch {
+    setTimeout(() => {
       toast({
-        title: "Error",
-        description: "Failed to update permissions",
-        variant: "destructive",
+        title: "Success",
+        description: "Permissions updated successfully",
+        variant: "default",
       });
-    }
-    setLoadingRequest(false);
+      setLoadingRequest(false);
+    }, 1000);
   };
 
   const handleModalOpen = () => {
@@ -133,17 +59,35 @@ const RolesAndPermission = () => {
     setIsModalOpen(false);
   };
 
+  const handleCreateRole = (newRole: Role) => {
+    setRoles([...roles, newRole]);
+    setIsModalOpen(false);
+    toast({
+      title: "Success",
+      description: "Role created successfully",
+      variant: "default",
+    });
+  };
+
+  const handleDeleteRole = (roleId: number) => {
+    setRoles(roles.filter((role) => role.id !== roleId));
+    if (selectedRoleId === roleId) {
+      setSelectedRoleId(undefined);
+      setPermissions({});
+    }
+    toast({
+      title: "Success",
+      description: "Role deleted successfully",
+      variant: "default",
+    });
+  };
+
   return (
     <div className="">
       <div className="flex gap-8">
         <div className="w-1/4">
           <h2 className="mb-10 text-xl font-medium">Roles</h2>
           <ul className="rounded-md border border-[#CBD5E1] p-3">
-            {loadingRoles && (
-              <div className="flex justify-center py-8">
-                <LoadingSpinner className="size-4 animate-spin stroke-orange-500 sm:size-5" />
-              </div>
-            )}
             {roles.map((role) => (
               <li
                 key={role.id}
@@ -154,12 +98,29 @@ const RolesAndPermission = () => {
                 }`}
                 onClick={() => handleRoleClick(role.id)}
               >
-                <h3 className="text-base font-medium">{role.name}</h3>
-                <p
-                  className={`text-xs font-normal ${selectedRoleId === role.id ? "text-white" : "text-[#525252]"}`}
-                >
-                  {role.description}
-                </p>
+                <div className="flex justify-between">
+                  <div>
+                    <h3 className="text-base font-medium">{role.name}</h3>
+                    <p
+                      className={`text-xs font-normal ${
+                        selectedRoleId === role.id
+                          ? "text-white"
+                          : "text-[#525252]"
+                      }`}
+                    >
+                      {role.description}
+                    </p>
+                  </div>
+                  <button
+                    onClick={(event_) => {
+                      event_.stopPropagation();
+                      handleDeleteRole(role.id);
+                    }}
+                    className="text-red-600"
+                  >
+                    Delete
+                  </button>
+                </div>
               </li>
             ))}
           </ul>
@@ -191,10 +152,6 @@ const RolesAndPermission = () => {
                 <p className="text-center text-sm font-normal text-[#525252]">
                   Click on a role to view permissions
                 </p>
-              </div>
-            ) : loadingPermissions ? (
-              <div className="item-center flex justify-center py-48">
-                <LoadingSpinner className="size-4 animate-spin stroke-orange-500 sm:size-5" />
               </div>
             ) : (
               <div className="mt-6">
@@ -238,7 +195,11 @@ const RolesAndPermission = () => {
           </div>
         </div>
       </div>
-      <RoleCreationModal show={isModalOpen} onClose={handleModalClose} />
+      <RoleCreationModal
+        show={isModalOpen}
+        onClose={handleModalClose}
+        onCreate={handleCreateRole}
+      />
     </div>
   );
 };

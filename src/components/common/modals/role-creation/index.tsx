@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 import CustomButton from "~/components/common/common-button/common-button";
 import {
   Dialog,
@@ -12,9 +14,29 @@ import {
 interface ModalProperties {
   show: boolean;
   onClose: () => void;
+  onCreate: (role: { id: number; name: string; description: string }) => void;
 }
 
-const RoleCreationModal: React.FC<ModalProperties> = ({ show, onClose }) => {
+const RoleCreationModal: React.FC<ModalProperties> = ({
+  show,
+  onClose,
+  onCreate,
+}) => {
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+
+  const handleCreate = () => {
+    const newRole = {
+      id: Date.now(), // Or any other method to generate unique IDs
+      name,
+      description,
+    };
+    onCreate(newRole);
+    setName("");
+    setDescription("");
+    onClose();
+  };
+
   return (
     <>
       <Dialog open={show} onOpenChange={onClose}>
@@ -36,15 +58,19 @@ const RoleCreationModal: React.FC<ModalProperties> = ({ show, onClose }) => {
                 <input
                   type="text"
                   placeholder="e.g: IT Staff"
+                  value={name}
+                  onChange={(event_) => setName(event_.target.value)}
                   className="w-full rounded-md border border-border bg-transparent px-3 py-2 shadow-sm outline-none focus:border-primary focus:ring-ring md:w-56"
                 />
               </div>
               <div>
                 <label className="mb-2 block text-left text-base font-bold text-neutral-dark-2">
-                  Role Descriotion
+                  Role Description
                 </label>
                 <textarea
                   placeholder="describe role"
+                  value={description}
+                  onChange={(event_) => setDescription(event_.target.value)}
                   className="min-h-20 w-full resize-none rounded-md border border-border bg-transparent px-3 py-2 shadow-sm outline-none focus:border-primary focus:ring-ring"
                 />
               </div>
@@ -52,7 +78,9 @@ const RoleCreationModal: React.FC<ModalProperties> = ({ show, onClose }) => {
                 <CustomButton variant="subtle" onClick={onClose}>
                   Cancel
                 </CustomButton>
-                <CustomButton variant="primary">Create Role</CustomButton>
+                <CustomButton variant="primary" onClick={handleCreate}>
+                  Create Role
+                </CustomButton>
               </div>
             </DialogDescription>
           </DialogHeader>

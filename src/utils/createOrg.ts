@@ -22,7 +22,7 @@ export const createOrg = async (
   }
   try {
     const response = await axios.post(
-      `${apiUrl}/api/v1/organisations`,
+      `${apiUrl}/api/v1/organizations`,
       validatedFields.data,
       {
         headers: {
