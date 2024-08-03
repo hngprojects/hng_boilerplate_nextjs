@@ -63,36 +63,28 @@ export default function Career() {
         content="Explore job opportunities across various fields that fit for your skills and career aspirations."
       />
 
-      <div className="flex items-center justify-center">
-        <div className="flex w-full items-center justify-center">
-          {loading ? (
-            <JobSkeleton />
-          ) : (
-            <div className="w-full grid grid-cols-1 gap-8 md:grid-cols-2">
-              {displayedJobs.map((job) => (
-                <CareerCardParent
-                  key={job.id}
-                  job={job}
-                  location={job.location}
-                  description={job.description}
-                  amount={job.salary_range}
-                  company={job.company_name}
-                  onViewDetails={() => handleViewDetails(job)}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-
-        {!loading && allJobs?.length === 0 && (
-          <div className="isolate mt-10 h-[auto] sm:mb-0">
-            <div className="isolate">
-              <div className="reset-container">
-                <Nojobs />
-              </div>
-            </div>
+      <div className="flex w-full items-center justify-center">
+        {loading ? (
+          <JobSkeleton />
+        ) : (
+          <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2">
+            {displayedJobs.map((job) => (
+              <CareerCardParent
+                key={job.id}
+                job={job}
+                location={job.location}
+                description={job.description}
+                amount={job.salary_range}
+                company={job.company_name}
+                onViewDetails={() => handleViewDetails(job)}
+              />
+            ))}
           </div>
         )}
+      </div>
+
+      <div className="flex items-center justify-center">
+        {!loading && allJobs?.length === 0 && <Nojobs />}
       </div>
 
       <div className="text-1xl my-5 text-right">

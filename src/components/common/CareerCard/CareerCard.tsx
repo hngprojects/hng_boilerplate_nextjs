@@ -23,6 +23,7 @@ const CareerCard: FC<CareerCardProperties> = ({
   company,
   onViewDetails,
 }) => {
+  
   return (
     <Card className="w-full bg-background text-foreground">
       <CardContent className="pt-6">

@@ -49,7 +49,7 @@ export default function Pricing() {
   //
 
   return (
-    <>
+    <div className="bg-white">
       <div
         className="mx-auto max-w-7xl px-5 py-10 md:px-10 lg:px-10 xl:px-10"
         data-testid="pricing-container"
@@ -100,13 +100,13 @@ export default function Pricing() {
                   data-testid={`${plan.name.toLowerCase()}-card-${toggle === 1 ? "monthly" : "annual"}`}
                 >
                   <h3
-                    className="mb-[16px] text-[20px] font-semibold capitalize"
+                    className="mb-[16px] text-[18px] font-semibold capitalize"
                     data-testid={`${plan.name.toLowerCase()}-title`}
                   >
                     {plan.name}
                   </h3>
                   <h1
-                    className="mb-[16px] text-[20px] font-bold md:text-[25px]"
+                    className="mb-[16px] text-[20px] font-bold md:text-[22px]"
                     data-testid={`${plan.name.toLowerCase()}-price`}
                   >
                     ${toggle === 1 ? plan.price : getAnnualPrice(plan.price)} /{" "}
@@ -241,6 +241,6 @@ export default function Pricing() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
