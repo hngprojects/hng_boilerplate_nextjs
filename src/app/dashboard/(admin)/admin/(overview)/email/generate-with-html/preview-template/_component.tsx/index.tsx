@@ -1,6 +1,5 @@
 "use client";
 
-import { useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { renderToString } from "react-dom/server";
@@ -37,9 +36,6 @@ const HtmlTemplateViewer = () => {
   const searchParameters = useSearchParams();
   const [mode, setMode] = useState<"preview" | "edit">("preview");
   const { toast } = useToast();
-  const { data: session } = useSession();
-
-  console.log(session);
   useEffect(() => {
     const content = searchParameters.get("content");
     if (content) {
