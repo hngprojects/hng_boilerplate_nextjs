@@ -46,7 +46,7 @@ const Navbar = () => {
         <MobileNav />
 
         <Logo />
-        <div className="hidden w-full items-center justify-center gap-x-4 md:flex lg:gap-x-8 xl:gap-x-16">
+        <div className="hidden w-full items-center justify-center gap-x-4 md:flex lg:gap-x-6">
           {NAV_LINKS.map((item, index) => {
             return (
               <Link
