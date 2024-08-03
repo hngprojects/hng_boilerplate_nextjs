@@ -2,12 +2,12 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-
 import CareerCardParent from "~/components/common/CareerCard";
 import { Job } from "~/components/common/CareerCard/Jobs";
 import Pagination from "~/components/layouts/pagination/Pagination";
 import { getApiUrl } from "~/utils/getApiUrl";
 import Nojobs from "./Nojobs";
+import Heading from "~/components/layouts/heading";
 
 export default function Career() {
   const [allJobs, setAllJobs] = useState<Job[]>([]);
@@ -78,19 +78,11 @@ export default function Career() {
 
   return (
     <div className="mx-auto max-w-7xl bg-white px-5 py-10 sm:bg-transparent md:px-10 lg:px-10 xl:px-10">
-      <div className="mb-10 text-center md:mx-auto md:mb-12">
-        <p className="mb-4 inline-block rounded-md bg-[#F1F1F1] p-2.5 text-xl font-medium text-neutral-600">
-          Career
-        </p>
-
-        <h1 className="text-neutral-colors-dark-2 font-inter mb-6 text-center text-4xl font-extrabold text-neutral-950 md:text-5xl lg:text-6xl">
-          Available <span className="text-orange-500">Jobs</span> in Our company
-        </h1>
-        <p className="text-wrap text-center text-base font-normal text-neutral-600 md:text-lg">
-          Explore job opportunities across various fields that fit for your
-          skills and career aspirations.
-        </p>
-      </div>
+      <Heading
+        tag="Career"
+        title="Available {{Jobs}} in Our company"
+        content="Explore job opportunities across various fields that fit for your skills and career aspirations."
+      />
 
       <div className="flex items-center justify-center">
         <div className="flex items-center justify-center">
