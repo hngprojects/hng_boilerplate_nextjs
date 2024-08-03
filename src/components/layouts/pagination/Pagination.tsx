@@ -72,7 +72,7 @@ const Pagination = ({
       <PaginationContent>
         <PaginationItem>
           <div
-            className={`flex items-center pr-2 ${
+            className={`flex items-center pr-2 cursor-pointer ${
               navigationVariant === "semibold"
                 ? "pr-1 text-xl font-semibold leading-normal"
                 : "text-base font-medium leading-6 hover:bg-transparent"
