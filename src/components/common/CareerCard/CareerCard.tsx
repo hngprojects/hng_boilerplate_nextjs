@@ -29,7 +29,7 @@ const CareerCard: FC<CareerCardProperties> = ({
         <h3 className="mb-2 text-lg font-semibold">{jobTitle}</h3>
         <p className="text-md mb-1">{company}</p>
         <p className="text-sm">{location}</p>
-        <p className="mt-4 line-clamp-2 text-sm">{description}</p>
+        <p className="mt-4 text-md">{description}</p>
       </CardContent>
 
       <CardFooter className="flex items-center justify-between">
