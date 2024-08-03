@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, Filter, Grid, List, X } from "lucide-react";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 
@@ -61,13 +62,22 @@ const ProductFilter = ({
   return (
     <div className="flex w-full items-center justify-between gap-x-2 min-[500px]:gap-x-0">
       <div className="relative w-full max-w-[300px]">
-        <Input
-          type="text"
-          value={searchTerm}
-          onChange={(event) => setSearchTerm(event.target.value)}
-          placeholder="search products..."
-          className="h-8 w-full bg-transparent text-sm min-[500px]:h-10"
-        />
+        <div className="relative">
+          <Input
+            type="text"
+            value={searchTerm}
+            onChange={(event) => setSearchTerm(event.target.value)}
+            placeholder="Search products..."
+            className="h-8 w-full bg-transparent pl-[36px] text-sm min-[500px]:h-10"
+          />
+          <Image
+            src="/images/magnifying-glass.svg"
+            alt="search"
+            width={16}
+            height={16}
+            className="absolute left-3 top-3"
+          />
+        </div>
         <Button
           onClick={() => setSearchTerm("")}
           variant="ghost"
@@ -86,11 +96,11 @@ const ProductFilter = ({
         <div className="flex items-center gap-x-2">
           <Button
             onClick={() => setView("grid")}
-            disabled
+            disabled={view === "grid"}
             variant="outline"
             size="icon"
             className={cn(
-              "flex items-center gap-x-2 bg-transparent p-1 text-sm hover:!bg-black hover:text-white disabled:!opacity-85 md:rounded-[6px] md:p-2",
+              "flex items-center gap-x-2 bg-transparent p-2 text-sm hover:!bg-black hover:text-white disabled:!opacity-85 md:rounded-[6px]",
               view === "grid"
                 ? "bg-black text-white transition-all duration-300 hover:!opacity-80 active:scale-90"
                 : "",
@@ -104,7 +114,7 @@ const ProductFilter = ({
             variant="outline"
             size="icon"
             className={cn(
-              "flex items-center gap-x-2 p-1 text-sm hover:!bg-black hover:text-white disabled:!cursor-not-allowed disabled:!opacity-85 md:rounded-[6px] md:p-2",
+              "flex items-center gap-x-2 p-2 text-sm hover:!bg-black hover:text-white disabled:!cursor-not-allowed disabled:!opacity-85 md:rounded-[6px]",
               view === "list"
                 ? "bg-black text-white transition-all duration-300 hover:!opacity-80 active:scale-90"
                 : "",
@@ -118,18 +128,18 @@ const ProductFilter = ({
           onClick={() => updateFilterModal(!isOpenFilterModal)}
           ref={filterTriggerReference}
           variant="outline"
-          className="relative grid w-8 place-items-center gap-x-2 bg-transparent text-sm min-[500px]:flex min-[500px]:w-fit min-[500px]:items-center"
+          className="relative grid w-8 place-items-center bg-transparent px-2 text-sm min-[500px]:flex min-[500px]:w-[82px] min-[500px]:items-center min-[500px]:justify-between min-[500px]:gap-x-2 min-[500px]:text-base"
         >
-          <Filter className="size-5 min-[500px]:size-6" />
+          <Filter className="size-5" />
           <span className="hidden min-[500px]:inline">Filter</span>
         </Button>
 
         <AnimatePresence>
           {isOpenFilterModal && (
             <motion.div
-              initial={{ opacity: 0, y: -20, x: 20 }}
+              initial={{ opacity: 0, y: -20, x: 0 }}
               animate={{ opacity: 1, y: 0, x: 0 }}
-              exit={{ opacity: 0, y: -20, x: 20 }}
+              exit={{ opacity: 0, y: -20, x: 1 }}
               ref={filterReference}
               className="absolute -bottom-[12rem] right-0 z-30 flex w-[150px] flex-col gap-y-1 rounded-[6px] border border-gray-300 bg-white/80 shadow-[0px_1px_18px_0px_rgba(10,_57,_176,_0.12)] backdrop-blur-sm min-[500px]:-bottom-[14rem] sm:w-full sm:max-w-[185px]"
             >
@@ -165,10 +175,6 @@ const ProductFilter = ({
             </motion.div>
           )}
         </AnimatePresence>
-        {/* <ProductListFilter
-          filters={filters}
-          handleFilterActiveState={handleFilterActiveState}
-        /> */}
       </div>
     </div>
   );

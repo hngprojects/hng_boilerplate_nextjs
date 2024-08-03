@@ -4,7 +4,7 @@ import { Button } from "~/components/ui/button";
 import { toast } from "~/components/ui/use-toast";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { useProducts } from "~/hooks/admin-product/use-products.persistence";
-import { cn } from "~/lib/utils";
+import { cn, getApiBaseUrl } from "~/lib/utils";
 
 const variantProperties = {
   left: "50%",
@@ -12,16 +12,13 @@ const variantProperties = {
   translateX: "-50%",
   translateY: "-50%",
 };
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const ProductDeleteModal = () => {
-  const { products, deleteProduct } = useProducts();
+  const { products } = useProducts();
 
-  const { product_id, updateProductId, updateOpen, isDelete, setIsDelete } =
+  const { id, updateProductId, updateOpen, isDelete, setIsDelete } =
     useProductModal();
 
-  const product = products?.find(
-    (product) => product.product_id === product_id,
-  );
+  const product = products?.find((product) => product.id === id);
 
   const handleDelete = async (id: string) => {
     toast({
@@ -31,20 +28,23 @@ const ProductDeleteModal = () => {
     });
     setIsDelete(false);
 
-    await delay(3000);
-    deleteProduct(id);
-    toast({
-      title: `Product deleted`,
-      description: (
-        <span>
-          <b>{product?.name}</b> has been deleted.
-        </span>
-      ),
-      variant: "default",
-      className: "z-[99999]",
+    const baseUrl = getApiBaseUrl();
+    const url = `${baseUrl}/api/v1/products/${id}`;
+    const response = await fetch(url, {
+      method: "DELETE",
+      // Uncomment when token storage is handled
+      // headers: {
+      //   Authorization: `Bearer ${token}`,
+      // },
     });
-    updateOpen(false);
-    updateProductId("null");
+    if (!response.ok) {
+      toast({
+        title: `Failed to delete product`,
+        variant: "destructive",
+        className: "z-[99999]",
+      });
+      throw new Error("Failed to fetch products");
+    }
   };
 
   return (
@@ -84,7 +84,7 @@ const ProductDeleteModal = () => {
             }}
             transition={{ duration: 0.2 }}
             className={cn(
-              "fixed left-1/2 top-1/2 z-[99999] grid w-full min-w-[350px] max-w-[349px] -translate-x-1/2 -translate-y-1/2 transform-gpu flex-col place-items-center items-center min-[360px]:max-w-[480px] sm:max-w-[403px]",
+              "fixed left-1/2 top-1/2 z-[99999] grid w-full min-w-[350px] max-w-[349px] -translate-x-1/2 -translate-y-1/2 transform-gpu flex-col place-items-center items-center min-[360px]:max-w-[480px] sm:max-w-[403px] lg:hidden",
             )}
           >
             <div
@@ -100,7 +100,7 @@ const ProductDeleteModal = () => {
               </p>
               <div className="flex w-full items-center justify-center gap-x-2">
                 <Button
-                  onClick={() => handleDelete(product!.product_id!)}
+                  onClick={() => handleDelete(product!.id!)}
                   variant="outline"
                   className="bg-white font-medium text-error"
                 >

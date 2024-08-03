@@ -3,8 +3,8 @@ import { create } from "zustand";
 type ModalProperties = {
   isOpen: boolean;
   updateOpen: (open: boolean) => void;
-  product_id: string;
-  updateProductId: (product_id: string) => void;
+  id: string;
+  updateProductId: (id: string) => void;
   isDelete: boolean;
   setIsDelete: (isDelete: boolean) => void;
   updateFilterModal: (isOpenFilterModal: boolean) => void;
@@ -17,7 +17,7 @@ type ModalProperties = {
 
 export const useProductModal = create<ModalProperties>()((set) => ({
   isOpen: false,
-  product_id: "",
+  id: "",
   isDelete: false,
   isOpenFilterModal: false,
   isNewModal: false,
@@ -28,5 +28,5 @@ export const useProductModal = create<ModalProperties>()((set) => ({
     set({ isOpenFilterModal: isOpenFilterModal }),
   setIsDelete: (isDelete) => set({ isDelete }),
   updateOpen: (open) => set({ isOpen: open }),
-  updateProductId: (product_id) => set({ product_id }),
+  updateProductId: (id) => set({ id }),
 }));

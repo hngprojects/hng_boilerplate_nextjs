@@ -27,7 +27,7 @@ const ProductBodyShadcn = ({
   const {
     updateOpen,
     updateProductId,
-    product_id,
+    id,
     isActionModal,
     setIsActionModal,
     setIsDelete,
@@ -52,9 +52,9 @@ const ProductBodyShadcn = ({
     };
   }, [isActionModal]);
   if (!products) return;
-  const handleOpenDetail = (product_id: string) => {
+  const handleOpenDetail = (id: string) => {
     setIsActionModal(false);
-    updateProductId(product_id);
+    updateProductId(id);
     updateOpen(true);
   };
   const handleDeleteAction = (id: string) => {
@@ -68,11 +68,8 @@ const ProductBodyShadcn = ({
     subset.length > 0 &&
     subset.map((product, index) => (
       <TableRow
-        key={product.product_id}
-        className={cn(
-          "bg-white",
-          product_id === product.product_id ? "bg-muted/50" : "",
-        )}
+        key={product.id}
+        className={cn("bg-white", id === product.id ? "bg-muted/50" : "")}
       >
         <TableCell className="flex items-center justify-start gap-x-2 whitespace-nowrap md:gap-x-4">
           <div className="flex items-center gap-x-2 md:gap-x-4">
@@ -87,7 +84,7 @@ const ProductBodyShadcn = ({
           </div>{" "}
           <span
             role="button"
-            onClick={() => handleOpenDetail(product.product_id)}
+            onClick={() => handleOpenDetail(product.id)}
             className="hide_scrollbar overflow-x-auto text-neutral-dark-2 md:w-[200px] lg:w-[200px]"
           >
             {searchTerm.length > 1 ? (
@@ -115,27 +112,18 @@ const ProductBodyShadcn = ({
         </TableCell>
         <TableCell
           role="button"
-          onClick={() => handleOpenDetail(product.product_id)}
+          onClick={() => handleOpenDetail(product.id)}
           className="uppercase"
         >
-          {product.product_id}
+          {product.id}
         </TableCell>
-        <TableCell
-          role="button"
-          onClick={() => handleOpenDetail(product.product_id)}
-        >
+        <TableCell role="button" onClick={() => handleOpenDetail(product.id)}>
           {product.category}
         </TableCell>
-        <TableCell
-          role="button"
-          onClick={() => handleOpenDetail(product.product_id)}
-        >
+        <TableCell role="button" onClick={() => handleOpenDetail(product.id)}>
           {formatPrice(product.price)}
         </TableCell>
-        <TableCell
-          role="button"
-          onClick={() => handleOpenDetail(product.product_id)}
-        >
+        <TableCell role="button" onClick={() => handleOpenDetail(product.id)}>
           <span
             className={cn(
               "flex items-center gap-x-1 whitespace-nowrap rounded-full px-2 text-sm leading-5 md:gap-x-2",
@@ -156,7 +144,7 @@ const ProductBodyShadcn = ({
         <TableCell className="relative whitespace-nowrap px-2 py-4 md:gap-x-4 min-[1440px]:px-6">
           <Button
             onClick={() => {
-              updateProductId(product.product_id);
+              updateProductId(product.id);
               setIsActionModal(!isActionModal);
             }}
             variant={"ghost"}
@@ -165,7 +153,7 @@ const ProductBodyShadcn = ({
             <MoreVertical />
           </Button>
           <AnimatePresence>
-            {isActionModal && product_id === product.product_id && (
+            {isActionModal && id === product.id && (
               <motion.div
                 ref={modalReference}
                 initial={{ opacity: 0, y: -20, x: 20 }}
@@ -194,7 +182,7 @@ const ProductBodyShadcn = ({
                     <span>Edit</span>
                   </Button>
                   <Button
-                    onClick={() => handleDeleteAction(product.product_id)}
+                    onClick={() => handleDeleteAction(product.id)}
                     variant="ghost"
                     size={"sm"}
                     className={cn(

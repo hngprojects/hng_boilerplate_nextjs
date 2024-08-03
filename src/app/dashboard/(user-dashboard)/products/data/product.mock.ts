@@ -11,7 +11,7 @@ export const PRODUCT_NAV: ProductNavProperties[] = [
     label: "Product Name",
   },
   {
-    name: "product_id",
+    name: "id",
     label: "Product ID",
   },
   {
@@ -34,7 +34,7 @@ export const PRODUCT_NAV: ProductNavProperties[] = [
 
 export const PRODUCT_TABLE: ProductTableProperties[] = [
   {
-    product_id: "1",
+    id: "1",
     name: "Wireless Mouse",
     description:
       "Ergonomic wireless mouse with adjustable DPI settings, designed for maximum comfort and precision. Perfect for both casual browsing and intense gaming sessions.",
@@ -47,7 +47,7 @@ export const PRODUCT_TABLE: ProductTableProperties[] = [
     time: "12:34:56",
   },
   {
-    product_id: "2",
+    id: "2",
     name: "Mechanical Keyboard",
     description:
       "RGB mechanical keyboard with blue switches for a satisfying clicky sound and tactile feedback. Features customizable lighting effects and durable keycaps.",
@@ -60,7 +60,7 @@ export const PRODUCT_TABLE: ProductTableProperties[] = [
     time: "12:34:56",
   },
   {
-    product_id: "3",
+    id: "3",
     name: "Gaming Headset",
     description:
       "Surround sound gaming headset with noise-cancelling microphone. Offers immersive audio experience, comfortable ear cups, and an adjustable headband for long gaming sessions.",
@@ -73,7 +73,7 @@ export const PRODUCT_TABLE: ProductTableProperties[] = [
     time: "12:34:56",
   },
   {
-    product_id: "4",
+    id: "4",
     name: "4K Monitor",
     description:
       "Ultra HD 4K monitor with vibrant colors and crystal-clear image quality. Features a slim bezel design and multiple input options, perfect for professional and entertainment use.",
@@ -86,7 +86,7 @@ export const PRODUCT_TABLE: ProductTableProperties[] = [
     time: "12:34:56",
   },
   {
-    product_id: "5",
+    id: "5",
     name: "Bluetooth Speaker",
     description:
       "Portable Bluetooth speaker with powerful sound and deep bass. Water-resistant and with a long-lasting battery, ideal for outdoor activities and parties.",
@@ -99,7 +99,7 @@ export const PRODUCT_TABLE: ProductTableProperties[] = [
     time: "12:34:56",
   },
   {
-    product_id: "6",
+    id: "6",
     name: "Smartwatch",
     description:
       "Feature-rich smartwatch with fitness tracking, heart rate monitoring, and notifications. Stylish design with interchangeable bands, compatible with both Android and iOS.",
@@ -112,7 +112,7 @@ export const PRODUCT_TABLE: ProductTableProperties[] = [
     time: "12:34:56",
   },
   {
-    product_id: "7",
+    id: "7",
     name: "Drone",
     description:
       "Compact drone with high-definition camera for stunning aerial photography and videography. Easy to control with smartphone app and comes with multiple flight modes.",
@@ -125,7 +125,7 @@ export const PRODUCT_TABLE: ProductTableProperties[] = [
     time: "12:34:56",
   },
   {
-    product_id: "8",
+    id: "8",
     name: "Electric Toothbrush",
     description:
       "Rechargeable electric toothbrush with multiple brushing modes and a smart timer. Provides thorough cleaning and improves oral hygiene, suitable for all ages.",
@@ -138,7 +138,7 @@ export const PRODUCT_TABLE: ProductTableProperties[] = [
     time: "12:34:56",
   },
   {
-    product_id: "9",
+    id: "9",
     name: "Fitness Tracker",
     description:
       "Advanced fitness tracker with activity monitoring, sleep analysis, and water resistance. Lightweight and comfortable to wear, ideal for fitness enthusiasts.",
@@ -151,7 +151,7 @@ export const PRODUCT_TABLE: ProductTableProperties[] = [
     time: "12:34:56",
   },
   {
-    product_id: "10",
+    id: "10",
     name: "Noise-Cancelling Headphones",
     description:
       "High-fidelity noise-cancelling headphones with superior sound quality and long battery life. Comfortable over-ear design, perfect for travel and work.",
@@ -164,7 +164,7 @@ export const PRODUCT_TABLE: ProductTableProperties[] = [
     time: "12:34:56",
   },
   {
-    product_id: "11",
+    id: "11",
     name: "Smart Home Hub",
     description:
       "Centralized smart home hub that connects and controls all your smart devices seamlessly. Compatible with various smart home ecosystems for enhanced convenience.",
@@ -177,7 +177,7 @@ export const PRODUCT_TABLE: ProductTableProperties[] = [
     time: "12:34:56",
   },
   {
-    product_id: "12",
+    id: "12",
     name: "Robot Vacuum Cleaner",
     description:
       "Automatic robot vacuum cleaner with powerful suction and smart navigation. Effortlessly cleans your floors and carpets, with scheduled cleaning and app control.",
@@ -190,7 +190,7 @@ export const PRODUCT_TABLE: ProductTableProperties[] = [
     time: "12:34:56",
   },
   {
-    product_id: "13",
+    id: "13",
     name: "Electric Kettle",
     description:
       "Fast-boiling electric kettle with temperature control and auto shut-off. Stylish design with a large capacity, perfect for making tea, coffee, and instant meals.",
@@ -203,7 +203,7 @@ export const PRODUCT_TABLE: ProductTableProperties[] = [
     time: "12:34:56",
   },
   {
-    product_id: "14",
+    id: "14",
     name: "Instant Pot",
     description:
       "Multi-functional Instant Pot with pressure cooking, slow cooking, and sautéing features. Saves time and effort in the kitchen, with various preset programs.",
@@ -216,7 +216,7 @@ export const PRODUCT_TABLE: ProductTableProperties[] = [
     time: "12:34:56",
   },
   {
-    product_id: "15",
+    id: "15",
     name: "Air Purifier",
     description:
       "High-efficiency air purifier with HEPA filter and quiet operation. Removes allergens, dust, and pollutants, providing clean and fresh air in your home.",
@@ -229,7 +229,7 @@ export const PRODUCT_TABLE: ProductTableProperties[] = [
     time: "12:34:56",
   },
   {
-    product_id: "16",
+    id: "16",
     name: "Smart Thermostat",
     description:
       "Energy-saving smart thermostat with remote control and learning capabilities. Adjusts to your preferences and schedule, ensuring optimal comfort and efficiency.",
@@ -242,7 +242,7 @@ export const PRODUCT_TABLE: ProductTableProperties[] = [
     time: "12:34:56",
   },
   {
-    product_id: "17",
+    id: "17",
     name: "Portable Projector",
     description:
       "Compact portable projector with high-definition resolution and built-in speakers. Ideal for home entertainment, business presentations, and outdoor movie nights.",
@@ -255,7 +255,7 @@ export const PRODUCT_TABLE: ProductTableProperties[] = [
     time: "12:34:56",
   },
   {
-    product_id: "18",
+    id: "18",
     name: "Electric Scooter",
     description:
       "Eco-friendly electric scooter with a powerful motor and long-lasting battery. Features a foldable design for easy portability and storage, perfect for urban commuting.",
@@ -268,7 +268,7 @@ export const PRODUCT_TABLE: ProductTableProperties[] = [
     time: "12:34:56",
   },
   {
-    product_id: "19",
+    id: "19",
     name: "Digital Camera",
     description:
       "High-performance digital camera with interchangeable lenses and 4K video recording. Perfect for photography enthusiasts and professionals seeking high-quality images.",
@@ -281,7 +281,7 @@ export const PRODUCT_TABLE: ProductTableProperties[] = [
     time: "12:34:56",
   },
   {
-    product_id: "20",
+    id: "20",
     name: "Smart Doorbell",
     description:
       "Smart doorbell with HD video, two-way audio, and motion detection. Enhances home security by allowing you to see and communicate with visitors remotely.",

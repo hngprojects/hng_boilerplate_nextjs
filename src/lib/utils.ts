@@ -30,6 +30,13 @@ export const generateId = (length: number = 14): string => {
   return result;
 };
 
+export const getApiBaseUrl = (): string => {
+  const baseUrl = process.env.API_URL;
+  if (!baseUrl) {
+    throw new Error("API_URL is not defined");
+  }
+  return baseUrl;
+};
 /**
  * Returns a simulated promise that resolves after the specified number of seconds.
  *

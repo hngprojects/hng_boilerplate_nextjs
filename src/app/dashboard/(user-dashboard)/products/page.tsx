@@ -7,12 +7,12 @@ import { useEffect, useState } from "react";
 
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { useProducts } from "~/hooks/admin-product/use-products.persistence";
+import { getApiBaseUrl } from "~/lib/utils";
 import NewProductModal from "./_components/new-product-modal";
 import ProductDeleteModal from "./_components/product-delete-modal";
 import ProductDetailModal from "./_components/product-detail-modal";
 import ProductDetailView from "./_components/product-detail-view";
 import ProductHeader from "./_components/product-header";
-import { PRODUCT_TABLE } from "./data/product.mock";
 
 const ProductContent = dynamic(() => import("./_components/product-content"), {
   ssr: false,
@@ -23,6 +23,8 @@ const ProductFilter = dynamic(() => import("./_components/product-filter"), {
 
 const ProductPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [pageSize] = useState(10);
+  const [pageNumber] = useState(1);
   const [view, setView] = useState<"list" | "grid">("list");
   const { addProducts } = useProducts();
   const {
@@ -38,16 +40,28 @@ const ProductPage = () => {
     setIsDelete,
   } = useProductModal();
 
-  useEffect(() => {
-    const is_saved = localStorage.getItem("admin_products");
-    if (is_saved) {
-      const parse_data = JSON.parse(is_saved);
-      if (parse_data.state.products) return;
-      setTimeout(() => {
-        addProducts(PRODUCT_TABLE);
-      }, 5000);
+  const fetchProducts = async () => {
+    const baseUrl = getApiBaseUrl();
+    const url = `${baseUrl}/api/v1/products?PageSize=${pageSize}&PageNumber=${pageNumber}`;
+    const response = await fetch(url, {
+      method: "GET",
+      // Uncomment when token storage is handled
+      // headers: {
+      //   Authorization: `Bearer ${token}`,
+      // },
+    });
+    if (!response.ok) {
+      throw new Error("Failed to fetch products");
     }
+    const resp = await response.json();
+
+    addProducts(resp.data);
+  };
+
+  useEffect(() => {
+    fetchProducts();
   }, []);
+
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {

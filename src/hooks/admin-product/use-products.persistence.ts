@@ -36,7 +36,7 @@ export const useProducts = create<ProductsStateProperties>()(
         set((state) => {
           if (!state.products) return state;
           const index = state.products.findIndex(
-            (item) => item.product_id === product.product_id,
+            (item) => item.id === product.id,
           );
           if (index === -1) return state;
           return {
@@ -49,7 +49,7 @@ export const useProducts = create<ProductsStateProperties>()(
         }),
       deleteProduct: (id) =>
         set((state) => ({
-          products: state?.products?.filter((p) => p.product_id !== id),
+          products: state?.products?.filter((p) => p.id !== id),
         })),
     }),
     { name: "admin_products", storage },

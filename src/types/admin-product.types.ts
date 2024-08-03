@@ -1,5 +1,5 @@
 export type ProductTableProperties = {
-  product_id: string;
+  id: string;
   name: string;
   description: string;
   price: number;

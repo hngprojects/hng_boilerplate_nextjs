@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Loader2, X } from "lucide-react";
+import router from "next/router";
 import { useEffect, useState } from "react";
 
 import BlurImage from "~/components/miscellaneous/blur-image";
@@ -8,7 +9,7 @@ import { toast } from "~/components/ui/use-toast";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { useProducts } from "~/hooks/admin-product/use-products.persistence";
 import useWindowWidth from "~/hooks/use-window-width";
-import { cn, formatPrice } from "~/lib/utils";
+import { cn, formatPrice, getApiBaseUrl } from "~/lib/utils";
 
 const variantProperties = {
   left: "50%",
@@ -16,23 +17,14 @@ const variantProperties = {
   translateX: "-50%",
   translateY: "-50%",
 };
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const ProductDetailModal = () => {
-  const { products, deleteProduct } = useProducts();
-  const [isLoading, setIsLoading] = useState(false);
+  const { products } = useProducts();
+  const [isLoading] = useState(false);
   const { winWidth } = useWindowWidth();
-  const {
-    product_id,
-    updateProductId,
-    updateOpen,
-    isOpen,
-    isDelete,
-    setIsDelete,
-  } = useProductModal();
+  const { id, updateProductId, updateOpen, isOpen, isDelete, setIsDelete } =
+    useProductModal();
 
-  const product = products?.find(
-    (product) => product.product_id === product_id,
-  );
+  const product = products?.find((product) => product.id === id);
 
   const handleDelete = async (id: string) => {
     toast({
@@ -40,24 +32,30 @@ const ProductDetailModal = () => {
       description: "Please wait...",
       variant: "destructive",
     });
-
-    setIsLoading(true);
-    await delay(3000);
-    deleteProduct(id);
-    toast({
-      title: `Product deleted`,
-      description: (
-        <span>
-          <b>{product?.name}</b> has been deleted.
-        </span>
-      ),
-      variant: "default",
-      className: "z-[99999]",
-    });
-    updateOpen(false);
-    updateProductId("null");
-    setIsLoading(false);
     setIsDelete(false);
+
+    const baseUrl = getApiBaseUrl();
+    const url = `${baseUrl}/api/v1/products/${id}`;
+    const response = await fetch(url, {
+      method: "DELETE",
+      // Uncomment when token storage is handled
+      // headers: {
+      //   Authorization: `Bearer ${token}`,
+      // },
+    });
+    if (!response.ok) {
+      toast({
+        title: `Failed to delete product`,
+        variant: "destructive",
+        className: "z-[99999]",
+      });
+      throw new Error("Failed to fetch products");
+    }
+  };
+  const handleEditAction = (id: string) => {
+    updateOpen(false);
+    router.push(`/dashboard/products/${id}`);
+    updateProductId("null");
   };
 
   useEffect(() => {
@@ -120,7 +118,7 @@ const ProductDetailModal = () => {
               </p>
               <div className="flex w-full items-center justify-center gap-x-2">
                 <Button
-                  onClick={() => handleDelete(product!.product_id!)}
+                  onClick={() => handleDelete(product!.id!)}
                   variant="outline"
                   className="bg-white font-medium text-error"
                 >
@@ -159,7 +157,7 @@ const ProductDetailModal = () => {
               <p className="flex w-full items-center justify-between">
                 <span className="text-neutral-dark-1">Product ID</span>
                 <span className="uppercase text-neutral-dark-2">
-                  {product?.product_id}
+                  {product?.id}
                 </span>
               </p>
               <p className="flex w-full items-center justify-between">
@@ -206,7 +204,11 @@ const ProductDetailModal = () => {
                   <span>Delete</span>
                 )}
               </Button>
-              <Button variant="outline" className="bg-white font-medium">
+              <Button
+                onClick={() => handleEditAction(product!.id)}
+                variant="outline"
+                className="bg-white font-medium"
+              >
                 Edit
               </Button>
             </div>
