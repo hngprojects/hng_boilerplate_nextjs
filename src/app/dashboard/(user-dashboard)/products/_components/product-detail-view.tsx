@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
+import { useRouter } from "next-nprogress-bar";
 import { useEffect, useTransition } from "react";
 
 import BlurImage from "~/components/miscellaneous/blur-image";
@@ -15,6 +16,17 @@ const ProductDetailView = () => {
   const [isLoading] = useTransition();
   const { id, updateProductId, updateOpen, isOpen, isDelete, setIsDelete } =
     useProductModal();
+  const router = useRouter();
+  const { products, deleteProduct } = useProducts();
+  const [isLoading, startTransition] = useTransition();
+  const {
+    product_id,
+    updateProductId,
+    updateOpen,
+    isOpen,
+    isDelete,
+    setIsDelete,
+  } = useProductModal();
 
   const product = products?.find((product) => product.id === id);
   const handleDelete = async (id: string) => {
@@ -43,7 +55,11 @@ const ProductDetailView = () => {
       throw new Error("Failed to fetch products");
     }
   };
-
+  const handleEditAction = (id: string) => {
+    updateOpen(false);
+    router.push(`/dashboard/products/${id}`);
+    updateProductId("null");
+  };
   useEffect(() => {
     document.title = isOpen
       ? `Product - ${product?.name}`
@@ -57,8 +73,8 @@ const ProductDetailView = () => {
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 100 }}
-          transition={{ duration: 0.5 }}
-          className="sticky top-0 hidden w-full min-w-[350px] flex-col gap-y-5 rounded-[6px] border border-gray-300 bg-white px-2 py-4 shadow-[0px_1px_18px_0px_rgba(10,_57,_176,_0.12)] lg:flex lg:max-w-[370px] xl:w-[403px] xl:px-4"
+          transition={{ duration: 0.3 }}
+          className="sticky top-0 hidden w-full min-w-[340px] flex-col gap-y-5 rounded-[6px] border border-gray-300 bg-white px-2 py-4 shadow-[0px_1px_18px_0px_rgba(10,_57,_176,_0.12)] lg:flex lg:max-w-[370px] xl:w-[403px] xl:px-4"
         >
           <div
             className={cn(
@@ -162,7 +178,11 @@ const ProductDetailView = () => {
                 <span>Delete</span>
               )}
             </Button>
-            <Button variant="outline" className="bg-white font-medium">
+            <Button
+              onClick={() => handleEditAction(product!.product_id)}
+              variant="outline"
+              className="bg-white font-medium"
+            >
               Edit
             </Button>
           </div>

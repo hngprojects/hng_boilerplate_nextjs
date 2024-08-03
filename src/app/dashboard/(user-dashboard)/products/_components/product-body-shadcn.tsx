@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { AnimatePresence, motion } from "framer-motion";
 import { Edit2, MoreVertical, Trash } from "lucide-react";
+import { useRouter } from "next-nprogress-bar";
 import { useEffect, useRef } from "react";
 
 import BlurImage from "~/components/miscellaneous/blur-image";
@@ -33,6 +34,7 @@ const ProductBodyShadcn = ({
     setIsDelete,
   } = useProductModal();
   const modalReference = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
     if (!isActionModal || !modalReference.current) return;
@@ -62,6 +64,10 @@ const ProductBodyShadcn = ({
     updateProductId(id);
     setIsDelete(true);
   };
+  const handleEditAction = (id: string) => {
+    setIsActionModal(false);
+    router.push(`/dashboard/products/${id}`);
+  };
 
   return (
     filteredProducts.length > 0 &&
@@ -74,18 +80,32 @@ const ProductBodyShadcn = ({
         <TableCell className="flex items-center justify-start gap-x-2 whitespace-nowrap md:gap-x-4">
           <div className="flex items-center gap-x-2 md:gap-x-4">
             <Input type="checkbox" className="size-5 lg:size-5" />
+        key={product.product_id}
+        className={cn(
+          "relative bg-white",
+          product_id === product.product_id ? "bg-[#F1F5F9]" : "",
+        )}
+      >
+        <TableCell className="flex items-center justify-start gap-x-2 whitespace-nowrap md:gap-x-4">
+          <div className="flex items-center gap-x-1 sm:gap-x-2 md:gap-x-4">
+            <Input
+              type="checkbox"
+              className="sticky left-0 size-4 min-[500px]:size-5 lg:size-8"
+            />
             <BlurImage
               src={product.image}
               alt="Product"
               width={40}
               height={40}
-              className="h-10 w-10 rounded-xl object-cover"
+              className="size-6 flex-1 flex-shrink-0 rounded-md object-cover min-[500px]:size-7 md:size-10 md:rounded-xl"
             />
           </div>{" "}
           <span
             role="button"
             onClick={() => handleOpenDetail(product.id)}
             className="hide_scrollbar overflow-x-auto text-neutral-dark-2 md:w-[200px] lg:w-[200px]"
+            onClick={() => handleOpenDetail(product.product_id)}
+            className="hide_scrollbar ml-0.5 w-[110px] whitespace-break-spaces text-[10px] text-neutral-dark-2 min-[376px]:text-xs sm:ml-1 md:w-[200px] md:text-base lg:w-[200px]"
           >
             {searchTerm.length > 1 ? (
               <span
@@ -106,7 +126,7 @@ const ProductBodyShadcn = ({
                 }}
               />
             ) : (
-              <span>{product.name}</span>
+              <span className="">{product.name}</span>
             )}
           </span>
         </TableCell>
@@ -114,6 +134,8 @@ const ProductBodyShadcn = ({
           role="button"
           onClick={() => handleOpenDetail(product.id)}
           className="uppercase"
+          onClick={() => handleOpenDetail(product.product_id)}
+          className="text-sm uppercase md:text-base"
         >
           {product.id}
         </TableCell>
@@ -121,19 +143,31 @@ const ProductBodyShadcn = ({
           {product.category}
         </TableCell>
         <TableCell role="button" onClick={() => handleOpenDetail(product.id)}>
+        <TableCell
+          role="button"
+          onClick={() => handleOpenDetail(product.product_id)}
+          className="text-[10px] min-[376px]:text-xs md:text-base"
+        >
+          {product.category}
+        </TableCell>
+        <TableCell
+          role="button"
+          onClick={() => handleOpenDetail(product.product_id)}
+          className="text-[10px] min-[376px]:text-xs md:text-base"
+        >
           {formatPrice(product.price)}
         </TableCell>
         <TableCell role="button" onClick={() => handleOpenDetail(product.id)}>
           <span
             className={cn(
-              "flex items-center gap-x-1 whitespace-nowrap rounded-full px-2 text-sm leading-5 md:gap-x-2",
+              "flex items-center gap-x-1 whitespace-nowrap rounded-full px-2 text-[10px] leading-5 min-[376px]:text-xs md:gap-x-2 md:text-base",
             )}
           >
             <span
-              className={cn("size-4 rounded-full", {
+              className={cn("size-2 rounded-full sm:size-3", {
                 "bg-[#6DC347]": product.status === "in_stock",
-                "bg-[#DC2626]": product.status === "low_on_stock",
-                "bg-[#EAB308]": product.status === "out_of_stock",
+                "bg-[#DC2626]": product.status === "out_of_stock",
+                "bg-[#EAB308]": product.status === "low_on_stock",
               })}
             />
             {product.status === "in_stock" && "In Stock"}
@@ -172,6 +206,7 @@ const ProductBodyShadcn = ({
                 <div className="flex flex-col">
                   <Button
                     variant="ghost"
+                    onClick={() => handleEditAction(product.product_id)}
                     size={"sm"}
                     className={cn(
                       "flex h-8 cursor-pointer items-center justify-start gap-x-2 px-2 py-1 text-xs min-[500px]:text-sm",

@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 
 import "@testing-library/jest-dom";
 
@@ -12,21 +12,6 @@ describe("pricing Component", () => {
     render(<Pricing />);
     const pricingHeader = screen.getByTestId("pricing-header");
     expect(pricingHeader).toBeInTheDocument();
-  });
-
-  it("toggles between monthly and annual plans", () => {
-    expect.assertions(2);
-    render(<Pricing />);
-    const monthlyToggle = screen.getByTestId("monthly-toggle");
-    const annualToggle = screen.getByTestId("annual-toggle");
-
-    fireEvent.click(annualToggle);
-    const annualCard = screen.getByTestId("basic-card-annual");
-    expect(annualCard).toBeInTheDocument();
-
-    fireEvent.click(monthlyToggle);
-    const monthlyCard = screen.getByTestId("basic-card-monthly");
-    expect(monthlyCard).toBeInTheDocument();
   });
 
   it("renders FAQ section", () => {

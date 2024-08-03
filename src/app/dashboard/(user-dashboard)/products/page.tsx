@@ -31,6 +31,7 @@ const ProductPage = () => {
   const [pageNumber] = useState(1);
   const [view, setView] = useState<"list" | "grid">("list");
   const { addProducts } = useProducts();
+  const [view, setView] = useState<"list" | "grid">("grid");
   const {
     isOpen,
     updateProductId,
@@ -43,7 +44,6 @@ const ProductPage = () => {
     isDelete,
     setIsDelete,
   } = useProductModal();
-
   const fetchProducts = async () => {
     try {
       const baseUrl = getApiBaseUrl();
@@ -74,7 +74,6 @@ const ProductPage = () => {
   useEffect(() => {
     fetchProducts();
   }, []);
-
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {

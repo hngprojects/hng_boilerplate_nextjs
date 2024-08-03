@@ -5,8 +5,17 @@ import { ReplyForm } from "~/components/common/comment-component/comment-reply";
 
 describe("comment reply component", () => {
   const mockSession: Session = {
+    user: {
+      id: "12345",
+      name: "Current User",
+      first_name: "Current",
+      last_name: "User",
+      email: "user@example.com",
+      image: "path/to/image",
+      role: "user",
+    },
+    access_token: "some-token",
     expires: "1",
-    user: { email: "a", name: "skeby", image: "c" },
   };
   it("should render without crashing", () => {
     expect.assertions(3);

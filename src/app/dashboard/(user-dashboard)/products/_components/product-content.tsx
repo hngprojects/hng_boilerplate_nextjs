@@ -5,22 +5,12 @@ import { useEffect, useMemo, useState } from "react";
 
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import ProductCardSkeleton from "~/components/skeleton/product.skeleton";
-
-import "~/components/ui/table";
-
-import {
-  Table,
-  TableBody,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "~/components/ui/table";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { useProductsFilters } from "~/hooks/admin-product/use-products.-filters.persistence";
 import { useProducts } from "~/hooks/admin-product/use-products.persistence";
 import { cn } from "~/lib/utils";
 import { ProductTableProperties } from "~/types/admin-product.types";
-import ProductBodyShadcn from "./product-body-shadcn";
+import { ProductContentView } from "./product-content-view";
 
 const Pagination = dynamic(() => import("react-paginate"), {
   ssr: false,
@@ -108,49 +98,18 @@ const ProductContent = ({
     <div className="relative flex w-full flex-col overflow-hidden pb-10">
       <div
         className={cn(
-          "show_scrollbar rounded-xl border border-gray-300 bg-[#F1F5F9] pt-4",
           isOpen
-            ? "max-w-full lg:max-w-[600px] min-[1090px]:max-w-[650px] min-[1150px]:max-w-[750px] min-[1200px]:max-w-[800px] xl:max-w-full"
+            ? "max-w-full lg:max-w-[600px] min-[1090px]:max-w-[650px] min-[1150px]:max-w-[750px] min-[1200px]:max-w-[800px] xl:max-w-[820px] min-[1300px]:max-w-full"
             : "max- w-full",
         )}
       >
-        <AnimatePresence>
-          {view === "list" && (
-            <Table divClassName={cn("relative")}>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-[100px] overflow-x-auto text-center md:w-[200px] lg:w-[200px]">
-                    Product Name
-                  </TableHead>
-                  <TableHead className="whitespace-nowrap">
-                    Product ID
-                  </TableHead>
-                  <TableHead>Category</TableHead>
-                  <TableHead>Price</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody className="w-full">
-                <ProductBodyShadcn
-                  subset={subset}
-                  filteredProducts={filteredProducts}
-                  searchTerm={searchTerm}
-                />
-              </TableBody>
-            </Table>
-          )}
-        </AnimatePresence>
+        <ProductContentView
+          view={view}
+          searchTerm={searchTerm}
+          filteredProducts={filteredProducts}
+          subset={subset}
+        />
         {!products && <ProductCardSkeleton count={9} />}
-        {filteredProducts.length === 0 && searchTerm.length > 1 && (
-          <div className="flex h-[400px] w-full items-center justify-center bg-white">
-            <p className="w-full text-center">
-              No product found for &quot;
-              <span className="font-bold">{searchTerm}</span>
-              &quot;
-            </p>
-          </div>
-        )}
       </div>
       <AnimatePresence>
         {products && filteredProducts.length > 0 && (

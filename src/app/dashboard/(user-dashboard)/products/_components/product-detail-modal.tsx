@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Loader2, X } from "lucide-react";
+import { useRouter } from "next-nprogress-bar";
 import { useEffect, useState } from "react";
 
 import BlurImage from "~/components/miscellaneous/blur-image";
@@ -19,6 +20,9 @@ const variantProperties = {
 const ProductDetailModal = () => {
   const { products } = useProducts();
   const [isLoading] = useState(false);
+  const router = useRouter();
+  const { products, deleteProduct } = useProducts();
+  const [isLoading, setIsLoading] = useState(false);
   const { winWidth } = useWindowWidth();
   const { id, updateProductId, updateOpen, isOpen, isDelete, setIsDelete } =
     useProductModal();
@@ -50,6 +54,11 @@ const ProductDetailModal = () => {
       });
       throw new Error("Failed to fetch products");
     }
+  };
+  const handleEditAction = (id: string) => {
+    updateOpen(false);
+    router.push(`/dashboard/products/${id}`);
+    updateProductId("null");
   };
 
   useEffect(() => {
@@ -198,7 +207,11 @@ const ProductDetailModal = () => {
                   <span>Delete</span>
                 )}
               </Button>
-              <Button variant="outline" className="bg-white font-medium">
+              <Button
+                onClick={() => handleEditAction(product!.product_id)}
+                variant="outline"
+                className="bg-white font-medium"
+              >
                 Edit
               </Button>
             </div>

@@ -9,5 +9,7 @@ interface Session extends DefaultSession {
   };
 }
 
-// @ts-expect-error Hacking the type so we don't have to do the module augmentation technique.
-export const getSession: () => Promise<Session | null> = getAuthSession;
+export const getSession: () => Promise<Session | null> = async () => {
+  const session = await getAuthSession();
+  return session as Session | null;
+};
