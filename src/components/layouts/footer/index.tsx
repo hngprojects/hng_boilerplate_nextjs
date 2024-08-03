@@ -110,7 +110,7 @@ const Footer = () => {
                         <li key={index}>
                           <Link
                             href={item.link}
-                            className="cursor-pointer text-sm text-neutral-dark-2 transition-colors duration-300 hover:text-primary hover:underline dark:text-white"
+                            className="text-md cursor-pointer text-neutral-dark-2 transition-colors duration-300 hover:text-primary hover:underline dark:text-white"
                           >
                             {item.route}
                           </Link>
