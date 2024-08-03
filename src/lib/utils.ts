@@ -6,6 +6,17 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export const isMobileDevice = () => {
+  if (typeof window === "undefined") {
+    return false;
+  }
+  return (
+    /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(
+      navigator?.userAgent,
+    ) || navigator?.maxTouchPoints > 0
+  );
+};
+
 export function getCurrentDateTime() {
   const now = new Date();
 
@@ -31,31 +42,12 @@ export const generateId = (length: number = 14): string => {
 };
 
 export const getApiBaseUrl = (): string => {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
-  if (!apiUrl) {
-    throw new Error("NEXT_PUBLIC_API_URL is not defined");
+  const baseUrl = process.env.API_URL;
+  if (!baseUrl) {
+    throw new Error("API_URL is not defined");
   }
-
-  return apiUrl;
+  return baseUrl;
 };
-
-export function getApiUrl(
-  endpoint: string,
-  parameters: Record<string, string | number> = {},
-): string {
-  const baseUrl = getApiBaseUrl();
-  const queryParameters = new URLSearchParams();
-
-  for (const [key, value] of Object.entries(parameters)) {
-    queryParameters.append(key, String(value));
-  }
-
-  const queryString = queryParameters.toString();
-  return queryString
-    ? `${baseUrl}${endpoint}?${queryString}`
-    : `${baseUrl}${endpoint}`;
-}
 
 /**
  * Returns a simulated promise that resolves after the specified number of seconds.

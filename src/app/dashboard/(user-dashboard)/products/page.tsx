@@ -5,14 +5,18 @@ import { AnimatePresence, motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
+
+
+import { toast } from "~/components/ui/use-toast";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { useProducts } from "~/hooks/admin-product/use-products.persistence";
-import { getApiUrl } from "~/lib/utils";
+import { getApiBaseUrl } from "~/lib/utils";
 import NewProductModal from "./_components/new-product-modal";
 import ProductDeleteModal from "./_components/product-delete-modal";
 import ProductDetailModal from "./_components/product-detail-modal";
 import ProductDetailView from "./_components/product-detail-view";
 import ProductHeader from "./_components/product-header";
+
 
 const ProductContent = dynamic(() => import("./_components/product-content"), {
   ssr: false,
@@ -41,24 +45,30 @@ const ProductPage = () => {
   } = useProductModal();
 
   const fetchProducts = async () => {
-    const url = getApiUrl("/api/v1/products", {
-      PageSize: pageSize,
-      PageNumber: pageNumber,
-    });
+    try {
+      const baseUrl = getApiBaseUrl();
+      const url = `${baseUrl}/api/v1/products?PageSize=${pageSize}&PageNumber=${pageNumber}`;
 
-    const response = await fetch(url, {
-      method: "GET",
-      // Token has not been stored from the login in schema once done this can be uncommented
-      // headers: {
-      //   Authorization: `Bearer ${token}`,
-      // },
-    });
-    if (!response.ok) {
-      throw new Error("Failed to fetch products");
+      const response = await fetch(url, {
+        method: "GET",
+        // Uncomment when token storage is handled
+        // headers: {
+        //   Authorization: `Bearer ${token}`,
+        // },
+      });
+
+      if (!response.ok) {
+       
+        throw new Error("Failed to fetch products");
+      }
+
+      const resp = await response.json();
+      addProducts(resp.data);
+    } catch (error) {
+       toast({
+         title: `Error Fetching Products`,
+       });
     }
-    const resp = await response.json();
-
-    addProducts(resp.data);
   };
 
   useEffect(() => {

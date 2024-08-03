@@ -28,7 +28,7 @@ import {
 import { Textarea } from "~/components/ui/textarea";
 import { toast } from "~/components/ui/use-toast";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
-import { cn, getApiUrl, simulateDelay } from "~/lib/utils";
+import { cn, getApiBaseUrl, simulateDelay } from "~/lib/utils";
 import { CATEGORIES } from "../data/categories.moct";
 import ProjectLogo from "./form-images/project-logo";
 import { NewProductSchema } from "./schema/schema";
@@ -70,12 +70,13 @@ const NewProductModal = () => {
         price: Number(values.price),
       };
 
-      const url = getApiUrl("/api/v1/products");
+      const baseUrl = getApiBaseUrl();
+      const url = `${baseUrl}/api/v1/products`;
 
       try {
         const response = await fetch(url, {
           method: "POST",
-          // Token has not been stored from the login in schema once done this can be uncommented
+          // Uncomment when token storage is handled
           // headers: {
           //   Authorization: `Bearer ${token}`,
           // },

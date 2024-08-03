@@ -4,7 +4,7 @@ import { Button } from "~/components/ui/button";
 import { toast } from "~/components/ui/use-toast";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { useProducts } from "~/hooks/admin-product/use-products.persistence";
-import { cn, getApiUrl } from "~/lib/utils";
+import { cn, getApiBaseUrl } from "~/lib/utils";
 
 const variantProperties = {
   left: "50%",
@@ -28,13 +28,14 @@ const ProductDeleteModal = () => {
     });
     setIsDelete(false);
 
-    const url = `${getApiUrl}/api/v1/products/${id}`;
+    const baseUrl = getApiBaseUrl();
+    const url = `${baseUrl}/api/v1/products/${id}`;
     const response = await fetch(url, {
       method: "DELETE",
-      // Token has not been stored from the login in schema once done this can be uncommented
+      // Uncomment when token storage is handled
       // headers: {
       //   Authorization: `Bearer ${token}`,
-      // },,
+      // },
     });
     if (!response.ok) {
       toast({
