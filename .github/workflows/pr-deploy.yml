@@ -22,5 +22,5 @@ jobs:
           server_port: ${{ secrets.SERVER_PORT }}
           context: '.'
           dockerfile: 'docker/development/Dockerfile'
-          exposed_port: '5000'
+          exposed_port: '3000'
           github_token: ${{ secrets.GITHUB_TOKEN }}
