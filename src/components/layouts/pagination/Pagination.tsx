@@ -101,6 +101,7 @@ const Pagination = ({
             Previous
           </div>
         </PaginationItem>
+
         {getPageNumbers().map((page, index) =>
           typeof page === "number" ? (
             <PaginationItem key={index} onClick={() => handleChange(page)}>
@@ -113,8 +114,8 @@ const Pagination = ({
                 activeVariant={activeVariant}
                 className={
                   currentPage === page && activeVariant === "default"
-                    ? "bg-primary"
-                    : "border-none bg-inherit text-neutral-dark-1"
+                    ? "bg-primary cursor-pointer"
+                    : "border-none bg-inherit text-neutral-dark-1 cursor-pointer"
                 }
               >
                 {page}
@@ -126,6 +127,7 @@ const Pagination = ({
             </PaginationItem>
           ),
         )}
+
         <PaginationItem
           onClick={() =>
             currentPage < totalPages && handleChange(currentPage + 1)
