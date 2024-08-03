@@ -4,7 +4,7 @@ import { Button } from "~/components/ui/button";
 import { toast } from "~/components/ui/use-toast";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { useProducts } from "~/hooks/admin-product/use-products.persistence";
-import { cn } from "~/lib/utils";
+import { cn, getApiUrl } from "~/lib/utils";
 
 const variantProperties = {
   left: "50%",
@@ -12,16 +12,13 @@ const variantProperties = {
   translateX: "-50%",
   translateY: "-50%",
 };
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const ProductDeleteModal = () => {
-  const { products, deleteProduct } = useProducts();
+  const { products } = useProducts();
 
-  const { product_id, updateProductId, updateOpen, isDelete, setIsDelete } =
+  const { id, updateProductId, updateOpen, isDelete, setIsDelete } =
     useProductModal();
 
-  const product = products?.find(
-    (product) => product.product_id === product_id,
-  );
+  const product = products?.find((product) => product.id === id);
 
   const handleDelete = async (id: string) => {
     toast({
@@ -31,20 +28,22 @@ const ProductDeleteModal = () => {
     });
     setIsDelete(false);
 
-    await delay(3000);
-    deleteProduct(id);
-    toast({
-      title: `Product deleted`,
-      description: (
-        <span>
-          <b>{product?.name}</b> has been deleted.
-        </span>
-      ),
-      variant: "default",
-      className: "z-[99999]",
+    const url = `${getApiUrl}/api/v1/products/${id}`;
+    const response = await fetch(url, {
+      method: "DELETE",
+      // Token has not been stored from the login in schema once done this can be uncommented
+      // headers: {
+      //   Authorization: `Bearer ${token}`,
+      // },,
     });
-    updateOpen(false);
-    updateProductId("null");
+    if (!response.ok) {
+      toast({
+        title: `Failed to delete product`,
+        variant: "destructive",
+        className: "z-[99999]",
+      });
+      throw new Error("Failed to fetch products");
+    }
   };
 
   return (
@@ -100,7 +99,7 @@ const ProductDeleteModal = () => {
               </p>
               <div className="flex w-full items-center justify-center gap-x-2">
                 <Button
-                  onClick={() => handleDelete(product!.product_id!)}
+                  onClick={() => handleDelete(product!.id!)}
                   variant="outline"
                   className="bg-white font-medium text-error"
                 >

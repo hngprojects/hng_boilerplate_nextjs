@@ -22,7 +22,7 @@ const ProductDetailModal = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { winWidth } = useWindowWidth();
   const {
-    product_id,
+    id,
     updateProductId,
     updateOpen,
     isOpen,
@@ -31,7 +31,7 @@ const ProductDetailModal = () => {
   } = useProductModal();
 
   const product = products?.find(
-    (product) => product.product_id === product_id,
+    (product) => product.id === id,
   );
 
   const handleDelete = async (id: string) => {
@@ -120,7 +120,7 @@ const ProductDetailModal = () => {
               </p>
               <div className="flex w-full items-center justify-center gap-x-2">
                 <Button
-                  onClick={() => handleDelete(product!.product_id!)}
+                  onClick={() => handleDelete(product!.id!)}
                   variant="outline"
                   className="bg-white font-medium text-error"
                 >
@@ -159,7 +159,7 @@ const ProductDetailModal = () => {
               <p className="flex w-full items-center justify-between">
                 <span className="text-neutral-dark-1">Product ID</span>
                 <span className="uppercase text-neutral-dark-2">
-                  {product?.product_id}
+                  {product?.id}
                 </span>
               </p>
               <p className="flex w-full items-center justify-between">

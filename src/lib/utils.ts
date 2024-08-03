@@ -30,6 +30,33 @@ export const generateId = (length: number = 14): string => {
   return result;
 };
 
+export const getApiBaseUrl = (): string => {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+  if (!apiUrl) {
+    throw new Error("NEXT_PUBLIC_API_URL is not defined");
+  }
+
+  return apiUrl;
+};
+
+export function getApiUrl(
+  endpoint: string,
+  parameters: Record<string, string | number> = {},
+): string {
+  const baseUrl = getApiBaseUrl();
+  const queryParameters = new URLSearchParams();
+
+  for (const [key, value] of Object.entries(parameters)) {
+    queryParameters.append(key, String(value));
+  }
+
+  const queryString = queryParameters.toString();
+  return queryString
+    ? `${baseUrl}${endpoint}?${queryString}`
+    : `${baseUrl}${endpoint}`;
+}
+
 /**
  * Returns a simulated promise that resolves after the specified number of seconds.
  *

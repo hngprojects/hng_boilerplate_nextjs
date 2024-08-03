@@ -26,9 +26,9 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 import { Textarea } from "~/components/ui/textarea";
+import { toast } from "~/components/ui/use-toast";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
-import { useProducts } from "~/hooks/admin-product/use-products.persistence";
-import { cn, generateId, getCurrentDateTime, simulateDelay } from "~/lib/utils";
+import { cn, getApiUrl, simulateDelay } from "~/lib/utils";
 import { CATEGORIES } from "../data/categories.moct";
 import ProjectLogo from "./form-images/project-logo";
 import { NewProductSchema } from "./schema/schema";
@@ -36,7 +36,6 @@ import { NewProductSchema } from "./schema/schema";
 const MAX_CHAR = 160;
 const NewProductModal = () => {
   const { setIsNewModal, isNewModal } = useProductModal();
-  const { addProduct } = useProducts();
   const [isLoading, startTransition] = useTransition();
   const variantProperties = {
     left: "50%",
@@ -63,22 +62,50 @@ const NewProductModal = () => {
 
   const onSubmit = async (values: z.infer<typeof NewProductSchema>) => {
     startTransition(async () => {
-      const date_data = getCurrentDateTime();
       await simulateDelay(3);
-      addProduct({
-        product_id: `P${generateId(6)}`,
+      const data = {
         category: values.category,
         description: values.description,
         name: values.product_name,
         price: Number(values.price),
-        stock: Number(values.quantity),
-        image: "/product/product-image.webp",
-        status: "in_stock",
-        date_added: date_data.date_added,
-        time: date_data.time,
-      });
-      new_product_form.reset();
-      setIsNewModal(false);
+      };
+
+      const url = getApiUrl("/api/v1/products");
+
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          // Token has not been stored from the login in schema once done this can be uncommented
+          // headers: {
+          //   Authorization: `Bearer ${token}`,
+          // },
+          body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          toast({
+            title: `Failed to create product: ${errorText}`,
+            variant: "destructive",
+            className: "z-[99999]",
+          });
+          return;
+        }
+
+        toast({
+          title: `Product created successfully`,
+          className: "z-[99999]",
+        });
+        new_product_form.reset();
+        setIsNewModal(false);
+      } catch (error) {
+        toast({
+          title: `An unexpected error occurred`,
+          description: String(error),
+          variant: "destructive",
+          className: "z-[99999]",
+        });
+      }
     });
   };
 
@@ -113,11 +140,11 @@ const NewProductModal = () => {
               scale: 0.5,
             }}
             className={cn(
-              "fixed left-1/2 top-1/2 z-[9999] grid h-fit max-h-[90%] w-full max-w-[95%] -translate-x-1/2 -translate-y-1/2 transform-gpu place-items-center items-center overflow-y-auto rounded-md bg-white pb-6 min-[500px]:max-w-[480px] min-[500px]:rounded-xl md:max-h-[850px] lg:h-fit lg:max-w-[491px]",
+              "fixed left-1/2 top-1/2 z-[9999] grid h-fit max-h-[60%] w-full max-w-[95%] -translate-x-1/2 -translate-y-1/2 transform-gpu place-items-center items-center overflow-y-auto rounded-md bg-white pb-6 hover:overflow-y-scroll min-[500px]:max-w-[480px] min-[500px]:rounded-xl md:max-h-[700px] lg:h-fit lg:max-w-[491px]",
             )}
           >
             <div className="flex h-full w-full flex-col items-center gap-y-4">
-              <div className="sticky top-0 z-50 flex w-full items-center justify-between border-b border-neutral-200 bg-white/70 px-2 py-2 backdrop-blur min-[500px]:px-6 min-[500px]:py-4">
+              <div className="sticky top-0 z-50 flex w-full items-center justify-between rounded-t-lg border-b border-neutral-200 bg-white/70 px-2 py-2 backdrop-blur min-[500px]:px-6 min-[500px]:py-4">
                 <p className="font-semibold sm:text-lg">Add a Product</p>
                 <Button
                   variant="ghost"
@@ -130,9 +157,9 @@ const NewProductModal = () => {
               <Form {...new_product_form}>
                 <form
                   onSubmit={new_product_form.handleSubmit(onSubmit)}
-                  className="flex h-full w-full flex-col gap-y-2"
+                  className="flex h-full w-full flex-col gap-y-4"
                 >
-                  <div className="flex h-full w-full flex-col gap-y-2 px-2 min-[500px]:px-6">
+                  <div className="flex h-full w-full flex-col gap-y-4 px-2 min-[500px]:px-6">
                     {" "}
                     <FormField
                       control={new_product_form.control}
@@ -164,7 +191,7 @@ const NewProductModal = () => {
                             Description
                           </FormLabel>
                           <FormControl>
-                            <div className="relative flex w-full flex-col gap-y-2">
+                            <div className="relative flex w-full flex-col gap-y-1">
                               <Textarea
                                 disabled={isLoading}
                                 placeholder="Enter product description"
@@ -177,7 +204,7 @@ const NewProductModal = () => {
                                 {...field}
                               />
                               <div className="flex w-full items-center justify-between">
-                                <span className="whitespace-nowrap text-sm text-slate-500">
+                                <span className="whitespace-nowrap text-xs text-slate-500">
                                   Maximum of {MAX_CHAR} characters
                                 </span>
                                 <WordCounter
@@ -272,8 +299,10 @@ const NewProductModal = () => {
                         )}
                       />
                     </div>
-                    <div className="relative mt-2 flex h-fit min-h-[125px] w-full flex-col gap-y-2 rounded-xl md:rounded-2xl">
-                      <p className="font-medium text-neutral-dark-2">Media</p>
+                    <div className="relative mt-2 flex h-fit min-h-[125px] w-full flex-col gap-y-1 rounded-xl md:rounded-2xl">
+                      <FormLabel className="font-medium text-neutral-dark-2">
+                        Media<span className="text-red-500">*</span>
+                      </FormLabel>
                       <ProjectLogo form={new_product_form} name="media" />
                       {hasProjectLogo.length === 0 &&
                         new_product_form.formState.errors.media && (

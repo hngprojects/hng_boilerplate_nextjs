@@ -8,43 +8,39 @@ import { Button } from "~/components/ui/button";
 import { toast } from "~/components/ui/use-toast";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { useProducts } from "~/hooks/admin-product/use-products.persistence";
-import { cn, formatPrice, simulateDelay } from "~/lib/utils";
+import { cn, formatPrice, getApiUrl } from "~/lib/utils";
 
 const ProductDetailView = () => {
-  const { products, deleteProduct } = useProducts();
-  const [isLoading, startTransition] = useTransition();
-  const {
-    product_id,
-    updateProductId,
-    updateOpen,
-    isOpen,
-    isDelete,
-    setIsDelete,
-  } = useProductModal();
+  const { products } = useProducts();
+  const [isLoading] = useTransition();
+  const { id, updateProductId, updateOpen, isOpen, isDelete, setIsDelete } =
+    useProductModal();
 
-  const product = products?.find(
-    (product) => product.product_id === product_id,
-  );
+  const product = products?.find((product) => product.id === id);
   const handleDelete = async (id: string) => {
     toast({
       title: "Deleting product",
       description: "Please wait...",
       variant: "destructive",
     });
+    setIsDelete(false);
 
-    setIsDelete(true);
-    startTransition(async () => {
-      await simulateDelay(3);
-      updateOpen(false);
-      deleteProduct(id);
-      toast({
-        title: `Product deleted`,
-        description: `${product?.name} has been deleted.`,
-        variant: "default",
-      });
-      updateProductId("null");
-      setIsDelete(false);
+    const url = `${getApiUrl}/api/v1/products/${id}`;
+    const response = await fetch(url, {
+      method: "DELETE",
+      // Token has not been stored from the login in schema once done this can be uncommented
+      // headers: {
+      //   Authorization: `Bearer ${token}`,
+      // },,
     });
+    if (!response.ok) {
+      toast({
+        title: `Failed to delete product`,
+        variant: "destructive",
+        className: "z-[99999]",
+      });
+      throw new Error("Failed to fetch products");
+    }
   };
   useEffect(() => {
     document.title = isOpen
@@ -75,7 +71,7 @@ const ProductDetailView = () => {
             </p>
             <div className="flex w-full items-center justify-center gap-x-2">
               <Button
-                onClick={() => handleDelete(product!.product_id!)}
+                onClick={() => handleDelete(product!.id!)}
                 variant="outline"
                 className="bg-white font-medium text-error"
               >
@@ -117,7 +113,7 @@ const ProductDetailView = () => {
             <p className="flex w-full items-center justify-between text-sm lg:text-base">
               <span className="text-neutral-dark-1">Product ID</span>
               <span className="uppercase text-neutral-dark-2">
-                {product?.product_id}
+                {product?.id}
               </span>
             </p>
             <p className="flex w-full items-center justify-between text-sm lg:text-base">
@@ -127,7 +123,7 @@ const ProductDetailView = () => {
             <p className="flex w-full items-center justify-between text-sm lg:text-base">
               <span className="text-neutral-dark-1">Date added</span>
               <span className="text-neutral-dark-2">
-                {product?.date_added}, {product?.time}
+                {product?.date_added} {product?.time}
               </span>
             </p>
             <p className="flex w-full items-center justify-between text-sm lg:text-base">
