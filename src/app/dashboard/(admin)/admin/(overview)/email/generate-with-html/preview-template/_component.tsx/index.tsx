@@ -1,6 +1,5 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { renderToString } from "react-dom/server";
 
@@ -33,15 +32,15 @@ const HtmlTemplateViewer = () => {
 
   // const [template, setTemplate] = useState<string>("");
   const [template, setTemplate] = useState<string>(welcomeEmailString);
-  const searchParameters = useSearchParams();
   const [mode, setMode] = useState<"preview" | "edit">("preview");
   const { toast } = useToast();
   useEffect(() => {
+    const searchParameters = new URLSearchParams(window.location.search);
     const content = searchParameters.get("content");
     if (content) {
       setTemplate(decodeURIComponent(content));
     }
-  }, [searchParameters]);
+  }, []);
 
   const toggleMode = () => {
     setMode((previousMode) =>
