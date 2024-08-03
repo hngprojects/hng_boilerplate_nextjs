@@ -4,10 +4,9 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
 import FaqAccordion from "~/components/layouts/accordion/FaqsAccordion";
+import PricingCardSkeleton from "~/components/skeleton/pricingcardskeleton";
 import { Button } from "~/components/ui/button";
-import { Skeleton } from "~/components/ui/skeleton";
 import { faqData } from "~/constants/faqsdata";
 import { getApiUrl } from "~/utils/getApiUrl";
 
@@ -21,10 +20,6 @@ const getAnnualPrice = (monthlyPrice: string) => {
   const monthly = Number.parseFloat(monthlyPrice);
   const annual = monthly * 12 * 0.8;
   return annual.toFixed(2);
-};
-
-const handleButtonClickTest = () => {
-  alert("Contact Button Click Test");
 };
 
 export default function Pricing() {
@@ -105,36 +100,21 @@ export default function Pricing() {
         </div>
 
         {loading && (
-          <div className="align-center mt-[50px] flex min-h-[650px] flex-col justify-center gap-5 sm:flex-row">
-            <div className="mx-auto flex w-max gap-8">
-              <Skeleton
-                className="h-[600px] w-full rounded-xl sm:w-[400px]"
-                data-testid="skeleton"
-              />
-              <Skeleton
-                className="h-[600px] w-full rounded-xl sm:w-[400px]"
-                data-testid="skeleton"
-              />
-            </div>
-          </div>
-        )}
-
-        {error && (
-          <div className="align-center mt-[50px] flex min-h-[650px] flex-col justify-center gap-5 text-lg text-red-400 sm:flex-row">
-            {error}
+          <div className="align-center mt-[50px] flex flex-wrap flex-col justify-center gap-6 sm:flex-row">
+            <PricingCardSkeleton/>
           </div>
         )}
 
         {!loading && !error && (
           <>
             <div
-              className="align-center mt-[50px] flex flex-col justify-center gap-5 sm:flex-row"
+              className="align-center mt-[50px] flex flex-wrap flex-col justify-center gap-5 sm:flex-row"
               data-testid="pricing-cards"
             >
               {plans.map((plan) => (
                 <div
                   key={plan.id}
-                  className="w-full rounded-xl border border-border py-[20px] px-[15px] hover:border-primary sm:w-[400px]"
+                  className="w-full rounded-xl border border-border py-[20px] px-[15px] hover:border-primary sm:w-[280px]"
                   data-testid={`${plan.name.toLowerCase()}-card-${toggle === 1 ? "monthly" : "annual"}`}
                 >
                   <h3
