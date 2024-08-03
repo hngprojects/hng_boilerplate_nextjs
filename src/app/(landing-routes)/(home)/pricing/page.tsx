@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import FaqAccordion from "~/components/layouts/accordion/FaqsAccordion";
@@ -47,6 +48,8 @@ export default function Pricing() {
 
     fetchPlans();
   }, []);
+
+  // 
 
   return (
     <>
@@ -259,20 +262,17 @@ export default function Pricing() {
                 We couldn’t answer your question?
               </p>
 
-              <Button
-                onClick={handleButtonClickTest}
-                variant="outline"
-                className="h-[50px] w-[150px]"
-                size="lg"
+              <Link href="/contact-us"
+                className="rounded-md py-4 w-[150px] flex justify-center border border-input bg-background hover:bg-accent hover:text-accent-foreground"
                 data-testid="contact-button"
               >
                 Contact us
-              </Button>
+              </Link>
             </div>
 
             <FaqAccordion
               faqs={faqData}
-              containerClassName="p-8"
+              containerClassName="px-4 py-1"
               data-testid="faq-accordion"
             />
           </div>
