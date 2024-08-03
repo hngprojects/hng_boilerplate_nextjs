@@ -51,7 +51,7 @@ export default function Pricing() {
   return (
     <>
       <div
-        className="mx-auto max-w-7xl px-5 py-20 md:px-10 lg:px-10 xl:px-10"
+        className="mx-auto max-w-7xl px-5 py-10 md:px-10 lg:px-10 xl:px-10"
         data-testid="pricing-container"
       >
         <div
@@ -66,14 +66,14 @@ export default function Pricing() {
           </p>
 
           <h2
-            className="font-inter mb-6 text-center text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-[3.2rem]"
+            className="font-inter mb-6 text-center text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl"
             data-testid="pricing-title"
           >
             Simple and <span className="text-orange-500">Affordable</span>{" "}
             Pricing Plan
           </h2>
           <p
-            className="text-1xl md-text-xl mb-10 text-base text-gray-700"
+            className="text-lg md-text-xl mb-10 text-base text-gray-700"
             data-testid="pricing-description"
           >
             Our flexible plans are designed to scale with your business. We have
@@ -82,7 +82,7 @@ export default function Pricing() {
         </div>
 
         <div
-          className="align-center mx-auto mt-[100px] flex w-[380px] justify-between rounded-md bg-subtle p-2"
+          className="align-center mx-auto mt-[50px] flex w-[380px] justify-between rounded-md bg-gray-200 p-2"
           data-testid="pricing-toggle"
         >
           <div
@@ -131,17 +131,17 @@ export default function Pricing() {
               {plans.map((plan) => (
                 <div
                   key={plan.id}
-                  className="w-full rounded-xl border border-border p-[20px] hover:border-primary sm:w-[400px] md:p-[31px]"
+                  className="w-full rounded-xl border border-border py-[20px] px-[15px] hover:border-primary sm:w-[400px]"
                   data-testid={`${plan.name.toLowerCase()}-card-${toggle === 1 ? "monthly" : "annual"}`}
                 >
                   <h3
-                    className="mb-[16px] text-[25px] font-semibold capitalize"
+                    className="mb-[16px] text-[20px] font-semibold capitalize"
                     data-testid={`${plan.name.toLowerCase()}-title`}
                   >
                     {plan.name}
                   </h3>
                   <h1
-                    className="mb-[16px] text-[22px] font-bold md:text-[30px] lg:text-[40px]"
+                    className="mb-[16px] text-[20px] font-bold md:text-[25px]"
                     data-testid={`${plan.name.toLowerCase()}-price`}
                   >
                     ${toggle === 1 ? plan.price : getAnnualPrice(plan.price)} /{" "}
@@ -153,75 +153,76 @@ export default function Pricing() {
                   >
                     The essentials to provide your best work for clients.
                   </p>
+
                   <div
-                    className="mb-3 flex items-center gap-5"
+                    className="mb-3 flex items-center gap-3 text-md"
                     data-testid={`${plan.name.toLowerCase()}-feature-1`}
                   >
                     <Image
                       src="/images/checkmark.svg"
                       alt=""
-                      height={30}
-                      width={30}
+                      height={20}
+                      width={20}
                     />
                     2 Projects
                   </div>
                   <div
-                    className="mb-3 flex items-center gap-5 text-[16px]"
+                    className="mb-3 flex items-center gap-3 text-md"
                     data-testid={`${plan.name.toLowerCase()}-feature-2`}
                   >
                     <Image
                       src="/images/checkmark.svg"
                       alt=""
-                      height={30}
-                      width={30}
+                      height={20}
+                      width={20}
                     />
                     Up to 100 subscribers
                   </div>
                   <div
-                    className="mb-3 flex items-center gap-5 text-[16px]"
+                    className="mb-3 flex items-center gap-3 text-md"
                     data-testid={`${plan.name.toLowerCase()}-feature-3`}
                   >
                     <Image
                       src="/images/checkmark.svg"
                       alt=""
-                      height={30}
-                      width={30}
+                      height={20}
+                      width={20}
                     />
                     Basic analytics
                   </div>
                   <div
-                    className="mb-3 flex items-center gap-5 text-[16px]"
+                    className="mb-3 flex items-center gap-3 text-md"
                     data-testid={`${plan.name.toLowerCase()}-feature-4`}
                   >
                     <Image
                       src="/images/checkmark.svg"
                       alt=""
-                      height={30}
-                      width={30}
+                      height={20}
+                      width={20}
                     />
                     24-hour support response time
                   </div>
                   <div
-                    className="mb-3 flex items-center gap-5 text-[16px]"
+                    className="mb-3 flex items-center gap-3 text-md"
                     data-testid={`${plan.name.toLowerCase()}-feature-5`}
                   >
                     <Image
                       src="/images/checkmark.svg"
                       alt=""
-                      height={30}
-                      width={30}
+                      height={20}
+                      width={20}
                     />
                     Marketing advisor
                   </div>
                   <div
-                    className="mb-3 flex items-center gap-5 text-[16px]"
+                    className="mb-3 flex items-center gap-3 text-md"
                     data-testid={`${plan.name.toLowerCase()}-feature-6`}
                   >
                     <Image
                       src="/images/checkmark.svg"
                       alt=""
-                      height={30}
-                      width={30}
+                      height={20}
+                      width={20}
                     />
                     Custom integration
                   </div>
