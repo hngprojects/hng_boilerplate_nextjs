@@ -30,12 +30,22 @@ import { toast } from "~/components/ui/use-toast";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { cn, getApiBaseUrl, simulateDelay } from "~/lib/utils";
 import { CATEGORIES } from "../data/categories.moct";
+import { useProducts } from "~/hooks/admin-product/use-products.persistence";
+import {
+  cn,
+  generateId,
+  getCurrentDateTime,
+  isMobileDevice,
+  simulateDelay,
+} from "~/lib/utils";
+import { CATEGORIES } from "../data/categories.mock";
 import ProjectLogo from "./form-images/project-logo";
-import { NewProductSchema } from "./schema/schema";
+import { MAX_CHAR, NewProductSchema } from "./schema/schema";
 
-const MAX_CHAR = 160;
 const NewProductModal = () => {
   const { setIsNewModal, isNewModal } = useProductModal();
+  const { addProduct } = useProducts();
+  const isMobile = isMobileDevice();
   const [isLoading, startTransition] = useTransition();
   const variantProperties = {
     left: "50%",
@@ -229,6 +239,9 @@ const NewProductModal = () => {
                           </FormLabel>
                           <FormControl>
                             {isNewModal ? (
+
+                            {isMobile ? (
+
                               <select
                                 {...field}
                                 onChange={(event) =>

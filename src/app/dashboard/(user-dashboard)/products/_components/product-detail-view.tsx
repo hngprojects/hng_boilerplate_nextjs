@@ -1,8 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import router from "next/router";
+import { useRouter } from "next-nprogress-bar";
 import { useEffect, useTransition } from "react";
-
 import BlurImage from "~/components/miscellaneous/blur-image";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import { Button } from "~/components/ui/button";
@@ -16,7 +16,17 @@ const ProductDetailView = () => {
   const [isLoading] = useTransition();
   const { id, updateProductId, updateOpen, isOpen, isDelete, setIsDelete } =
     useProductModal();
-
+  const router = useRouter();
+  const { products, deleteProduct } = useProducts();
+  const [isLoading, startTransition] = useTransition();
+  const {
+    product_id,
+    updateProductId,
+    updateOpen,
+    isOpen,
+    isDelete,
+    setIsDelete,
+  } = useProductModal();
   const product = products?.find((product) => product.id === id);
   const handleDelete = async (id: string) => {
     toast({
@@ -49,6 +59,12 @@ const ProductDetailView = () => {
     router.push(`/dashboard/products/${id}`);
     updateProductId("null");
   };
+  const handleEditAction = (id: string) => {
+    updateOpen(false);
+    router.push(`/dashboard/products/${id}`);
+    updateProductId("null");
+  };
+
   useEffect(() => {
     document.title = isOpen
       ? `Product - ${product?.name}`
@@ -169,6 +185,7 @@ const ProductDetailView = () => {
             </Button>
             <Button
               onClick={() => handleEditAction(product!.id)}
+              onClick={() => handleEditAction(product!.product_id)}
               variant="outline"
               className="bg-white font-medium"
             >

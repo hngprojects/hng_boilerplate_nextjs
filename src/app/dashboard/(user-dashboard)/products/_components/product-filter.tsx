@@ -2,6 +2,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, Filter, Grid, List, X } from "lucide-react";
 import Image from "next/image";
+import { Check, Filter, Grid, List, Search, X } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 
@@ -78,6 +79,13 @@ const ProductFilter = ({
             className="absolute left-3 top-3"
           />
         </div>
+        <Input
+          type="text"
+          value={searchTerm}
+          onChange={(event) => setSearchTerm(event.target.value)}
+          placeholder="search products..."
+          className="h-8 w-full bg-transparent px-8 text-sm min-[500px]:h-10"
+        />
         <Button
           onClick={() => setSearchTerm("")}
           variant="ghost"
@@ -91,6 +99,7 @@ const ProductFilter = ({
         >
           <X />
         </Button>
+        <Search className="absolute left-2 top-1/2 size-5 -translate-y-1/2 text-gray-400" />
       </div>
       <div className="relative flex items-center gap-x-2 min-[500px]:gap-x-4">
         <div className="flex items-center gap-x-2">

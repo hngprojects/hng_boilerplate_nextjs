@@ -1,6 +1,9 @@
 "use client";
 
 import { Plus } from "lucide-react";
+import moment from "moment";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { Breadcrumb } from "~/components/common/breadcrumb";
@@ -8,17 +11,23 @@ import CustomButton from "~/components/common/common-button/common-button";
 
 const JobDetails = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const searchParameters = useSearchParams();
+
+  const title: string | null = searchParameters.get("title");
+  const description: string | null = searchParameters.get("description");
+  const amount: string | null = searchParameters.get("amount");
+  const jobtype: string | null = searchParameters.get("job_type");
+  const jobmode: string | null = searchParameters.get("job_mode");
+  const deadline: string | null = searchParameters.get("deadline");
 
   useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth < 768);
     };
-
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
   const pages = isSmallScreen
     ? [
         { name: "Career", href: "/career" },
@@ -38,16 +47,17 @@ const JobDetails = () => {
           isCurrent: true,
         },
       ];
+  const mailtoLink = "mailto:hng123@gmail.com";
 
   return (
-    <main className="mx-auto max-w-7xl px-5 py-10 md:px-10 lg:px-10 xl:px-10">
+    <main className="mx-auto max-w-7xl bg-white px-5 py-10 sm:bg-transparent md:px-10 lg:px-10 xl:px-10">
       <Breadcrumb pages={pages} maxPages={isSmallScreen ? 2 : 3} />
 
-      <div className="mb-4 mt-8 mt-[60px] grid w-full auto-rows-min grid-cols-1 pb-2 md:grid-cols-3">
+      <div className="mb-4 mt-8 grid w-full auto-rows-min grid-cols-1 pb-2 md:grid-cols-3">
         <div className="col-span-1 mb-6 sm:col-span-2 md:mr-16 xl:mr-40">
           <div className="flex flex-col justify-start">
             <h1 className="mb-3 text-3xl font-bold text-neutral-dark-2 md:text-[38px]">
-              Product Designer
+              {title}
             </h1>
             <div className="flex flex-col gap-8">
               <div className="flex flex-col gap-2">
@@ -55,14 +65,10 @@ const JobDetails = () => {
                   Job Description
                 </h3>
                 <p className="text-[16px] font-normal leading-relaxed text-neutral-dark-1 md:text-neutral-dark-2">
-                  We are looking for a talented and passionate Product Designer
-                  to join our dynamic team. As a Product Designer at the
-                  Company, you will play a critical role in shaping the user
-                  experience and visual design of our products. You will
-                  collaborate closely with cross-functional teams, including
-                  product managers, engineers, and marketers, to create
-                  intuitive and aesthetically pleasing designs that meet user
-                  needs and business goals.
+                  {description}You will collaborate closely with
+                  cross-functional teams, including product managers, engineers,
+                  and marketers, to create intuitive and aesthetically pleasing
+                  designs that meet user needs and business goals.
                 </p>
               </div>
               <div className="flex flex-col gap-2">
@@ -142,7 +148,7 @@ const JobDetails = () => {
                 <b> Deadline</b>
               </p>
               <p className="text-[14px] md:text-neutral-dark-2">
-                July 19th, 2024
+                {moment(deadline).format("ll")}
               </p>
             </div>
 
@@ -150,14 +156,14 @@ const JobDetails = () => {
               <p className="text-[14px] text-neutral-dark-1 md:text-neutral-dark-2">
                 <b>Work mode</b>
               </p>
-              <p className="text-[14px] md:text-neutral-dark-2">On-site</p>
+              <p className="text-[14px] md:text-neutral-dark-2">{jobmode}</p>
             </div>
 
             <div className="mb-2 flex flex-col">
               <p className="text-[14px] text-neutral-dark-1 md:text-neutral-dark-2">
                 <b>Job-type</b>
               </p>
-              <p className="text-[14px] md:text-neutral-dark-2">Internship</p>
+              <p className="text-[14px] md:text-neutral-dark-2">{jobtype}</p>
             </div>
 
             <div className="mb-2 flex flex-col">
@@ -171,7 +177,7 @@ const JobDetails = () => {
               <p className="text-[14px] text-neutral-dark-1 md:text-neutral-dark-2">
                 <b>Salary</b>
               </p>
-              <p className="text-[14px] md:text-neutral-dark-2">$500k-$900k</p>
+              <p className="text-[14px] md:text-neutral-dark-2">{amount}</p>
             </div>
           </div>
 
@@ -209,17 +215,19 @@ const JobDetails = () => {
         </div>
       </div>
 
-      <div className="my-10 mb-40 mb-8 flex flex-row items-center justify-center">
-        <CustomButton
-          variant="primary"
-          size="lg"
-          icon={isSmallScreen ? undefined : <Plus />}
-          isLeftIconVisible={isSmallScreen}
-          isDisabled={false}
-          className={`h-[50px] w-[250px]`}
-        >
-          Apply Now
-        </CustomButton>
+      <div className="my-10 mb-8 flex flex-row items-center justify-center">
+        <Link href={mailtoLink} passHref legacyBehavior>
+          <CustomButton
+            variant="primary"
+            size="lg"
+            icon={isSmallScreen ? undefined : <Plus />}
+            isLeftIconVisible={isSmallScreen}
+            isDisabled={false}
+            className={`h-[50px] w-[250px]`}
+          >
+            Apply Now
+          </CustomButton>
+        </Link>
       </div>
     </main>
   );
