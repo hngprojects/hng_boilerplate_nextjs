@@ -49,7 +49,7 @@ export default function Pricing() {
   //
 
   return (
-    <div className="bg-white">
+    <>
       <div
         className="mx-auto max-w-7xl px-5 py-10 md:px-10 lg:px-10 xl:px-10"
         data-testid="pricing-container"
@@ -241,6 +241,6 @@ export default function Pricing() {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }

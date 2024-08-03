@@ -10,10 +10,12 @@ import { cn } from "~/lib/utils";
 import useVersionSync from "~/utils/useVersionSync";
 import { NAV_LINKS } from "./links";
 import MobileNav from "./mobile-navbar";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [scrolling, setIsScrolling] = useState<boolean>(false);
   const { status } = useSession();
+  const pathname = usePathname()
 
   const version = "v1.0";
   useVersionSync(version);
@@ -52,7 +54,7 @@ const Navbar = () => {
               <Link
                 key={index}
                 href={item.link}
-                className="p-3 text-[16px] font-medium text-neutral-dark-1 transition-all duration-300 hover:text-primary"
+                className={`p-3 text-[16px] font-medium text-neutral-dark-1 transition-all duration-300 hover:text-primary ${pathname === item.link ? "text-primary" : ""}`}
               >
                 {item.route}
               </Link>
