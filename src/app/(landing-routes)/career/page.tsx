@@ -37,7 +37,7 @@ export default function Career() {
       } finally {
         setLoading(false);
       }
-    }
+    };
 
     fetchCarrers();
   }, [toast]);
