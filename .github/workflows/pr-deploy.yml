@@ -1,0 +1,26 @@
+name: Preview Deploy
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+
+jobs:
+  deploy:
+    environment: 
+      name: preview
+      url: ${{ steps.deploy.outputs.preview-url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout to branch
+        uses: actions/checkout@v4
+      - id: deploy
+        name: Pull Request Deploy
+        uses: hngprojects/pr-deploy@main
+        with:
+          server_host: ${{ secrets.SERVER_HOST }}
+          server_username: ${{ secrets.SERVER_USERNAME }}
+          server_password: ${{ secrets.SERVER_PASSWORD }}
+          server_port: ${{ secrets.SERVER_PORT }}
+          context: '.'
+          dockerfile: 'docker/development/Dockerfile'
+          exposed_port: '5000'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
