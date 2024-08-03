@@ -21,7 +21,7 @@ const Hero = () => {
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <div className="flex flex-col items-center lg:flex-row">
           <div className="w-full text-center sm:text-left lg:w-1/2">
-            <h1 className="mb-2 text-4xl font-bold leading-snug lg:text-[50px] lg:mr-20 lg:leading-tight">
+            <h1 className="mb-2 text-4xl font-bold leading-snug lg:mr-20 lg:text-[50px] lg:leading-tight">
               Focus on What Matters. We&apos;ve Got the Foundation Covered.
             </h1>
 

@@ -9,6 +9,7 @@ import { Job } from "~/components/common/CareerCard/Jobs";
 import Heading from "~/components/layouts/heading";
 import Pagination from "~/components/layouts/pagination/Pagination";
 import JobSkeleton from "~/components/skeleton/jobskeleton";
+import { useToast } from "~/components/ui/use-toast";
 import { getApiUrl } from "~/utils/getApiUrl";
 import Nojobs from "./Nojobs";
 
@@ -19,6 +20,7 @@ export default function Career() {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 6;
   const router = useRouter();
+  const { toast } = useToast();
 
   useEffect(() => {
     const fetchCarrers = async () => {
@@ -27,14 +29,18 @@ export default function Career() {
         const response = await axios.get(`${apiUrl}/api/v1/jobs`);
         setAllJobs(response.data.data);
       } catch {
-        console.log("Failed to fetch jobs");
+        toast({
+          title: "Error",
+          description: "Failed to fetch Jobs",
+          variant: "destructive",
+        });
       } finally {
         setLoading(false);
       }
     };
 
     fetchCarrers();
-  }, []);
+  }, [toast]);
 
   useEffect(() => {
     // Calculate the jobs to display based on the current page
@@ -51,6 +57,9 @@ export default function Career() {
       location: job.location,
       description: job.description,
       amount: job.salary_range,
+      job_type: job.job_type,
+      job_mode: job.job_mode,
+      deadline: job.deadline,
     });
     router.push(`/career/details?${parameters.toString()}`);
   };

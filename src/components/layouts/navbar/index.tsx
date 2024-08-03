@@ -2,6 +2,7 @@
 
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import UserCard from "~/components/card/user-card";
@@ -10,12 +11,11 @@ import { cn } from "~/lib/utils";
 import useVersionSync from "~/utils/useVersionSync";
 import { NAV_LINKS } from "./links";
 import MobileNav from "./mobile-navbar";
-import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [scrolling, setIsScrolling] = useState<boolean>(false);
   const { status } = useSession();
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   const version = "v1.0";
   useVersionSync(version);

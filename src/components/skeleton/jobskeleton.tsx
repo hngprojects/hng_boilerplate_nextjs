@@ -5,7 +5,7 @@ import { Skeleton } from "~/components/ui/skeleton";
 
 const JobSkeleton = () => {
   return (
-    <div className="w-full grid grid-cols-1 gap-6 md:grid-cols-2">
+    <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
       {Array.from({ length: 4 }).map((_, index) => (
         <Card key={index} className="w-full bg-background text-foreground">
           <CardContent className="pt-6">

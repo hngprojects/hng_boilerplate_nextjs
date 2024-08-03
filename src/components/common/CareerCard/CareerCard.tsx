@@ -4,7 +4,6 @@ import Link from "next/link";
 import { FC } from "react";
 
 import { Card, CardContent, CardFooter } from "~/components/ui/card";
-import { Skeleton } from "~/components/ui/skeleton";
 
 interface CareerCardProperties {
   jobTitle?: string;
@@ -23,14 +22,13 @@ const CareerCard: FC<CareerCardProperties> = ({
   company,
   onViewDetails,
 }) => {
-  
   return (
     <Card className="w-full bg-background text-foreground">
       <CardContent className="pt-6">
         <h3 className="mb-2 text-lg font-semibold">{jobTitle}</h3>
         <p className="text-md mb-1">{company}</p>
         <p className="text-sm">{location}</p>
-        <p className="mt-4 text-md">{description}</p>
+        <p className="text-md mt-4">{description}</p>
       </CardContent>
 
       <CardFooter className="flex items-center justify-between">
