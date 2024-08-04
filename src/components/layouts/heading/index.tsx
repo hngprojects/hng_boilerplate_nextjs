@@ -24,7 +24,7 @@ const Heading = (properties: Properties) => {
   return (
     <div className="text-center md:mx-auto" data-testid="pricing-header">
       <p
-        className="mb-6 inline-block rounded-md bg-gray-200 px-4 py-1 text-sm text-black md:text-lg"
+        className="mb-6 inline-block rounded-md bg-gray-200 px-4 py-2 text-sm text-black md:text-md"
         data-testid="pricing-tag"
       >
         {properties?.tag}
