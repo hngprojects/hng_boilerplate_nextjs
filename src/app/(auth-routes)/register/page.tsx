@@ -9,6 +9,8 @@ import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+import { getApiUrl } from "~/actions/getApiUrl";
+import { registerUser } from "~/actions/register";
 import CustomButton from "~/components/common/common-button/common-button";
 import { Input } from "~/components/common/input";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
@@ -23,8 +25,6 @@ import {
 import { useToast } from "~/components/ui/use-toast";
 import { cn } from "~/lib/utils";
 import { RegisterSchema } from "~/schemas";
-import { getApiUrl } from "~/utils/getApiUrl";
-import { registerUser } from "~/utils/register";
 
 const Register = () => {
   const router = useRouter();
@@ -67,18 +67,19 @@ const Register = () => {
   const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
     startTransition(async () => {
       await registerUser(values).then(async (data) => {
-        if (data.status === 201) {
-          sessionStorage.setItem("temp_token", data.access_token);
+        if (data) {
+          sessionStorage.setItem("temp_token", data.data);
           router.push("/register/organisation");
         }
 
         toast({
           title:
             data.status === 201
-              ? "Accounted created successfully"
+              ? "Account created successfully"
               : "an error occurred",
-          description: data.status === 201 ? "Continue to login" : data.error,
+          description: data.status === 201 ? "Redirecting" : data.error,
         });
+        router.push("/register/organisation");
       });
     });
   };

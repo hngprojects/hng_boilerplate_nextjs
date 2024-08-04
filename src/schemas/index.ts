@@ -35,7 +35,7 @@ export const LoginSchema = z.object({
     message: "Invalid email address",
   }),
   password: passwordSchema,
-  rememberMe: z.boolean().default(false),
+  rememberMe: z.boolean().default(false).optional(),
 });
 
 export const organizationSchema = z.object({
@@ -66,7 +66,6 @@ export const organizationSchema = z.object({
 });
 
 export const OtpSchema = z.object({
-  otp: z.string().optional(),
   token: z.string().optional(),
   email: z.string().email().optional(),
 });
