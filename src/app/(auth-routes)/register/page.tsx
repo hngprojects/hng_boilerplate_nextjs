@@ -10,10 +10,17 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import { getApiUrl } from "~/actions/getApiUrl";
-import { registerUser } from "~/actions/register";
+import { registerUser, resendOtp, verifyOtp } from "~/actions/register";
 import CustomButton from "~/components/common/common-button/common-button";
 import { Input } from "~/components/common/input";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "~/components/ui/dialog";
 import {
   Form,
   FormControl,
@@ -22,9 +29,15 @@ import {
   FormLabel,
   FormMessage,
 } from "~/components/ui/form";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+} from "~/components/ui/input-otp";
 import { useToast } from "~/components/ui/use-toast";
 import { cn } from "~/lib/utils";
 import { RegisterSchema } from "~/schemas";
+import { formatTime, maskEmail } from "~/utils";
 
 const Register = () => {
   const router = useRouter();
@@ -33,25 +46,33 @@ const Register = () => {
   const [apiUrl, setApiUrl] = useState("");
   const [isLoading, startTransition] = useTransition();
   const [showPassword, setShowPassword] = useState(false);
+  const [showOtp, setShowOtp] = useState(false);
+  const [timeLeft, setTimeLeft] = useState<number>(15 * 60);
+  const [value, setValue] = useState("");
+
+  useEffect(() => {
+    if (timeLeft <= 0) return;
+    const timerId = setInterval(() => {
+      setTimeLeft((previousTime) => previousTime - 1);
+    }, 1000);
+    return () => clearInterval(timerId);
+  }, [timeLeft, showOtp]);
 
   if (status === "authenticated") {
     router.push("/dashboard");
   }
   useEffect(() => {
-    const fetchApiUrl = async () => {
-      try {
-        const url = await getApiUrl();
+    getApiUrl()
+      .then((url) => {
         setApiUrl(url);
-      } catch {
+      })
+      .catch(() => {
         toast({
           title: "Error",
           description: "Failed to fetch API URL",
           variant: "destructive",
         });
-      }
-    };
-
-    fetchApiUrl();
+      });
   }, [toast]);
 
   const form = useForm<z.infer<typeof RegisterSchema>>({
@@ -67,9 +88,8 @@ const Register = () => {
   const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
     startTransition(async () => {
       await registerUser(values).then(async (data) => {
-        if (data) {
-          sessionStorage.setItem("temp_token", data.data);
-          router.push("/register/organisation");
+        if (data.status === 201) {
+          setShowOtp(true);
         }
 
         toast({
@@ -77,9 +97,48 @@ const Register = () => {
             data.status === 201
               ? "Account created successfully"
               : "an error occurred",
+          description: data.status === 201 ? "verify your account" : data.error,
+        });
+      });
+    });
+  };
+
+  const onOtpSubmit = async () => {
+    startTransition(async () => {
+      const values = { token: value, email: form.getValues().email };
+      await verifyOtp(values).then(async (data) => {
+        if (data.status === 200) {
+          setShowOtp(false);
+          router.push("/register/organisation");
+        }
+
+        toast({
+          title:
+            data.status === 201
+              ? "Email verification successfully"
+              : "an error occurred",
           description: data.status === 201 ? "Redirecting" : data.error,
         });
-        router.push("/register/organisation");
+      });
+    });
+  };
+
+  const resendOtpreq = async () => {
+    startTransition(async () => {
+      resendOtp(form.getValues().email).then(async (data) => {
+        if (data.status === 200) {
+          setTimeLeft(15 * 60);
+          toast({
+            title: "OTP sent successfully",
+            description: "Please check your email",
+          });
+        } else {
+          toast({
+            title: "Error",
+            description: data.error,
+            variant: "destructive",
+          });
+        }
       });
     });
   };
@@ -305,6 +364,61 @@ const Register = () => {
             </CustomButton>
           </form>
         </Form>
+        <Dialog open={showOtp} onOpenChange={setShowOtp}>
+          <DialogContent
+            aria-labelledby="dialog-title"
+            aria-describedby="dialog-description"
+            className="flex w-full flex-col items-center gap-5 sm:max-w-[425px]"
+          >
+            <DialogHeader>
+              <DialogTitle className="w-full text-center text-xl font-bold text-[#0F172A]">
+                Email Verification
+              </DialogTitle>
+              <DialogDescription className="flex flex-col items-center text-[#0F172A]">
+                <p className="text-base font-medium text-[#0F172A]">
+                  We have sent a code to your email{" "}
+                  {maskEmail(form.getValues().email)}
+                </p>
+                <div className="flex flex-col items-center text-base">
+                  <span>check your spam if you do not recive the email</span>
+                  <span>OTP expires in: {formatTime(timeLeft)}</span>
+                </div>
+              </DialogDescription>
+            </DialogHeader>
+
+            <InputOTP
+              maxLength={6}
+              className="flex w-full"
+              onComplete={onOtpSubmit}
+              value={value}
+              onChange={setValue}
+              disabled={isLoading}
+            >
+              {...[0, 1, 2, 3, 4, 5].map((number_) => (
+                <InputOTPGroup key={number_}>
+                  <InputOTPSlot index={number_} />
+                </InputOTPGroup>
+              ))}
+            </InputOTP>
+
+            <div className="flex flex-col items-center">
+              <p className="text-xs text-gray-500">
+                Didn&apos;t receive the code?{" "}
+                <span
+                  className="cursor-pointer text-orange-500"
+                  onClick={() => resendOtpreq()}
+                >
+                  resend
+                </span>
+              </p>
+            </div>
+            <p className="text-center text-xs text-gray-500">
+              We would process your data as set forth in our Terms of Use,
+              Privacy Policy and Data Processing Agreement
+            </p>
+          </DialogContent>
+        </Dialog>
+        Copy
         <p className="font-inter text-neutralColor-dark-1 mt-5 text-center text-sm font-normal leading-[15.6px]">
           Already Have An Account?{" "}
           <Link
