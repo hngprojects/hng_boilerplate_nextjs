@@ -1,7 +1,6 @@
 name: Coverage Report
 
 on:
-  pull_request:
   workflow_run:
     workflows: ["Build, Lint and Test"]
     types:
