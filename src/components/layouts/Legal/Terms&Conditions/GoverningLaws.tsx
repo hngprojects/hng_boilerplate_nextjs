@@ -11,7 +11,7 @@ const GoverningLaws = () => {
       className="flex flex-col items-start justify-start gap-[10px] self-stretch"
       data-testid="governing-laws"
     >
-      <h2 className="font-inherit relative mt-0 self-stretch text-2xl font-bold text-inherit sm:text-[28px]">
+      <h2 className="font-inherit relative mt-0 self-stretch text-lg font-bold text-foreground">
         Governing Law and Dispute Resolution
       </h2>
       <div className="relative inline-block self-stretch text-base">
