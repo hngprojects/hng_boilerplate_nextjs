@@ -9,6 +9,8 @@ import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+import { getApiUrl } from "~/actions/getApiUrl";
+import { loginUser } from "~/actions/login";
 import CustomButton from "~/components/common/common-button/common-button";
 import { Input } from "~/components/common/input";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
@@ -24,8 +26,6 @@ import {
 import { useToast } from "~/components/ui/use-toast";
 import { cn } from "~/lib/utils";
 import { LoginSchema } from "~/schemas";
-import { getApiUrl } from "~/utils/getApiUrl";
-import { loginAuth } from "~/utils/loginAuth";
 
 const Login = () => {
   const router = useRouter();
@@ -66,7 +66,7 @@ const Login = () => {
 
   const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
     startTransition(async () => {
-      await loginAuth(values).then(async (data) => {
+      await loginUser(values).then(async (data) => {
         const { email, password } = values;
 
         if (data) {

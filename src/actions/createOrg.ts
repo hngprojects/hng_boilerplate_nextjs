@@ -3,16 +3,15 @@
 import axios from "axios";
 import * as z from "zod";
 
+import { auth } from "~/lib/auth";
 import { organizationSchema } from "~/schemas";
 import { getApiUrl } from "./getApiUrl";
 
 const team = process.env.TEAM;
 
-export const createOrg = async (
-  values: z.infer<typeof organizationSchema>,
-  token: string,
-) => {
+export const createOrg = async (values: z.infer<typeof organizationSchema>) => {
   const apiUrl = await getApiUrl();
+  const session = await auth();
 
   const validatedFields = organizationSchema.safeParse(values);
   if (!validatedFields.success) {
@@ -26,7 +25,7 @@ export const createOrg = async (
       validatedFields.data,
       {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${session?.access_token}`,
         },
       },
     );

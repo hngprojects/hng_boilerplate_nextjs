@@ -8,7 +8,7 @@ import FaqAccordion from "~/components/layouts/accordion/FaqsAccordion";
 import { Button } from "~/components/ui/button";
 import { Skeleton } from "~/components/ui/skeleton";
 import { faqData } from "~/constants/faqsdata";
-import { getApiUrl } from "~/utils/getApiUrl";
+import { getApiUrl } from "~/actions/getApiUrl";
 
 interface BillingPlan {
   id: string;

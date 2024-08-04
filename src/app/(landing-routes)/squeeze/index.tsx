@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import { z, ZodError } from "zod";
 
 import { useToast } from "~/components/ui/use-toast";
-import { getApiUrl } from "~/utils/getApiUrl";
+import { getApiUrl } from "~/actions/getApiUrl";
 
 const validationSchema = z.object({
   first_name: z.string().min(1, "First name is required"),

@@ -4,10 +4,10 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import useVersionSync from "~/actions/useVersionSync";
 import UserCard from "~/components/card/user-card";
 import Logo from "~/components/common/logo";
 import { cn } from "~/lib/utils";
-import useVersionSync from "~/utils/useVersionSync";
 import { NAV_LINKS } from "./links";
 import MobileNav from "./mobile-navbar";
 

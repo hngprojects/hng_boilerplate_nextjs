@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import CareerCardParent from "~/components/common/CareerCard";
 import { Job } from "~/components/common/CareerCard/Jobs";
 import Pagination from "~/components/layouts/pagination/Pagination";
-import { getApiUrl } from "~/utils/getApiUrl";
+import { getApiUrl } from "~/actions/getApiUrl";
 import Nojobs from "./Nojobs";
 
 export default function Career() {

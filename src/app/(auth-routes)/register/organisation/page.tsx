@@ -28,7 +28,7 @@ import {
 } from "~/components/ui/select";
 import { useToast } from "~/components/ui/use-toast";
 import { organizationSchema } from "~/schemas";
-import { createOrg } from "~/utils/createOrg";
+import { createOrg } from "~/actions/createOrg";
 
 function Organisation() {
   const router = useRouter();
