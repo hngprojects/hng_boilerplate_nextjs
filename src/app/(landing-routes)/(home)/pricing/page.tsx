@@ -43,7 +43,6 @@ export default function Pricing() {
         setPlans(filteredPlans);
       } catch {
         setError("Failed to fetch billing plans");
-        // console.error("Error fetching billing plans:", error);
       } finally {
         setLoading(false);
       }
