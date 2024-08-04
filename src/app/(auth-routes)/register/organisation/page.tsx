@@ -8,6 +8,7 @@ import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { createOrg } from "~/actions/createOrg";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import { Button } from "~/components/ui/button";
 import {
@@ -28,7 +29,6 @@ import {
 } from "~/components/ui/select";
 import { useToast } from "~/components/ui/use-toast";
 import { organizationSchema } from "~/schemas";
-import { createOrg } from "~/utils/createOrg";
 
 function Organisation() {
   const router = useRouter();
@@ -57,7 +57,7 @@ function Organisation() {
   const onSubmit = async (values: z.infer<typeof organizationSchema>) => {
     const token = sessionStorage.getItem("temp_token");
     startTransition(async () => {
-      await createOrg(values, token || "").then(async (data) => {
+      await createOrg(values, token ?? "").then(async (data) => {
         if (data.status === 201) {
           router.push("/login");
         }

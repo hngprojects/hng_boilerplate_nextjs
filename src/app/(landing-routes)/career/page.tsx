@@ -4,13 +4,13 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
+import { getApiUrl } from "~/actions/getApiUrl";
 import CareerCardParent from "~/components/common/CareerCard";
 import { Job } from "~/components/common/CareerCard/Jobs";
 import Heading from "~/components/layouts/heading";
 import Pagination from "~/components/layouts/pagination/Pagination";
 import JobSkeleton from "~/components/skeleton/jobskeleton";
 import { useToast } from "~/components/ui/use-toast";
-import { getApiUrl } from "~/utils/getApiUrl";
 import Nojobs from "./Nojobs";
 
 export default function Career() {
