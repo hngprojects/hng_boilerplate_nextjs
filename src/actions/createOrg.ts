@@ -9,7 +9,10 @@ import { getApiUrl } from "./getApiUrl";
 
 const team = process.env.TEAM;
 
-export const createOrg = async (values: z.infer<typeof organizationSchema>) => {
+export const createOrg = async (
+  values: z.infer<typeof organizationSchema>,
+  token?: string,
+) => {
   const apiUrl = await getApiUrl();
   const session = await auth();
 
@@ -25,7 +28,7 @@ export const createOrg = async (values: z.infer<typeof organizationSchema>) => {
       validatedFields.data,
       {
         headers: {
-          Authorization: `Bearer ${session?.access_token}`,
+          Authorization: `Bearer ${session?.access_token || token}`,
         },
       },
     );

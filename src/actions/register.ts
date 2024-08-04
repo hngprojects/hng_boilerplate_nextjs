@@ -9,7 +9,6 @@ import { OtpSchema, RegisterSchema } from "~/schemas";
 const apiUrl = process.env.API_URL;
 
 export const registerUser = async (values: z.infer<typeof RegisterSchema>) => {
-  //   const cookie = cookies();
   const validatedFields = RegisterSchema.safeParse(values);
   if (!validatedFields.success) {
     return {
@@ -22,7 +21,6 @@ export const registerUser = async (values: z.infer<typeof RegisterSchema>) => {
       validatedFields.data,
     );
 
-    // const access_token = response.data.access_token;
     return {
       status: response.status,
       data: response.data,

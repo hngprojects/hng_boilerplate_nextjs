@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-import { useToast } from "~/components/ui/use-toast";
 import { getApiUrl } from "~/actions/getApiUrl";
+import { useToast } from "~/components/ui/use-toast";
 
 const useApiUrl = () => {
   const [apiUrl, setApiUrl] = useState<string>("");

@@ -5,12 +5,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import { getApiUrl } from "~/actions/getApiUrl";
 import FaqAccordion from "~/components/layouts/accordion/FaqsAccordion";
 import Heading from "~/components/layouts/heading";
 import PricingCardSkeleton from "~/components/skeleton/pricingcardskeleton";
 import { Button } from "~/components/ui/button";
 import { faqData } from "~/constants/faqsdata";
-import { getApiUrl } from "~/actions/getApiUrl";
 
 interface BillingPlan {
   id: string;
