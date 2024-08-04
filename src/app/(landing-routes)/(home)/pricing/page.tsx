@@ -51,7 +51,7 @@ export default function Pricing() {
   return (
     <>
       <div
-        className="mx-auto max-w-7xl px-5 py-5 md:px-10 lg:px-10 xl:px-10"
+        className="mx-auto max-w-7xl px-5 pb-20 pt-5 md:px-10 lg:px-10 xl:px-10"
         data-testid="pricing-container"
       >
         <Heading
@@ -84,6 +84,12 @@ export default function Pricing() {
         {loading && (
           <div className="align-center mt-[50px] flex flex-col flex-wrap justify-center gap-6 sm:flex-row">
             <PricingCardSkeleton />
+          </div>
+        )}
+
+        {!loading && plans?.length === 0 && (
+          <div className="align-center mt-[50px] flex flex-col flex-wrap justify-center gap-6 sm:flex-row">
+            Billing plans not available
           </div>
         )}
 

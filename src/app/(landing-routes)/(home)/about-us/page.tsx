@@ -1,4 +1,3 @@
-import Blog from "~/components/layouts/aboutUs/Blog";
 import CoreValues from "~/components/layouts/aboutUs/CoreValues";
 import ExecutiveTeam from "~/components/layouts/aboutUs/ExecutiveTeam";
 import Hero from "~/components/layouts/aboutUs/Hero";

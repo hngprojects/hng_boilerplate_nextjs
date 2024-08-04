@@ -5,6 +5,7 @@ import { Search } from "lucide-react";
 import Link from "next/link";
 import { ChangeEvent, useEffect, useState } from "react";
 
+import { getApiUrl } from "~/actions/getApiUrl";
 import { Input } from "~/components/common/input";
 import FaqAccordion from "~/components/layouts/accordion/FaqsAccordion";
 import TopicsAccordions from "~/components/layouts/accordion/TopicAccordion";
@@ -12,7 +13,6 @@ import Heading from "~/components/layouts/heading";
 import HelpCenterSkeleton from "~/components/skeleton/helpcenterskeleton";
 import { useToast } from "~/components/ui/use-toast";
 import { faqData } from "~/constants/faqsdata";
-import { getApiUrl } from "~/utils/getApiUrl";
 
 interface Topic {
   id: string;
@@ -31,7 +31,7 @@ const HelpCenter = () => {
       try {
         const apiUrl = await getApiUrl();
         const response = await axios.get(`${apiUrl}/api/v1/help-center/topics`);
-        setTopics(response.data.data.topics);
+        setTopics(response.data.data);
       } catch {
         toast({
           title: "Error",
@@ -80,56 +80,56 @@ const HelpCenter = () => {
           />
         </div>
 
-          <section
-            className="w-full mb-40 flex flex-col items-center justify-start gap-7 py-[24px]"
-            aria-labelledby="browse-topics-heading"
+        <section
+          className="mb-40 flex w-full flex-col items-center justify-start gap-7 py-[24px]"
+          aria-labelledby="browse-topics-heading"
+        >
+          <span
+            id="browse-topics-heading"
+            className="mb-4 text-center text-lg font-bold text-orange-500"
           >
-            <span
-              id="browse-topics-heading"
-              className="mb-4 text-center text-lg font-bold text-orange-500"
-            >
-              Browse by topics
-            </span>
+            Browse by topics
+          </span>
 
-            {loading ? (
-              <HelpCenterSkeleton />
-            ) : (
-              <>
-                {filteredTopics?.length !== 0 ? (
-                  <TopicsAccordions topics={filteredTopics} />
-                ) : (
-                  <p className="py-10">No results found.</p>
-                )}
-              </>
-            )}
-          </section>
+          {loading ? (
+            <HelpCenterSkeleton />
+          ) : (
+            <>
+              {filteredTopics?.length === 0 ? (
+                <p className="py-10">No results found.</p>
+              ) : (
+                <TopicsAccordions topics={filteredTopics} />
+              )}
+            </>
+          )}
+        </section>
 
-          <section>
-            <div className="mb-20 grid w-full grid-cols-1 gap-y-10 lg:grid-cols-2">
-              <div className="flex flex-col gap-3">
-                <h1
-                  className="self-stretch text-4xl font-semibold text-neutral-600"
-                  role="heading"
-                  aria-level={1}
-                >
-                  Frequently Asked Questions
-                </h1>
+        <section>
+          <div className="mb-20 grid w-full grid-cols-1 gap-y-10 lg:grid-cols-2">
+            <div className="flex flex-col gap-3">
+              <h1
+                className="self-stretch text-4xl font-semibold text-neutral-600"
+                role="heading"
+                aria-level={1}
+              >
+                Frequently Asked Questions
+              </h1>
 
-                <p className="mb-3 text-[18px] text-neutral-600">
-                  We couldn&apos;t answer your question?
-                </p>
+              <p className="mb-3 text-[18px] text-neutral-600">
+                We couldn&apos;t answer your question?
+              </p>
 
-                <Link
-                  href="/contact-us"
-                  className="align-center flex w-[150px] justify-center rounded-md border border-[#0A0A0A] bg-[#FFF] py-4 text-[#0F172A] hover:bg-accent hover:text-accent-foreground"
-                >
-                  Contact us
-                </Link>
-              </div>
-
-              <FaqAccordion faqs={faqData} containerClassName="px-0 py-0 " />
+              <Link
+                href="/contact-us"
+                className="align-center flex w-[150px] justify-center rounded-md border border-[#0A0A0A] bg-[#FFF] py-4 text-[#0F172A] hover:bg-accent hover:text-accent-foreground"
+              >
+                Contact us
+              </Link>
             </div>
-          </section>
+
+            <FaqAccordion faqs={faqData} containerClassName="px-0 py-0 " />
+          </div>
+        </section>
       </div>
 
       <div className="bg-white py-20">

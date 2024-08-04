@@ -16,7 +16,7 @@ const CoreValues = () => {
           <div className="mt-[20px] grid w-full grid-cols-1 gap-[20px] sm:w-[500px] md:w-[750px] md:grid-cols-2 lg:w-[1000px] xl:w-[1200px]">
             <div className="rounded-[10px] bg-[#f974161a] p-6 sm:p-8">
               <h3
-                className="text-[18px] font-[700] text-primary sm:text-[20px] mb-3"
+                className="mb-3 text-[18px] font-[700] text-primary sm:text-[20px]"
                 data-testid="integrity"
               >
                 Integrity
@@ -30,7 +30,7 @@ const CoreValues = () => {
             </div>
 
             <div className="rounded-[10px] bg-[#f974161a] p-6 sm:p-8">
-              <h3 className="text-[18px] font-[700] text-primary sm:text-[20px] mb-3">
+              <h3 className="mb-3 text-[18px] font-[700] text-primary sm:text-[20px]">
                 Customer Centricity
               </h3>
               <p className="text-[14px] font-[400] text-neutral-600 md:text-[16px] lg:text-[18px]">
@@ -44,7 +44,7 @@ const CoreValues = () => {
 
             <div className="rounded-[10px] bg-[#f974161a] p-6 sm:p-8">
               <h3
-                className="text-[18px] font-[700] text-primary sm:text-[20px] mb-3"
+                className="mb-3 text-[18px] font-[700] text-primary sm:text-[20px]"
                 data-testid="innovation"
               >
                 Innovation
@@ -59,7 +59,7 @@ const CoreValues = () => {
             </div>
 
             <div className="rounded-[10px] bg-[#f974161a] p-6 sm:p-8">
-              <h3 className="text-[18px] font-[700] text-primary sm:text-[20px] mb-3">
+              <h3 className="mb-3 text-[18px] font-[700] text-primary sm:text-[20px]">
                 Excellence
               </h3>
               <p className="text-[14px] font-[400] text-neutral-600 md:text-[16px] lg:text-[18px]">
