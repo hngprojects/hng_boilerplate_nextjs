@@ -2,6 +2,7 @@
 
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import useVersionSync from "~/actions/useVersionSync";
@@ -14,6 +15,7 @@ import MobileNav from "./mobile-navbar";
 const Navbar = () => {
   const [scrolling, setIsScrolling] = useState<boolean>(false);
   const { status } = useSession();
+  const pathname = usePathname();
 
   const version = "v1.0";
   useVersionSync(version);
@@ -46,13 +48,13 @@ const Navbar = () => {
         <MobileNav />
 
         <Logo />
-        <div className="hidden w-full items-center justify-center gap-x-4 md:flex lg:gap-x-8 xl:gap-x-16">
+        <div className="hidden w-full items-center justify-center gap-x-4 md:flex lg:gap-x-6">
           {NAV_LINKS.map((item, index) => {
             return (
               <Link
                 key={index}
                 href={item.link}
-                className="p-3 text-[16px] font-medium text-neutral-dark-1 transition-all duration-300 hover:text-primary"
+                className={`p-3 text-[16px] font-medium text-neutral-dark-1 transition-all duration-300 hover:text-primary ${pathname === item.link ? "text-primary" : ""}`}
               >
                 {item.route}
               </Link>
