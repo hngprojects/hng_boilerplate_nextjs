@@ -6,11 +6,11 @@ const HowItWorks = () => {
       <div className="mx-auto max-w-7xl px-5 md:px-10 lg:px-10 xl:px-10">
         <div className="flex flex-col items-center lg:flex-row">
           <div className="w-full md:pr-10 lg:w-3/5 lg:pr-20">
-            <h1 className="font-inter text-4xl font-bold leading-snug md:text-5xl md:leading-tight">
+            <h1 className="font-inter text-3xl font-bold leading-snug md:text-4xl md:leading-tight">
               <span className="text-primary">How It Works:</span> Experience the
               benefits of using our product with every step.
             </h1>
-            <p className="font-inter mb-12 mt-6 text-lg font-normal md:text-xl">
+            <p className="font-inter mb-12 mt-6 text-lg font-normal">
               {` We designed our product to simplify your life. It offers a comprehensive solution. Here's how it works and how it benefits you at each stage.`}
             </p>
           </div>
@@ -22,7 +22,7 @@ const HowItWorks = () => {
               </div>
               <div>
                 <h3
-                  className="font-inter mb-2 text-lg text-xl font-bold md:text-xl lg:text-2xl"
+                  className="font-inter mb-2 text-lg font-bold md:text-xl"
                   data-testid="prebuilt"
                 >
                   Pre-Built Sections
@@ -42,7 +42,7 @@ const HowItWorks = () => {
               </div>
               <div>
                 <h3
-                  className="font-inter mb-2 text-lg text-xl font-bold md:text-xl lg:text-2xl"
+                  className="font-inter mb-2 text-lg font-bold md:text-xl"
                   data-testid="scalable"
                 >
                   Scalable Foundation
@@ -63,7 +63,7 @@ const HowItWorks = () => {
               </div>
               <div>
                 <h3
-                  className="font-inter mb-2 text-lg text-xl font-bold md:text-xl lg:text-2xl"
+                  className="font-inter mb-2 text-lg font-bold md:text-xl"
                   data-testid="easy"
                 >
                   Easy Customization
