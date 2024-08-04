@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import "./menu.css";
 
 import { motion, stagger, useAnimate } from "framer-motion";
@@ -44,7 +43,7 @@ export default function MobileNav() {
         delay: open ? staggerList : 0,
       },
     );
-  }, [open]);
+  }, [animate, open, staggerList, user.email]);
 
   return (
     <>
