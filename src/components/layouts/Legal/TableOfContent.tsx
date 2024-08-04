@@ -15,7 +15,7 @@ export default function TableOfContent({
       data-testid="table-of-content"
       className={cn("space-y-2", className)}
     >
-      <h3 className="text-2xl font-bold leading-[29.05px] text-neutral-dark-1 md:text-[28px] md:leading-[33.89px]">
+      <h3 className="text-lg font-bold leading-[29.05px] text-foreground md:leading-[33.89px]">
         Table of Content
       </h3>
 
