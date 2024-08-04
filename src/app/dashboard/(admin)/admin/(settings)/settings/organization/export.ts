@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { getApiUrl } from "~/utils/getApiUrl";
+import { getApiUrl } from "~/actions/getApiUrl";
 
 export const exportMembersEndpoint = async (format: string = "csv") => {
   const apiUrl = await getApiUrl();

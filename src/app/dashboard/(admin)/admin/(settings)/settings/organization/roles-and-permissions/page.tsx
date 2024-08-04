@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from "react";
 
+import { getApiUrl } from "~/actions/getApiUrl";
 import CustomButton from "~/components/common/common-button/common-button";
 import RoleCreationModal from "~/components/common/modals/role-creation";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import { useToast } from "~/components/ui/use-toast";
-import { getApiUrl } from "~/utils/getApiUrl";
 
 type Role = {
   id: number;

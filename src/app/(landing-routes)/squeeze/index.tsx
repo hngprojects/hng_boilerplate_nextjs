@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { z, ZodError } from "zod";
 
+import { getApiUrl } from "~/actions/getApiUrl";
 import { useToast } from "~/components/ui/use-toast";
-import { getApiUrl } from "~/utils/getApiUrl";
 
 const validationSchema = z.object({
   first_name: z.string().min(1, "First name is required"),

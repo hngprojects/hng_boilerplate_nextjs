@@ -19,7 +19,7 @@ const Footer = () => {
         { route: "Home", link: "/" },
         { route: "About us", link: "/about-us" },
         { route: "Career", link: "/career" },
-        { route: "Feature updates", link: "/" },
+        { route: "Features", link: "/" },
         { route: "Blog", link: "/blog" },
       ],
     },
@@ -110,7 +110,7 @@ const Footer = () => {
                         <li key={index}>
                           <Link
                             href={item.link}
-                            className="cursor-pointer text-sm text-neutral-dark-2 transition-colors duration-300 hover:text-primary hover:underline dark:text-white"
+                            className="text-md cursor-pointer text-neutral-dark-2 transition-colors duration-300 hover:text-primary hover:underline dark:text-white"
                           >
                             {item.route}
                           </Link>
@@ -144,7 +144,7 @@ const Footer = () => {
                   return (
                     <div
                       key={index}
-                      className="flex h-5 w-5 items-center justify-center rounded-full bg-primary p-1 hover:bg-default md:h-10 md:w-10"
+                      className="flex h-5 w-5 cursor-pointer items-center justify-center rounded-full bg-primary p-1 hover:bg-default md:h-10 md:w-10"
                     >
                       <item.icon className="h-[10px] w-[10px] text-white md:h-4 md:w-4" />
                     </div>
@@ -164,7 +164,7 @@ const Footer = () => {
                 return (
                   <div
                     key={index}
-                    className="flex h-5 w-5 items-center justify-center rounded-full bg-primary p-1 hover:bg-default md:h-10 md:w-10"
+                    className="flex h-5 w-5 cursor-pointer items-center justify-center rounded-full bg-primary p-1 hover:bg-default md:h-10 md:w-10"
                   >
                     <item.icon className="h-[10px] w-[10px] text-white md:h-4 md:w-4" />
                   </div>
