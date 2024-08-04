@@ -24,7 +24,7 @@ const Heading = (properties: Properties) => {
   return (
     <div className="text-center md:mx-auto" data-testid="pricing-header">
       <p
-        className="mb-6 inline-block rounded-md bg-gray-200 px-4 py-1 text-sm text-black md:text-lg"
+        className="md:text-md mb-6 inline-block rounded-md bg-gray-200 px-4 py-2 text-sm text-black"
         data-testid="pricing-tag"
       >
         {properties?.tag}
@@ -37,7 +37,7 @@ const Heading = (properties: Properties) => {
         {renderTitle(properties.title)}
       </h2>
       <p
-        className="md-text-xl mb-10 text-lg text-gray-700"
+        className="md-text-xl mb-10 text-base text-lg text-gray-700 lg:px-40"
         data-testid="pricing-description"
       >
         {properties?.content}

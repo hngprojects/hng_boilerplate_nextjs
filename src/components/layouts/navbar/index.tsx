@@ -41,7 +41,7 @@ const Navbar = () => {
       <div
         className={cn(
           `relative mx-auto flex w-full max-w-[1200px] items-center gap-x-4 transition-all duration-500 md:justify-between`,
-          scrolling ? "py-2" : "py-4 md:py-9",
+          scrolling ? "py-2" : "py-4 md:py-6",
           status === "authenticated" && "justify-between md:justify-between",
         )}
       >
