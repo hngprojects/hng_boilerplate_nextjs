@@ -2,12 +2,8 @@ import TeamCard from "~/components/common/TeamCard/teamcard";
 
 const ExecutiveTeam = () => {
   return (
-    <div
-      className=""
-      style={{ backgroundImage: "url('/images/about-us/background.svg')" }}
-    >
       <div className="mx-auto max-w-7xl px-5 pt-20 md:px-10 lg:px-10 xl:px-10">
-        <h3 className="mt-5 text-center text-[32px] font-[600] text-neutral-600 md:text-[44px]">
+        <h3 className="mt-5 text-center text-[30px] font-[600] text-neutral-600 md:text-[40px]">
           The Executive Team
         </h3>
 
@@ -66,7 +62,6 @@ const ExecutiveTeam = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 
