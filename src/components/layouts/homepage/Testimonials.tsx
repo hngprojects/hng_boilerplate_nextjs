@@ -22,7 +22,7 @@ import { testimonials } from "./testimonials-data";
 const Testimonials = () => {
   return (
     <div className="bg-background py-[113px]">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl md:px-10 lg:px-10 xl:px-10">
         <div className="flex flex-col items-end md:flex-row md:items-center md:justify-between">
           <div className="w-full pr-0 lg:w-2/3 lg:pr-10">
             <h1 className="font-inter mb-2 text-3xl font-bold lg:text-4xl">
