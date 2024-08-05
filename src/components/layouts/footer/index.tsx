@@ -4,9 +4,6 @@ import axios from "axios";
 import { Copyright, Facebook, Instagram, Linkedin, XIcon, Youtube } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-
-
-
 import { getApiUrl } from "~/actions/getApiUrl";
 import CustomButton from "~/components/common/common-button/common-button";
 import { Input } from "~/components/common/input";
