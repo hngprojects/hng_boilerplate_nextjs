@@ -8,7 +8,7 @@
 
 **Closes #issue_number_here**
 
-# Changes proposed
+# Changes proposed 
 
 ## What were you told to do?
 
