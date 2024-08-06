@@ -109,7 +109,7 @@ const Register = () => {
       await verifyOtp(values).then(async (data) => {
         if (data.status === 200) {
           setShowOtp(false);
-          router.push("/register/organisation");
+          router.push("/login");
         }
 
         toast({
