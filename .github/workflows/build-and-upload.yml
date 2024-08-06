@@ -26,6 +26,7 @@ jobs:
           path: nextjs-dev.tar.gz
 
   copy-and-load-image:
+    needs: build
     runs-on: ubuntu-latest
     if: github.event.repository.fork == false
 
