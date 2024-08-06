@@ -75,7 +75,7 @@ export default {
 
         const response = await googleAuth(account?.id_token);
 
-        if (!response.data) {
+        if (!response || !("data" in response)) {
           token = {
             email: profile?.email,
             name: profile?.given_name,
@@ -99,7 +99,7 @@ export default {
 
         const response = await twitterAuth(account?.access_token);
 
-        if (!response.data) {
+        if (!response || !("data" in response)) {
           token = {
             email: user?.email,
             name: user?.name,
