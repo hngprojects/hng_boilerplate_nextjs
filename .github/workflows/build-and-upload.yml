@@ -9,21 +9,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    
-    - name: Build Docker image
-      run: docker build -t hngdevops/nextjs-boilerplate:dev -f docker/development/Dockerfile .
-    
-    - name: Save and compress Docker image
-      run: |
-        docker save hngdevops/nextjs-boilerplate:dev > nextjs-dev.tar
-        gzip nextjs-dev.tar
-    
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: docker-image
-        path: nextjs-dev.tar.gz
+      - uses: actions/checkout@v2
+      
+      - name: Build Docker image
+        run: docker build -t hngdevops/nextjs-boilerplate:dev -f docker/development/Dockerfile .
+      
+      - name: Save and compress Docker image
+        run: |
+          docker save hngdevops/nextjs-boilerplate:dev > nextjs-dev.tar
+          gzip nextjs-dev.tar
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: docker-image
+          path: nextjs-dev.tar.gz
 
   copy-and-load-image:
     runs-on: ubuntu-latest
