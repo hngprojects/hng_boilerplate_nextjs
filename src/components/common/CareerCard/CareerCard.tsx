@@ -42,7 +42,7 @@ const CareerCard: FC<CareerCardProperties> = ({
             event.preventDefault();
             onViewDetails();
           }}
-          className="rounded bg-primary px-4 py-2 text-[14px] text-background"
+          className="rounded bg-primary px-4 py-2 text-[14px] text-background hover:bg-destructive"
         >
           View Details
         </Link>
