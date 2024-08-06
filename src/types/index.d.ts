@@ -51,3 +51,12 @@ export interface ApiResponse {
 export interface Profile {
   id_token: string;
 }
+
+export interface AuthResponse {
+  data: User;
+  access_token: string;
+}
+export interface ErrorResponse {
+  message: string;
+  status_code?: number;
+}
