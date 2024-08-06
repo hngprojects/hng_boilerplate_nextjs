@@ -66,6 +66,6 @@ export const organizationSchema = z.object({
 });
 
 export const OtpSchema = z.object({
-  token: z.string().optional(),
+  token: z.string(),
   email: z.string().email().optional(),
 });

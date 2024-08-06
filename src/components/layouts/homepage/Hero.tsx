@@ -77,11 +77,11 @@ const Hero = () => {
                 spaceBetween={1}
                 slidesPerView={1}
                 autoplay={{
-                  delay: 3000,
+                  delay: 5000,
                   disableOnInteraction: false,
                 }}
                 loop={true}
-                speed={4000}
+                speed={1000}
                 data-testid="swiper"
               >
                 <SwiperSlide>

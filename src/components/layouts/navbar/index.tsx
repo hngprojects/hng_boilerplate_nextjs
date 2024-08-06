@@ -36,12 +36,12 @@ const Navbar = () => {
   });
   return (
     <nav
-      className={`${scrolling ? "shadow-md" : "shadow-none"} sticky left-0 right-0 top-0 z-40 bg-background px-2 sm:px-4`}
+      className={`${scrolling ? "shadow-md" : "shadow-none"} sticky left-0 right-0 top-0 z-40 bg-background`}
     >
       <div
         className={cn(
           `relative mx-auto flex w-full max-w-[1200px] items-center gap-x-4 transition-all duration-500 md:justify-between`,
-          scrolling ? "py-2" : "py-4 md:py-9",
+          scrolling ? "py-2" : "py-4 md:py-6",
           status === "authenticated" && "justify-between md:justify-between",
         )}
       >

@@ -65,7 +65,7 @@ export default function Career() {
   };
 
   return (
-    <div className="mx-auto max-w-7xl bg-white px-5 py-10 sm:bg-transparent md:px-10 lg:px-10 xl:px-10">
+    <div className="mx-auto max-w-7xl bg-white px-5 py-5 sm:bg-transparent md:px-10 lg:px-10 xl:px-10">
       <Heading
         tag="Career"
         title="Available {{Jobs}} in Our Company"
