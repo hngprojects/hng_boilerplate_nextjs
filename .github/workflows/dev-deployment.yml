@@ -8,7 +8,7 @@ on:
 
 jobs:   
   deploy_to_dev:
-    if: github.event.repository.fork == false
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     environment:
