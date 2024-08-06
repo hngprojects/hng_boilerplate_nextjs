@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { getFaqs } from "~/actions/externalPages";
-import FaqAccordion from "~/components/layouts/accordion/FaqsAccordion";
+import FaqAccordion from "~/components/layouts/accordion/FaqAccordion";
 import Heading from "~/components/layouts/heading";
 import FaqSkeleton from "~/components/skeleton/faqskeleton";
 import AdditionalInquiriesForm from "./inquiries-form/AdditionalInquiriesForm";

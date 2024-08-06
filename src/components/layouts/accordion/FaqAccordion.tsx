@@ -8,7 +8,7 @@ import {
 } from "~/components/ui/accordion";
 
 interface FaqAccordionProperties {
-  faqs: { question: string; content: string }[]; // Define the shape of faq objects
+  faqs: { question: string; answer: string }[];
   containerClassName?: string;
   triggerClassName?: string;
   contentClassName?: string;
@@ -45,7 +45,7 @@ const FaqAccordion = ({
                 contentClassName,
               )}
             >
-              {faq.content}
+              {faq.answer}
             </AccordionContent>
           </AccordionItem>
         ))}
