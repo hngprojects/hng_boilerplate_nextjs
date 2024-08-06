@@ -2,9 +2,6 @@ import { Session, type DefaultSession } from "next-auth";
 import { JWT } from "next-auth/jwt";
 
 export interface CustomJWT extends JWT {
-  status?: string;
-  status_code?: number;
-  message?: string;
   id?: string;
   email?: string;
   picture?: string;
@@ -14,7 +11,6 @@ export interface CustomJWT extends JWT {
   last_name?: string;
   fullname?: string;
   access_token?: string;
-  expires_in?: string;
 }
 export interface CustomSession extends Session {
   user: {
@@ -27,6 +23,7 @@ export interface CustomSession extends Session {
     role: string;
   };
   expires: DefaultSession["expires"];
+  access_token?: string;
 }
 
 export interface User {
@@ -49,4 +46,8 @@ export interface ApiResponse {
   status_code: number;
   message: string;
   data: ApiResponseData;
+}
+
+export interface Profile {
+  id_token: string;
 }

@@ -22,13 +22,13 @@ import { testimonials } from "./testimonials-data";
 const Testimonials = () => {
   return (
     <div className="bg-background py-[113px]">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl md:px-10 lg:px-10 xl:px-10">
         <div className="flex flex-col items-end md:flex-row md:items-center md:justify-between">
           <div className="w-full pr-0 lg:w-2/3 lg:pr-10">
-            <h1 className="font-inter mb-2 text-4xl font-bold lg:text-5xl">
+            <h1 className="font-inter mb-2 text-3xl font-bold lg:text-4xl">
               Client Testimonials
             </h1>
-            <p className="font-inter text-lg font-normal text-foreground lg:text-xl">
+            <p className="font-inter text-md font-normal text-foreground lg:text-lg">
               {` Don't just take our word for it - see what actual users of our product have to say about their experience.`}
             </p>
           </div>
@@ -58,12 +58,7 @@ const Testimonials = () => {
               nextEl: ".custom-next",
               prevEl: ".custom-prev",
             }}
-            autoplay={{
-              delay: 5000,
-              disableOnInteraction: false,
-            }}
             loop={true}
-            speed={1000}
             breakpoints={{
               450: {
                 slidesPerView: 1,
