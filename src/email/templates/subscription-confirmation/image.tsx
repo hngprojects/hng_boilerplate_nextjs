@@ -9,15 +9,10 @@ import {
   Text,
 } from "@react-email/components";
 
-import Layout from "../_components/layout/layout";
+import Layout from "../../layout/layout";
 
 interface SubscriptionConfirmationProperties {
-  title: string;
   username: string;
-  image: string;
-  expireTime: string;
-  star: string;
-  description: string;
   link: string;
   data: Array<{
     key: string;
@@ -26,135 +21,244 @@ interface SubscriptionConfirmationProperties {
 }
 
 export const SubscriptionConfirmation = ({
-  title,
   username,
-  image,
-  star,
-  description,
   link,
-  expireTime,
   data,
 }: SubscriptionConfirmationProperties) => {
   return (
     <Layout>
-      <Preview>{username}, subsription cancelled </Preview>
-      <Section className="my-[56px]">
-        <Section className="mx-auto flex items-center justify-center md:w-[178px]">
-          <Img src={image} alt="hello" className="h-[100%] w-[100%]" />
-        </Section>
+      <Preview>{username}, subscription confirmed</Preview>
+      <Container style={containerStyle}>
+        <Section style={sectionStyle}>
+          <Section style={imageContainerStyle}>
+            <Img
+              src="https://imgur.com/3p3JubF.png"
+              alt="Subscription Confirmed"
+              style={imageStyle}
+            />
+          </Section>
 
-        <Container className="max-w-[680px] px-[48px] md:px-0">
-          <Section className="my-[40px] flex flex-col items-center justify-center">
-            <Heading
-              as="h5"
-              className="my-0 mb-[56px] text-center text-[24px] leading-[28px] text-[#121212]"
-            >
-              {title}
+          <Section style={textSectionStyle}>
+            <Heading as="h5" style={headingStyle}>
+              Subscription Confirmed
             </Heading>
 
             <Section>
-              <Text className="my-0 text-[16px] font-[600] text-[#121212] md:text-[18px]">
-                Hi {username},
-              </Text>
-              <Text className="text-justify text-[14px] leading-[19.36px] text-[#525252] md:text-[16px]">
-                {description}
+              <Text style={greetingTextStyle}>Hi {username},</Text>
+              <Text style={descriptionTextStyle}>
+                Your payment was processed successfully. Thank you for
+                subscribing to our Bi-monthly feature! We’re excited to have you
+                on board. You’ll receive a separate receipt via email. Below are
+                the details of your subscription:
               </Text>
             </Section>
 
-            <Section className="">
-              <ul className="list-none pl-0">
-                {data?.map((userData, index) => {
-                  return (
-                    <li
-                      key={index}
-                      className="my-[1rem] flex items-start text-[14px] md:text-[16px]"
-                    >
-                      <div className="mr-2 flex-shrink-0">
-                        <Img
-                          src={star}
-                          alt="star"
-                          className="h-[24px] w-[24px]"
-                        />
-                      </div>
-                      <div>
-                        <span className="font-[600] text-[#121212]">
-                          {userData.key}:
-                        </span>
-                        <span className="leading-[19.36px] text-[#525252]">
-                          {" "}
-                          {userData.value}
-                        </span>
-                      </div>
-                    </li>
-                  );
-                })}
+            <Section>
+              <ul style={listStyle}>
+                {data?.map((userData, index) => (
+                  <li key={index} style={listItemStyle}>
+                    <div style={iconContainerStyle}>
+                      <Img
+                        src="https://i.imgur.com/bmprMwh.png"
+                        alt="star"
+                        style={iconStyle}
+                      />
+                    </div>
+                    <div>
+                      <span style={keyStyle}>{userData.key}:</span>
+                      <span style={valueStyle}> {userData.value}</span>
+                    </div>
+                  </li>
+                ))}
               </ul>
             </Section>
           </Section>
-        </Container>
 
-        <Section className="w-full bg-[#F97316] py-[39px] text-center text-[#FAFAFA]">
-          <Container className="max-w-[680px] px-[48px] md:px-0">
-            <Text className="my-0 text-[18px] md:text-[24px]">
-              The estimated expiry date
-            </Text>
-            <Heading as="h2" className="my-0 text-[28px] md:text-[44px]">
-              {expireTime}
-            </Heading>
-          </Container>
-        </Section>
+          <Section style={bannerSectionStyle}>
+            <Container style={bannerContainerStyle}>
+              <Text style={bannerTextStyle}>The estimated expiry date</Text>
+              <Heading as="h2" style={bannerHeadingStyle}>
+                17th September, 2024
+              </Heading>
+            </Container>
+          </Section>
 
-        <Section className="text-center">
-          <Container className="mb-[40px] max-w-[680px] px-[48px] md:px-0">
-            <Text className="text-left leading-[19px] text-[#525252] md:text-[16px]">
+          <Section style={buttonContainerStyle}>
+            <Button target="_blank" style={buttonStyle} href={link}>
+              Learn More About Us
+            </Button>
+          </Section>
+
+          <Section style={textSectionStyle}>
+            <Text>
               If you have any questions or need further assistance, please don’t
               hesitate to reach out to our customer{" "}
-              <Link className="text-[#F97316]" href="/support">
+              <Link style={supportLinkStyle} href="/support">
                 support
               </Link>{" "}
               team or send a mail to us on{" "}
-              <Link className="text-[#F97316]" href="/">
+              <Link style={supportLinkStyle} href="/">
                 boilerplate@gmail.com.
               </Link>{" "}
               We look forward to providing you with an exceptional experience.
               Thank you for choosing our product!
             </Text>
-          </Container>
-          <Section className="mt-[32px] w-[100%] text-center">
-            <Container className="mb-[40px] max-w-[680px] px-[48px] md:px-0">
-              <Button
-                target={"_blank"}
-                className="w-[100%] rounded-[8px] bg-[#F97316] py-[16px] text-[#FAFAFA] md:w-fit md:px-[2rem]"
-                href={link}
-              >
-                Learn More About us
-              </Button>
-            </Container>
           </Section>
-        </Section>
-        <Section className="mt-[40px]">
-          <Container className="max-w-[680px] px-[48px] md:px-0">
-            <Text className="my-0 font-[600] text-[#121212]">
+
+          <Section style={footerSectionStyle}>
+            <Text style={footerTextStyle}>
               Regards,
               <br />
               Boilerplate
             </Text>
-          </Container>
+          </Section>
         </Section>
-      </Section>
+      </Container>
     </Layout>
   );
 };
 
+const containerStyle: React.CSSProperties = {
+  padding: "0 48px",
+  maxWidth: "792px",
+  margin: "0 auto",
+};
+
+const sectionStyle: React.CSSProperties = {
+  margin: "56px 0",
+};
+
+const imageContainerStyle: React.CSSProperties = {
+  margin: "0 auto",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  maxWidth: "fit-content",
+};
+
+const imageStyle: React.CSSProperties = {
+  width: "100%",
+  height: "auto",
+};
+
+const textSectionStyle: React.CSSProperties = {
+  marginTop: "56px",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+};
+
+const headingStyle: React.CSSProperties = {
+  margin: "0 0 56px 0",
+  textAlign: "center",
+  fontSize: "24px",
+  lineHeight: "28px",
+  color: "#121212",
+};
+
+const greetingTextStyle: React.CSSProperties = {
+  fontSize: "16px",
+  fontWeight: "600",
+  color: "#121212",
+  margin: "0 0 32px 0",
+};
+
+const descriptionTextStyle: React.CSSProperties = {
+  fontSize: "16px",
+  color: "#525252",
+  lineHeight: "19.36px",
+  textAlign: "justify",
+  margin: "0 0 16px 0",
+};
+
+const listStyle: React.CSSProperties = {
+  margin: "0",
+  padding: "0",
+  listStyleType: "none",
+};
+
+const listItemStyle: React.CSSProperties = {
+  marginTop: "1rem",
+  display: "flex",
+  alignItems: "start",
+  fontSize: "16px",
+};
+
+const iconContainerStyle: React.CSSProperties = {
+  marginRight: "0.5rem",
+  flexShrink: "0",
+};
+
+const iconStyle: React.CSSProperties = {
+  width: "24px",
+  height: "24px",
+};
+
+const keyStyle: React.CSSProperties = {
+  fontWeight: "600",
+  color: "#121212",
+};
+
+const valueStyle: React.CSSProperties = {
+  color: "#525252",
+};
+
+const buttonContainerStyle: React.CSSProperties = {
+  width: "100%",
+  textAlign: "center",
+  marginTop: "28px",
+};
+
+const buttonStyle: React.CSSProperties = {
+  borderRadius: "8px",
+  backgroundColor: "#F97316",
+  color: "#FAFAFA",
+  padding: "16px",
+  textAlign: "center",
+};
+
+const supportLinkStyle: React.CSSProperties = {
+  color: "#F97316",
+  textDecoration: "underline",
+};
+
+const footerSectionStyle: React.CSSProperties = {
+  marginTop: "28px",
+};
+
+const footerTextStyle: React.CSSProperties = {
+  fontWeight: "600",
+  color: "#121212",
+};
+
+const bannerSectionStyle: React.CSSProperties = {
+  backgroundColor: "#F97316",
+  padding: "39px 0",
+  textAlign: "center",
+  color: "#FAFAFA",
+  marginTop: "28px",
+};
+
+const bannerContainerStyle: React.CSSProperties = {
+  maxWidth: "680px",
+  margin: "0 auto",
+  padding: "0 48px",
+};
+
+const bannerTextStyle: React.CSSProperties = {
+  fontSize: "18px",
+  margin: "0",
+};
+
+const bannerHeadingStyle: React.CSSProperties = {
+  fontSize: "28px",
+  margin: "0",
+};
+
 SubscriptionConfirmation.PreviewProps = {
-  title: "Subscription Confirmation",
   username: "John Doe",
-  image: "https://imgur.com/3p3JubF.png",
-  star: "https://i.imgur.com/bmprMwh.png",
-  expireTime: "17th September, 2024",
   link: "www.boilerplate.com",
-  description:
-    "Your payment was processed successfully. Thank you for subscribing to our Bi-monthly feature! We’re excited to have you on board. You’ll receive a separate receipt via email. Below are the details of your subscription:",
   data: [
     {
       key: "Email Address",

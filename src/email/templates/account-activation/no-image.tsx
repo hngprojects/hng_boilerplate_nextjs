@@ -6,86 +6,126 @@ import {
   Section,
   Text,
 } from "@react-email/components";
+import React from "react";
 
-import Layout from "../_components/layout/layout";
+import Layout from "../../layout/layout";
 
-interface AccountVerificationProperties {
-  title: string;
+interface AccountActivationProperties {
   username: string;
-  description: string;
-  descriptionOne: string;
   link: string;
 }
 
-const AccountVerification = ({
-  title,
-  username,
-  description,
-  descriptionOne,
-  link,
-}: AccountVerificationProperties) => {
+const AccountActivation = ({ username, link }: AccountActivationProperties) => {
   return (
     <Layout>
-      <Preview>t{username}, Activate your account</Preview>
-      <Section className="my-[56px]">
-        <Container className="max-w-[680px] px-[48px] md:px-0">
-          <Section className="flex flex-col items-center justify-center">
-            <Heading
-              as="h5"
-              className="my-0 mb-[56px] text-center text-[24px] leading-[28px] text-[#121212]"
-            >
-              {title}
+      <Preview>{username}, Activate your account</Preview>
+      <Container className="responsive-container" style={containerStyle}>
+        <Section style={sectionStyle}>
+          <Section style={textSectionStyle}>
+            <Heading as="h5" style={headingStyle}>
+              Activate Your Account
             </Heading>
 
             <Section>
-              <Text className="md:text-[18px]mt-[32px] my-0 text-[16px] font-[600] text-[#121212]">
-                Hi {username},
+              <Text style={greetingTextStyle}>Hi {username},</Text>
+              <Text style={descriptionTextStyle}>
+                We recently detected a login attempt to your account from an
+                unfamiliar device. To ensure the security of your account, we
+                haven&apos;t granted access.
               </Text>
-              <Text className="text-justify text-[14px] leading-[19.36px] text-[#525252] md:text-[16px]">
-                {description}
-              </Text>
-              <Text className="text-justify text-[14px] leading-[19.36px] text-[#525252] md:text-[16px]">
-                {descriptionOne}
+              <Text style={descriptionTextStyle}>
+                To activate your account and secure it, please click the button
+                below:
               </Text>
             </Section>
           </Section>
-        </Container>
 
-        <Section className="text-center">
-          <Section className="mt-[32px] w-[100%] text-center">
-            <Container className="mb-[40px] max-w-[680px] px-[48px] md:px-0">
-              <Button
-                target={"_blank"}
-                className="w-[100%] rounded-[8px] bg-[#F97316] py-[16px] text-[#FAFAFA] md:w-fit md:px-[2rem]"
-                href={link}
-              >
-                Activate Account
-              </Button>
-            </Container>
+          <Section style={buttonContainerStyle}>
+            <Button target={"_blank"} style={buttonStyle} href={link}>
+              Activate Account
+            </Button>
           </Section>
-        </Section>
-        <Section className="mt-[28px]">
-          <Container className="max-w-[680px] px-[48px] md:px-0">
-            <Text className="my-0 font-[600] text-[#121212]">
+
+          <Section style={footerSectionStyle}>
+            <Text style={footerTextStyle}>
               Regards,
               <br />
               Boilerplate
             </Text>
-          </Container>
+          </Section>
         </Section>
-      </Section>
+      </Container>
     </Layout>
   );
 };
 
-AccountVerification.PreviewProps = {
-  title: "Activate Your Account",
+const sectionStyle: React.CSSProperties = {
+  marginBottom: "56px",
+};
+
+const containerStyle: React.CSSProperties = {
+  padding: "0 48px",
+  maxWidth: "792px",
+  margin: "0 auto",
+};
+
+const textSectionStyle: React.CSSProperties = {
+  marginTop: "56px",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+};
+
+const headingStyle: React.CSSProperties = {
+  margin: "0 0 56px 0",
+  textAlign: "center",
+  fontSize: "24px",
+  lineHeight: "28px",
+  color: "#121212",
+};
+
+const greetingTextStyle: React.CSSProperties = {
+  fontSize: "16px",
+  fontWeight: "600",
+  color: "#121212",
+  margin: "0 0 32px 0",
+};
+
+const descriptionTextStyle: React.CSSProperties = {
+  fontSize: "16px",
+  color: "#525252",
+  lineHeight: "19.36px",
+  textAlign: "justify",
+  margin: "0 0 16px 0",
+};
+
+const buttonContainerStyle: React.CSSProperties = {
+  width: "100%",
+  textAlign: "center",
+  marginTop: "28px",
+};
+
+const buttonStyle: React.CSSProperties = {
+  borderRadius: "8px",
+  backgroundColor: "#F97316",
+  color: "#FAFAFA",
+  padding: "16px",
+  textAlign: "center",
+};
+
+const footerSectionStyle: React.CSSProperties = {
+  marginTop: "28px",
+};
+
+const footerTextStyle: React.CSSProperties = {
+  fontWeight: "600",
+  color: "#121212",
+};
+
+AccountActivation.PreviewProps = {
   username: "John Doe",
   link: "www.boilerplate.com",
-  description:
-    "We recently detected a login attempt to your account from an unfamiliar device. To ensure the security of your account, we haven't granted access.",
-  descriptionOne:
-    "To activate your account and secure it, please click the button below:",
-} satisfies AccountVerificationProperties;
+} satisfies AccountActivationProperties;
 
-export default AccountVerification;
+export default AccountActivation;
