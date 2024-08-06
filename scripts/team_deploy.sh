@@ -14,5 +14,4 @@ export PORT=$2
 
 cd "$(git rev-parse --show-toplevel)"
 git pull origin dev
-docker pull hngdevops/nextjs-boilerplate:dev
 docker compose --project-name $TEAM_NAME -f docker/team-deploy/docker-compose.yml up -d

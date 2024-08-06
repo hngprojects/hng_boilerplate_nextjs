@@ -2,7 +2,7 @@ name: Coverage Report
 
 on:
   workflow_run:
-    workflows: ["build-lint-test"]
+    workflows: ["Build, Lint and Test"]
     types:
       - completed
 
@@ -15,10 +15,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+
+      - name: Download coverage artifact
+        uses: actions/download-artifact@v4
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           run-id: ${{ github.event.workflow_run.id }}
+          name: coverage-report
+          path: coverage
+
       - name: "Coverage Report"
-        if: always()
         uses: davelosert/vitest-coverage-report-action@v2
