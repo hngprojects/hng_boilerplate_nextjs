@@ -22,7 +22,7 @@ export default function AdditionalInquiriesForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      email: "",
+      email: "", 
       name: "",
       message: "",
     },

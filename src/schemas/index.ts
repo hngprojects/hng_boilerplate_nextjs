@@ -69,3 +69,14 @@ export const OtpSchema = z.object({
   token: z.string(),
   email: z.string().email().optional(),
 });
+
+
+export const ContactSchema = z.object({
+  email: z
+    .string()
+    .min(1, { message: "Email is required" })
+    .email({ message: "Email is invalid" }),
+  name: z.string().min(1, { message: "Name is required" }),
+  phone: z.string().min(1, { message: "Phone is required" }),
+  message: z.string().min(1, { message: "Message is required" }),
+});
