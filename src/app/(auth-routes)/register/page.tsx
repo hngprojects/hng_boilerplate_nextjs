@@ -9,7 +9,6 @@ import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-import { getApiUrl } from "~/actions/getApiUrl";
 import { registerUser, resendOtp, verifyOtp } from "~/actions/register";
 import CustomButton from "~/components/common/common-button/common-button";
 import { Input } from "~/components/common/input";
@@ -43,13 +42,11 @@ const Register = () => {
   const router = useRouter();
   const { toast } = useToast();
   const { status } = useSession();
-  const [apiUrl, setApiUrl] = useState<string>();
   const [isLoading, startTransition] = useTransition();
   const [showPassword, setShowPassword] = useState(false);
   const [showOtp, setShowOtp] = useState(false);
   const [timeLeft, setTimeLeft] = useState<number>(15 * 60);
   const [value, setValue] = useState("");
-  
 
   useEffect(() => {
     if (timeLeft <= 0) return;
@@ -62,19 +59,6 @@ const Register = () => {
   if (status === "authenticated") {
     router.push("/dashboard");
   }
-  useEffect(() => {
-    getApiUrl()
-      .then((url) => {
-        setApiUrl(url);
-      })
-      .catch(() => {
-        toast({
-          title: "Error",
-          description: "Failed to fetch API URL",
-          variant: "destructive",
-        });
-      });
-  }, [toast]);
 
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
