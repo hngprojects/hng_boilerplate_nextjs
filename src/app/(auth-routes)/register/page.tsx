@@ -5,11 +5,10 @@ import { Eye, EyeOff } from "lucide-react";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next-nprogress-bar";
 import Link from "next/link";
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-import { registerUser } from "~/actions/register";
 import { getApiUrl } from "~/actions/getApiUrl";
 import { registerUser, resendOtp, verifyOtp } from "~/actions/register";
 import CustomButton from "~/components/common/common-button/common-button";
@@ -44,11 +43,13 @@ const Register = () => {
   const router = useRouter();
   const { toast } = useToast();
   const { status } = useSession();
+  const [apiUrl, setApiUrl] = useState<string>();
   const [isLoading, startTransition] = useTransition();
   const [showPassword, setShowPassword] = useState(false);
   const [showOtp, setShowOtp] = useState(false);
   const [timeLeft, setTimeLeft] = useState<number>(15 * 60);
   const [value, setValue] = useState("");
+  
 
   useEffect(() => {
     if (timeLeft <= 0) return;
