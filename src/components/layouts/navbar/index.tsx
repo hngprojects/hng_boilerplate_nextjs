@@ -65,13 +65,13 @@ const Navbar = () => {
           <div className="w-fullx hidden items-center justify-end gap-x-4 justify-self-end md:flex lg:gap-x-8">
             <Link
               href="/login"
-              className="grid h-[44px] place-items-center whitespace-nowrap rounded-md border border-primary px-4 text-primary lg:px-8"
+              className="grid h-[44px] place-items-center whitespace-nowrap rounded-md border border-primary px-4 text-primary lg:px-8 hover:bg-subtle"
             >
               Log in
             </Link>
             <Link
               href="/register"
-              className="grid h-[44px] place-items-center whitespace-nowrap rounded-md border border-primary bg-primary px-4 text-white lg:px-8"
+              className="grid h-[44px] place-items-center whitespace-nowrap rounded-md border border-primary bg-primary px-4 text-white lg:px-8 hover:bg-destructive"
             >
               Get Started
             </Link>
