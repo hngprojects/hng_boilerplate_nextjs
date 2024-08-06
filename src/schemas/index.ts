@@ -70,7 +70,6 @@ export const OtpSchema = z.object({
   email: z.string().email().optional(),
 });
 
-
 export const ContactSchema = z.object({
   email: z
     .string()

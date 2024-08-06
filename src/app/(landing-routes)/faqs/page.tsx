@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { getFaqs } from "~/actions/externalPages";
 import FaqAccordion from "~/components/layouts/accordion/FaqsAccordion";
@@ -8,19 +8,28 @@ import Heading from "~/components/layouts/heading";
 import FaqSkeleton from "~/components/skeleton/faqskeleton";
 import AdditionalInquiriesForm from "./inquiries-form/AdditionalInquiriesForm";
 
-const faq: React.FC = () => {
-  const [faqs, setFaqs] = useState<any>([]);
+// Define a type for the FAQ items
+interface FaqItem {
+  id: number;
+  question: string;
+  answer: string;
+}
+
+const Faq = () => {
+  const [faqs, setFaqs] = useState<FaqItem[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // get faqs
+  // Get FAQs
   useEffect(() => {
     const fetchFaqs = async () => {
       const result = await getFaqs();
-      if(result?.status === 200 || result?.status === 201){
-        setFaqs(result?.data?.data);
+      if (result && (result.status === 200 || result.status === 201)) {
+        setFaqs(result.data.data);
+      } else {
+        setFaqs([]);
       }
-      
-      setLoading(false)
+
+      setLoading(false);
     };
     fetchFaqs();
   }, []);
@@ -58,4 +67,4 @@ const faq: React.FC = () => {
   );
 };
 
-export default faq;
+export default Faq;
