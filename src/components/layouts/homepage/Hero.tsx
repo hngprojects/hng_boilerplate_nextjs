@@ -42,7 +42,7 @@ const Hero = () => {
 
             <Link
               href="/register"
-              className="rounded bg-primary px-8 py-4 text-background"
+              className="rounded bg-primary px-8 py-4 text-background hover:bg-destructive"
               data-testid="get-started"
             >
               Get Started
