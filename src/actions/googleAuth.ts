@@ -17,7 +17,6 @@ const googleAuth = async (profile: Profile): Promise<AuthResponse> => {
       id_token: profile.id_token,
     });
 
-
     return {
       data: response.data.user,
       access_token: response.data.access_token,
