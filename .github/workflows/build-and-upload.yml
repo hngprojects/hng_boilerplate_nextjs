@@ -24,3 +24,39 @@ jobs:
       with:
         name: docker-image
         path: nextjs-dev.tar.gz
+
+  copy-and-load-image:
+    runs-on: ubuntu-latest
+    if: github.event.repository.fork == false
+
+    environment:
+      name: "dev"
+      url: ${{ vars.URL }}
+      
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: docker-image
+          path: .
+      
+      - name: Copy to server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          source: "nextjs-dev.tar.gz"
+          target: "/tmp/nextjs"
+  
+      - name: Load image in server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd /tmp/nextjs
+            gunzip nextjs-dev.tar.gz
+            docker load < nextjs-dev.tar
+            rm -f nextjs-dev.tar
