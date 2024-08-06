@@ -20,7 +20,7 @@ const Join = () => {
 
         <Link
           href="/about-us"
-          className="mx-auto rounded-md bg-primary px-14 py-4 text-background"
+          className="mx-auto rounded-md bg-primary px-14 py-4 text-background hover:bg-destructive"
         >
           View
         </Link>
