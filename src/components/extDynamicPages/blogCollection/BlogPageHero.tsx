@@ -24,6 +24,7 @@ const HeroSection: React.FC = () => {
           size="lg"
           ariaLabel="Read More"
           href="#"
+          className="hover:bg-destructive"
         >
           Read More
         </CustomButton>

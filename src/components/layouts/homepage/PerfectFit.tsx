@@ -18,7 +18,7 @@ const PerfectFit = () => {
         </p>
         <Link
           href="/pricing"
-          className="rounded-md border-none bg-primary px-7 py-3 text-background"
+          className="rounded-md border-none bg-primary px-7 py-3 text-background hover:bg-destructive"
           data-testid="pricing"
         >
           See Our Pricing Plan
