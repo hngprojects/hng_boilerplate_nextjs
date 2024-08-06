@@ -1,12 +1,30 @@
 name: Dev Deployment
 
 on:
-  workflow_run:
-    workflows: ["Build and Push"]
-    types:
-      - completed
+  push:
+    branches:
+      - dev
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Build Docker image
+      run: docker build -t hngdevops/nextjs-boilerplate:dev -f docker/development/Dockerfile .
+    
+    - name: Save and compress Docker image
+      run: |
+        docker save hngdevops/nextjs-boilerplate:dev > nextjs-dev.tar
+        gzip nextjs-dev.tar
+    
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: docker-image
+        path: nextjs-dev.tar.gz
+        
   deploy_to_dev:
     if: github.event.repository.fork == false
     runs-on: ubuntu-latest
@@ -16,12 +34,32 @@ jobs:
       url: ${{ vars.URL }}
 
     steps:
-      - name: Deploy to dev environment
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          script: |
-            cd hng_boilerplate_nextjs
-            ./scripts/dev_deploy.sh
+    - name: Download artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: docker-image
+        path: .
+    
+    - name: Copy to server
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        source: "nextjs-dev.tar.gz"
+        target: "/tmp/nextjs"
+
+    - name: Deploy on server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        script: |
+          cd /tmp/nextjs
+          gunzip nextjs-dev.tar.gz
+          docker load < nextjs-dev.tar
+          rm -f nextjs-dev.tar
+          cd /home/${{ secrets.USERNAME }}/hng_boilerplate_nextjs
+          chmod +x ./scripts/*.sh
+          ./scripts/dev_deploy.sh
