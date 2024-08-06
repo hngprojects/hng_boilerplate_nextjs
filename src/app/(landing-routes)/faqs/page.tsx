@@ -1,39 +1,70 @@
-import React from "react";
+"use client";
 
-import Faqs from "~/components/common/Faqs";
+import { useEffect, useState } from "react";
+
+import { getFaqs } from "~/actions/externalPages";
+import FaqAccordion from "~/components/layouts/accordion/FaqAccordion";
+import Heading from "~/components/layouts/heading";
+import FaqSkeleton from "~/components/skeleton/faqskeleton";
 import AdditionalInquiriesForm from "./inquiries-form/AdditionalInquiriesForm";
 
-const faq: React.FC = () => {
+// Define a type for the FAQ items
+interface FaqItem {
+  id: number;
+  question: string;
+  answer: string;
+}
+
+const Faq = () => {
+  const [faqs, setFaqs] = useState<FaqItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // Get FAQs
+  useEffect(() => {
+    const fetchFaqs = async () => {
+      const result = await getFaqs();
+      if (result && (result.status === 200 || result.status === 201)) {
+        setFaqs(result.data.data);
+      } else {
+        setFaqs([]);
+      }
+
+      setLoading(false);
+    };
+    fetchFaqs();
+  }, []);
+
   return (
-    <div>
-      <main className="mt-8 flex min-h-screen flex-col px-[7.5rem] max-lg:px-10 max-md:px-5">
-        <p className="text-neutral-dark-1 text-opacity-50 max-md:order-2 max-md:hidden">
-          Contact Us / <span className="font-normal text-primary">FAQ</span>
-        </p>
-        <div className="flex flex-col gap-16">
-          <p className="hidden text-neutral-dark-1 text-opacity-50 max-md:order-2 max-md:block">
-            Contact Us &gt;{" "}
-            <span className="font-normal text-primary">FAQ</span>
-          </p>
-          <div className="mb-20 mt-16 flex flex-col items-center justify-center gap-3 max-2xl:mb-4 max-lg:mb-12 max-md:order-1 max-md:mb-8 max-md:mt-6">
-            <p className="text-center text-5xl font-bold text-neutral-dark-1 max-md:text-3xl">
-              Frequently asked questions
-            </p>
-            <p className="text-2xl font-normal text-neutral-dark-1 max-md:hidden">
-              Questions you might ask about our product
-            </p>
-            <p className="hidden text-xl font-normal text-neutral-dark-1 max-md:block">
-              Achieve your dreams with us today
-            </p>
-          </div>
-          <section className="flex w-full flex-col justify-center max-md:order-3">
-            <Faqs />
-            <AdditionalInquiriesForm />
-          </section>
+    <div className="bg-white">
+      <main className="mx-auto max-w-7xl bg-white px-5 py-10 sm:bg-transparent md:px-10 lg:px-10 xl:px-10">
+        <Heading
+          tag="FAQS"
+          title="Frequently {{asked}} questions"
+          content="Questions you might ask about our product"
+        />
+
+        <div className="mx-auto mb-40 mt-4 max-w-xl">
+          {loading ? (
+            <FaqSkeleton />
+          ) : (
+            <>
+              {faqs?.length === 0 ? (
+                <p className="py-20 text-center">No results found.</p>
+              ) : (
+                <FaqAccordion
+                  faqs={faqs}
+                  containerClassName="sm:w-full px-4 py-1 bg-white"
+                  data-testid="faq-accordion"
+                />
+              )}
+            </>
+          )}
         </div>
+
+        <AdditionalInquiriesForm />
       </main>
     </div>
   );
 };
 
-export default faq;
+export default Faq;
