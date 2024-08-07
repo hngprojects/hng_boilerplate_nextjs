@@ -50,7 +50,6 @@ export default {
       },
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
   },
