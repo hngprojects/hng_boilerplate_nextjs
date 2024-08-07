@@ -2,7 +2,7 @@
 
 import axios from "axios";
 
-import { AuthResponse, ErrorResponse, Profile } from "~/types";
+import { AuthResponse, ErrorResponse, Profile } from "~/types/index.";
 
 const apiUrl = process.env.API_URL;
 
