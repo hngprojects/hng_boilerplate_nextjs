@@ -72,9 +72,9 @@ export default {
           return token;
         }
 
-        const response = await googleAuth(account?.id_token);
+        const response = await googleAuth({ id_token: account?.id_token });
 
-        if (!response || !("data" in response)) {
+        if (!response.data) {
           token = {
             email: profile?.email,
             name: profile?.given_name,
@@ -145,6 +145,7 @@ export default {
   },
   pages: {
     signIn: "/login",
+    error: "/error",
   },
   trustHost: true,
 } satisfies NextAuthConfig;

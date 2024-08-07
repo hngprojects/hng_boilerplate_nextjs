@@ -2,35 +2,22 @@
 
 import axios from "axios";
 
-import { AuthResponse, ErrorResponse } from "~/types";
+import { AuthResponse, ErrorResponse, Profile } from "~/types";
 
 const apiUrl = process.env.API_URL;
 
-const googleAuth = async (
-  id_token: string,
-): Promise<AuthResponse | ErrorResponse> => {
+const googleAuth = async (profile: Profile): Promise<AuthResponse> => {
   try {
     const response = await axios.post(`${apiUrl}/api/v1/auth/google`, {
-      id_token: id_token,
+      id_token: profile.id_token,
     });
 
     return {
       data: response.data.user,
       access_token: response.data.access_token,
     };
-  } catch (error) {
-    return {
-      message:
-        axios.isAxiosError(error) &&
-        error.response &&
-        error.response.data.message
-          ? error.response.data.message
-          : "Something went wrong",
-      status_code:
-        axios.isAxiosError(error) && error.response
-          ? error.response.status
-          : undefined,
-    };
+  } catch {
+    throw new Error("Authentication failed");
   }
 };
 

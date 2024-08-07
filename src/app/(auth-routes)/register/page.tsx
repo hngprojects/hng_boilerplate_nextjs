@@ -74,7 +74,7 @@ const Register = () => {
     startTransition(async () => {
       await registerUser(values).then(async (data) => {
         if (data.status === 201) {
-          setShowOtp(true);
+          router.push("/login");
         }
 
         toast({
