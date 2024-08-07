@@ -3,97 +3,273 @@ import {
   Container,
   Heading,
   Img,
+  Link,
   Preview,
   Section,
   Text,
 } from "@react-email/components";
 
-import Layout from "../_components/layout/layout";
+import { Separator } from "~/components/ui/separator";
+import {
+  ITemplateTableProperties,
+  TemplateTable,
+} from "../_components/template-table/TemplateTable";
+import Layout from "../../layout/layout";
 
 interface InvoiceTemplateProperties {
-  title: string;
   username: string;
-  image: string;
-  description: string;
-  descriptionOne: string;
   link: string;
+  tableData: ITemplateTableProperties;
+  tableDataTwo: ITemplateTableProperties;
+  tableDataThree: ITemplateTableProperties;
 }
 
-const InvoiceTemplate = ({
-  title,
+export const InvoiceTemplate = ({
   username,
-  image,
-  description,
-  descriptionOne,
   link,
+  tableData,
+  tableDataTwo,
+  tableDataThree,
 }: InvoiceTemplateProperties) => {
   return (
     <Layout>
-      <Preview>t{username}, your invoice reciept.</Preview>
-      <Section className="my-[56px]">
-        <Section className="mx-auto flex items-center justify-center md:w-[316px]">
-          <Img src={image} alt="hello" className="h-[100%] w-[100%]" />
-        </Section>
+      <Preview>{username}, your invoice receipt.</Preview>
+      <Container style={containerStyle}>
+        <Section style={sectionStyle}>
+          <Section style={imageContainerStyle}>
+            <Img
+              src="https://imgur.com/a4XiXxo.png"
+              alt="Invoice Image"
+              style={imageStyle}
+            />
+          </Section>
 
-        <Container className="max-w-[680px] px-[48px] md:px-0">
-          <Section className="mt-[56px] flex flex-col items-center justify-center">
-            <Heading
-              as="h5"
-              className="my-0 mb-[56px] text-center text-[24px] leading-[28px] text-[#121212]"
-            >
-              {title}
+          <Section style={textSectionStyle}>
+            <Heading as="h5" style={headingStyle}>
+              Invoice
             </Heading>
 
             <Section>
-              <Text className="md:text-[18px]mt-[32px] my-0 text-[16px] font-[600] text-[#121212]">
-                Hi {username},
-              </Text>
-              <Text className="text-justify text-[14px] leading-[19.36px] text-[#525252] md:text-[16px]">
-                {description}
-              </Text>
-              <Text className="text-justify text-[14px] leading-[19.36px] text-[#525252] md:text-[16px]">
-                {descriptionOne}
+              <Text style={greetingTextStyle}>Hi {username},</Text>
+              <Text style={descriptionTextStyle}>
+                We hope you are doing well. Thank you for your recent purchase
+                from Boilerplate. Please find your invoice attached to this
+                email.
               </Text>
             </Section>
           </Section>
-        </Container>
 
-        <Section className="text-center">
-          <Section className="mt-[32px] w-[100%] text-center">
-            <Container className="mb-[40px] max-w-[680px] px-[48px] md:px-0">
-              <Button
-                target={"_blank"}
-                className="w-[100%] rounded-[8px] bg-[#F97316] py-[16px] text-[#FAFAFA] md:w-fit md:px-[2rem]"
-                href={link}
-              >
-                Activate Account
-              </Button>
-            </Container>
+          <Section style={tableContainerStyle}>
+            <TemplateTable title={tableData.title} data={tableData.data} />
           </Section>
-        </Section>
-        <Section className="mt-[28px]">
-          <Container className="max-w-[680px] px-[48px] md:px-0">
-            <Text className="my-0 font-[600] text-[#121212]">
+
+          <Section style={tableContainerStyle}>
+            <TemplateTable
+              title={tableDataTwo.title}
+              data={tableDataTwo.data}
+            />
+          </Section>
+          <Separator className="my-[16px]" />
+          <Section style={tableContainerStyle}>
+            <TemplateTable
+              title={tableDataThree.title}
+              data={tableDataThree.data}
+            />
+          </Section>
+
+          <Section style={buttonContainerStyle}>
+            <Button target={"_blank"} style={buttonStyle} href={link}>
+              Pay Now
+            </Button>
+          </Section>
+
+          <Section style={linkContainerStyle}>
+            <Text style={copyLinkTextStyle}>
+              Or copy this link:
+              <Link style={linkStyle} href={link}>
+                {link}
+              </Link>
+            </Text>
+          </Section>
+
+          <Section style={footerSectionStyle}>
+            <Text style={footerTextStyle}>
               Regards,
               <br />
               Boilerplate
             </Text>
-          </Container>
+          </Section>
         </Section>
-      </Section>
+      </Container>
     </Layout>
   );
 };
 
+const containerStyle: React.CSSProperties = {
+  padding: "0 48px",
+  maxWidth: "792px",
+  margin: "0 auto",
+};
+
+const sectionStyle: React.CSSProperties = {
+  margin: "56px 0",
+};
+
+const imageContainerStyle: React.CSSProperties = {
+  margin: "0 auto",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  maxWidth: "fit-content",
+};
+
+const imageStyle: React.CSSProperties = {
+  width: "100%",
+  height: "auto",
+};
+
+const textSectionStyle: React.CSSProperties = {
+  marginTop: "56px",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+};
+
+const headingStyle: React.CSSProperties = {
+  margin: "0 0 56px 0",
+  textAlign: "center",
+  fontSize: "24px",
+  lineHeight: "28px",
+  color: "#121212",
+};
+
+const greetingTextStyle: React.CSSProperties = {
+  fontSize: "16px",
+  fontWeight: "600",
+  color: "#121212",
+  margin: "0 0 32px 0",
+};
+
+const descriptionTextStyle: React.CSSProperties = {
+  fontSize: "16px",
+  color: "#525252",
+  lineHeight: "19.36px",
+  textAlign: "justify",
+  margin: "0 0 16px 0",
+};
+
+const tableContainerStyle: React.CSSProperties = {
+  margin: "28px 0",
+};
+
+const buttonContainerStyle: React.CSSProperties = {
+  width: "100%",
+  textAlign: "center",
+  marginTop: "28px",
+};
+
+const buttonStyle: React.CSSProperties = {
+  borderRadius: "8px",
+  backgroundColor: "#F97316",
+  color: "#FAFAFA",
+  padding: "16px",
+  textAlign: "center",
+  width: "150px",
+};
+
+const linkContainerStyle: React.CSSProperties = {
+  marginTop: "40px",
+  textAlign: "left",
+};
+
+const copyLinkTextStyle: React.CSSProperties = {
+  fontSize: "1rem",
+  lineHeight: "1.5rem",
+  color: "#525252",
+};
+
+const linkStyle: React.CSSProperties = {
+  color: "#F97316",
+  textDecoration: "underline",
+  wordBreak: "break-all",
+};
+
+const footerSectionStyle: React.CSSProperties = {
+  marginTop: "28px",
+};
+
+const footerTextStyle: React.CSSProperties = {
+  fontWeight: "600",
+  color: "#121212",
+};
+
 InvoiceTemplate.PreviewProps = {
-  title: "Invoice",
   username: "John Doe",
-  image: "https://imgur.com/a4XiXxo.png",
   link: "www.boilerplate.com",
-  description:
-    "We hope you are doing well. Thank you for your recent purchase from Boilerplate. Please find your invoice attached to this email.",
-  descriptionOne:
-    "To activate your account and secure it, please click the button below:",
+  tableData: {
+    title: "Invoice Details",
+    data: [
+      {
+        key: "Invoice Number",
+        values: ["#EJ78465"],
+      },
+      {
+        key: "Date of Issue",
+        values: ["July 17, 2024"],
+      },
+      {
+        key: "Due Date",
+        values: ["July 19, 2024"],
+      },
+    ],
+  },
+  tableDataTwo: {
+    title: "Order Summary",
+    data: [
+      {
+        key: "Item",
+        values: ["5", "$200"],
+      },
+      {
+        key: "Item",
+        values: ["3", "$120"],
+      },
+      {
+        key: "VAT",
+        values: ["10%", "$32"],
+      },
+      {
+        key: "Total",
+        values: ["100%", "$352"],
+      },
+    ],
+  },
+  tableDataThree: {
+    title: "Payment Details",
+    data: [
+      {
+        key: "Amount",
+        values: ["$352"],
+      },
+      {
+        key: "Payment Method",
+        values: ["Bank"],
+      },
+      {
+        key: "Bank Name",
+        values: ["Guaranty Trust Bank"],
+      },
+      {
+        key: "Account Number",
+        values: ["0115917164"],
+      },
+      {
+        key: "Account Name",
+        values: ["Kingsley Solomon Ifijeh"],
+      },
+    ],
+  },
 } satisfies InvoiceTemplateProperties;
 
 export default InvoiceTemplate;

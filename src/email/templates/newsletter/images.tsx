@@ -9,7 +9,7 @@ import {
   Text,
 } from "@react-email/components";
 
-import Layout from "../_components/layout/layout";
+import Layout from "../../layout/layout";
 
 interface IProperties {
   mainHeading: string;

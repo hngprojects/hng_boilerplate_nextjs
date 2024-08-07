@@ -8,141 +8,223 @@ import {
   Text,
 } from "@react-email/components";
 
-import Layout from "../_components/layout/layout";
+import Layout from "../../layout/layout";
 
 interface IProperties {
-  mainHeading: string;
-  subHeading: string;
-  welcomeMessage: string;
   username: string;
-  offer: string;
   link: string;
-  star: string;
 }
 
 export default function WelcomeEmail(properties: IProperties) {
-  const {
-    link,
-    star,
-    offer,
-    username,
-    mainHeading,
-    subHeading,
-    welcomeMessage,
-  } = properties;
+  const { link, username } = properties;
 
   return (
     <Layout>
-      <Preview>{username}, welcome to Boilerplate.</Preview>
-      <Section className="w-full max-w-[678px] py-12 md:py-14">
-        <Container className="max-w-[680px] px-[48px] md:px-0">
-          <Section className="flex flex-col items-center justify-center">
-            <Section className="mb-[56px] text-center">
-              <Heading
-                as="h5"
-                className="my-0 text-center text-[24px] leading-[28px] text-[#121212]"
-              >
-                {mainHeading}
-              </Heading>
-              <Text className="my-[12px] text-[1rem] md:text-[18px]">
-                {subHeading}
-              </Text>
-            </Section>
-
-            <Section>
-              <Text className="text-[16px] font-[600] text-[#121212] md:text-[18px]">
-                Hi {username},
-              </Text>
-              <Text className="text-justify text-[14px] leading-[19.36px] text-[#525252] md:text-[16px]">
-                {welcomeMessage}
-              </Text>
-            </Section>
-
-            <Section className="">
-              <Heading
-                as="h6"
-                className="mb-[20px] mt-[16px] text-[16px] text-[#121212] md:text-[18px]"
-              >
-                Here’s what you can look forward to
-              </Heading>
-              <ul className="list-none pl-0">
-                <li className="flex items-start text-[14px] md:text-[16px]">
-                  <div className="mr-2 flex-shrink-0">
-                    <Img src={star} alt="star" className="h-[24px] w-[24px]" />
-                  </div>
-                  <div>
-                    <span className="font-[600] text-[#121212]">
-                      Exclusive Offers:{" "}
-                    </span>
-                    <span className="leading-[19.36px] text-[#525252]">
-                      {offer}
-                    </span>
-                  </div>
-                </li>
-                <li className="mt-[20px] flex items-start text-[14px] md:text-[16px]">
-                  <div className="mr-2 flex-shrink-0">
-                    <Img src={star} alt="star" className="h-[24px] w-[24px]" />
-                  </div>
-                  <div>
-                    <span className="font-[600] text-[#121212]">
-                      Exclusive Offers:{" "}
-                    </span>
-                    <span className="leading-[19.36px] text-[#525252]">
-                      {offer}
-                    </span>
-                  </div>
-                </li>
-                <li className="mt-[20px] flex items-start text-[14px] md:text-[16px]">
-                  <div className="mr-2 flex-shrink-0">
-                    <Img src={star} alt="star" className="h-[24px] w-[24px]" />
-                  </div>
-                  <div>
-                    <span className="font-[600] text-[#121212]">
-                      Exclusive Offers:{" "}
-                    </span>
-                    <span className="leading-[19.36px] text-[#525252]">
-                      {offer}
-                    </span>
-                  </div>
-                </li>
-              </ul>
-            </Section>
-            <Section className="mt-[32px] w-[100%] text-center">
-              <Container className="mb-[40px] max-w-[680px] md:px-0">
-                <Button
-                  target={"_blank"}
-                  className="w-[100%] rounded-[8px] bg-[#F97316] py-[16px] text-[#FAFAFA] md:w-fit md:px-[2rem]"
-                  href={link}
-                >
-                  Learn More About us
-                </Button>
-              </Container>
-            </Section>
+      <Preview>{username} welcome to Boilerplate</Preview>
+      <Container style={containerStyle}>
+        <Section style={sectionStyle}>
+          <Section style={headingSectionStyle}>
+            <Heading as="h5" style={headingStyle}>
+              Welcome to Boilerplate
+            </Heading>
+            <Text style={subHeadingStyle}>Thanks for signing up</Text>
           </Section>
-        </Container>
 
-        <Section className="">
-          <Container className="max-w-[680px] px-[48px] md:px-0">
-            <Text className="my-0 font-[600] text-[#121212]">
+          <Section>
+            <Text style={greetingTextStyle}>Hi {username},</Text>
+            <Text style={descriptionTextStyle}>
+              We&apos;re thrilled to have you join us. Experience quality and
+              innovation like never before. Our product is made to fit your
+              needs and make your life easier.
+            </Text>
+          </Section>
+
+          <Section style={listSectionStyle}>
+            <Heading as="h6" style={listHeadingStyle}>
+              Here’s what you can look forward to
+            </Heading>
+            <ul style={listStyle}>
+              <li style={listItemStyle}>
+                <div style={iconContainerStyle}>
+                  <Img
+                    src="https://i.imgur.com/bmprMwh.png"
+                    alt="star"
+                    style={iconStyle}
+                  />
+                </div>
+                <div>
+                  <span style={listItemTitleStyle}>Exclusive Offers: </span>
+                  <span style={listItemDescriptionStyle}>
+                    Enjoy special promotions and discounts available only to our
+                    members.
+                  </span>
+                </div>
+              </li>
+              <li style={listItemStyle}>
+                <div style={iconContainerStyle}>
+                  <Img
+                    src="https://i.imgur.com/bmprMwh.png"
+                    alt="star"
+                    style={iconStyle}
+                  />
+                </div>
+                <div>
+                  <span style={listItemTitleStyle}>Exclusive Offers: </span>
+                  <span style={listItemDescriptionStyle}>
+                    Enjoy special promotions and discounts available only to our
+                    members.
+                  </span>
+                </div>
+              </li>
+              <li style={listItemStyle}>
+                <div style={iconContainerStyle}>
+                  <Img
+                    src="https://i.imgur.com/bmprMwh.png"
+                    alt="star"
+                    style={iconStyle}
+                  />
+                </div>
+                <div>
+                  <span style={listItemTitleStyle}>Exclusive Offers: </span>
+                  <span style={listItemDescriptionStyle}>
+                    Enjoy special promotions and discounts available only to our
+                    members.
+                  </span>
+                </div>
+              </li>
+            </ul>
+          </Section>
+
+          <Section style={buttonContainerStyle}>
+            <Button target={"_blank"} style={buttonStyle} href={link}>
+              Learn More About us
+            </Button>
+          </Section>
+
+          <Section style={footerSectionStyle}>
+            <Text style={footerTextStyle}>
               Regards,
               <br />
               Boilerplate
             </Text>
-          </Container>
+          </Section>
         </Section>
-      </Section>
+      </Container>
     </Layout>
   );
 }
 
+const sectionStyle: React.CSSProperties = {
+  width: "100%",
+  maxWidth: "678px",
+  padding: "56px 0",
+};
+
+const containerStyle: React.CSSProperties = {
+  maxWidth: "792px",
+  padding: "0 48px",
+  margin: "0 auto",
+};
+
+const headingSectionStyle: React.CSSProperties = {
+  marginBottom: "56px",
+  textAlign: "center",
+};
+
+const headingStyle: React.CSSProperties = {
+  margin: "0",
+  fontSize: "24px",
+  lineHeight: "28px",
+  color: "#121212",
+};
+
+const subHeadingStyle: React.CSSProperties = {
+  marginTop: "12px",
+  fontSize: "1rem",
+  color: "#121212",
+};
+
+const greetingTextStyle: React.CSSProperties = {
+  fontSize: "16px",
+  fontWeight: "600",
+  color: "#121212",
+};
+
+const descriptionTextStyle: React.CSSProperties = {
+  fontSize: "16px",
+  color: "#525252",
+  lineHeight: "19.36px",
+  textAlign: "justify",
+  margin: "16px 0",
+};
+
+const listSectionStyle: React.CSSProperties = {
+  marginTop: "32px",
+  width: "100%",
+};
+
+const listHeadingStyle: React.CSSProperties = {
+  marginBottom: "20px",
+  marginTop: "16px",
+  fontSize: "16px",
+  color: "#121212",
+};
+
+const listStyle: React.CSSProperties = {
+  listStyle: "none",
+  padding: "0",
+};
+
+const listItemStyle: React.CSSProperties = {
+  display: "flex",
+  alignItems: "start",
+  fontSize: "14px",
+  marginBottom: "20px",
+};
+
+const iconContainerStyle: React.CSSProperties = {
+  marginRight: "8px",
+};
+
+const iconStyle: React.CSSProperties = {
+  width: "24px",
+  height: "24px",
+};
+
+const listItemTitleStyle: React.CSSProperties = {
+  fontWeight: "600",
+  color: "#121212",
+};
+
+const listItemDescriptionStyle: React.CSSProperties = {
+  color: "#525252",
+  lineHeight: "19.36px",
+};
+
+const buttonContainerStyle: React.CSSProperties = {
+  textAlign: "center",
+  marginTop: "32px",
+};
+
+const buttonStyle: React.CSSProperties = {
+  borderRadius: "8px",
+  backgroundColor: "#F97316",
+  color: "#FAFAFA",
+  padding: "16px",
+  textAlign: "center",
+  width: "fit-content",
+};
+
+const footerSectionStyle: React.CSSProperties = {
+  marginTop: "32px",
+};
+
+const footerTextStyle: React.CSSProperties = {
+  fontWeight: "600",
+  color: "#121212",
+};
+
 WelcomeEmail.PreviewProps = {
-  offer:
-    "Enjoy special promotions and discounts available only to our members.",
-  link: "www.boilerplate.com",
   username: "John Doe",
-  mainHeading: "Welcome to Boilerplate",
-  subHeading: "Thanks for signing up",
-  star: "https://i.imgur.com/bmprMwh.png",
-  welcomeMessage:
-    "We're thrilled to have you join us. Experience quality and innovation like never before. Our product is made to fit your needs and make your life easier.",
+  link: "www.boilerplate.com",
 } satisfies IProperties;

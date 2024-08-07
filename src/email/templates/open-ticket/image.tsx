@@ -3,52 +3,76 @@ import {
   Container,
   Heading,
   Img,
+  Link,
   Preview,
   Section,
   Text,
 } from "@react-email/components";
 
+import { TemplateTable } from "../_components/template-table/TemplateTable";
 import Layout from "../../layout/layout";
 
-interface ActivationLinkSentProperties {
+interface InvoiceTemplateProperties {
   username: string;
   link: string;
+  tableData: {
+    data: {
+      key: string;
+      values: JSX.Element[];
+    }[];
+  };
 }
 
-const ActivationLinkSent = ({
+export const InvoiceTemplate = ({
   username,
   link,
-}: ActivationLinkSentProperties) => {
+  tableData,
+}: InvoiceTemplateProperties) => {
   return (
     <Layout>
-      <Preview>{username}, account link sent.</Preview>
-      <Container className="responsive-container" style={containerStyle}>
+      <Preview>{username}, your invoice receipt</Preview>
+      <Container style={containerStyle}>
         <Section style={sectionStyle}>
           <Section style={imageContainerStyle}>
             <Img
-              src="https://imgur.com/nfyZfDY.png"
-              alt="Activation"
+              src="https://imgur.com/dSnsvKy.png"
+              alt="Invoice"
               style={imageStyle}
             />
           </Section>
 
           <Section style={textSectionStyle}>
             <Heading as="h5" style={headingStyle}>
-              New Activation Link Sent
+              Your ticket has been opened
             </Heading>
 
             <Section>
               <Text style={greetingTextStyle}>Hi {username},</Text>
               <Text style={descriptionTextStyle}>
-                We have sent you a new activation link for your Boilerplate
-                account. Please click the button below to activate your account:
+                Thank you for contacting our support team. A support ticket has
+                now been opened for your request. You will be notified when a
+                response is made by email. The details of your ticket are shown
+                below.
               </Text>
             </Section>
           </Section>
 
+          <Section style={tableContainerStyle}>
+            <TemplateTable data={tableData.data} />
+          </Section>
+
+          <Section style={linkSectionStyle}>
+            <Text style={linkTextStyle}>
+              You can easily review your ticket{" "}
+              <Link style={linkStyle} href={link}>
+                here
+              </Link>
+            </Text>
+          </Section>
+
           <Section style={buttonContainerStyle}>
-            <Button target="_blank" style={buttonStyle} href={link}>
-              Activate My Account
+            <Button target={"_blank"} style={buttonStyle} href={link}>
+              Learn More About Us
             </Button>
           </Section>
 
@@ -119,6 +143,25 @@ const descriptionTextStyle: React.CSSProperties = {
   margin: "0 0 16px 0",
 };
 
+const tableContainerStyle: React.CSSProperties = {
+  marginBottom: "28px",
+};
+
+const linkSectionStyle: React.CSSProperties = {
+  marginTop: "56px",
+  textAlign: "center",
+};
+
+const linkTextStyle: React.CSSProperties = {
+  fontSize: "16px",
+  color: "#121212",
+};
+
+const linkStyle: React.CSSProperties = {
+  color: "#F97316",
+  textDecoration: "underline",
+};
+
 const buttonContainerStyle: React.CSSProperties = {
   width: "100%",
   textAlign: "center",
@@ -142,9 +185,53 @@ const footerTextStyle: React.CSSProperties = {
   color: "#121212",
 };
 
-ActivationLinkSent.PreviewProps = {
+InvoiceTemplate.PreviewProps = {
   username: "John Doe",
   link: "www.boilerplate.com",
-} satisfies ActivationLinkSentProperties;
+  tableData: {
+    data: [
+      {
+        key: "Ticket ID",
+        values: [
+          <Text key="ticket-id" className="m-0">
+            BP01733
+          </Text>,
+        ],
+      },
+      {
+        key: "Subject",
+        values: [
+          <Text key="subject" className="m-0">
+            Account Login issue
+          </Text>,
+        ],
+      },
+      {
+        key: "Description",
+        values: [
+          <Text key="description" className="m-0">
+            I tried to log into my account and I have been getting errors
+          </Text>,
+        ],
+      },
+      {
+        key: "Priority",
+        values: [
+          <Text key="priority" className="m-0 text-destructive">
+            High
+          </Text>,
+        ],
+      },
+      {
+        key: "Status",
+        values: [
+          <Text key="status" className="m-0 text-success">
+            Open
+          </Text>,
+        ],
+      },
+    ],
+  },
+} satisfies InvoiceTemplateProperties;
 
-export default ActivationLinkSent;
+export default InvoiceTemplate;

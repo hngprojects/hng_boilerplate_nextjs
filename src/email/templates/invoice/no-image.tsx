@@ -8,43 +8,68 @@ import {
   Text,
 } from "@react-email/components";
 
+import {
+  ITemplateTableProperties,
+  TemplateTable,
+} from "../_components/template-table/TemplateTable";
 import Layout from "../../layout/layout";
 
-interface EmailVerificationProperties {
+interface InvoiceTemplateProperties {
   username: string;
   link: string;
+  tableData: ITemplateTableProperties;
+  tableDataTwo: ITemplateTableProperties;
+  tableDataThree: ITemplateTableProperties;
 }
 
-export const EmailVerification = ({
+export const InvoiceTemplate = ({
   username,
   link,
-}: EmailVerificationProperties) => {
+  tableData,
+  tableDataTwo,
+  tableDataThree,
+}: InvoiceTemplateProperties) => {
   return (
     <Layout>
-      <Preview>{username}, email verified</Preview>
+      <Preview>{username}, your invoice receipt.</Preview>
       <Container style={containerStyle}>
         <Section style={sectionStyle}>
           <Section style={textSectionStyle}>
             <Heading as="h5" style={headingStyle}>
-              Email Verification
+              Invoice
             </Heading>
 
             <Section>
               <Text style={greetingTextStyle}>Hi {username},</Text>
               <Text style={descriptionTextStyle}>
-                Thanks for registering your account with us at Boilerplate.
-                Before we get started, we just need to confirm that this is you.
-              </Text>
-              <Text style={descriptionTextStyle}>
-                This link will expire 30 minutes after this email has been sent.
-                If you did not make this request, you can ignore this email.
+                We hope you are doing well. Thank you for your recent purchase
+                from Boilerplate. Please find your invoice attached to this
+                email.
               </Text>
             </Section>
           </Section>
 
+          <Section style={tableContainerStyle}>
+            <TemplateTable title={tableData.title} data={tableData.data} />
+          </Section>
+
+          <Section style={tableContainerStyle}>
+            <TemplateTable
+              title={tableDataTwo.title}
+              data={tableDataTwo.data}
+            />
+          </Section>
+
+          <Section style={tableContainerStyle}>
+            <TemplateTable
+              title={tableDataThree.title}
+              data={tableDataThree.data}
+            />
+          </Section>
+
           <Section style={buttonContainerStyle}>
             <Button target={"_blank"} style={buttonStyle} href={link}>
-              Verify Account
+              Pay Now
             </Button>
           </Section>
 
@@ -77,7 +102,7 @@ const containerStyle: React.CSSProperties = {
 };
 
 const sectionStyle: React.CSSProperties = {
-  marginBottom: "56px",
+  margin: "0 0 56px",
 };
 
 const textSectionStyle: React.CSSProperties = {
@@ -109,6 +134,10 @@ const descriptionTextStyle: React.CSSProperties = {
   lineHeight: "19.36px",
   textAlign: "justify",
   margin: "0 0 16px 0",
+};
+
+const tableContainerStyle: React.CSSProperties = {
+  margin: "28px 0",
 };
 
 const buttonContainerStyle: React.CSSProperties = {
@@ -151,9 +180,72 @@ const footerTextStyle: React.CSSProperties = {
   color: "#121212",
 };
 
-EmailVerification.PreviewProps = {
+InvoiceTemplate.PreviewProps = {
   username: "John Doe",
   link: "www.boilerplate.com",
-} satisfies EmailVerificationProperties;
+  tableData: {
+    title: "Invoice Details",
+    data: [
+      {
+        key: "Invoice Number",
+        values: ["#EJ78465"],
+      },
+      {
+        key: "Date of Issue",
+        values: ["July 17, 2024"],
+      },
+      {
+        key: "Due Date",
+        values: ["July 19, 2024"],
+      },
+    ],
+  },
+  tableDataTwo: {
+    title: "Order Summary",
+    data: [
+      {
+        key: "Item",
+        values: ["5", "$200"],
+      },
+      {
+        key: "Item",
+        values: ["3", "$120"],
+      },
+      {
+        key: "VAT",
+        values: ["10%", "$32"],
+      },
+      {
+        key: "Total",
+        values: ["100%", "$352"],
+      },
+    ],
+  },
+  tableDataThree: {
+    title: "Payment Details",
+    data: [
+      {
+        key: "Amount",
+        values: ["$352"],
+      },
+      {
+        key: "Payment Method",
+        values: ["Bank"],
+      },
+      {
+        key: "Bank Name",
+        values: ["Guaranty Trust Bank"],
+      },
+      {
+        key: "Account Number",
+        values: ["0115917164"],
+      },
+      {
+        key: "Account Name",
+        values: ["Kingsley Solomon Ifijeh"],
+      },
+    ],
+  },
+} satisfies InvoiceTemplateProperties;
 
-export default EmailVerification;
+export default InvoiceTemplate;
