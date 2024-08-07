@@ -1,3 +1,5 @@
+"use client";
+
 import { revenueData } from "~/app/dashboard/(user-dashboard)/_components/overview-revenue/revenueData";
 import CardComponent from "~/components/common/DashboardCard/CardComponent";
 import { useOrgContext } from "~/contexts/orgContext";
