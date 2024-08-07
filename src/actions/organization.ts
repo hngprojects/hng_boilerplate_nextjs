@@ -30,3 +30,28 @@ export const getSubCount = async () => {
         };
   }
 };
+
+export const getAllOrg = async () => {
+  const session = await auth();
+
+  try {
+    const response = await axios.get(`${apiUrl}/api/v1/users/organisations`, {
+      headers: {
+        Authorization: `Bearer ${session?.access_token}`,
+      },
+    });
+
+    return {
+      organization: response.data.data,
+    };
+  } catch (error) {
+    return axios.isAxiosError(error) && error.response
+      ? {
+          error: error.response.data.message || "Registration failed.",
+          status: error.response.status,
+        }
+      : {
+          error: "An unexpected error occurred.",
+        };
+  }
+};

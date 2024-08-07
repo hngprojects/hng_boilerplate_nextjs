@@ -9,10 +9,11 @@ import React, {
   useTransition,
 } from "react";
 
-import { getSubCount } from "../actions/organization";
+import { Organisation } from "~/types";
+import { getAllOrg, getSubCount } from "../actions/organization";
 
 interface OrgContextProperties {
-  // organizations: Organisation[];
+  organizations: Organisation[];
   isLoading: boolean;
   subscriptionCount: number | undefined;
 }
@@ -20,7 +21,7 @@ interface OrgContextProperties {
 export const OrgContext = createContext({} as OrgContextProperties);
 
 const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
-  // const [organizations, setOrganizations] = useState<Organisation[]>([]);
+  const [organizations, setOrganizations] = useState<Organisation[]>([]);
   const [isLoading, startTransition] = useTransition();
   const [subscriptionCount, setSubscriptionCount] = useState<
     number | undefined
@@ -28,9 +29,9 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
 
   useLayoutEffect(() => {
     startTransition(() => {
-      // getAllorg().then((data) => {
-      //   setOrganizations(data);
-      // });
+      getAllOrg().then((data) => {
+        setOrganizations(data.organization);
+      });
       getSubCount().then((subResponse) => {
         setSubscriptionCount(subResponse.sub);
       });
@@ -40,10 +41,10 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
   const value = useMemo(
     () => ({
       isLoading,
-      // organizations,
+      organizations,
       subscriptionCount,
     }),
-    [isLoading, subscriptionCount],
+    [isLoading, subscriptionCount, organizations],
   );
 
   return <OrgContext.Provider value={value}>{children}</OrgContext.Provider>;

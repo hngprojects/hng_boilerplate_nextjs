@@ -60,3 +60,18 @@ export interface ErrorResponse {
   message: string;
   status_code?: number;
 }
+
+export interface Organisation {
+  id: string;
+  name: string;
+  description: string;
+  owner_id: string;
+  email: string;
+  industry: string;
+  type: string;
+  country: string;
+  address: string;
+  state: string;
+  created_at: string;
+  updated_at: string;
+}
