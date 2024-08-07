@@ -8,94 +8,152 @@ import {
   Text,
 } from "@react-email/components";
 
-import Layout from "../_components/layout/layout";
+import Layout from "../../layout/layout";
 
 interface EmailVerificationProperties {
-  title: string;
   username: string;
-  description: string;
   link: string;
 }
 
 export const EmailVerification = ({
-  title,
   username,
-  description,
   link,
 }: EmailVerificationProperties) => {
   return (
     <Layout>
-      <Preview>t{username}, email verified</Preview>
-      <Section className="my-[56px]">
-        <Container className="max-w-[680px] px-[48px] md:px-0">
-          <Section className="flex flex-col items-center justify-center">
-            <Heading
-              as="h5"
-              className="my-0 mb-[56px] text-center text-[24px] leading-[28px] text-[#121212]"
-            >
-              {title}
+      <Preview>{username}, email verified</Preview>
+      <Container style={containerStyle}>
+        <Section style={sectionStyle}>
+          <Section style={textSectionStyle}>
+            <Heading as="h5" style={headingStyle}>
+              Email Verification
             </Heading>
 
             <Section>
-              <Text className="my-0 text-[16px] font-[600] text-[#121212] md:text-[18px]">
-                Hi {username},
+              <Text style={greetingTextStyle}>Hi {username},</Text>
+              <Text style={descriptionTextStyle}>
+                Thanks for registering your account with us at Boilerplate.
+                Before we get started, we just need to confirm that this is you.
               </Text>
-              <Text className="text-justify text-[14px] leading-[19.36px] text-[#525252] md:text-[16px]">
-                {description}
+              <Text style={descriptionTextStyle}>
+                This link will expire 30 minutes after this email has been sent.
+                If you did not make this request, you can ignore this email.
               </Text>
             </Section>
           </Section>
-        </Container>
 
-        <Section className="text-center">
-          <Container className="mb-[40px] max-w-[680px] px-[48px] md:px-0">
-            <Text className="text-left leading-[19px] text-[#525252] md:text-[16px]">
-              To verify your email, please click the button below.
-            </Text>
-          </Container>
-          <Section className="w-[100%] text-center">
-            <Container className="mb-[40px] max-w-[680px] px-[48px] md:px-0">
-              <Button
-                target={"_blank"}
-                className="w-[100%] rounded-[8px] bg-[#F97316] py-[16px] text-[#FAFAFA] md:w-fit md:px-[2rem]"
-                href={link}
-              >
-                Learn More About us
-              </Button>
-
-              <Text className="mt-[40px] text-left">
-                Or copy this link:
-                <Link
-                  className="text-[#F97316]"
-                  href={` https://carbonated-umbra-a35.notion.site/Language-Learning-AI-game-608b687875cf4b48a9a0194ee82ae17d`}
-                >
-                  {" "}
-                  https://carbonated-umbra-a35.notion.site/Language-Learning-AI-game-608b687875cf4b48a9a0194ee82ae17d
-                </Link>
-              </Text>
-            </Container>
+          <Section style={buttonContainerStyle}>
+            <Button target={"_blank"} style={buttonStyle} href={link}>
+              Verify Account
+            </Button>
           </Section>
-        </Section>
-        <Section className="mt-[28px]">
-          <Container className="max-w-[680px] px-[48px] md:px-0">
-            <Text className="my-0 font-[600] text-[#121212]">
+
+          <Section style={linkContainerStyle}>
+            <Text style={copyLinkTextStyle}>
+              Or copy this link:
+              <Link style={linkStyle} href={link}>
+                {link}
+              </Link>
+            </Text>
+          </Section>
+
+          <Section style={footerSectionStyle}>
+            <Text style={footerTextStyle}>
               Regards,
               <br />
               Boilerplate
             </Text>
-          </Container>
+          </Section>
         </Section>
-      </Section>
+      </Container>
     </Layout>
   );
 };
 
+const containerStyle: React.CSSProperties = {
+  padding: "0 48px",
+  maxWidth: "792px",
+  margin: "0 auto",
+};
+
+const sectionStyle: React.CSSProperties = {
+  marginBottom: "56px",
+};
+
+const textSectionStyle: React.CSSProperties = {
+  marginTop: "56px",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+};
+
+const headingStyle: React.CSSProperties = {
+  margin: "0 0 56px 0",
+  textAlign: "center",
+  fontSize: "24px",
+  lineHeight: "28px",
+  color: "#121212",
+};
+
+const greetingTextStyle: React.CSSProperties = {
+  fontSize: "16px",
+  fontWeight: "600",
+  color: "#121212",
+  margin: "0 0 32px 0",
+};
+
+const descriptionTextStyle: React.CSSProperties = {
+  fontSize: "16px",
+  color: "#525252",
+  lineHeight: "19.36px",
+  textAlign: "justify",
+  margin: "0 0 16px 0",
+};
+
+const buttonContainerStyle: React.CSSProperties = {
+  width: "100%",
+  textAlign: "center",
+  marginTop: "28px",
+};
+
+const buttonStyle: React.CSSProperties = {
+  borderRadius: "8px",
+  backgroundColor: "#F97316",
+  color: "#FAFAFA",
+  padding: "16px",
+  textAlign: "center",
+};
+
+const linkContainerStyle: React.CSSProperties = {
+  marginTop: "40px",
+  textAlign: "left",
+};
+
+const copyLinkTextStyle: React.CSSProperties = {
+  fontSize: "1rem",
+  lineHeight: "1.5rem",
+  color: "#525252",
+};
+
+const linkStyle: React.CSSProperties = {
+  color: "#F97316",
+  textDecoration: "underline",
+  wordBreak: "break-all",
+};
+
+const footerSectionStyle: React.CSSProperties = {
+  marginTop: "28px",
+};
+
+const footerTextStyle: React.CSSProperties = {
+  fontWeight: "600",
+  color: "#121212",
+};
+
 EmailVerification.PreviewProps = {
-  title: "Email Verification",
   username: "John Doe",
-  link: "/",
-  description:
-    "Thanks for registering your account with us Boilerplate. Before we get started, we just need to confirm that this is you.",
+  link: "www.boilerplate.com",
 } satisfies EmailVerificationProperties;
 
 export default EmailVerification;
