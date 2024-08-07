@@ -9,7 +9,6 @@ export const {
   unstable_update,
 } = NextAuth({
   ...authConfig,
-  secret: process.env.AUTH_SECRET,
 });
 
 declare module "next-auth" {
