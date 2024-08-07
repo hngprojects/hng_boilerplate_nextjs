@@ -5,7 +5,6 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next-nprogress-bar";
 import { useEffect } from "react";
 
-import DashboardLogo from "~/app/dashboard/(admin)/_components/layout/logo";
 import UnreadNotificationCard from "~/app/dashboard/(admin)/_components/unread-notification-card/UnreadNotificationCard";
 import { MobileNavlinks } from "~/app/dashboard/(user-dashboard)/_components/layout/navbar/mobile-navlinks";
 import { Navlinks } from "~/app/dashboard/(user-dashboard)/_components/layout/navbar/navlinks";
@@ -16,6 +15,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "~/components/ui/popover";
+import { OrganisationSwitcher } from "./organisation-switcher";
 
 const UserNavbar = () => {
   const { status } = useSession();
@@ -35,7 +35,8 @@ const UserNavbar = () => {
         <div className="flex gap-[50px]">
           <div className="flex items-center gap-[15px]">
             <MobileNavlinks />
-            <DashboardLogo responsive />
+            <OrganisationSwitcher />
+            {/* <DashboardLogo responsive /> */}
           </div>
           <Navlinks />
         </div>

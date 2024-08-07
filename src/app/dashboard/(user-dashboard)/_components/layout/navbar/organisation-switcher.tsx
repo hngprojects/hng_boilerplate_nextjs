@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 
+import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import {
   Select,
   SelectContent,
@@ -43,6 +44,12 @@ export const OrganisationSwitcher = () => {
         {organizations.map((org) => (
           <SelectItem key={org.id} value={org.id}>
             <div className="flex items-center gap-3 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0 [&_svg]:text-foreground">
+              <Avatar className="size-4 sm:size-3">
+                <AvatarImage src={""} />
+                <AvatarFallback className="bg-primary/30 uppercase">
+                  {org?.name?.charAt(0)}
+                </AvatarFallback>
+              </Avatar>{" "}
               {org.name}
             </div>
           </SelectItem>
