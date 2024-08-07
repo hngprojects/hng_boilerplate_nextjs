@@ -122,28 +122,6 @@ const Login = () => {
           >
             Continue with Google
           </CustomButton>
-          <CustomButton
-            className="w-full"
-            variant="outline"
-            onClick={() => signIn("twitter", { callbackUrl: "/dashboard" })}
-            isLeftIconVisible={true}
-            icon={
-              <svg
-                width="25"
-                height="24"
-                viewBox="0 0 11 10"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8.03955 0.88031H9.57312L6.22312 4.71888L10.1646 9.94317H7.07884L4.66027 6.77531L1.89598 9.94317H0.360979L3.94384 5.83602L0.164551 0.881024H3.32884L5.51169 3.77602L8.03955 0.88031ZM7.50027 9.02317H8.35027L2.86455 1.75245H1.95312L7.50027 9.02317Z"
-                  fill="#0A0A0A"
-                />
-              </svg>
-            }
-          >
-            Continue with Twitter
-          </CustomButton>
         </div>
         <div className="flex items-center justify-center">
           <hr className="w-full border-t border-gray-300" />
