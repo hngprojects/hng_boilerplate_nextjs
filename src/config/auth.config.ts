@@ -7,7 +7,7 @@ import Twitter from "next-auth/providers/twitter";
 import { nextlogin } from "~/actions/login";
 import { googleAuth, twitterAuth } from "~/actions/socialAuth";
 import { LoginSchema } from "~/schemas";
-import { CustomJWT } from "~/types/index.";
+import { CustomJWT } from "~/types";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 

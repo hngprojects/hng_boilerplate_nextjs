@@ -3,7 +3,7 @@
 import axios from "axios";
 
 import { auth } from "~/lib/auth";
-import { User } from "~/types/index.";
+import { User } from "~/types";
 
 export enum StockStatusType {
   IN_STOCK = "in stock",

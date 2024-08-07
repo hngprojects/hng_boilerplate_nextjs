@@ -1,7 +1,7 @@
 import NextAuth, { type DefaultSession } from "next-auth";
 
 import authConfig from "~/config/auth.config";
-import { User } from "~/types/index.";
+import { User } from "~/types";
 
 export const {
   handlers: { GET, POST },
