@@ -17,7 +17,7 @@ export const revenueData: CardData[] = [
   {
     title: "Subscriptions",
     value: "+2,350",
-    description: "+150% from last month",
+    description: "0% from last month",
     icon: "users",
   },
   {
