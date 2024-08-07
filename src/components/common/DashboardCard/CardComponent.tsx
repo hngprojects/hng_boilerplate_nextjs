@@ -1,12 +1,14 @@
 import { ComponentProps, FC } from "react";
 
 import Icon from "~/components/common/lucide-icon";
+import { Skeleton } from "~/components/ui/skeleton";
 
 interface CardProperties {
   title: string;
   value: string | number;
   description: string;
   icon: ComponentProps<typeof Icon>["name"];
+  loading?: boolean;
 }
 
 const CardComponent: FC<CardProperties> = ({
@@ -14,6 +16,7 @@ const CardComponent: FC<CardProperties> = ({
   value,
   description,
   icon,
+  loading,
 }) => {
   return (
     <div className="w-full rounded-xl bg-white px-[24px] pb-[28px] pt-[23px] shadow-spread ring-1 ring-border">
@@ -21,13 +24,18 @@ const CardComponent: FC<CardProperties> = ({
         <h4 className="text-sm font-[500] leading-[16.94px] text-neutral-dark-2">
           {title}
         </h4>
+
         <Icon name={icon} width={24} height={24} className="mr-2" />
       </div>
 
       <div className="mt-1">
-        <h2 className="text-2xl font-semibold leading-[29.05px] text-neutral-dark-2">
-          {value}
-        </h2>
+        {loading ? (
+          <Skeleton className="h-4 w-full" />
+        ) : (
+          <h2 className="text-2xl font-semibold leading-[29.05px] text-neutral-dark-2">
+            {value}
+          </h2>
+        )}
         <small className="mt-0 text-xs leading-[14.52px] text-neutral-dark-1">
           {description}
         </small>

@@ -17,35 +17,6 @@ import {
   PopoverTrigger,
 } from "~/components/ui/popover";
 
-// const navlinks = [
-//   {
-//     route: "Overview",
-//     link: "/dashboard/overview",
-//     id: "dashboard",
-//   },
-//   {
-//     route: "Customers",
-//     link: "/dashboard/customers",
-//     id: "customers",
-//   },
-//   {
-//     route: "Products",
-//     link: "/dashboard/products",
-//     id: "products",
-//   },
-//   // {
-//   //   route: "Settings",
-//   //   link: "/dashboard/settings",
-//   //   id: "settings",
-//   // },
-// ];
-
-// interface User {
-//   email: string;
-//   image: string;
-//   name: string;
-// }
-
 const UserNavbar = () => {
   const { status } = useSession();
   const router = useRouter();
