@@ -1,7 +1,7 @@
 "use client";
 
-import { getSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+
 import { UpdateFaqs } from "~/actions/faq";
 import { Button } from "~/components/common/common-button";
 import { Input } from "~/components/common/input";
@@ -15,11 +15,17 @@ import {
   DialogTrigger,
 } from "~/components/ui/dialog";
 import { Label } from "~/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "~/components/ui/select";
 import { Textarea } from "~/components/ui/textarea";
 import { useToast } from "~/components/ui/use-toast";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
 
-interface Props {
+interface Properties {
   onClose: () => void;
   faqs: {
     id: string;
@@ -31,7 +37,7 @@ interface Props {
   setCallback: (callback: boolean) => void;
 }
 
-const UpdateFaqModal = (props: Props) => {
+const UpdateFaqModal = (properties: Properties) => {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [category, setCategory] = useState("");
@@ -39,11 +45,10 @@ const UpdateFaqModal = (props: Props) => {
   const { toast } = useToast();
 
   useEffect(() => {
-    setQuestion(props?.faqs?.question || "");
-    setAnswer(props?.faqs?.answer || "");
-    setCategory(props?.faqs?.category || "");
-  }, [props?.faqs]);
-
+    setQuestion(properties?.faqs?.question || "");
+    setAnswer(properties?.faqs?.answer || "");
+    setCategory(properties?.faqs?.category || "");
+  }, [properties?.faqs]);
 
   const handleFaq = async () => {
     setLoading(true);
@@ -64,7 +69,7 @@ const UpdateFaqModal = (props: Props) => {
       category,
     };
 
-    const result = await UpdateFaqs(payload, props?.faqs?.id);
+    const result = await UpdateFaqs(payload, properties?.faqs?.id);
     if (result?.status === 200 || result?.status === 201) {
       toast({
         title: "Success",
@@ -72,8 +77,8 @@ const UpdateFaqModal = (props: Props) => {
         variant: "default",
       });
       setLoading(false);
-      props?.setCallback(!props?.callback);
-      props?.onClose();
+      properties?.setCallback(!properties?.callback);
+      properties?.onClose();
     } else {
       toast({
         title: "Error",
@@ -85,7 +90,7 @@ const UpdateFaqModal = (props: Props) => {
   };
 
   return (
-    <Dialog open onOpenChange={props?.onClose}>
+    <Dialog open onOpenChange={properties?.onClose}>
       <DialogContent className="flex h-fit max-h-[600px] flex-col gap-[23px] overflow-y-auto rounded-none border bg-white py-6 sm:max-w-[500px]">
         <DialogHeader className="inline-flex flex-col items-start justify-start border-b border-border pb-5">
           <DialogTitle className="text-lg font-bold text-neutral-950">
@@ -94,7 +99,7 @@ const UpdateFaqModal = (props: Props) => {
         </DialogHeader>
 
         <div className="flex flex-col gap-2 px-2">
-          <div className="items-left flex flex-col gap-1 mb-2">
+          <div className="items-left mb-2 flex flex-col gap-1">
             <Label
               htmlFor="productname"
               className="left-0 text-left text-sm font-medium text-slate-900"
@@ -111,7 +116,7 @@ const UpdateFaqModal = (props: Props) => {
             />
           </div>
 
-          <div className="items-left flex flex-col gap-1 mb-2">
+          <div className="items-left mb-2 flex flex-col gap-1">
             <Label
               htmlFor="category"
               className="left-0 text-left text-sm font-medium text-slate-900"
@@ -155,7 +160,7 @@ const UpdateFaqModal = (props: Props) => {
           </span>
         </div>
 
-        <DialogFooter className="pt-10 border-t border-border">
+        <DialogFooter className="border-t border-border pt-10">
           <DialogTrigger asChild>
             <Button variant={"subtle"}>Cancel</Button>
           </DialogTrigger>

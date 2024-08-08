@@ -1,39 +1,33 @@
 "use server";
 
 import axios from "axios";
-import { useSession } from "next-auth/react";
+
 import { auth } from "~/lib/auth";
 
 const apiUrl = process.env.API_URL;
 
-interface Props{
-  question:string,
-  answer:string
-  category:string
+interface Properties {
+  question: string;
+  answer: string;
+  category: string;
 }
 
-interface UpdateProps{
-  question:string,
-  answer:string,
-  category:string
+interface UpdateProperties {
+  question: string;
+  answer: string;
+  category: string;
 }
 
-
-export const CreateFaqs = async (payload:Props) => {
-  
-  // 
+export const CreateFaqs = async (payload: Properties) => {
+  //
   try {
     const session = await auth();
 
-    const response = await axios.post(
-      `${apiUrl}/api/v1/faqs`,
-      payload,
-      {
-        headers: {
-          Authorization: `Bearer ${session?.access_token}`,
-        },
+    const response = await axios.post(`${apiUrl}/api/v1/faqs`, payload, {
+      headers: {
+        Authorization: `Bearer ${session?.access_token}`,
       },
-    );
+    });
 
     return {
       data: response.data,
@@ -51,21 +45,16 @@ export const CreateFaqs = async (payload:Props) => {
   }
 };
 
-export const UpdateFaqs = async (payload:UpdateProps, id: string) => {
-  
-  // 
+export const UpdateFaqs = async (payload: UpdateProperties, id: string) => {
+  //
   try {
     const session = await auth();
 
-    const response = await axios.put(
-      `${apiUrl}/api/v1/faqs/${id}`,
-      payload,
-      {
-        headers: {
-          Authorization: `Bearer ${session?.access_token}`,
-        },
+    const response = await axios.put(`${apiUrl}/api/v1/faqs/${id}`, payload, {
+      headers: {
+        Authorization: `Bearer ${session?.access_token}`,
       },
-    );
+    });
 
     return {
       data: response.data,
@@ -83,20 +72,16 @@ export const UpdateFaqs = async (payload:UpdateProps, id: string) => {
   }
 };
 
-export const DeleteFaqs = async (id:string) => {
-  
-  // 
+export const DeleteFaqs = async (id: string) => {
+  //
   try {
     const session = await auth();
 
-    const response = await axios.delete(
-      `${apiUrl}/api/v1/faqs/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${session?.access_token}`,
-        },
+    const response = await axios.delete(`${apiUrl}/api/v1/faqs/${id}`, {
+      headers: {
+        Authorization: `Bearer ${session?.access_token}`,
       },
-    );
+    });
 
     return {
       message: response.data.message,

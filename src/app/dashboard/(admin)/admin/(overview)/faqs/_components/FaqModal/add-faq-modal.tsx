@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import { CreateFaqs } from "~/actions/faq";
 import { Button } from "~/components/common/common-button";
 import { Input } from "~/components/common/input";
@@ -12,68 +13,75 @@ import {
   DialogTrigger,
 } from "~/components/ui/dialog";
 import { Label } from "~/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "~/components/ui/select";
 import { Textarea } from "~/components/ui/textarea";
 import { useToast } from "~/components/ui/use-toast";
 
 interface AddFaqModalProperties {
   children: React.ReactNode;
-  callback:boolean;
-  setCallback:any
+  callback: boolean;
+  setCallback: any;
 }
 
-const AddFaqModal = ({ children, callback, setCallback }: AddFaqModalProperties) => {
-  const [question, setQuestion] = useState("")
-  const [answer, setAnswer] = useState("")
-  const [category, setCategory] = useState("")
-  const [loading, setLoading] = useState(false)
-  const {toast} = useToast()
-
+const AddFaqModal = ({
+  children,
+  callback,
+  setCallback,
+}: AddFaqModalProperties) => {
+  const [question, setQuestion] = useState("");
+  const [answer, setAnswer] = useState("");
+  const [category, setCategory] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
 
   //add faq
-  const handleFaq = async() => {
-    setLoading(true)
+  const handleFaq = async () => {
+    setLoading(true);
 
     // validate input
-    if(answer === "" || question ===""){
-       toast({
+    if (answer === "" || question === "") {
+      toast({
         title: "Error",
         description: "Inputs cannot be empty",
         variant: "destructive",
       });
-      setLoading(false)
-      return
+      setLoading(false);
+      return;
     }
 
     const payload = {
       question,
       answer,
-      category
-    }
+      category,
+    };
 
-    console.log(payload)
+    console.log(payload);
 
-    const result = await CreateFaqs(payload)
+    const result = await CreateFaqs(payload);
 
-    if(result?.status === 200 || result?.status === 201){
+    if (result?.status === 200 || result?.status === 201) {
       toast({
         title: "Success",
         description: "Faq created successfully",
         variant: "default",
       });
-      setLoading(false)
-      setCallback(!callback)
-    }
-    else{
+      setLoading(false);
+      setCallback(!callback);
+    } else {
       toast({
         title: "Error",
         description: result?.error,
         variant: "destructive",
       });
-      setLoading(false)
+      setLoading(false);
     }
-  }
-
+  };
 
   return (
     <Dialog>
@@ -85,9 +93,8 @@ const AddFaqModal = ({ children, callback, setCallback }: AddFaqModalProperties)
           </DialogTitle>
         </DialogHeader>
 
-
         <div className="flex flex-col gap-2 px-2">
-          <div className="items-left flex flex-col gap-1 mb-2">
+          <div className="items-left mb-2 flex flex-col gap-1">
             <Label
               htmlFor="productname"
               className="left-0 text-left text-sm font-medium text-slate-900"
@@ -104,26 +111,26 @@ const AddFaqModal = ({ children, callback, setCallback }: AddFaqModalProperties)
             />
           </div>
 
-          <div className="items-left flex flex-col gap-1 mb-2">
+          <div className="items-left mb-2 flex flex-col gap-1">
             <Label
               htmlFor="productname"
               className="left-0 text-left text-sm font-medium text-slate-900"
             >
               Category*
             </Label>
-             <Select
+            <Select
               onValueChange={(value) => setCategory(value)}
-                value={category}
-      >
-        <SelectTrigger className="text-primary focus:outline-none focus:ring-1 focus:ring-primary focus-visible:ring-1 focus-visible:ring-primary focus-visible:ring-offset-0">
-          <SelectValue placeholder="Select" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="Pricing">Pricing</SelectItem>
-          <SelectItem value="Policy">Policy</SelectItem>
-          <SelectItem value="General">General</SelectItem>
-        </SelectContent>
-      </Select>
+              value={category}
+            >
+              <SelectTrigger className="text-primary focus:outline-none focus:ring-1 focus:ring-primary focus-visible:ring-1 focus-visible:ring-primary focus-visible:ring-offset-0">
+                <SelectValue placeholder="Select" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Pricing">Pricing</SelectItem>
+                <SelectItem value="Policy">Policy</SelectItem>
+                <SelectItem value="General">General</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
 
           <div className="items-left flex flex-col gap-2">
@@ -138,26 +145,30 @@ const AddFaqModal = ({ children, callback, setCallback }: AddFaqModalProperties)
               required
               placeholder="input answer to FAQ"
               className="col-span-3 inline-flex h-10 items-start justify-start gap-2 border bg-transparent text-primary focus:outline-none focus:ring-1 focus:ring-primary focus-visible:ring-1 focus-visible:ring-primary focus-visible:ring-offset-0"
-               value={answer}
+              value={answer}
               onChange={(event) => setAnswer(event.target.value)}
             />
           </div>
 
-            <span className="text-[13px] text-foreground">Minimum of 50 characters</span>
+          <span className="text-[13px] text-foreground">
+            Minimum of 50 characters
+          </span>
         </div>
 
-        <DialogFooter className="pt-10 border-t border-border">
+        <DialogFooter className="border-t border-border pt-10">
           <DialogTrigger asChild>
-          <Button variant={"subtle"}>
-            Cancel
-          </Button>
+            <Button variant={"subtle"}>Cancel</Button>
           </DialogTrigger>
 
           <Button variant={"primary"} onClick={handleFaq}>
-            {loading ? <span className="flex items-center gap-x-2">
-                      <span className="animate-pulse">Saving</span>{" "}
-                      <LoadingSpinner className="size-4 animate-spin sm:size-5" />
-                    </span> :"Save"}
+            {loading ? (
+              <span className="flex items-center gap-x-2">
+                <span className="animate-pulse">Saving</span>{" "}
+                <LoadingSpinner className="size-4 animate-spin sm:size-5" />
+              </span>
+            ) : (
+              "Save"
+            )}
           </Button>
         </DialogFooter>
       </DialogContent>
