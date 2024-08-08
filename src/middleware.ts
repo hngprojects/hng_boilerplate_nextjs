@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { apiAuthPrefix, authRoutes, publicRoutes } from "~/lib/routes";
 
-const NEXT_PUBLIC_ROOT_DOMAIN = "deployment.nextjs.boilerplate.hng.tech";
+const NEXT_PUBLIC_ROOT_DOMAIN = "staging.nextjs.boilerplate.hng.tech";
 export default async function middleware(request: NextRequest) {
   const { nextUrl } = request;
 
