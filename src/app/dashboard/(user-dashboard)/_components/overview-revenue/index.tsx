@@ -10,7 +10,7 @@ export function OverviewRevenue() {
     <div className="mb-6 mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
       <CardComponent
         title={revenueData[0].title}
-        value={revenueData[0].value}
+        value={subscriptionCount || 0}
         description={revenueData[0].description}
         icon={revenueData[0].icon}
         loading={isLoading}
@@ -24,14 +24,14 @@ export function OverviewRevenue() {
       />
       <CardComponent
         title={revenueData[2].title}
-        value={revenueData[2].value}
+        value={subscriptionCount || 0}
         description={revenueData[2].description}
         icon={revenueData[2].icon}
         loading={isLoading}
       />
       <CardComponent
         title={revenueData[3].title}
-        value={revenueData[3].value}
+        value={subscriptionCount || 0}
         description={revenueData[3].description}
         icon={revenueData[3].icon}
         loading={isLoading}
