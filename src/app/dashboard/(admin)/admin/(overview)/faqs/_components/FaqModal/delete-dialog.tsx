@@ -19,7 +19,10 @@ interface Props {
   id: string;
   question: string;
   answer: string;
+  category:string
   }
+  callback:boolean,
+  setCallback:any
 }
 
 const DeleteDialog = (props:Props) => {
@@ -29,17 +32,17 @@ const DeleteDialog = (props:Props) => {
 const handleDelete = async() => {
   setLoading(true)
 
-  const response = await DeleteFaqs(props?.faqs)
+  const response = await DeleteFaqs(props?.faqs?.id)
   if(response?.status === 200 || response?.status === 201){
      toast({
         title: "Success",
-        description: "Faq created successfully",
+        description: "Faq Deleted successfully",
         variant: "default",
       });
       setLoading(false)
+      props?.setCallback(!props?.callback)
   }
   else{
-    console.log(response)
      toast({
         title: "Error",
         description: response?.error,

@@ -18,19 +18,21 @@ import { useToast } from "~/components/ui/use-toast";
 
 interface AddFaqModalProperties {
   children: React.ReactNode;
+  callback:boolean;
+  setCallback:any
 }
 
-const AddFaqModal = ({ children }: AddFaqModalProperties) => {
+const AddFaqModal = ({ children, callback, setCallback }: AddFaqModalProperties) => {
   const [question, setQuestion] = useState("")
   const [answer, setAnswer] = useState("")
   const [category, setCategory] = useState("")
   const [loading, setLoading] = useState(false)
   const {toast} = useToast()
 
+
   //add faq
   const handleFaq = async() => {
     setLoading(true)
-
 
     // validate input
     if(answer === "" || question ===""){
@@ -46,8 +48,10 @@ const AddFaqModal = ({ children }: AddFaqModalProperties) => {
     const payload = {
       question,
       answer,
-      category: "Policies"
+      category
     }
+
+    console.log(payload)
 
     const result = await CreateFaqs(payload)
 
@@ -58,6 +62,7 @@ const AddFaqModal = ({ children }: AddFaqModalProperties) => {
         variant: "default",
       });
       setLoading(false)
+      setCallback(!callback)
     }
     else{
       toast({
@@ -107,16 +112,16 @@ const AddFaqModal = ({ children }: AddFaqModalProperties) => {
               Category*
             </Label>
              <Select
-                onValueChange={(event:any) => setCategory(event?.target?.value)}
+              onValueChange={(value) => setCategory(value)}
                 value={category}
       >
         <SelectTrigger className="text-primary focus:outline-none focus:ring-1 focus:ring-primary focus-visible:ring-1 focus-visible:ring-primary focus-visible:ring-offset-0">
           <SelectValue placeholder="Select" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="Technology">Pricing</SelectItem>
-          <SelectItem value="Science">Policy</SelectItem>
-          <SelectItem value="Math">General</SelectItem>
+          <SelectItem value="Pricing">Pricing</SelectItem>
+          <SelectItem value="Policy">Policy</SelectItem>
+          <SelectItem value="General">General</SelectItem>
         </SelectContent>
       </Select>
           </div>

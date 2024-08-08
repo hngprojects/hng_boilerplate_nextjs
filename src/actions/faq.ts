@@ -9,12 +9,13 @@ const apiUrl = process.env.API_URL;
 interface Props{
   question:string,
   answer:string
+  category:string
 }
 
 interface UpdateProps{
-  id:string,
   question:string,
-  answer:string
+  answer:string,
+  category:string
 }
 
 
@@ -50,14 +51,14 @@ export const CreateFaqs = async (payload:Props) => {
   }
 };
 
-export const UpdateFaqs = async (payload:UpdateProps) => {
+export const UpdateFaqs = async (payload:UpdateProps, id: string) => {
   
   // 
   try {
     const session = await auth();
 
     const response = await axios.put(
-      `${apiUrl}/api/v1/faqs/${payload?.id}`,
+      `${apiUrl}/api/v1/faqs/${id}`,
       payload,
       {
         headers: {
@@ -82,14 +83,14 @@ export const UpdateFaqs = async (payload:UpdateProps) => {
   }
 };
 
-export const DeleteFaqs = async (payload:UpdateProps) => {
+export const DeleteFaqs = async (id:string) => {
   
   // 
   try {
     const session = await auth();
 
     const response = await axios.delete(
-      `${apiUrl}/api/v1/faqs/${payload?.id}`,
+      `${apiUrl}/api/v1/faqs/${id}`,
       {
         headers: {
           Authorization: `Bearer ${session?.access_token}`,

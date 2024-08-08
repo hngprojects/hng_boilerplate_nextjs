@@ -25,6 +25,9 @@ const TableSkeleton = () => {
         <TableCell>
           <Skeleton className="h-[20px] w-full rounded-md" data-testid="skeleton" />
         </TableCell>
+        <TableCell>
+          <Skeleton className="h-[20px] rounded-md" data-testid="skeleton" />
+        </TableCell>
       </TableRow>
       
   ));
