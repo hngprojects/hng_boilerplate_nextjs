@@ -1,5 +1,6 @@
 import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 import { Button } from "~/components/ui/button";
 import { productData } from "./data";
@@ -36,7 +37,8 @@ export default function Page() {
         </div>
         <div className="mb-[40px] grid gap-[40px] sm:grid-cols-2 lg:grid-cols-3">
           {productData.map((data, index) => (
-            <div
+            <Link
+              href="/products/uid"
               key={index}
               className="overflow-hidden rounded-[12px] border-[1px] border-[#cbd5e1] hover:border-none hover:shadow-[0px_4px_4px_0px_#00000040]"
             >
@@ -70,7 +72,7 @@ export default function Page() {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
         {/* Pagination */}
@@ -109,7 +111,7 @@ export default function Page() {
   );
 }
 
-const StarIcon = () => {
+export const StarIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
