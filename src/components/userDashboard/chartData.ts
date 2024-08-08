@@ -1,21 +1,20 @@
 import { ChartConfig } from "~/components/ui/chart";
 
-export const generateRandomRevenue = () =>
-  (Math.floor(Math.random() * 11) + 1) * 500;
+export const generateZeroRevenue = () => 0;
 
 export const chartData = [
-  { month: "January", revenue: generateRandomRevenue() },
-  { month: "February", revenue: generateRandomRevenue() },
-  { month: "March", revenue: generateRandomRevenue() },
-  { month: "April", revenue: generateRandomRevenue() },
-  { month: "May", revenue: generateRandomRevenue() },
-  { month: "June", revenue: generateRandomRevenue() },
-  { month: "July", revenue: generateRandomRevenue() },
-  { month: "August", revenue: generateRandomRevenue() },
-  { month: "September", revenue: generateRandomRevenue() },
-  { month: "October", revenue: generateRandomRevenue() },
-  { month: "November", revenue: generateRandomRevenue() },
-  { month: "December", revenue: generateRandomRevenue() },
+  { month: "January", revenue: generateZeroRevenue() },
+  { month: "February", revenue: generateZeroRevenue() },
+  { month: "March", revenue: generateZeroRevenue() },
+  { month: "April", revenue: generateZeroRevenue() },
+  { month: "May", revenue: generateZeroRevenue() },
+  { month: "June", revenue: generateZeroRevenue() },
+  { month: "July", revenue: generateZeroRevenue() },
+  { month: "August", revenue: generateZeroRevenue() },
+  { month: "September", revenue: generateZeroRevenue() },
+  { month: "October", revenue: generateZeroRevenue() },
+  { month: "November", revenue: generateZeroRevenue() },
+  { month: "December", revenue: generateZeroRevenue() },
 ];
 
 export const chartConfig: ChartConfig = {
