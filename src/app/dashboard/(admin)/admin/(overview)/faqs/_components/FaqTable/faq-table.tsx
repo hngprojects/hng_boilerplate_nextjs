@@ -39,7 +39,7 @@ const FaqTable = ({
   setCallback,
 }: {
   callback: boolean;
-  setCallback: any;
+  setCallback: (value: boolean) => void;
 }) => {
   const [faqs, setFaqs] = useState<FaqItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -58,7 +58,6 @@ const FaqTable = ({
       const result = await getFaqs();
       if (result && (result.status === 200 || result.status === 201)) {
         setFaqs(result.data.data);
-        console.log(result.data.data);
       } else {
         setFaqs([]);
       }

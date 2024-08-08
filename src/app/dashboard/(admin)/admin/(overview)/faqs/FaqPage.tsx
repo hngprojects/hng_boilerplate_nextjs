@@ -47,6 +47,7 @@ const FaqPage = () => {
   const [displayedFaqs, setDisplayedFaqs] = useState<FaqItem[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [createModal, setCreateModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
   const handleOpenDialog = () => setIsDialogOpen(true);
   const handleCloseDialog = () => setIsDialogOpen(false);
@@ -61,7 +62,6 @@ const FaqPage = () => {
       const result = await getFaqs();
       if (result && (result.status === 200 || result.status === 201)) {
         setFaqs(result.data.data);
-        console.log(result.data.data);
       } else {
         setFaqs([]);
       }
@@ -117,12 +117,10 @@ const FaqPage = () => {
         </div>
 
         <div className="ml-0 flex w-full items-center justify-start gap-[10px] md:justify-end lg:ml-auto lg:w-fit">
-          <AddFaqModal callback={callback} setCallback={setCallback}>
-            <Button className="inline-flex h-10 items-center justify-center bg-primary">
+          <Button onClick={() => setCreateModal(true)} className="inline-flex h-10 items-center justify-center bg-primary">
               <CirclePlus />
               Add FAQ
             </Button>
-          </AddFaqModal>
         </div>
       </div>
 
@@ -189,6 +187,7 @@ const FaqPage = () => {
                           </DropdownMenu>
                         </TableCell>
 
+                        {/* delete modal */}
                         {isDialogOpen && (
                           <DeleteDialog
                             onClose={handleCloseDialog}
@@ -197,6 +196,8 @@ const FaqPage = () => {
                             setCallback={setCallback}
                           />
                         )}
+
+                        {/* update modal */}
                         {updateModal && (
                           <UpdateFaqModal
                             onClose={handleCloseUpdateDialog}
@@ -205,6 +206,8 @@ const FaqPage = () => {
                             setCallback={setCallback}
                           />
                         )}
+
+                       
                       </TableRow>
                     );
                   })}
@@ -212,6 +215,18 @@ const FaqPage = () => {
               )}
             </TableBody>
           </Table>
+
+
+          {/* create modal */}
+          {createModal && (
+            <AddFaqModal
+              onClose={() => setCreateModal(false)}
+              callback={callback}
+              setCallback={setCallback}
+            />
+          )}
+
+          
           {!loading && faqs?.length === 0 && (
             <p className="mt-40 text-center">No data available</p>
           )}
@@ -230,6 +245,8 @@ const FaqPage = () => {
           </div>
         </div>
       </div>
+
+     
     </main>
   );
 };

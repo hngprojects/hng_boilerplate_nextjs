@@ -23,7 +23,7 @@ interface Properties {
     category: string;
   };
   callback: boolean;
-  setCallback: any;
+  setCallback: (value: boolean) => void;
 }
 
 const DeleteDialog = (properties: Properties) => {

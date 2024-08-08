@@ -91,7 +91,7 @@ const UpdateFaqModal = (properties: Properties) => {
 
   return (
     <Dialog open onOpenChange={properties?.onClose}>
-      <DialogContent className="flex h-fit max-h-[600px] flex-col gap-[23px] overflow-y-auto rounded-none border bg-white py-6 sm:max-w-[500px]">
+      <DialogContent className="flex h-fit flex-col gap-[23px] overflow-y-auto rounded-none border bg-white py-6 sm:max-w-[500px]">
         <DialogHeader className="inline-flex flex-col items-start justify-start border-b border-border pb-5">
           <DialogTitle className="text-lg font-bold text-neutral-950">
             Update FAQ
@@ -165,7 +165,7 @@ const UpdateFaqModal = (properties: Properties) => {
             <Button variant={"subtle"}>Cancel</Button>
           </DialogTrigger>
 
-          <Button variant={"primary"} onClick={handleFaq}>
+          <Button variant={"primary"} onClick={handleFaq} disabled={answer?.length < 20 ? true : false}>
             {loading ? (
               <span className="flex items-center gap-x-2">
                 <span className="animate-pulse">Saving</span>{" "}

@@ -24,15 +24,15 @@ import { Textarea } from "~/components/ui/textarea";
 import { useToast } from "~/components/ui/use-toast";
 
 interface AddFaqModalProperties {
-  children: React.ReactNode;
   callback: boolean;
-  setCallback: any;
+  setCallback: (value: boolean) => void;
+  onClose: () => void;
 }
 
 const AddFaqModal = ({
-  children,
   callback,
   setCallback,
+  onClose
 }: AddFaqModalProperties) => {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
@@ -61,8 +61,6 @@ const AddFaqModal = ({
       category,
     };
 
-    console.log(payload);
-
     const result = await CreateFaqs(payload);
 
     if (result?.status === 200 || result?.status === 201) {
@@ -80,13 +78,13 @@ const AddFaqModal = ({
         variant: "destructive",
       });
       setLoading(false);
+      setCallback(!callback);
     }
   };
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="flex h-fit max-h-[600px] flex-col gap-[23px] rounded-none border bg-white py-6 sm:max-w-[500px]">
+    <Dialog open onOpenChange={onClose}>
+      <DialogContent className="flex h-fit flex-col gap-[23px] rounded-none border bg-white py-6 sm:max-w-[500px]">
         <DialogHeader className="inline-flex flex-col items-start justify-start border-b border-border pb-5">
           <DialogTitle className="text-lg font-bold text-neutral-950">
             Create FAQ
@@ -160,7 +158,7 @@ const AddFaqModal = ({
             <Button variant={"subtle"}>Cancel</Button>
           </DialogTrigger>
 
-          <Button variant={"primary"} onClick={handleFaq}>
+          <Button variant={"primary"} onClick={handleFaq} disabled={category === "category" || answer?.length < 20 ? true : false}>
             {loading ? (
               <span className="flex items-center gap-x-2">
                 <span className="animate-pulse">Saving</span>{" "}
