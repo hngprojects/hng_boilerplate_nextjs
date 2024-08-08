@@ -165,7 +165,11 @@ const UpdateFaqModal = (properties: Properties) => {
             <Button variant={"subtle"}>Cancel</Button>
           </DialogTrigger>
 
-          <Button variant={"primary"} onClick={handleFaq} disabled={answer?.length < 20 ? true : false}>
+          <Button
+            variant={"primary"}
+            onClick={handleFaq}
+            disabled={category === "" || answer?.length < 20 ? true : false}
+          >
             {loading ? (
               <span className="flex items-center gap-x-2">
                 <span className="animate-pulse">Saving</span>{" "}

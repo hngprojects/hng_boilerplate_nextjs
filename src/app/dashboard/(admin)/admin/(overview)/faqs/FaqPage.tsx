@@ -96,7 +96,7 @@ const FaqPage = () => {
         <h1 className="self-stretch text-[28px] font-semibold text-black">
           FAQ
         </h1>
-        <p className="self-stretch text-xs font-normal leading-3 text-black">
+        <p className="self-stretch text-sm font-normal leading-3 text-black">
           Manage your frequently asked questions efficiently.
         </p>
       </div>
@@ -117,10 +117,13 @@ const FaqPage = () => {
         </div>
 
         <div className="ml-0 flex w-full items-center justify-start gap-[10px] md:justify-end lg:ml-auto lg:w-fit">
-          <Button onClick={() => setCreateModal(true)} className="inline-flex h-10 items-center justify-center bg-primary">
-              <CirclePlus />
-              Add FAQ
-            </Button>
+          <Button
+            onClick={() => setCreateModal(true)}
+            className="inline-flex h-10 items-center justify-center bg-primary"
+          >
+            <CirclePlus />
+            Add FAQ
+          </Button>
         </div>
       </div>
 
@@ -206,8 +209,6 @@ const FaqPage = () => {
                             setCallback={setCallback}
                           />
                         )}
-
-                       
                       </TableRow>
                     );
                   })}
@@ -215,7 +216,6 @@ const FaqPage = () => {
               )}
             </TableBody>
           </Table>
-
 
           {/* create modal */}
           {createModal && (
@@ -226,7 +226,6 @@ const FaqPage = () => {
             />
           )}
 
-          
           {!loading && faqs?.length === 0 && (
             <p className="mt-40 text-center">No data available</p>
           )}
@@ -245,8 +244,6 @@ const FaqPage = () => {
           </div>
         </div>
       </div>
-
-     
     </main>
   );
 };

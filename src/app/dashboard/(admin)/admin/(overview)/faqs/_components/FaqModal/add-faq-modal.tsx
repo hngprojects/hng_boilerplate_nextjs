@@ -32,7 +32,7 @@ interface AddFaqModalProperties {
 const AddFaqModal = ({
   callback,
   setCallback,
-  onClose
+  onClose,
 }: AddFaqModalProperties) => {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
@@ -72,6 +72,7 @@ const AddFaqModal = ({
       setLoading(false);
       setCallback(!callback);
     } else {
+      console.log(result)
       toast({
         title: "Error",
         description: result?.error,
@@ -158,7 +159,13 @@ const AddFaqModal = ({
             <Button variant={"subtle"}>Cancel</Button>
           </DialogTrigger>
 
-          <Button variant={"primary"} onClick={handleFaq} disabled={category === "category" || answer?.length < 20 ? true : false}>
+          <Button
+            variant={"primary"}
+            onClick={handleFaq}
+            disabled={
+              category === "" || answer?.length < 20 ? true : false
+            }
+          >
             {loading ? (
               <span className="flex items-center gap-x-2">
                 <span className="animate-pulse">Saving</span>{" "}
