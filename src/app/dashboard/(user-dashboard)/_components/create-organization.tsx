@@ -91,11 +91,12 @@ export const CreateOrganization = ({ isOpen, setIsOpen }: ModalProperties) => {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
+          <DialogTitle>Create Organization</DialogTitle>
           <DialogDescription>
-            Make changes to your profile here. Click save when you&apos;re done.
+            Fill in the details to create a new organization.
           </DialogDescription>
         </DialogHeader>
+
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="gap-2">
             <div className="flex flex-col gap-2 md:flex-row">
@@ -125,17 +126,17 @@ export const CreateOrganization = ({ isOpen, setIsOpen }: ModalProperties) => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Company Name</FormLabel>
+                    <FormLabel>Organization Name</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Company Name"
+                        placeholder="Organization Name"
                         {...field}
                         className="w-full"
                         disabled={isLoading}
                       />
                     </FormControl>
                     <FormDescription>
-                      Enter the name of the company.
+                      Enter the name of the Organization.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -158,7 +159,7 @@ export const CreateOrganization = ({ isOpen, setIsOpen }: ModalProperties) => {
                       />
                     </FormControl>
                     <FormDescription>
-                      Provide a brief description of the company.
+                      Provide a brief description of the Organization.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -179,7 +180,7 @@ export const CreateOrganization = ({ isOpen, setIsOpen }: ModalProperties) => {
                       />
                     </FormControl>
                     <FormDescription>
-                      Specify the industry the company operates in.
+                      Specify the industry the Organization operates in.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
