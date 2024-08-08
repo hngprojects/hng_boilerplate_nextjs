@@ -35,13 +35,14 @@ const DeleteDialog = (properties: Properties) => {
 
     const response = await DeleteFaqs(properties?.faqs?.id);
     if (response?.status === 200 || response?.status === 201) {
+      properties?.setCallback(!properties?.callback);
       toast({
         title: "Success",
         description: "Faq Deleted successfully",
         variant: "default",
       });
+      properties?.onClose()
       setLoading(false);
-      properties?.setCallback(!properties?.callback);
     } else {
       toast({
         title: "Error",

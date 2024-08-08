@@ -64,13 +64,15 @@ const AddFaqModal = ({
     const result = await CreateFaqs(payload);
 
     if (result?.status === 200 || result?.status === 201) {
+      setCallback(!callback);
       toast({
         title: "Success",
         description: "Faq created successfully",
         variant: "default",
       });
+      
+      onClose()
       setLoading(false);
-      setCallback(!callback);
     } else {
       console.log(result)
       toast({

@@ -71,14 +71,15 @@ const UpdateFaqModal = (properties: Properties) => {
 
     const result = await UpdateFaqs(payload, properties?.faqs?.id);
     if (result?.status === 200 || result?.status === 201) {
+      properties?.setCallback(!properties?.callback);
       toast({
         title: "Success",
         description: "FAQ updated successfully",
         variant: "default",
       });
-      setLoading(false);
-      properties?.setCallback(!properties?.callback);
       properties?.onClose();
+      setLoading(false);
+      
     } else {
       toast({
         title: "Error",

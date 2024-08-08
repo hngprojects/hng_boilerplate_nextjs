@@ -49,7 +49,7 @@ const FaqPage = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [createModal, setCreateModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
-  const handleOpenDialog = () => setIsDialogOpen(true);
+  const [selectedFaq, setSelectedFaq] = useState<FaqItem | null>(null);
   const handleCloseDialog = () => setIsDialogOpen(false);
   const handleCloseUpdateDialog = () => setUpdateModal(false);
   const [callback, setCallback] = useState<boolean>(false);
@@ -77,10 +77,17 @@ const FaqPage = () => {
     setDisplayedFaqs(newDisplayedJobs);
   }, [faqs, currentPage]);
 
-  // open dialog
-  const handleOpenUpdateDialog = () => {
+  // open update dialog and set selected FAQ
+  const handleOpenUpdateDialog = (faq: FaqItem) => {
+    setSelectedFaq(faq);
     setUpdateModal(true);
   };
+
+  const handleOpenDialog = (faq: FaqItem) => {
+    setSelectedFaq(faq);
+    setIsDialogOpen(true)
+  };
+
 
   // search filter
   const filteredFaqs = displayedFaqs?.filter(
@@ -175,14 +182,14 @@ const FaqPage = () => {
                               </DropdownMenuLabel>
                               <DropdownMenuItem
                                 className="cursor-pointer"
-                                onClick={handleOpenUpdateDialog}
+                                onClick={() => handleOpenUpdateDialog(faq)}
                               >
                                 <Pencil className="mr-2" size={15} />
                                 Edit
                               </DropdownMenuItem>{" "}
                               <DropdownMenuItem
                                 className="cursor-pointer"
-                                onClick={handleOpenDialog}
+                                onClick={() => handleOpenDialog(faq)}
                               >
                                 <Trash2 className="mr-2" size={15} /> Delete
                               </DropdownMenuItem>
@@ -190,25 +197,7 @@ const FaqPage = () => {
                           </DropdownMenu>
                         </TableCell>
 
-                        {/* delete modal */}
-                        {isDialogOpen && (
-                          <DeleteDialog
-                            onClose={handleCloseDialog}
-                            faqs={faq}
-                            callback={callback}
-                            setCallback={setCallback}
-                          />
-                        )}
-
-                        {/* update modal */}
-                        {updateModal && (
-                          <UpdateFaqModal
-                            onClose={handleCloseUpdateDialog}
-                            faqs={faq}
-                            callback={callback}
-                            setCallback={setCallback}
-                          />
-                        )}
+                    
                       </TableRow>
                     );
                   })}
@@ -221,6 +210,26 @@ const FaqPage = () => {
           {createModal && (
             <AddFaqModal
               onClose={() => setCreateModal(false)}
+              callback={callback}
+              setCallback={setCallback}
+            />
+          )}
+
+          {/* delete modal */}
+          {isDialogOpen && selectedFaq && (
+            <DeleteDialog
+              onClose={handleCloseDialog}
+              faqs={selectedFaq}
+              callback={callback}
+              setCallback={setCallback}
+            />
+          )}
+
+          {/* update modal */}
+          {updateModal && selectedFaq && (
+            <UpdateFaqModal
+              onClose={handleCloseUpdateDialog}
+              faqs={selectedFaq}
               callback={callback}
               setCallback={setCallback}
             />
