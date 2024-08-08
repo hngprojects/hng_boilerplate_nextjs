@@ -72,7 +72,7 @@ export default {
         if (!account?.id_token) {
           return token;
         }
-
+        cookies().delete("access_token");
         const response = await googleAuth({ id_token: account?.id_token });
 
         if (!response.data) {
