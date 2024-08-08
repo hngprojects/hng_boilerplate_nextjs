@@ -81,8 +81,10 @@ export default {
             name: profile?.given_name,
             picture: profile?.picture,
           } as CustomJWT;
+          token.access_token = response.access_token;
           return token;
         }
+
         token = response.data as CustomJWT;
         token.picture = profile?.picture;
         token.access_token = response.access_token;

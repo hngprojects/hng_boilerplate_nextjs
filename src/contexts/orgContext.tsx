@@ -30,7 +30,7 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
   useLayoutEffect(() => {
     startTransition(() => {
       getAllOrg().then((data) => {
-        setOrganizations(data.organization);
+        setOrganizations(data.organization || []);
       });
       getSubCount().then((subResponse) => {
         setSubscriptionCount(subResponse.sub);
