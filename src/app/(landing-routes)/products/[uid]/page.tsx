@@ -14,9 +14,9 @@ import {
   DeliveryVanIcon,
   MinusIcon,
   PlusIcon,
+  StarIcon,
   ThreeDRotateIcon,
 } from "../icons";
-import { StarIcon } from "../page";
 
 export default function Page() {
   return (
