@@ -5,7 +5,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 
 import { Button } from "~/components/ui/button";
-import { Input } from "~/components/ui/input";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { useProductsFilters } from "~/hooks/admin-product/use-products.-filters.persistence";
 import { cn } from "~/lib/utils";

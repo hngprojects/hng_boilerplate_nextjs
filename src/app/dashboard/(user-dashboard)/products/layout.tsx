@@ -26,7 +26,6 @@
 //   return <>{children}</>;
 // }
 
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 export default function UserProductLayout({
