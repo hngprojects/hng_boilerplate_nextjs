@@ -37,6 +37,10 @@ export interface User {
   expires_in?: string;
 }
 
+export interface extendedUser extends User {
+  access_token?: string;
+}
+
 export interface ApiResponseData {
   access_token: string;
   user: User;
