@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
+import { Button } from "~/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -26,8 +27,10 @@ export const OrganisationSwitcher = () => {
     }
   }, [currentId, organizations, setCurrentOrgId]);
 
-  const currentOrg = organizations.find((org) => org.id === currentId);
-
+  const currentOrg =
+    organizations.length > 0
+      ? organizations.find((org) => org.id === currentId)
+      : undefined;
   return (
     <Select defaultValue={currentId} onValueChange={setCurrentOrgId}>
       <SelectTrigger
@@ -54,6 +57,9 @@ export const OrganisationSwitcher = () => {
             </div>
           </SelectItem>
         ))}
+        <Button variant="outline" className="w-full">
+          Create Organisation
+        </Button>
       </SelectContent>
     </Select>
   );

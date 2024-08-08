@@ -11,7 +11,7 @@ export const revenueData: CardData[] = [
   {
     title: "Total Revenue",
     value: "$45,000.00",
-    description: "+20% from last month",
+    description: "+0% from last month",
     icon: "dollar-sign",
   },
   {
@@ -23,13 +23,13 @@ export const revenueData: CardData[] = [
   {
     title: "Sales",
     value: "15,000",
-    description: "+10% from last month",
+    description: "+0% from last month",
     icon: "credit-card",
   },
   {
     title: "Active Now",
     value: "574",
-    description: "+201 since last hour",
+    description: "+0 since last hour",
     icon: "trending-up",
   },
 ];

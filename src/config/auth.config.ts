@@ -3,7 +3,6 @@ import { JWT } from "next-auth/jwt";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 import Twitter from "next-auth/providers/twitter";
-import { cookies } from "next/headers";
 
 import { nextlogin } from "~/actions/login";
 import { googleAuth, twitterAuth } from "~/actions/socialAuth";
@@ -45,6 +44,7 @@ export default {
 
         const user = {
           ...response.data.user,
+          access_token: response.access_token,
         };
 
         return user;
@@ -81,8 +81,10 @@ export default {
             name: profile?.given_name,
             picture: profile?.picture,
           } as CustomJWT;
+          token.access_token = response.access_token;
           return token;
         }
+
         token = response.data as CustomJWT;
         token.picture = profile?.picture;
         token.access_token = response.access_token;
@@ -122,7 +124,6 @@ export default {
       } as CustomJWT;
     },
     async session({ session, token }: { session: Session; token: JWT }) {
-      const authToken = cookies()?.get("access_token")?.value;
       const customToken = token as CustomJWT;
       session.user = {
         id: customToken.id as string,
@@ -140,7 +141,8 @@ export default {
         role: customToken.role as string,
         email: token.email as string,
       };
-      session.access_token = customToken.access_token || authToken;
+      session.access_token = customToken.access_token;
+
       return session;
     },
   },
