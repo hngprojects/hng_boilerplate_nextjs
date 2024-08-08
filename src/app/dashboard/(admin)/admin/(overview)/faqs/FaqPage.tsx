@@ -49,7 +49,7 @@ const FaqPage = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [createModal, setCreateModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
-  const [selectedFaq, setSelectedFaq] = useState<FaqItem | null>(null);
+  const [selectedFaq, setSelectedFaq] = useState<FaqItem | undefined>();
   const handleCloseDialog = () => setIsDialogOpen(false);
   const handleCloseUpdateDialog = () => setUpdateModal(false);
   const [callback, setCallback] = useState<boolean>(false);
@@ -85,9 +85,8 @@ const FaqPage = () => {
 
   const handleOpenDialog = (faq: FaqItem) => {
     setSelectedFaq(faq);
-    setIsDialogOpen(true)
+    setIsDialogOpen(true);
   };
-
 
   // search filter
   const filteredFaqs = displayedFaqs?.filter(
@@ -196,8 +195,6 @@ const FaqPage = () => {
                             </DropdownMenuContent>
                           </DropdownMenu>
                         </TableCell>
-
-                    
                       </TableRow>
                     );
                   })}

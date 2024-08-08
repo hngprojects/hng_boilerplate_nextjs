@@ -79,7 +79,6 @@ const UpdateFaqModal = (properties: Properties) => {
       });
       properties?.onClose();
       setLoading(false);
-      
     } else {
       toast({
         title: "Error",

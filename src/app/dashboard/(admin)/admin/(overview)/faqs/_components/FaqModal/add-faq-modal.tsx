@@ -70,11 +70,10 @@ const AddFaqModal = ({
         description: "Faq created successfully",
         variant: "default",
       });
-      
-      onClose()
+
+      onClose();
       setLoading(false);
     } else {
-      console.log(result)
       toast({
         title: "Error",
         description: result?.error,
@@ -164,9 +163,7 @@ const AddFaqModal = ({
           <Button
             variant={"primary"}
             onClick={handleFaq}
-            disabled={
-              category === "" || answer?.length < 20 ? true : false
-            }
+            disabled={category === "" || answer?.length < 20 ? true : false}
           >
             {loading ? (
               <span className="flex items-center gap-x-2">

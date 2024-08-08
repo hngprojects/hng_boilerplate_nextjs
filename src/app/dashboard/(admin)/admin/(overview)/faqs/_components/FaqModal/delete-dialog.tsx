@@ -41,7 +41,7 @@ const DeleteDialog = (properties: Properties) => {
         description: "Faq Deleted successfully",
         variant: "default",
       });
-      properties?.onClose()
+      properties?.onClose();
       setLoading(false);
     } else {
       toast({
