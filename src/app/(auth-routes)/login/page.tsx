@@ -51,7 +51,7 @@ const Login = () => {
       await loginUser(values).then(async (data) => {
         const { email, password } = values;
 
-        if (data) {
+        if (data.status === 200) {
           await signIn(
             "credentials",
             {

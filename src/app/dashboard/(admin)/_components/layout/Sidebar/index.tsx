@@ -46,6 +46,12 @@ const sideItems = [
     id: "squeeze",
   },
   {
+    route: "Faq Page",
+    link: "/dashboard/admin/faqs",
+    icon: List,
+    id: "faqs",
+  },
+  {
     route: "Waitlist Page",
     link: "/dashboard/admin/waitlist-page",
     icon: TabletSmartphone,
