@@ -61,13 +61,13 @@ const ProductFilter = ({
   return (
     <div className="flex w-full items-center justify-between gap-x-2 min-[500px]:gap-x-0">
       <div className="relative w-full max-w-[300px]">
-        <Input
+        {/* <Input
           type="text"
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
           placeholder="search products..."
           className="h-8 w-full bg-transparent px-8 text-sm min-[500px]:h-10"
-        />
+        /> */}
         <Button
           onClick={() => setSearchTerm("")}
           variant="ghost"
