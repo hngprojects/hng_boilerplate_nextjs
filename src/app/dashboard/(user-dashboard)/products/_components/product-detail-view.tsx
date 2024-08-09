@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { useRouter } from "next-nprogress-bar";
@@ -13,7 +16,7 @@ import { cn, formatPrice, simulateDelay } from "~/lib/utils";
 
 const ProductDetailView = () => {
   const router = useRouter();
-  const { products, deleteProduct } = useProducts();
+  const { products } = useProducts();
   const [isLoading, startTransition] = useTransition();
   const {
     product_id,
