@@ -33,8 +33,6 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
     DashboardData | undefined
   >();
 
-  console.log("org", organizations);
-
   useLayoutEffect(() => {
     startTransition(() => {
       getAllOrg().then((data) => {

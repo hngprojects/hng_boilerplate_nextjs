@@ -34,8 +34,6 @@ export const OrganisationSwitcher = () => {
       ? organizations.find((org) => org.organisation_id === currentId)
       : undefined;
 
-  console.log(currentOrg);
-
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -43,7 +41,6 @@ export const OrganisationSwitcher = () => {
       <CreateOrganization isOpen={isOpen} setIsOpen={setIsOpen} />
       <Select
         defaultValue={currentId}
-        // onValueChange={setCurrentOrgId}
         onValueChange={(value) => {
           setCurrentOrgId(value);
         }}

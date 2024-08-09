@@ -129,7 +129,7 @@ const NewProductModal = () => {
             animate={{ ...variantProperties, opacity: 1, scale: 1 }}
             exit={{ ...variantProperties, opacity: 0, scale: 0.5 }}
             className={cn(
-              "fixed left-1/2 top-1/2 z-[9999] grid h-fit max-h-[90%] w-full max-w-[95%] -translate-x-1/2 -translate-y-1/2 transform-gpu place-items-center items-center overflow-y-auto rounded-md bg-white pb-6 min-[500px]:max-w-[480px] min-[500px]:rounded-xl md:max-h-[850px] lg:h-fit lg:max-w-[491px]",
+              "fixed left-1/2 top-1/2 z-[9999] grid h-fit max-h-[90%] w-full max-w-[95%] -translate-x-1/2 -translate-y-1/2 transform-gpu place-items-center items-center overflow-hidden overflow-y-auto rounded-md bg-white pb-6 min-[500px]:max-w-[480px] min-[500px]:rounded-xl md:max-h-[850px] lg:h-fit lg:max-w-[491px]",
             )}
           >
             <div className="flex h-full w-full flex-col items-center gap-y-4">
@@ -312,7 +312,7 @@ const NewProductModal = () => {
                       )}
                     />
                   </div>
-                  <div className="relative mt-2 flex h-fit max-h-[150px] min-h-[125px] w-full flex-col gap-y-2 rounded-xl md:rounded-2xl">
+                  <div className="relative mt-2 flex h-fit max-h-[150px] min-h-[125px] w-full flex-col items-center justify-center gap-y-2 rounded-xl px-4 md:rounded-2xl">
                     <p className="font-medium text-neutral-dark-2">Media</p>
                     {image ? (
                       <Image
@@ -337,6 +337,7 @@ const NewProductModal = () => {
                           }
                           accept="image/jpeg,image/png,image/svg+xml"
                         />
+                        Add Image
                       </Label>
                     )}
                   </div>
