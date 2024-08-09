@@ -43,6 +43,6 @@ describe("deleteDialog", () => {
     );
 
     fireEvent.click(screen.getByRole("button", { name: /delete/i }));
-    expect(onClose).toHaveBeenCalledTimes(1);
+    expect(onDelete).toHaveBeenCalledTimes(1);
   });
 });
