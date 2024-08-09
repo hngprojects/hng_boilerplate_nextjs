@@ -1,6 +1,8 @@
+import axios from "axios";
 import { EllipsisVertical } from "lucide-react";
 import { useState } from "react";
 
+import { getApiUrl } from "~/actions/getApiUrl";
 import { Button } from "~/components/ui/button";
 import {
   DropdownMenu,
@@ -13,15 +15,37 @@ import { UserData } from "../page";
 import DeleteDialog from "./dialogue/delete-dialog";
 
 const UserTableBody = ({ data }: { data: UserData[] }) => {
+  const [userId, setUserId] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const handleOpenDialog = () => setIsDialogOpen(true);
+  const handleOpenDialog = (id: string) => {
+    setIsDialogOpen(true);
+    setUserId(id);
+  };
   const handleCloseDialog = () => setIsDialogOpen(false);
+
+  const deleteHandler = async () => {
+    const baseUrl = getApiUrl();
+
+    const API_URL = `${baseUrl}/api/v1/users/${userId}`;
+
+    try {
+      setIsDeleting(true);
+      await axios.delete(API_URL);
+    } catch {
+      setIsDeleting(false);
+    } finally {
+      setIsDeleting(false);
+    }
+  };
 
   return (
     <>
       <tbody className="user-table z-10">
         {data.map((_data, index) => {
           const {
+            id,
             email,
             phone,
             is_active: status,
@@ -36,13 +60,6 @@ const UserTableBody = ({ data }: { data: UserData[] }) => {
               >
                 <div className="flex flex-row items-center gap-2">
                   <div className="h-10 w-10 overflow-hidden rounded-full bg-gray-200">
-                    {/* <Image
-                      src="/images/latest-articles/avatar.png"
-                      className="object-cover"
-                      height={40}
-                      width={40}
-                      alt={fullName}
-                    /> */}
                     <div className="grid h-[40px] w-[40px] place-items-center rounded-full bg-[#e1e7ef]">
                       <h6 className="font-semibold text-neutral-dark-1">
                         {fullName[0]}
@@ -107,7 +124,7 @@ const UserTableBody = ({ data }: { data: UserData[] }) => {
                       Actions
                     </DropdownMenuLabel>
                     <DropdownMenuItem>Edit</DropdownMenuItem>
-                    <DropdownMenuItem onClick={handleOpenDialog}>
+                    <DropdownMenuItem onClick={() => handleOpenDialog(id)}>
                       Delete
                     </DropdownMenuItem>
                   </DropdownMenuContent>
@@ -117,7 +134,13 @@ const UserTableBody = ({ data }: { data: UserData[] }) => {
           );
         })}
       </tbody>
-      {isDialogOpen && <DeleteDialog onClose={handleCloseDialog} />}
+      {isDialogOpen && (
+        <DeleteDialog
+          isDeleting={isDeleting}
+          onClose={handleCloseDialog}
+          onDelete={deleteHandler}
+        />
+      )}
     </>
   );
 };

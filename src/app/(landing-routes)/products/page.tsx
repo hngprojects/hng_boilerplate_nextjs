@@ -41,7 +41,7 @@ export default function Page() {
             <Link
               href="/products/uid"
               key={index}
-              className="overflow-hidden rounded-[12px] border-[1px] border-[#cbd5e1] hover:border-none hover:shadow-[0px_4px_4px_0px_#00000040]"
+              className="overflow-hidden rounded-[12px] border-[1px] border-[#cbd5e1] hover:border-transparent hover:shadow-[0px_4px_4px_0px_#00000040]"
             >
               <figure>
                 <Image
