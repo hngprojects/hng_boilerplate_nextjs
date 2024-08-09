@@ -1,5 +1,5 @@
 import { AnimatePresence } from "framer-motion";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-nprogress-bar";
 
 import {
   Table,
