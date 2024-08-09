@@ -1,4 +1,5 @@
 import { Button } from "~/components/common/common-button";
+import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import {
   Dialog,
   DialogContent,
@@ -7,7 +8,15 @@ import {
   DialogTitle,
 } from "~/components/ui/dialog";
 
-const DeleteDialog = ({ onClose }: { onClose: () => void }) => {
+const DeleteDialog = ({
+  onClose,
+  onDelete,
+  isDeleting,
+}: {
+  onClose: () => void;
+  onDelete: () => void;
+  isDeleting: boolean;
+}) => {
   return (
     <Dialog open onOpenChange={onClose}>
       <DialogContent>
@@ -29,10 +38,11 @@ const DeleteDialog = ({ onClose }: { onClose: () => void }) => {
             Cancel
           </Button>
           <Button
-            onClick={onClose}
+            onClick={onDelete}
             className="ml-2 flex items-center justify-center gap-2.5 rounded-md bg-red-600 px-4 py-2 text-sm font-medium leading-normal text-white"
           >
-            Delete
+            <div className="-mt-1.5">Delete</div>
+            {isDeleting && <LoadingSpinner />}
           </Button>
         </div>
       </DialogContent>
