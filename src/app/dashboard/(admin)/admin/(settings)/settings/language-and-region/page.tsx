@@ -57,27 +57,25 @@ const LanguageRegion = () => {
   const [successMessage, setSuccessMessage] = useState<undefined | string>();
   const [isPending, setIsPending] = useState(false);
 
-  const fetchUserData = async () => {
-    const baseUrl = await getApiUrl();
-    const API_URL = `${baseUrl}/api/v1/profile/${data?.user.id}`;
-
-    try {
-      const response = await axios.get(API_URL, {
-        headers: {
-          Authorization: `Bearer ${data?.access_token}`,
-        },
-      });
-      setLanguage(response.data.data.language);
-      setRegion(response.data.data.region);
-      setTimezone(response.data.data.timezones);
-    } catch {
-      setErrorMessage("An error occurred while retrieving your information");
-    }
-  };
-
   useEffect(() => {
-    fetchUserData();
-  }, []);
+    (async () => {
+      const baseUrl = await getApiUrl();
+      const API_URL = `${baseUrl}/api/v1/profile/${data?.user.id}`;
+
+      try {
+        const response = await axios.get(API_URL, {
+          headers: {
+            Authorization: `Bearer ${data?.access_token}`,
+          },
+        });
+        setLanguage(response.data.data.language);
+        setRegion(response.data.data.region);
+        setTimezone(response.data.data.timezones);
+      } catch {
+        setErrorMessage("An error occurred while retrieving your information");
+      }
+    })();
+  }, [data]);
 
   const updateUserData = async () => {
     try {
