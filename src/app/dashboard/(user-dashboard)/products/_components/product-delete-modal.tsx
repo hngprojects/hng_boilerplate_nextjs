@@ -1,12 +1,8 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-
 import { AnimatePresence, motion } from "framer-motion";
 
 import { Button } from "~/components/ui/button";
 import { toast } from "~/components/ui/use-toast";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
-import { useProducts } from "~/hooks/admin-product/use-products.persistence";
 import { cn } from "~/lib/utils";
 
 const variantProperties = {
@@ -17,8 +13,6 @@ const variantProperties = {
 };
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const ProductDeleteModal = () => {
-  const { products, deleteProduct } = useProducts();
-
   const { product_id, updateProductId, updateOpen, isDelete, setIsDelete } =
     useProductModal();
 

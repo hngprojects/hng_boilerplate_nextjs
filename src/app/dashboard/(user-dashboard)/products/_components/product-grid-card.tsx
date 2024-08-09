@@ -6,42 +6,14 @@ import BlurImage from "~/components/miscellaneous/blur-image";
 import { Badge, type BadgeProperties } from "~/components/ui/badge";
 import { Input } from "~/components/ui/input";
 import { formatPrice } from "~/lib/utils";
+import { Product } from "~/types";
 import { ProductHighlightTerm } from "./product-highlight-term";
 
-const stockStatus = {
-  in_stock: {
-    variant: "success-dot",
-    label: "In Stock",
-  },
-  out_of_stock: {
-    variant: "error-dot",
-    label: "Out of Stock",
-  },
-  low_on_stock: {
-    variant: "warning-dot",
-    label: "Low on Stock",
-  },
-};
-
-type ProductGridCardProperties = {
-  id?: string;
-  title: string;
-  description?: string;
-  status: "in_stock" | "out_of_stock" | "low_on_stock" | string;
-  price: number;
-  imgSrc: string;
-  searchTerm?: string;
-  category: string;
-  onEdit: () => void; // (id: string) => void;
-  onDelete: () => void; // (id: string) => void;
-  onSelect: () => void; // (id: string) => void;
-};
-
 export function ProductGridCard({
-  // id,
+  id,
   title = "Product 1",
-  // description,
-  imgSrc,
+  description,
+  image,
   price = 15,
   status = "in_stock",
   searchTerm = "",
@@ -49,7 +21,7 @@ export function ProductGridCard({
   onEdit,
   onDelete,
   onSelect,
-}: ProductGridCardProperties) {
+}: Product) {
   const stock = stockStatus[status];
   return (
     <div className="flex max-w-[240px] flex-col gap-[17.305px] rounded-[6px] border-[0.705px] bg-white px-4 py-4">

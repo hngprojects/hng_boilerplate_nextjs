@@ -31,7 +31,7 @@ import {
 } from "~/components/ui/select";
 import { Textarea } from "~/components/ui/textarea";
 import { useToast } from "~/components/ui/use-toast";
-import { useProductModal } from "~/hooks/admin-product/use-product.modal";
+import { useOrgContext } from "~/contexts/orgContext";
 import { useLocalStorage } from "~/hooks/use-local-storage";
 import { cn } from "~/lib/utils";
 import { productSchema } from "~/schemas";
@@ -43,7 +43,7 @@ type CloudinaryAsset = {
 };
 
 const NewProductModal = () => {
-  const { setIsNewModal, isNewModal } = useProductModal();
+  const { setIsNewModal, isNewModal } = useOrgContext();
   const [image, setImage] = useState<File | Blob>();
   const [isLoading, startTransition] = useTransition();
   const [org_id] = useLocalStorage<string>("current_orgid", "");

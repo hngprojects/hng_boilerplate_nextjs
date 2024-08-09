@@ -109,4 +109,6 @@ export interface Product {
   quantity: number;
   size?: "Small" | "Standard" | "Large";
   stock_status: "in stock" | "out of stock" | "preorder";
+  created_at: string;
+  updated_at: string;
 }

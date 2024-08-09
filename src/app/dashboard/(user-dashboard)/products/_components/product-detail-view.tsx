@@ -1,6 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { useRouter } from "next-nprogress-bar";
@@ -10,13 +7,14 @@ import BlurImage from "~/components/miscellaneous/blur-image";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import { Button } from "~/components/ui/button";
 import { toast } from "~/components/ui/use-toast";
+import { useOrgContext } from "~/contexts/orgContext";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
-import { useProducts } from "~/hooks/admin-product/use-products.persistence";
 import { cn, formatPrice, simulateDelay } from "~/lib/utils";
 
 const ProductDetailView = () => {
+  const { products } = useOrgContext();
   const router = useRouter();
-  const { products } = useProducts();
+
   const [isLoading, startTransition] = useTransition();
   const {
     product_id,
@@ -27,13 +25,11 @@ const ProductDetailView = () => {
     setIsDelete,
   } = useProductModal();
 
-  const product = products?.find(
-    (product) => product.product_id === product_id,
-  );
+  const product = products?.find((product) => product.id === product_id);
   const handleDelete = async (id: string) => {
     toast({
       title: "Deleting product",
-      description: "Please wait...",
+      description: "Please wait... ",
       variant: "destructive",
     });
 
@@ -41,9 +37,8 @@ const ProductDetailView = () => {
     startTransition(async () => {
       await simulateDelay(3);
       updateOpen(false);
-      deleteProduct(id);
       toast({
-        title: `Product deleted`,
+        title: `Product deleted ${id}`,
         description: `${product?.name} has been deleted.`,
         variant: "default",
       });
@@ -86,7 +81,7 @@ const ProductDetailView = () => {
             </p>
             <div className="flex w-full items-center justify-center gap-x-2">
               <Button
-                onClick={() => handleDelete(product!.product_id!)}
+                onClick={() => handleDelete(product!.!)}
                 variant="outline"
                 className="bg-white font-medium text-error"
               >

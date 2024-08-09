@@ -14,7 +14,7 @@ import {
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { useProducts } from "~/hooks/admin-product/use-products.persistence";
 import { cn } from "~/lib/utils";
-import { ProductTableProperties } from "~/types/admin-product.types";
+import { Product } from "~/types";
 import { ProductGridCard } from "./product-grid-card";
 import { ProductListRow } from "./product-list-row";
 import { ProductNotFound } from "./product-not-found";
@@ -25,8 +25,8 @@ import { ProductNotFound } from "./product-not-found";
 s;
 
 type Properties = {
-  subset: ProductTableProperties[];
-  filteredProducts: ProductTableProperties[];
+  subset: Product[];
+  filteredProducts: Product[];
   searchTerm: string;
   view: "grid" | "list";
 };
@@ -151,8 +151,6 @@ export const ProductContentView = ({
                   category={product.category}
                   status={product.status}
                   onSelect={() => ({})}
-                  onEdit={() => handleEditAction(product.product_id)}
-                  onDelete={() => handleDeleteAction(product.product_id)}
                 />
               ))}
           </div>

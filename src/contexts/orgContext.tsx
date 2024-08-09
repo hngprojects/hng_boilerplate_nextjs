@@ -3,6 +3,7 @@
 import React, {
   createContext,
   useContext,
+  useEffect,
   useLayoutEffect,
   useMemo,
   useState,
@@ -24,6 +25,10 @@ interface OrgContextProperties {
   monthlyData: MonthlyData | undefined;
   dashboardData: DashboardData | undefined;
   products: Product[];
+  selectedProduct: string;
+  setSelectedProduct: React.Dispatch<React.SetStateAction<string>>;
+  isNewModal: boolean;
+  setIsNewModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const OrgContext = createContext({} as OrgContextProperties);
@@ -37,6 +42,10 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
   >();
   const [products, setProducts] = useState<Product[]>([]);
   const [org_id] = useLocalStorage<string>("current_orgid", "");
+  const [selectedProduct, setSelectedProduct] = useState<string>("");
+  const [isNewModal, setIsNewModal] = useState(false);
+
+  const isAnyModalOpen = isNewModal;
 
   useLayoutEffect(() => {
     startTransition(() => {
@@ -58,6 +67,22 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
     });
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = isAnyModalOpen ? "hidden" : "auto";
+
+    const handleKeyDown = (entries: KeyboardEvent) => {
+      if (entries.key === "Escape") {
+        setIsNewModal(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isAnyModalOpen]);
+
   useLayoutEffect(() => {
     if (!org_id || org_id === undefined) return;
     startTransition(() => {
@@ -74,8 +99,20 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
       monthlyData,
       dashboardData,
       products,
+      selectedProduct,
+      setSelectedProduct,
+      isNewModal,
+      setIsNewModal,
     }),
-    [isLoading, organizations, monthlyData, dashboardData, products],
+    [
+      isLoading,
+      organizations,
+      monthlyData,
+      dashboardData,
+      products,
+      selectedProduct,
+      isNewModal,
+    ],
   );
 
   return <OrgContext.Provider value={value}>{children}</OrgContext.Provider>;
