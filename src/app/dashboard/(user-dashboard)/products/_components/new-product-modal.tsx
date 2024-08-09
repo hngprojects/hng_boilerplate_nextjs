@@ -62,7 +62,7 @@ const NewProductModal = () => {
     defaultValues: {
       name: "",
       description: "",
-      size: "",
+      size: "Small",
       image_url: "",
       quantity: 0,
       price: 0,
@@ -106,7 +106,7 @@ const NewProductModal = () => {
     setSelectedCategory(category);
     newProductForm.setValue("category", category);
     if (!SIZE_CATEGORIES.has(category)) {
-      newProductForm.setValue("size", "");
+      newProductForm.setValue("size", "Small");
     }
   };
 
