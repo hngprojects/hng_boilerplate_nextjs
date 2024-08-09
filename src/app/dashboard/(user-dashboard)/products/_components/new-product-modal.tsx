@@ -37,10 +37,8 @@ import { cn } from "~/lib/utils";
 import { productSchema } from "~/schemas";
 import { CATEGORIES } from "../data/categories.mock";
 import { MAX_CHAR } from "./schema/schema";
+import { CloudinaryAsset } from "~/types";
 
-type CloudinaryAsset = {
-  url: string;
-};
 
 const NewProductModal = () => {
   const { setIsNewModal, isNewModal } = useProductModal();

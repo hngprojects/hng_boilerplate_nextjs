@@ -97,3 +97,22 @@ export interface MonthlyRevenue {
 }
 
 export type MonthlyData = MonthlyRevenue[];
+
+
+export type CloudinaryAsset = {
+  url: string;
+};
+
+export type UpdateProfileType = {
+    username? : string
+    jobTitle? : string
+    pronouns? : string
+    department? : string
+    email? : string
+    bio? : string
+    sociallinks? : string[]
+    language? : string
+    region? : string
+    timezones? : string
+    profile_pic_url? :string
+}
