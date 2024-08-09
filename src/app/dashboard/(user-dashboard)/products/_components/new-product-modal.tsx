@@ -115,7 +115,7 @@ const NewProductModal = () => {
       <div
         onClick={() => setIsNewModal(false)}
         className={cn(
-          "fixed left-0 top-0 z-[9999] min-h-screen w-full overflow-hidden bg-[rgba(10,10,10,0.40)] transition-all duration-300",
+          "fixed left-0 top-0 z-[99] min-h-screen w-full overflow-hidden bg-[rgba(10,10,10,0.40)] transition-all duration-300",
           isNewModal
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0",
@@ -129,7 +129,7 @@ const NewProductModal = () => {
             animate={{ ...variantProperties, opacity: 1, scale: 1 }}
             exit={{ ...variantProperties, opacity: 0, scale: 0.5 }}
             className={cn(
-              "fixed left-1/2 top-1/2 z-[9999] grid h-fit max-h-[90%] w-full max-w-[95%] -translate-x-1/2 -translate-y-1/2 transform-gpu place-items-center items-center overflow-hidden overflow-y-auto rounded-md bg-white pb-6 min-[500px]:max-w-[480px] min-[500px]:rounded-xl md:max-h-[850px] lg:h-fit lg:max-w-[491px]",
+              "fixed left-1/2 top-1/2 z-[100] grid h-fit max-h-[90%] w-full max-w-[95%] -translate-x-1/2 -translate-y-1/2 transform-gpu place-items-center items-center overflow-hidden overflow-y-auto rounded-md bg-white pb-6 min-[500px]:max-w-[480px] min-[500px]:rounded-xl md:max-h-[850px] lg:h-fit lg:max-w-[491px]",
             )}
           >
             <div className="flex h-full w-full flex-col items-center gap-y-4">
@@ -224,7 +224,7 @@ const NewProductModal = () => {
                               <SelectTrigger>
                                 <SelectValue placeholder="Select a category" />
                               </SelectTrigger>
-                              <SelectContent>
+                              <SelectContent className="z-[300]">
                                 <SelectGroup>
                                   <SelectLabel>Categories</SelectLabel>
                                   {CATEGORIES.map((category) => (
