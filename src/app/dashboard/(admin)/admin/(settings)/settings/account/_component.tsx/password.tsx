@@ -49,14 +49,16 @@ const Password = () => {
         newPassword: formData.password,
       };
 
-      const response = await axios.post(API_URL, payload, {
+      await axios.post(API_URL, payload, {
         headers: {
           Authorization: `Bearer ${data?.access_token}`,
         },
       });
-      toast({
-        title: "Success",
-        description: response.data.message,
+      setOpen(true);
+      setFormData({
+        oldPassword: "",
+        password: "",
+        confirmPassword: "",
       });
     } catch (error) {
       const errorMessage = (error as HttpError)?.response?.data?.message;
