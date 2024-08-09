@@ -6,7 +6,7 @@ import React, {
   useEffect,
   useLayoutEffect,
   useMemo,
-  useState,
+  useReducer,
   useTransition,
 } from "react";
 
@@ -21,53 +21,114 @@ import {
 
 type ActiveFilter = "in stock" | "out of stock" | "preorder" | "all";
 
-interface OrgContextProperties {
+interface OrgState {
   organizations: Organisation[];
   isLoading: boolean;
   monthlyData: MonthlyData | undefined;
   dashboardData: DashboardData | undefined;
   products: Product[];
   selectedProduct: string;
-  setSelectedProduct: React.Dispatch<React.SetStateAction<string>>;
-  active_filter: ActiveFilter;
-  setActive_filter: React.Dispatch<React.SetStateAction<ActiveFilter>>;
   isNewModal: boolean;
-  setIsNewModal: React.Dispatch<React.SetStateAction<boolean>>;
   isDelete: boolean;
-  setIsDelete: React.Dispatch<React.SetStateAction<boolean>>;
   isOpen: boolean;
-  updateOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isActionModal: boolean;
-  setIsActionModal: React.Dispatch<React.SetStateAction<boolean>>;
+  active_filter: ActiveFilter;
 }
 
-export const OrgContext = createContext({} as OrgContextProperties);
+type OrgAction =
+  | { type: "SET_ORGANIZATIONS"; payload: Organisation[] }
+  | { type: "SET_MONTHLY_DATA"; payload: MonthlyData }
+  | { type: "SET_DASHBOARD_DATA"; payload: DashboardData }
+  | { type: "SET_PRODUCTS"; payload: Product[] }
+  | { type: "SET_SELECTED_PRODUCT"; payload: string }
+  | { type: "SET_IS_NEW_MODAL"; payload: boolean }
+  | { type: "SET_IS_DELETE"; payload: boolean }
+  | { type: "SET_IS_OPEN"; payload: boolean }
+  | { type: "SET_IS_ACTION_MODAL"; payload: boolean }
+  | { type: "SET_ACTIVE_FILTER"; payload: ActiveFilter }
+  | { type: "SET_IS_LOADING"; payload: boolean };
+
+const initialState: OrgState = {
+  organizations: [],
+  isLoading: false,
+  monthlyData: undefined,
+  dashboardData: undefined,
+  products: [],
+  selectedProduct: "",
+  isNewModal: false,
+  isDelete: false,
+  isOpen: false,
+  isActionModal: false,
+  active_filter: "all",
+};
+
+const orgReducer = (state: OrgState, action: OrgAction): OrgState => {
+  switch (action.type) {
+    case "SET_ORGANIZATIONS": {
+      return { ...state, organizations: action.payload };
+    }
+    case "SET_MONTHLY_DATA": {
+      return { ...state, monthlyData: action.payload };
+    }
+    case "SET_DASHBOARD_DATA": {
+      return { ...state, dashboardData: action.payload };
+    }
+    case "SET_PRODUCTS": {
+      return { ...state, products: action.payload };
+    }
+    case "SET_SELECTED_PRODUCT": {
+      return { ...state, selectedProduct: action.payload };
+    }
+    case "SET_IS_NEW_MODAL": {
+      return { ...state, isNewModal: action.payload };
+    }
+    case "SET_IS_DELETE": {
+      return { ...state, isDelete: action.payload };
+    }
+    case "SET_IS_OPEN": {
+      return { ...state, isOpen: action.payload };
+    }
+    case "SET_IS_ACTION_MODAL": {
+      return { ...state, isActionModal: action.payload };
+    }
+    case "SET_ACTIVE_FILTER": {
+      return { ...state, active_filter: action.payload };
+    }
+    case "SET_IS_LOADING": {
+      return { ...state, isLoading: action.payload };
+    }
+    default: {
+      return state;
+    }
+  }
+};
+
+export const OrgContext = createContext<
+  | {
+      state: OrgState;
+      dispatch: React.Dispatch<OrgAction>;
+    }
+  | undefined
+>(undefined);
 
 const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [organizations, setOrganizations] = useState<Organisation[]>([]);
-  const [isLoading, startTransition] = useTransition();
-  const [monthlyData, setMonthlydata] = useState<MonthlyData | undefined>();
-  const [dashboardData, setDashboardData] = useState<
-    DashboardData | undefined
-  >();
-  const [products, setProducts] = useState<Product[]>([]);
+  const [state, dispatch] = useReducer(orgReducer, initialState);
+  const [, startTransition] = useTransition();
   const [org_id] = useLocalStorage<string>("current_orgid", "");
-  const [selectedProduct, setSelectedProduct] = useState<string>("");
-  const [isNewModal, setIsNewModal] = useState(false);
-  const [isDelete, setIsDelete] = useState(false);
-  const [isOpen, updateOpen] = useState(false);
-  const [isActionModal, setIsActionModal] = useState(false);
-  const [active_filter, setActive_filter] = useState<ActiveFilter>("all");
 
-  const isAnyModalOpen = isNewModal || isDelete || isOpen || isActionModal;
+  const isAnyModalOpen =
+    state.isNewModal || state.isDelete || state.isOpen || state.isActionModal;
 
   useLayoutEffect(() => {
     startTransition(() => {
       getAllOrg().then((data) => {
-        setOrganizations(data.organization || []);
+        dispatch({
+          type: "SET_ORGANIZATIONS",
+          payload: data.organization || [],
+        });
       });
       getStatistics().then((subResponse) => {
-        setDashboardData(subResponse.data);
+        dispatch({ type: "SET_DASHBOARD_DATA", payload: subResponse.data });
       });
       getAnalytics().then((data) => {
         const formattedData: MonthlyData = Object.keys(data.data).map(
@@ -76,7 +137,7 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
             revenue: data.data[key],
           }),
         );
-        setMonthlydata(formattedData);
+        dispatch({ type: "SET_MONTHLY_DATA", payload: formattedData });
       });
     });
   }, []);
@@ -84,12 +145,12 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     document.body.style.overflow = isAnyModalOpen ? "hidden" : "auto";
 
-    const handleKeyDown = (entries: KeyboardEvent) => {
-      if (entries.key === "Escape") {
-        setIsNewModal(false);
-        setIsDelete(false);
-        updateOpen(false);
-        setIsActionModal(false);
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        dispatch({ type: "SET_IS_NEW_MODAL", payload: false });
+        dispatch({ type: "SET_IS_DELETE", payload: false });
+        dispatch({ type: "SET_IS_OPEN", payload: false });
+        dispatch({ type: "SET_IS_ACTION_MODAL", payload: false });
       }
     };
 
@@ -104,52 +165,18 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
     if (!org_id || org_id === undefined) return;
     startTransition(() => {
       getAllProduct(org_id).then((data) => {
-        setProducts(data.products || []);
+        dispatch({ type: "SET_PRODUCTS", payload: data.products || [] });
       });
     });
   }, [org_id]);
 
-  const value = useMemo(
-    () => ({
-      isLoading,
-      organizations,
-      monthlyData,
-      dashboardData,
-      products,
-      selectedProduct,
-      setSelectedProduct,
-      isNewModal,
-      setIsNewModal,
-      isDelete,
-      setIsDelete,
-      isOpen,
-      updateOpen,
-      isActionModal,
-      setIsActionModal,
-      active_filter,
-      setActive_filter,
-    }),
-    [
-      isLoading,
-      organizations,
-      monthlyData,
-      dashboardData,
-      products,
-      selectedProduct,
-      isNewModal,
-      isDelete,
-      isOpen,
-      isActionModal,
-      active_filter,
-    ],
-  );
+  const value = useMemo(() => ({ state, dispatch }), [state]);
 
   return <OrgContext.Provider value={value}>{children}</OrgContext.Provider>;
 };
 
 export const useOrgContext = () => {
   const context = useContext(OrgContext);
-
   if (!context) {
     throw new Error("useOrgContext must be used within a OrgContextProvider");
   }
