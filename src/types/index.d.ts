@@ -98,25 +98,23 @@ export interface MonthlyRevenue {
 
 export type MonthlyData = MonthlyRevenue[];
 
-
-
 export type CloudinaryAsset = {
   url: string;
 };
 
 export type UpdateProfileType = {
-    username? : string
-    jobTitle? : string
-    pronouns? : string
-    department? : string
-    email? : string
-    bio? : string
-    sociallinks? : string[]
-    language? : string
-    region? : string
-    timezones? : string
-    profile_pic_url? :string
-}
+  username?: string;
+  jobTitle?: string;
+  pronouns?: string;
+  department?: string;
+  email?: string;
+  bio?: string;
+  sociallinks?: string[];
+  language?: string;
+  region?: string;
+  timezones?: string;
+  profile_pic_url?: string;
+};
 
 export interface Product {
   id: string;
@@ -132,4 +130,3 @@ export interface Product {
   created_at: string;
   updated_at: string;
 }
-
