@@ -20,25 +20,34 @@ export const OrganisationSwitcher = () => {
     "current_orgid",
     "",
   );
+
   const { organizations } = useOrgContext();
 
   useEffect(() => {
     if (!currentId && organizations.length > 0) {
-      setCurrentOrgId(organizations[0].id);
+      setCurrentOrgId(organizations[0].organisation_id);
     }
   }, [currentId, organizations, setCurrentOrgId]);
 
   const currentOrg =
     organizations.length > 0
-      ? organizations.find((org) => org.id === currentId)
+      ? organizations.find((org) => org.organisation_id === currentId)
       : undefined;
+
+  console.log(currentOrg);
 
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
       <CreateOrganization isOpen={isOpen} setIsOpen={setIsOpen} />
-      <Select defaultValue={currentId} onValueChange={setCurrentOrgId}>
+      <Select
+        defaultValue={currentId}
+        // onValueChange={setCurrentOrgId}
+        onValueChange={(value) => {
+          setCurrentOrgId(value);
+        }}
+      >
         <SelectTrigger
           aria-label="Select organisation"
           className="flex items-center gap-2 [&>span]:line-clamp-1 [&>span]:flex [&>span]:w-full [&>span]:items-center [&>span]:gap-1 [&>span]:truncate [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0"
@@ -51,7 +60,7 @@ export const OrganisationSwitcher = () => {
         </SelectTrigger>
         <SelectContent>
           {organizations.map((org) => (
-            <SelectItem key={org.id} value={org.id}>
+            <SelectItem key={org.id} value={org.organisation_id}>
               <div className="flex items-center gap-3 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0 [&_svg]:text-foreground">
                 <Avatar className="size-4 sm:size-3">
                   <AvatarImage src={""} />

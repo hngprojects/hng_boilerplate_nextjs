@@ -1,35 +1,24 @@
 export type CategoriesType = {
-  name: string;
+  name?: string;
   value: string;
   label: string;
 };
 
 export const CATEGORIES: CategoriesType[] = [
-  {
-    value: "breakfast",
-    label: "Breakfast",
-    name: "",
-  },
-  {
-    value: "electronics",
-    label: "Electronics",
-    name: "",
-  },
-  {
-    value: "launch",
-    label: "Launch",
-    name: "",
-  },
-  {
-    value: "monitor",
-    label: "Monitor",
-    name: "",
-  },
-  {
-    value: "audio",
-    label: "Audio",
-    name: "",
-  },
+  { label: "Clothes", value: "clothes" },
+  { label: "Shoes", value: "shoes" },
+  { label: "Hats", value: "hats" },
+  { label: "Electronics", value: "electronics" },
+  { label: "Furniture", value: "furniture" },
+  { label: "Books", value: "books" },
+  { label: "Toys", value: "toys" },
+  { label: "Accessories", value: "accessories" },
+  { label: "Beauty Products", value: "beauty_products" },
+  { label: "Kitchenware", value: "kitchenware" },
+  { label: "Sports Equipment", value: "sports_equipment" },
+  { label: "Jewelry", value: "jewelry" },
+  { label: "Automobiles", value: "automobiles" },
+  { label: "Garden Tools", value: "garden_tools" },
 ];
 export const STOCKS_SELECT: CategoriesType[] = [
   {

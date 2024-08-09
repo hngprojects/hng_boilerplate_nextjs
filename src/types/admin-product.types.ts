@@ -1,4 +1,6 @@
 export type ProductTableProperties = {
+  status: string;
+  product_id: string;
   // product_id: string;
   name: string;
   price: number;

@@ -8,18 +8,18 @@ import { organizationSchema } from "~/schemas";
 
 const apiUrl = process.env.API_URL;
 
-export const getSubCount = async () => {
+export const getStatistics = async () => {
   const session = await auth();
 
   try {
-    const response = await axios.get(`${apiUrl}api/v1/subscriptions`, {
+    const response = await axios.get(`${apiUrl}/api/v1/statistics`, {
       headers: {
         Authorization: `Bearer ${session?.access_token}`,
       },
     });
 
     return {
-      sub: response.data.data.subscription_count,
+      data: response.data.data,
     };
   } catch (error) {
     return axios.isAxiosError(error) && error.response
@@ -37,7 +37,7 @@ export const getAllOrg = async () => {
   const session = await auth();
 
   try {
-    const response = await axios.get(`${apiUrl}/api/v1/users/organisations`, {
+    const response = await axios.get(`${apiUrl}/api/v1/organisations`, {
       headers: {
         Authorization: `Bearer ${session?.access_token}`,
       },
@@ -84,6 +84,31 @@ export const createOrg = async (values: z.infer<typeof organizationSchema>) => {
     return axios.isAxiosError(error) && error.response
       ? {
           error: error.response.data.message || "Create Organization failed.",
+          status: error.response.status,
+        }
+      : {
+          error: "An unexpected error occurred.",
+        };
+  }
+};
+
+export const getAnalytics = async () => {
+  const session = await auth();
+
+  try {
+    const response = await axios.get(`${apiUrl}/api/v1/analytics`, {
+      headers: {
+        Authorization: `Bearer ${session?.access_token}`,
+      },
+    });
+
+    return {
+      data: response.data.data,
+    };
+  } catch (error) {
+    return axios.isAxiosError(error) && error.response
+      ? {
+          error: error.response.data.message || "Registration failed.",
           status: error.response.status,
         }
       : {

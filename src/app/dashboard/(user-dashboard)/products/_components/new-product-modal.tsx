@@ -2,11 +2,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion } from "framer-motion";
 import { Loader, X } from "lucide-react";
-import { useSession } from "next-auth/react";
-import { useTransition } from "react";
+import Image from "next/image";
+import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { createProduct } from "~/actions/product";
 import WordCounter from "~/components/miscellaneous/WordCounter";
 import { Button } from "~/components/ui/button";
 import {
@@ -18,6 +19,7 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
+import { Label } from "~/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -28,17 +30,23 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 import { Textarea } from "~/components/ui/textarea";
+import { useToast } from "~/components/ui/use-toast";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
-import { useProducts } from "~/hooks/admin-product/use-products.persistence";
+import { useLocalStorage } from "~/hooks/use-local-storage";
 import { cn } from "~/lib/utils";
+import { productSchema } from "~/schemas";
 import { CATEGORIES } from "../data/categories.mock";
-import { MAX_CHAR, NewProductSchema } from "./schema/schema";
+import { MAX_CHAR } from "./schema/schema";
+
+type CloudinaryAsset = {
+  url: string;
+};
 
 const NewProductModal = () => {
-  const { data } = useSession();
   const { setIsNewModal, isNewModal } = useProductModal();
-  const { addProduct } = useProducts();
-  const [isLoading] = useTransition();
+  const [image, setImage] = useState<File | Blob>();
+  const [isLoading, startTransition] = useTransition();
+  const [org_id] = useLocalStorage<string>("current_orgid", "");
 
   const variantProperties = {
     left: "50%",
@@ -47,34 +55,58 @@ const NewProductModal = () => {
     translateY: "-50%",
   };
 
-  const newProductForm = useForm<z.infer<typeof NewProductSchema>>({
+  const { toast } = useToast();
+
+  const newProductForm = useForm<z.infer<typeof productSchema>>({
+    resolver: zodResolver(productSchema),
     defaultValues: {
-      product_name: "",
+      name: "",
       description: "",
-      price: "",
+      size: "",
+      image_url: "",
+      quantity: 0,
+      price: 0,
       category: "",
-      quantity: "",
     },
-    resolver: zodResolver(NewProductSchema),
   });
 
-  const onSubmit = async (values: z.infer<typeof NewProductSchema>) => {
-    try {
-      await addProduct(
-        {
-          name: values.product_name,
-          description: values.description,
-          price: Number(values.price),
-          quantity: Number(values.quantity),
-          category: values.category,
-        },
-        data?.access_token as string,
-      );
-      newProductForm.reset();
-      setIsNewModal(false);
-    } catch (error) {
-      return error;
-      // Optionally handle the error (e.g., show a toast or alert)
+  const onSubmit = async (values: z.infer<typeof productSchema>) => {
+    startTransition(async () => {
+      const formData = new FormData();
+      formData.append("file", image!);
+      formData.append("upload_preset", "starterhouse");
+      formData.append("api_key", "673723355315667");
+
+      await fetch(`https://api.cloudinary.com/v1_1/dnik53vns/image/upload`, {
+        method: "POST",
+        body: formData,
+      }).then(async (response) => {
+        const data: CloudinaryAsset = await response.json();
+        values.image_url = data.url;
+      });
+
+      await createProduct(values, org_id).then((data) => {
+        if (data.status === 201) {
+          newProductForm.reset();
+          setIsNewModal(false);
+        }
+        toast({
+          title: data.status === 201 ? "Success" : "Error",
+          description:
+            data.status === 201 ? "Product created successfully" : data.error,
+        });
+      });
+    });
+  };
+
+  const SIZE_CATEGORIES = new Set(["clothes", "shoes", "hats"]);
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    newProductForm.setValue("category", category);
+    if (!SIZE_CATEGORIES.has(category)) {
+      newProductForm.setValue("size", "");
     }
   };
 
@@ -119,11 +151,11 @@ const NewProductModal = () => {
                   <div className="flex h-full w-full flex-col gap-y-2 px-2 min-[500px]:px-6">
                     <FormField
                       control={newProductForm.control}
-                      name="product_name"
+                      name="name"
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="hidden font-medium text-neutral-dark-2 min-[376px]:inline">
-                            Title<span className="text-red-500">*</span>
+                            Name<span className="text-red-500">*</span>
                           </FormLabel>
                           <FormControl>
                             <Input
@@ -177,6 +209,7 @@ const NewProductModal = () => {
                     <FormField
                       control={newProductForm.control}
                       name="category"
+                      // eslint-disable-next-line @typescript-eslint/no-unused-vars, unused-imports/no-unused-vars
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="hidden font-medium text-neutral-dark-2 min-[376px]:inline">
@@ -185,7 +218,8 @@ const NewProductModal = () => {
                           <FormControl>
                             <Select
                               disabled={isLoading}
-                              onValueChange={field.onChange}
+                              onValueChange={handleCategoryChange}
+                              value={selectedCategory}
                             >
                               <SelectTrigger>
                                 <SelectValue placeholder="Select a category" />
@@ -209,6 +243,30 @@ const NewProductModal = () => {
                         </FormItem>
                       )}
                     />
+                    {SIZE_CATEGORIES.has(selectedCategory) && (
+                      <FormField
+                        control={newProductForm.control}
+                        name="size"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="hidden font-medium text-neutral-dark-2 min-[376px]:inline">
+                              Size
+                            </FormLabel>
+                            <FormControl>
+                              <Input
+                                id="size"
+                                disabled={isLoading}
+                                placeholder="Enter size"
+                                className="bg-transparent placeholder:text-slate-400"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    )}
+
                     <FormField
                       control={newProductForm.control}
                       name="quantity"
@@ -254,13 +312,44 @@ const NewProductModal = () => {
                       )}
                     />
                   </div>
+                  <div className="relative mt-2 flex h-fit max-h-[150px] min-h-[125px] w-full flex-col gap-y-2 rounded-xl md:rounded-2xl">
+                    <p className="font-medium text-neutral-dark-2">Media</p>
+                    {image ? (
+                      <Image
+                        src={URL.createObjectURL(image)}
+                        alt="Uploaded image"
+                        width={200}
+                        height={200}
+                        className="h-40 w-full rounded-t-md object-cover"
+                      />
+                    ) : (
+                      <Label htmlFor="image" className="cursor-pointer">
+                        <Input
+                          className="sr-only"
+                          id="image"
+                          type="file"
+                          onChange={(entries) =>
+                            setImage(
+                              entries.target.files
+                                ? entries.target.files[0]
+                                : undefined,
+                            )
+                          }
+                          accept="image/jpeg,image/png,image/svg+xml"
+                        />
+                      </Label>
+                    )}
+                  </div>
 
                   <div className="sticky bottom-0 z-50 flex w-full items-center justify-center gap-x-2 border-t border-neutral-200 bg-white/70 px-2 py-2 backdrop-blur min-[500px]:px-6 min-[500px]:py-4">
                     <Button
                       variant="ghost"
                       type="reset"
                       disabled={isLoading}
-                      onClick={() => setIsNewModal(false)}
+                      onClick={() => {
+                        setIsNewModal(false);
+                        newProductForm.reset();
+                      }}
                     >
                       Cancel
                     </Button>
