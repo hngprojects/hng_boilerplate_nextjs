@@ -8,11 +8,11 @@ import { useEffect, useMemo, useState } from "react";
 
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import ProductCardSkeleton from "~/components/skeleton/product.skeleton";
+import { useOrgContext } from "~/contexts/orgContext";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { useProductsFilters } from "~/hooks/admin-product/use-products.-filters.persistence";
-import { useProducts } from "~/hooks/admin-product/use-products.persistence";
 import { cn } from "~/lib/utils";
-import { ProductTableProperties } from "~/types/admin-product.types";
+import { Product } from "~/types";
 import { ProductContentView } from "./product-content-view";
 
 const Pagination = dynamic(() => import("react-paginate"), {
@@ -20,21 +20,16 @@ const Pagination = dynamic(() => import("react-paginate"), {
   loading: () => <LoadingSpinner />,
 });
 
-const ProductContent = ({
-  searchTerm,
-  view,
-}: {
-  searchTerm: string;
-  view: "list" | "grid";
-}) => {
+const ProductContent = ({ view }: { view: "list" | "grid" }) => {
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
-  const { products } = useProducts();
+
   const [perPage, setPerPage] = useState("10");
   const { isOpen } = useProductModal();
   const { active_filter } = useProductsFilters();
+  const { products } = useOrgContext();
 
-  const [subset, setSubset] = useState<ProductTableProperties[]>([]);
+  const [subset, setSubset] = useState<Product[]>([]);
 
   const startIndex = currentPage * Number(perPage);
   const endIndex = startIndex + Number(perPage);
@@ -76,7 +71,7 @@ const ProductContent = ({
       }
       return product.name.toLowerCase().includes(searchTerm.toLowerCase());
     });
-  }, [searchTerm, filteredProductsByActiveFilter]);
+  }, [filteredProductsByActiveFilter]);
 
   useEffect(() => {
     if (filteredProducts.length === 0) return;

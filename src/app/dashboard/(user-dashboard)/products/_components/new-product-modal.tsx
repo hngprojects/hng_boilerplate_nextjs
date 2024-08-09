@@ -31,7 +31,7 @@ import {
 } from "~/components/ui/select";
 import { Textarea } from "~/components/ui/textarea";
 import { useToast } from "~/components/ui/use-toast";
-import { useProductModal } from "~/hooks/admin-product/use-product.modal";
+import { useOrgContext } from "~/contexts/orgContext";
 import { useLocalStorage } from "~/hooks/use-local-storage";
 import { cn } from "~/lib/utils";
 import { productSchema } from "~/schemas";
@@ -41,7 +41,7 @@ import { CloudinaryAsset } from "~/types";
 
 
 const NewProductModal = () => {
-  const { setIsNewModal, isNewModal } = useProductModal();
+  const { setIsNewModal, isNewModal } = useOrgContext();
   const [image, setImage] = useState<File | Blob>();
   const [isLoading, startTransition] = useTransition();
   const [org_id] = useLocalStorage<string>("current_orgid", "");
@@ -60,7 +60,7 @@ const NewProductModal = () => {
     defaultValues: {
       name: "",
       description: "",
-      size: "",
+      size: "Small",
       image_url: "",
       quantity: 0,
       price: 0,
@@ -104,7 +104,7 @@ const NewProductModal = () => {
     setSelectedCategory(category);
     newProductForm.setValue("category", category);
     if (!SIZE_CATEGORIES.has(category)) {
-      newProductForm.setValue("size", "");
+      newProductForm.setValue("size", "Small");
     }
   };
 
@@ -207,7 +207,6 @@ const NewProductModal = () => {
                     <FormField
                       control={newProductForm.control}
                       name="category"
-                      // eslint-disable-next-line @typescript-eslint/no-unused-vars, unused-imports/no-unused-vars
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="hidden font-medium text-neutral-dark-2 min-[376px]:inline">
@@ -216,8 +215,11 @@ const NewProductModal = () => {
                           <FormControl>
                             <Select
                               disabled={isLoading}
-                              onValueChange={handleCategoryChange}
-                              value={selectedCategory}
+                              onValueChange={(value) => {
+                                field.onChange(value);
+                                handleCategoryChange(value);
+                              }}
+                              value={field.value}
                             >
                               <SelectTrigger>
                                 <SelectValue placeholder="Select a category" />
@@ -251,13 +253,27 @@ const NewProductModal = () => {
                               Size
                             </FormLabel>
                             <FormControl>
-                              <Input
-                                id="size"
+                              <Select
                                 disabled={isLoading}
-                                placeholder="Enter size"
-                                className="bg-transparent placeholder:text-slate-400"
-                                {...field}
-                              />
+                                onValueChange={field.onChange}
+                                value={field.value}
+                              >
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Select a size" />
+                                </SelectTrigger>
+                                <SelectContent className="z-[300]">
+                                  <SelectGroup>
+                                    <SelectLabel>Sizes</SelectLabel>
+                                    {["Small", "Standard", "Large"].map(
+                                      (size) => (
+                                        <SelectItem key={size} value={size}>
+                                          {size}
+                                        </SelectItem>
+                                      ),
+                                    )}
+                                  </SelectGroup>
+                                </SelectContent>
+                              </Select>
                             </FormControl>
                             <FormMessage />
                           </FormItem>
