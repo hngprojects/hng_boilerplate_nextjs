@@ -70,3 +70,30 @@ export const getAllProduct = async (org_id: string) => {
         };
   }
 };
+
+export const deleteProduct = async (org_id: string, product_id: string) => {
+  const session = await auth();
+  try {
+    const response = await axios.delete(
+      `${apiUrl}/api/v1/organisations/${org_id}/products/${product_id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${session?.access_token}`,
+        },
+      },
+    );
+    return {
+      status: response.status,
+      message: "Product deleted successfully.",
+    };
+  } catch (error) {
+    return axios.isAxiosError(error) && error.response
+      ? {
+          error: error.response.data.message || "Error Occurred.",
+          status: error.response.status,
+        }
+      : {
+          error: "An unexpected error occurred.",
+        };
+  }
+};
