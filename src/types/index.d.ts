@@ -116,3 +116,8 @@ export type UpdateProfileType = {
     timezones? : string
     profile_pic_url? :string
 }
+
+export type ChangePasswordPayload = {
+  oldPassword: string
+  newPassword: string
+}
