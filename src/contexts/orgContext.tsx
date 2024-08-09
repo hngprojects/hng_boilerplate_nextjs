@@ -9,13 +9,18 @@ import React, {
   useTransition,
 } from "react";
 
-import { Organisation } from "~/types";
-import { getAllOrg, getSubCount } from "../actions/organization";
+import { DashboardData, MonthlyData, Organisation } from "~/types";
+import {
+  getAllOrg,
+  getAnalytics,
+  getStatistics,
+} from "../actions/organization";
 
 interface OrgContextProperties {
   organizations: Organisation[];
   isLoading: boolean;
-  subscriptionCount: number | undefined;
+  monthlyData: MonthlyData | undefined;
+  dashboardData: DashboardData | undefined;
 }
 
 export const OrgContext = createContext({} as OrgContextProperties);
@@ -23,8 +28,9 @@ export const OrgContext = createContext({} as OrgContextProperties);
 const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [organizations, setOrganizations] = useState<Organisation[]>([]);
   const [isLoading, startTransition] = useTransition();
-  const [subscriptionCount, setSubscriptionCount] = useState<
-    number | undefined
+  const [monthlyData, setMonthlydata] = useState<MonthlyData | undefined>();
+  const [dashboardData, setDashboardData] = useState<
+    DashboardData | undefined
   >();
 
   useLayoutEffect(() => {
@@ -32,8 +38,17 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
       getAllOrg().then((data) => {
         setOrganizations(data.organization || []);
       });
-      getSubCount().then((subResponse) => {
-        setSubscriptionCount(subResponse.sub);
+      getStatistics().then((subResponse) => {
+        setDashboardData(subResponse.data);
+      });
+      getAnalytics().then((data) => {
+        const formattedData: MonthlyData = Object.keys(data.data).map(
+          (key) => ({
+            month: key,
+            revenue: data.data[key],
+          }),
+        );
+        setMonthlydata(formattedData);
       });
     });
   }, []);
@@ -42,9 +57,10 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
     () => ({
       isLoading,
       organizations,
-      subscriptionCount,
+      monthlyData,
+      dashboardData,
     }),
-    [isLoading, subscriptionCount, organizations],
+    [isLoading, organizations, monthlyData, dashboardData],
   );
 
   return <OrgContext.Provider value={value}>{children}</OrgContext.Provider>;

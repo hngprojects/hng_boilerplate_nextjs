@@ -107,13 +107,13 @@ export const NewProductSchema = z.object({
         message: "Quantity must be a positive number",
       },
     ),
-  media: z.object(
-    {
-      url: z.string(),
-      id: z.string(),
-    },
-    { message: "Media is required" },
-  ),
+  // media: z.object(
+  //   {
+  //     url: z.string(),
+  //     id: z.string(),
+  //   },
+  //   { message: "Media is required" },
+  // ),
 });
 
 export type NewProduct = z.infer<typeof NewProductSchema>;

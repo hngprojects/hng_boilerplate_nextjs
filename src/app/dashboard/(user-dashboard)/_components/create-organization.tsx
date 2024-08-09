@@ -18,7 +18,6 @@ import {
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -114,9 +113,6 @@ export const CreateOrganization = ({ isOpen, setIsOpen }: ModalProperties) => {
                         disabled={isLoading}
                       />
                     </FormControl>
-                    <FormDescription>
-                      Enter a valid email address.
-                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -135,10 +131,6 @@ export const CreateOrganization = ({ isOpen, setIsOpen }: ModalProperties) => {
                         disabled={isLoading}
                       />
                     </FormControl>
-                    <FormDescription>
-                      Enter the name of the Organization.
-                    </FormDescription>
-                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -158,9 +150,6 @@ export const CreateOrganization = ({ isOpen, setIsOpen }: ModalProperties) => {
                         disabled={isLoading}
                       />
                     </FormControl>
-                    <FormDescription>
-                      Provide a brief description of the Organization.
-                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -179,9 +168,6 @@ export const CreateOrganization = ({ isOpen, setIsOpen }: ModalProperties) => {
                         disabled={isLoading}
                       />
                     </FormControl>
-                    <FormDescription>
-                      Specify the industry the Organization operates in.
-                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -202,9 +188,6 @@ export const CreateOrganization = ({ isOpen, setIsOpen }: ModalProperties) => {
                         disabled={isLoading}
                       />
                     </FormControl>
-                    <FormDescription>
-                      Indicate the type of organization.
-                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -223,7 +206,7 @@ export const CreateOrganization = ({ isOpen, setIsOpen }: ModalProperties) => {
                         }}
                         defaultValue={field.value}
                       >
-                        <SelectTrigger>
+                        <SelectTrigger className="min-w-[180px]">
                           <SelectValue placeholder="Select a country" />
                         </SelectTrigger>
                         <SelectContent>
@@ -235,15 +218,13 @@ export const CreateOrganization = ({ isOpen, setIsOpen }: ModalProperties) => {
                         </SelectContent>
                       </Select>
                     </FormControl>
-                    <FormDescription>
-                      Choose the country where the organization is based.
-                    </FormDescription>
+
                     <FormMessage />
                   </FormItem>
                 )}
               />
             </div>
-            <div className="flex flex-col gap-2 md:flex-row">
+            <div className="flex flex-col items-center gap-2 md:flex-row">
               <FormField
                 control={form.control}
                 name="state"
@@ -256,7 +237,7 @@ export const CreateOrganization = ({ isOpen, setIsOpen }: ModalProperties) => {
                         defaultValue={field.value}
                         disabled={!selectedCountry}
                       >
-                        <SelectTrigger>
+                        <SelectTrigger className="min-w-[180px]">
                           <SelectValue placeholder="Select a state" />
                         </SelectTrigger>
                         <SelectContent>
@@ -268,9 +249,6 @@ export const CreateOrganization = ({ isOpen, setIsOpen }: ModalProperties) => {
                         </SelectContent>
                       </Select>
                     </FormControl>
-                    <FormDescription>
-                      Select the state or province.
-                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -289,9 +267,7 @@ export const CreateOrganization = ({ isOpen, setIsOpen }: ModalProperties) => {
                         disabled={isLoading}
                       />
                     </FormControl>
-                    <FormDescription>
-                      Enter the address of the organization.
-                    </FormDescription>
+
                     <FormMessage />
                   </FormItem>
                 )}

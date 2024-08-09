@@ -1,17 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { A11y, Autoplay, Pagination, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { HeroBoilerPlate, HeroChat, HeroCheckMark } from "./svgs";
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
-
-import Link from "next/link";
 
 const Hero = () => {
   //

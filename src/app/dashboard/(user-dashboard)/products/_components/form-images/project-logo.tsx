@@ -1,43 +1,32 @@
-import { X } from "lucide-react";
-import React, { useState } from "react";
-import { UseFormReturn } from "react-hook-form";
+// type Properties = {
+//   form: UseFormReturn<NewProduct>;
+//   name: string;
+// };
+// const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+//   event.preventDefault();
+// };
+const ProjectLogo = () => {
+  // const [isDragging, setIsDragging] = useState(false);
 
-import BlurImage from "~/components/miscellaneous/blur-image";
-import { Button } from "~/components/ui/button";
-import { cn } from "~/lib/utils";
-import { NewProduct } from "../schema/schema";
+  // const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
+  //   event.preventDefault();
+  //   event.stopPropagation();
 
-type Properties = {
-  form: UseFormReturn<NewProduct>;
-  name: string;
-};
-const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  event.preventDefault();
-};
-const ProjectLogo = ({ form, name }: Properties) => {
-  const [isDragging, setIsDragging] = useState(false);
+  //   const target = event.dataTransfer.files[0] as File;
 
-  const projectLogo = form.getValues("media");
-
-  const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    const target = event.dataTransfer.files[0] as File;
-
-    if (target.type === "image/gif") {
-      return name;
-    }
-    const event_data = {
-      target: {
-        files: event.dataTransfer.files,
-      },
-    };
-    handleImageChange(
-      event_data as unknown as React.ChangeEvent<HTMLInputElement>,
-    );
-    setIsDragging(false);
-  };
+  //   if (target.type === "image/gif") {
+  //     return name;
+  //   }
+  //   const event_data = {
+  //     target: {
+  //       files: event.dataTransfer.files,
+  //     },
+  //   };
+  //   handleImageChange(
+  //     event_data as unknown as React.ChangeEvent<HTMLInputElement>,
+  //   );
+  //   setIsDragging(false);
+  // };
 
   return (
     <div className="relative grid h-full w-[inherit] place-items-center rounded-xl border border-dashed border-[#CBD5E1] bg-[#FAFAFA]">
@@ -52,14 +41,14 @@ const ProjectLogo = ({ form, name }: Properties) => {
           </p>
         </div>
       </div>
-
+      {/* 
       {isDragging && (
         <div className="pointer-events-none absolute inset-0 z-20 grid h-full w-full scale-95 place-items-center rounded-xl border-2 border-dashed border-white bg-white/20 backdrop-blur-xl">
           <p className="text-xl text-white">Drop to upload</p>
         </div>
-      )}
+      )} */}
 
-      {projectLogo.url && typeof projectLogo.url === "string" ? (
+      {/* {projectLogo.url && typeof projectLogo.url === "string" ? (
         <div className="absolute inset-0 h-full w-full rounded-xl">
           <div className="h-full w-full overflow-hidden rounded-xl">
             <BlurImage
@@ -117,7 +106,7 @@ const ProjectLogo = ({ form, name }: Properties) => {
             onChange={handleImageChange}
           />
         </div>
-      )}
+      )} */}
     </div>
   );
 };
