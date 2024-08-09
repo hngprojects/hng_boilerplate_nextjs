@@ -138,13 +138,11 @@ const UserPage = () => {
             value: count,
           };
         });
-
-        // console.log(response);
       } catch {
         // console.log(error);
       }
     })();
-  }, [page]);
+  }, [page, baseUrl]);
 
   return (
     <>
