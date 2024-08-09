@@ -99,12 +99,11 @@ const UserPage = () => {
     }
   };
 
-  const baseUrl = getApiUrl();
-
   useEffect(() => {
     (async () => {
-      const API_URL = `${baseUrl}/api/v1/users`;
       try {
+        const baseUrl = await getApiUrl();
+        const API_URL = `${baseUrl}/api/v1/users`;
         const response = await axios.get(`${API_URL}?page=${page}`);
 
         setIsNextPageActive(response.data?.next_page_url ? true : false);
@@ -142,7 +141,7 @@ const UserPage = () => {
         // console.log(error);
       }
     })();
-  }, [page, baseUrl]);
+  }, [page]);
 
   return (
     <>

@@ -26,11 +26,9 @@ const UserTableBody = ({ data }: { data: UserData[] }) => {
   const handleCloseDialog = () => setIsDialogOpen(false);
 
   const deleteHandler = async () => {
-    const baseUrl = getApiUrl();
-
-    const API_URL = `${baseUrl}/api/v1/users/${userId}`;
-
     try {
+      const baseUrl = getApiUrl();
+      const API_URL = `${baseUrl}/api/v1/users/${userId}`;
       setIsDeleting(true);
       await axios.delete(API_URL);
     } catch {
