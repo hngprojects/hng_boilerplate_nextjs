@@ -25,7 +25,7 @@ export const authRoutes = [
   "/recovery",
 ];
 
-export const superAdminRoutes = ["/dashboard/admin/faqs"];
+export const superAdminRoutes = ["dashboard/admin/faqs"];
 
 export const apiAuthPrefix = "/api/";
 
