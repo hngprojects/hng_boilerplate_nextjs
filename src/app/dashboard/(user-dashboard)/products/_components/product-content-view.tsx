@@ -1,6 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-
 import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next-nprogress-bar";
 
@@ -11,18 +8,13 @@ import {
   TableHeader,
   TableRow,
 } from "~/components/ui/table";
+import { useOrgContext } from "~/contexts/orgContext";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
-import { useProducts } from "~/hooks/admin-product/use-products.persistence";
 import { cn } from "~/lib/utils";
 import { Product } from "~/types";
 import { ProductGridCard } from "./product-grid-card";
 import { ProductListRow } from "./product-list-row";
 import { ProductNotFound } from "./product-not-found";
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-
-s;
 
 type Properties = {
   subset: Product[];
@@ -37,7 +29,7 @@ export const ProductContentView = ({
   searchTerm,
   view = "grid",
 }: Properties) => {
-  const { products } = useProducts();
+  const { products } = useOrgContext();
   const {
     updateOpen,
     updateProductId,
@@ -106,8 +98,8 @@ export const ProductContentView = ({
                 subset.length > 0 &&
                 subset.map((product, index) => (
                   <ProductListRow
-                    key={product.product_id}
-                    id={product.product_id}
+                    key={product.id}
+                    id={product.id}
                     selectedId={product_id}
                     searchTerm={searchTerm}
                     price={product.price}
@@ -118,13 +110,13 @@ export const ProductContentView = ({
                       index === subset.length - 1 || index === subset.length - 2
                     }
                     isActionModal={isActionModal}
-                    onOpenDetails={() => handleOpenDetail(product.product_id)}
-                    onEdit={() => handleEditAction(product.product_id)}
-                    onDelete={() => handleDeleteAction(product.product_id)}
-                    onOpenActionModal={() =>
-                      handleOpenActionModal(product.product_id)
-                    }
+                    onOpenDetails={() => handleOpenDetail(product.id)}
+                    onEdit={() => handleEditAction(product.id)}
+                    onDelete={() => handleDeleteAction(product.id)}
+                    onOpenActionModal={() => handleOpenActionModal(product.id)}
                     onCloseActionModal={() => setIsActionModal(false)}
+                    status={"in_stock"}
+                    imgSrc={""}
                   />
                 ))}
             </TableBody>
@@ -141,16 +133,19 @@ export const ProductContentView = ({
               subset.length > 0 &&
               subset.map((product) => (
                 <ProductGridCard
-                  key={product.product_id}
-                  id={product.product_id}
-                  // selectedId={product_id}
-                  searchTerm={searchTerm}
+                  key={product.id}
+                  id={product.id}
                   price={product.price}
                   description={product.description}
-                  title={product.name}
                   category={product.category}
-                  status={product.status}
-                  onSelect={() => ({})}
+                  name={product.name}
+                  image={product.image}
+                  cost_price={product.cost_price}
+                  quantity={product.quantity}
+                  stock_status={product.stock_status}
+                  created_at={product.created_at}
+                  updated_at={product.updated_at}
+                  searchTerm={searchTerm}
                 />
               ))}
           </div>
