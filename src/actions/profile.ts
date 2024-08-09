@@ -35,7 +35,7 @@ export async function changeUserPassword({ payload }: { payload: ChangePasswordP
         if (!userId) {
             return {message: "User Id is not set", data: {}, status_code: 400}
         }
-        const request = await axios.patch(`${apiUrl}/api/v1/auth/change-password`, payload, {
+        const request = await axios.post(`${apiUrl}/api/v1/auth/change-password`, payload, {
             headers: {
                 Authorization: `Bearer ${session?.access_token}`,
             },
