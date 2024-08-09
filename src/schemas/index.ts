@@ -87,7 +87,14 @@ export const productSchema = z.object({
   description: z.string().min(2, {
     message: "Company description must be at least 2 characters.",
   }),
-  size: z.string().min(2).optional(),
+  size: z
+    .enum(["Small", "Standard", "Large"], {
+      errorMap: () => ({
+        message:
+          "Size must be one of the following values: Small, Standard, Large",
+      }),
+    })
+    .optional(),
   image_url: z.string().optional(),
   quantity: z.number(),
   price: z.number(),

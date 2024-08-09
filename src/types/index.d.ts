@@ -97,3 +97,18 @@ export interface MonthlyRevenue {
 }
 
 export type MonthlyData = MonthlyRevenue[];
+
+export interface Product {
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  image: string;
+  price: number;
+  cost_price: number;
+  quantity: number;
+  size?: "Small" | "Standard" | "Large";
+  stock_status: "in stock" | "out of stock" | "preorder";
+  created_at: string;
+  updated_at: string;
+}
