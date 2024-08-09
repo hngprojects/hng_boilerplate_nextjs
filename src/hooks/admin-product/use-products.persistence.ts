@@ -1,26 +1,16 @@
+// stores/productStore.ts
 import { create } from "zustand";
-import { persist, PersistStorage } from "zustand/middleware";
+import { persist } from "zustand/middleware";
 
 import { ProductTableProperties } from "~/types/admin-product.types";
+import { addProductService } from "./services";
 
 type ProductsStateProperties = {
   products: ProductTableProperties[] | undefined;
-  addProduct: (product: ProductTableProperties) => void;
-  addProducts: (products: ProductTableProperties[]) => void;
-  updateProduct: (product: ProductTableProperties) => void;
-  deleteProduct: (id: string) => void;
-};
-
-const storage: PersistStorage<ProductsStateProperties> = {
-  getItem: (name) => {
-    const string_ = localStorage.getItem(name);
-    if (!string_) return;
-    return JSON.parse(string_);
-  },
-  setItem: (name, value) => {
-    localStorage.setItem(name, JSON.stringify(value));
-  },
-  removeItem: (name) => localStorage.removeItem(name),
+  addProduct: (
+    product: ProductTableProperties,
+    accessToken: string,
+  ) => Promise<void>;
 };
 
 export const useProducts = create<ProductsStateProperties>()(
@@ -28,30 +18,13 @@ export const useProducts = create<ProductsStateProperties>()(
     (set) => ({
       products: undefined,
 
-      addProducts: (products) => set({ products }),
-
-      addProduct: (product) =>
-        set((state) => ({ products: [...state!.products!, product] })),
-      updateProduct: (product) =>
-        set((state) => {
-          if (!state.products) return state;
-          const index = state.products.findIndex(
-            (item) => item.product_id === product.product_id,
-          );
-          if (index === -1) return state;
-          return {
-            products: [
-              ...state.products.slice(0, index),
-              { ...state.products[index], ...product },
-              ...state.products.slice(index + 1),
-            ],
-          };
-        }),
-      deleteProduct: (id) =>
+      addProduct: async (product, accessToken) => {
+        const newProduct = await addProductService(product, accessToken);
         set((state) => ({
-          products: state?.products?.filter((p) => p.product_id !== id),
-        })),
+          products: [...(state?.products ?? []), newProduct],
+        }));
+      },
     }),
-    { name: "admin_products", storage },
+    { name: "admin_products" },
   ),
 );

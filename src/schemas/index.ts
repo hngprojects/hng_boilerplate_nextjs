@@ -79,3 +79,17 @@ export const ContactSchema = z.object({
   phone: z.string().min(1, { message: "Phone is required" }),
   message: z.string().min(1, { message: "Message is required" }),
 });
+
+export const productSchema = z.object({
+  name: z.string().min(2, {
+    message: "name is required",
+  }),
+  description: z.string().min(2, {
+    message: "Company description must be at least 2 characters.",
+  }),
+  size: z.string().min(2).optional(),
+  image_url: z.string().optional(),
+  quantity: z.number(),
+  price: z.number(),
+  category: z.string(),
+});

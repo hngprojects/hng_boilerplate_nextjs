@@ -69,13 +69,31 @@ export interface Organisation {
   id: string;
   name: string;
   description: string;
-  owner_id: string;
-  email: string;
-  industry: string;
-  type: string;
-  country: string;
-  address: string;
-  state: string;
-  created_at: string;
-  updated_at: string;
+  user_role: "admin" | "super-admin" | "user" | string;
+  organisation_id: string;
 }
+
+interface Metrics {
+  current_month: number;
+  previous_month: number;
+  percentage_difference: string;
+}
+
+interface ActiveUsers {
+  current: number;
+  difference_an_hour_ago: number;
+}
+
+export interface DashboardData {
+  revenue: Metrics;
+  Subscriptions: Metrics;
+  orders: Metrics;
+  active_users: ActiveUsers;
+}
+
+export interface MonthlyRevenue {
+  month: string;
+  revenue: number;
+}
+
+export type MonthlyData = MonthlyRevenue[];
