@@ -32,7 +32,7 @@ export function ProductGridCard({
         <div className="space-y-2">
           <div className="flex flex-wrap justify-between gap-2 text-[16.917px] font-bold -tracking-[0.338px]">
             <h2>
-              <ProductHighlightTerm searchTerm={searchTerm} title={name} />
+              <ProductHighlightTerm searchTerm={searchTerm} name={name} />
             </h2>
             <p>{formatPrice(price)}</p>
           </div>
