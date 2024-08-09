@@ -1,4 +1,4 @@
-// // /api/v1/organisations/{orgId}/products
+"use server ";
 
 import axios from "axios";
 import { z } from "zod";

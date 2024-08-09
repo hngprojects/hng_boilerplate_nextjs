@@ -2,11 +2,11 @@ import { cn } from "~/lib/utils";
 
 type ProductHighlightTermProperties = {
   searchTerm: string;
-  title: string;
+  name: string;
 };
 
 export function ProductHighlightTerm({
-  title,
+  name,
   searchTerm = "",
 }: ProductHighlightTermProperties) {
   return (
@@ -18,7 +18,7 @@ export function ProductHighlightTerm({
             searchTerm.length > 2 ? "w-[50px] overflow-x-auto" : "",
           )}
           dangerouslySetInnerHTML={{
-            __html: title.replaceAll(
+            __html: name.replaceAll(
               new RegExp(`(${searchTerm})`, "gi"),
               (match, group) =>
                 `<span  style="color: black; background-color: ${
@@ -30,7 +30,7 @@ export function ProductHighlightTerm({
           }}
         />
       ) : (
-        <span className="">{title}</span>
+        <span className="">{name}</span>
       )}
     </>
   );
