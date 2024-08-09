@@ -31,6 +31,8 @@ interface OrgContextProperties {
   setIsNewModal: React.Dispatch<React.SetStateAction<boolean>>;
   isDelete: boolean;
   setIsDelete: React.Dispatch<React.SetStateAction<boolean>>;
+  isOpen: boolean;
+  updateOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const OrgContext = createContext({} as OrgContextProperties);
@@ -47,8 +49,9 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [selectedProduct, setSelectedProduct] = useState<string>("");
   const [isNewModal, setIsNewModal] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
+  const [isOpen, updateOpen] = useState(false);
 
-  const isAnyModalOpen = isNewModal || isDelete;
+  const isAnyModalOpen = isNewModal || isDelete || isOpen;
 
   useLayoutEffect(() => {
     startTransition(() => {
@@ -77,6 +80,7 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
       if (entries.key === "Escape") {
         setIsNewModal(false);
         setIsDelete(false);
+        updateOpen(false);
       }
     };
 
@@ -109,6 +113,8 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
       setIsNewModal,
       isDelete,
       setIsDelete,
+      isOpen,
+      updateOpen,
     }),
     [
       isLoading,
@@ -119,6 +125,7 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
       selectedProduct,
       isNewModal,
       isDelete,
+      isOpen,
     ],
   );
 
