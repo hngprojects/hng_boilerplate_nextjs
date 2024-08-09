@@ -1,5 +1,5 @@
 import { AnimatePresence } from "framer-motion";
-import { useRouter } from "next-nprogress-bar";
+import { useRouter } from "next/navigation";
 
 import {
   Table,
@@ -9,7 +9,6 @@ import {
   TableRow,
 } from "~/components/ui/table";
 import { useOrgContext } from "~/contexts/orgContext";
-import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { cn } from "~/lib/utils";
 import { Product } from "~/types";
 import { ProductGridCard } from "./product-grid-card";
@@ -29,32 +28,32 @@ export const ProductContentView = ({
   searchTerm,
   view = "grid",
 }: Properties) => {
-  const { products } = useOrgContext();
   const {
-    updateOpen,
-    updateProductId,
-    product_id,
+    products,
     isActionModal,
     setIsActionModal,
+    updateOpen,
     setIsDelete,
-  } = useProductModal();
+
+    setSelectedProduct,
+  } = useOrgContext();
   const router = useRouter();
 
   if (!products) return;
 
   const handleOpenActionModal = (product_id: string) => {
-    updateProductId(product_id);
+    setSelectedProduct(product_id);
     setIsActionModal(!isActionModal);
   };
 
   const handleOpenDetail = (product_id: string) => {
     setIsActionModal(false);
-    updateProductId(product_id);
+    setSelectedProduct(product_id);
     updateOpen(true);
   };
   const handleDeleteAction = (id: string) => {
     setIsActionModal(false);
-    updateProductId(id);
+    setSelectedProduct(id);
     setIsDelete(true);
   };
   const handleEditAction = (id: string) => {
@@ -99,24 +98,17 @@ export const ProductContentView = ({
                 subset.map((product, index) => (
                   <ProductListRow
                     key={product.id}
-                    id={product.id}
-                    selectedId={product_id}
                     searchTerm={searchTerm}
-                    price={product.price}
-                    description={product.description}
-                    title={product.name}
-                    category={product.category}
                     isBottomRow={
                       index === subset.length - 1 || index === subset.length - 2
                     }
                     isActionModal={isActionModal}
+                    onCloseActionModal={() => setIsActionModal(false)}
                     onOpenDetails={() => handleOpenDetail(product.id)}
                     onEdit={() => handleEditAction(product.id)}
                     onDelete={() => handleDeleteAction(product.id)}
                     onOpenActionModal={() => handleOpenActionModal(product.id)}
-                    onCloseActionModal={() => setIsActionModal(false)}
-                    status={"in_stock"}
-                    imgSrc={""}
+                    {...product}
                   />
                 ))}
             </TableBody>

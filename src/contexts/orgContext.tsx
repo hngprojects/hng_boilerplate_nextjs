@@ -33,6 +33,8 @@ interface OrgContextProperties {
   setIsDelete: React.Dispatch<React.SetStateAction<boolean>>;
   isOpen: boolean;
   updateOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isActionModal: boolean;
+  setIsActionModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const OrgContext = createContext({} as OrgContextProperties);
@@ -50,8 +52,9 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [isNewModal, setIsNewModal] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
   const [isOpen, updateOpen] = useState(false);
+  const [isActionModal, setIsActionModal] = useState(false);
 
-  const isAnyModalOpen = isNewModal || isDelete || isOpen;
+  const isAnyModalOpen = isNewModal || isDelete || isOpen || isActionModal;
 
   useLayoutEffect(() => {
     startTransition(() => {
@@ -81,6 +84,7 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
         setIsNewModal(false);
         setIsDelete(false);
         updateOpen(false);
+        setIsActionModal(false);
       }
     };
 
@@ -115,6 +119,8 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
       setIsDelete,
       isOpen,
       updateOpen,
+      isActionModal,
+      setIsActionModal,
     }),
     [
       isLoading,
@@ -126,6 +132,7 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
       isNewModal,
       isDelete,
       isOpen,
+      isActionModal,
     ],
   );
 

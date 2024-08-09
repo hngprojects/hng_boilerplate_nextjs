@@ -6,20 +6,14 @@ import BlurImage from "~/components/miscellaneous/blur-image";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { TableCell, TableRow } from "~/components/ui/table";
+import { useOrgContext } from "~/contexts/orgContext";
 import { cn, formatPrice } from "~/lib/utils";
+import { Product } from "~/types";
 import { ProductHighlightTerm } from "./product-highlight-term";
 
-type ProductListRowProperties = {
-  id: string;
-  title: string;
-  description: string;
-  category: string;
-  status: "in_stock" | "out_of_stock" | "low_on_stock";
-  price: number;
-  imgSrc: string;
+interface ProductListRowProperties extends Product {
+  searchTerm: string;
   isBottomRow: boolean;
-  selectedId?: string;
-  searchTerm?: string;
   isActionModal: boolean;
   onOpenActionModal: () => void;
   onCloseActionModal: () => void;
@@ -27,17 +21,13 @@ type ProductListRowProperties = {
   onDelete: () => void; // (id: string) => void;
   onSelect?: () => void; // (id: string) => void;
   onOpenDetails: () => void;
-};
+}
 
 export function ProductListRow({
   id,
-  selectedId,
-  status,
   price,
-  imgSrc,
-  title,
   category,
-  onOpenDetails,
+  image,
   searchTerm = "",
   isBottomRow,
   isActionModal,
@@ -45,13 +35,16 @@ export function ProductListRow({
   onOpenActionModal,
   onEdit,
   onDelete,
-  //   onSelect,
+  name,
+  stock_status,
+  onOpenDetails,
 }: ProductListRowProperties) {
+  const { selectedProduct } = useOrgContext();
   const modalReference = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!isActionModal || !modalReference.current) return;
     modalReference.current.scrollIntoView({ behavior: "smooth" });
-    // handle click outside modal
+
     const handleOutsideClick = (event: MouseEvent) => {
       if (
         modalReference.current &&
@@ -70,7 +63,7 @@ export function ProductListRow({
       key={id}
       className={cn(
         "relative bg-white",
-        selectedId === id ? "bg-[#F1F5F9]" : "",
+        selectedProduct === id ? "bg-[#F1F5F9]" : "",
       )}
     >
       <TableCell className="flex items-center justify-start gap-x-2 whitespace-nowrap md:gap-x-4">
@@ -80,7 +73,7 @@ export function ProductListRow({
             className="sticky left-0 size-4 min-[500px]:size-5 lg:size-8"
           />
           <BlurImage
-            src={imgSrc}
+            src={image}
             alt="Product"
             width={40}
             height={40}
@@ -92,7 +85,7 @@ export function ProductListRow({
           onClick={onOpenDetails}
           className="hide_scrollbar ml-0.5 w-[110px] whitespace-break-spaces text-[10px] text-neutral-dark-2 min-[376px]:text-xs sm:ml-1 md:w-[200px] md:text-base lg:w-[200px]"
         >
-          <ProductHighlightTerm searchTerm={searchTerm} title={title} />
+          <ProductHighlightTerm searchTerm={searchTerm} name={name} />
         </span>
       </TableCell>
       <TableCell
@@ -124,14 +117,14 @@ export function ProductListRow({
         >
           <span
             className={cn("size-2 rounded-full sm:size-3", {
-              "bg-[#6DC347]": status === "in_stock",
-              "bg-[#DC2626]": status === "out_of_stock",
-              "bg-[#EAB308]": status === "low_on_stock",
+              "bg-[#6DC347]": stock_status === "in stock",
+              "bg-[#DC2626]": stock_status === "out of stock",
+              "bg-[#EAB308]": stock_status === "preorder",
             })}
           />
-          {status === "in_stock" && "In Stock"}
-          {status === "low_on_stock" && "Low on Stock"}
-          {status === "out_of_stock" && "Out of Stock"}
+          {stock_status === "in stock" && "In Stock"}
+          {stock_status === "preorder" && "Low on Stock"}
+          {stock_status === "out of stock" && "Out of Stock"}
         </span>
       </TableCell>
       <TableCell className="relative whitespace-nowrap px-2 py-4 md:gap-x-4 min-[1440px]:px-6">
@@ -139,7 +132,7 @@ export function ProductListRow({
           <MoreVertical />
         </Button>
         <AnimatePresence>
-          {isActionModal && selectedId === id && (
+          {isActionModal && selectedProduct === id && (
             <motion.div
               ref={modalReference}
               initial={{ opacity: 0, y: -20, x: 20 }}
