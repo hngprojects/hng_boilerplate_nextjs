@@ -26,6 +26,8 @@ const pronouns = [
 const SettingsPage = () => {
   const { data } = useSession();
 
+  const [isPending, setIsPending] = useState(false);
+
   const [pronoun, setPronoun] = useState("");
 
   const [socialLinks, setSocialLinks] = useState({
@@ -89,6 +91,30 @@ const SettingsPage = () => {
       }
     })();
   }, [data]);
+
+  const submit = async () => {
+    try {
+      setIsPending(true);
+      const baseUrl = await getApiUrl();
+      const API_URL = `${baseUrl}/api/v1/profile/${data?.user.id}`;
+
+      const payload = {
+        ...formData,
+        pronouns: pronoun,
+        social_links: Object.values(socialLinks),
+      };
+
+      await axios.patch(API_URL, payload, {
+        headers: {
+          Authorization: `Bearer ${data?.access_token}`,
+        },
+      });
+    } catch {
+      setIsPending(false);
+    } finally {
+      setIsPending(false);
+    }
+  };
 
   return (
     <div className="min-h-screen w-full max-w-[826px] bg-white p-[32px]">
@@ -223,7 +249,12 @@ const SettingsPage = () => {
           <CustomButton size="lg" variant="outline">
             Cancel
           </CustomButton>
-          <CustomButton size="lg" className="bg-primary">
+          <CustomButton
+            isLoading={isPending}
+            onClick={submit}
+            size="lg"
+            className="bg-primary"
+          >
             Save Changes
           </CustomButton>
         </div>
