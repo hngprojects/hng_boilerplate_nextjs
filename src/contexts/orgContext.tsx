@@ -60,7 +60,6 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [active_filter, setActive_filter] = useState<ActiveFilter>("all");
   const [userOrg] = useLocalStorage<Organisation[]>("user_org", []);
 
-
   const isAnyModalOpen = isNewModal || isDelete || isOpen || isActionModal;
 
   useLayoutEffect(() => {
