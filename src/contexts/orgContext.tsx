@@ -81,9 +81,15 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
           ]);
         }
       });
+    });
+  }, [organizations]);
+
+  useLayoutEffect(() => {
+    startTransition(() => {
       getStatistics().then((subResponse) => {
         setDashboardData(subResponse.data);
       });
+
       getAnalytics().then((data) => {
         const formattedData: MonthlyData = Object.keys(data.data).map(
           (key) => ({
@@ -94,7 +100,7 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
         setMonthlydata(formattedData);
       });
     });
-  }, [organizations]);
+  }, []);
 
   useEffect(() => {
     if (userOrg) {
@@ -122,7 +128,8 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
   }, [isAnyModalOpen]);
 
   useLayoutEffect(() => {
-    if (!org_id || org_id === undefined) return;
+    if (!org_id) return;
+
     startTransition(() => {
       getAllProduct(org_id).then((data) => {
         setProducts(data.products || []);
