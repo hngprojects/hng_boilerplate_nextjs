@@ -3,7 +3,7 @@
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import { ChangeEvent, startTransition, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 import { getApiUrl } from "~/actions/getApiUrl";
 import CustomButton from "~/components/common/common-button/common-button";
@@ -29,6 +29,7 @@ const pronouns = [
 
 export default function SettingsPage() {
   const { data } = useSession();
+  const [image, setImage] = useState<File | Blob | undefined>();
 
   const [error, setError] = useState<undefined | string>();
   const [isSuccess, setIsSuccess] = useState(false);
@@ -110,30 +111,6 @@ export default function SettingsPage() {
     })();
   }, [data?.access_token, data?.user.id, error]);
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-
-    startTransition(async () => {
-      if (files && files.length > 0) {
-        const image = files[0];
-
-        const formData = new FormData();
-        formData.append("file", image);
-        formData.append("upload_preset", "starterhouse");
-        formData.append("api_key", "673723355315667");
-        formData.append("folder", "profile-pictures");
-
-        await fetch(`https://api.cloudinary.com/v1_1/dnik53vns/image/upload`, {
-          method: "POST",
-          body: formData,
-        }).then(async (response) => {
-          const data: CloudinaryAsset = await response.json();
-          setProfilePicture(data.url);
-        });
-      }
-    });
-  };
-
   const submit = async () => {
     if (!isValidXUrl(socialLinks.x)) {
       return toast({ title: "Warning!", description: "Enter a valid X url" });
@@ -156,8 +133,20 @@ export default function SettingsPage() {
         ...formData,
         pronouns: pronoun,
         social_links: Object.values(socialLinks),
-        profile_picture: profilePicture,
+        profile_picture: "",
       };
+      const formData1 = new FormData();
+      formData1.append("file", image!);
+      formData1.append("upload_preset", "starterhouse");
+      formData1.append("api_key", "673723355315667");
+
+      await fetch(`https://api.cloudinary.com/v1_1/dnik53vns/image/upload`, {
+        method: "POST",
+        body: formData1,
+      }).then(async (response) => {
+        const data: CloudinaryAsset = await response.json();
+        payload.profile_picture = data.url;
+      });
 
       setIsPending(true);
 
@@ -169,6 +158,23 @@ export default function SettingsPage() {
           Authorization: `Bearer ${data?.access_token}`,
         },
       });
+      // if (updated.status === 200) {
+      //   const newSession: Session = {
+      //     ...data,
+      //     user: {
+      //       ...data?.user,
+      //       id: data?.user.id ?? "",
+      //       first_name: data?.user.first_name ?? "",
+      //       last_name: data?.user.last_name ?? "",
+
+      //       role: data?.user.role ?? "",
+      //       bio: formData.bio,
+      //       username: formData.username,
+      //       is_superadmin: data?.user.is_superadmin,
+      //     },
+      //     expires: data?.expires,
+      //   };
+      // }
     } catch {
       setIsPending(false);
     } finally {
@@ -196,16 +202,26 @@ export default function SettingsPage() {
         </h2>
         <div className="flex items-center gap-[16px]">
           <div className="relative grid h-[108px] w-[108px] shrink-0 place-items-center overflow-hidden rounded-full border-[1px] border-dashed border-[#cbd5e1] bg-[#fafafa]">
-            <p className="text-[24px] font-medium">CN</p>
+            <label
+              htmlFor="profile-picture"
+              className="cursor-pointer text-[24px] font-medium"
+            >
+              {data?.user.first_name?.slice(2)}
+            </label>
             <input
-              type="file"
+              className="sr-only"
               id="profile-picture"
-              className="pointer-events-none absolute h-full w-full opacity-0"
-              onChange={handleFileChange}
+              type="file"
+              onChange={(entries) =>
+                setImage(
+                  entries.target.files ? entries.target.files[0] : undefined,
+                )
+              }
+              accept="image/jpeg,image/png,image/svg+xml"
             />
-            {profilePicture && (
+            {image && (
               <Image
-                src={profilePicture}
+                src={URL.createObjectURL(image)}
                 alt="Picture of the author"
                 fill={true}
                 quality={100}
@@ -285,8 +301,8 @@ export default function SettingsPage() {
             className="border-border bg-white"
             type="email"
             name="email"
-            value={formData.email}
-            onChange={formDataHandler}
+            isDisabled
+            value={data?.user.email}
           />
         </div>
         <div>
