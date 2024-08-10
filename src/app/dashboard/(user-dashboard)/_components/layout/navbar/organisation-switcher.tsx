@@ -16,7 +16,7 @@ import { useLocalStorage } from "~/hooks/use-local-storage";
 import { CreateOrganization } from "../../create-organization";
 
 export const OrganisationSwitcher = () => {
-  const [currentId, setCurrentOrgId] = useLocalStorage<string | undefined>(
+  const [currentOrgId, setCurrentOrgId] = useLocalStorage<string | undefined>(
     "current_orgid",
     "",
   );
@@ -24,14 +24,14 @@ export const OrganisationSwitcher = () => {
   const { organizations } = useOrgContext();
 
   useEffect(() => {
-    if (!currentId && organizations.length > 0) {
+    if (!currentOrgId && organizations.length > 0) {
       setCurrentOrgId(organizations[0].organisation_id);
     }
-  }, [currentId, organizations, setCurrentOrgId]);
+  }, [currentOrgId, organizations, setCurrentOrgId]);
 
   const currentOrg =
     organizations.length > 0
-      ? organizations.find((org) => org.organisation_id === currentId)
+      ? organizations.find((org) => org.organisation_id === currentOrgId)
       : undefined;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -40,7 +40,7 @@ export const OrganisationSwitcher = () => {
     <>
       <CreateOrganization isOpen={isOpen} setIsOpen={setIsOpen} />
       <Select
-        defaultValue={currentId}
+        defaultValue={currentOrgId}
         onValueChange={(value) => {
           setCurrentOrgId(value);
         }}

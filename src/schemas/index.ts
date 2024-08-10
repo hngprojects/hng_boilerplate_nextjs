@@ -96,7 +96,7 @@ export const productSchema = z.object({
     })
     .optional(),
   image_url: z.string().optional(),
-  quantity: z.number(),
-  price: z.number(),
+  quantity: z.string(),
+  price: z.string(),
   category: z.string(),
 });

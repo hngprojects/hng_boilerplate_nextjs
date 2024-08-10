@@ -1,4 +1,4 @@
-"use server ";
+"use server";
 
 import axios from "axios";
 import { z } from "zod";
@@ -20,10 +20,16 @@ export const createProduct = async (
   }
 
   const session = await auth();
+  const { price, quantity, ...rest } = validatedFields.data;
+
+  const newPrice = Number.parseInt(price);
+  const newQuantity = Number.parseInt(quantity);
+
+  const acceptdata = { ...rest, price: newPrice, quantity: newQuantity };
   try {
     const response = await axios.post(
       `${apiUrl}/api/v1/organisations/${org_id}/products`,
-      validatedFields.data,
+      acceptdata,
       {
         headers: {
           Authorization: `Bearer ${session?.access_token}`,
@@ -45,9 +51,10 @@ export const createProduct = async (
   }
 };
 export const getAllProduct = async (org_id: string) => {
-  const session = await auth();
   try {
-    const response = await axios.post(
+    const session = await auth();
+
+    const response = await axios.get(
       `${apiUrl}/api/v1/${org_id}/products`,
 
       {
@@ -58,6 +65,7 @@ export const getAllProduct = async (org_id: string) => {
     );
     return {
       products: response.data.data,
+      response: response,
     };
   } catch (error) {
     return axios.isAxiosError(error) && error.response
@@ -99,9 +107,8 @@ export const deleteProduct = async (org_id: string, product_id: string) => {
 };
 
 export const getProductDetails = async (product_id: string) => {
-  const session = await auth();
-
   try {
+    const session = await auth();
     const response = await axios.delete(
       `${apiUrl}/api/v1/products/${product_id}`,
 

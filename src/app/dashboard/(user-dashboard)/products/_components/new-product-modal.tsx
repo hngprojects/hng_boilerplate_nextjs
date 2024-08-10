@@ -61,8 +61,8 @@ const NewProductModal = () => {
       description: "",
       size: "Small",
       image_url: "",
-      quantity: 0,
-      price: 0,
+      quantity: "0",
+      price: "0",
       category: "",
     },
   });
@@ -291,8 +291,8 @@ const NewProductModal = () => {
                           <FormControl>
                             <Input
                               id="quantity"
-                              type="number"
                               disabled={isLoading}
+                              type="int"
                               placeholder="Quantity"
                               className="bg-transparent placeholder:text-slate-400"
                               {...field}
@@ -313,7 +313,7 @@ const NewProductModal = () => {
                           <FormControl>
                             <Input
                               id="price"
-                              type="number"
+                              type="int"
                               disabled={isLoading}
                               placeholder="Price"
                               className="bg-transparent placeholder:text-slate-400"
