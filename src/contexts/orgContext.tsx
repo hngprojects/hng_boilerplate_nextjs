@@ -63,44 +63,59 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
   const isAnyModalOpen = isNewModal || isDelete || isOpen || isActionModal;
 
   useLayoutEffect(() => {
-    startTransition(() => {
-      getAllOrg().then((data) => {
-        const fetchedOrganizations = data.organization || [];
+    if (organizations.length === 0) {
+      startTransition(() => {
+        getAllOrg().then((data) => {
+          const fetchedOrganizations = data.organization || [];
 
-        const newOrganizations = fetchedOrganizations.filter(
-          (fetchedOrg: { organisation_id: string }) =>
-            !organizations.some(
-              (org) => org.organisation_id === fetchedOrg.organisation_id,
-            ),
-        );
+          // Filter new organizations that are not already in the state
+          const newOrganizations = fetchedOrganizations.filter(
+            (fetchedOrg: { organisation_id: string }) =>
+              !organizations.some(
+                (org) => org.organisation_id === fetchedOrg.organisation_id,
+              ),
+          );
 
-        if (newOrganizations.length > 0) {
-          setOrganizations((previousOrganizations) => [
-            ...previousOrganizations,
-            ...newOrganizations,
-          ]);
-        }
+          if (newOrganizations.length > 0) {
+            setOrganizations((previousOrganizations) => [
+              ...previousOrganizations,
+              ...newOrganizations,
+            ]);
+          }
+        });
+
+        getStatistics().then((subResponse) => {
+          setDashboardData(subResponse.data);
+        });
+
+        getAnalytics().then((data) => {
+          const formattedData: MonthlyData = Object.keys(data.data).map(
+            (key) => ({
+              month: key,
+              revenue: data.data[key],
+            }),
+          );
+          setMonthlydata(formattedData);
+        });
       });
-      getStatistics().then((subResponse) => {
-        setDashboardData(subResponse.data);
-      });
-      getAnalytics().then((data) => {
-        const formattedData: MonthlyData = Object.keys(data.data).map(
-          (key) => ({
-            month: key,
-            revenue: data.data[key],
-          }),
-        );
-        setMonthlydata(formattedData);
-      });
-    });
-  }, [organizations]);
+    }
+  }, [organizations.length]);
 
   useEffect(() => {
-    if (userOrg) {
-      setOrganizations(userOrg);
+    if (userOrg.length > 0) {
+      const uniqueOrgs = userOrg.filter(
+        (org) =>
+          !organizations.some(
+            (existingOrg) =>
+              existingOrg.organisation_id === org.organisation_id,
+          ),
+      );
+      setOrganizations((previousOrganizations) => [
+        ...previousOrganizations,
+        ...uniqueOrgs,
+      ]);
     }
-  }, [userOrg]);
+  }, [userOrg, organizations]);
 
   useEffect(() => {
     document.body.style.overflow = isAnyModalOpen ? "hidden" : "auto";
