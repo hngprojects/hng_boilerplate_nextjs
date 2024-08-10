@@ -53,13 +53,28 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [isDelete, setIsDelete] = useState(false);
   const [isOpen, updateOpen] = useState(false);
   const [isActionModal, setIsActionModal] = useState(false);
+  const [userOrg] = useLocalStorage<Organisation[]>("user_org", []);
 
   const isAnyModalOpen = isNewModal || isDelete || isOpen || isActionModal;
 
   useLayoutEffect(() => {
     startTransition(() => {
       getAllOrg().then((data) => {
-        setOrganizations(data.organization || []);
+        const fetchedOrganizations = data.organization || [];
+
+        const newOrganizations = fetchedOrganizations.filter(
+          (fetchedOrg: { organisation_id: string }) =>
+            !organizations.some(
+              (org) => org.organisation_id === fetchedOrg.organisation_id,
+            ),
+        );
+
+        if (newOrganizations.length > 0) {
+          setOrganizations((previousOrganizations) => [
+            ...previousOrganizations,
+            ...newOrganizations,
+          ]);
+        }
       });
       getStatistics().then((subResponse) => {
         setDashboardData(subResponse.data);
@@ -74,7 +89,13 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
         setMonthlydata(formattedData);
       });
     });
-  }, []);
+  }, [organizations]);
+
+  useEffect(() => {
+    if (userOrg) {
+      setOrganizations(userOrg);
+    }
+  }, [userOrg]);
 
   useEffect(() => {
     document.body.style.overflow = isAnyModalOpen ? "hidden" : "auto";

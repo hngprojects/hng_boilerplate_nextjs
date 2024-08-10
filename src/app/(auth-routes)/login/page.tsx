@@ -23,8 +23,10 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import { useToast } from "~/components/ui/use-toast";
+import { useLocalStorage } from "~/hooks/use-local-storage";
 import { cn } from "~/lib/utils";
 import { LoginSchema } from "~/schemas";
+import { Organisation } from "~/types";
 
 const Login = () => {
   const router = useRouter();
@@ -32,6 +34,12 @@ const Login = () => {
   const { status } = useSession();
   const [isLoading, startTransition] = useTransition();
   const [showPassword, setShowPassword] = useState(false);
+  const [, setUserOrg] = useLocalStorage<Organisation[]>("user_org", []);
+
+  const [currentId, setCurrentOrgId] = useLocalStorage<string | undefined>(
+    "current_orgid",
+    "",
+  );
 
   if (status === "authenticated") {
     router.push("/dashboard");
@@ -52,6 +60,10 @@ const Login = () => {
         const { email, password } = values;
 
         if (data.status === 200) {
+          setUserOrg(data.organisations);
+          if (!currentId) {
+            setCurrentOrgId(data.organisations[0].organisation_id);
+          }
           await signIn(
             "credentials",
             {
