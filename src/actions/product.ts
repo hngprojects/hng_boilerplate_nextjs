@@ -97,3 +97,33 @@ export const deleteProduct = async (org_id: string, product_id: string) => {
         };
   }
 };
+
+export const getProductDetails = async (product_id: string) => {
+  const session = await auth();
+
+  try {
+    const response = await axios.delete(
+      `${apiUrl}/api/v1/products/${product_id}`,
+
+      {
+        headers: {
+          Authorization: `Bearer ${session?.access_token}`,
+        },
+      },
+    );
+    return {
+      status: response.status,
+      message: "Product deleted successfully.",
+      products: response.data.data,
+    };
+  } catch (error) {
+    return axios.isAxiosError(error) && error.response
+      ? {
+          error: error.response.data.message || "Error Occurred.",
+          status: error.response.status,
+        }
+      : {
+          error: "An unexpected error occurred.",
+        };
+  }
+};

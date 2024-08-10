@@ -15,6 +15,7 @@ import ProductHeader from "./_components/product-header";
 const ProductPage = () => {
   const [view, setView] = useState<"list" | "grid">("grid");
   const { isOpen } = useOrgContext();
+
   return (
     <div className="relative flex w-full flex-col gap-y-8 pt-8">
       <ProductHeader />
@@ -29,7 +30,7 @@ const ProductPage = () => {
             className="flex w-full flex-col gap-y-8"
           >
             <ProductFilter view={view} setView={setView} />
-            <ProductContent view={view} />
+            <ProductContent view={view} searchTerm={""} />
             {isOpen && <ProductDetailView />}
             <ProductDetailModal />
           </motion.div>
