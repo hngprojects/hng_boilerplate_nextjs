@@ -9,6 +9,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     if: github.event.repository.fork == false
+
+    environment:
+      name: "dev"
+      url: ${{ vars.URL }}
+    
     steps:
       - uses: actions/checkout@v3
       
