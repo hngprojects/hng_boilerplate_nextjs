@@ -122,9 +122,9 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
   }, [isAnyModalOpen]);
 
   useLayoutEffect(() => {
+    if (!org_id || org_id === undefined) return;
     startTransition(() => {
       getAllProduct(org_id).then((data) => {
-        console.log(data);
         setProducts(data.products || []);
       });
     });
