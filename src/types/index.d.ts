@@ -69,7 +69,7 @@ export interface Organisation {
   id: string;
   name: string;
   description: string;
-  user_role: "admin" | "super-admin" | "user" | string;
+  user_role: "admin" | "manager" | "user" | string;
   organisation_id: string;
 }
 
