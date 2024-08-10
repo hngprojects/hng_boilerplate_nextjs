@@ -20,12 +20,6 @@ jobs:
           docker save hngdevops/nextjs-boilerplate:dev > nextjs-dev.tar
           gzip nextjs-dev.tar
       
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: docker-image
-          path: nextjs-dev.tar.gz
-      
       - name: Copy to server
         uses: appleboy/scp-action@master
         with:
