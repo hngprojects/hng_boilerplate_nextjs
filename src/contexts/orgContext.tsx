@@ -19,6 +19,8 @@ import {
   getStatistics,
 } from "../actions/organization";
 
+type ActiveFilter = "in stock" | "out of stock" | "preorder" | "all";
+
 interface OrgContextProperties {
   organizations: Organisation[];
   isLoading: boolean;
@@ -27,6 +29,8 @@ interface OrgContextProperties {
   products: Product[];
   selectedProduct: string;
   setSelectedProduct: React.Dispatch<React.SetStateAction<string>>;
+  active_filter: ActiveFilter;
+  setActive_filter: React.Dispatch<React.SetStateAction<ActiveFilter>>;
   isNewModal: boolean;
   setIsNewModal: React.Dispatch<React.SetStateAction<boolean>>;
   isDelete: boolean;
@@ -53,6 +57,7 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [isDelete, setIsDelete] = useState(false);
   const [isOpen, updateOpen] = useState(false);
   const [isActionModal, setIsActionModal] = useState(false);
+  const [active_filter, setActive_filter] = useState<ActiveFilter>("all");
 
   const isAnyModalOpen = isNewModal || isDelete || isOpen || isActionModal;
 
@@ -121,6 +126,8 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
       updateOpen,
       isActionModal,
       setIsActionModal,
+      active_filter,
+      setActive_filter,
     }),
     [
       isLoading,
@@ -133,6 +140,7 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
       isDelete,
       isOpen,
       isActionModal,
+      active_filter,
     ],
   );
 

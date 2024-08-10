@@ -1,6 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import dynamic from "next/dynamic";
@@ -9,8 +6,6 @@ import { useEffect, useMemo, useState } from "react";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import ProductCardSkeleton from "~/components/skeleton/product.skeleton";
 import { useOrgContext } from "~/contexts/orgContext";
-import { useProductModal } from "~/hooks/admin-product/use-product.modal";
-import { useProductsFilters } from "~/hooks/admin-product/use-products.-filters.persistence";
 import { cn } from "~/lib/utils";
 import { Product } from "~/types";
 import { ProductContentView } from "./product-content-view";
@@ -20,14 +15,17 @@ const Pagination = dynamic(() => import("react-paginate"), {
   loading: () => <LoadingSpinner />,
 });
 
-const ProductContent = ({ view }: { view: "list" | "grid" }) => {
+const ProductContent = ({
+  view,
+  searchTerm,
+}: {
+  view: "list" | "grid";
+  searchTerm: string;
+}) => {
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
-
   const [perPage, setPerPage] = useState("10");
-  const { isOpen } = useProductModal();
-  const { active_filter } = useProductsFilters();
-  const { products } = useOrgContext();
+  const { products, isOpen, active_filter } = useOrgContext();
 
   const [subset, setSubset] = useState<Product[]>([]);
 
@@ -39,13 +37,12 @@ const ProductContent = ({ view }: { view: "list" | "grid" }) => {
     window?.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // sort products by date_added new to old
   const sortedProducts = useMemo(() => {
     if (!products) return [];
     if (products.length === 0) return [];
     return products.sort(
       (a, b) =>
-        new Date(b.date_added).getTime() - new Date(a.date_added).getTime(),
+        new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
     );
   }, [products]);
   // filter by active filter
@@ -54,7 +51,7 @@ const ProductContent = ({ view }: { view: "list" | "grid" }) => {
     if (sortedProducts.length === 0) return [];
     return sortedProducts.filter((product) => {
       if (active_filter === "all") return product;
-      return product.status === active_filter;
+      return product.stock_status === active_filter;
     });
   }, [active_filter, sortedProducts]);
 
@@ -71,7 +68,7 @@ const ProductContent = ({ view }: { view: "list" | "grid" }) => {
       }
       return product.name.toLowerCase().includes(searchTerm.toLowerCase());
     });
-  }, [filteredProductsByActiveFilter]);
+  }, [filteredProductsByActiveFilter, searchTerm]);
 
   useEffect(() => {
     if (filteredProducts.length === 0) return;
