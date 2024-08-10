@@ -121,7 +121,10 @@ const LanguageRegion = () => {
             <label className="mb-1 block text-sm font-medium text-slate-700">
               Language
             </label>
-            <Select onValueChange={(value) => setLanguage(value)}>
+            <Select
+              value={language}
+              onValueChange={(value) => setLanguage(value)}
+            >
               <SelectTrigger className="w-full rounded-md border border-slate-300 bg-white text-sm font-medium text-slate-700 focus:border-orange-500 focus:ring-0">
                 <SelectValue placeholder="Select language" />
               </SelectTrigger>
@@ -139,7 +142,7 @@ const LanguageRegion = () => {
             <label className="mb-1 block text-sm font-medium text-slate-700">
               Region
             </label>
-            <Select onValueChange={(value) => setRegion(value)}>
+            <Select value={region} onValueChange={(value) => setRegion(value)}>
               <SelectTrigger className="w-full rounded-md border border-slate-300 bg-white text-sm font-medium text-slate-700 focus:border-orange-500 focus:ring-0">
                 <SelectValue placeholder="Select region" />
               </SelectTrigger>
@@ -157,8 +160,11 @@ const LanguageRegion = () => {
             <label className="mb-1 block text-sm font-medium text-slate-700">
               Time-Zone
             </label>
-            <Select onValueChange={(value) => setTimezone(value)}>
-              <SelectTrigger className="w-full rounded-md border border-slate-300 bg-white text-sm font-medium text-slate-700 focus:border-orange-500 focus:ring-0">
+            <Select
+              value={timezone}
+              onValueChange={(value) => setTimezone(value)}
+            >
+              <SelectTrigger className="w-full rounded-md border border-slate-300 bg-white text-left text-sm font-medium text-slate-700 focus:border-orange-500 focus:ring-0">
                 <SelectValue placeholder="Select time zone" />
               </SelectTrigger>
               <SelectContent>
