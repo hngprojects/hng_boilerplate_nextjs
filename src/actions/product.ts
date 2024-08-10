@@ -51,6 +51,11 @@ export const createProduct = async (
   }
 };
 export const getAllProduct = async (org_id: string) => {
+  if (!org_id) {
+    return {
+      error: "invalid organisation",
+    };
+  }
   try {
     const session = await auth();
 

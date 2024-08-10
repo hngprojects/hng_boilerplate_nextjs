@@ -99,7 +99,7 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
         });
       });
     }
-  }, [organizations.length]);
+  }, [organizations, organizations.length]);
 
   useEffect(() => {
     if (userOrg.length > 0) {
