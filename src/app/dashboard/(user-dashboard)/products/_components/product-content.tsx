@@ -101,7 +101,7 @@ const ProductContent = ({
         <ProductContentView
           view={view}
           searchTerm={searchTerm}
-          filteredProducts={filteredProducts}
+          filteredProducts={products}
           subset={subset}
         />
         {!products && <ProductCardSkeleton count={9} />}
