@@ -54,7 +54,7 @@ export const getAllProduct = async (org_id: string) => {
   try {
     const session = await auth();
 
-    const response = await axios.post(
+    const response = await axios.get(
       `${apiUrl}/api/v1/${org_id}/products`,
 
       {
