@@ -22,7 +22,6 @@ const Password = () => {
     password: "",
     confirmPassword: "",
   });
-
   const formDataHandler = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {

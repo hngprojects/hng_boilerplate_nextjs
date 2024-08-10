@@ -2,11 +2,13 @@
 
 import axios from "axios";
 import { useSession } from "next-auth/react";
-import { ChangeEvent, useEffect, useState } from "react";
+import Image from "next/image";
+import { ChangeEvent, startTransition, useEffect, useState } from "react";
 
 import { getApiUrl } from "~/actions/getApiUrl";
 import CustomButton from "~/components/common/common-button/common-button";
 import CustomInput from "~/components/common/input/input";
+import ProfileUpdateSuccessModal from "~/components/common/modals/profile-update-success";
 import { Textarea } from "~/components/common/text-area";
 import {
   Select,
@@ -15,6 +17,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select";
+import { toast } from "~/components/ui/use-toast";
+import { CloudinaryAsset } from "~/types";
 import { InstagramIcon, LinkedinIcon, XIcon } from "./icons";
 
 const pronouns = [
@@ -23,12 +27,17 @@ const pronouns = [
   { value: "Other", label: "Other" },
 ];
 
-const SettingsPage = () => {
+export default function SettingsPage() {
   const { data } = useSession();
+
+  const [error, setError] = useState<undefined | string>();
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const [isPending, setIsPending] = useState(false);
 
   const [pronoun, setPronoun] = useState("");
+
+  const [profilePicture, setProfilePicture] = useState<string | undefined>();
 
   const [socialLinks, setSocialLinks] = useState({
     x: "",
@@ -39,7 +48,7 @@ const SettingsPage = () => {
   const linksDataHandler = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    setFormData((previous) => ({
+    setSocialLinks((previous) => ({
       ...previous,
       [event.target.name]: event.target.value,
     }));
@@ -66,43 +75,94 @@ const SettingsPage = () => {
     (async () => {
       const baseUrl = await getApiUrl();
       const API_URL = `${baseUrl}/api/v1/profile/${data?.user.id}`;
-
       try {
         const response = await axios.get(API_URL, {
           headers: {
             Authorization: `Bearer ${data?.access_token}`,
           },
         });
-        setPronoun(response.data.data.pronouns);
-        setSocialLinks({
-          x: response.data.data.social_links[0],
-          instagram: response.data.data.scoial_links[1],
-          linkedin: response.data.data.social_links[2],
-        });
-        setFormData({
-          bio: response.data.data.bio,
-          jobTitle: response.data.data.jobTitle,
-          email: response.data.data.email,
-          department: response.data.data.department,
-          username: response.data.data.username,
-        });
+        if (response.data?.data) {
+          setPronoun(response.data.data.pronouns);
+          setSocialLinks({
+            x: response.data.data.social_links
+              ? response.data.data.social_links[0]
+              : "",
+            instagram: response.data.data.social_links
+              ? response.data.data.social_links[1]
+              : "",
+            linkedin: response.data.data.social_links
+              ? response.data.data.social_links[2]
+              : "",
+          });
+          setFormData({
+            bio: response.data.data.bio ?? "",
+            jobTitle: response.data.data.jobTitle ?? "",
+            email: response.data.data.email ?? "",
+            department: response.data.data.department ?? "",
+            username: response.data.data.username ?? "",
+          });
+          setProfilePicture(response.data.data.profile_picture);
+          setIsSuccess(true);
+        }
       } catch {
-        // console.log()
+        setError("An error occurred while retreiving your informatio");
       }
     })();
-  }, [data]);
+  }, [data?.access_token, data?.user.id, error]);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+
+    startTransition(async () => {
+      if (files && files.length > 0) {
+        const image = files[0];
+
+        const formData = new FormData();
+        formData.append("file", image);
+        formData.append("upload_preset", "starterhouse");
+        formData.append("api_key", "673723355315667");
+        formData.append("folder", "profile-pictures");
+
+        await fetch(`https://api.cloudinary.com/v1_1/dnik53vns/image/upload`, {
+          method: "POST",
+          body: formData,
+        }).then(async (response) => {
+          const data: CloudinaryAsset = await response.json();
+          setProfilePicture(data.url);
+        });
+      }
+    });
+  };
 
   const submit = async () => {
-    try {
-      setIsPending(true);
-      const baseUrl = await getApiUrl();
-      const API_URL = `${baseUrl}/api/v1/profile/${data?.user.id}`;
+    if (!isValidXUrl(socialLinks.x)) {
+      return toast({ title: "Warning!", description: "Enter a valid X url" });
+    }
+    if (!isValidInstagramUrl(socialLinks.instagram)) {
+      return toast({
+        title: "Warning!",
+        description: "Enter a valid Instagram url",
+      });
+    }
+    if (!isValidLinkedInUrl(socialLinks.linkedin)) {
+      return toast({
+        title: "Warning!",
+        description: "Enter a valid Linkedin url",
+      });
+    }
 
+    try {
       const payload = {
         ...formData,
         pronouns: pronoun,
         social_links: Object.values(socialLinks),
+        profile_picture: profilePicture,
       };
+
+      setIsPending(true);
+
+      const baseUrl = await getApiUrl();
+      const API_URL = `${baseUrl}/api/v1/profile/${data?.user.id}`;
 
       await axios.patch(API_URL, payload, {
         headers: {
@@ -116,6 +176,18 @@ const SettingsPage = () => {
     }
   };
 
+  const isFormDisabled =
+    !formData.bio ||
+    !formData.department ||
+    !formData.email ||
+    !formData.jobTitle ||
+    !formData.username ||
+    !socialLinks.instagram ||
+    !socialLinks.linkedin ||
+    !socialLinks.x ||
+    !profilePicture ||
+    !pronoun;
+
   return (
     <div className="min-h-screen w-full max-w-[826px] bg-white p-[32px]">
       <header className="mb-[24px]">
@@ -123,13 +195,33 @@ const SettingsPage = () => {
           Your photo
         </h2>
         <div className="flex items-center gap-[16px]">
-          <div className="grid h-[108px] w-[108px] shrink-0 place-items-center rounded-full border-[1px] border-dashed border-[#cbd5e1] bg-[#fafafa]">
+          <div className="relative grid h-[108px] w-[108px] shrink-0 place-items-center overflow-hidden rounded-full border-[1px] border-dashed border-[#cbd5e1] bg-[#fafafa]">
             <p className="text-[24px] font-medium">CN</p>
+            <input
+              type="file"
+              id="profile-picture"
+              className="pointer-events-none absolute h-full w-full opacity-0"
+              onChange={handleFileChange}
+            />
+            {profilePicture && (
+              <Image
+                src={profilePicture}
+                alt="Picture of the author"
+                fill={true}
+                quality={100}
+                className="absolute h-[108px] w-[108px] overflow-hidden rounded-[12px] object-cover"
+                loading="lazy"
+                unoptimized={true}
+              />
+            )}
           </div>
           <div>
-            <h3 className="mb-[8px] font-semibold text-primary">
+            <label
+              htmlFor="profile-picture"
+              className="mb-[8px] inline-block font-semibold text-primary"
+            >
               Upload your photo
-            </h3>
+            </label>
             <p className="text-[#525252]">
               Photos help your teammates recognize you.
             </p>
@@ -205,7 +297,7 @@ const SettingsPage = () => {
             name="bio"
             value={formData.bio}
             onChange={formDataHandler}
-            className="resize-none bg-white"
+            className="resize-none bg-white text-[#020817]"
           />
           <div className="border-b-[1px] border-b-[#e4e2e2]">
             <p className="pb-[24px] pt-2 text-[14px] text-[#64748B]">
@@ -245,12 +337,16 @@ const SettingsPage = () => {
             </div>
           </div>
         </div>
+        <div className="text-[14px] lg:text-[16px]">
+          {error && <p className="text-[#E00414]">{error}</p>}
+        </div>
         <div className="ml-auto flex w-max items-center justify-start gap-[12px]">
           <CustomButton size="lg" variant="outline">
             Cancel
           </CustomButton>
           <CustomButton
             isLoading={isPending}
+            isDisabled={isFormDisabled}
             onClick={submit}
             size="lg"
             className="bg-primary"
@@ -258,9 +354,28 @@ const SettingsPage = () => {
             Save Changes
           </CustomButton>
         </div>
+        {isSuccess && (
+          <ProfileUpdateSuccessModal
+            show={isSuccess}
+            onClose={() => setIsSuccess(false)}
+          />
+        )}
       </div>
     </div>
   );
-};
+}
 
-export default SettingsPage;
+function isValidLinkedInUrl(url: string) {
+  const linkedInRegex = /^(https?:\/\/)?(www\.)?linkedin\.com\/[\w/-]+\/?$/;
+  return linkedInRegex.test(url);
+}
+
+function isValidXUrl(url: string) {
+  const xRegex = /^(https?:\/\/)?(www\.)?x\.com\/\w{1,15}\/?$/;
+  return xRegex.test(url);
+}
+
+function isValidInstagramUrl(url: string) {
+  const instagramRegex = /^(https?:\/\/)?(www\.)?instagram\.com\/[\w.]+\/?$/;
+  return instagramRegex.test(url);
+}
