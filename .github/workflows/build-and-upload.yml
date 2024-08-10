@@ -8,8 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.event.repository.fork == false
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       
       - name: Build Docker image
         run: docker build -t hngdevops/nextjs-boilerplate:dev -f docker/development/Dockerfile .
@@ -24,22 +25,6 @@ jobs:
         with:
           name: docker-image
           path: nextjs-dev.tar.gz
-
-  copy-and-load-image:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.event.repository.fork == false
-
-    environment:
-      name: "dev"
-      url: ${{ vars.URL }}
-      
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: docker-image
-          path: .
       
       - name: Copy to server
         uses: appleboy/scp-action@master
