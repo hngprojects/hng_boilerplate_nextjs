@@ -36,7 +36,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [, setUserOrg] = useLocalStorage<Organisation[]>("user_org", []);
 
-  const [currentId, setCurrentOrgId] = useLocalStorage<string | undefined>(
+  const [currentOrgId, setCurrentOrgId] = useLocalStorage<string | undefined>(
     "current_orgid",
     "",
   );
@@ -61,7 +61,7 @@ const Login = () => {
 
         if (data.status === 200) {
           setUserOrg(data.organisations);
-          if (!currentId) {
+          if (!currentOrgId) {
             setCurrentOrgId(data.organisations[0].organisation_id);
           }
           await signIn(
