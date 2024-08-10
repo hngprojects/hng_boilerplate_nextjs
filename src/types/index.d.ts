@@ -69,7 +69,7 @@ export interface Organisation {
   id: string;
   name: string;
   description: string;
-  user_role: "admin" | "super-admin" | "user" | string;
+  user_role: "admin" | "manager" | "user" | string;
   organisation_id: string;
 }
 
@@ -97,6 +97,24 @@ export interface MonthlyRevenue {
 }
 
 export type MonthlyData = MonthlyRevenue[];
+
+export type CloudinaryAsset = {
+  url: string;
+};
+
+export type UpdateProfileType = {
+  username?: string;
+  jobTitle?: string;
+  pronouns?: string;
+  department?: string;
+  email?: string;
+  bio?: string;
+  sociallinks?: string[];
+  language?: string;
+  region?: string;
+  timezones?: string;
+  profile_pic_url?: string;
+};
 
 export interface Product {
   id: string;

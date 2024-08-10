@@ -35,12 +35,9 @@ import { useOrgContext } from "~/contexts/orgContext";
 import { useLocalStorage } from "~/hooks/use-local-storage";
 import { cn } from "~/lib/utils";
 import { productSchema } from "~/schemas";
+import { CloudinaryAsset } from "~/types";
 import { CATEGORIES } from "../data/categories.mock";
 import { MAX_CHAR } from "./schema/schema";
-
-type CloudinaryAsset = {
-  url: string;
-};
 
 const NewProductModal = () => {
   const { setIsNewModal, isNewModal } = useOrgContext();
