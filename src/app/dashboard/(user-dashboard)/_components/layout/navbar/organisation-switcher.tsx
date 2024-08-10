@@ -11,6 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select";
+import { Skeleton } from "~/components/ui/skeleton";
 import { useOrgContext } from "~/contexts/orgContext";
 import { useLocalStorage } from "~/hooks/use-local-storage";
 import { CreateOrganization } from "../../create-organization";
@@ -21,7 +22,7 @@ export const OrganisationSwitcher = () => {
     "",
   );
 
-  const { organizations } = useOrgContext();
+  const { organizations, isLoading } = useOrgContext();
 
   useEffect(() => {
     if (!currentOrgId && organizations.length > 0) {
@@ -49,11 +50,13 @@ export const OrganisationSwitcher = () => {
           aria-label="Select organisation"
           className="flex items-center gap-2 [&>span]:line-clamp-1 [&>span]:flex [&>span]:w-full [&>span]:items-center [&>span]:gap-1 [&>span]:truncate [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0"
         >
-          <SelectValue placeholder="Select an organisation">
-            <span className="ml-2">
-              {currentOrg ? currentOrg.name : "Select an organisation"}
-            </span>
-          </SelectValue>
+          {isLoading ? (
+            <Skeleton className="h-4 w-full" />
+          ) : (
+            <SelectValue placeholder={currentOrg?.name}>
+              <span className="ml-2">{currentOrg && currentOrg.name}</span>
+            </SelectValue>
+          )}
         </SelectTrigger>
         <SelectContent>
           {organizations.map((org) => (
