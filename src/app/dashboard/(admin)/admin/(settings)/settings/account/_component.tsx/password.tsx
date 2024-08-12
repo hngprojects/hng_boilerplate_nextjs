@@ -44,8 +44,8 @@ const Password = () => {
       const API_URL = `${baseUrl}/api/v1/auth/change-password`;
 
       const payload = {
-        oldPassword: formData.oldPassword,
-        newPassword: formData.password,
+        old_password: formData.oldPassword,
+        new_password: formData.password,
       };
 
       await axios.post(API_URL, payload, {
