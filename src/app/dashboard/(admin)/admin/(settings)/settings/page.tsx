@@ -18,9 +18,7 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 import { toast } from "~/components/ui/use-toast";
-import { CloudinaryAsset } from "~/types";
 import { InstagramIcon, LinkedinIcon, XIcon } from "./icons";
-import { unstable_update } from "~/lib/auth";
 
 const pronouns = [
   { value: "He/Him", label: "He/Him" },
@@ -112,6 +110,53 @@ export default function SettingsPage() {
     })();
   }, [data?.access_token, data?.user.id, error]);
 
+  const handleImageUpload = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setImage(file);
+
+      const formData = new FormData();
+      formData.append("avatar", file);
+
+      try {
+        const baseUrl = await getApiUrl();
+        const UPLOAD_API_URL = `${baseUrl}/api/v1/profile/upload-image`;
+
+        const uploadResponse = await fetch(UPLOAD_API_URL, {
+          method: "POST",
+          body: formData,
+          headers: {
+            Authorization: `Bearer ${data?.access_token}`,
+          },
+        });
+
+        const uploadData = await uploadResponse.json();
+        if (uploadResponse.ok) {
+          const profilePicUrl = uploadData.data.profile_pic_url;
+          window.dispatchEvent(
+            new CustomEvent("userProfileUpdate", { detail: { profilePicUrl } }),
+          );
+          setProfilePicture(profilePicUrl);
+
+          setFormData((previousData) => ({
+            ...previousData,
+            profile_pic_url: profilePicUrl,
+          }));
+          window.dispatchEvent(new Event("profileUpdate"));
+        } else {
+          throw new Error("Failed to upload image");
+        }
+      } catch (error) {
+        console.error("Error during image upload:", error);
+        toast({
+          title: "Error",
+          description: "Failed to update profile picture. Please try again.",
+          variant: "destructive",
+        });
+      }
+    }
+  };
+
   const submit = async () => {
     if (!isValidXUrl(socialLinks.x)) {
       return toast({ title: "Warning!", description: "Enter a valid X url" });
@@ -134,38 +179,9 @@ export default function SettingsPage() {
         ...formData,
         pronouns: pronoun,
         social_links: Object.values(socialLinks),
-        profile_pic_url: '',
+        profile_pic_url: profilePicture,
       };
-
-      if (image) {
-        const formData = new FormData();
-        formData.append("file", image!);
-
-        const baseUrl = await getApiUrl();
-        const UPLOAD_API_URL = `${baseUrl}/api/v1/profile/upload-image`;
-
-        const uploadResponse = await fetch(UPLOAD_API_URL, {
-          method: "POST",
-          body: formData,
-          headers: {
-            Authorization: `Bearer ${data?.access_token}`,
-          },
-        });
-
-        const uploadData = await uploadResponse.json();
-        if (uploadResponse.ok) {
-          const baseUrl = await getApiUrl();
-          const profilePicUrl = uploadData.data.profile_picture_url.replace('http://localhost:3009', baseUrl);
-
-          payload.profile_pic_url = profilePicUrl;
-          setProfilePicture(profilePicUrl);
-        } else {
-          throw new Error("Failed to upload image");
-        }
-      }
-
       setIsPending(true);
-
       const baseUrl = await getApiUrl();
       const API_URL = `${baseUrl}/api/v1/profile/${data?.user.id}`;
 
@@ -189,6 +205,12 @@ export default function SettingsPage() {
       await signIn("credentials", { redirect: false });
 
       setIsSuccess(true);
+
+      window.dispatchEvent(
+        new CustomEvent("userProfileUpdate", {
+          detail: { profilePicUrl: profilePicture },
+        }),
+      );
     } catch (error) {
       setIsPending(false);
       setError("An error occurred while saving your information");
@@ -209,7 +231,6 @@ export default function SettingsPage() {
     pronoun
   );
 
-
   return (
     <div className="min-h-screen w-full max-w-[826px] bg-white p-[32px]">
       <header className="mb-[24px]">
@@ -228,16 +249,12 @@ export default function SettingsPage() {
               className="sr-only"
               id="profile-picture"
               type="file"
-              onChange={(entries) =>
-                setImage(
-                  entries.target.files ? entries.target.files[0] : undefined,
-                )
-              }
+              onChange={handleImageUpload}
               accept="image/jpeg,image/png,image/svg+xml"
             />
-            {image && (
+            {(image || profilePicture) && (
               <Image
-                src={URL.createObjectURL(image)}
+                src={image ? URL.createObjectURL(image) : profilePicture!}
                 alt="Picture of the author"
                 fill={true}
                 quality={100}

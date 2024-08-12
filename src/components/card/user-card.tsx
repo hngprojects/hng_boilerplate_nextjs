@@ -1,7 +1,10 @@
+import axios from "axios";
 import { ChevronDown } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { useCallback, useEffect, useState } from "react";
 
+import { getApiUrl } from "~/actions/getApiUrl";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import {
   DropdownMenu,
@@ -24,6 +27,49 @@ const handleLogout = async () => {
 const UserCard = () => {
   const { data: session, status } = useSession();
   const { user } = session ?? {};
+  const [profilePicUrl, setProfilePicUrl] = useState<string | null>(null);
+
+  const fetchProfileData = useCallback(async () => {
+    if (status === "authenticated" && user?.id) {
+      try {
+        const baseUrl = await getApiUrl();
+        const API_URL = `${baseUrl}/api/v1/profile/${user.id}`;
+        const response = await axios.get(API_URL, {
+          headers: {
+            Authorization: `Bearer ${session?.access_token}`,
+          },
+        });
+        if (response.data?.data?.profile_pic_url) {
+          setProfilePicUrl(response.data.data.profile_pic_url);
+        }
+      } catch (error) {
+        console.log("Error fetching profile data:", error);
+      }
+    }
+  }, [status, user?.id, session?.access_token]);
+
+  useEffect(() => {
+    fetchProfileData();
+    const handleProfileUpdate = (event: CustomEvent) => {
+      if (event.detail && event.detail.profilePicUrl) {
+        setProfilePicUrl(event.detail.profilePicUrl);
+      } else {
+        fetchProfileData();
+      }
+    };
+
+    window.addEventListener(
+      "userProfileUpdate",
+      handleProfileUpdate as EventListener,
+    );
+
+    return () => {
+      window.removeEventListener(
+        "userProfileUpdate",
+        handleProfileUpdate as EventListener,
+      );
+    };
+  }, [fetchProfileData]);
 
   return (
     <DropdownMenu>
@@ -38,7 +84,10 @@ const UserCard = () => {
           )}
           {status === "authenticated" && (
             <Avatar className="size-8 sm:size-10">
-              <AvatarImage src={user?.image ?? ""} alt="User Avatar" />
+              <AvatarImage
+                src={`${profilePicUrl}?t=${Date.now()}`}
+                alt="User Avatar"
+              />
               <AvatarFallback className="bg-primary/30 uppercase">
                 {user?.first_name?.charAt(0)}
               </AvatarFallback>

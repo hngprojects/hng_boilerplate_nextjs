@@ -137,7 +137,7 @@ export default {
           customToken.name?.split(" ").slice(1).join(" ") ||
           customToken.fullname?.split(" ").slice(1).join(" ") ||
           "",
-        image: customToken.profile_pic_url || token.picture || customToken.avatar_url || "",
+        image: token.picture || customToken.avatar_url || "",
         role: customToken.role as string,
         email: token.email as string,
       };

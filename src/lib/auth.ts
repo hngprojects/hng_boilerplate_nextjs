@@ -18,7 +18,7 @@ declare module "next-auth" {
       first_name: User["first_name"];
       last_name: User["last_name"];
       email: User["email"];
-      image: string;
+      image: User["avatar_url"];
       role: User["role"];
       bio?: string;
       username?: string;

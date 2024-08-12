@@ -11,7 +11,6 @@ export interface CustomJWT extends JWT {
   last_name?: string;
   fullname?: string;
   access_token?: string;
-  profile_pic_url?: string;
 }
 export interface CustomSession extends Session {
   user: {
