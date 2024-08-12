@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import { ChangeEvent, useEffect, useState } from "react";
 
@@ -20,6 +20,7 @@ import {
 import { toast } from "~/components/ui/use-toast";
 import { CloudinaryAsset } from "~/types";
 import { InstagramIcon, LinkedinIcon, XIcon } from "./icons";
+import { unstable_update } from "~/lib/auth";
 
 const pronouns = [
   { value: "He/Him", label: "He/Him" },
@@ -102,7 +103,7 @@ export default function SettingsPage() {
             department: response.data.data.department ?? "",
             username: response.data.data.username ?? "",
           });
-          setProfilePicture(response.data.data.profile_picture);
+          setProfilePicture(response.data.data.profile_pic_url);
           setIsSuccess(true);
         }
       } catch {
@@ -133,20 +134,36 @@ export default function SettingsPage() {
         ...formData,
         pronouns: pronoun,
         social_links: Object.values(socialLinks),
-        profile_picture: "",
+        profile_pic_url: '',
       };
-      const formData1 = new FormData();
-      formData1.append("file", image!);
-      formData1.append("upload_preset", "starterhouse");
-      formData1.append("api_key", "673723355315667");
 
-      await fetch(`https://api.cloudinary.com/v1_1/dnik53vns/image/upload`, {
-        method: "POST",
-        body: formData1,
-      }).then(async (response) => {
-        const data: CloudinaryAsset = await response.json();
-        payload.profile_picture = data.url;
-      });
+      if (image) {
+        const formData = new FormData();
+        formData.append("file", image!);
+
+        const baseUrl = await getApiUrl();
+        const UPLOAD_API_URL = `${baseUrl}/api/v1/profile/upload-image`;
+
+        const uploadResponse = await fetch(UPLOAD_API_URL, {
+          method: "POST",
+          body: formData,
+          headers: {
+            Authorization: `Bearer ${data?.access_token}`,
+          },
+        });
+
+        const uploadData = await uploadResponse.json();
+        if (uploadResponse.ok) {
+          const baseUrl = await getApiUrl();
+          const profilePicUrl = uploadData.data.profile_picture_url.replace('http://localhost:3009', baseUrl);
+
+          payload.profile_pic_url = profilePicUrl;
+          console.log(payload.profile_pic_url)
+          setProfilePicture(profilePicUrl);
+        } else {
+          throw new Error("Failed to upload image");
+        }
+      }
 
       setIsPending(true);
 
@@ -158,41 +175,41 @@ export default function SettingsPage() {
           Authorization: `Bearer ${data?.access_token}`,
         },
       });
-      // if (updated.status === 200) {
-      //   const newSession: Session = {
-      //     ...data,
-      //     user: {
-      //       ...data?.user,
-      //       id: data?.user.id ?? "",
-      //       first_name: data?.user.first_name ?? "",
-      //       last_name: data?.user.last_name ?? "",
 
-      //       role: data?.user.role ?? "",
-      //       bio: formData.bio,
-      //       username: formData.username,
-      //       is_superadmin: data?.user.is_superadmin,
-      //     },
-      //     expires: data?.expires,
-      //   };
-      // }
-    } catch {
+      const updatedUser = {
+        ...data?.user,
+        image: payload.profile_pic_url,
+      };
+
+      const event = new CustomEvent("session", {
+        detail: { session: { ...data, user: updatedUser } },
+      });
+
+      window.dispatchEvent(event);
+
+      await signIn("credentials", { redirect: false });
+
+      setIsSuccess(true);
+    } catch (error) {
       setIsPending(false);
+      setError("An error occurred while saving your information");
+      console.error("Error during image upload or profile update:", error);
     } finally {
       setIsPending(false);
     }
   };
 
-  const isFormDisabled =
-    !formData.bio ||
-    !formData.department ||
-    !formData.email ||
-    !formData.jobTitle ||
-    !formData.username ||
-    !socialLinks.instagram ||
-    !socialLinks.linkedin ||
-    !socialLinks.x ||
-    !profilePicture ||
-    !pronoun;
+  const isFormDisabled = !(
+    formData.bio &&
+    formData.department &&
+    formData.jobTitle &&
+    formData.username &&
+    socialLinks.instagram &&
+    socialLinks.linkedin &&
+    socialLinks.x &&
+    pronoun
+  );
+
 
   return (
     <div className="min-h-screen w-full max-w-[826px] bg-white p-[32px]">

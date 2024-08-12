@@ -1,6 +1,7 @@
 import { ChevronDown } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { useEffect } from "react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import {
@@ -25,6 +26,10 @@ const UserCard = () => {
   const { data: session, status } = useSession();
   const { user } = session ?? {};
 
+  useEffect(() => {
+console.log(user);
+  }, [])
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -38,7 +43,7 @@ const UserCard = () => {
           )}
           {status === "authenticated" && (
             <Avatar className="size-8 sm:size-10">
-              <AvatarImage src={user?.image ?? ""} />
+              <AvatarImage src={user?.image ?? ""} alt="User Avatar" />
               <AvatarFallback className="bg-primary/30 uppercase">
                 {user?.first_name?.charAt(0)}
               </AvatarFallback>
