@@ -60,10 +60,13 @@ const Login = () => {
         const { email, password } = values;
 
         if (data.status === 200) {
-          setUserOrg(data.organisations);
-          if (!currentOrgId) {
-            setCurrentOrgId(data.organisations[0].organisation_id);
+          if (data.organisations !== undefined) {
+            setUserOrg(data.organisations);
+            if (!currentOrgId) {
+              setCurrentOrgId(data.organisations[0].organisation_id);
+            }
           }
+
           await signIn(
             "credentials",
             {
