@@ -1,7 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import { useEffect } from "react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import {
@@ -25,10 +24,6 @@ const handleLogout = async () => {
 const UserCard = () => {
   const { data: session, status } = useSession();
   const { user } = session ?? {};
-
-  useEffect(() => {
-console.log(user);
-  }, [])
 
   return (
     <DropdownMenu>

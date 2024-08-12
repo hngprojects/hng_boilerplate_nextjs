@@ -158,7 +158,6 @@ export default function SettingsPage() {
           const profilePicUrl = uploadData.data.profile_picture_url.replace('http://localhost:3009', baseUrl);
 
           payload.profile_pic_url = profilePicUrl;
-          console.log(payload.profile_pic_url)
           setProfilePicture(profilePicUrl);
         } else {
           throw new Error("Failed to upload image");
