@@ -16,6 +16,7 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
+import { toast } from "~/components/ui/use-toast";
 import { cn } from "~/lib/utils";
 
 const handleLogout = async () => {
@@ -27,7 +28,7 @@ const handleLogout = async () => {
 const UserCard = () => {
   const { data: session, status } = useSession();
   const { user } = session ?? {};
-  const [profilePicUrl, setProfilePicUrl] = useState<string | null>(null);
+  const [profilePicUrl, setProfilePicUrl] = useState<string | undefined>("");
 
   const fetchProfileData = useCallback(async () => {
     if (status === "authenticated" && user?.id) {
@@ -42,8 +43,12 @@ const UserCard = () => {
         if (response.data?.data?.profile_pic_url) {
           setProfilePicUrl(response.data.data.profile_pic_url);
         }
-      } catch (error) {
-        console.log("Error fetching profile data:", error);
+      } catch {
+        toast({
+          title: "Error",
+          description: "Failed to fetch profile data.",
+          variant: "destructive",
+        });
       }
     }
   }, [status, user?.id, session?.access_token]);

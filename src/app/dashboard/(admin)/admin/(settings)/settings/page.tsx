@@ -146,8 +146,8 @@ export default function SettingsPage() {
         } else {
           throw new Error("Failed to upload image");
         }
-      } catch (error) {
-        console.error("Error during image upload:", error);
+      } catch {
+        setError("Error during Image upload");
         toast({
           title: "Error",
           description: "Failed to update profile picture. Please try again.",
@@ -211,10 +211,9 @@ export default function SettingsPage() {
           detail: { profilePicUrl: profilePicture },
         }),
       );
-    } catch (error) {
+    } catch {
       setIsPending(false);
       setError("An error occurred while saving your information");
-      console.error("Error during image upload or profile update:", error);
     } finally {
       setIsPending(false);
     }
