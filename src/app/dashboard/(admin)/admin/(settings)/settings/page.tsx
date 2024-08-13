@@ -133,26 +133,18 @@ export default function SettingsPage() {
         if (uploadResponse.status === 200) {
           const { avatar_url, profile_pic_url } = uploadResponse.data.data;
           const profilePicUrl = avatar_url || profile_pic_url;
-          window.dispatchEvent(
-            new CustomEvent("userProfileUpdate", { detail: { profilePicUrl } }),
-          );
+
           setProfilePicture(profilePicUrl);
 
           setFormData((previousData) => ({
             ...previousData,
             profile_pic_url: profilePicture,
           }));
-          window.dispatchEvent(new Event("profileUpdate"));
         } else {
-          throw new Error("Failed to upload image");
+          throw new Error(".");
         }
       } catch {
-        setError("Error during Image upload");
-        toast({
-          title: "Error",
-          description: "Failed to update profile picture. Please try again.",
-          variant: "destructive",
-        });
+        setError(".");
       }
     }
   };
