@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
-import Contact from "~/app/(landing-routes)/contact-us/page";
+import Contact from "~/app/[locale]/(landing-routes)/contact-us/page";
 
 describe("contact Page tests", () => {
   it("should render the Contact Us form and content card correctly", () => {
