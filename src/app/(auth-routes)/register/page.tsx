@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { getApiUrl } from "~/actions/getApiUrl";
 
 import { registerUser, resendOtp, verifyOtp } from "~/actions/register";
 import CustomButton from "~/components/common/common-button/common-button";
@@ -92,11 +93,34 @@ const Register = () => {
   // };
 
   const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
-    // const apiUrl = await getApiUrl();
+    const apiUrl = await getApiUrl();
     startTransition(async () => {
       await registerUser(values).then(async (data) => {
         if (data.status === 201) {
           router.push("/login");
+
+          const fetchEmailTemplates = async () => {
+            try {
+              const response = await fetch(`${apiUrl}/api/v1/email-templates`, {
+                method: "GET",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              });
+  
+              if (!response.ok) {
+                throw new Error(`Error: ${response.statusText}`);
+              }
+  
+              const templates = await response.json();
+              console.log("Fetched email templates:", templates);
+            } catch (error) {
+              console.error("Failed to fetch email templates:", error);
+            }
+          };
+  
+          await fetchEmailTemplates(); 
+        
 
           // Enqueue email for sending using the provided backend API
           const emailData = {
