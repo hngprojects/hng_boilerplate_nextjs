@@ -50,6 +50,7 @@ const Register = () => {
 
   const apiUrl = process.env.API_URL;
 
+
   useEffect(() => {
     if (timeLeft <= 0) return;
     const timerId = setInterval(() => {
@@ -99,14 +100,14 @@ const Register = () => {
 
           // Enqueue email for sending using the provided backend API
           const emailData = {
-            template_id: "YOUR_TEMPLATE_ID_HERE", 
+            template_id: "f47ac10b-58cc-4372-a567-0e02b2c3d479", 
             subject: "Welcome to Our Service!",
             recipient: values.email,
             variables: JSON.stringify({ first_name: values.first_name }),
             status: "pending",
           };
           try {
-            const response = await fetch(`${apiUrl}/api/v1/email-templates`, {
+            const response = await fetch(`${apiUrl}/api/v1/email-requests`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
