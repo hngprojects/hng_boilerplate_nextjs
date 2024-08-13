@@ -12,6 +12,7 @@ import { cn } from "~/lib/utils";
 import { NAV_LINKS } from "./links";
 import MobileNav from "./mobile-navbar";
 import LanguageSwitcher from "~/components/languageSwitcher/languageSwitcher";
+import Image from "next/image";
 
 
 const Navbar = () => {

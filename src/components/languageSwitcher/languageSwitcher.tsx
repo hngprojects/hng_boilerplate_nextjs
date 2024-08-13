@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useTransition } from 'react';
 import { languages } from "~/utils/languages";
 import Image from "next/image";
 import { Language } from '~/utils/languages';
@@ -7,6 +7,8 @@ import { setUserLocale } from '~/utils/locale';
 
 
 const LanguageSwitcher: React.FC = () => {
+    const [isPending, startTransition] = useTransition()
+
     const [selectedLanguage, setSelectedLanguage] = useState(
         localStorage.getItem('preferredLanguage') || 'en'
     );
@@ -18,7 +20,9 @@ const LanguageSwitcher: React.FC = () => {
 
     const handleLanguageChange = (language: Language) => {
         const locale = language.code as Locale
-        setUserLocale(locale)
+        startTransition(() => {
+            setUserLocale(locale);
+        });
         setSelectedLanguage(language.code);
         setIsOpen(false)
     };
@@ -30,9 +34,9 @@ const LanguageSwitcher: React.FC = () => {
     const findFlag = (code: string) => {
         const language = languages.find(lang => lang.code === code);
         return language ? language.flag : '/images/flags/en.svg'
-      };
-    
-      const flagPath = findFlag(selectedLanguage);
+    };
+
+    const flagPath = findFlag(selectedLanguage);
 
     return (
         <>
@@ -40,7 +44,7 @@ const LanguageSwitcher: React.FC = () => {
                 <div className="w-[80px] flex cursor-pointer hover:bg-gray-100"
                     onClick={toggleDropdown}
                 >
-                    <Image src={flagPath} alt='' width={36} height={24}/> 
+                    <Image src={flagPath} alt='' width={36} height={24} />
                     <div className='text-[#F97316] ml-2 uppercase text-lg'>{selectedLanguage}</div>
                 </div>
                 {isOpen && (
