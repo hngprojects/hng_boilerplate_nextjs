@@ -100,3 +100,15 @@ export const productSchema = z.object({
   price: z.string(),
   category: z.string(),
 });
+
+export const roleSchema = z.object({
+  name: z.string().min(2, {
+    message: "name is required",
+  }),
+  permissions: z.string().min(2, {
+    message: "Role Permissions must be at least 2 characters.",
+  }),
+  description: z.string().min(2, {
+    message: "Role description must be at least 2 characters.",
+  }),
+});

@@ -1,12 +1,15 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { getApiUrl } from "~/actions/getApiUrl";
+import { getRoles, updatePermissions } from "~/actions/roles-and-permissions";
 import CustomButton from "~/components/common/common-button/common-button";
-import RoleCreationModal from "~/components/common/modals/role-creation";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import { useToast } from "~/components/ui/use-toast";
+import { useLocalStorage } from "~/hooks/use-local-storage";
+import { Organisation } from "~/types";
 
 type Role = {
   id: number;
@@ -21,24 +24,24 @@ type Permission = {
 const RolesAndPermission = () => {
   const [selectedRoleId, setSelectedRoleId] = useState<number | undefined>();
   const [permissions, setPermissions] = useState<Permission>({});
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [roles, setRoles] = useState<Role[]>([]);
   const [apiUrl, setApiUrl] = useState("");
   const { toast } = useToast();
   const [loadingRoles, setLoadingRoles] = useState<boolean>(true);
   const [loadingPermissions, setLoadingPermissions] = useState<boolean>(false);
   const [loadingRequest, setLoadingRequest] = useState<boolean>(false);
-  const org_id = "9ca4512c-f665-4901-ba63-0b6492e47d32";
+  const [userOrg, setUserOrg] = useLocalStorage<Organisation[]>("user_org", []);
 
   useEffect(() => {
-    setLoadingRoles(true);
     const fetchData = async () => {
       try {
         const url = await getApiUrl();
         setApiUrl(url);
-        const response = await fetch(`${url}/organisations/${org_id}/roles`);
-        const data = await response.json();
-        setRoles(data);
+        const { data, error } = await getRoles(
+          userOrg.at(0)?.organisation_id ??
+            "8912fe8c-8ed8-4f06-b48b-941167000875",
+        );
+        setRoles(data.data);
         setLoadingRoles(false);
       } catch (error: unknown) {
         toast({
@@ -50,6 +53,7 @@ const RolesAndPermission = () => {
         setLoadingRoles(false);
       }
     };
+    setLoadingRoles(true);
     fetchData();
   }, [toast]);
 
@@ -59,7 +63,7 @@ const RolesAndPermission = () => {
         setLoadingPermissions(true);
         try {
           const response = await fetch(
-            `${apiUrl}/organisations/${org_id}/roles/${selectedRoleId}`,
+            `${apiUrl}/organisations/${userOrg.at(0)?.organisation_id}/roles/${selectedRoleId}`,
           );
           const permissionsData = await response.json();
           setPermissions(permissionsData.permission_list);
@@ -75,7 +79,14 @@ const RolesAndPermission = () => {
       }
     };
     fetchPermissions();
-  }, [selectedRoleId, apiUrl, org_id, toast]);
+    // setPermissions({
+    //   "Can view transactions": true,
+    //   "Can view refunds": true,
+    //   "Can log refunds": true,
+    //   "Can view users": true,
+    //   "Can create users": true,
+    // });
+  }, [selectedRoleId, apiUrl, userOrg, toast]);
 
   const handleRoleClick = (roleId: number) => {
     setSelectedRoleId(roleId);
@@ -125,12 +136,8 @@ const RolesAndPermission = () => {
     setLoadingRequest(false);
   };
 
-  const handleModalOpen = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleModalClose = () => {
-    setIsModalOpen(false);
+  const handlePermissionsChange = async () => {
+    await updatePermissions({}, "");
   };
 
   return (
@@ -139,39 +146,39 @@ const RolesAndPermission = () => {
         <div className="w-1/4">
           <h2 className="mb-10 text-xl font-medium">Roles</h2>
           <ul className="rounded-md border border-[#CBD5E1] p-3">
-            {loadingRoles && (
+            {loadingRoles ? (
               <div className="flex justify-center py-8">
                 <LoadingSpinner className="size-4 animate-spin stroke-orange-500 sm:size-5" />
               </div>
-            )}
-            {roles.map((role) => (
-              <li
-                key={role.id}
-                className={`mb-2 cursor-pointer border-[#CBD5E1] p-2 ${
-                  selectedRoleId === role.id
-                    ? "rounded-md bg-orange-500 text-white"
-                    : "border-b bg-white text-[#0a0a0a] hover:bg-[#F1F5F9]"
-                }`}
-                onClick={() => handleRoleClick(role.id)}
-              >
-                <h3 className="text-base font-medium">{role.name}</h3>
-                <p
-                  className={`text-xs font-normal ${selectedRoleId === role.id ? "text-white" : "text-[#525252]"}`}
+            ) : (
+              roles.map((role) => (
+                <li
+                  key={role.id}
+                  className={`mb-2 cursor-pointer border-[#CBD5E1] p-2 ${
+                    selectedRoleId === role.id
+                      ? "rounded-md bg-orange-500 text-white"
+                      : "border-b bg-white text-[#0a0a0a] hover:bg-[#F1F5F9]"
+                  }`}
+                  onClick={() => handleRoleClick(role.id)}
                 >
-                  {role.description}
-                </p>
-              </li>
-            ))}
+                  <h3 className="text-base font-medium">{role.name}</h3>
+                  <p
+                    className={`text-xs font-normal ${selectedRoleId === role.id ? "text-white" : "text-[#525252]"}`}
+                  >
+                    {role.description}
+                    {/* Full control and Full Permissions */}
+                  </p>
+                </li>
+              ))
+            )}
           </ul>
         </div>
         <div className="w-3/4">
           <div className="mb-2 flex justify-end">
-            <CustomButton
-              variant="primary"
-              className="mb-6"
-              onClick={handleModalOpen}
-            >
-              + Create roles
+            <CustomButton variant="primary" className="mb-6">
+              <Link href="/dashboard/admin/settings/organization/roles-and-permissions/create-role">
+                + Create roles
+              </Link>
             </CustomButton>
           </div>
           <div className="rounded-md border border-[#CBD5E1] px-5 py-6">
@@ -238,7 +245,6 @@ const RolesAndPermission = () => {
           </div>
         </div>
       </div>
-      <RoleCreationModal show={isModalOpen} onClose={handleModalClose} />
     </div>
   );
 };
