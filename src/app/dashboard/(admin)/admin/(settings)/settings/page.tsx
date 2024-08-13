@@ -123,17 +123,16 @@ export default function SettingsPage() {
         const baseUrl = await getApiUrl();
         const UPLOAD_API_URL = `${baseUrl}/api/v1/profile/upload-image`;
 
-        const uploadResponse = await fetch(UPLOAD_API_URL, {
-          method: "POST",
-          body: formData,
+        const uploadResponse = await axios.post(UPLOAD_API_URL, formData, {
           headers: {
             Authorization: `Bearer ${data?.access_token}`,
+            'Content-Type': 'multipart/form-data',
           },
         });
 
-        const uploadData = await uploadResponse.json();
-        if (uploadResponse.ok) {
-          const { avatar_url, profile_pic_url } = uploadData.data;
+
+        if (uploadResponse.status === 200) {
+          const { avatar_url, profile_pic_url } = uploadResponse.data.data;
           const profilePicUrl = avatar_url || profile_pic_url;
           window.dispatchEvent(
             new CustomEvent("userProfileUpdate", { detail: { profilePicUrl } }),
