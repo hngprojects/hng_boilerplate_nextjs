@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { signIn, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { ChangeEvent, useEffect, useState } from "react";
 
@@ -202,8 +202,6 @@ export default function SettingsPage() {
 
       window.dispatchEvent(event);
 
-      await signIn("credentials", { redirect: false });
-
       setIsSuccess(true);
 
       window.dispatchEvent(
@@ -266,7 +264,7 @@ export default function SettingsPage() {
           <div>
             <label
               htmlFor="profile-picture"
-              className="mb-[8px] inline-block font-semibold text-primary"
+              className="mb-[8px] inline-block cursor-pointer font-semibold text-primary"
             >
               Upload your photo
             </label>
