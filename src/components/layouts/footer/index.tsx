@@ -45,7 +45,7 @@ const Footer = () => {
     try {
       const apiUrl = await getApiUrl();
       const response = await axios.post(
-        `${apiUrl}/api/v1/newsletter-subscription`,
+        `${apiUrl}/api/v1/newsletter-subcription`,
         payload,
       );
       toast({
