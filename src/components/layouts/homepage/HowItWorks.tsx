@@ -1,18 +1,22 @@
-import { useTranslations } from 'next-intl';
+import { useTranslations } from "next-intl";
+
 import { Easy, Prebuilt, Scalable } from "./svgs";
 
 const HowItWorks = () => {
-  const t = useTranslations('howItWorks');
+  const t = useTranslations("howItWorks");
   return (
     <div className="bg-[#ffffff] py-20">
       <div className="mx-auto max-w-7xl px-5 md:px-10 lg:px-10 xl:px-10">
         <div className="flex flex-col items-center lg:flex-row">
           <div className="w-full md:pr-10 lg:w-3/5 lg:pr-20">
             <h1 className="font-inter text-3xl font-bold leading-snug md:text-4xl md:leading-tight">
-              <span className="text-primary">{t('howItWorksTitlePrefix')}:</span> {t('howItWorksTitleHighlight')}
+              <span className="text-primary">
+                {t("howItWorksTitlePrefix")}:
+              </span>{" "}
+              {t("howItWorksTitleHighlight")}
             </h1>
             <p className="font-inter mb-12 mt-6 text-lg font-normal">
-              {t('howItWorksDescription')}
+              {t("howItWorksDescription")}
             </p>
           </div>
 
@@ -26,7 +30,7 @@ const HowItWorks = () => {
                   className="font-inter mb-2 text-lg font-bold md:text-xl"
                   data-testid="prebuilt"
                 >
-                 {t('prebuiltTitle')}
+                  {t("prebuiltTitle")}
                 </h3>
                 <small
                   className="font-inter text-base font-normal"

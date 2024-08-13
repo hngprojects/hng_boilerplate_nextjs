@@ -8,12 +8,10 @@ import { useEffect, useState } from "react";
 import useVersionSync from "~/actions/useVersionSync";
 import UserCard from "~/components/card/user-card";
 import Logo from "~/components/common/logo";
+import LanguageSwitcher from "~/components/languageSwitcher/languageSwitcher";
 import { cn } from "~/lib/utils";
 import { NAV_LINKS } from "./links";
 import MobileNav from "./mobile-navbar";
-import LanguageSwitcher from "~/components/languageSwitcher/languageSwitcher";
-import Image from "next/image";
-
 
 const Navbar = () => {
   const [scrolling, setIsScrolling] = useState<boolean>(false);
@@ -64,7 +62,7 @@ const Navbar = () => {
             );
           })}
         </div>
-        <LanguageSwitcher/>
+        <LanguageSwitcher />
         {status !== "authenticated" && (
           <div className="w-fullx hidden items-center justify-end gap-x-4 justify-self-end md:flex lg:gap-x-8">
             <Link
@@ -79,7 +77,6 @@ const Navbar = () => {
             >
               Get Started
             </Link>
-            
           </div>
         )}
         {status === "authenticated" && <UserCard />}

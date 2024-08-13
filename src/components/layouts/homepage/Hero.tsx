@@ -9,7 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { HeroBoilerPlate, HeroChat, HeroCheckMark } from "./svgs";
 
 const Hero = () => {
-  const t = useTranslations('hero');
+  const t = useTranslations("hero");
 
   //
 
@@ -19,7 +19,7 @@ const Hero = () => {
         <div className="flex flex-col items-center lg:flex-row">
           <div className="w-full text-center sm:text-left lg:w-1/2">
             <h1 className="mb-2 text-4xl font-bold leading-snug lg:mr-20 lg:text-[50px] lg:leading-tight">
-              {t('headline')}
+              {t("headline")}
             </h1>
 
             <div className="">
@@ -33,7 +33,7 @@ const Hero = () => {
             </div>
 
             <p className="mb-8 mt-5 text-lg text-foreground md:mb-12 md:mt-7 md:text-xl">
-            {t('description')}
+              {t("description")}
             </p>
 
             <Link
@@ -41,7 +41,7 @@ const Hero = () => {
               className="rounded bg-primary px-8 py-4 text-background hover:bg-destructive"
               data-testid="get-started"
             >
-              {t('cta')}
+              {t("cta")}
             </Link>
           </div>
 
