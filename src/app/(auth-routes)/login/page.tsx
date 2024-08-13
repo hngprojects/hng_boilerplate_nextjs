@@ -56,33 +56,38 @@ const Login = () => {
 
   const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
     startTransition(async () => {
-      await loginUser(values).then(async (data) => {
-        const { email, password } = values;
+      try {
+        await loginUser(values).then(async (data) => {
+          const { email, password } = values;
 
-        if (data.status === 200) {
-          if (data.organisations !== undefined) {
+          if (data.status === 200) {
             setUserOrg(data.organisations);
             if (!currentOrgId) {
               setCurrentOrgId(data.organisations[0].organisation_id);
             }
-          }
 
-          await signIn(
-            "credentials",
-            {
-              email,
-              password,
-              redirect: false,
-            },
-            { callbackUrl: "/dashboard" },
-          );
-          router.push("/dashboard");
-        }
-        toast({
-          title: data.status === 200 ? "Login success" : "An error occurred",
-          description: data.status === 200 ? "Redirecting" : data.error,
+            await signIn(
+              "credentials",
+              {
+                email,
+                password,
+                redirect: false,
+              },
+              { callbackUrl: "/dashboard" },
+            );
+            router.push("/dashboard");
+          }
+          toast({
+            title: data.status === 200 ? "Login success" : "An error occurred",
+            description: data.status === 200 ? "Redirecting" : data.error,
+          });
         });
-      });
+      } catch (error) {
+        toast({
+          title: "An error occurred",
+          description: (error as Error).message || "An error occurred",
+        });
+      }
     });
   };
 
