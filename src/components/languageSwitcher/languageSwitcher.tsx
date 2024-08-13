@@ -58,6 +58,7 @@ const LanguageSwitcher: React.FC = () => {
                                         className="flex items-center justify-center gap-2 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
                                         onClick={() => handleLanguageChange(language)}
                                     >
+                                        
                                         <Image src={language.flag} width={24} height={16} alt='flg' />
                                         <div className="text-sm">
                                             {language.name}
