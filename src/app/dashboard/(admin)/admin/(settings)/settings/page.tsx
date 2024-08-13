@@ -126,10 +126,9 @@ export default function SettingsPage() {
         const uploadResponse = await axios.post(UPLOAD_API_URL, formData, {
           headers: {
             Authorization: `Bearer ${data?.access_token}`,
-            'Content-Type': 'multipart/form-data',
+            "Content-Type": "multipart/form-data",
           },
         });
-
 
         if (uploadResponse.status === 200) {
           const { avatar_url, profile_pic_url } = uploadResponse.data.data;
