@@ -82,6 +82,7 @@ export default function SettingsPage() {
           },
         });
         if (response.data?.data) {
+          const { avatar_url, profile_pic_url } = response.data.data;
           setPronoun(response.data.data.pronouns);
           setSocialLinks({
             x: response.data.data.social_links
@@ -101,7 +102,7 @@ export default function SettingsPage() {
             department: response.data.data.department ?? "",
             username: response.data.data.username ?? "",
           });
-          setProfilePicture(response.data.data.profile_pic_url);
+          setProfilePicture(avatar_url || profile_pic_url);
           setIsSuccess(true);
         }
       } catch {
@@ -132,7 +133,8 @@ export default function SettingsPage() {
 
         const uploadData = await uploadResponse.json();
         if (uploadResponse.ok) {
-          const profilePicUrl = uploadData.data.profile_pic_url;
+          const { avatar_url, profile_pic_url } = uploadData.data;
+          const profilePicUrl = avatar_url || profile_pic_url;
           window.dispatchEvent(
             new CustomEvent("userProfileUpdate", { detail: { profilePicUrl } }),
           );
@@ -140,7 +142,7 @@ export default function SettingsPage() {
 
           setFormData((previousData) => ({
             ...previousData,
-            profile_pic_url: profilePicUrl,
+            profile_pic_url: profilePicture,
           }));
           window.dispatchEvent(new Event("profileUpdate"));
         } else {

@@ -40,8 +40,9 @@ const UserCard = () => {
             Authorization: `Bearer ${session?.access_token}`,
           },
         });
-        if (response.data?.data?.profile_pic_url) {
-          setProfilePicUrl(response.data.data.profile_pic_url);
+        if (response.data?.data) {
+          const { avatar_url, profile_pic_url } = response.data.data;
+          setProfilePicUrl(avatar_url || profile_pic_url);
         }
       } catch {
         toast({
