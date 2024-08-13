@@ -48,6 +48,8 @@ const Register = () => {
   const [timeLeft, setTimeLeft] = useState<number>(15 * 60);
   const [value, setValue] = useState("");
 
+  const apiUrl = process.env.API_URL;
+
   useEffect(() => {
     if (timeLeft <= 0) return;
     const timerId = setInterval(() => {
@@ -70,20 +72,71 @@ const Register = () => {
     },
   });
 
+  // const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
+  //   startTransition(async () => {
+  //     await registerUser(values).then(async (data) => {
+  //       if (data.status === 201) {
+  //         router.push("/login");
+  //       }
+
+  //       toast({
+  //         title:
+  //           data.status === 201
+  //             ? "Account created successfully"
+  //             : "an error occurred",
+  //         description: data.status === 201 ? "verify your account" : data.error,
+  //       });
+  //     });
+  //   });
+  // };
+
   const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
+    // const apiUrl = await getApiUrl();
     startTransition(async () => {
       await registerUser(values).then(async (data) => {
         if (data.status === 201) {
           router.push("/login");
-        }
 
-        toast({
-          title:
-            data.status === 201
-              ? "Account created successfully"
-              : "an error occurred",
-          description: data.status === 201 ? "verify your account" : data.error,
-        });
+          // Enqueue email for sending using the provided backend API
+          const emailData = {
+            template_id: "YOUR_TEMPLATE_ID_HERE", 
+            subject: "Welcome to Our Service!",
+            recipient: values.email,
+            variables: JSON.stringify({ first_name: values.first_name }),
+            status: "pending",
+          };
+          try {
+            const response = await fetch(`${apiUrl}/api/v1/email-templates`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(emailData),
+            });
+
+            const emailResult = await response.json();
+            console.log('emailresult::::', emailResult);
+            if (emailResult.status === "success") {
+              toast({
+                title: "Welcome email sent successfully",
+                description: "Please check your inbox",
+              });
+            } else {
+              throw new Error(emailResult.message || "Email sending failed");
+            }
+          } catch (error) {
+            toast({
+              title: "Error",
+              description: `Failed to send welcome email: ${error}`,
+              variant: "destructive",
+            });
+          }
+        } else {
+          toast({
+            title: "An error occurred",
+            description: data.error,
+          });
+        }
       });
     });
   };
