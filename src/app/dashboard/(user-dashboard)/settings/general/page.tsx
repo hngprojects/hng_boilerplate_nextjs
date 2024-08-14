@@ -114,7 +114,11 @@ export default function UserSettingsPage() {
     }
 
     try {
+    
+
       setIsPending(true);
+
+     
 
       setIsSuccess(true);
     } catch {
@@ -143,7 +147,7 @@ export default function UserSettingsPage() {
             </label>
             {profilePicture && (
               <Image
-                src={profilePicture || defaultProfilePic}
+                src={profilePicture}
                 alt="Profile Picture"
                 layout="fill"
                 quality={100}

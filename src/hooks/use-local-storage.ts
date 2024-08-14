@@ -9,11 +9,11 @@ export const useLocalStorage = <T>(
       const item = window.localStorage.getItem(key);
       // Parse stored JSON or return initialValue if parsing fails
       return item ? JSON.parse(item) : initialValue;
-    } catch {
-      // console.error(
-      //   `Error parsing JSON from localStorage for key "${key}":`,
-      //   error,
-      // );
+    } catch (error) {
+      console.error(
+        `Error parsing JSON from localStorage for key "${key}":`,
+        error,
+      );
       return initialValue;
     }
   });
@@ -22,11 +22,11 @@ export const useLocalStorage = <T>(
     try {
       setStoredValue(value);
       window.localStorage.setItem(key, JSON.stringify(value));
-    } catch {
-      // console.error(
-      //   `Error setting JSON in localStorage for key "${key}":`,
-      //   error,
-      // );
+    } catch (error) {
+      console.error(
+        `Error setting JSON in localStorage for key "${key}":`,
+        error,
+      );
     }
   };
 
