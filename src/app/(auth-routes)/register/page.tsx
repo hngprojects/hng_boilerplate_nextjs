@@ -48,13 +48,13 @@ const Register = () => {
   const [timeLeft, setTimeLeft] = useState<number>(15 * 60);
   const [value, setValue] = useState("");
 
-  useEffect(() => {
-    if (timeLeft <= 0) return;
-    const timerId = setInterval(() => {
-      setTimeLeft((previousTime) => previousTime - 1);
-    }, 1000);
-    return () => clearInterval(timerId);
-  }, [timeLeft, showOtp]);
+  // useEffect(() => {
+  //   if (timeLeft <= 0) return;
+  //   const timerId = setInterval(() => {
+  //     setTimeLeft((previousTime) => previousTime - 1);
+  //   }, 1000);
+  //   return () => clearInterval(timerId);
+  // }, [timeLeft, showOtp]);
 
   if (status === "authenticated") {
     router.push("/dashboard");

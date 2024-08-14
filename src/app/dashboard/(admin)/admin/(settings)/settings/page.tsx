@@ -83,6 +83,7 @@ export default function SettingsPage() {
           },
         });
         if (response.data?.data) {
+          //console.log("Fetched profile data:", response.data.data);
           setPronoun(response.data.data.pronouns);
           setSocialLinks({
             x: response.data.data.social_links
@@ -106,10 +107,10 @@ export default function SettingsPage() {
           setIsSuccess(true);
         }
       } catch {
-        setError("An error occurred while retreiving your informatio");
+        setError("An error occurred while retrieving your information");
       }
     })();
-  }, [data?.access_token, data?.user.id, error]);
+  }, [data?.access_token, data?.user.id]);
 
   const submit = async () => {
     if (!isValidXUrl(socialLinks.x)) {
@@ -146,6 +147,8 @@ export default function SettingsPage() {
       }).then(async (response) => {
         const data: CloudinaryAsset = await response.json();
         payload.profile_picture = data.url;
+        // console.log("Uploaded profile picture URL:", data.url);
+        setProfilePicture(data.url);
       });
 
       setIsPending(true);
@@ -153,28 +156,23 @@ export default function SettingsPage() {
       const baseUrl = await getApiUrl();
       const API_URL = `${baseUrl}/api/v1/profile/${data?.user.id}`;
 
-      await axios.patch(API_URL, payload, {
+      const updated = await axios.patch(API_URL, payload, {
         headers: {
           Authorization: `Bearer ${data?.access_token}`,
         },
       });
-      // if (updated.status === 200) {
-      //   const newSession: Session = {
-      //     ...data,
-      //     user: {
-      //       ...data?.user,
-      //       id: data?.user.id ?? "",
-      //       first_name: data?.user.first_name ?? "",
-      //       last_name: data?.user.last_name ?? "",
 
-      //       role: data?.user.role ?? "",
-      //       bio: formData.bio,
-      //       username: formData.username,
-      //       is_superadmin: data?.user.is_superadmin,
-      //     },
-      //     expires: data?.expires,
-      //   };
-      // }
+      if (updated.status === 200) {
+        const newSession = {
+          ...data,
+          user: {
+            ...data?.user,
+            bio: formData.bio,
+            username: formData.username,
+          },
+          expires: data?.expires,
+        };
+      }
     } catch {
       setIsPending(false);
     } finally {
@@ -182,18 +180,18 @@ export default function SettingsPage() {
     }
   };
 
-  const isFormDisabled =
-    !formData.bio ||
-    !formData.department ||
-    !formData.email ||
-    !formData.jobTitle ||
-    !formData.username ||
-    !socialLinks.instagram ||
-    !socialLinks.linkedin ||
-    !socialLinks.x ||
-    !profilePicture ||
-    !pronoun;
-
+  const isFormDisabled = !(
+    formData.bio &&
+    formData.department &&
+    formData.email &&
+    formData.jobTitle &&
+    formData.username &&
+    socialLinks.instagram &&
+    socialLinks.linkedin &&
+    socialLinks.x &&
+    profilePicture &&
+    pronoun
+  );
   return (
     <div className="min-h-screen w-full max-w-[826px] bg-white p-[32px]">
       <header className="mb-[24px]">
@@ -362,7 +360,6 @@ export default function SettingsPage() {
           </CustomButton>
           <CustomButton
             isLoading={isPending}
-            isDisabled={isFormDisabled}
             onClick={submit}
             size="lg"
             className="bg-primary"

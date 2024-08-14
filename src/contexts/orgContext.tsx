@@ -66,7 +66,7 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
     if (organizations.length === 0) {
       startTransition(() => {
         getAllOrg().then((data) => {
-          const fetchedOrganizations = data.organization || [];
+          const fetchedOrganizations = (data && data.organization) || [];
           const newOrganizations = fetchedOrganizations.filter(
             (fetchedOrg: { organisation_id: string }) =>
               !organizations.some(
@@ -87,13 +87,15 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
         });
 
         getAnalytics().then((data) => {
-          const formattedData: MonthlyData = Object.keys(data.data).map(
-            (key) => ({
-              month: key,
-              revenue: data.data[key],
-            }),
-          );
-          setMonthlydata(formattedData);
+          if (data && data.data) {
+            const formattedData: MonthlyData = Object.keys(data.data).map(
+              (key) => ({
+                month: key,
+                revenue: data.data[key],
+              }),
+            );
+            setMonthlydata(formattedData);
+          }
         });
       });
     }
