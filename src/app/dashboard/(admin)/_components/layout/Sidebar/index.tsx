@@ -18,7 +18,7 @@ import { FC, ForwardRefExoticComponent, RefAttributes } from "react";
 const sideItems = [
   {
     route: "Dashboard",
-    link: "/dashboard/admin",
+    link: "/dashboard/admin/dashboard",
     icon: House,
     id: "dashboard",
   },
@@ -42,7 +42,7 @@ const sideItems = [
   },
   {
     route: "Squeeze Pages",
-    link: "/dashboard/admin/faqs",
+    link: "/dashboard/admin/squeeze-pages",
     icon: List,
     id: "squeeze",
   },
