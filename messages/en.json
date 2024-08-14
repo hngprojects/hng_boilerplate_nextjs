@@ -1,0 +1,26 @@
+{
+    "HomePage": {
+        "title": "Hello world!"
+    },
+    "hero": {
+        "headline": "Focus on What Matters. We've Got the Foundation Covered.",
+        "description": "Streamline your processes with a boilerplate built for efficiency and optimal productivity.",
+        "cta": "Get Started"
+    },
+    "userSection": {
+        "userSectionMoreThan": "More than 200",
+        "userSectionUsers": "Users",
+        "userSectionUsage": "make use of our Boilerplate"
+    },
+    "howItWorks": {
+        "howItWorksTitlePrefix": "How It Works:",
+        "howItWorksTitleHighlight": "Experience the benefits of using our product with every step.",
+        "howItWorksDescription": "We designed our product to simplify your life. It offers a comprehensive solution. Here's how it works and how it benefits you at each stage.",
+        "prebuiltTitle": "Pre-Built Sections",
+        "prebuiltDescription": "Leverage pre-built sections like \"Features,\" \"Benefits,\" \"Pricing,\" and \"Testimonials\" to showcase your product effectively.",
+        "scalableTitle": "Scalable Foundation",
+        "scalableDescription": "Our boilerplate is designed to grow with your product. Easily add new features and functionalities as needed.",
+        "easyTitle": "Easy Customization",
+        "easyDescription": "Tailor the experience to your specific needs and preferences for maximum results."
+    }
+}
