@@ -1,5 +1,13 @@
-const page = () => {
-  return <div>page</div>;
+// import FreePlan from "./_components/freePlan";
+import CurrentPlan from "./_components/currentPlan";
+// import BasicPlan from "./_components/basicPlan";
+
+const Page = () => {
+  return( 
+  <div>
+    <CurrentPlan />
+  </div>
+  )
 };
 
-export default page;
+export default Page;
