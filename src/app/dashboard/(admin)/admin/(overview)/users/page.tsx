@@ -1,10 +1,8 @@
 "use client";
 
-import axios from "axios";
 import { Check, ChevronLeft, ChevronRight, Filter } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import { getApiUrl } from "~/actions/getApiUrl";
 import CardComponent from "~/components/common/DashboardCard/CardComponent";
 import { Button } from "~/components/ui/button";
 import {
@@ -24,14 +22,25 @@ import { UserCardData } from "./data/user-dummy-data";
 
 import "./assets/style.css";
 
+import axios from "axios";
+
+import { getApiUrl } from "~/actions/getApiUrl";
+
 interface FilterDataProperties {
   title: string;
   selected: boolean;
 }
 
 const filterActions: FilterDataProperties[] = [
-  { title: "Active", selected: false },
-  { title: "Inactive", selected: false },
+  {
+    title: "Active",
+    selected: false,
+  },
+
+  {
+    title: "Inactive",
+    selected: false,
+  },
 ];
 
 export interface UserData {
@@ -47,20 +56,25 @@ export interface UserData {
 
 const UserPage = () => {
   const [page, setPage] = useState(1);
+
   const [data, setData] = useState<UserData[]>([]);
+
   const [filterData, setFilterData] = useState<UserData[]>([]);
+
   const [totalUserOverview, setTotalUserOverview] = useState<UserCardData>({
     title: "Total Users",
     value: 0,
     description: "+10% from last month",
     icon: "user",
   });
+
   const [activeUserOverview, setActiveUserOverview] = useState<UserCardData>({
     title: "Active Users",
     value: 0,
     description: "+20% from last month",
     icon: "box",
   });
+
   const [deletedUserOverview, setdeletedUserOverview] = useState<UserCardData>({
     title: "Deleted Users",
     value: 0,
@@ -70,60 +84,63 @@ const UserPage = () => {
 
   const [isNextPageActive, setIsNextPageActive] = useState(false);
   const [isPreviousPageActive, setIsPreviousPageActive] = useState(false);
+
   const [selectedFilter, setSelectedFilter] = useState<
     FilterDataProperties | undefined
   >();
 
   const filterActionsHandler = (title: string) => {
-    const filteredData =
-      title === "Active"
-        ? data.filter((item) => item.is_active)
-        : data.filter((item) => !item.is_active);
-    setFilterData(filteredData);
+    if (title === "Active") {
+      const _data = data?.filter((item) => item.is_active);
+      setFilterData(_data);
+    } else {
+      const _data = data?.filter((item) => !item.is_active);
+      setFilterData(_data);
+    }
   };
 
   useEffect(() => {
-    const fetchData = async () => {
+    (async () => {
       try {
         const baseUrl = await getApiUrl();
-        const usersApiUrl = `${baseUrl}/api/v1/users?page=${page}`;
-        const statsApiUrl = `${baseUrl}/api/v1/admin/statistics`;
+        const API_URL = `${baseUrl}/api/v1/users`;
+        const response = await axios.get(`${API_URL}?page=${page}`);
 
-        // Fetch user data and statistics data concurrently
-        const [usersResponse, statsResponse] = await Promise.all([
-          axios.get(usersApiUrl),
-          axios.get(statsApiUrl),
-        ]);
+        setIsNextPageActive(response.data?.next_page_url ? true : false);
 
-        const usersData = usersResponse.data.data;
-        const statsData = statsResponse.data.data;
+        setIsPreviousPageActive(response.data?.prev_page_url ? true : false);
 
-        setIsNextPageActive(Boolean(usersResponse.data?.next_page_url));
-        setIsPreviousPageActive(Boolean(usersResponse.data?.prev_page_url));
-        setData(usersData);
-        setFilterData(usersData);
-
-        // Update user overviews with data from the statistics API
+        setData(response.data.data);
+        setFilterData(response.data.data);
         setTotalUserOverview((previous) => ({
           ...previous,
-          value: statsData.total_users.current_month,
+          value: response.data.total,
         }));
+
+        const userData: UserData[] = response.data.data;
 
         setdeletedUserOverview((previous) => ({
           ...previous,
-          value: statsData.disabled_users_count.current_month,
+          value: response.data.total,
         }));
 
-        setActiveUserOverview((previous) => ({
-          ...previous,
-          value: statsData.active_users_count.current_month,
-        }));
+        setActiveUserOverview((previous) => {
+          let count = 0;
+          for (const user of userData) {
+            if (user.is_active) {
+              count += 1;
+            }
+          }
+
+          return {
+            ...previous,
+            value: count,
+          };
+        });
       } catch {
-        // Handle error quietly, no console.log
+        // console.log(error);
       }
-    };
-
-    fetchData();
+    })();
   }, [page]);
 
   return (
