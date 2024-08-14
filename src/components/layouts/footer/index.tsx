@@ -72,7 +72,7 @@ const Footer = () => {
         toast({
           title: "Oops! Something went wrong.",
           description:
-            "We encountered an issue while trying to subscribe you to our newsletter. Please try again later, or contact support if the problem persists.",
+            "We encountered an issue while trying to subscribe you to our newsletter. Check your internet connection or contact support if the problem persists.",
           variant: "destructive",
         });
         setLoading(false);
