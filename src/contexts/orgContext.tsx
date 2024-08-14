@@ -99,7 +99,7 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
         });
       });
     }
-  }, []);
+  }, [organizations]);
 
   useEffect(() => {
     if (userOrg.length > 0) {
@@ -115,7 +115,7 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
         ...uniqueOrgs,
       ]);
     }
-  }, []);
+  }, [organizations, userOrg]);
 
   useEffect(() => {
     document.body.style.overflow = isAnyModalOpen ? "hidden" : "auto";

@@ -114,11 +114,7 @@ export default function UserSettingsPage() {
     }
 
     try {
-    
-
       setIsPending(true);
-
-     
 
       setIsSuccess(true);
     } catch {
