@@ -4,6 +4,7 @@ import axios from "axios";
 import Image from "next/image";
 import { useState } from "react";
 
+import defaultProfilePic from "~/../public/images/pfp.jpg";
 import { getApiUrl } from "~/actions/getApiUrl";
 import CustomButton from "~/components/common/common-button/common-button";
 import { toast } from "~/components/ui/use-toast";
@@ -12,17 +13,19 @@ import { CloudinaryAsset } from "~/types";
 interface ProfilePictureModalProperties {
   show: boolean;
   onClose: () => void;
-  userId: string;
+  email: string;
   accessToken: string;
+  profilePic: string;
   onUploadSuccess: (url: string | undefined) => void;
 }
 
 export default function ProfilePictureModal({
   show,
   onClose,
-  userId,
+  email,
   accessToken,
   onUploadSuccess,
+  profilePic,
 }: ProfilePictureModalProperties) {
   const [image, setImage] = useState<File | Blob | undefined>();
   const [isPending, setIsPending] = useState(false);
@@ -33,6 +36,7 @@ export default function ProfilePictureModal({
     try {
       const formData = new FormData();
       formData.append("file", image);
+      formData.append("DisplayPhoto", image);
       formData.append("upload_preset", "starterhouse");
       formData.append("api_key", "673723355315667");
 
@@ -47,13 +51,13 @@ export default function ProfilePictureModal({
       const data: CloudinaryAsset = await response.json();
       const profilePictureUrl = data.url;
 
-      const API_URL = `${await getApiUrl()}/api/v1/profile/${userId}/profile-picture`;
+      const API_URL = `${await getApiUrl()}/api/v1/profile/${email}/picture`;
 
       setIsPending(true);
 
-      await axios.patch(
+      await axios.put(
         API_URL,
-        { profile_picture: profilePictureUrl },
+        { DisplayPhoto: profilePictureUrl, Email: email },
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -80,7 +84,7 @@ export default function ProfilePictureModal({
 
   const deleteProfilePicture = async () => {
     try {
-      const API_URL = `${await getApiUrl()}/api/v1/profile/${userId}/profile-picture`;
+      const API_URL = `${await getApiUrl()}/api/v1/profile/${email}/picture`;
 
       await axios.delete(API_URL, {
         headers: {
@@ -103,26 +107,36 @@ export default function ProfilePictureModal({
     }
   };
 
-  if (!show) return null;
+  if (!show) return;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div className="w-full max-w-md rounded-lg bg-white p-8">
         <h2 className="mb-4 text-lg font-bold">Update Profile Picture</h2>
         <div className="mb-4 flex items-center justify-center">
-          {image && (
-            <Image
-              src={URL.createObjectURL(image)}
-              alt="Profile Picture Preview"
-              width={100}
-              height={100}
-              className="rounded-full"
-            />
-          )}
+          <div className="h-[200px] w-[200px]">
+            {image ? (
+              <Image
+                src={URL.createObjectURL(image)}
+                alt="Profile Picture Preview"
+                width={200}
+                height={200}
+                className="h-full w-full rounded-full object-cover"
+              />
+            ) : (
+              <Image
+                src={profilePic || defaultProfilePic.src}
+                alt="Default Profile Picture"
+                width={200}
+                height={200}
+                className="h-full w-full rounded-full object-cover"
+              />
+            )}
+          </div>
         </div>
         <input
           type="file"
-          accept="image/jpeg,image/png,image/svg+xml"
+          name="DisplayPhoto"
           onChange={(entries) =>
             setImage(entries.target.files ? entries.target.files[0] : undefined)
           }
@@ -136,7 +150,11 @@ export default function ProfilePictureModal({
             <CustomButton onClick={onClose} variant="outline">
               Cancel
             </CustomButton>
-            <CustomButton onClick={uploadProfilePicture} isLoading={isPending}>
+            <CustomButton
+              onClick={uploadProfilePicture}
+              isLoading={isPending}
+              className="bg-primary"
+            >
               Upload Picture
             </CustomButton>
           </div>

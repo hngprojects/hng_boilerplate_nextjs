@@ -16,7 +16,7 @@ export default function AdminLayout({
       <div className="relative mx-auto w-full bg-white max-lg:overflow-hidden xl:px-4">
         <div className="flex">
           <SettingsSidebar />
-          <div className="p-4">
+          <div className="w-full p-4">
             <Suspense>{children}</Suspense>
           </div>
         </div>{" "}

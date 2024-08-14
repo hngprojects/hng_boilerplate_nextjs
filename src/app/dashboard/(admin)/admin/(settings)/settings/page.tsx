@@ -18,7 +18,6 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 import { toast } from "~/components/ui/use-toast";
-import { CloudinaryAsset } from "~/types";
 import { InstagramIcon, LinkedinIcon, XIcon } from "./icons";
 
 const pronouns = [
@@ -84,6 +83,7 @@ export default function SettingsPage() {
         });
         if (response.data?.data) {
           //console.log("Fetched profile data:", response.data.data);
+          const { avatar_url, profile_pic_url } = response.data.data;
           setPronoun(response.data.data.pronouns);
           setSocialLinks({
             x: response.data.data.social_links
@@ -103,7 +103,7 @@ export default function SettingsPage() {
             department: response.data.data.department ?? "",
             username: response.data.data.username ?? "",
           });
-          setProfilePicture(response.data.data.profile_picture);
+          setProfilePicture(avatar_url || profile_pic_url);
           setIsSuccess(true);
         }
       } catch {
@@ -111,6 +111,44 @@ export default function SettingsPage() {
       }
     })();
   }, [data?.access_token, data?.user.id]);
+
+  const handleImageUpload = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setImage(file);
+
+      const formData = new FormData();
+      formData.append("avatar", file);
+
+      try {
+        const baseUrl = await getApiUrl();
+        const UPLOAD_API_URL = `${baseUrl}/api/v1/profile/upload-image`;
+
+        const uploadResponse = await axios.post(UPLOAD_API_URL, formData, {
+          headers: {
+            Authorization: `Bearer ${data?.access_token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        if (uploadResponse.status === 200) {
+          const { avatar_url, profile_pic_url } = uploadResponse.data.data;
+          const profilePicUrl = avatar_url || profile_pic_url;
+
+          setProfilePicture(profilePicUrl);
+
+          setFormData((previousData) => ({
+            ...previousData,
+            profile_pic_url: profilePicture,
+          }));
+        } else {
+          throw new Error(".");
+        }
+      } catch {
+        setError(".");
+      }
+    }
+  };
 
   const submit = async () => {
     if (!isValidXUrl(socialLinks.x)) {
@@ -134,64 +172,38 @@ export default function SettingsPage() {
         ...formData,
         pronouns: pronoun,
         social_links: Object.values(socialLinks),
-        profile_picture: "",
+        profile_pic_url: profilePicture,
       };
-      const formData1 = new FormData();
-      formData1.append("file", image!);
-      formData1.append("upload_preset", "starterhouse");
-      formData1.append("api_key", "673723355315667");
-
-      await fetch(`https://api.cloudinary.com/v1_1/dnik53vns/image/upload`, {
-        method: "POST",
-        body: formData1,
-      }).then(async (response) => {
-        const data: CloudinaryAsset = await response.json();
-        payload.profile_picture = data.url;
-        // console.log("Uploaded profile picture URL:", data.url);
-        setProfilePicture(data.url);
-      });
-
       setIsPending(true);
+      // const baseUrl = await getApiUrl();
+      // const API_URL = `${baseUrl}/api/v1/profile/${data?.user.id}`;
 
-      const baseUrl = await getApiUrl();
-      const API_URL = `${baseUrl}/api/v1/profile/${data?.user.id}`;
+      const updatedUser = {
+        ...data?.user,
+        image: payload.profile_pic_url,
+      };
 
-      const updated = await axios.patch(API_URL, payload, {
-        headers: {
-          Authorization: `Bearer ${data?.access_token}`,
-        },
+      const event = new CustomEvent("session", {
+        detail: { session: { ...data, user: updatedUser } },
       });
 
-      if (updated.status === 200) {
-        const newSession = {
-          ...data,
-          user: {
-            ...data?.user,
-            bio: formData.bio,
-            username: formData.username,
-          },
-          expires: data?.expires,
-        };
-      }
+      window.dispatchEvent(event);
+
+      setIsSuccess(true);
+
+      window.dispatchEvent(
+        new CustomEvent("userProfileUpdate", {
+          detail: { profilePicUrl: profilePicture },
+        }),
+      );
     } catch {
       setIsPending(false);
+      setError("An error occurred while saving your information");
     } finally {
       setIsPending(false);
     }
   };
 
-  const isFormDisabled = !(
-    formData.bio &&
-    formData.department &&
-    formData.email &&
-    formData.jobTitle &&
-    formData.username &&
-    socialLinks.instagram &&
-    socialLinks.linkedin &&
-    socialLinks.x &&
-    profilePicture &&
-    pronoun
-  );
   return (
     <div className="min-h-screen w-full max-w-[826px] bg-white p-[32px]">
       <header className="mb-[24px]">
@@ -210,16 +222,12 @@ export default function SettingsPage() {
               className="sr-only"
               id="profile-picture"
               type="file"
-              onChange={(entries) =>
-                setImage(
-                  entries.target.files ? entries.target.files[0] : undefined,
-                )
-              }
+              onChange={handleImageUpload}
               accept="image/jpeg,image/png,image/svg+xml"
             />
-            {image && (
+            {(image || profilePicture) && (
               <Image
-                src={URL.createObjectURL(image)}
+                src={image ? URL.createObjectURL(image) : profilePicture!}
                 alt="Picture of the author"
                 fill={true}
                 quality={100}
@@ -232,7 +240,7 @@ export default function SettingsPage() {
           <div>
             <label
               htmlFor="profile-picture"
-              className="mb-[8px] inline-block font-semibold text-primary"
+              className="mb-[8px] inline-block cursor-pointer font-semibold text-primary"
             >
               Upload your photo
             </label>
