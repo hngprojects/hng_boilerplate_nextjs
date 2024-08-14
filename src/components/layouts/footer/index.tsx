@@ -20,7 +20,7 @@ import { Toaster } from "~/components/ui/toaster";
 import { useToast } from "~/components/ui/use-toast";
 
 const Footer = () => {
-  const [values, setValues] = useState("");
+  const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
 
@@ -28,7 +28,7 @@ const Footer = () => {
   const handleSubmit = async () => {
     setLoading(true);
 
-    if (values === "") {
+    if (email === "") {
       toast({
         title: "Error",
         description: "Please provide your email",
@@ -38,15 +38,20 @@ const Footer = () => {
       return;
     }
 
-    const payload = {
-      email: values,
-    };
+    // const payload = {
+    //   email: values,
+    // };
 
     try {
       const apiUrl = await getApiUrl();
       const response = await axios.post(
         `${apiUrl}/api/v1/newsletter-subscription`,
-        payload,
+        { email },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
       );
       toast({
         title: "Success",
@@ -54,7 +59,7 @@ const Footer = () => {
         variant: "default",
       });
       setLoading(false);
-      setValues("");
+      setEmail("");
     } catch (error: unknown) {
       if (error instanceof Error) {
         toast({
@@ -154,8 +159,8 @@ const Footer = () => {
                 <Input
                   placeholder="Enter your email"
                   className="border-r-none text-md h-[46px] rounded-r-none border-r-0 border-r-transparent bg-transparent active:border-transparent"
-                  onChange={(event) => setValues(event.target.value)}
-                  value={values}
+                  onChange={(event) => setEmail(event.target.value)}
+                  value={email}
                 />
                 <CustomButton
                   variant="primary"
@@ -207,8 +212,8 @@ const Footer = () => {
                 <Input
                   className="border-r-none h-[46px] rounded-r-none border-r-0 border-r-transparent bg-transparent active:border-transparent"
                   placeholder="Enter your email"
-                  onChange={(event) => setValues(event.target.value)}
-                  value={values}
+                  onChange={(event) => setEmail(event.target.value)}
+                  value={email}
                 />
                 <CustomButton
                   variant="primary"
