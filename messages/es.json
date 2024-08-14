@@ -1,0 +1,26 @@
+{
+    "HomePage": {
+        "title": "¡Hola, mundo!"
+    },
+    "hero": {
+        "headline": "Concéntrate en lo importante. Nosotros cubrimos los cimientos.",
+        "description": "Agiliza tus procesos con una base de código diseñada para la eficiencia y una productividad óptima.",
+        "cta": "Comenzar"
+    },
+    "userSection": {
+        "userSectionMoreThan": "Más de 200",
+        "userSectionUsers": "Usuarios",
+        "userSectionUsage": "usan nuestro Boilerplate"
+    },
+    "howItWorks": {
+        "howItWorksTitlePrefix": "Cómo Funciona:",
+        "howItWorksTitleHighlight": "Experimenta los beneficios de usar nuestro producto en cada paso.",
+        "howItWorksDescription": "Diseñamos nuestro producto para simplificar tu vida. Ofrece una solución integral. Así es como funciona y cómo te beneficia en cada etapa.",
+        "prebuiltTitle": "Secciones Preconstruidas",
+        "prebuiltDescription": "Aprovecha secciones preconstruidas como \"Características\", \"Beneficios\", \"Precios\" y \"Testimonios\" para mostrar tu producto de manera efectiva.",
+        "scalableTitle": "Fundación Escalable",
+        "scalableDescription": "Nuestro boilerplate está diseñado para crecer con tu producto. Añade fácilmente nuevas características y funcionalidades según sea necesario.",
+        "easyTitle": "Personalización Fácil",
+        "easyDescription": "Personaliza la experiencia según tus necesidades y preferencias específicas para obtener resultados óptimos."
+    }
+}
