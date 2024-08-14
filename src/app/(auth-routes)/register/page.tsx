@@ -74,24 +74,6 @@ const Register = () => {
     },
   });
 
-  // const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
-  //   startTransition(async () => {
-  //     await registerUser(values).then(async (data) => {
-  //       if (data.status === 201) {
-  //         router.push("/login");
-  //       }
-
-  //       toast({
-  //         title:
-  //           data.status === 201
-  //             ? "Account created successfully"
-  //             : "an error occurred",
-  //         description: data.status === 201 ? "verify your account" : data.error,
-  //       });
-  //     });
-  //   });
-  // };
-
   const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
     const apiUrl = await getApiUrl();
     startTransition(async () => {
@@ -99,32 +81,17 @@ const Register = () => {
         if (data.status === 201) {
           router.push("/login");
 
-          const fetchEmailTemplates = async () => {
-            try {
-              const response = await fetch(`${apiUrl}/api/v1/email-templates`, {
-                method: "GET",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              });
-  
-              if (!response.ok) {
-                throw new Error(`Error: ${response.statusText}`);
-              }
-  
-              const templates = await response.json();
-              console.log("Fetched email templates:", templates);
-            } catch (error) {
-              console.error("Failed to fetch email templates:", error);
-            }
-          };
-  
-          await fetchEmailTemplates(); 
-        
+          toast({
+            title:
+              data.status === 201
+                ? "Account created successfully"
+                : "an error occurred",
+            description: data.status === 201 ? "verify your account" : data.error,
+          });
 
           // Enqueue email for sending using the provided backend API
           const emailData = {
-            template_id: "f47ac10b-58cc-4372-a567-0e02b2c3d479", 
+            template_id: "9cc21148-b890-4634-817a-40d50f90859a", 
             subject: "Welcome to Our Service!",
             recipient: values.email,
             variables: JSON.stringify({ first_name: values.first_name }),
@@ -140,21 +107,11 @@ const Register = () => {
             });
 
             const emailResult = await response.json();
-            console.log('emailresult::::', emailResult);
             if (emailResult.status === "success") {
-              toast({
-                title: "Welcome email sent successfully",
-                description: "Please check your inbox",
-              });
             } else {
               throw new Error(emailResult.message || "Email sending failed");
             }
           } catch (error) {
-            toast({
-              title: "Error",
-              description: `Failed to send welcome email: ${error}`,
-              variant: "destructive",
-            });
           }
         } else {
           toast({

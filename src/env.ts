@@ -12,6 +12,3 @@ export const env = createEnv({
     NEXT_PUBLIC_BACKEND_PROBE_URL: process.env.NEXT_PUBLIC_BACKEND_PROBE_URL,
   },
 });
-//add to env variable
-// API_URL="https://staging.api-php.boilerplate.hng.tech"
-// AUTH_SECRET="Dri56/cqhxi5j8Nq2sf2Si3i5USyrcgjCDUd6Hrz5ow="
