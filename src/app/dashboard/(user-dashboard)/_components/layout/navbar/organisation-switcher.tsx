@@ -1,5 +1,6 @@
 "use client ";
 
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
@@ -14,7 +15,27 @@ import {
 import { Skeleton } from "~/components/ui/skeleton";
 import { useOrgContext } from "~/contexts/orgContext";
 import { useLocalStorage } from "~/hooks/use-local-storage";
+import { auth } from "~/lib/auth";
 import { CreateOrganization } from "../../create-organization";
+
+const getCurrentOrganization = async (orgId: string) => {
+  const payload = { isActive: true };
+  try {
+    const session = await auth();
+    const response = await axios.put(
+      `https://api-csharp.boilerplate.hng.tech/api/v1/users/organisations/${orgId}`,
+      payload,
+      {
+        headers: {
+          Authorization: `Bearer ${session?.access_token}`,
+        },
+      },
+    );
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+};
 
 export const OrganisationSwitcher = () => {
   const [currentOrgId, setCurrentOrgId] = useLocalStorage<string | undefined>(
@@ -22,13 +43,20 @@ export const OrganisationSwitcher = () => {
     "",
   );
 
-  const { organizations, isLoading } = useOrgContext();
+  const { organizations, isLoading, switchOrganization } = useOrgContext();
 
   useEffect(() => {
     if (!currentOrgId && organizations.length > 0) {
       setCurrentOrgId(organizations[0].organisation_id);
+      switchOrganization(organizations[0].organisation_id);
     }
-  }, [currentOrgId, organizations, setCurrentOrgId]);
+  }, [currentOrgId, organizations, setCurrentOrgId, switchOrganization]);
+
+  const handleOrgChange = (currentOrg: string) => {
+    setCurrentOrgId(currentOrg);
+    switchOrganization(currentOrg);
+    getCurrentOrganization(currentOrg);
+  };
 
   const currentOrg =
     organizations.length > 0
@@ -42,9 +70,7 @@ export const OrganisationSwitcher = () => {
       <CreateOrganization isOpen={isOpen} setIsOpen={setIsOpen} />
       <Select
         defaultValue={currentOrgId}
-        onValueChange={(value) => {
-          setCurrentOrgId(value);
-        }}
+        onValueChange={(value) => handleOrgChange(value)}
       >
         <SelectTrigger
           aria-label="Select organisation"
