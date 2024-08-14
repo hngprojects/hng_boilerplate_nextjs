@@ -178,7 +178,7 @@ const ContactForm: React.FC = () => {
             variant="primary"
             size="lg"
             isLoading={loading}
-            className="w-full px-4 py-7"
+            className="w-full px-4 py-7 hover:bg-destructive"
           >
             <Mail />
             Send

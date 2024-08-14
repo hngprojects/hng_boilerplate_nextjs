@@ -7,7 +7,10 @@ describe("deleteDialog", () => {
   it("renders the dialog with correct content", () => {
     expect.hasAssertions();
     const onClose = vi.fn();
-    render(<DeleteDialog onClose={onClose} />);
+    const onDelete = vi.fn();
+    render(
+      <DeleteDialog onDelete={onDelete} isDeleting={true} onClose={onClose} />,
+    );
 
     expect(screen.getByText("Are you absolutely sure?")).toBeInTheDocument();
     expect(
@@ -22,18 +25,24 @@ describe("deleteDialog", () => {
   it("calls onClose when Cancel button is clicked", () => {
     expect.hasAssertions();
     const onClose = vi.fn();
-    render(<DeleteDialog onClose={onClose} />);
+    const onDelete = vi.fn();
+    render(
+      <DeleteDialog onDelete={onDelete} isDeleting={true} onClose={onClose} />,
+    );
 
     fireEvent.click(screen.getByRole("button", { name: /cancel/i }));
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
-  it("calls onClose when Delete button is clicked", () => {
+  it("calls onDelete when Delete button is clicked", () => {
     expect.hasAssertions();
     const onClose = vi.fn();
-    render(<DeleteDialog onClose={onClose} />);
+    const onDelete = vi.fn();
+    render(
+      <DeleteDialog onDelete={onDelete} isDeleting={true} onClose={onClose} />,
+    );
 
     fireEvent.click(screen.getByRole("button", { name: /delete/i }));
-    expect(onClose).toHaveBeenCalledTimes(1);
+    expect(onDelete).toHaveBeenCalledTimes(1);
   });
 });

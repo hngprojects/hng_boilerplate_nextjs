@@ -216,7 +216,7 @@ const WaitlistForm: React.FC = () => {
             <div className="flex items-center justify-center">
               <CustomButton
                 variant="primary"
-                className="flex h-[51.78px] w-[195.6px] items-center justify-between rounded-md px-[19.2px] py-[9.6px] text-[16.8px] font-bold leading-[28.8px] text-white transition-transform duration-300 hover:scale-105 hover:shadow-lg"
+                className="flex h-[51.78px] w-[195.6px] items-center justify-between rounded-md px-[19.2px] py-[9.6px] text-[16.8px] font-bold leading-[28.8px] text-white transition-transform duration-300 hover:scale-105 hover:bg-destructive hover:shadow-lg"
                 type="submit"
               >
                 <Image

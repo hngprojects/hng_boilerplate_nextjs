@@ -4,7 +4,6 @@ import { Edit2, MoreVertical, Trash } from "lucide-react";
 import { useRouter } from "next-nprogress-bar";
 import { useEffect, useRef } from "react";
 
-import BlurImage from "~/components/miscellaneous/blur-image";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { TableCell, TableRow } from "~/components/ui/table";
@@ -85,13 +84,6 @@ const ProductBodyShadcn = ({
             <Input
               type="checkbox"
               className="sticky left-0 size-4 min-[500px]:size-5 lg:size-8"
-            />
-            <BlurImage
-              src={product.image}
-              alt="Product"
-              width={40}
-              height={40}
-              className="size-6 flex-1 flex-shrink-0 rounded-md object-cover min-[500px]:size-7 md:size-10 md:rounded-xl"
             />
           </div>{" "}
           <span

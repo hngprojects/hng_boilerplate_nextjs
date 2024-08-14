@@ -1,6 +1,7 @@
 "use client";
 
 import { Plus } from "lucide-react";
+import moment from "moment";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -15,6 +16,9 @@ const JobDetails = () => {
   const title: string | null = searchParameters.get("title");
   const description: string | null = searchParameters.get("description");
   const amount: string | null = searchParameters.get("amount");
+  const jobtype: string | null = searchParameters.get("job_type");
+  const jobmode: string | null = searchParameters.get("job_mode");
+  const deadline: string | null = searchParameters.get("deadline");
 
   useEffect(() => {
     const handleResize = () => {
@@ -144,7 +148,7 @@ const JobDetails = () => {
                 <b> Deadline</b>
               </p>
               <p className="text-[14px] md:text-neutral-dark-2">
-                July 19th, 2024
+                {moment(deadline).format("ll")}
               </p>
             </div>
 
@@ -152,14 +156,14 @@ const JobDetails = () => {
               <p className="text-[14px] text-neutral-dark-1 md:text-neutral-dark-2">
                 <b>Work mode</b>
               </p>
-              <p className="text-[14px] md:text-neutral-dark-2">On-site</p>
+              <p className="text-[14px] md:text-neutral-dark-2">{jobmode}</p>
             </div>
 
             <div className="mb-2 flex flex-col">
               <p className="text-[14px] text-neutral-dark-1 md:text-neutral-dark-2">
                 <b>Job-type</b>
               </p>
-              <p className="text-[14px] md:text-neutral-dark-2">Internship</p>
+              <p className="text-[14px] md:text-neutral-dark-2">{jobtype}</p>
             </div>
 
             <div className="mb-2 flex flex-col">
@@ -219,7 +223,7 @@ const JobDetails = () => {
             icon={isSmallScreen ? undefined : <Plus />}
             isLeftIconVisible={isSmallScreen}
             isDisabled={false}
-            className={`h-[50px] w-[250px]`}
+            className={`h-[50px] w-[250px] hover:bg-destructive`}
           >
             Apply Now
           </CustomButton>
