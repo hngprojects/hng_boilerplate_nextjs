@@ -5,10 +5,10 @@ import { Check, ChevronLeft } from "lucide-react";
 import { getSession } from "next-auth/react";
 import { useState } from "react";
 
+import { getApiUrl } from "~/actions/getApiUrl";
 import CustomButton from "~/components/common/common-button/common-button";
 import NotificationSettingSavedModal from "~/components/common/modals/notification-settings-saved";
 import { useToast } from "~/components/ui/use-toast";
-import { getApiUrl } from "~/utils/getApiUrl";
 import { useNotificationStore } from "./_action/notification-store";
 import NotificationHeader from "./_components/header";
 import { NotificationSwitchBox } from "./_components/notification-switch-box";

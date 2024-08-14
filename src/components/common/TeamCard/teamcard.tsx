@@ -2,7 +2,7 @@ import { Facebook, Instagram, Twitter } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { Card, CardContent, CardFooter, CardTitle } from "~/components/ui/card";
+import { Card, CardContent, CardFooter } from "~/components/ui/card";
 
 interface TeamCardProperties {
   name: string;
@@ -26,21 +26,21 @@ const TeamCard: React.FC<TeamCardProperties> = ({
   twitterURL,
 }) => {
   return (
-    <Card className="flex h-[400px] w-[277px] flex-col gap-4 border-none bg-subtle shadow-none">
-      <div className="relative h-[205px] bg-neutral-300">
+    <Card className="flex h-[400px] w-[277px] cursor-pointer flex-col gap-4 border-none bg-subtle shadow-none">
+      <div className="relative h-[205px] overflow-hidden bg-neutral-300">
         <Image
           src={imageSrc}
           alt={imageAlt}
           fill={true}
-          className="object-cover"
+          className="transform-gpu object-cover transition-transform duration-300 ease-in-out hover:scale-110"
         />
       </div>
 
       <CardContent className="flex flex-col justify-between gap-5 px-[14.31px] pb-3.5">
         <div>
-          <CardTitle className="pb-1 text-lg font-bold leading-[21.78px] text-neutral-600 md:font-semibold">
+          <h3 className="pb-1 text-lg font-bold leading-[21.78px] text-neutral-600 md:font-semibold">
             {name}
-          </CardTitle>
+          </h3>
           <p className="pb-[7.16px] text-[12.53px] leading-[15.16px] text-neutral-600">
             {role}
           </p>

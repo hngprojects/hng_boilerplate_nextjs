@@ -9,9 +9,17 @@ import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+import { registerUser, resendOtp, verifyOtp } from "~/actions/register";
 import CustomButton from "~/components/common/common-button/common-button";
 import { Input } from "~/components/common/input";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "~/components/ui/dialog";
 import {
   Form,
   FormControl,
@@ -20,39 +28,37 @@ import {
   FormLabel,
   FormMessage,
 } from "~/components/ui/form";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+} from "~/components/ui/input-otp";
 import { useToast } from "~/components/ui/use-toast";
 import { cn } from "~/lib/utils";
 import { RegisterSchema } from "~/schemas";
-import { getApiUrl } from "~/utils/getApiUrl";
-import { registerAuth } from "~/utils/registerAuth";
+import { formatTime, maskEmail } from "~/utils";
 
 const Register = () => {
   const router = useRouter();
   const { toast } = useToast();
   const { status } = useSession();
-  const [apiUrl, setApiUrl] = useState("");
   const [isLoading, startTransition] = useTransition();
   const [showPassword, setShowPassword] = useState(false);
+  const [showOtp, setShowOtp] = useState(false);
+  const [timeLeft, setTimeLeft] = useState<number>(15 * 60);
+  const [value, setValue] = useState("");
+
+  useEffect(() => {
+    if (timeLeft <= 0) return;
+    const timerId = setInterval(() => {
+      setTimeLeft((previousTime) => previousTime - 1);
+    }, 1000);
+    return () => clearInterval(timerId);
+  }, [timeLeft, showOtp]);
 
   if (status === "authenticated") {
     router.push("/dashboard");
   }
-  useEffect(() => {
-    const fetchApiUrl = async () => {
-      try {
-        const url = await getApiUrl();
-        setApiUrl(url);
-      } catch {
-        toast({
-          title: "Error",
-          description: "Failed to fetch API URL",
-          variant: "destructive",
-        });
-      }
-    };
-
-    fetchApiUrl();
-  }, [toast]);
 
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
@@ -66,10 +72,9 @@ const Register = () => {
 
   const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
     startTransition(async () => {
-      await registerAuth(values).then(async (data) => {
-        if (data) {
-          sessionStorage.setItem("temp_token", data.access_token);
-          router.push("/register/organisation");
+      await registerUser(values).then(async (data) => {
+        if (data.status === 201) {
+          router.push("/login");
         }
 
         toast({
@@ -77,9 +82,48 @@ const Register = () => {
             data.status === 201
               ? "Account created successfully"
               : "an error occurred",
+          description: data.status === 201 ? "verify your account" : data.error,
+        });
+      });
+    });
+  };
+
+  const onOtpSubmit = async () => {
+    startTransition(async () => {
+      const values = { token: value, email: form.getValues().email };
+      await verifyOtp(values).then(async (data) => {
+        if (data.status === 200) {
+          setShowOtp(false);
+          router.push("/login");
+        }
+
+        toast({
+          title:
+            data.status === 201
+              ? "Email verification successfully"
+              : "an error occurred",
           description: data.status === 201 ? "Redirecting" : data.error,
         });
-        router.push("/register/organisation");
+      });
+    });
+  };
+
+  const resendOtpreq = async () => {
+    startTransition(async () => {
+      resendOtp(form.getValues().email).then(async (data) => {
+        if (data.status === 200) {
+          setTimeLeft(15 * 60);
+          toast({
+            title: "OTP sent successfully",
+            description: "Please check your email",
+          });
+        } else {
+          toast({
+            title: "Error",
+            description: data.error,
+            variant: "destructive",
+          });
+        }
       });
     });
   };
@@ -99,9 +143,7 @@ const Register = () => {
           <CustomButton
             variant="outline"
             isLeftIconVisible={true}
-            onClick={() =>
-              signIn("google", { callbackUrl: "/register/organisation" })
-            }
+            onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
             icon={
               <svg
                 width="25"
@@ -130,35 +172,6 @@ const Register = () => {
             }
           >
             Continue with Google
-          </CustomButton>
-          <CustomButton
-            isDisabled={!apiUrl}
-            variant="outline"
-            href={apiUrl === "" ? undefined : `${apiUrl}/api/v1/auth/facebook`}
-            isLeftIconVisible={true}
-            icon={
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clipPath="url(#clip0_16038_1232)">
-                  <path
-                    d="M24 12.073C24 5.40405 18.6269 -0.00195312 11.9999 -0.00195312C5.36995 -0.000453125 -0.00305176 5.40405 -0.00305176 12.0745C-0.00305176 18.1 4.38595 23.095 10.1219 24.001V15.5635H7.07695V12.0745H10.1249V9.41205C10.1249 6.38655 11.9174 4.71555 14.6579 4.71555C15.9719 4.71555 17.3444 4.95105 17.3444 4.95105V7.92105H15.8309C14.3414 7.92105 13.8764 8.85255 13.8764 9.80805V12.073H17.2034L16.6724 15.562H13.8749V23.9995C19.6109 23.0935 24 18.0985 24 12.073Z"
-                    fill="#1976D2"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_16038_1232">
-                    <rect width="24" height="24" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-            }
-          >
-            Continue with Facebook
           </CustomButton>
         </div>
         <div className="flex items-center justify-center">
@@ -305,6 +318,61 @@ const Register = () => {
             </CustomButton>
           </form>
         </Form>
+        <Dialog open={showOtp} onOpenChange={setShowOtp}>
+          <DialogContent
+            aria-labelledby="dialog-title"
+            aria-describedby="dialog-description"
+            className="flex w-full flex-col items-center gap-5 sm:max-w-[425px]"
+          >
+            <DialogHeader>
+              <DialogTitle className="w-full text-center text-xl font-bold text-[#0F172A]">
+                Email Verification
+              </DialogTitle>
+              <DialogDescription className="flex flex-col items-center text-[#0F172A]">
+                <p className="text-base font-medium text-[#0F172A]">
+                  We have sent a code to your email{" "}
+                  {maskEmail(form.getValues().email)}
+                </p>
+                <div className="flex flex-col items-center text-base">
+                  <span>check your spam if you do not recive the email</span>
+                  <span>OTP expires in: {formatTime(timeLeft)}</span>
+                </div>
+              </DialogDescription>
+            </DialogHeader>
+
+            <InputOTP
+              maxLength={6}
+              className="flex w-full"
+              onComplete={onOtpSubmit}
+              value={value}
+              onChange={setValue}
+              disabled={isLoading}
+            >
+              {...[0, 1, 2, 3, 4, 5].map((number_) => (
+                <InputOTPGroup key={number_}>
+                  <InputOTPSlot index={number_} />
+                </InputOTPGroup>
+              ))}
+            </InputOTP>
+
+            <div className="flex flex-col items-center">
+              <p className="text-xs text-gray-500">
+                Didn&apos;t receive the code?{" "}
+                <span
+                  className="cursor-pointer text-orange-500"
+                  onClick={() => resendOtpreq()}
+                >
+                  resend
+                </span>
+              </p>
+            </div>
+            <p className="text-center text-xs text-gray-500">
+              We would process your data as set forth in our Terms of Use,
+              Privacy Policy and Data Processing Agreement
+            </p>
+          </DialogContent>
+        </Dialog>
+
         <p className="font-inter text-neutralColor-dark-1 mt-5 text-center text-sm font-normal leading-[15.6px]">
           Already Have An Account?{" "}
           <Link

@@ -130,7 +130,7 @@ export default function AdditionalInquiriesForm() {
           <div className="text-center">
             <Button
               type="submit"
-              className="mb-3 mt-[1.75rem] h-[3rem] w-full rounded-md bg-primary px-4 py-2 text-[1rem] font-[400] leading-[1.3613rem] text-white md:mt-[5.1875rem] md:h-[3.75rem] md:text-[1.125rem]"
+              className="mb-3 mt-[1.75rem] h-[3rem] w-full rounded-md bg-primary px-4 py-2 text-[1rem] font-[400] leading-[1.3613rem] text-white hover:bg-destructive md:h-[3.75rem] md:text-[1.125rem]"
             >
               Submit
             </Button>

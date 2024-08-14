@@ -29,8 +29,7 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 import { Textarea } from "~/components/ui/textarea";
-import { useProducts } from "~/hooks/admin-product/use-products.persistence";
-import { cn, generateId, getCurrentDateTime, simulateDelay } from "~/lib/utils";
+import { cn, generateId, simulateDelay } from "~/lib/utils";
 import { ProductTableProperties } from "~/types/admin-product.types";
 import { EditProductSchema, MAX_CHAR } from "../_components/schema/schema";
 import { STOCKS_SELECT } from "../data/categories.mock";
@@ -42,7 +41,6 @@ const ProductDetailsComponent = ({
 }: {
   product: ProductTableProperties;
 }) => {
-  const { addProduct } = useProducts();
   const [isLoading, startTransition] = useTransition();
   const router = useRouter();
 
@@ -53,10 +51,6 @@ const ProductDetailsComponent = ({
       price: "",
       category: "",
       quantity: "",
-      media: {
-        url: product.image || "",
-        id: "",
-      },
       stocks: [
         {
           id: "P0001",
@@ -67,7 +61,6 @@ const ProductDetailsComponent = ({
         {
           id: "P0002",
           size: "Standard",
-          stock: String(product.stock) || "0",
           price: String(product.price) || "",
         },
         {
@@ -100,22 +93,10 @@ const ProductDetailsComponent = ({
   const disableAddStockButton = shouldDisableAddStocksButton({
     stocks: FORM_STOCKS,
   });
-  const onSubmit = async (values: z.infer<typeof EditProductSchema>) => {
+  const onSubmit = async () => {
     startTransition(async () => {
-      const date_data = getCurrentDateTime();
       await simulateDelay(3);
-      addProduct({
-        product_id: `P${generateId(6)}`,
-        category: values.category,
-        description: values.description,
-        name: values.product_name,
-        price: Number(values.price),
-        stock: Number(values.quantity),
-        image: "/product/product-image.webp",
-        status: "in_stock",
-        date_added: date_data.date_added,
-        time: date_data.time,
-      });
+
       new_product_form.reset();
     });
   };

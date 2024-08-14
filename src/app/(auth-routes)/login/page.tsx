@@ -9,6 +9,7 @@ import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+import { loginUser } from "~/actions/login";
 import CustomButton from "~/components/common/common-button/common-button";
 import { Input } from "~/components/common/input";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
@@ -22,38 +23,27 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import { useToast } from "~/components/ui/use-toast";
+import { useLocalStorage } from "~/hooks/use-local-storage";
 import { cn } from "~/lib/utils";
 import { LoginSchema } from "~/schemas";
-import { getApiUrl } from "~/utils/getApiUrl";
-import { loginAuth } from "~/utils/loginAuth";
+import { Organisation } from "~/types";
 
 const Login = () => {
   const router = useRouter();
   const { toast } = useToast();
   const { status } = useSession();
-  const [apiUrl, setApiUrl] = useState("");
   const [isLoading, startTransition] = useTransition();
   const [showPassword, setShowPassword] = useState(false);
+  const [, setUserOrg] = useLocalStorage<Organisation[]>("user_org", []);
+
+  const [currentOrgId, setCurrentOrgId] = useLocalStorage<string | undefined>(
+    "current_orgid",
+    "",
+  );
 
   if (status === "authenticated") {
     router.push("/dashboard");
   }
-  useEffect(() => {
-    const fetchApiUrl = async () => {
-      try {
-        const url = await getApiUrl();
-        setApiUrl(url);
-      } catch {
-        toast({
-          title: "Error",
-          description: "Failed to fetch API URL",
-          variant: "destructive",
-        });
-      }
-    };
-
-    fetchApiUrl();
-  }, [toast]);
 
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -66,10 +56,13 @@ const Login = () => {
 
   const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
     startTransition(async () => {
-      await loginAuth(values).then(async (data) => {
+      await loginUser(values).then(async (data) => {
         const { email, password } = values;
-
-        if (data) {
+        if (data.status === 200) {
+          setUserOrg(data.organisations);
+          if (!currentOrgId) {
+            setCurrentOrgId(data.organisations[0].organisation_id);
+          }
           await signIn(
             "credentials",
             {
@@ -139,36 +132,6 @@ const Login = () => {
             }
           >
             Continue with Google
-          </CustomButton>
-          <CustomButton
-            className="w-full"
-            isDisabled={!apiUrl}
-            variant="outline"
-            href={apiUrl === "" ? undefined : `${apiUrl}/api/v1/auth/facebook`}
-            isLeftIconVisible={true}
-            icon={
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clipPath="url(#clip0_16038_1232)">
-                  <path
-                    d="M24 12.073C24 5.40405 18.6269 -0.00195312 11.9999 -0.00195312C5.36995 -0.000453125 -0.00305176 5.40405 -0.00305176 12.0745C-0.00305176 18.1 4.38595 23.095 10.1219 24.001V15.5635H7.07695V12.0745H10.1249V9.41205C10.1249 6.38655 11.9174 4.71555 14.6579 4.71555C15.9719 4.71555 17.3444 4.95105 17.3444 4.95105V7.92105H15.8309C14.3414 7.92105 13.8764 8.85255 13.8764 9.80805V12.073H17.2034L16.6724 15.562H13.8749V23.9995C19.6109 23.0935 24 18.0985 24 12.073Z"
-                    fill="#1976D2"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_16038_1232">
-                    <rect width="24" height="24" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-            }
-          >
-            Continue with Facebook
           </CustomButton>
         </div>
         <div className="flex items-center justify-center">

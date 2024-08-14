@@ -1,9 +1,13 @@
-import { AnimatePresence, motion } from "framer-motion";
+"use client";
 
+import { AnimatePresence, motion } from "framer-motion";
+import { useTransition } from "react";
+
+import { deleteProduct } from "~/actions/product";
 import { Button } from "~/components/ui/button";
 import { toast } from "~/components/ui/use-toast";
-import { useProductModal } from "~/hooks/admin-product/use-product.modal";
-import { useProducts } from "~/hooks/admin-product/use-products.persistence";
+import { useOrgContext } from "~/contexts/orgContext";
+import { useLocalStorage } from "~/hooks/use-local-storage";
 import { cn } from "~/lib/utils";
 
 const variantProperties = {
@@ -12,50 +16,44 @@ const variantProperties = {
   translateX: "-50%",
   translateY: "-50%",
 };
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 const ProductDeleteModal = () => {
-  const { products, deleteProduct } = useProducts();
+  const [org_id] = useLocalStorage<string>("current_orgid", "");
+  const [isPending, startTransition] = useTransition();
+  const { selectedProduct, products, isDelete, setIsDelete } = useOrgContext();
 
-  const { product_id, updateProductId, updateOpen, isDelete, setIsDelete } =
-    useProductModal();
+  const product = products.find((p) => p.id === selectedProduct);
 
-  const product = products?.find(
-    (product) => product.product_id === product_id,
-  );
-
-  const handleDelete = async (id: string) => {
+  const handleDelete = async () => {
     toast({
       title: "Deleting product",
       description: "Please wait...",
       variant: "destructive",
     });
-    setIsDelete(false);
 
-    await delay(3000);
-    deleteProduct(id);
-    toast({
-      title: `Product deleted`,
-      description: (
-        <span>
-          <b>{product?.name}</b> has been deleted.
-        </span>
-      ),
-      variant: "default",
-      className: "z-[99999]",
+    startTransition(async () => {
+      await deleteProduct(org_id, selectedProduct).then((data) => {
+        if (data.status === 200) {
+          toast({
+            title: "Product deleted",
+            description: "Product deleted successfully.",
+          });
+        } else {
+          toast({
+            title: "Error",
+            description: data.error || "An unexpected error occurred.",
+            variant: "destructive",
+          });
+        }
+        setIsDelete(false);
+      });
     });
-    updateOpen(false);
-    updateProductId("null");
   };
 
   return (
     <>
       <div
-        onClick={() => {
-          updateOpen(false);
-          updateProductId("null");
-
-          setIsDelete(false);
-        }}
+        onClick={() => setIsDelete(false)}
         className={cn(
           "fixed left-0 top-0 z-[99999] min-h-screen w-full overflow-hidden bg-neutral-700/10 transition-all duration-300 lg:hidden",
           isDelete
@@ -83,24 +81,16 @@ const ProductDeleteModal = () => {
               scale: 0.5,
             }}
             transition={{ duration: 0.2 }}
-            className={cn(
-              "fixed left-1/2 top-1/2 z-[99999] grid w-full min-w-[350px] max-w-[349px] -translate-x-1/2 -translate-y-1/2 transform-gpu flex-col place-items-center items-center min-[360px]:max-w-[480px] sm:max-w-[403px] lg:hidden",
-            )}
+            className="fixed left-1/2 top-1/2 z-[99999] grid w-full min-w-[350px] max-w-[349px] -translate-x-1/2 -translate-y-1/2 transform-gpu flex-col place-items-center items-center min-[360px]:max-w-[480px] sm:max-w-[403px] lg:hidden"
           >
-            <div
-              className={cn(
-                "absolute left-1/2 top-1/2 flex w-full max-w-[90%] -translate-x-1/2 -translate-y-1/2 flex-col gap-y-5 border bg-white/80 px-2 py-5 shadow-[0px_1px_18px_0px_rgba(10,_57,_176,_0.12)] backdrop-blur transition-all duration-300",
-                isDelete
-                  ? "pointer-events-auto scale-100 opacity-100"
-                  : "pointer-events-none scale-50 opacity-0",
-              )}
-            >
+            <div className="absolute left-1/2 top-1/2 flex w-full max-w-[90%] -translate-x-1/2 -translate-y-1/2 flex-col gap-y-5 border bg-white/80 px-2 py-5 shadow-[0px_1px_18px_0px_rgba(10,_57,_176,_0.12)] backdrop-blur transition-all duration-300">
               <p className="text-center text-sm">
                 Are you sure you want to delete <b>{product?.name}</b>?
               </p>
               <div className="flex w-full items-center justify-center gap-x-2">
                 <Button
-                  onClick={() => handleDelete(product!.product_id!)}
+                  onClick={handleDelete}
+                  disabled={isPending}
                   variant="outline"
                   className="bg-white font-medium text-error"
                 >

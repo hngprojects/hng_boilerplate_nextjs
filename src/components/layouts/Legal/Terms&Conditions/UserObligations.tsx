@@ -11,7 +11,7 @@ const UserObligations = () => {
       className="mt-[20px] flex flex-col items-start justify-start gap-[10px] self-stretch"
       data-testid="user-obligations"
     >
-      <h2 className="font-inherit relative m-0 self-stretch text-2xl font-bold text-inherit sm:text-[28px]">
+      <h2 className="font-inherit relative m-0 self-stretch text-lg font-bold text-foreground">
         User Obligations
       </h2>
       <div className="`relative inline-block self-stretch text-base">

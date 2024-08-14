@@ -10,7 +10,7 @@ import {
 import { cn } from "~/lib/utils";
 
 type ChartProperties = {
-  chartData: { month: string; revenue: number }[];
+  chartData: { month: string; revenue: number }[] | undefined;
   chartConfig: ChartConfig;
   chartTitle: string;
   className?: string;

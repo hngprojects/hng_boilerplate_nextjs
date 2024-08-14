@@ -41,6 +41,7 @@ const BlogHome = () => {
           size="lg"
           ariaLabel="Show More Articles"
           href="/blog/latest"
+          className="hover:bg-destructive"
         >
           Show More Articles
         </CustomButton>

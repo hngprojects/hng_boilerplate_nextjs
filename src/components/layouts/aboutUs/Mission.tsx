@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Mission = () => {
   return (
-    <div className="mx-auto max-w-7xl px-5 py-10 md:px-10 md:py-20 lg:px-10 xl:px-10">
+    <div className="mx-auto max-w-7xl px-5 py-10 md:px-10">
       <div className="flex flex-col-reverse items-center lg:flex-row">
         <div className="w-full md:pr-10 lg:mb-0 lg:w-3/4">
           <Image
@@ -16,13 +16,13 @@ const Mission = () => {
 
         <div className="mb-8 items-start lg:w-2/3">
           <h3
-            className="mb-3 text-[24px] font-[700] text-primary sm:text-[26px] md:text-[28px]"
+            className="mb-3 text-lg font-[700] text-primary sm:text-xl"
             data-testid="mission web"
           >
-            Our Mission
+            Our Mission & Vision
           </h3>
-          <h3 className="mb-5 text-[32px] font-[600] leading-[38px] text-neutral-600 sm:text-[36px] sm:leading-[42px] md:text-[40px] md:leading-[46px] lg:text-[44px] lg:leading-[50px]">
-            We are committed to giving you the best
+          <h3 className="mb-5 text-[30px] font-[600] leading-[38px] text-neutral-600 sm:leading-[42px] md:text-[35px] md:leading-[46px]">
+            Leading the Way, Redefining Industries
           </h3>
           <p
             className="text-[16px] font-[400] text-neutral-600 sm:text-[17px] md:text-[18px]"

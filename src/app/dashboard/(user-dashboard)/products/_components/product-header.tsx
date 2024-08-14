@@ -1,10 +1,10 @@
 import { Plus } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
-import { useProductModal } from "~/hooks/admin-product/use-product.modal";
+import { useOrgContext } from "~/contexts/orgContext";
 
 const ProductHeader = () => {
-  const { setIsNewModal } = useProductModal();
+  const { setIsNewModal } = useOrgContext();
 
   return (
     <div className="flex w-full items-center justify-between">

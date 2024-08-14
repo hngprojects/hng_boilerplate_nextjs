@@ -9,7 +9,6 @@ export const {
   unstable_update,
 } = NextAuth({
   ...authConfig,
-  secret: process.env.AUTH_SECRET,
 });
 
 declare module "next-auth" {
@@ -21,6 +20,9 @@ declare module "next-auth" {
       email: User["email"];
       image: User["avatar_url"];
       role: User["role"];
+      bio?: string;
+      username?: string;
+      is_superadmin?: boolean;
     } & DefaultSession["user"];
     access_token?: string;
   }

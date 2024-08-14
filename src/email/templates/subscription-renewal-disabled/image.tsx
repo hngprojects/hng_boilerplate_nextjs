@@ -1,4 +1,5 @@
 import {
+  Button,
   Container,
   Heading,
   Img,
@@ -8,113 +9,175 @@ import {
   Text,
 } from "@react-email/components";
 
-import Layout from "../_components/layout/layout";
+import Layout from "../../layout/layout";
 
-interface SubscriptionenewalDisabledProperties {
-  title: string;
+interface SubscriptionRenewalDisabledProperties {
   username: string;
-  image: string;
-  description: string;
-  descriptionOne: string;
   link: string;
   upgradeLink: string;
 }
 
-const SubscriptionenewalDisabled = ({
-  title,
+export const SubscriptionRenewalDisabled = ({
   username,
-  image,
-  description,
-  descriptionOne,
-  upgradeLink,
   link,
-}: SubscriptionenewalDisabledProperties) => {
+  upgradeLink,
+}: SubscriptionRenewalDisabledProperties) => {
   return (
     <Layout>
       <Preview>{username}, subscription renewal disabled</Preview>
-      <Section className="my-[56px]">
-        <Section className="mx-auto flex items-center justify-center md:w-[316px]">
-          <Img src={image} alt="hello" className="h-[100%] w-[100%]" />
-        </Section>
-
-        <Container className="max-w-[680px] px-[48px] md:px-0">
-          <Section className="mt-[56px] flex flex-col items-center justify-center">
-            <Heading
-              as="h5"
-              className="my-0 mb-[56px] text-center text-[24px] leading-[28px] text-[#121212]"
-            >
-              {title}
+      <Container style={containerStyle}>
+        <Section style={sectionStyle}>
+          <Section style={imageContainerStyle}>
+            <Img
+              src={`https://imgur.com/DJVBH0U.png`}
+              alt="hello"
+              className="h-[100%] w-[100%]"
+            />
+          </Section>
+          <Section style={textSectionStyle}>
+            <Heading as="h5" style={headingStyle}>
+              Subscription Renewal Disabled
             </Heading>
 
             <Section>
-              <Text className="md:text-[18px]mt-[32px] my-0 text-[16px] font-[600] text-[#121212]">
-                Hi {username},
+              <Text style={greetingTextStyle}>Hi {username},</Text>
+              <Text style={descriptionTextStyle}>
+                As requested, your next subscription renewal has been disabled.
+                You will continue to enjoy benefits of this subscription until
+                further notice.
               </Text>
-              <Text className="text-justify text-[14px] leading-[19.36px] text-[#525252] md:text-[16px]">
-                {description}
-              </Text>
-              <Text className="text-justify text-[14px] leading-[19.36px] text-[#525252] md:text-[16px]">
-                {descriptionOne}
+              <Text style={descriptionTextStyle}>
+                We are so sad to see you go. However, if you change your mind,
+                you can always reactivate your subscription or upgrade your
+                subscription plan.
               </Text>
             </Section>
           </Section>
-        </Container>
-        <section className="item-center mx-auto mt-[32px] flex max-w-[679px] flex-col justify-center gap-[20px] px-[48px] md:flex-row">
-          <Link href={link} target="_blank">
-            <button
-              style={{ boxShadow: "none" }}
-              className="border-1 w-[100%] rounded-[8px] border border-[#F97316] bg-[#F97316] px-[2rem] py-[16px] text-[#FAFAFA] shadow-none md:w-fit"
-            >
-              Send Another Active Link
-            </button>
-          </Link>
-          <Link href={upgradeLink} target="_blank">
-            <button
-              style={{ boxShadow: "none" }}
-              className="border-1 w-[100%] rounded-[8px] border border-[#F97316] bg-[transparent] py-[16px] text-[#F97316] shadow-none md:w-fit md:px-[2rem]"
-            >
-              Upgrade Plan
-            </button>
-          </Link>
-        </section>
-        <Section className="my-[56px]">
-          <Container className="max-w-[680px] px-[48px] md:px-0">
-            <Text className="my-0 font-[600] text-[#121212]">
+
+          <Section className="item-center mx-auto my-[32px] flex max-w-[679px] flex-row justify-center px-[48px]">
+            <Link className="md:mx-[20px]" href={link} target="_blank">
+              <Button className="w-[100%] rounded-[8px] border border-[#F97316] bg-[#F97316] px-[2rem] py-[16px] text-[#FAFAFA] shadow-none md:w-fit">
+                Send Another Active Link
+              </Button>
+            </Link>
+            <Link className="md:mx-[20px]" href={upgradeLink} target="_blank">
+              <button className="border-1 w-[100%] rounded-[8px] border border-[#F97316] bg-[transparent] py-[16px] text-[#F97316] shadow-none md:w-fit md:px-[2rem]">
+                Upgrade Plan
+              </button>
+            </Link>
+          </Section>
+
+          <Section>
+            <Text style={supportTextStyle}>
+              If you have questions, please visit our{" "}
+              <Link style={supportLinkStyle} href="/faqs">
+                FAQs
+              </Link>
+              , or email us at{" "}
+              <Link style={supportLinkStyle} href="mailto:help@boilerplate.com">
+                help@boilerplate.com
+              </Link>
+              . Our team can answer questions about your subscription status. To
+              unsubscribe from future subscription renewal reminders,{" "}
+              <Link style={unsubscribeLinkStyle} href="/unsubscribe">
+                click here.
+              </Link>
+            </Text>
+          </Section>
+
+          <Section style={footerSectionStyle}>
+            <Text style={footerTextStyle}>
               Regards,
               <br />
               Boilerplate
             </Text>
-          </Container>
+          </Section>
         </Section>
-        <Section>
-          <Container className="max-w-[680px] px-[48px] md:px-0">
-            <Text className="my-0 text-justify text-[14px] leading-[19.36px] text-[#525252] md:text-[16px]">
-              If you have questions, please visit our{" "}
-              <Link className="text-[#F67316]">FAQs</Link>, or email us at{" "}
-              <Link className="text-[#F67316]">help@boilerplate.com</Link>. Our
-              team can answer questions about your subscription status. To
-              unsubscribe from future subscription renewal reminders,{" "}
-              <Link className="font-[600] text-[#525252] text-[#F67316] underline">
-                click here.
-              </Link>
-            </Text>
-          </Container>
-        </Section>
-      </Section>
+      </Container>
     </Layout>
   );
 };
 
-SubscriptionenewalDisabled.PreviewProps = {
-  title: "Subscription Renewal Disabled",
+const containerStyle: React.CSSProperties = {
+  padding: "0 48px",
+  maxWidth: "792px",
+  margin: "0 auto",
+};
+
+const sectionStyle: React.CSSProperties = {
+  margin: "56px 0",
+};
+
+const imageContainerStyle: React.CSSProperties = {
+  margin: "0 auto",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  maxWidth: "534px",
+};
+
+const textSectionStyle: React.CSSProperties = {
+  marginTop: "56px",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+};
+
+const headingStyle: React.CSSProperties = {
+  margin: "0 0 56px 0",
+  textAlign: "center",
+  fontSize: "24px",
+  lineHeight: "28px",
+  color: "#121212",
+};
+
+const greetingTextStyle: React.CSSProperties = {
+  fontSize: "16px",
+  fontWeight: "600",
+  color: "#121212",
+  margin: "0 0 32px 0",
+};
+
+const descriptionTextStyle: React.CSSProperties = {
+  fontSize: "16px",
+  color: "#525252",
+  lineHeight: "19.36px",
+  textAlign: "justify",
+  margin: "0 0 16px 0",
+};
+
+const footerSectionStyle: React.CSSProperties = {
+  marginTop: "56px",
+};
+
+const footerTextStyle: React.CSSProperties = {
+  fontWeight: "600",
+  color: "#121212",
+};
+
+const supportTextStyle: React.CSSProperties = {
+  fontSize: "16px",
+  color: "#525252",
+  lineHeight: "19.36px",
+  textAlign: "justify",
+};
+
+const supportLinkStyle: React.CSSProperties = {
+  color: "#F97316",
+  textDecoration: "underline",
+};
+
+const unsubscribeLinkStyle: React.CSSProperties = {
+  fontWeight: "600",
+  color: "#F97316",
+  textDecoration: "underline",
+};
+
+SubscriptionRenewalDisabled.PreviewProps = {
   username: "John Doe",
-  image: "https://imgur.com/DJVBH0U.png",
   link: "www.boilerplate.com",
   upgradeLink: "www.boilerplate.com",
-  description:
-    "    As requested, your next subscription renewal for Bi-monthly Features has been disabled. You will continue to enjoy benefits of this subscription until 17th August,",
-  descriptionOne:
-    "We are so sad to see you go. However, if you change your mind, you can always reactivate your subscription or upgrade your subscription plan. 2024.",
-} satisfies SubscriptionenewalDisabledProperties;
+} satisfies SubscriptionRenewalDisabledProperties;
 
-export default SubscriptionenewalDisabled;
+export default SubscriptionRenewalDisabled;

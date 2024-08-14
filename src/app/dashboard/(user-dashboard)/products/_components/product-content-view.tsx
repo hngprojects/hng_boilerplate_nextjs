@@ -8,17 +8,16 @@ import {
   TableHeader,
   TableRow,
 } from "~/components/ui/table";
-import { useProductModal } from "~/hooks/admin-product/use-product.modal";
-import { useProducts } from "~/hooks/admin-product/use-products.persistence";
+import { useOrgContext } from "~/contexts/orgContext";
 import { cn } from "~/lib/utils";
-import { ProductTableProperties } from "~/types/admin-product.types";
+import { Product } from "~/types";
 import { ProductGridCard } from "./product-grid-card";
 import { ProductListRow } from "./product-list-row";
 import { ProductNotFound } from "./product-not-found";
 
 type Properties = {
-  subset: ProductTableProperties[];
-  filteredProducts: ProductTableProperties[];
+  subset: Product[];
+  filteredProducts: Product[];
   searchTerm: string;
   view: "grid" | "list";
 };
@@ -29,32 +28,32 @@ export const ProductContentView = ({
   searchTerm,
   view = "grid",
 }: Properties) => {
-  const { products } = useProducts();
   const {
-    updateOpen,
-    updateProductId,
-    product_id,
+    products,
     isActionModal,
     setIsActionModal,
+    updateOpen,
     setIsDelete,
-  } = useProductModal();
+
+    setSelectedProduct,
+  } = useOrgContext();
   const router = useRouter();
 
   if (!products) return;
 
   const handleOpenActionModal = (product_id: string) => {
-    updateProductId(product_id);
+    setSelectedProduct(product_id);
     setIsActionModal(!isActionModal);
   };
 
   const handleOpenDetail = (product_id: string) => {
     setIsActionModal(false);
-    updateProductId(product_id);
+    setSelectedProduct(product_id);
     updateOpen(true);
   };
   const handleDeleteAction = (id: string) => {
     setIsActionModal(false);
-    updateProductId(id);
+    setSelectedProduct(id);
     setIsDelete(true);
   };
   const handleEditAction = (id: string) => {
@@ -98,27 +97,18 @@ export const ProductContentView = ({
                 subset.length > 0 &&
                 subset.map((product, index) => (
                   <ProductListRow
-                    key={product.product_id}
-                    id={product.product_id}
-                    selectedId={product_id}
+                    key={product.id}
                     searchTerm={searchTerm}
-                    price={product.price}
-                    description={product.description}
-                    title={product.name}
-                    category={product.category}
-                    imgSrc={product.image}
-                    status={product.status}
                     isBottomRow={
                       index === subset.length - 1 || index === subset.length - 2
                     }
                     isActionModal={isActionModal}
-                    onOpenDetails={() => handleOpenDetail(product.product_id)}
-                    onEdit={() => handleEditAction(product.product_id)}
-                    onDelete={() => handleDeleteAction(product.product_id)}
-                    onOpenActionModal={() =>
-                      handleOpenActionModal(product.product_id)
-                    }
                     onCloseActionModal={() => setIsActionModal(false)}
+                    onOpenDetails={() => handleOpenDetail(product.id)}
+                    onEdit={() => handleEditAction(product.id)}
+                    onDelete={() => handleDeleteAction(product.id)}
+                    onOpenActionModal={() => handleOpenActionModal(product.id)}
+                    {...product}
                   />
                 ))}
             </TableBody>
@@ -135,19 +125,19 @@ export const ProductContentView = ({
               subset.length > 0 &&
               subset.map((product) => (
                 <ProductGridCard
-                  key={product.product_id}
-                  id={product.product_id}
-                  // selectedId={product_id}
-                  searchTerm={searchTerm}
+                  key={product.id}
+                  id={product.id}
                   price={product.price}
                   description={product.description}
-                  title={product.name}
                   category={product.category}
-                  imgSrc={product.image}
-                  status={product.status}
-                  onSelect={() => ({})}
-                  onEdit={() => handleEditAction(product.product_id)}
-                  onDelete={() => handleDeleteAction(product.product_id)}
+                  name={product.name}
+                  image={product.image}
+                  cost_price={product.cost_price}
+                  quantity={product.quantity}
+                  stock_status={product.stock_status}
+                  created_at={product.created_at}
+                  updated_at={product.updated_at}
+                  searchTerm={searchTerm}
                 />
               ))}
           </div>
