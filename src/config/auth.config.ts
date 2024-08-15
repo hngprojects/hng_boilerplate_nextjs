@@ -151,6 +151,6 @@ export default {
     error: "/error",
   },
   secret:
-    process.env.AUTH_SECRET || "IBq7Jk+ZYYvcxMWQQfsDCTC3Q0qYO+ukk0wyYRKuSqk=",
+    process.env.AUTH_SECRET,
   trustHost: true,
 } satisfies NextAuthConfig;
