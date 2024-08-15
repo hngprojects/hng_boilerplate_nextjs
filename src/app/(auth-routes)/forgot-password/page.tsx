@@ -7,6 +7,7 @@ import { Check, CircleCheck, X } from "lucide-react";
 import Link from "next/link";
 import { ReactNode, useEffect, useState } from "react";
 
+import { getApiUrl } from "~/actions/getApiUrl";
 import CustomButton from "~/components/common/common-button/common-button";
 import { InputOtp } from "~/components/common/input-otp";
 import CustomInput from "~/components/common/input/input";
@@ -18,7 +19,6 @@ import {
 } from "~/components/ui/tooltip";
 import { useToast } from "~/components/ui/use-toast";
 import { cn } from "~/lib/utils";
-import { getApiUrl } from "~/utils/getApiUrl";
 
 const Error = ({
   children,
