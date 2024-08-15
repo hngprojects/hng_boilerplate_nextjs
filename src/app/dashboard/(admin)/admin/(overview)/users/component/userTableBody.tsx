@@ -1,9 +1,7 @@
-import axios from "axios";
 import { EllipsisVertical } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
-import { getApiUrl } from "~/actions/getApiUrl";
 import { Button } from "~/components/ui/button";
 import {
   DropdownMenu,

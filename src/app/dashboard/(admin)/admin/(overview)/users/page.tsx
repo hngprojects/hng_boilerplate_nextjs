@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 "use client";
 
 import { Check, ChevronLeft, ChevronRight, Filter } from "lucide-react";
@@ -119,14 +118,9 @@ const UserPage = () => {
       const baseUrl = await getApiUrl();
       const API_URL = `${baseUrl}/api/v1/users`;
       const response = await axios.get(`${API_URL}?page=${page}`);
-
       setIsNextPageActive(response.data.data?.next_page_url ? true : false);
       setIsPreviousPageActive(response.data.data?.prev_page_url ? true : false);
-
-      console.log("Full API Response:", response.data);
-
       const usersData: UserData[] = response.data.data.data;
-      console.log("Raw API data:", usersData);
 
       setData(usersData);
       setFilterData(usersData);
@@ -184,10 +178,6 @@ const UserPage = () => {
       const updatedUser = data.filter((user) => user.id !== userId);
       setData(updatedUser);
       setFilterData(updatedUser);
-      // setTotalUserOverview((previous) => ({
-      //   ...previous,
-      //   value: updatedUser.length,
-      // }));
       const deletedCount = updatedUser.filter(
         (user) => user.deleted_at !== null,
       ).length;
@@ -207,10 +197,6 @@ const UserPage = () => {
       setIsDialogOpen(false);
     }
   };
-
-  useEffect(() => {
-    console.log("Updated data:", data);
-  }, [data]);
 
   if (!data) {
     <div className="w-full pb-5 pt-10 text-center text-neutral-dark-2">
