@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  Bot,
   Box,
   House,
   List,
@@ -54,12 +53,6 @@ const sideItems = [
     id: "waitlist",
   },
   {
-    route: "FAQs",
-    link: "/dashboard/admin/faqs",
-    icon: Bot,
-    id: "faqs",
-  },
-  {
     route: "Settings",
     link: "/dashboard/admin/settings",
     icon: Settings,
@@ -88,7 +81,7 @@ const Sidebar: FC<Iproperties> = ({ sideNavitems = sideItems }) => {
     ? [
         ...sideNavitems,
         {
-          route: "Faq Page",
+          route: "FAQs",
           link: "/dashboard/admin/faqs",
           icon: List,
           id: "faqs",
