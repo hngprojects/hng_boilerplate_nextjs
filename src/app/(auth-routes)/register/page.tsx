@@ -8,8 +8,8 @@ import Link from "next/link";
 import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { getApiUrl } from "~/actions/getApiUrl";
 
+import { getApiUrl } from "~/actions/getApiUrl";
 import { registerUser, resendOtp, verifyOtp } from "~/actions/register";
 import CustomButton from "~/components/common/common-button/common-button";
 import { Input } from "~/components/common/input";
@@ -51,7 +51,6 @@ const Register = () => {
 
   const apiUrl = process.env.API_URL;
 
-
   useEffect(() => {
     if (timeLeft <= 0) return;
     const timerId = setInterval(() => {
@@ -86,7 +85,8 @@ const Register = () => {
               data.status === 201
                 ? "Account created successfully"
                 : "an error occurred",
-            description: data.status === 201 ? "verify your account" : data.error,
+            description:
+              data.status === 201 ? "verify your account" : data.error,
           });
 
           // Enqueue email for sending using the provided backend API
@@ -111,8 +111,7 @@ const Register = () => {
             } else {
               throw new Error(emailResult.message || "Email sending failed");
             }
-          } catch (error) {
-          }
+          } catch {}
         } else {
           toast({
             title: "An error occurred",

@@ -9,7 +9,6 @@ import CardComponent from "~/components/common/DashboardCard/CardComponent";
 import { Card } from "~/components/ui/card";
 
 const AdminPage = () => {
-
   return (
     <section>
       <div className="mb-4 md:mb-0">
