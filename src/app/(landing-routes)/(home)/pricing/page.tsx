@@ -4,6 +4,7 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { getBillingPlans } from "~/actions/billingPlan";
 
 import { getApiUrl } from "~/actions/getApiUrl";
 import FaqAccordion from "~/components/layouts/accordion/FaqsAccordion";
@@ -11,11 +12,16 @@ import Heading from "~/components/layouts/heading";
 import PricingCardSkeleton from "~/components/skeleton/pricingcardskeleton";
 import { Button } from "~/components/ui/button";
 import { faqData } from "~/constants/faqsdata";
+import { auth } from "~/lib/auth";
 
 interface BillingPlan {
   id: string;
   name: string;
-  price: string;
+  // price: string;
+  frequency?: string,
+  is_active?: boolean,
+  amount: string,
+  description?: string,
 }
 
 const getAnnualPrice = (monthlyPrice: string) => {
@@ -29,18 +35,34 @@ export default function Pricing() {
   const [plans, setPlans] = useState<BillingPlan[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | undefined>();
-
+  // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiI3MDIyNjY0OC04YzI1LTRkNDktOTYwZC1lYzdlN2I2NGUyMjQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJiYWRneTIwMDNAZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6IkJhZCIsImV4cCI6MTcyMzcyMTE3Nn0.QEv815LguxLkdfKaZ5vhO899YBgdB68iymnl-AszO54"
   useEffect(() => {
     const fetchPlans = async () => {
-      try {
-        const apiUrl = await getApiUrl();
-        const response = await axios.get(`${apiUrl}/api/v1/billing-plans`);
-        setPlans(response.data.data);
-      } catch {
-        setError("Failed to fetch billing plans");
-      } finally {
-        setLoading(false);
+      const result = await getBillingPlans();
+      if (result && (result.status === 200 || result.status === 201)) {
+        setPlans(result.data.data);
+      } else {
+        setPlans([]);
       }
+
+      setLoading(false);
+      // try {
+      //   const session = await auth();
+      //   const apiUrl = await getApiUrl();
+      //   const response = await axios.get(`${apiUrl}/api/v1/billing-plans`, {
+      //     headers: {
+      //       Authorization: `Bearer ${session?.access_token}`,
+      //     },
+      //   });
+      //   setPlans(response.data);
+      //   console.log(response);
+      //   console.log(session?.access_token);
+
+      // } catch {
+      //   setError("Failed to fetch billing plans");
+      // } finally {
+      //   setLoading(false);
+      // }
     };
 
     fetchPlans();
@@ -115,7 +137,7 @@ export default function Pricing() {
                     className="mb-[16px] text-[20px] font-bold md:text-[22px]"
                     data-testid={`${plan.name.toLowerCase()}-price`}
                   >
-                    ${toggle === 1 ? plan.price : getAnnualPrice(plan.price)} /{" "}
+                    ${toggle === 1 ? plan.amount : getAnnualPrice(plan.amount)} /{" "}
                     {toggle === 1 ? "month" : "year"}
                   </h1>
                   <p
