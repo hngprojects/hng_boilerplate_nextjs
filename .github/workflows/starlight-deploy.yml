@@ -1,0 +1,50 @@
+name: Starlight Deployment
+
+on:
+  workflow_run:
+    workflows: ["Build and Upload"]
+    types:
+      - completed
+
+jobs:   
+  deploy_to_nestsjs:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    environment:
+      name: "starlight-nestjs"
+      url: ${{ vars.URL }}
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+          name: boilerplate-build
+          path: .
+
+      - name: Decode and create .env file
+        run: |
+          echo ${{ secrets.ENV }} | base64 -d > .env.nestsjs
+
+      - name: Copy Artifacts to server
+        run: |
+          sudo apt update && sudo apt install sshpass -y
+          sshpass -p ${{ secrets.PASSWORD }} scp -o StrictHostKeyChecking=no boilerplate.tar.gz .env.nestsjs ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/tmp/nestsjs
+          rm -f boilerplate.tar.gz .env.nestsjs
+        
+      - name: Deploy on server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd /home/bingofe/boilerplate
+            rm -rf *
+            tar -xzf /tmp/nestsjs/boilerplate.tar.gz
+            mv /tmp/nestsjs/.env.nestsjs .env
+            rm -f /tmp/nestsjs/boilerplate.tar.gz
+            cp -r .next/standalone/* .
+            pm2 restart nestsjs-boilerplate --update-env

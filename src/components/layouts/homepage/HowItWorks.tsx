@@ -10,9 +10,7 @@ const HowItWorks = () => {
         <div className="flex flex-col items-center lg:flex-row">
           <div className="w-full md:pr-10 lg:w-3/5 lg:pr-20">
             <h1 className="font-inter text-3xl font-bold leading-snug md:text-4xl md:leading-tight">
-              <span className="text-primary">
-                {t("howItWorksTitlePrefix")}:
-              </span>{" "}
+              <span className="text-primary">{t("howItWorksTitlePrefix")}</span>{" "}
               {t("howItWorksTitleHighlight")}
             </h1>
             <p className="font-inter mb-12 mt-6 text-lg font-normal">
@@ -36,7 +34,7 @@ const HowItWorks = () => {
                   className="font-inter text-base font-normal"
                   data-testid="section"
                 >
-                  {` Leverage pre-built sections like "Features," "Benefits," "Pricing," and "Testimonials" to showcase your product effectively.`}
+                  {t("prebuiltDescription")}
                 </small>
               </div>
             </div>
@@ -50,14 +48,13 @@ const HowItWorks = () => {
                   className="font-inter mb-2 text-lg font-bold md:text-xl"
                   data-testid="scalable"
                 >
-                  Scalable Foundation
+                  {t("scalableTitle")}
                 </h3>
                 <small
                   className="font-inter text-base font-normal"
                   data-testid="boilerplate"
                 >
-                  Our boilerplate is designed to grow with your product. Easily
-                  add new features and functionalities as needed.
+                  {t("scalableDescription")}
                 </small>
               </div>
             </div>
@@ -71,14 +68,13 @@ const HowItWorks = () => {
                   className="font-inter mb-2 text-lg font-bold md:text-xl"
                   data-testid="easy"
                 >
-                  Easy Customization
+                  {t("easyTitle")}
                 </h3>
                 <small
                   className="font-inter text-base font-normal"
                   data-testid="tailor"
                 >
-                  Tailor the experience to your specific needs and preferences
-                  for maximum results.
+                  {t("easyDescription")}
                 </small>
               </div>
             </div>

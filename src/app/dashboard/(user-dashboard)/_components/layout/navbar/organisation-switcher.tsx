@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 
+import { getCurrentOrgApi } from "~/actions/switchOrganization";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Button } from "~/components/ui/button";
 import {
@@ -22,13 +23,22 @@ export const OrganisationSwitcher = () => {
     "",
   );
 
-  const { organizations, isLoading } = useOrgContext();
+  const { organizations, isLoading, switchOrganization } = useOrgContext();
+  // eslint-disable-next-line unicorn/consistent-function-scoping
 
   useEffect(() => {
     if (!currentOrgId && organizations.length > 0) {
       setCurrentOrgId(organizations[0].organisation_id);
+      switchOrganization(organizations[0].organisation_id);
     }
-  }, [currentOrgId, organizations, setCurrentOrgId]);
+    // console.log(organizations);
+  }, [currentOrgId, organizations, setCurrentOrgId, switchOrganization]);
+
+  const handleOrgChange = (currentOrg: string) => {
+    setCurrentOrgId(currentOrg);
+    switchOrganization(currentOrg);
+    getCurrentOrgApi({ orgId: currentOrg });
+  };
 
   const currentOrg =
     organizations.length > 0
@@ -42,9 +52,7 @@ export const OrganisationSwitcher = () => {
       <CreateOrganization isOpen={isOpen} setIsOpen={setIsOpen} />
       <Select
         defaultValue={currentOrgId}
-        onValueChange={(value) => {
-          setCurrentOrgId(value);
-        }}
+        onValueChange={(value) => handleOrgChange(value)}
       >
         <SelectTrigger
           aria-label="Select organisation"

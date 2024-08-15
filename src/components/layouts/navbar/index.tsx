@@ -1,6 +1,7 @@
 "use client";
 
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -17,6 +18,7 @@ const Navbar = () => {
   const [scrolling, setIsScrolling] = useState<boolean>(false);
   const { status } = useSession();
   const pathname = usePathname();
+  const t = useTranslations();
 
   const version = "v1.0";
   useVersionSync(version);
@@ -57,7 +59,7 @@ const Navbar = () => {
                 href={item.link}
                 className={`p-3 text-[16px] font-medium text-neutral-dark-1 transition-all duration-300 hover:text-primary ${pathname === item.link ? "text-primary" : ""}`}
               >
-                {item.route}
+                {t(`${item.route}`)}
               </Link>
             );
           })}
@@ -69,13 +71,13 @@ const Navbar = () => {
               href="/login"
               className="grid h-[44px] place-items-center whitespace-nowrap rounded-md border border-primary px-4 text-primary hover:bg-subtle lg:px-8"
             >
-              Log in
+              {t("navbar.login")}
             </Link>
             <Link
               href="/register"
               className="grid h-[44px] place-items-center whitespace-nowrap rounded-md border border-primary bg-primary px-4 text-white hover:bg-destructive lg:px-8"
             >
-              Get Started
+              {t("navbar.register")}
             </Link>
           </div>
         )}
