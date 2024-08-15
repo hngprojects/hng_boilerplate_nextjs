@@ -45,3 +45,6 @@ jobs:
       with:
         name: boilerplate-build
         path: boilerplate.tar.gz
+
+    - name: Delete zip file
+      run: rm -f boilerplate.tar.gz
