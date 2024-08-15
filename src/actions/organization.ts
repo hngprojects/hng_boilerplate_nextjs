@@ -116,3 +116,72 @@ export const getAnalytics = async () => {
         };
   }
 };
+
+export const InviteMembers = async (emails: string, org_id: string) => {
+  const session = await auth();
+
+  try {
+    const response = await axios.post(
+      `${apiUrl}/api/v1/organisations/send-invites`,
+      {
+        emails: emails.split(",").map((email) => email.trim()), // Convert emails string to an array
+        org_id, // Use organization id passed as parameter
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${session?.access_token}`,
+        },
+      },
+    );
+
+    return {
+      data: response.data.data,
+    };
+  } catch (error) {
+    return axios.isAxiosError(error) && error.response
+      ? {
+          error: error.response.data.message || "Failed to send invites.",
+          status: error.response.status,
+        }
+      : {
+          error: "An unexpected error occurred.",
+        };
+  }
+};
+
+export const fetchOrganizations = async () => {
+  const session = await auth();
+
+  try {
+    const response = await axios.get(`${apiUrl}/api/v1/organisations`, {
+      headers: {
+        Authorization: `Bearer ${session?.access_token}`,
+      },
+    });
+
+    if (response.status === 200) {
+      const organizations = response.data.map(
+        (org: { id: string; name: string }) => ({
+          id: org.id,
+          name: org.name,
+        }),
+      );
+      return { data: organizations };
+    } else {
+      return {
+        error: "Failed to fetch organizations.",
+        status: response.status,
+      };
+    }
+  } catch (error) {
+    return axios.isAxiosError(error) && error.response
+      ? {
+          error:
+            error.response.data.message || "Failed to fetch organizations.",
+          status: error.response.status,
+        }
+      : {
+          error: "An unexpected error occurred.",
+        };
+  }
+};
