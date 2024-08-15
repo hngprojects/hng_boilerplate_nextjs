@@ -1,0 +1,49 @@
+name: Anchor Deployment
+
+on:
+  workflow_run:
+    workflows: ["Build and Upload"]
+    types:
+      - completed
+
+jobs:   
+  deploy_to_dev:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    environment:
+      name: "anchor-java"
+      url: ${{ vars.URL }}
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+          name: boilerplate-build
+          path: boilerplate.tar.gz
+
+      - name: Decode and create .env file
+        run: |
+          echo ${{ secrets.ENV }} | base64 -d > .env.java
+
+      - name: Copy Artifacts to server
+        run: |
+          sudo apt update && sudo apt install sshpass -y
+          sshpass -p ${{ secrets.PASSWORD }} scp -o StrictHostKeyChecking=no boilerplate.tar.gz .env.java ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/tmp/
+          rm -f boilerplate.tar.gz .env
+        
+      - name: Deploy on server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd boilerplate
+            rm -rf *
+            tar -xzf /tmp/boilerplate.tar.gz
+            mv /tmp/.env.java .env
+            rm -f /tmp/boilerplate.tar.gz
+            cp -r .next/standalone/* .
