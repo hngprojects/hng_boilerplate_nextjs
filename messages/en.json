@@ -1,0 +1,84 @@
+{
+    "navbar": {
+        "login": "Log in",
+        "register": "Get Started"
+    },
+    "navLinks": {
+        "home": "Home",
+        "pricing": "Pricing",
+        "careers": "Careers"
+    },
+    "HomePage": {
+        "title": "Hello world!"
+    },
+    "hero": {
+        "headline": "Focus on What Matters. We've Got the Foundation Covered.",
+        "description": "Streamline your processes with a boilerplate built for efficiency and optimal productivity.",
+        "cta": "Get Started"
+    },
+    "userSection": {
+        "userSectionMoreThan": "More than 200",
+        "userSectionUsers": "Users",
+        "userSectionUsage": "make use of our Boilerplate"
+    },
+    "howItWorks": {
+        "howItWorksTitlePrefix": "How It Works:",
+        "howItWorksTitleHighlight": "Experience the benefits of using our product with every step.",
+        "howItWorksDescription": "We designed our product to simplify your life. It offers a comprehensive solution. Here's how it works and how it benefits you at each stage.",
+        "prebuiltTitle": "Pre-Built Sections",
+        "prebuiltDescription": "Leverage pre-built sections like \"Features,\" \"Benefits,\" \"Pricing,\" and \"Testimonials\" to showcase your product effectively.",
+        "scalableTitle": "Scalable Foundation",
+        "scalableDescription": "Our boilerplate is designed to grow with your product. Easily add new features and functionalities as needed.",
+        "easyTitle": "Easy Customization",
+        "easyDescription": "Tailor the experience to your specific needs and preferences for maximum results."
+    },
+    "testimonials": {
+        "title": "Client Testimonials",
+        "description": "Don't just take our word for it - see what actual users of our product have to say about their experience.",
+        "content": "I've been using this web hosting service for over a year and I'm really impressed with the uptime and support. The website has never gone down and the customer service is always quick to help with any issues I have. Highly recommend!"
+    },
+    "perfectFit": {
+        "title": "Find The Perfect Fit",
+        "description": "Choose the boilerplate plan that best suits your project needs and budget. All plans include access to our comprehensive library of pre-built sections, drag-and-drop customization.",
+        "cta": "See Our Pricing Plan"
+    },
+    "footer": {
+        "newsletterSignUp": "Sign Up For Newsletters",
+        "subscribe": "Subscribe",
+        "navigation": "Navigation",
+        "support": "Support",
+        "legal": "Legal",
+        "followUs": "Follow Us",
+        "privacyPolicy": "Privacy Policy",
+        "termsOfUse": "Terms of Use",
+        "enterYourEmail": "Enter your email",
+        "links": {
+            "navigation": "Navigation",
+            "home": "Home",
+            "aboutUs": "About Us",
+            "career": "Career",
+            "features": "Features",
+            "blog": "Blog",
+            "support": "Support",
+            "helpCenter": "Help Center",
+            "faq": "FAQ",
+            "waitingList": "Waiting List",
+            "pricingExperience": "Pricing Experience",
+            "contactUs": "Contact Us",
+            "legal": "Legal",
+            "privacyPolicy": "Privacy Policy",
+            "termsAndConditions": "Terms and Conditions"
+        },
+        "social": {
+            "facebook": "Facebook",
+            "instagram": "Instagram",
+            "linkedin": "LinkedIn",
+            "youtube": "YouTube"
+        },
+        "footerBottom": {
+            "privacyPolicy": "Privacy Policy",
+            "termsOfUse": "Terms of Use",
+            "copyright": "2024 All Rights Reserved"
+        }
+    }
+}

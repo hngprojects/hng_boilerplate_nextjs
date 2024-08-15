@@ -2,6 +2,7 @@
 
 import React, {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useLayoutEffect,
@@ -39,6 +40,7 @@ interface OrgContextProperties {
   updateOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isActionModal: boolean;
   setIsActionModal: React.Dispatch<React.SetStateAction<boolean>>;
+  switchOrganization: (orgId: string) => void;
 }
 
 export const OrgContext = createContext({} as OrgContextProperties);
@@ -51,7 +53,7 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
     DashboardData | undefined
   >();
   const [products, setProducts] = useState<Product[]>([]);
-  const [org_id] = useLocalStorage<string>("current_orgid", "");
+  const [org_id, setOrgId] = useLocalStorage<string>("current_orgid", "");
   const [selectedProduct, setSelectedProduct] = useState<string>("");
   const [isNewModal, setIsNewModal] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
@@ -62,11 +64,18 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
 
   const isAnyModalOpen = isNewModal || isDelete || isOpen || isActionModal;
 
+  const switchOrganization = useCallback(
+    (orgId: string) => {
+      setOrgId(orgId);
+    },
+    [setOrgId],
+  );
+
   useLayoutEffect(() => {
     if (organizations.length === 0) {
       startTransition(() => {
         getAllOrg().then((data) => {
-          const fetchedOrganizations = data.organization || [];
+          const fetchedOrganizations = (data && data.organization) || [];
           const newOrganizations = fetchedOrganizations.filter(
             (fetchedOrg: { organisation_id: string }) =>
               !organizations.some(
@@ -87,13 +96,15 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
         });
 
         getAnalytics().then((data) => {
-          const formattedData: MonthlyData = Object.keys(data.data).map(
-            (key) => ({
-              month: key,
-              revenue: data.data[key],
-            }),
-          );
-          setMonthlydata(formattedData);
+          if (data && data.data) {
+            const formattedData: MonthlyData = Object.keys(data.data).map(
+              (key) => ({
+                month: key,
+                revenue: data.data[key],
+              }),
+            );
+            setMonthlydata(formattedData);
+          }
         });
       });
     }
@@ -162,6 +173,7 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
       setIsActionModal,
       active_filter,
       setActive_filter,
+      switchOrganization,
     }),
     [
       isLoading,
@@ -175,6 +187,7 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
       isOpen,
       isActionModal,
       active_filter,
+      switchOrganization,
     ],
   );
 

@@ -1,0 +1,86 @@
+{
+    "navbar": {
+        "login": "Iniciar sesión",
+        "register": "Comenzar"
+    },
+    "navLinks": {
+        "home": "Inicio",
+        "pricing": "Precios",
+        "careers": "Carreras"
+    },
+    "HomePage": {
+        "title": "¡Hola, mundo!"
+    },
+    "hero": {
+        "headline": "Concéntrate en lo importante. Nosotros cubrimos los cimientos.",
+        "description": "Agiliza tus procesos con una base de código diseñada para la eficiencia y una productividad óptima.",
+        "cta": "Comenzar"
+    },
+    "userSection": {
+        "userSectionMoreThan": "Más de 200",
+        "userSectionUsers": "Usuarios",
+        "userSectionUsage": "usan nuestro Boilerplate"
+    },
+    "howItWorks": {
+        "howItWorksTitlePrefix": "Cómo Funciona:",
+        "howItWorksTitleHighlight": "Experimenta los beneficios de usar nuestro producto en cada paso.",
+        "howItWorksDescription": "Diseñamos nuestro producto para simplificar tu vida. Ofrece una solución integral. Así es como funciona y cómo te beneficia en cada etapa.",
+        "prebuiltTitle": "Secciones Preconstruidas",
+        "prebuiltDescription": "Aprovecha secciones preconstruidas como \"Características\", \"Beneficios\", \"Precios\" y \"Testimonios\" para mostrar tu producto de manera efectiva.",
+        "scalableTitle": "Fundación Escalable",
+        "scalableDescription": "Nuestro boilerplate está diseñado para crecer con tu producto. Añade fácilmente nuevas características y funcionalidades según sea necesario.",
+        "easyTitle": "Personalización Fácil",
+        "easyDescription": "Personaliza la experiencia según tus necesidades y preferencias específicas para obtener resultados óptimos."
+    },
+    "testimonials": {
+        "title": "Testimonios de Clientes",
+        "description": "No te fíes solo de nuestra palabra: descubre lo que los usuarios reales de nuestro producto tienen que decir sobre su experiencia.",
+        "content": "He estado usando este servicio de alojamiento web durante más de un año y estoy realmente impresionado con el tiempo de actividad y el soporte. El sitio web nunca ha caído y el servicio al cliente siempre es rápido para ayudar con cualquier problema que tenga. ¡Altamente recomendado!"
+    },
+    "perfectFit": {
+        "title": "Encuentra la Solución Perfecta",
+        "description": "Elige el plan de plantilla que mejor se adapte a las necesidades y presupuesto de tu proyecto. Todos los planes incluyen acceso a nuestra biblioteca completa de secciones preconstruidas y personalización mediante arrastrar y soltar.",
+        "cta": "Consulta Nuestro Plan de Precios"
+    },
+    "footer": {
+        "boilerplate": "Plantilla",
+        "address": "Detalles del logo y dirección",
+        "newsletterSignUp": "Suscríbete al Boletín",
+        "subscribe": "Suscribirse",
+        "navigation": "Navegación",
+        "support": "Soporte",
+        "legal": "Legal",
+        "followUs": "Síguenos",
+        "privacyPolicy": "Política de Privacidad",
+        "termsOfUse": "Términos de Uso",
+        "enterYourEmail": "Introduce tu correo electrónico",
+        "links": {
+            "navigation": "Navegación",
+            "home": "Inicio",
+            "aboutUs": "Sobre Nosotros",
+            "career": "Carrera",
+            "features": "Características",
+            "blog": "Blog",
+            "support": "Soporte",
+            "helpCenter": "Centro de Ayuda",
+            "faq": "FAQ",
+            "waitingList": "Lista de Espera",
+            "pricingExperience": "Experiencia de Precios",
+            "contactUs": "Contáctanos",
+            "legal": "Legal",
+            "privacyPolicy": "Política de Privacidad",
+            "termsAndConditions": "Términos y Condiciones"
+        },
+        "social": {
+            "facebook": "Facebook",
+            "instagram": "Instagram",
+            "linkedin": "LinkedIn",
+            "youtube": "YouTube"
+        },
+        "footerBottom": {
+            "privacyPolicy": "Política de Privacidad",
+            "termsOfUse": "Términos de Uso",
+            "copyright": "2024 Todos los Derechos Reservados"
+        }
+    }
+}

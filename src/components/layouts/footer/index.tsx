@@ -9,6 +9,7 @@ import {
   XIcon,
   Youtube,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -20,33 +21,46 @@ import { Toaster } from "~/components/ui/toaster";
 import { useToast } from "~/components/ui/use-toast";
 
 const Footer = () => {
-  const [values, setValues] = useState("");
+  const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const t = useTranslations("footer");
+  const locale = localStorage.getItem("preferredLanguage");
+  const toastDesc =
+    locale === "fr"
+      ? "Veuillez fournir votre e-mail"
+      : locale === "es"
+        ? "Por favor, proporcione su correo electrónico"
+        : "Please provide your email";
 
   // handle submit
   const handleSubmit = async () => {
     setLoading(true);
 
-    if (values === "") {
+    if (email === "") {
       toast({
         title: "Error",
-        description: "Please provide your email",
+        description: toastDesc,
         variant: "destructive",
       });
       setLoading(false);
       return;
     }
 
-    const payload = {
-      email: values,
-    };
+    // const payload = {
+    //   email: values,
+    // };
 
     try {
       const apiUrl = await getApiUrl();
       const response = await axios.post(
         `${apiUrl}/api/v1/newsletter-subscription`,
-        payload,
+        { email },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
       );
       toast({
         title: "Success",
@@ -54,7 +68,7 @@ const Footer = () => {
         variant: "default",
       });
       setLoading(false);
-      setValues("");
+      setEmail("");
     } catch (error: unknown) {
       if (error instanceof Error) {
         toast({
@@ -75,30 +89,30 @@ const Footer = () => {
 
   const footerLinks = [
     {
-      title: "Navigation",
+      title: t("navigation"),
       links: [
-        { route: "Home", link: "/" },
-        { route: "About us", link: "/about-us" },
-        { route: "Career", link: "/career" },
-        { route: "Features", link: "/" },
-        { route: "Blog", link: "/blog" },
+        { route: "home", link: "/" },
+        { route: "aboutUs", link: "/about-us" },
+        { route: "career", link: "/career" },
+        { route: "features", link: "/" },
+        { route: "blog", link: "/blog" },
       ],
     },
     {
-      title: "Support",
+      title: t("support"),
       links: [
-        { route: "Help center", link: "/help-center" },
-        { route: "FAQ", link: "/faqs" },
-        { route: "Waiting List", link: "/waitlist" },
-        { route: "Pricing Experience", link: "/pricing" },
-        { route: "Contact Us", link: "/contact-us" },
+        { route: "helpCenter", link: "/help-center" },
+        { route: "faq", link: "/faqs" },
+        { route: "waitingList", link: "/waitlist" },
+        { route: "pricingExperience", link: "/pricing" },
+        { route: "contactUs", link: "/contact-us" },
       ],
     },
     {
-      title: "Legal",
+      title: t("legal"),
       links: [
-        { route: "Privacy Policy", link: "/privacy-policy" },
-        { route: "Terms and condition", link: "/terms-and-conditions" },
+        { route: "privacyPolicy", link: "/privacy-policy" },
+        { route: "termsAndConditions", link: "/terms-and-conditions" },
       ],
     },
   ];
@@ -127,8 +141,8 @@ const Footer = () => {
   ];
 
   const footerBottom = [
-    { route: "Privacy Policy", link: "/" },
-    { route: "Terms of Use", link: "/" },
+    { route: "privacyPolicy", link: "/" },
+    { route: "termsOfUse", link: "/" },
   ];
 
   //
@@ -148,14 +162,14 @@ const Footer = () => {
             </div>
             <div className="flex flex-col items-center justify-center md:block lg:hidden">
               <h5 className="text-neurtal-dark-2 text-md mb-4 text-center font-semibold sm:text-left md:mb-[36px]">
-                Sign Up For Newsletters
+                {t("newsletterSignUp")}
               </h5>
               <div className="item flex h-[46px] w-full items-center justify-start md:max-w-[283px]">
                 <Input
                   placeholder="Enter your email"
                   className="border-r-none text-md h-[46px] rounded-r-none border-r-0 border-r-transparent bg-transparent active:border-transparent"
-                  onChange={(event) => setValues(event.target.value)}
-                  value={values}
+                  onChange={(event) => setEmail(event.target.value)}
+                  value={email}
                 />
                 <CustomButton
                   variant="primary"
@@ -189,7 +203,7 @@ const Footer = () => {
                             href={item.link}
                             className="text-md cursor-pointer text-neutral-dark-2 transition-colors duration-300 hover:text-primary hover:underline dark:text-white"
                           >
-                            {item.route}
+                            {t(`links.${item.route}`)}
                           </Link>
                         </li>
                       );
@@ -201,14 +215,14 @@ const Footer = () => {
 
             <div className="hidden lg:block">
               <h5 className="text-neurtal-dark-2 text-md mb-4 font-semibold md:mb-[36px]">
-                Sign Up For Newsletter
+                {t("newsletterSignUp")}
               </h5>
               <div className="item flex h-[46px] w-full max-w-[283px] items-center justify-start">
                 <Input
                   className="border-r-none h-[46px] rounded-r-none border-r-0 border-r-transparent bg-transparent active:border-transparent"
-                  placeholder="Enter your email"
-                  onChange={(event) => setValues(event.target.value)}
-                  value={values}
+                  placeholder={t("enterYourEmail")}
+                  onChange={(event) => setEmail(event.target.value)}
+                  value={email}
                 />
                 <CustomButton
                   variant="primary"
@@ -221,7 +235,7 @@ const Footer = () => {
                       <LoadingSpinner className="size-4 animate-spin sm:size-5" />
                     </span>
                   ) : (
-                    "Subscibe"
+                    `${t("subscribe")}`
                   )}
                 </CustomButton>
               </div>
@@ -229,7 +243,7 @@ const Footer = () => {
 
             <div className="lg:hidden">
               <h5 className="text-neurtal-dark-2 mb-[10px] text-[20px] font-semibold">
-                Follow Us
+                {t("followUs")}
               </h5>
               <div className="flex w-full max-w-[116px] items-center justify-between gap-1 md:max-w-[212px]">
                 {socialLinks.map((item, index) => {
@@ -266,7 +280,7 @@ const Footer = () => {
           </div>
           <span className="flex items-center justify-center text-center text-xs font-semibold text-stroke-colors-stroke">
             <Copyright className="h-5 w-5 text-stroke-colors-stroke" />
-            2024 All Rights Reserved
+            {t("footerBottom.copyright")}
           </span>
           <div className="hidden lg:block">
             <ul className="flex items-center justify-between gap-[13px]">
@@ -277,7 +291,7 @@ const Footer = () => {
                       href={item.link}
                       className="cursor-pointer text-sm text-neutral-dark-2 transition-colors duration-300 hover:text-primary hover:underline"
                     >
-                      {item.route}
+                      {t(`footerBottom.${item.route}`)}
                     </Link>
                   </li>
                 );
