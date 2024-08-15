@@ -64,7 +64,7 @@ const DashboardNavbar = () => {
                       { header: "Sign up for offer", time: "2 hours ago" },
                       { header: "Register for event", time: "1 hour ago" },
                     ]}
-                    unreadCount={30}
+                    unreadCount={13}
                   />
                 </PopoverContent>
               </Popover>

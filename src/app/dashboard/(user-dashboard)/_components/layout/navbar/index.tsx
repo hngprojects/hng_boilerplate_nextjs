@@ -2,9 +2,10 @@
 
 import { BellIcon, HelpCircle } from "lucide-react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next-nprogress-bar";
-import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
+import { getAllNotifications } from "~/actions/notifications/getAllNotifications";
 import DashboardLogo from "~/app/dashboard/(admin)/_components/layout/logo";
 import UnreadNotificationCard from "~/app/dashboard/(admin)/_components/unread-notification-card/UnreadNotificationCard";
 import { MobileNavlinks } from "~/app/dashboard/(user-dashboard)/_components/layout/navbar/mobile-navlinks";
@@ -17,43 +18,54 @@ import {
   PopoverTrigger,
 } from "~/components/ui/popover";
 
-// const navlinks = [
-//   {
-//     route: "Overview",
-//     link: "/dashboard/overview",
-//     id: "dashboard",
-//   },
-//   {
-//     route: "Customers",
-//     link: "/dashboard/customers",
-//     id: "customers",
-//   },
-//   {
-//     route: "Products",
-//     link: "/dashboard/products",
-//     id: "products",
-//   },
-//   // {
-//   //   route: "Settings",
-//   //   link: "/dashboard/settings",
-//   //   id: "settings",
-//   // },
-// ];
+interface Notification {
+  header: string;
+  time: string;
+}
 
-// interface User {
-//   email: string;
-//   image: string;
-//   name: string;
-// }
+interface NotificationsData {
+  data: {
+    total_unread_notification_count: number;
+    total_notification_count: number;
+    notifications: Notification[];
+  };
+  message: string;
+}
 
 const UserNavbar = () => {
+  const [notifications, setNotifications] =
+    useState<NotificationsData | null>();
   const { status } = useSession();
   const router = useRouter();
+
   useEffect(() => {
     if (status === "unauthenticated") {
       router.push("/login");
     }
   }, [status, router]);
+
+  useEffect(() => {
+    async function fetchNotifications() {
+      const result = await getAllNotifications();
+
+      if (result.error) {
+        console.error("Failed to fetch notifications:", result.error);
+      } else {
+        console.log("Notifications fetched successfully:", result.data);
+        setNotifications(result.data as NotificationsData);
+      }
+    }
+
+    fetchNotifications();
+  }, []);
+
+  const totalUnreadNotificationCount =
+    notifications?.data.total_unread_notification_count || 0;
+
+  const totalNotificationCount =
+    notifications?.data.total_notification_count || 0;
+  const notificationContent = notifications?.data.notifications;
+  console.log(notificationContent);
 
   return (
     <nav
@@ -89,11 +101,17 @@ const UserNavbar = () => {
                     { header: "Sign up for offer", time: "2 hours ago" },
                     { header: "Register for event", time: "1 hour ago" },
                   ]}
-                  unreadCount={30}
+                  unreadCount={totalUnreadNotificationCount}
                 />
               </PopoverContent>
             </Popover>
-            <span className="absolute right-1 top-0 h-[6px] w-[6px] rounded-full bg-error"></span>
+            {notifications && (
+              <>
+                {totalNotificationCount > 0 && (
+                  <span className="absolute right-1 top-0 h-[6px] w-[6px] rounded-full bg-error"></span>
+                )}
+              </>
+            )}
           </div>
           <div className="max-sm:hidden">
             <HelpCircle
