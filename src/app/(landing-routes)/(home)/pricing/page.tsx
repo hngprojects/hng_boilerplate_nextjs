@@ -1,27 +1,24 @@
 "use client";
 
-import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { getBillingPlans } from "~/actions/billingPlan";
 
-import { getApiUrl } from "~/actions/getApiUrl";
+import { getBillingPlans } from "~/actions/billingPlan";
 import FaqAccordion from "~/components/layouts/accordion/FaqsAccordion";
 import Heading from "~/components/layouts/heading";
 import PricingCardSkeleton from "~/components/skeleton/pricingcardskeleton";
 import { Button } from "~/components/ui/button";
 import { faqData } from "~/constants/faqsdata";
-import { auth } from "~/lib/auth";
 
 interface BillingPlan {
   id: string;
   name: string;
   // price: string;
-  frequency?: string,
-  is_active?: boolean,
-  amount: string,
-  description?: string,
+  frequency?: string;
+  is_active?: boolean;
+  amount: string;
+  description?: string;
 }
 
 const getAnnualPrice = (monthlyPrice: string) => {
@@ -43,6 +40,7 @@ export default function Pricing() {
         setPlans(result.data.data);
       } else {
         setPlans([]);
+        setError("Failed to fetch billing plans")
       }
 
       setLoading(false);
@@ -137,8 +135,8 @@ export default function Pricing() {
                     className="mb-[16px] text-[20px] font-bold md:text-[22px]"
                     data-testid={`${plan.name.toLowerCase()}-price`}
                   >
-                    ${toggle === 1 ? plan.amount : getAnnualPrice(plan.amount)} /{" "}
-                    {toggle === 1 ? "month" : "year"}
+                    ${toggle === 1 ? plan.amount : getAnnualPrice(plan.amount)}{" "}
+                    / {toggle === 1 ? "month" : "year"}
                   </h1>
                   <p
                     className="mb-[46px] text-[14px]"
