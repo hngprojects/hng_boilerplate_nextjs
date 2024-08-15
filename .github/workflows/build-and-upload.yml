@@ -1,0 +1,47 @@
+name: Build and Upload
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.fork == false
+
+    environment:
+      name: "dev"
+      url: ${{ vars.URL }}
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Build Docker image
+        run: docker build -t hngdevops/nextjs-boilerplate:dev -f docker/development/Dockerfile .
+      
+      - name: Save and compress Docker image
+        run: |
+          docker save hngdevops/nextjs-boilerplate:dev > nextjs-dev.tar
+          gzip nextjs-dev.tar
+      
+      - name: Copy to server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          source: "nextjs-dev.tar.gz"
+          target: "/tmp/nextjs"
+  
+      - name: Load image in server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd /tmp/nextjs
+            gunzip nextjs-dev.tar.gz
+            docker load < nextjs-dev.tar
+            rm -f nextjs-dev.tar

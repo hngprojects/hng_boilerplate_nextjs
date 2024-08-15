@@ -9,47 +9,60 @@ on:
       - .github/workflows/**
 
 jobs:
-  build_and_push:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v2
+      
+      - name: Build Docker image
+        run: docker build -t hngdevops/nextjs-boilerplate:prod -f docker/prod/Dockerfile .
+      
+      - name: Save and compress Docker image
+        run: |
+          docker save hngdevops/nextjs-boilerplate:prod > nextjs-prod.tar
+          gzip nextjs-prod.tar
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: docker-image
+          path: nextjs-prod.tar.gz
         
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-  
-      - name: Build and push
-        uses: docker/build-push-action@v6
-        with:
-          file: docker/prod/Dockerfile
-          push: true
-          tags: hngdevops/nextjs-boilerplate:prod
-          
-  deploy_to_production:
-    needs: build_and_push
+  deploy_to_prod:
     if: github.event.repository.fork == false
     runs-on: ubuntu-latest
 
     environment:
-      name: "production"
+      name: "prod"
       url: ${{ vars.URL }}
 
     steps:
-      - name: Deploy to production environment
-        uses: appleboy/ssh-action@v1.0.3
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: docker-image
+          path: .
+      
+      - name: Copy to server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          source: "nextjs-prod.tar.gz"
+          target: "/tmp/nextjs"
+  
+      - name: Deploy on server
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            cd hng_boilerplate_nextjs
-            ./scripts/prod_deploy.sh  
+            cd /tmp/nextjs
+            gunzip nextjs-prod.tar.gz
+            docker load < nextjs-prod.tar
+            rm -f nextjs-prod.tar
+            cd /home/${{ secrets.USERNAME }}/hng_boilerplate_nextjs
+            chmod +x ./scripts/*.sh
+            ./scripts/prod_deploy.sh

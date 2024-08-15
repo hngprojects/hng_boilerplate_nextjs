@@ -1,7 +1,6 @@
 "use server";
 
 import axios from "axios";
-import { cookies } from "next/headers";
 import * as z from "zod";
 
 import { LoginSchema } from "~/schemas";
@@ -9,7 +8,6 @@ import { LoginSchema } from "~/schemas";
 const apiUrl = process.env.API_URL;
 
 export const loginUser = async (values: z.infer<typeof LoginSchema>) => {
-  const cookie = cookies();
   const validatedFields = LoginSchema.safeParse(values);
   if (!validatedFields.success) {
     return {
@@ -20,16 +18,10 @@ export const loginUser = async (values: z.infer<typeof LoginSchema>) => {
   const payload = { email, password };
   try {
     const response = await axios.post(`${apiUrl}/api/v1/auth/login`, payload);
-    const access_token = response.data.access_token;
 
-    cookie.set("access_token", access_token, {
-      maxAge: 60 * 60 * 24 * 1,
-      httpOnly: true,
-      path: "/",
-      priority: "high",
-    });
     return {
       status: response.status,
+      organisations: response.data.data.organisations,
     };
   } catch (error) {
     return axios.isAxiosError(error) && error.response

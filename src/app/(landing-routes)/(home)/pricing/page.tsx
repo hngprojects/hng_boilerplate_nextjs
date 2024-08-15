@@ -199,7 +199,7 @@ export default function Pricing() {
                   </div>
                   <Button
                     size="lg"
-                    className="mt-[51px] w-full bg-primary text-background"
+                    className="mt-[51px] w-full bg-primary text-background hover:bg-destructive"
                     data-testid={`${plan.name.toLowerCase()}-button`}
                   >
                     Continue

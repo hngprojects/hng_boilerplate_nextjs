@@ -223,7 +223,7 @@ const JobDetails = () => {
             icon={isSmallScreen ? undefined : <Plus />}
             isLeftIconVisible={isSmallScreen}
             isDisabled={false}
-            className={`h-[50px] w-[250px]`}
+            className={`h-[50px] w-[250px] hover:bg-destructive`}
           >
             Apply Now
           </CustomButton>

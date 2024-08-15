@@ -143,7 +143,7 @@ const HelpCenter = () => {
 
           <Link
             href="/contact-us"
-            className="align-center mx-auto mt-4 inline-block flex w-[150px] justify-center rounded-md bg-primary px-5 py-4 text-background"
+            className="align-center mx-auto mt-4 inline-block flex w-[150px] justify-center rounded-md bg-primary px-5 py-4 text-background hover:bg-destructive"
           >
             Contact us
           </Link>

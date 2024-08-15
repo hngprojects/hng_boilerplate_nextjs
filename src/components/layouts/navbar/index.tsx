@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import useVersionSync from "~/actions/useVersionSync";
 import UserCard from "~/components/card/user-card";
 import Logo from "~/components/common/logo";
+import LanguageSwitcher from "~/components/languageSwitcher/languageSwitcher";
 import { cn } from "~/lib/utils";
 import { NAV_LINKS } from "./links";
 import MobileNav from "./mobile-navbar";
@@ -61,17 +62,18 @@ const Navbar = () => {
             );
           })}
         </div>
+        <LanguageSwitcher />
         {status !== "authenticated" && (
           <div className="w-fullx hidden items-center justify-end gap-x-4 justify-self-end md:flex lg:gap-x-8">
             <Link
               href="/login"
-              className="grid h-[44px] place-items-center whitespace-nowrap rounded-md border border-primary px-4 text-primary lg:px-8"
+              className="grid h-[44px] place-items-center whitespace-nowrap rounded-md border border-primary px-4 text-primary hover:bg-subtle lg:px-8"
             >
               Log in
             </Link>
             <Link
               href="/register"
-              className="grid h-[44px] place-items-center whitespace-nowrap rounded-md border border-primary bg-primary px-4 text-white lg:px-8"
+              className="grid h-[44px] place-items-center whitespace-nowrap rounded-md border border-primary bg-primary px-4 text-white hover:bg-destructive lg:px-8"
             >
               Get Started
             </Link>
