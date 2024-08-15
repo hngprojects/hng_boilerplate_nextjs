@@ -101,13 +101,21 @@ export const productSchema = z.object({
   category: z.string(),
 });
 
+const permissionsSchema = z.object({
+  "Can view transactions": z.boolean(),
+  "Can view refunds": z.boolean(),
+  "Can log refunds": z.boolean(),
+  "Can view users": z.boolean(),
+  "Can create users": z.boolean(),
+  "Can blacklist/whitelist users": z.boolean(),
+});
 export const roleSchema = z.object({
   name: z.string().min(2, {
     message: "name is required",
   }),
-  permissions: z.string().min(2, {
-    message: "Role Permissions must be at least 2 characters.",
-  }),
+  permissions: z
+    .array(z.string().uuid())
+    .nonempty("At least one permission must be selected"),
   description: z.string().min(2, {
     message: "Role description must be at least 2 characters.",
   }),

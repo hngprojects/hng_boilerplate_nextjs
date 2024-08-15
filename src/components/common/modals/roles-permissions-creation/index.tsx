@@ -1,9 +1,8 @@
 "use client";
 
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 import CustomButton from "~/components/common/common-button/common-button";
-import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import {
   Dialog,
   DialogClose,
@@ -15,38 +14,45 @@ import {
 } from "~/components/ui/dialog";
 
 type Permission = {
-  [key: string]: boolean;
+  id: string;
+  name: string;
+  description: string;
+  value: boolean;
 };
 
-const perm = {
-  "Can view transactions": false,
-  "Can view refunds": false,
-  "Can log refunds": false,
-  "Can view users": false,
-  "Can create users": false,
-  "Can blacklist/whitelist users": false,
-};
-
-const RolePreferencesCreationModal: React.FC = ({
-  handleSubmit,
+function RolePreferencesCreationModal({
+  permissions,
+  handleChange,
 }: {
-  handleSubmit: Dispatch<SetStateAction<Permission>>;
-}) => {
-  const [permissions, setPermissions] = useState<Permission>(perm);
-  const [isSaving, setIsSaving] = useState(false);
-
-  const handleToggle = (permission: string, value: boolean) => {
-    setPermissions({
-      ...permissions,
-      [permission]: value,
-    });
+  permissions: Permission[];
+  handleChange: Dispatch<
+    SetStateAction<
+      | {
+          id: string;
+          name: string;
+          description: string;
+          value: boolean;
+        }[]
+      | []
+    >
+  >;
+}) {
+  const handleToggle = (index: number, checked: boolean) => {
+    const currentElement = permissions.at(index);
+    if (currentElement) {
+      currentElement.value = checked;
+      handleChange([
+        ...permissions.slice(0, index),
+        currentElement,
+        ...permissions.slice(index + 1),
+      ]);
+    }
   };
-
   return (
     <>
       <Dialog>
         <DialogTrigger asChild>
-          <CustomButton type="button" variant="primary">
+          <CustomButton type="button" variant="secondary">
             Add Permissions
           </CustomButton>
         </DialogTrigger>
@@ -61,13 +67,13 @@ const RolePreferencesCreationModal: React.FC = ({
           </DialogHeader>
           <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-4 px-3">
-              {Object.keys(permissions).map((permission) => (
+              {permissions.map((permission, index) => (
                 <div
-                  key={permission}
+                  key={permission.id}
                   className="flex items-center justify-between pb-1.5"
                 >
                   <span className="text-sm font-normal text-[#525252]">
-                    {permission
+                    {permission.name
                       .replaceAll("_", " ")
                       .replaceAll(/\b\w/g, (l) => l.toUpperCase())}
                   </span>
@@ -75,9 +81,9 @@ const RolePreferencesCreationModal: React.FC = ({
                     <input
                       type="checkbox"
                       className="peer sr-only"
-                      checked={permissions[permission]}
+                      checked={permission.value}
                       onChange={(event) =>
-                        handleToggle(permission, event.target.checked)
+                        handleToggle(index, event.target.checked)
                       }
                     />
                     <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-orange-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-4 peer-focus:ring-orange-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-orange-800"></div>
@@ -87,24 +93,14 @@ const RolePreferencesCreationModal: React.FC = ({
             </div>
             <div className="flex justify-end gap-4">
               <DialogClose className="rounded border border-[#E2E8F0] bg-[#F1F5F9] px-4 py-2 text-sm font-medium text-[#0F172A] hover:bg-[#c1c9d2]">
-                Cancel
+                Done
               </DialogClose>
-              <CustomButton
-                variant="primary"
-                onClick={() => handleSubmit(permissions)}
-              >
-                {isSaving ? (
-                  <LoadingSpinner className="mx-auto size-4 animate-spin sm:size-5" />
-                ) : (
-                  "Create Role"
-                )}
-              </CustomButton>
             </div>
           </div>
         </DialogContent>
       </Dialog>
     </>
   );
-};
+}
 
 export default RolePreferencesCreationModal;

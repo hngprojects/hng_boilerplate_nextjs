@@ -35,6 +35,64 @@ export const getRoles = async (org_id: string) => {
         };
   }
 };
+export const getPermissions = async () => {
+  const session = await auth();
+
+  try {
+    const response = await axios.get(
+      `${apiUrl}/api/v1/organisations/permissions`,
+      {
+        headers: {
+          Authorization: `Bearer ${session?.access_token}`,
+        },
+      },
+    );
+
+    return {
+      data: response.data,
+    };
+  } catch (error) {
+    return axios.isAxiosError(error) && error.response
+      ? {
+          error: error.response.data.message || "Failed.",
+          status: error.response.status,
+        }
+      : {
+          error: "An unexpected error occurred.",
+        };
+  }
+};
+
+export const getRolePermissions = async (
+  currentOrgId: string,
+  roleId: string,
+) => {
+  const session = await auth();
+
+  try {
+    const response = await axios.get(
+      `${apiUrl}/api/v1/organisations/${currentOrgId}/roles/${roleId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${session?.access_token}`,
+        },
+      },
+    );
+
+    return {
+      data: response.data.data,
+    };
+  } catch (error) {
+    return axios.isAxiosError(error) && error.response
+      ? {
+          error: error.response.data.message || "Failed.",
+          status: error.response.status,
+        }
+      : {
+          error: "An unexpected error occurred.",
+        };
+  }
+};
 
 export const createRole = async (
   values: z.infer<typeof roleSchema>,
@@ -60,6 +118,7 @@ export const createRole = async (
         },
       },
     );
+
     return {
       data: response.data,
     };
@@ -74,11 +133,16 @@ export const createRole = async (
         };
   }
 };
-export const updatePermissions = async (
+const roleSchemaWithId = roleSchema.extend({
+  id: z.string().uuid(),
+  permissions: z.array(z.string().uuid()),
+});
+export const updateRole = async (
   values: z.infer<typeof roleSchema>,
-  org_id: string,
+  currentOrgId: string,
+  roleId: string,
 ) => {
-  const validatedFields = roleSchema.safeParse(values);
+  const validatedFields = roleSchemaWithId.safeParse(values);
   if (!validatedFields.success) {
     return {
       error: "Create Role Failed. Please check your inputs.",
@@ -89,8 +153,8 @@ export const updatePermissions = async (
   const payload = validatedFields.data;
 
   try {
-    const response = await axios.post(
-      `${apiUrl}/api/v1/organisations/${org_id}/roles`,
+    const response = await axios.put(
+      `${apiUrl}/organisations/${currentOrgId}/roles/${roleId}`,
       payload,
       {
         headers: {

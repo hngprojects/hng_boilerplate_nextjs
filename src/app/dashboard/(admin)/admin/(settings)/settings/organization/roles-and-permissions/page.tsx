@@ -4,43 +4,54 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { getApiUrl } from "~/actions/getApiUrl";
-import { getRoles, updatePermissions } from "~/actions/roles-and-permissions";
+import {
+  getPermissions,
+  getRolePermissions,
+  getRoles,
+  updateRole,
+} from "~/actions/roles-and-permissions";
 import CustomButton from "~/components/common/common-button/common-button";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import { useToast } from "~/components/ui/use-toast";
 import { useLocalStorage } from "~/hooks/use-local-storage";
-import { Organisation } from "~/types";
 
 type Role = {
-  id: number;
+  id: string;
   name: string;
   description: string;
 };
 
 type Permission = {
-  [key: string]: boolean;
+  id: string;
+  name: string;
+  description: string;
 };
 
 const RolesAndPermission = () => {
-  const [selectedRoleId, setSelectedRoleId] = useState<number | undefined>();
-  const [permissions, setPermissions] = useState<Permission>({});
+  const [selectedRoleId, setSelectedRoleId] = useState<string | undefined>();
+  const [permissions, setPermissions] = useState<string[] | []>([]);
+  const [allPermission, setAllPermissions] = useState<Permission[] | []>([]);
   const [roles, setRoles] = useState<Role[]>([]);
   const [apiUrl, setApiUrl] = useState("");
   const { toast } = useToast();
   const [loadingRoles, setLoadingRoles] = useState<boolean>(true);
   const [loadingPermissions, setLoadingPermissions] = useState<boolean>(false);
   const [loadingRequest, setLoadingRequest] = useState<boolean>(false);
-  const [userOrg, setUserOrg] = useLocalStorage<Organisation[]>("user_org", []);
+  const [currentOrgId] = useLocalStorage<string | undefined>(
+    "current_orgid",
+    "",
+  );
 
   useEffect(() => {
+    if (!currentOrgId) return;
     const fetchData = async () => {
       try {
         const url = await getApiUrl();
         setApiUrl(url);
-        const { data, error } = await getRoles(
-          userOrg.at(0)?.organisation_id ??
-            "8912fe8c-8ed8-4f06-b48b-941167000875",
-        );
+        const { data, error } = await getRoles(currentOrgId);
+
+        if (error) throw new Error("");
+
         setRoles(data.data);
         setLoadingRoles(false);
       } catch (error: unknown) {
@@ -55,19 +66,24 @@ const RolesAndPermission = () => {
     };
     setLoadingRoles(true);
     fetchData();
-  }, [toast]);
+  }, [currentOrgId]);
 
   useEffect(() => {
     const fetchPermissions = async () => {
       if (selectedRoleId) {
         setLoadingPermissions(true);
         try {
-          const response = await fetch(
-            `${apiUrl}/organisations/${userOrg.at(0)?.organisation_id}/roles/${selectedRoleId}`,
+          await getRolePermissions(currentOrgId, selectedRoleId).then(
+            (data) => {
+              const rolesData = data.data;
+              if (rolesData.permissions.length > 0) {
+                setPermissions(
+                  rolesData.permissions.map((permission) => permission.id),
+                );
+              }
+              setLoadingPermissions(false);
+            },
           );
-          const permissionsData = await response.json();
-          setPermissions(permissionsData.permission_list);
-          setLoadingPermissions(false);
         } catch {
           toast({
             title: "An error occurred",
@@ -79,65 +95,62 @@ const RolesAndPermission = () => {
       }
     };
     fetchPermissions();
-    // setPermissions({
-    //   "Can view transactions": true,
-    //   "Can view refunds": true,
-    //   "Can log refunds": true,
-    //   "Can view users": true,
-    //   "Can create users": true,
-    // });
-  }, [selectedRoleId, apiUrl, userOrg, toast]);
+  }, [selectedRoleId, apiUrl, currentOrgId, toast]);
 
-  const handleRoleClick = (roleId: number) => {
+  useEffect(() => {
+    const fetchPermissions = async () => {
+      await getPermissions()
+        .then((data) => {
+          if (data.data) setAllPermissions(data.data);
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.log(error);
+        });
+    };
+    fetchPermissions();
+  }, []);
+
+  const handleRoleClick = (roleId: string) => {
     setSelectedRoleId(roleId);
   };
 
-  const handleToggle = (permission: string, value: boolean) => {
-    setPermissions({
-      ...permissions,
-      [permission]: value,
-    });
+  const handleToggle = (permissionId: string, checked: boolean) => {
+    if (checked) {
+      setPermissions((previous) => [...previous, permissionId]);
+    } else {
+      setPermissions((previous) =>
+        previous.filter((id) => id !== permissionId),
+      );
+    }
   };
 
   const handleSave = async () => {
+    if (!selectedRoleId) return;
+    const selectedRole =
+      roles.some((role) => role.id === selectedRoleId) &&
+      roles.find((role) => role.id === selectedRoleId);
     setLoadingRequest(true);
     try {
-      const response = await fetch(
-        `${apiUrl}/organisations/${org_id}/${selectedRoleId}/permissions`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ permission_list: permissions }),
-        },
-      );
-
-      if (response.ok) {
+      await updateRole(
+        { ...selectedRole, permissions },
+        currentOrgId,
+        selectedRoleId,
+      ).then(() => {
         toast({
           title: "Success",
-          description: "Permissions updated successfully",
+          description: "Role updated successfully",
           variant: "default",
         });
-      } else {
-        toast({
-          title: "Error",
-          description: "Failed to update permissions",
-          variant: "destructive",
-        });
-      }
+      });
     } catch {
       toast({
         title: "Error",
-        description: "Failed to update permissions",
+        description: "Failed to update role",
         variant: "destructive",
       });
     }
     setLoadingRequest(false);
-  };
-
-  const handlePermissionsChange = async () => {
-    await updatePermissions({}, "");
   };
 
   return (
@@ -166,7 +179,6 @@ const RolesAndPermission = () => {
                     className={`text-xs font-normal ${selectedRoleId === role.id ? "text-white" : "text-[#525252]"}`}
                   >
                     {role.description}
-                    {/* Full control and Full Permissions */}
                   </p>
                 </li>
               ))
@@ -203,15 +215,15 @@ const RolesAndPermission = () => {
               <div className="item-center flex justify-center py-48">
                 <LoadingSpinner className="size-4 animate-spin stroke-orange-500 sm:size-5" />
               </div>
-            ) : (
+            ) : allPermission.length > 0 ? (
               <div className="mt-6">
-                {Object.keys(permissions).map((permission) => (
+                {allPermission.map((permission) => (
                   <div
-                    key={permission}
+                    key={permission.id}
                     className="mb-4 flex items-center justify-between"
                   >
                     <span className="text-sm font-normal text-[#525252]">
-                      {permission
+                      {permission.name
                         .replaceAll("_", " ")
                         .replaceAll(/\b\w/g, (l) => l.toUpperCase())}
                     </span>
@@ -219,9 +231,9 @@ const RolesAndPermission = () => {
                       <input
                         type="checkbox"
                         className="peer sr-only"
-                        checked={permissions[permission]}
+                        checked={permissions.includes(permission.id)}
                         onChange={(event) =>
-                          handleToggle(permission, event.target.checked)
+                          handleToggle(permission.id, event.target.checked)
                         }
                       />
                       <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-orange-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-4 peer-focus:ring-orange-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-orange-800"></div>
@@ -241,6 +253,8 @@ const RolesAndPermission = () => {
                   </button>
                 </div>
               </div>
+            ) : (
+              <p className="">Ooops! Something went wrong.</p>
             )}
           </div>
         </div>
