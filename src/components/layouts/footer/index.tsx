@@ -37,7 +37,6 @@ const Footer = () => {
   // handle submit
   const handleSubmit = async () => {
     if (email === "") {
-
       setError(true);
 
       toast({
@@ -265,8 +264,6 @@ const Footer = () => {
                     Please provide your email
                   </small>
                 )}
-
-              
               </div>
             </div>
 
