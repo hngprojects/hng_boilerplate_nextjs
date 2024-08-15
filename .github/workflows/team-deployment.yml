@@ -2,7 +2,7 @@ name: Team Deployment
 
 on:
   workflow_run:
-    workflows: ["Build and Upload"]
+    workflows: ["Build-and-Upload"]
     types:
       - completed
 
