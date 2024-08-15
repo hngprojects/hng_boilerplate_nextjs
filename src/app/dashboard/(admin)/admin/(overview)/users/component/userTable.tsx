@@ -27,16 +27,10 @@ const UserTable: React.FC<UserTableProperties> = ({
       <table className="user-table h-full w-full overflow-hidden">
         <UserTableHead />
         {loading ? (
-          <tbody>
-            <tr>
-              <td>
-                <span className="mx-auto flex w-full items-center justify-center gap-x-2">
-                  <span className="animate-pulse">Fetching user data...</span>{" "}
-                  <LoadingSpinner className="size-4 animate-spin sm:size-5" />
-                </span>
-              </td>
-            </tr>
-          </tbody>
+          <span className="mx-auto flex w-full items-center justify-center gap-x-2">
+            <span className="animate-pulse">Fetching user data...</span>{" "}
+            <LoadingSpinner className="size-4 animate-spin sm:size-5" />
+          </span>
         ) : (
           <UserTableBody
             data={data}

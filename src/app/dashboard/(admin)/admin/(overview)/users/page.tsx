@@ -26,6 +26,7 @@ import "./assets/style.css";
 import axios from "axios";
 
 import { getApiUrl } from "~/actions/getApiUrl";
+import { useToast } from "~/components/ui/use-toast";
 
 interface FilterDataProperties {
   title: string;
@@ -112,12 +113,12 @@ const UserPage = () => {
     }
   };
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const baseUrl = await getApiUrl();
-        const API_URL = `${baseUrl}/api/v1/users`;
-        const response = await axios.get(`${API_URL}?page=${page}`);
+  const fetchData = useCallback(async () => {
+    try {
+      setLoading(true);
+      const baseUrl = await getApiUrl();
+      const API_URL = `${baseUrl}/api/v1/users`;
+      const response = await axios.get(`${API_URL}?page=${page}`);
 
       setIsNextPageActive(response.data.data?.next_page_url ? true : false);
       setIsPreviousPageActive(response.data.data?.prev_page_url ? true : false);
@@ -152,16 +153,70 @@ const UserPage = () => {
           }
         }
 
-          return {
-            ...previous,
-            value: count,
-          };
-        });
-      } catch {
-        // console.log(error);
-      }
-    })();
-  }, [page]);
+        return {
+          ...previous,
+          value: count,
+        };
+      });
+    } catch (error) {
+      setLoading(false);
+      toast({
+        title: "Error fetching users",
+        description: error as ReactNode,
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  }, [page, toast]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  const deleteUser = async (userId: string) => {
+    try {
+      const baseUrl = await getApiUrl();
+      const API_URL = `${baseUrl}/api/v1/users/${userId}`;
+      setIsDeleting(true);
+      await axios.delete(API_URL);
+      fetchData();
+      const updatedUser = data.filter((user) => user.id !== userId);
+      setData(updatedUser);
+      setFilterData(updatedUser);
+      // setTotalUserOverview((previous) => ({
+      //   ...previous,
+      //   value: updatedUser.length,
+      // }));
+      const deletedCount = updatedUser.filter(
+        (user) => user.deleted_at !== null,
+      ).length;
+      setdeletedUserOverview((previous) => ({
+        ...previous,
+        value: deletedCount,
+      }));
+      const activeCount = updatedUser.filter((user) => user.is_active).length;
+      setActiveUserOverview((previous) => ({
+        ...previous,
+        value: activeCount,
+      }));
+    } catch {
+      setIsDeleting(false);
+    } finally {
+      setIsDeleting(false);
+      setIsDialogOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    console.log("Updated data:", data);
+  }, [data]);
+
+  if (!data) {
+    <div className="w-full pb-5 pt-10 text-center text-neutral-dark-2">
+      No data
+    </div>;
+  }
 
   return (
     <>
