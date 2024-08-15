@@ -38,10 +38,10 @@ jobs:
       run: pnpm build
 
     - name: Archive production artifacts
-      run: tar -czf aivideo-dev.tar.gz .next public
+      run: tar -czf boilerplate.tar.gz .next public
 
-    - name: Upload coverage reports
+    - name: Upload production artifacts
       uses: actions/upload-artifact@v3
       with:
         name: boilerplate-build
-        path: aivideo-dev.tar.gz
+        path: boilerplate.tar.gz
