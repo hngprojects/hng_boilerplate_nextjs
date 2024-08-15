@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
 import { getBillingPlans } from "~/actions/billingPlan";
 import FaqAccordion from "~/components/layouts/accordion/FaqsAccordion";
 import Heading from "~/components/layouts/heading";
@@ -40,7 +39,7 @@ export default function Pricing() {
         setPlans(result.data.data);
       } else {
         setPlans([]);
-        setError("Failed to fetch billing plans")
+        setError("Failed to fetch billing plans");
       }
 
       setLoading(false);
