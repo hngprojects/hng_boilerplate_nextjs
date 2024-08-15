@@ -49,8 +49,6 @@ const Register = () => {
   const [timeLeft, setTimeLeft] = useState<number>(15 * 60);
   const [value, setValue] = useState("");
 
-  const apiUrl = process.env.API_URL;
-
   useEffect(() => {
     if (timeLeft <= 0) return;
     const timerId = setInterval(() => {
@@ -108,10 +106,13 @@ const Register = () => {
 
             const emailResult = await response.json();
             if (emailResult.status === "success") {
+              //no specific action required
             } else {
               throw new Error(emailResult.message || "Email sending failed");
             }
-          } catch {}
+          } catch {
+            //no sepcific action required
+          }
         } else {
           toast({
             title: "An error occurred",
