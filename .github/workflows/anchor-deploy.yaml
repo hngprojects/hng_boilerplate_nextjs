@@ -87,7 +87,7 @@ jobs:
             cd boilerplate-frontend
             rm -rf *
             tar -xzf /tmp/python/boilerplate.tar.gz
-            mv /tmp/python/.env.java .env
+            mv /tmp/python/.env.python .env
             rm -f /tmp/python/boilerplate.tar.gz
             cp -r .next/standalone/* .
             pm2 restart python-boilerplate --update-env
