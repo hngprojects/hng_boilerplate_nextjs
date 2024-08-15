@@ -22,20 +22,17 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           run-id: ${{ github.event.workflow_run.id }}
           name: boilerplate-build
-          path: boilerplate.tar.gz
+          path: .
 
       - name: Decode and create .env file
         run: |
           echo ${{ secrets.ENV }} | base64 -d > .env.java
 
-      - name: Check directory contents
-        run: ls -la
-
       - name: Copy Artifacts to server
         run: |
           sudo apt update && sudo apt install sshpass -y
-          sshpass -p ${{ secrets.PASSWORD }} scp -o StrictHostKeyChecking=no ./boilerplate.tar.gz .env.java ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/tmp/
-          rm -f ./boilerplate.tar.gz .env
+          sshpass -p ${{ secrets.PASSWORD }} scp -o StrictHostKeyChecking=no boilerplate.tar.gz .env.java ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/tmp/
+          rm -f boilerplate.tar.gz .env
         
       - name: Deploy on server
         uses: appleboy/ssh-action@master
