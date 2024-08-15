@@ -1,0 +1,26 @@
+{
+    "HomePage": {
+        "title": "Bonjour le monde !"
+    },
+    "hero": {
+        "headline": "Concentrez-vous sur l'essentiel. Nous avons la base.",
+        "description": "Rationalisez vos processus avec une base de code conçue pour l'efficacité et une productivité optimale.",
+        "cta": "Commencer"
+    },
+    "userSection": {
+        "userSectionMoreThan": "Plus de 200",
+        "userSectionUsers": "Utilisateurs",
+        "userSectionUsage": "utilisent notre Boilerplate"
+    },
+    "howItWorks": {
+        "howItWorksTitlePrefix": "Comment ça marche :",
+        "howItWorksTitleHighlight": "Découvrez les avantages de notre produit à chaque étape.",
+        "howItWorksDescription": "Nous avons conçu notre produit pour simplifier votre vie. Il offre une solution complète. Voici comment il fonctionne et comment il vous profite à chaque étape.",
+        "prebuiltTitle": "Sections Pré-Construites",
+        "prebuiltDescription": "Profitez des sections pré-construites comme « Fonctionnalités », « Avantages », « Tarifs » et « Témoignages » pour présenter votre produit efficacement.",
+        "scalableTitle": "Fondation Évolutive",
+        "scalableDescription": "Notre modèle est conçu pour évoluer avec votre produit. Ajoutez facilement de nouvelles fonctionnalités selon vos besoins.",
+        "easyTitle": "Personnalisation Facile",
+        "easyDescription": "Adaptez l'expérience à vos besoins et préférences spécifiques pour des résultats maximaux."
+    }
+}

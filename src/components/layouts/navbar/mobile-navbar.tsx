@@ -39,7 +39,7 @@ export default function MobileNav() {
         delay: open ? staggerList : 0,
       },
     );
-  }, [animate, open, staggerList, session?.user]);
+  }, [animate, open, session?.user, staggerList]);
 
   return (
     <>

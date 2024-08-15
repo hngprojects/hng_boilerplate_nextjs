@@ -57,6 +57,7 @@
     "moment-timezone": "^0.5.45",
     "next": "14.2.5",
     "next-auth": "5.0.0-beta.20",
+    "next-intl": "^3.17.2",
     "next-nprogress-bar": "^2.3.13",
     "react": "^18.3.1",
     "react-day-picker": "^8.10.1",

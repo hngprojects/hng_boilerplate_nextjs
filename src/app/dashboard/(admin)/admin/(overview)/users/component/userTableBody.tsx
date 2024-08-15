@@ -1,6 +1,8 @@
+import axios from "axios";
 import { EllipsisVertical } from "lucide-react";
 import { useState } from "react";
 
+import { getApiUrl } from "~/actions/getApiUrl";
 import { Button } from "~/components/ui/button";
 import {
   DropdownMenu,
@@ -12,81 +14,66 @@ import {
 import { UserData } from "../page";
 import DeleteDialog from "./dialogue/delete-dialog";
 
-interface UserTableProperties {
-  data: UserData[];
-  onDelete: (userId: string) => void;
-  isDeleting: boolean;
-  isDialogOpen: boolean;
-  setIsDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const UserTableBody: React.FC<UserTableProperties> = ({
-  data,
-  onDelete,
-  isDeleting,
-  isDialogOpen,
-  setIsDialogOpen,
-}) => {
+const UserTableBody = ({ data }: { data: UserData[] }) => {
   const [userId, setUserId] = useState("");
-  // const [isDeleting, setIsDeleting] = useState(false);
-  // const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const handleOpenDialog = (id: string) => {
     setIsDialogOpen(true);
     setUserId(id);
   };
   const handleCloseDialog = () => setIsDialogOpen(false);
 
-  // const deleteHandler = async () => {
-  //   try {
-  //     const baseUrl = await getApiUrl();
-  //     const API_URL = `${baseUrl}/api/v1/users/${userId}`;
-  //     setIsDeleting(true);
-  //     await axios.delete(API_URL);
-  //   } catch {
-  //     setIsDeleting(false);
-  //   } finally {
-  //     setIsDeleting(false);
-  //   }
-  // };
+  const deleteHandler = async () => {
+    try {
+      const baseUrl = getApiUrl();
+      const API_URL = `${baseUrl}/api/v1/users/${userId}`;
+      setIsDeleting(true);
+      await axios.delete(API_URL);
+    } catch {
+      setIsDeleting(false);
+    } finally {
+      setIsDeleting(false);
+    }
+  };
 
   return (
     <>
       <tbody className="user-table z-10">
-        {Array.isArray(data) &&
-          data.map((_data, index) => {
-            const {
-              id,
-              email,
-              phone,
-              is_active: status,
-              name: fullName,
-              created_at: date,
-            } = _data;
-            // console.log(fullName);
+        {data.map((_data, index) => {
+          const {
+            id,
+            email,
+            phone,
+            is_active: status,
+            name: fullName,
+            created_at: date,
+          } = _data;
 
-            return (
-              <tr key={index} className="w-full border-b border-b-border">
-                <td className="whitespace-nowrap p-4 text-left text-base font-normal capitalize leading-4 text-neutral-dark-2">
-                  <div className="flex flex-row items-center gap-2">
-                    <div className="h-10 w-10 overflow-hidden rounded-full bg-gray-200">
-                      <div className="grid h-[40px] w-[40px] place-items-center rounded-full bg-[#e1e7ef]">
-                        <h6 className="font-semibold text-neutral-dark-1">
-                          {fullName?.charAt(0).toUpperCase() ??
-                            email?.charAt(0).toUpperCase()}
-                        </h6>
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-[500] leading-6 text-neutral-dark-2">
-                        {fullName ?? email}
-                      </h3>
-                      <div className="text-xs font-normal lowercase leading-4 text-neutral-dark-1">
-                        {email}
-                      </div>
+          return (
+            <tr key={index} className="w-full border-b border-b-border">
+              <td
+                className={`whitespace-nowrap p-4 text-left text-base font-normal capitalize leading-4 text-neutral-dark-2`}
+              >
+                <div className="flex flex-row items-center gap-2">
+                  <div className="h-10 w-10 overflow-hidden rounded-full bg-gray-200">
+                    <div className="grid h-[40px] w-[40px] place-items-center rounded-full bg-[#e1e7ef]">
+                      <h6 className="font-semibold text-neutral-dark-1">
+                        {fullName[0]}
+                      </h6>
                     </div>
                   </div>
-                </td>
+                  <div>
+                    <h3 className="text-sm font-[500] leading-6 text-neutral-dark-2">
+                      {fullName}
+                    </h3>
+                    <div className="text-xs font-normal lowercase leading-4 text-neutral-dark-1">
+                      {email}
+                    </div>
+                  </div>
+                </div>
+              </td>
 
                 <td className="gap-2 whitespace-nowrap p-4 text-left text-sm font-normal capitalize leading-4 text-neutral-dark-2">
                   {phone ?? "Nil"}
@@ -114,43 +101,36 @@ const UserTableBody: React.FC<UserTableProperties> = ({
                   </div>
                 </td>
 
-                <td className="whitespace-nowrap p-4 text-center text-base font-normal capitalize leading-4 text-neutral-dark-2">
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button
-                        className="bg-transparent text-neutral-dark-2 hover:bg-transparent focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
-                        size={"icon"}
-                      >
-                        <EllipsisVertical size={16} color="#09090b" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuLabel className="sr-only">
-                        Actions
-                      </DropdownMenuLabel>
-                      <DropdownMenuItem>Edit</DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => handleOpenDialog(id)}>
-                        Delete
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </td>
-              </tr>
-            );
-          })}
-        {/* : (
-        <tr>
-          <td colSpan={5} className="p-4 text-center text-neutral-dark-2">
-            No users available.
-          </td>
-        </tr>
-      ) */}
+              <td className="whitespace-nowrap p-4 text-center text-base font-normal capitalize leading-4 text-neutral-dark-2">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      className="bg-transparent text-neutral-dark-2 hover:bg-transparent focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+                      size={"icon"}
+                    >
+                      <EllipsisVertical size={16} color="#09090b" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuLabel className="sr-only">
+                      Actions
+                    </DropdownMenuLabel>
+                    <DropdownMenuItem>Edit</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => handleOpenDialog(id)}>
+                      Delete
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </td>
+            </tr>
+          );
+        })}
       </tbody>
       {isDialogOpen && (
         <DeleteDialog
           isDeleting={isDeleting}
           onClose={handleCloseDialog}
-          onDelete={() => onDelete(userId)}
+          onDelete={deleteHandler}
         />
       )}
     </>

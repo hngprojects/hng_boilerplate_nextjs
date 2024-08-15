@@ -58,6 +58,7 @@ const Login = () => {
     startTransition(async () => {
       await loginUser(values).then(async (data) => {
         const { email, password } = values;
+
         if (data.status === 200) {
           setUserOrg(data.organisations);
           if (!currentOrgId) {
