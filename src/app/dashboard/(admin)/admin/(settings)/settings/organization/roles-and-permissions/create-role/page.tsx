@@ -179,7 +179,7 @@ function CreateNewRolePage() {
           }
           setIsSaving(false);
         })
-        .catch((error) => {
+        .catch(() => {
           toast({
             title: "⚠️ Error Creating Role",
             description:

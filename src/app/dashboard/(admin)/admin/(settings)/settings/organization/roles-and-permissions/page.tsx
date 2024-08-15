@@ -50,7 +50,7 @@ const RolesAndPermission = () => {
         setApiUrl(url);
         const { data, error } = await getRoles(currentOrgId);
 
-        if (error) throw new Error("");
+        if (error) throw new Error("An error occurred!");
 
         setRoles(data.data);
         setLoadingRoles(false);
@@ -66,7 +66,7 @@ const RolesAndPermission = () => {
     };
     setLoadingRoles(true);
     fetchData();
-  }, [currentOrgId]);
+  }, [currentOrgId, toast]);
 
   useEffect(() => {
     const fetchPermissions = async () => {

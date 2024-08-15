@@ -101,7 +101,7 @@ export const productSchema = z.object({
   category: z.string(),
 });
 
-const permissionsSchema = z.object({
+export const permissionsSchema = z.object({
   "Can view transactions": z.boolean(),
   "Can view refunds": z.boolean(),
   "Can log refunds": z.boolean(),
