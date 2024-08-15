@@ -150,7 +150,6 @@ export default {
     signIn: "/login",
     error: "/error",
   },
-  secret:
-    process.env.AUTH_SECRET,
+  secret: process.env.AUTH_SECRET,
   trustHost: true,
 } satisfies NextAuthConfig;
