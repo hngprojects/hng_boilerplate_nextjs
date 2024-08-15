@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  Bot,
   Box,
   House,
   List,
@@ -18,7 +19,7 @@ import { FC, ForwardRefExoticComponent, RefAttributes } from "react";
 const sideItems = [
   {
     route: "Dashboard",
-    link: "/dashboard/admin/dashboard",
+    link: "/dashboard/admin",
     icon: House,
     id: "dashboard",
   },
@@ -51,6 +52,12 @@ const sideItems = [
     link: "/dashboard/admin/waitlist-page",
     icon: TabletSmartphone,
     id: "waitlist",
+  },
+  {
+    route: "FAQs",
+    link: "/dashboard/admin/faqs",
+    icon: Bot,
+    id: "faqs",
   },
   {
     route: "Settings",
