@@ -91,10 +91,10 @@ const Register = () => {
 
           // Enqueue email for sending using the provided backend API
           const emailData = {
-            template_id: "9cc21148-b890-4634-817a-40d50f90859a", 
+            template_id: "9cc52f6d-c343-4b7d-9837-565083fe0a11",
             subject: "Welcome to Our Service!",
             recipient: values.email,
-            variables: JSON.stringify({ first_name: values.first_name }),
+            variables: JSON.stringify({ name: values.first_name }),
             status: "pending",
           };
           try {
