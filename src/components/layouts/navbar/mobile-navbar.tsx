@@ -2,6 +2,7 @@ import "./menu.css";
 
 import { motion, stagger, useAnimate } from "framer-motion";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -12,6 +13,8 @@ export default function MobileNav() {
   const [open, setOpen] = useState(false);
   const [scope, animate] = useAnimate();
   const { data: session, status } = useSession();
+  const { user } = useUser();
+  const t = useTranslations();
 
   const staggerList = stagger(0.1, { startDelay: 0.25 });
 
@@ -87,7 +90,7 @@ export default function MobileNav() {
                   "hover:text-accent-color relative w-fit text-sm font-medium text-neutral-dark-1 transition-colors duration-300",
                 )}
               >
-                {link.route}
+                {t(`${link.route}`)}
                 <span
                   tabIndex={-1}
                   aria-hidden
@@ -123,6 +126,29 @@ export default function MobileNav() {
               </Link>
             </motion.li>
           </>
+          <motion.li key={NAV_LINKS.length + 1}>
+            <Link
+              href="/login"
+              className={cn(
+                "grid max-w-[100px] place-items-center whitespace-nowrap rounded-md border border-primary px-2 py-2 text-sm text-primary",
+                user?.email ? "hidden" : "",
+              )}
+            >
+              {t("navbar.login")}
+            </Link>
+          </motion.li>
+
+          <motion.li key={NAV_LINKS.length + 2}>
+            <Link
+              href="/register"
+              className={cn(
+                "grid max-w-[100px] place-items-center whitespace-nowrap rounded-md border border-primary bg-primary px-2 py-2 text-sm text-white",
+                user?.email ? "hidden" : "",
+              )}
+            >
+              {t("navbar.register")}
+            </Link>
+          </motion.li>
         </ul>
       </div>
     </>
