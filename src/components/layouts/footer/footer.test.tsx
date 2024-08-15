@@ -1,12 +1,12 @@
 import Footer from ".";
 
-import { render } from "~/test/utils";
+import { renderWithIntl } from "~/test/utils";
 
 describe("page tests", () => {
   it("footer renders", () => {
     expect.assertions(1);
 
-    const view = render(<Footer />);
+    const view = renderWithIntl(<Footer />);
 
     expect(view.baseElement).toBeInTheDocument();
   });
