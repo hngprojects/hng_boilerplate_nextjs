@@ -28,13 +28,6 @@ jobs:
           name: boilerplate-build
           path: .
 
-      - name: Create .env
-        uses: vicradon/create-env-action@v1.0.1
-        with:
-          action_input_file: ".env.sample"
-          action_output_file: ".env"
-          API_URL: ${{ vars.API_URL }}
-          NEXTAUTH_URL: ${{ vars.URL }}
 
       - name: Copy Artifacts to server
         uses: appleboy/scp-action@v0.1.7
@@ -42,8 +35,8 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          source: ".env,boilerplate.tar.gz"
-          target: "~/var/www/boilerplate_fe/dev"
+          source: "boilerplate.tar.gz"
+          target: "/var/www/boilerplate_fe/dev"
 
       - name: Deploy on server
         uses: appleboy/ssh-action@master
@@ -52,7 +45,9 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            cd ~/var/www/boilerplate_fe/dev
+            cd /var/www/boilerplate_fe/dev
+            rm -rf .next
+            rm -rf public
             tar -xzf boilerplate.tar.gz
             rm -f boilerplate.tar.gz
             pm2 restart boilerplate-frontend --update-env
