@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { Input } from "~/components/common/input";
 import { cn } from "~/lib/utils";
@@ -30,7 +28,7 @@ const CustomInput: React.FC<CustomInputProperties> = ({
   labelClassName,
   placeholder,
   type = "text",
-  value: propertyValue,
+  value,
   onChange,
   onFocus,
   isButtonVisible = false,
@@ -42,30 +40,9 @@ const CustomInput: React.FC<CustomInputProperties> = ({
   variant = "primary",
   className,
 }) => {
-  const [inputValue, setInputValue] = useState(propertyValue || "");
-  const [isValid, setIsValid] = useState(true);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    setInputValue(value);
-    if (onChange) onChange(event);
-
-    if (type === "email") {
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      setIsValid(emailPattern.test(value));
-    }
-  };
-
-  const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
-    if (onFocus) onFocus(event);
-  };
-
-  const inputState =
-    !isValid && inputValue ? "invalid" : inputValue ? "active" : "default";
-
-  useEffect(() => {
-    setInputValue(propertyValue || "");
-  }, [propertyValue]);
+  const isValid =
+    type === "email" && value ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) : true;
+  const inputState = isValid ? (value ? "active" : "default") : "invalid";
 
   return (
     <Input
@@ -74,9 +51,9 @@ const CustomInput: React.FC<CustomInputProperties> = ({
       labelClassName={labelClassName}
       placeholder={placeholder}
       type={type}
-      value={inputValue}
-      onChange={handleChange}
-      onFocus={handleFocus}
+      value={value}
+      onChange={onChange}
+      onFocus={onFocus}
       variant={variant}
       state={inputState}
       className={cn(
