@@ -2,6 +2,7 @@
 
 import React, {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useLayoutEffect,
@@ -39,6 +40,7 @@ interface OrgContextProperties {
   updateOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isActionModal: boolean;
   setIsActionModal: React.Dispatch<React.SetStateAction<boolean>>;
+  switchOrganization: (orgId: string) => void;
 }
 
 export const OrgContext = createContext({} as OrgContextProperties);
@@ -51,7 +53,7 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
     DashboardData | undefined
   >();
   const [products, setProducts] = useState<Product[]>([]);
-  const [org_id] = useLocalStorage<string>("current_orgid", "");
+  const [org_id, setOrgId] = useLocalStorage<string>("current_orgid", "");
   const [selectedProduct, setSelectedProduct] = useState<string>("");
   const [isNewModal, setIsNewModal] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
@@ -61,6 +63,13 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [userOrg] = useLocalStorage<Organisation[]>("user_org", []);
 
   const isAnyModalOpen = isNewModal || isDelete || isOpen || isActionModal;
+
+  const switchOrganization = useCallback(
+    (orgId: string) => {
+      setOrgId(orgId);
+    },
+    [setOrgId],
+  );
 
   useLayoutEffect(() => {
     if (organizations.length === 0) {
@@ -115,7 +124,7 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
         ...uniqueOrgs,
       ]);
     }
-  }, [organizations, userOrg]);
+  }, [userOrg, organizations]);
 
   useEffect(() => {
     document.body.style.overflow = isAnyModalOpen ? "hidden" : "auto";
@@ -164,6 +173,7 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
       setIsActionModal,
       active_filter,
       setActive_filter,
+      switchOrganization,
     }),
     [
       isLoading,
@@ -177,6 +187,7 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
       isOpen,
       isActionModal,
       active_filter,
+      switchOrganization,
     ],
   );
 
