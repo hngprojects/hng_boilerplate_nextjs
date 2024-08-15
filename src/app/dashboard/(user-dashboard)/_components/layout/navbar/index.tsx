@@ -18,16 +18,18 @@ import {
 } from "~/components/ui/popover";
 import { OrganisationSwitcher } from "./organisation-switcher";
 
-interface Notification {
-  header: string;
-  time: string;
+interface NotificationPreview {
+  message: string;
+  created_at: string;
+  is_read: boolean;
+  id: string;
 }
 
 interface NotificationsData {
   data: {
     total_unread_notification_count: number;
     total_notification_count: number;
-    notifications: Notification[];
+    notifications: NotificationPreview[];
   };
   message: string;
 }
@@ -49,9 +51,8 @@ const UserNavbar = () => {
       const result = await getAllNotifications();
 
       if (result.error) {
-        console.error("Failed to fetch notifications:", result.error);
+        return result.error;
       } else {
-        console.log("Notifications fetched successfully:", result.data);
         setNotifications(result.data as NotificationsData);
       }
     }
@@ -64,8 +65,8 @@ const UserNavbar = () => {
 
   const totalNotificationCount =
     notifications?.data.total_notification_count || 0;
-  const notificationContent = notifications?.data.notifications;
-  console.log(notificationContent);
+  const notificationContent: NotificationPreview[] =
+    notifications?.data.notifications || [];
 
   return (
     <nav
@@ -97,12 +98,9 @@ const UserNavbar = () => {
                 className="w-[380px] border-none p-0 shadow-none"
               >
                 <UnreadNotificationCard
-                  notificationsPreview={[
-                    { header: "Check mail", time: "1 hour ago" },
-                    { header: "Sign up for offer", time: "2 hours ago" },
-                    { header: "Register for event", time: "1 hour ago" },
-                  ]}
+                  notificationsPreview={notificationContent}
                   unreadCount={totalUnreadNotificationCount}
+                  totalNotificationCount={totalNotificationCount}
                 />
               </PopoverContent>
             </Popover>
