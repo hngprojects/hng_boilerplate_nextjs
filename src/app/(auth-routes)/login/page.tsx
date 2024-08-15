@@ -61,7 +61,7 @@ const Login = () => {
 
         if (data.status === 200) {
           setUserOrg(data.organisations);
-          if (!currentOrgId) {
+          if (!currentOrgId && data.organisations.length > 0) {
             setCurrentOrgId(data.organisations[0].organisation_id);
           }
           await signIn(
