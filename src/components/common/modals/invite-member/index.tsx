@@ -21,6 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select";
+import { useToast } from "~/components/ui/use-toast";
 
 interface ModalProperties {
   show: boolean;
@@ -37,6 +38,8 @@ const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
   const [linkGenerated, setLinkGenerated] = useState(false);
   const [error, setError] = useState("");
   const [organizationsLoaded, setOrganizationsLoaded] = useState(false);
+
+  const { toast } = useToast();
 
   const loadOrganizations = useCallback(async () => {
     if (organizationsLoaded) return;
@@ -71,7 +74,11 @@ const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
     if (response?.error) {
       setError(response.error);
     } else {
-      alert("Invites sent successfully!");
+      toast({
+        title: "Success",
+        description: "Your invite has been send successfully",
+        variant: "default",
+      });
       setEmails("");
       onClose();
     }
@@ -84,7 +91,10 @@ const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
         setInviteLink(response.data.invite_link);
         setLinkGenerated(true);
         navigator.clipboard.writeText(response.data.invite_link);
-        alert("Invite link copied to clipboard!");
+        toast({
+          title: "Invite Link",
+          description: "Invite link copied to clipboard!",
+        });
       }
     } catch {
       setError("Failed to generate invite link.");

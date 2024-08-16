@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 "use server";
 
 import axios from "axios";
@@ -19,7 +18,6 @@ export const inviteMembers = async (emails: string, org_id?: string) => {
 
   const validatedFields = inviteSchema.safeParse({ emails, org_id });
   if (!validatedFields.success) {
-    console.error("Invite Validation Failed:", validatedFields.error);
     return {
       error: "Invite Failed. Please check your inputs.",
     };
@@ -39,46 +37,19 @@ export const inviteMembers = async (emails: string, org_id?: string) => {
       },
     );
 
-    console.log(
-      "inviteMembers Response:",
-      JSON.stringify(
-        {
-          status: response.status,
-          data: response.data,
-        },
-        undefined,
-        2,
-      ),
-    );
-
     return {
       data: response.data.data,
       status: response.status,
     };
   } catch (error) {
-    if (axios.isAxiosError(error) && error.response) {
-      console.error(
-        "inviteMembers Axios Error:",
-        JSON.stringify(
-          {
-            status: error.response.status,
-            error: error.response.data.message || "Failed to send invites.",
-            fullResponse: error.response.data,
-          },
-          undefined,
-          2,
-        ),
-      );
-      return {
-        error: error.response.data.message || "Failed to send invites.",
-        status: error.response.status,
-      };
-    } else {
-      console.error("inviteMembers Unexpected Error:", error);
-      return {
-        error: "An unexpected error occurred.",
-      };
-    }
+    return axios.isAxiosError(error) && error.response
+      ? {
+          error: error.response.data.message || "Failed to send invites.",
+          status: error.response.status,
+        }
+      : {
+          error: "An unexpected error occurred.",
+        };
   }
 };
 
@@ -101,46 +72,19 @@ export const fetchOrganizations = async () => {
       }),
     );
 
-    console.log(
-      "fetchOrganizations Full Response:",
-      JSON.stringify(
-        {
-          status: response.status,
-          organizations,
-        },
-        undefined,
-        2,
-      ),
-    );
-
     return {
       data: organizations,
       status: response.status,
     };
   } catch (error) {
-    if (axios.isAxiosError(error) && error.response) {
-      console.error(
-        "fetchOrganizations Axios Error:",
-        JSON.stringify(
-          {
-            status: error.response.status,
-            error:
-              error.response.data.message || "Failed to fetch organizations.",
-            fullResponse: error.response.data,
-          },
-          undefined,
-          2,
-        ),
-      );
-      return {
-        error: error.response.data.message || "Failed to fetch organizations.",
-        status: error.response.status,
-      };
-    } else {
-      console.error("fetchOrganizations Unexpected Error:", error);
-      return {
-        error: "An unexpected error occurred.",
-      };
-    }
+    return axios.isAxiosError(error) && error.response
+      ? {
+          error:
+            error.response.data.message || "Failed to fetch organizations.",
+          status: error.response.status,
+        }
+      : {
+          error: "An unexpected error occurred.",
+        };
   }
 };
