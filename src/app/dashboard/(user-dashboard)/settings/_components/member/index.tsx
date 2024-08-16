@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import CustomButton from "~/components/common/common-button/common-button";
 import { Card, CardContent, CardTitle } from "~/components/ui/card";
 import { Switch } from "~/components/ui/switch";
-import useApiUrl from "../../organization/members/action/member";
+import useApiUrl from "../../organization/members/member";
 import MemberCard from "../MemberCard";
 import DeleteSuccessModal from "../MemberDeleteModal";
 import InviteModal from "../MemberInviteModal";
