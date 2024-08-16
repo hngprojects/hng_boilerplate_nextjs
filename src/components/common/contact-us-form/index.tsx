@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { z, ZodError } from "zod";
 
 import { getApiUrl } from "~/actions/getApiUrl";
+import { Toaster } from "~/components/ui/toaster";
+import { useToast } from "~/components/ui/use-toast";
 import { useLocalStorage } from "~/hooks/use-local-storage";
 import CustomButton from "../common-button/common-button";
 import InputField from "./inputfield";
@@ -43,6 +45,7 @@ const ContactForm: React.FC = () => {
   const [message, setMessage] = useState<string | undefined>();
   const [loading, setLoading] = useState<boolean>(false);
   const [org_id] = useLocalStorage<string>("current_orgid", "");
+  const { toast } = useToast();
 
   useEffect(() => {
     if (status !== undefined) {
@@ -114,19 +117,35 @@ const ContactForm: React.FC = () => {
       const responseData = await response.json();
 
       if (!response.ok) {
-        throw new Error(responseData.message || "Failed to submit the form.");
+        // throw new Error(responseData.message || "Failed to submit the form.");
+        toast({
+          title: "Submission Failed",
+          description:
+            "There was an error submitting your message. Please check your internet connection and try again. If the problem persists, contact our support team.",
+          variant: "destructive",
+        });
+        return;
       }
 
       setStatus(true);
+      toast({
+        title: "Message Sent!",
+        description:
+          "Thank you for reaching out to us. Your message has been received, and we'll get back to you shortly.",
+        variant: "default",
+      });
       setMessage(responseData?.message || "Form submitted successfully!");
       setFormData({ ...initialFormData });
       setErrors({});
-    } catch (error) {
+    } catch {
+      toast({
+        title: "Submission Failed",
+        description:
+          "There was an error submitting your message. Please check your internet connection and try again. If the problem persists, contact our support team.",
+        variant: "destructive",
+      });
       setStatus(false);
-      setMessage(
-        (error as Error).message ||
-          "Failed to submit the form. Please try again.",
-      );
+      setMessage("Failed to submit the form. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -219,6 +238,8 @@ const ContactForm: React.FC = () => {
           )}
         </form>
       </div>
+
+      <Toaster />
     </>
   );
 };
