@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import {
   A11y,
   Autoplay,
@@ -20,16 +21,18 @@ import TestimonialCard from "./TestimonialCard";
 import { testimonials } from "./testimonials-data";
 
 const Testimonials = () => {
+  const t = useTranslations("testimonials");
+
   return (
     <div className="bg-background py-[113px]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-end md:flex-row md:items-center md:justify-between">
           <div className="w-full pr-0 lg:w-2/3 lg:pr-10">
             <h1 className="font-inter mb-2 text-4xl font-bold md:text-[40px]">
-              Client Testimonials
+              {t("title")}
             </h1>
             <p className="font-inter text-[16px] font-normal text-foreground md:text-[18px]">
-              {` Don't just take our word for it - see what actual users of our product have to say about their experience.`}
+              {t("description")}
             </p>
           </div>
 

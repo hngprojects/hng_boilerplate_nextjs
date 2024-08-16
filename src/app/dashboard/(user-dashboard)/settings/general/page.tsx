@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { ChangeEvent, useEffect, useState } from "react";
 
+import defaultProfilePic from "~/../public/images/pfp.jpg";
 import { getApiUrl } from "~/actions/getApiUrl";
 import CustomButton from "~/components/common/common-button/common-button";
 import CustomInput from "~/components/common/input/input";
@@ -17,7 +18,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select";
-import { toast } from "~/components/ui/use-toast";
+import { useToast } from "~/components/ui/use-toast";
+import ProfilePictureModal from "../_components/ProfilePictureModal";
 import { InstagramIcon, LinkedinIcon, XIcon } from "./icons";
 
 const pronouns = [
@@ -26,40 +28,31 @@ const pronouns = [
   { value: "Other", label: "Other" },
 ];
 
-export default function SettingsPage() {
+export default function UserSettingsPage() {
+  const { toast } = useToast();
   const { data } = useSession();
-  const [image, setImage] = useState<File | Blob | undefined>();
 
   const [error, setError] = useState<undefined | string>();
   const [isSuccess, setIsSuccess] = useState(false);
+  const [showProfilePictureModal, setShowProfilePictureModal] = useState(false);
+  const [profilePicture, setProfilePicture] = useState<string | undefined>();
+  const openProfilePictureModal = () => setShowProfilePictureModal(true);
 
   const [isPending, setIsPending] = useState(false);
 
   const [pronoun, setPronoun] = useState("");
 
-  const [profilePicture, setProfilePicture] = useState<string | undefined>();
-
-  const [socialLinks, setSocialLinks] = useState({
-    x: "",
-    instagram: "",
-    linkedin: "",
-  });
-
-  const linksDataHandler = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    setSocialLinks((previous) => ({
-      ...previous,
-      [event.target.name]: event.target.value,
-    }));
-  };
-
   const [formData, setFormData] = useState({
-    username: "",
-    jobTitle: "",
+    user_name: "",
+    job_title: "",
     department: "",
     email: "",
     bio: "",
+    first_name: "",
+    last_name: "",
+    facebook_link: "",
+    twitter_link: "",
+    linkedin_link: "",
   });
 
   const formDataHandler = (
@@ -74,37 +67,31 @@ export default function SettingsPage() {
   useEffect(() => {
     (async () => {
       const baseUrl = await getApiUrl();
-      const API_URL = `${baseUrl}/api/v1/profile/${data?.user.id}`;
+      const API_URL = `${baseUrl}/api/v1/users/${data?.user.id}`;
       try {
         const response = await axios.get(API_URL, {
           headers: {
             Authorization: `Bearer ${data?.access_token}`,
           },
         });
-        if (response.data?.data) {
-          //console.log("Fetched profile data:", response.data.data);
-          const { avatar_url, profile_pic_url } = response.data.data;
-          setPronoun(response.data.data.pronouns);
-          setSocialLinks({
-            x: response.data.data.social_links
-              ? response.data.data.social_links[0]
-              : "",
-            instagram: response.data.data.social_links
-              ? response.data.data.social_links[1]
-              : "",
-            linkedin: response.data.data.social_links
-              ? response.data.data.social_links[2]
-              : "",
-          });
+
+        if (response?.data) {
+          const userData = response?.data?.profile;
+          setPronoun(userData.pronoun || "");
+
           setFormData({
-            bio: response.data.data.bio ?? "",
-            jobTitle: response.data.data.jobTitle ?? "",
-            email: response.data.data.email ?? "",
-            department: response.data.data.department ?? "",
-            username: response.data.data.username ?? "",
+            bio: userData.bio || "",
+            job_title: userData.job_title || "",
+            email: userData.email || "",
+            department: userData.department || "",
+            user_name: userData.user_name || "",
+            first_name: userData.first_name || "",
+            last_name: userData.last_name || "",
+            facebook_link: userData.facebook_link || "",
+            twitter_link: userData.twitter_link || "",
+            linkedin_link: userData.linkedin_link || "",
           });
-          setProfilePicture(avatar_url || profile_pic_url);
-          setIsSuccess(true);
+          setProfilePicture(response?.data.avatar_url || defaultProfilePic.src);
         }
       } catch {
         setError("An error occurred while retrieving your information");
@@ -112,55 +99,14 @@ export default function SettingsPage() {
     })();
   }, [data?.access_token, data?.user.id]);
 
-  const handleImageUpload = async (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      setImage(file);
-
-      const formData = new FormData();
-      formData.append("avatar", file);
-
-      try {
-        const baseUrl = await getApiUrl();
-        const UPLOAD_API_URL = `${baseUrl}/api/v1/profile/upload-image`;
-
-        const uploadResponse = await axios.post(UPLOAD_API_URL, formData, {
-          headers: {
-            Authorization: `Bearer ${data?.access_token}`,
-            "Content-Type": "multipart/form-data",
-          },
-        });
-
-        if (uploadResponse.status === 200) {
-          const { avatar_url, profile_pic_url } = uploadResponse.data.data;
-          const profilePicUrl = avatar_url || profile_pic_url;
-
-          setProfilePicture(profilePicUrl);
-
-          setFormData((previousData) => ({
-            ...previousData,
-            profile_pic_url: profilePicture,
-          }));
-        } else {
-          throw new Error(".");
-        }
-      } catch {
-        setError(".");
-      }
-    }
-  };
-
   const submit = async () => {
-    if (!isValidXUrl(socialLinks.x)) {
-      return toast({ title: "Warning!", description: "Enter a valid X url" });
-    }
-    if (!isValidInstagramUrl(socialLinks.instagram)) {
+    if (!isValidInstagramUrl(formData.facebook_link)) {
       return toast({
         title: "Warning!",
         description: "Enter a valid Instagram url",
       });
     }
-    if (!isValidLinkedInUrl(socialLinks.linkedin)) {
+    if (!isValidLinkedInUrl(formData.linkedin_link)) {
       return toast({
         title: "Warning!",
         description: "Enter a valid Linkedin url",
@@ -168,68 +114,38 @@ export default function SettingsPage() {
     }
 
     try {
-      const payload = {
-        ...formData,
-        pronouns: pronoun,
-        social_links: Object.values(socialLinks),
-        profile_pic_url: profilePicture,
-      };
       setIsPending(true);
-      // const baseUrl = await getApiUrl();
-      // const API_URL = `${baseUrl}/api/v1/profile/${data?.user.id}`;
-
-      const updatedUser = {
-        ...data?.user,
-        image: payload.profile_pic_url,
-      };
-
-      const event = new CustomEvent("session", {
-        detail: { session: { ...data, user: updatedUser } },
-      });
-
-      window.dispatchEvent(event);
 
       setIsSuccess(true);
-
-      window.dispatchEvent(
-        new CustomEvent("userProfileUpdate", {
-          detail: { profilePicUrl: profilePicture },
-        }),
-      );
     } catch {
       setIsPending(false);
-      setError("An error occurred while saving your information");
     } finally {
       setIsPending(false);
     }
   };
 
   return (
-    <div className="min-h-screen w-full max-w-[826px] bg-white p-[32px]">
+    <div className="min-h-screen w-full max-w-[926px] bg-white p-[32px]">
       <header className="mb-[24px]">
         <h2 className="mb-[16px] text-[14px] font-medium text-[#0F172A]">
           Your photo
         </h2>
         <div className="flex items-center gap-[16px]">
-          <div className="relative grid h-[108px] w-[108px] shrink-0 place-items-center overflow-hidden rounded-full border-[1px] border-dashed border-[#cbd5e1] bg-[#fafafa]">
+          <div
+            className="relative grid h-[108px] w-[108px] shrink-0 place-items-center overflow-hidden rounded-full border-[1px] border-dashed border-[#cbd5e1] bg-[#fafafa]"
+            onClick={openProfilePictureModal}
+          >
             <label
               htmlFor="profile-picture"
               className="cursor-pointer text-[24px] font-medium"
             >
               {data?.user.first_name?.slice(2)}
             </label>
-            <input
-              className="sr-only"
-              id="profile-picture"
-              type="file"
-              onChange={handleImageUpload}
-              accept="image/jpeg,image/png,image/svg+xml"
-            />
-            {(image || profilePicture) && (
+            {profilePicture && (
               <Image
-                src={image ? URL.createObjectURL(image) : profilePicture!}
-                alt="Picture of the author"
-                fill={true}
+                src={profilePicture}
+                alt="Profile Picture"
+                layout="fill"
                 quality={100}
                 className="absolute h-[108px] w-[108px] overflow-hidden rounded-[12px] object-cover"
                 loading="lazy"
@@ -238,27 +154,53 @@ export default function SettingsPage() {
             )}
           </div>
           <div>
-            <label
-              htmlFor="profile-picture"
-              className="mb-[8px] inline-block cursor-pointer font-semibold text-primary"
-            >
-              Upload your photo
-            </label>
+            <h1 className="text-2xl font-bold text-orange-500">
+              Upload Profile Picture
+            </h1>
             <p className="text-[#525252]">
               Photos help your teammates recognize you.
             </p>
           </div>
         </div>
       </header>
+
+      <ProfilePictureModal
+        email={data?.user.email || ""}
+        show={showProfilePictureModal}
+        profilePic={profilePicture || ""}
+        onClose={() => setShowProfilePictureModal(false)}
+        accessToken={data?.access_token ?? ""}
+        onUploadSuccess={(newProfilePictureUrl) =>
+          setProfilePicture(newProfilePictureUrl)
+        }
+      />
       <div className="flex flex-col gap-[24px]">
         <div className="grid gap-x-[16px] gap-y-[24px] lg:grid-cols-2">
+          <CustomInput
+            placeholder="Enter first name"
+            label="First Name"
+            className="border-border bg-white"
+            type="text"
+            name="first_name"
+            value={formData.first_name}
+            onChange={formDataHandler}
+          />
+          <CustomInput
+            placeholder="Enter last name"
+            label="Last Name"
+            className="border-border bg-white"
+            type="text"
+            name="last_name"
+            value={formData.last_name}
+            onChange={formDataHandler}
+          />
           <CustomInput
             placeholder="Enter username"
             label="Username"
             className="border-border bg-white"
             type="text"
-            name="username"
-            value={formData.username}
+            name="user_name"
+            value={formData.user_name}
             onChange={formDataHandler}
           />
           <div>
@@ -281,13 +223,14 @@ export default function SettingsPage() {
               </SelectContent>
             </Select>
           </div>
+
           <CustomInput
             placeholder="Enter job title"
             label="Your job title"
             className="border-border bg-white"
             type="text"
-            name="jobTitle"
-            value={formData.jobTitle}
+            name="job_title"
+            value={formData.job_title}
             onChange={formDataHandler}
           />
           <CustomInput
@@ -333,27 +276,27 @@ export default function SettingsPage() {
             <div className="relative">
               <XIcon className="absolute left-[8px] top-[50%] translate-y-[-50%]" />
               <input
-                name="x"
-                value={socialLinks.x}
-                onChange={linksDataHandler}
+                name="twitter_link"
+                value={formData.twitter_link}
+                onChange={formDataHandler}
                 className="h-[40px] w-full rounded-[4px] border-[1px] border-[#cbd5e1] bg-white px-[8px] py-[12px] pl-[32px] focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
               />
             </div>
             <div className="relative">
               <InstagramIcon className="absolute left-[8px] top-[50%] translate-y-[-50%]" />
               <input
-                name="instagram"
-                value={socialLinks.instagram}
-                onChange={linksDataHandler}
+                name="facebook_link"
+                value={formData.facebook_link}
+                onChange={formDataHandler}
                 className="h-[40px] w-full rounded-[4px] border-[1px] border-[#cbd5e1] bg-white px-[8px] py-[12px] pl-[32px] focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
               />
             </div>
             <div className="relative">
               <LinkedinIcon className="absolute left-[8px] top-[50%] translate-y-[-50%]" />
               <input
-                name="linkedin"
-                value={socialLinks.linkedin}
-                onChange={linksDataHandler}
+                name="linkedin_link"
+                value={formData.linkedin_link}
+                onChange={formDataHandler}
                 className="h-[40px] w-full rounded-[4px] border-[1px] border-[#cbd5e1] bg-white px-[8px] py-[12px] pl-[32px] focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
               />
             </div>
@@ -389,11 +332,6 @@ export default function SettingsPage() {
 function isValidLinkedInUrl(url: string) {
   const linkedInRegex = /^(https?:\/\/)?(www\.)?linkedin\.com\/[\w/-]+\/?$/;
   return linkedInRegex.test(url);
-}
-
-function isValidXUrl(url: string) {
-  const xRegex = /^(https?:\/\/)?(www\.)?x\.com\/\w{1,15}\/?$/;
-  return xRegex.test(url);
 }
 
 function isValidInstagramUrl(url: string) {
