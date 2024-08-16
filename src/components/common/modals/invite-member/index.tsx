@@ -76,7 +76,7 @@ const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
     } else {
       toast({
         title: "Success",
-        description: "Your invite has been send successfully",
+        description: "Your invite has been sent successfully to members email",
         variant: "default",
       });
       setEmails("");
