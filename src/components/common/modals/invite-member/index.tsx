@@ -2,8 +2,9 @@
 
 import axios from "axios";
 import { Link2Icon } from "lucide-react";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
+import { fetchOrganizations, inviteMembers } from "~/actions/inviteMembers";
 import CustomButton from "~/components/common/common-button/common-button";
 import {
   Dialog,
@@ -29,9 +30,25 @@ interface ModalProperties {
 const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
   const [emails, setEmails] = useState("");
   const [organization, setOrganization] = useState("");
+  const [organizations, setOrganizations] = useState<
+    { id: string; name: string }[]
+  >([]);
   const [inviteLink, setInviteLink] = useState("");
   const [linkGenerated, setLinkGenerated] = useState(false);
   const [error, setError] = useState("");
+  const [organizationsLoaded, setOrganizationsLoaded] = useState(false);
+
+  const loadOrganizations = useCallback(async () => {
+    if (organizationsLoaded) return;
+
+    const response = await fetchOrganizations();
+    if (response?.error) {
+      setError(response.error);
+    } else {
+      setOrganizations(response.data || []);
+      setOrganizationsLoaded(true);
+    }
+  }, [organizationsLoaded]);
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmails(event.target.value);
@@ -41,18 +58,22 @@ const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
     setOrganization(value);
   };
 
+  const handleOrganizationDropdownOpen = () => {
+    if (!organizationsLoaded) {
+      loadOrganizations();
+    }
+  };
+
   const handleSubmit = async () => {
-    try {
-      const response = await axios.post("/api/v1/invite/create", {
-        emails: emails.split(",").map((email) => email.trim()),
-        organization,
-      });
-      if (response.status === 200) {
-        alert("Invites sent successfully!");
-        onClose();
-      }
-    } catch {
-      setError("Failed to send invites.");
+    setError("");
+
+    const response = await inviteMembers(emails, organization);
+    if (response?.error) {
+      setError(response.error);
+    } else {
+      alert("Invites sent successfully!");
+      setEmails("");
+      onClose();
     }
   };
 
@@ -71,76 +92,78 @@ const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
   };
 
   return (
-    <>
-      <Dialog open={show} onOpenChange={onClose}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2 border-b border-gray-300">
-              <div className="mt-[-8px] flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-center">
-                KP
-              </div>
-              <h2 className="mb-2 text-left text-lg text-neutral-dark-2">
-                Invite to your Organization
-              </h2>
-            </DialogTitle>
-            <DialogDescription>
-              <div className="mb-7 mt-6">
-                <label className="mb-2 block text-left text-base text-neutral-dark-2">
-                  Email
-                </label>
-                <input
-                  type="text"
-                  placeholder="email@example.com, email2@example.com..."
-                  className="w-full rounded-md border border-border px-3 py-2 shadow-sm outline-none focus:border-primary focus:ring-ring"
-                  value={emails}
-                  onChange={handleEmailChange}
-                />
-              </div>
-              <div>
-                <label className="mb-2 block text-left text-base text-neutral-dark-2">
-                  Add to Organization (Optional)
-                </label>
-                <Select onValueChange={handleOrganizationChange}>
-                  <SelectTrigger className="bg-white">
-                    <SelectValue placeholder="Select Organization" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectItem value="org1">Org 1</SelectItem>
-                      <SelectItem value="org2">Org 2</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="mt-8 flex items-center justify-between gap-4">
-                <span className="relative flex items-center text-primary">
-                  <Link2Icon className="pointer-events-none absolute ml-3" />
-                  <CustomButton
-                    variant="subtle"
-                    onClick={handleInviteWithLink}
-                    className="pl-10"
-                  >
-                    Invite with link
-                  </CustomButton>
-                </span>
-
-                <CustomButton variant="primary" onClick={handleSubmit}>
-                  Send Invites
+    <Dialog open={show} onOpenChange={onClose}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2 border-b border-gray-300">
+            <div className="mt-[-8px] flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-center">
+              0P
+            </div>
+            <h2 className="mb-2 text-left text-lg text-neutral-dark-2">
+              Invite to your Organization
+            </h2>
+          </DialogTitle>
+          <DialogDescription>
+            <div className="mb-7 mt-6">
+              <label className="mb-2 block text-left text-base text-neutral-dark-2">
+                Email
+              </label>
+              <input
+                type="text"
+                placeholder="email@example.com, email2@example.com..."
+                className="w-full rounded-md border border-border px-3 py-2 shadow-sm outline-none focus:border-primary focus:ring-ring"
+                value={emails}
+                onChange={handleEmailChange}
+              />
+            </div>
+            <div>
+              <label className="mb-2 block text-left text-base text-neutral-dark-2">
+                Add to Organization (Optional)
+              </label>
+              <Select
+                onOpenChange={handleOrganizationDropdownOpen}
+                onValueChange={handleOrganizationChange}
+              >
+                <SelectTrigger className="bg-white">
+                  <SelectValue placeholder="Select Organization" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    {organizations.map((org) => (
+                      <SelectItem key={org.id} value={org.id}>
+                        {org.name}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="mt-8 flex items-center justify-between gap-4">
+              <span className="relative flex items-center text-primary">
+                <Link2Icon className="pointer-events-none absolute ml-3" />
+                <CustomButton
+                  variant="subtle"
+                  onClick={handleInviteWithLink}
+                  className="pl-10"
+                >
+                  Invite with link
                 </CustomButton>
+              </span>
+
+              <CustomButton variant="primary" onClick={handleSubmit}>
+                Send Invites
+              </CustomButton>
+            </div>
+            {linkGenerated && (
+              <div className="mt-4 text-sm text-green-500">
+                Invite link: {inviteLink}
               </div>
-              {linkGenerated && (
-                <div className="mt-4 text-sm text-green-500">
-                  Invite link: {inviteLink}
-                </div>
-              )}
-              {error && (
-                <div className="mt-4 text-sm text-red-500">{error}</div>
-              )}
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
-    </>
+            )}
+            {error && <div className="mt-4 text-sm text-red-500">{error}</div>}
+          </DialogDescription>
+        </DialogHeader>
+      </DialogContent>
+    </Dialog>
   );
 };
 
