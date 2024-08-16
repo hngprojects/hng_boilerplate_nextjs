@@ -13,10 +13,12 @@ import Heading from "~/components/layouts/heading";
 import PricingCardSkeleton from "~/components/skeleton/pricingcardskeleton";
 import { Button } from "~/components/ui/button";
 import { faqData } from "~/constants/faqsdata";
+import { auth } from "~/lib/auth";
 
 interface BillingPlan {
   id: string;
   name: string;
+  // price: string;
   frequency?: string;
   is_active?: boolean;
   amount: string;
@@ -39,9 +41,11 @@ export default function Pricing() {
   useEffect(() => {
     const fetchPlans = async () => {
       try {
+        const session = await auth();
         const apiUrl = await getApiUrl();
         const response = await axios.get(`${apiUrl}/api/v1/billing-plans`, {
           headers: {
+            Authorization: `Bearer ${session?.access_token}`,
             ...(locale ? { "Accept-Language": locale } : {}),
           },
         });
@@ -65,20 +69,9 @@ export default function Pricing() {
         data-testid="pricing-container"
       >
         <Heading
-          tag={`${locale === "es" ? "Precios" : locale === "fr" ? "Prix" : "Pricing"
-            }`}
-          title={`${locale === "es"
-            ? "Plan de Precios Simple y {{Asequible}}"
-            : locale === "fr"
-              ? "Plan de Tarification Simple et {{Abordable}}"
-              : "Simple and {{Affordable}} Pricing Plan"
-            }`}
-          content={`${locale === "es"
-            ? "Nuestros planes flexibles están diseñados para adaptarse a su negocio. Tenemos un plan para usted"
-            : locale === "fr"
-              ? "Nos plans flexibles sont conçus pour évoluer avec votre entreprise. Nous avons un plan pour vous."
-              : "Our flexible plans are designed to scale with your business. We have a plan for you."
-            }`}
+          tag={`${locale === "es" ? "Precios" : locale === "fr" ? "Prix" : "Pricing"}`}
+          title={`${locale === "es" ? "Plan de Precios Simple y {{Asequible}}" : locale === "fr" ? "Plan de Tarification Simple et {{Abordable}}" : "Simple and {{Affordable}} Pricing Plan"}`}
+          content={`${locale === "es" ? "Nuestros planes flexibles están diseñados para adaptarse a su negocio. Tenemos un plan para usted" : locale === "fr" ? "Nos plans flexibles sont conçus pour évoluer avec votre entreprise. Nous avons un plan pour vous." : "Our flexible plans are designed to scale with your business. We have a plan for you."}`}
         />
 
         <div
