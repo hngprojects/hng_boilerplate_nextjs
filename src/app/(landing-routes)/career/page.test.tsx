@@ -1,4 +1,4 @@
-import { render } from "~/test/utils";
+import { renderWithIntl } from "~/test/utils";
 import Page from "./page";
 
 describe("page tests", () => {
@@ -6,7 +6,7 @@ describe("page tests", () => {
   it.skip("should render correctly", () => {
     expect.assertions(1);
 
-    render(<Page />);
+    renderWithIntl(<Page />);
 
     expect(true).toBeTruthy();
   });
