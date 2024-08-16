@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { useSession } from "next-auth/react";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -23,7 +24,8 @@ export interface UserDetailsProperties {
   email: string;
   id: string;
   is_active: boolean;
-  name: string;
+  first_name: string;
+  last_name: string;
   products: [];
   created_at: string;
 }
@@ -46,6 +48,7 @@ const UserDetails = () => {
   const [userData, setUserData] = useState<UserDetailsProperties | null>();
   const [rating, setRating] = useState(0);
   const { toast } = useToast();
+  const { data: session } = useSession();
 
   const [totalProducts, setTotalProducts] = useState<UserCardData>({
     title: "Total Products",
@@ -74,9 +77,12 @@ const UserDetails = () => {
         setLoading(true);
         const baseUrl = await getApiUrl();
         const API_URL = `${baseUrl}/api/v1/users/${id}`;
-        const response = await axios.get(`${API_URL}`);
-
-        const userDetails: UserDetailsProperties = response.data;
+        const response = await axios.get(`${API_URL}`, {
+          headers: {
+            Authorization: `Bearer ${session?.access_token}`,
+          },
+        });
+        const userDetails: UserDetailsProperties = response.data.user;
         setUserData(userDetails);
         setTotalSales((previous) => ({
           ...previous,
@@ -103,7 +109,7 @@ const UserDetails = () => {
         setLoading(false);
       }
     })();
-  }, [id, toast]);
+  }, [id, session?.access_token, toast]);
 
   const handleRatingClick = (index: number) => {
     setRating(index);
@@ -121,18 +127,19 @@ const UserDetails = () => {
       <div className="flex flex-row items-center gap-5">
         <div className="grid h-[60px] w-[60px] place-items-center rounded-full bg-[#e1e7ef]">
           <h6 className="text-3xl font-semibold text-neutral-dark-1">
-            {userData?.name?.charAt(0).toUpperCase() ??
+            {userData?.first_name?.charAt(0).toUpperCase() ||
               userData?.email?.charAt(0).toUpperCase()}
           </h6>
         </div>
         <div>
           <h6 className="mb-2 text-3xl font-[500] leading-6 text-neutral-dark-2">
-            {userData?.name ? (
-              (userData?.name ?? userData?.email)
-            ) : (
-              <div className="h-6 w-full animate-pulse rounded-md bg-neutral-dark-2"></div>
-            )}
+            {userData?.first_name || userData?.last_name
+              ? userData.first_name + " " + userData.last_name
+              : (userData?.email ?? (
+                  <div className="h-6 w-full animate-pulse rounded-md bg-neutral-dark-2"></div>
+                ))}
           </h6>
+
           <div className="text-base font-normal lowercase leading-4 text-[#CBD5E1]">
             {userData?.email || (
               <div className="h-3 w-full animate-pulse rounded-md bg-neutral-dark-2"></div>
@@ -163,9 +170,7 @@ const UserDetails = () => {
                 ))}
               </div>
             </div>
-            <div className="mr-5 text-base text-black">
-              ({userData?.products.length} products)
-            </div>
+            <div className="mr-5 text-base text-black">(50 products)</div>
             <div className="flex items-center text-xs text-gray-600">
               <span className="mr-1">Date Added</span>
               {userData?.created_at ? (
