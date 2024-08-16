@@ -1,44 +1,60 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { getApiUrl } from "~/actions/getApiUrl";
+import {
+  getPermissions,
+  getRolePermissions,
+  getRoles,
+  updateRole,
+} from "~/actions/roles-and-permissions";
 import CustomButton from "~/components/common/common-button/common-button";
-import RoleCreationModal from "~/components/common/modals/role-creation";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import { useToast } from "~/components/ui/use-toast";
+import { useLocalStorage } from "~/hooks/use-local-storage";
 
 type Role = {
-  id: number;
+  id: string;
   name: string;
   description: string;
 };
 
 type Permission = {
-  [key: string]: boolean;
+  id: string;
+  name: string;
+  description: string;
 };
 
 const RolesAndPermission = () => {
-  const [selectedRoleId, setSelectedRoleId] = useState<number | undefined>();
-  const [permissions, setPermissions] = useState<Permission>({});
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedRoleId, setSelectedRoleId] = useState<string | undefined>();
+  const [permissions, setPermissions] = useState<string[] | []>([]);
+  const [allPermission, setAllPermissions] = useState<Permission[] | []>([]);
+  const [isAllPermissionsLoaded, setIsAllPermissionsLoaded] =
+    useState<boolean>(false);
   const [roles, setRoles] = useState<Role[]>([]);
   const [apiUrl, setApiUrl] = useState("");
   const { toast } = useToast();
   const [loadingRoles, setLoadingRoles] = useState<boolean>(true);
   const [loadingPermissions, setLoadingPermissions] = useState<boolean>(false);
   const [loadingRequest, setLoadingRequest] = useState<boolean>(false);
-  const org_id = "9ca4512c-f665-4901-ba63-0b6492e47d32";
+  const [currentOrgId] = useLocalStorage<string | undefined>(
+    "current_orgid",
+    "",
+  );
 
   useEffect(() => {
-    setLoadingRoles(true);
+    if (!currentOrgId) return;
     const fetchData = async () => {
       try {
         const url = await getApiUrl();
         setApiUrl(url);
-        const response = await fetch(`${url}/organisations/${org_id}/roles`);
-        const data = await response.json();
-        setRoles(data);
+        const { data, error } = await getRoles(currentOrgId);
+
+        if (error) throw new Error("An error occurred!");
+
+        setRoles(data.data);
         setLoadingRoles(false);
       } catch (error: unknown) {
         toast({
@@ -50,20 +66,28 @@ const RolesAndPermission = () => {
         setLoadingRoles(false);
       }
     };
+    setLoadingRoles(true);
     fetchData();
-  }, [toast]);
+  }, [currentOrgId, toast]);
 
   useEffect(() => {
     const fetchPermissions = async () => {
-      if (selectedRoleId) {
+      if (selectedRoleId && currentOrgId) {
         setLoadingPermissions(true);
         try {
-          const response = await fetch(
-            `${apiUrl}/organisations/${org_id}/roles/${selectedRoleId}`,
+          await getRolePermissions(currentOrgId, selectedRoleId).then(
+            (data) => {
+              const rolesData = data.data;
+              if (rolesData.permissions.length > 0) {
+                setPermissions(
+                  rolesData.permissions.map(
+                    (permission: Permission) => permission.id,
+                  ),
+                );
+              }
+              setLoadingPermissions(false);
+            },
           );
-          const permissionsData = await response.json();
-          setPermissions(permissionsData.permission_list);
-          setLoadingPermissions(false);
         } catch {
           toast({
             title: "An error occurred",
@@ -75,62 +99,65 @@ const RolesAndPermission = () => {
       }
     };
     fetchPermissions();
-  }, [selectedRoleId, apiUrl, org_id, toast]);
+  }, [selectedRoleId, apiUrl, currentOrgId, toast]);
 
-  const handleRoleClick = (roleId: number) => {
+  useEffect(() => {
+    const fetchPermissions = async () => {
+      await getPermissions()
+        .then((data) => {
+          setIsAllPermissionsLoaded(true);
+          if (data.data) setAllPermissions(data.data);
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.log(error);
+          setIsAllPermissionsLoaded(true);
+        });
+    };
+    fetchPermissions();
+  }, []);
+
+  const handleRoleClick = (roleId: string) => {
     setSelectedRoleId(roleId);
   };
 
-  const handleToggle = (permission: string, value: boolean) => {
-    setPermissions({
-      ...permissions,
-      [permission]: value,
-    });
+  const handleToggle = (permissionId: string, checked: boolean) => {
+    if (checked) {
+      setPermissions((previous) => [...previous, permissionId]);
+    } else {
+      setPermissions((previous) =>
+        previous.filter((id) => id !== permissionId),
+      );
+    }
   };
 
   const handleSave = async () => {
+    if (!selectedRoleId || !currentOrgId) return;
+    const selectedRole =
+      roles.some((role) => role.id === selectedRoleId) &&
+      roles.find((role) => role.id === selectedRoleId);
+    if (!selectedRole) return;
     setLoadingRequest(true);
     try {
-      const response = await fetch(
-        `${apiUrl}/organisations/${org_id}/${selectedRoleId}/permissions`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ permission_list: permissions }),
-        },
-      );
-
-      if (response.ok) {
+      await updateRole(
+        { ...selectedRole, permissions },
+        currentOrgId,
+        selectedRoleId,
+      ).then(() => {
         toast({
           title: "Success",
-          description: "Permissions updated successfully",
+          description: "Role updated successfully",
           variant: "default",
         });
-      } else {
-        toast({
-          title: "Error",
-          description: "Failed to update permissions",
-          variant: "destructive",
-        });
-      }
+      });
     } catch {
       toast({
         title: "Error",
-        description: "Failed to update permissions",
+        description: "Failed to update role",
         variant: "destructive",
       });
     }
     setLoadingRequest(false);
-  };
-
-  const handleModalOpen = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleModalClose = () => {
-    setIsModalOpen(false);
   };
 
   return (
@@ -139,39 +166,38 @@ const RolesAndPermission = () => {
         <div className="w-1/4">
           <h2 className="mb-10 text-xl font-medium">Roles</h2>
           <ul className="rounded-md border border-[#CBD5E1] p-3">
-            {loadingRoles && (
+            {loadingRoles ? (
               <div className="flex justify-center py-8">
                 <LoadingSpinner className="size-4 animate-spin stroke-orange-500 sm:size-5" />
               </div>
-            )}
-            {roles.map((role) => (
-              <li
-                key={role.id}
-                className={`mb-2 cursor-pointer border-[#CBD5E1] p-2 ${
-                  selectedRoleId === role.id
-                    ? "rounded-md bg-orange-500 text-white"
-                    : "border-b bg-white text-[#0a0a0a] hover:bg-[#F1F5F9]"
-                }`}
-                onClick={() => handleRoleClick(role.id)}
-              >
-                <h3 className="text-base font-medium">{role.name}</h3>
-                <p
-                  className={`text-xs font-normal ${selectedRoleId === role.id ? "text-white" : "text-[#525252]"}`}
+            ) : (
+              roles.map((role) => (
+                <li
+                  key={role.id}
+                  className={`mb-2 cursor-pointer border-[#CBD5E1] p-2 ${
+                    selectedRoleId === role.id
+                      ? "rounded-md bg-orange-500 text-white"
+                      : "border-b bg-white text-[#0a0a0a] hover:bg-[#F1F5F9]"
+                  }`}
+                  onClick={() => handleRoleClick(role.id)}
                 >
-                  {role.description}
-                </p>
-              </li>
-            ))}
+                  <h3 className="text-base font-medium">{role.name}</h3>
+                  <p
+                    className={`text-xs font-normal ${selectedRoleId === role.id ? "text-white" : "text-[#525252]"}`}
+                  >
+                    {role.description}
+                  </p>
+                </li>
+              ))
+            )}
           </ul>
         </div>
         <div className="w-3/4">
           <div className="mb-2 flex justify-end">
-            <CustomButton
-              variant="primary"
-              className="mb-6"
-              onClick={handleModalOpen}
-            >
-              + Create roles
+            <CustomButton variant="primary" className="mb-6">
+              <Link href="/dashboard/admin/settings/organization/roles-and-permissions/create-role">
+                + Create roles
+              </Link>
             </CustomButton>
           </div>
           <div className="rounded-md border border-[#CBD5E1] px-5 py-6">
@@ -196,15 +222,15 @@ const RolesAndPermission = () => {
               <div className="item-center flex justify-center py-48">
                 <LoadingSpinner className="size-4 animate-spin stroke-orange-500 sm:size-5" />
               </div>
-            ) : (
+            ) : isAllPermissionsLoaded ? (
               <div className="mt-6">
-                {Object.keys(permissions).map((permission) => (
+                {allPermission.map((permission) => (
                   <div
-                    key={permission}
+                    key={permission.id}
                     className="mb-4 flex items-center justify-between"
                   >
                     <span className="text-sm font-normal text-[#525252]">
-                      {permission
+                      {permission.name
                         .replaceAll("_", " ")
                         .replaceAll(/\b\w/g, (l) => l.toUpperCase())}
                     </span>
@@ -212,9 +238,9 @@ const RolesAndPermission = () => {
                       <input
                         type="checkbox"
                         className="peer sr-only"
-                        checked={permissions[permission]}
+                        checked={permissions.includes(permission.id as never)}
                         onChange={(event) =>
-                          handleToggle(permission, event.target.checked)
+                          handleToggle(permission.id, event.target.checked)
                         }
                       />
                       <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-orange-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-4 peer-focus:ring-orange-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-orange-800"></div>
@@ -234,11 +260,14 @@ const RolesAndPermission = () => {
                   </button>
                 </div>
               </div>
+            ) : (
+              <div className="item-center flex justify-center py-48">
+                <LoadingSpinner className="size-4 animate-spin stroke-orange-500 sm:size-5" />
+              </div>
             )}
           </div>
         </div>
       </div>
-      <RoleCreationModal show={isModalOpen} onClose={handleModalClose} />
     </div>
   );
 };

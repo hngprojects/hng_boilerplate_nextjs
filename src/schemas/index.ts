@@ -65,6 +65,18 @@ export const organizationSchema = z.object({
   }),
 });
 
+export const ResetPasswordSchema = z
+  .object({
+    password: passwordSchema,
+    confirmPassword: z
+      .string()
+      .min(1, { message: "Confirm Password is required" }),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
+
 export const OtpSchema = z.object({
   token: z.string(),
   email: z.string().email().optional(),
@@ -99,4 +111,24 @@ export const productSchema = z.object({
   quantity: z.string(),
   price: z.string(),
   category: z.string(),
+});
+
+export const permissionsSchema = z.object({
+  "Can view transactions": z.boolean(),
+  "Can view refunds": z.boolean(),
+  "Can log refunds": z.boolean(),
+  "Can view users": z.boolean(),
+  "Can create users": z.boolean(),
+  "Can blacklist/whitelist users": z.boolean(),
+});
+export const roleSchema = z.object({
+  name: z.string().min(2, {
+    message: "name is required",
+  }),
+  permissions: z
+    .array(z.string().uuid())
+    .nonempty("At least one permission must be selected"),
+  description: z.string().min(2, {
+    message: "Role description must be at least 2 characters.",
+  }),
 });
