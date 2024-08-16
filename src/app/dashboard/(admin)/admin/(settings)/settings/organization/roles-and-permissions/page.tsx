@@ -31,6 +31,8 @@ const RolesAndPermission = () => {
   const [selectedRoleId, setSelectedRoleId] = useState<string | undefined>();
   const [permissions, setPermissions] = useState<string[] | []>([]);
   const [allPermission, setAllPermissions] = useState<Permission[] | []>([]);
+  const [isAllPermissionsLoaded, setIsAllPermissionsLoaded] =
+    useState<boolean>(false);
   const [roles, setRoles] = useState<Role[]>([]);
   const [apiUrl, setApiUrl] = useState("");
   const { toast } = useToast();
@@ -103,11 +105,13 @@ const RolesAndPermission = () => {
     const fetchPermissions = async () => {
       await getPermissions()
         .then((data) => {
+          setIsAllPermissionsLoaded(true);
           if (data.data) setAllPermissions(data.data);
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
           console.log(error);
+          setIsAllPermissionsLoaded(true);
         });
     };
     fetchPermissions();
@@ -218,7 +222,7 @@ const RolesAndPermission = () => {
               <div className="item-center flex justify-center py-48">
                 <LoadingSpinner className="size-4 animate-spin stroke-orange-500 sm:size-5" />
               </div>
-            ) : allPermission.length > 0 ? (
+            ) : isAllPermissionsLoaded ? (
               <div className="mt-6">
                 {allPermission.map((permission) => (
                   <div
@@ -257,7 +261,9 @@ const RolesAndPermission = () => {
                 </div>
               </div>
             ) : (
-              <p className="">Ooops! Something went wrong.</p>
+              <div className="item-center flex justify-center py-48">
+                <LoadingSpinner className="size-4 animate-spin stroke-orange-500 sm:size-5" />
+              </div>
             )}
           </div>
         </div>

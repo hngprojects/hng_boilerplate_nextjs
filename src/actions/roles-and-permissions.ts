@@ -49,7 +49,7 @@ export const getPermissions = async () => {
     );
 
     return {
-      data: response.data,
+      data: response.data.data,
     };
   } catch (error) {
     return axios.isAxiosError(error) && error.response

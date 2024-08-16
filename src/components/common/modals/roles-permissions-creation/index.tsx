@@ -92,7 +92,10 @@ function RolePreferencesCreationModal({
               ))}
             </div>
             <div className="flex justify-end gap-4">
-              <DialogClose className="rounded border border-[#E2E8F0] bg-[#F1F5F9] px-4 py-2 text-sm font-medium text-[#0F172A] hover:bg-[#c1c9d2]">
+              <DialogClose
+                type="button"
+                className="rounded border border-[#E2E8F0] bg-[#F1F5F9] px-4 py-2 text-sm font-medium text-[#0F172A] hover:bg-[#c1c9d2]"
+              >
                 Done
               </DialogClose>
             </div>
