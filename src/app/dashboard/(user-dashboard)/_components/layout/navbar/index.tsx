@@ -2,9 +2,10 @@
 
 import { BellIcon, HelpCircle } from "lucide-react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next-nprogress-bar";
-import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
+import { getAllNotifications } from "~/actions/notifications/getAllNotifications";
 import UnreadNotificationCard from "~/app/dashboard/(admin)/_components/unread-notification-card/UnreadNotificationCard";
 import { MobileNavlinks } from "~/app/dashboard/(user-dashboard)/_components/layout/navbar/mobile-navlinks";
 import { Navlinks } from "~/app/dashboard/(user-dashboard)/_components/layout/navbar/navlinks";
@@ -17,14 +18,55 @@ import {
 } from "~/components/ui/popover";
 import { OrganisationSwitcher } from "./organisation-switcher";
 
+interface NotificationPreview {
+  message: string;
+  created_at: string;
+  is_read: boolean;
+  id: string;
+}
+
+interface NotificationsData {
+  data: {
+    total_unread_notification_count: number;
+    total_notification_count: number;
+    notifications: NotificationPreview[];
+  };
+  message: string;
+}
+
 const UserNavbar = () => {
+  const [notifications, setNotifications] =
+    useState<NotificationsData | null>();
   const { status } = useSession();
   const router = useRouter();
+
   useEffect(() => {
     if (status === "unauthenticated") {
       router.push("/login");
     }
   }, [status, router]);
+
+  useEffect(() => {
+    async function fetchNotifications() {
+      const result = await getAllNotifications();
+
+      if (result.error) {
+        return result.error;
+      } else {
+        setNotifications(result.data as NotificationsData);
+      }
+    }
+
+    fetchNotifications();
+  }, []);
+
+  const totalUnreadNotificationCount =
+    notifications?.data.total_unread_notification_count || 0;
+
+  const totalNotificationCount =
+    notifications?.data.total_notification_count || 0;
+  const notificationContent: NotificationPreview[] =
+    notifications?.data.notifications || [];
 
   return (
     <nav
@@ -56,16 +98,19 @@ const UserNavbar = () => {
                 className="w-[380px] border-none p-0 shadow-none"
               >
                 <UnreadNotificationCard
-                  notificationsPreview={[
-                    { header: "Check mail", time: "1 hour ago" },
-                    { header: "Sign up for offer", time: "2 hours ago" },
-                    { header: "Register for event", time: "1 hour ago" },
-                  ]}
-                  unreadCount={30}
+                  notificationsPreview={notificationContent}
+                  unreadCount={totalUnreadNotificationCount}
+                  totalNotificationCount={totalNotificationCount}
                 />
               </PopoverContent>
             </Popover>
-            <span className="absolute right-1 top-0 h-[6px] w-[6px] rounded-full bg-error"></span>
+            {notifications && (
+              <>
+                {totalNotificationCount > 0 && (
+                  <span className="absolute right-1 top-0 h-[6px] w-[6px] rounded-full bg-error"></span>
+                )}
+              </>
+            )}
           </div>
           <div className="max-sm:hidden">
             <HelpCircle
