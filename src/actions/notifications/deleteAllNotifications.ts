@@ -1,18 +1,16 @@
 import axios from "axios";
 
-import { auth } from "~/lib/auth";
 import { getApiUrl } from "../getApiUrl";
 
-export const deleteAllNotifications = async () => {
+export const deleteAllNotifications = async (token: string) => {
   const apiUrl = await getApiUrl();
-  const session = await auth();
 
   try {
     const response = await axios.delete(
       `${apiUrl}/api/v1/notifications/clear-all`,
       {
         headers: {
-          Authorization: `Bearer ${session?.access_token}`,
+          Authorization: `Bearer ${token}`,
         },
       },
     );

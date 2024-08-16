@@ -2,21 +2,20 @@ import axios from "axios";
 
 import { getApiUrl } from "../getApiUrl";
 
-interface ReadProperties {
+interface DeleteNotificationProperties {
   notificationId: string;
   token?: string;
 }
 
-export const markOneAsRead = async ({
+export const deleteNotifications = async ({
   notificationId,
   token,
-}: ReadProperties) => {
+}: DeleteNotificationProperties) => {
   const apiUrl = await getApiUrl();
 
   try {
-    const response = await axios.patch(
+    const response = await axios.delete(
       `${apiUrl}/api/v1/notifications/${notificationId}`,
-      { is_read: true },
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -31,8 +30,7 @@ export const markOneAsRead = async ({
     return axios.isAxiosError(error) && error.response
       ? {
           error:
-            error.response.data.message ||
-            "Failed to mark notifications as read.",
+            error.response.data.message || "Failed to delete notifications.",
           status: error.response.status,
         }
       : {

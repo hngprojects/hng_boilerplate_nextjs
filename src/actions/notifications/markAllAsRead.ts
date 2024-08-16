@@ -1,11 +1,9 @@
 import axios from "axios";
 
-import { auth } from "~/lib/auth";
 import { getApiUrl } from "../getApiUrl";
 
-export const markAllAsRead = async () => {
+export const markAllAsRead = async (token: string) => {
   const apiUrl = await getApiUrl();
-  const session = await auth();
 
   try {
     const response = await axios.patch(
@@ -13,7 +11,7 @@ export const markAllAsRead = async () => {
       { is_read: true },
       {
         headers: {
-          Authorization: `Bearer ${session?.access_token}`,
+          Authorization: `Bearer ${token}`,
         },
       },
     );
