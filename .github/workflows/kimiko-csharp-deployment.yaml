@@ -1,4 +1,4 @@
-name: Kimiko Golang Deployment
+name: Kimiko Csharp Deployment
 
 on:
   workflow_dispatch:
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     environment:
-      name: "kimiko-golang"
+      name: "kimiko-csharp"
       url: ${{ vars.URL }}
 
     steps:
@@ -54,7 +54,5 @@ jobs:
           script: |
             cd ~/deployments/hng_boilerplate_nextjs
             tar -xzf boilerplate.tar.gz
-            rm -rf node_modules
-            mv .next/standalone/* ./
             rm -f boilerplate.tar.gz
             pm2 restart boilerplate-frontend --update-env
