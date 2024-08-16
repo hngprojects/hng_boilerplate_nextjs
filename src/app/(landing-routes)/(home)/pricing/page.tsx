@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { getCookie } from "cookies-next";
+import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,6 +19,9 @@ interface BillingPlan {
   id: string;
   name: string;
   price: string;
+  description: string;
+  features: string[];
+  duration: string;
 }
 
 const getAnnualPrice = (monthlyPrice: string) => {
@@ -27,6 +31,7 @@ const getAnnualPrice = (monthlyPrice: string) => {
 };
 
 export default function Pricing() {
+  const { data: session } = useSession();
   const [toggle, setToggle] = useState(1);
   const [plans, setPlans] = useState<BillingPlan[]>([]);
   const [loading, setLoading] = useState(true);
@@ -38,9 +43,12 @@ export default function Pricing() {
     const fetchPlans = async () => {
       try {
         const apiUrl = await getApiUrl();
-        const response = await axios.get(`${apiUrl}/api/v1/billing-plans`, {
+        const access_token = session?.access_token;
+        const response = await axios.get(`${apiUrl}/api/v1/payment/plans`, {
           headers: {
+            Authorization: `Bearer ${access_token}`,
             ...(locale ? { "Accept-Language": locale } : {}),
+            "ngrok-skip-browser-warning": "true",
           },
         });
         setPlans(response.data.data);
@@ -52,9 +60,7 @@ export default function Pricing() {
     };
 
     fetchPlans();
-  }, [locale]);
-
-  //
+  }, [session, locale]);
 
   return (
     <>
@@ -143,88 +149,44 @@ export default function Pricing() {
                     className="mb-[46px] text-[14px]"
                     data-testid={`${plan.name.toLowerCase()}-description`}
                   >
-                    {t("essentials")}
+                    {plan.description}
                   </p>
+                  {plan.features.map((feature, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="text-md mb-3 flex items-center gap-3"
+                        data-testid={`${plan.name.toLowerCase()}-feature-${index + 1}`}
+                      >
+                        <Image
+                          src="/images/checkmark.svg"
+                          alt="check icon"
+                          height={20}
+                          width={20}
+                        />
+                        {feature}
+                      </div>
+                    );
+                  })}
 
-                  <div
-                    className="text-md mb-3 flex items-center gap-3"
-                    data-testid={`${plan.name.toLowerCase()}-feature-1`}
+                  <Link
+                    href={{
+                      pathname: "/pricing/upgrade-plan",
+                      query: {
+                        planName: plan.name,
+                        price: plan.price,
+                        interval: plan.duration,
+                      },
+                    }}
                   >
-                    <Image
-                      src="/images/checkmark.svg"
-                      alt=""
-                      height={20}
-                      width={20}
-                    />
-                    {t("features.feature1")}
-                  </div>
-                  <div
-                    className="text-md mb-3 flex items-center gap-3"
-                    data-testid={`${plan.name.toLowerCase()}-feature-2`}
-                  >
-                    <Image
-                      src="/images/checkmark.svg"
-                      alt=""
-                      height={20}
-                      width={20}
-                    />
-                    {t("features.feature2")}
-                  </div>
-                  <div
-                    className="text-md mb-3 flex items-center gap-3"
-                    data-testid={`${plan.name.toLowerCase()}-feature-3`}
-                  >
-                    <Image
-                      src="/images/checkmark.svg"
-                      alt=""
-                      height={20}
-                      width={20}
-                    />
-                    {t("features.feature3")}
-                  </div>
-                  <div
-                    className="text-md mb-3 flex items-center gap-3"
-                    data-testid={`${plan.name.toLowerCase()}-feature-4`}
-                  >
-                    <Image
-                      src="/images/checkmark.svg"
-                      alt=""
-                      height={20}
-                      width={20}
-                    />
-                    {t("features.feature4")}
-                  </div>
-                  <div
-                    className="text-md mb-3 flex items-center gap-3"
-                    data-testid={`${plan.name.toLowerCase()}-feature-5`}
-                  >
-                    <Image
-                      src="/images/checkmark.svg"
-                      alt=""
-                      height={20}
-                      width={20}
-                    />
-                    {t("features.feature5")}
-                  </div>
-                  <div
-                    className="text-md mb-3 flex items-center gap-3"
-                    data-testid={`${plan.name.toLowerCase()}-feature-6`}
-                  >
-                    <Image
-                      src="/images/checkmark.svg"
-                      alt=""
-                      height={20}
-                      width={20}
-                    />
-                    {t("features.feature6")}
-                  </div>
-                  <Button
-                    size="lg"
-                    className="mt-[51px] w-full bg-primary text-background hover:bg-destructive"
-                    data-testid={`${plan.name.toLowerCase()}-button`}
-                  >
-                    {t("features.continue")}
-                  </Button>
+                    <Button
+                      size="lg"
+                      className="mt-[51px] w-full bg-primary text-background hover:bg-destructive"
+                      data-testid={`${plan.name.toLowerCase()}-button`}
+                    >
+                      {t("features.continue")}
+                    </Button>
+                  </Link>
                 </div>
               ))}
             </div>
