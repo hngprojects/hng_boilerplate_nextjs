@@ -138,7 +138,7 @@ const roleSchemaWithId = roleSchema.extend({
   permissions: z.array(z.string().uuid()),
 });
 export const updateRole = async (
-  values: z.infer<typeof roleSchema>,
+  values: z.infer<typeof roleSchemaWithId>,
   currentOrgId: string,
   roleId: string,
 ) => {

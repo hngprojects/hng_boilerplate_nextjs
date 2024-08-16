@@ -70,7 +70,7 @@ const RolesAndPermission = () => {
 
   useEffect(() => {
     const fetchPermissions = async () => {
-      if (selectedRoleId) {
+      if (selectedRoleId && currentOrgId) {
         setLoadingPermissions(true);
         try {
           await getRolePermissions(currentOrgId, selectedRoleId).then(
@@ -78,7 +78,9 @@ const RolesAndPermission = () => {
               const rolesData = data.data;
               if (rolesData.permissions.length > 0) {
                 setPermissions(
-                  rolesData.permissions.map((permission) => permission.id),
+                  rolesData.permissions.map(
+                    (permission: Permission) => permission.id,
+                  ),
                 );
               }
               setLoadingPermissions(false);
@@ -126,10 +128,11 @@ const RolesAndPermission = () => {
   };
 
   const handleSave = async () => {
-    if (!selectedRoleId) return;
+    if (!selectedRoleId || !currentOrgId) return;
     const selectedRole =
       roles.some((role) => role.id === selectedRoleId) &&
       roles.find((role) => role.id === selectedRoleId);
+    if (!selectedRole) return;
     setLoadingRequest(true);
     try {
       await updateRole(
@@ -231,7 +234,7 @@ const RolesAndPermission = () => {
                       <input
                         type="checkbox"
                         className="peer sr-only"
-                        checked={permissions.includes(permission.id)}
+                        checked={permissions.includes(permission.id as never)}
                         onChange={(event) =>
                           handleToggle(permission.id, event.target.checked)
                         }
