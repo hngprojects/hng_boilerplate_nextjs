@@ -39,26 +39,6 @@ export default function Pricing() {
   const locale = getCookie("NEXT_LOCALE") || "en";
   const t = useTranslations("pricing");
 
-  // useEffect(() => {
-  //   const fetchPlans = async () => {
-  //     try {
-  //       const apiUrl = await getApiUrl();
-  //       const response = await axios.get(`${apiUrl}/api/v1/billing-plans`, {
-  //         headers: {
-  //           ...(locale ? { "Accept-Language": locale } : {}),
-  //         },
-  //       });
-  //       setPlans(response.data.data);
-  //     } catch {
-  //       setError("Failed to fetch billing plans");
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchPlans();
-  // }, [locale]);
-
   useEffect(() => {
     const fetchPlans = async () => {
       try {
