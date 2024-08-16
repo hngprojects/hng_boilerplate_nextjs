@@ -37,7 +37,7 @@ const Heading = (properties: Properties) => {
         {renderTitle(properties.title)}
       </h2>
       <p
-        className="md-text-xl mb-10 text-base text-lg text-gray-700 lg:px-40"
+        className="md-text-xl mb-10 text-lg text-gray-700 lg:px-40"
         data-testid="pricing-description"
       >
         {properties?.content}

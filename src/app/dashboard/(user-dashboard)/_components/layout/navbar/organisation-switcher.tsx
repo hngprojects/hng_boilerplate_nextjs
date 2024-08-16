@@ -24,7 +24,6 @@ export const OrganisationSwitcher = () => {
   );
 
   const { organizations, isLoading, switchOrganization } = useOrgContext();
-  // eslint-disable-next-line unicorn/consistent-function-scoping
 
   useEffect(() => {
     if (!currentOrgId && organizations.length > 0) {
