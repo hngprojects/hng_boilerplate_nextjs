@@ -79,39 +79,38 @@ const Register = () => {
           router.push("/login");
 
           toast({
-            title:
-              data.status === 201
-                ? "Account created successfully"
-                : "an error occurred",
-            description:
-              data.status === 201 ? "verify your account" : data.error,
+            title: "Account created successfully",
+            description: "Verify your account",
           });
 
-          // Enqueue email for sending using the provided backend API
-          const emailData = {
-            template_id: "9cc52f6d-c343-4b7d-9837-565083fe0a11",
-            subject: "Welcome to Our Service!",
-            recipient: values.email,
-            variables: JSON.stringify({ name: values.first_name }),
-            status: "pending",
-          };
-          try {
-            const response = await fetch(`${apiUrl}/api/v1/email-requests`, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(emailData),
-            });
+          const emailTemplateId = data?.data?.email_template_id;
 
-            const emailResult = await response.json();
-            if (emailResult.status === "success") {
-              //no specific action required
-            } else {
-              throw new Error(emailResult.message || "Email sending failed");
+          // Check if the email_template_id is provided
+          if (emailTemplateId) {
+            const emailData = {
+              template_id: emailTemplateId,
+              subject: "Welcome to Our Service!",
+              recipient: values.email,
+              variables: JSON.stringify({ name: values.first_name }),
+              status: "pending",
+            };
+
+            try {
+              const response = await fetch(`${apiUrl}/api/v1/email-requests`, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(emailData),
+              });
+
+              const emailResult = await response.json();
+              if (emailResult.status !== "success") {
+                throw new Error(emailResult.message || "Email sending failed");
+              }
+            } catch {
+              // Handle error, possibly show a toast notification or log it
             }
-          } catch {
-            //no sepcific action required
           }
         } else {
           toast({
