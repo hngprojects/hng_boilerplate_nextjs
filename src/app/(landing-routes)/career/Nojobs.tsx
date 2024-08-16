@@ -1,4 +1,7 @@
+import { useTranslations } from "next-intl";
+
 function Nojobs() {
+  const t = useTranslations("noJobs");
   return (
     <div>
       <div className="flex items-center justify-center">
@@ -48,10 +51,10 @@ function Nojobs() {
       </div>
 
       <h3 className="font-inter mb-1 text-center text-[22px] font-semibold leading-normal text-neutral-800 sm:w-[auto]">
-        No available Jobs at the moment
+        {t("noJobsTitle")}
       </h3>
       <p className="font-inter text-wrap text-center text-[16px] font-normal leading-normal text-neutral-600 sm:text-[18px]">
-        Come back later!
+        {t("noJobsContent")}
       </p>
     </div>
   );
