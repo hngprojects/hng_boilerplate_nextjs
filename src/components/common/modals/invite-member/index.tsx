@@ -1,10 +1,13 @@
 "use client";
 
-import axios from "axios";
 import { Link2Icon } from "lucide-react";
 import { useCallback, useState } from "react";
 
-import { fetchOrganizations, inviteMembers } from "~/actions/inviteMembers";
+import {
+  fetchOrganizations,
+  generateInviteLink,
+  inviteMembers,
+} from "~/actions/inviteMembers";
 import CustomButton from "~/components/common/common-button/common-button";
 import {
   Dialog,
@@ -76,7 +79,7 @@ const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
     } else {
       toast({
         title: "Success",
-        description: "Your invite has been sent successfully to members email",
+        description: "Your invite has been sent successfully to members' email",
         variant: "default",
       });
       setEmails("");
@@ -84,20 +87,47 @@ const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
     }
   };
 
+  const clearError = () => setTimeout(() => setError(""), 3000);
   const handleInviteWithLink = async () => {
-    try {
-      const response = await axios.post("/api/v1/invite/create");
-      if (response.status === 200) {
-        setInviteLink(response.data.invite_link);
-        setLinkGenerated(true);
-        navigator.clipboard.writeText(response.data.invite_link);
-        toast({
-          title: "Invite Link",
-          description: "Invite link copied to clipboard!",
-        });
+    if (!organization) {
+      setError("Please select an organization first.");
+      clearError();
+      return;
+    }
+
+    const inviteResponse = await inviteMembers(emails, organization);
+    if (inviteResponse?.error) {
+      setError(inviteResponse.error);
+      clearError();
+      return;
+    }
+
+    const { data: inviteLinkData, error: inviteLinkError } =
+      await generateInviteLink(organization, inviteResponse.data.invite_token);
+
+    if (inviteLinkError) {
+      setError(inviteLinkError);
+      clearError();
+    } else {
+      setInviteLink(inviteLinkData); // Correctly store the invite link
+      setLinkGenerated(true);
+
+      try {
+        // Ensure the document is focused before attempting to write to the clipboard
+        if (document.hasFocus()) {
+          await navigator.clipboard.writeText(inviteLinkData);
+          toast({
+            title: "Invite Link",
+            description: "Invite link copied to clipboard!",
+          });
+        } else {
+          setError("Failed to copy invite link. Please manually copy it.");
+          clearError();
+        }
+      } catch {
+        setError("Failed to copy invite link to clipboard.");
+        clearError();
       }
-    } catch {
-      setError("Failed to generate invite link.");
     }
   };
 
@@ -165,10 +195,11 @@ const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
               </CustomButton>
             </div>
             {linkGenerated && (
-              <div className="mt-4 text-sm text-green-500">
+              <div className="text-green mt-4 text-sm">
                 Invite link: {inviteLink}
               </div>
             )}
+
             {error && <div className="mt-4 text-sm text-red-500">{error}</div>}
           </DialogDescription>
         </DialogHeader>
