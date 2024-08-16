@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { z, ZodError } from "zod";
 
 import { getApiUrl } from "~/actions/getApiUrl";
+import { useLocalStorage } from "~/hooks/use-local-storage";
 import CustomButton from "../common-button/common-button";
 import InputField from "./inputfield";
 
@@ -27,12 +28,21 @@ const initialFormData: FormData = {
   message: "",
 };
 
+interface TransformedData {
+  full_name: string;
+  email: string;
+  phone_number: string;
+  message: string;
+  org_id: string;
+}
+
 const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({ ...initialFormData });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [status, setStatus] = useState<boolean | undefined>();
   const [message, setMessage] = useState<string | undefined>();
   const [loading, setLoading] = useState<boolean>(false);
+  const [org_id] = useLocalStorage<string>("current_orgid", "");
 
   useEffect(() => {
     if (status !== undefined) {
@@ -59,6 +69,22 @@ const ContactForm: React.FC = () => {
     }
   };
 
+  function transformFormData(
+    formData: FormData,
+    orgId: string,
+  ): TransformedData {
+    // Create a new object with the required structure
+    const transformedData = {
+      full_name: formData.name,
+      email: formData.email,
+      phone_number: formData.phone,
+      message: formData.message,
+      org_id: orgId, // Pass orgId as a parameter or obtain it from your application context
+    };
+
+    return transformedData;
+  }
+
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
@@ -75,13 +101,14 @@ const ContactForm: React.FC = () => {
     }
     try {
       const baseUrl = await getApiUrl();
+      const apiData = transformFormData(formData, org_id);
       setLoading(true);
       const response = await fetch(`${baseUrl}/api/v1/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(apiData),
       });
 
       const responseData = await response.json();
