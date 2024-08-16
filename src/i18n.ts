@@ -4,10 +4,10 @@ import { getUserLocale } from "./utils/locale";
 
 export default getRequestConfig(async () => {
   const locale = await getUserLocale();
-  const messagesRes = await import(`../public/messages/${locale}.json`);
+  const messagesResponse = await import(`../public/messages/${locale}.json`);
 
   return {
     locale,
-    messages: messagesRes.default
+    messages: messagesResponse.default
   };
 });
