@@ -10,38 +10,41 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.fork == false
 
-    environment:
-      name: "dev"
-      url: ${{ vars.URL }}
-    
     steps:
-      - uses: actions/checkout@v3
-      
-      - name: Build Docker image
-        run: docker build -t hngdevops/nextjs-boilerplate:dev -f docker/development/Dockerfile .
-      
-      - name: Save and compress Docker image
-        run: |
-          docker save hngdevops/nextjs-boilerplate:dev > nextjs-dev.tar
-          gzip nextjs-dev.tar
-      
-      - name: Copy to server
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          source: "nextjs-dev.tar.gz"
-          target: "/tmp/nextjs"
-  
-      - name: Load image in server
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          script: |
-            cd /tmp/nextjs
-            gunzip nextjs-dev.tar.gz
-            docker load < nextjs-dev.tar
-            rm -f nextjs-dev.tar
+    - uses: actions/checkout@v4
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: "20"
+
+    - name: Cache pnpm modules
+      uses: actions/cache@v3
+      with:
+        path: ~/.pnpm-store
+        key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-
+
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 9
+
+    - name: Install dependencies
+      run: pnpm install
+
+    - name: Build Next.js application
+      run: pnpm build
+
+    - name: Archive production artifacts
+      run: tar -czf boilerplate.tar.gz .next public
+
+    - name: Upload production artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: boilerplate-build
+        path: boilerplate.tar.gz
+
+    - name: Delete zip file
+      run: rm -f boilerplate.tar.gz

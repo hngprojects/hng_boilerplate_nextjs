@@ -5,7 +5,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next-nprogress-bar";
 import Link from "next/link";
-import { useEffect, useState, useTransition } from "react";
+import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
@@ -48,14 +48,6 @@ const Register = () => {
   const [showOtp, setShowOtp] = useState(false);
   const [timeLeft, setTimeLeft] = useState<number>(15 * 60);
   const [value, setValue] = useState("");
-
-  useEffect(() => {
-    if (timeLeft <= 0) return;
-    const timerId = setInterval(() => {
-      setTimeLeft((previousTime) => previousTime - 1);
-    }, 1000);
-    return () => clearInterval(timerId);
-  }, [timeLeft, showOtp]);
 
   if (status === "authenticated") {
     router.push("/dashboard");
