@@ -54,7 +54,5 @@ jobs:
           script: |
             cd ~/deployments/hng_boilerplate_nextjs
             tar -xzf boilerplate.tar.gz
-            rm -rf node_modules
-            mv .next/standalone/* ./
             rm -f boilerplate.tar.gz
             pm2 restart boilerplate-frontend --update-env

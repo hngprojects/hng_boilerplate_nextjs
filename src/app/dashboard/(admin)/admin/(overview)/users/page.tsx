@@ -1,7 +1,7 @@
 "use client";
 
 import { Check, ChevronLeft, ChevronRight, Filter } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import CardComponent from "~/components/common/DashboardCard/CardComponent";
 import { Button } from "~/components/ui/button";
@@ -25,6 +25,7 @@ import "./assets/style.css";
 import axios from "axios";
 
 import { getApiUrl } from "~/actions/getApiUrl";
+import { useToast } from "~/components/ui/use-toast";
 
 interface FilterDataProperties {
   title: string;
@@ -48,10 +49,15 @@ export interface UserData {
   email: string;
   name: string;
   role: string;
-  phone?: string | number;
+  phone: string | null;
   is_active: boolean;
   signup_type: string;
   created_at: string;
+  deleted_at: string | null;
+  email_verified_at: string | null;
+  is_verified: boolean;
+  social_id: string | null;
+  updated_at: string;
 }
 
 const UserPage = () => {
@@ -60,6 +66,13 @@ const UserPage = () => {
   const [data, setData] = useState<UserData[]>([]);
 
   const [filterData, setFilterData] = useState<UserData[]>([]);
+
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const [loading, setLoading] = useState(false);
+
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const { toast } = useToast();
 
   const [totalUserOverview, setTotalUserOverview] = useState<UserCardData>({
     title: "Total Users",
@@ -99,49 +112,97 @@ const UserPage = () => {
     }
   };
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const baseUrl = await getApiUrl();
-        const API_URL = `${baseUrl}/api/v1/users`;
-        const response = await axios.get(`${API_URL}?page=${page}`);
+  const fetchData = useCallback(async () => {
+    try {
+      setLoading(true);
+      const baseUrl = await getApiUrl();
+      const API_URL = `${baseUrl}/api/v1/users`;
+      const response = await axios.get(`${API_URL}?page=${page}`);
+      setIsNextPageActive(response.data.data?.next_page_url ? true : false);
+      setIsPreviousPageActive(response.data.data?.prev_page_url ? true : false);
+      const usersData: UserData[] = response.data.data.data;
+      setData(usersData);
+      setFilterData(usersData);
+      const totalUser = response.data.data.total;
+      const deletedUser = usersData.filter(
+        (user) => user.deleted_at !== null,
+      ).length;
 
-        setIsNextPageActive(response.data?.next_page_url ? true : false);
+      setTotalUserOverview((previous) => ({
+        ...previous,
+        value: totalUser,
+      }));
 
-        setIsPreviousPageActive(response.data?.prev_page_url ? true : false);
+      setdeletedUserOverview((previous) => ({
+        ...previous,
+        value: deletedUser,
+      }));
 
-        setData(response.data.data);
-        setFilterData(response.data.data);
-        setTotalUserOverview((previous) => ({
-          ...previous,
-          value: response.data.total,
-        }));
-
-        const userData: UserData[] = response.data.data;
-
-        setdeletedUserOverview((previous) => ({
-          ...previous,
-          value: response.data.total,
-        }));
-
-        setActiveUserOverview((previous) => {
-          let count = 0;
-          for (const user of userData) {
-            if (user.is_active) {
-              count += 1;
-            }
+      setActiveUserOverview((previous) => {
+        let count = 0;
+        for (const user of usersData) {
+          if (user.is_active) {
+            count += 1;
           }
+        }
 
-          return {
-            ...previous,
-            value: count,
-          };
-        });
-      } catch {
-        // console.log(error);
-      }
-    })();
-  }, [page]);
+        return {
+          ...previous,
+          value: count,
+        };
+      });
+    } catch (error) {
+      setLoading(false);
+      toast({
+        title: `Error fetching users`,
+        description:
+          error instanceof Error ? error.message : "An unknown error occurred",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  }, [page, toast]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  const deleteUser = async (userId: string) => {
+    try {
+      const baseUrl = await getApiUrl();
+      const API_URL = `${baseUrl}/api/v1/users/${userId}`;
+      setIsDeleting(true);
+      await axios.delete(API_URL);
+      fetchData();
+      const updatedUser = data.filter((user) => user.id !== userId);
+      setData(updatedUser);
+      setFilterData(updatedUser);
+      const deletedCount = updatedUser.filter(
+        (user) => user.deleted_at !== null,
+      ).length;
+      setdeletedUserOverview((previous) => ({
+        ...previous,
+        value: deletedCount,
+      }));
+      const activeCount = updatedUser.filter((user) => user.is_active).length;
+      setActiveUserOverview((previous) => ({
+        ...previous,
+        value: activeCount,
+      }));
+    } catch {
+      setIsDeleting(false);
+    } finally {
+      setIsDeleting(false);
+      setIsDialogOpen(false);
+    }
+  };
+
+  if (!data) {
+    <div className="w-full pb-5 pt-10 text-center text-neutral-dark-2">
+      No data
+    </div>;
+  }
 
   return (
     <>
@@ -152,7 +213,7 @@ const UserPage = () => {
               <CardComponent
                 key={index}
                 title={card.title}
-                value={card.value.toLocaleString()}
+                value={card.value}
                 description={card.description}
                 icon={card.icon}
               />
@@ -221,7 +282,14 @@ const UserPage = () => {
           </div>
 
           <div className="user-table mt-6 h-full w-full overflow-x-auto md:overflow-y-hidden">
-            <UserTable data={filterData} />
+            <UserTable
+              data={filterData}
+              onDelete={deleteUser}
+              isDeleting={isDeleting}
+              loading={loading}
+              isDialogOpen={isDialogOpen}
+              setIsDialogOpen={setIsDialogOpen}
+            />
           </div>
 
           <div className="mt-8">

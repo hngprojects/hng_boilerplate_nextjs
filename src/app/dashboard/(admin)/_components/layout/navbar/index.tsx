@@ -3,8 +3,9 @@
 import { BellIcon, HelpCircle, SearchIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
+import { getAllNotifications } from "~/actions/notifications/getAllNotifications";
 import UserCard from "~/components/card/user-card";
 import {
   Popover,
@@ -14,7 +15,25 @@ import {
 import UnreadNotificationCard from "../../unread-notification-card/UnreadNotificationCard";
 import DashboardLogo from "../logo";
 
+interface NotificationPreview {
+  message: string;
+  created_at: string;
+  is_read: boolean;
+  id: string;
+}
+
+interface NotificationsData {
+  data: {
+    total_unread_notification_count: number;
+    total_notification_count: number;
+    notifications: NotificationPreview[];
+  };
+  message: string;
+}
+
 const DashboardNavbar = () => {
+  const [notifications, setNotifications] =
+    useState<NotificationsData | null>();
   const { status } = useSession();
   const router = useRouter();
   useEffect(() => {
@@ -22,6 +41,28 @@ const DashboardNavbar = () => {
       router.push("/login");
     }
   }, [status, router]);
+
+  useEffect(() => {
+    async function fetchNotifications() {
+      const result = await getAllNotifications();
+
+      if (result.error) {
+        return result.error;
+      } else {
+        setNotifications(result.data as NotificationsData);
+      }
+    }
+
+    fetchNotifications();
+  }, []);
+
+  const totalUnreadNotificationCount =
+    notifications?.data.total_unread_notification_count || 0;
+
+  const totalNotificationCount =
+    notifications?.data.total_notification_count || 0;
+  const notificationContent: NotificationPreview[] =
+    notifications?.data.notifications || [];
 
   return (
     <nav
@@ -59,12 +100,9 @@ const DashboardNavbar = () => {
                   className="w-fit border-none p-0 shadow-none"
                 >
                   <UnreadNotificationCard
-                    notificationsPreview={[
-                      { header: "Check mail", time: "1 hour ago" },
-                      { header: "Sign up for offer", time: "2 hours ago" },
-                      { header: "Register for event", time: "1 hour ago" },
-                    ]}
-                    unreadCount={30}
+                    notificationsPreview={notificationContent}
+                    unreadCount={totalUnreadNotificationCount}
+                    totalNotificationCount={totalNotificationCount}
                   />
                 </PopoverContent>
               </Popover>
