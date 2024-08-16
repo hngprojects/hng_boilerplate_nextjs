@@ -4,9 +4,9 @@ import { Mail } from "lucide-react";
 import { useEffect, useState } from "react";
 import { z, ZodError } from "zod";
 
+import { getApiUrl } from "~/actions/getApiUrl";
 import CustomButton from "../common-button/common-button";
 import InputField from "./inputfield";
-import { getApiUrl } from "~/actions/getApiUrl";
 
 const schema = z.object({
   name: z.string().min(5, "Name is required"),
@@ -76,16 +76,13 @@ const ContactForm: React.FC = () => {
     try {
       const baseUrl = await getApiUrl();
       setLoading(true);
-      const response = await fetch(
-        `${baseUrl}/api/v1/contact`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
+      const response = await fetch(`${baseUrl}/api/v1/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify(formData),
+      });
 
       const responseData = await response.json();
 
