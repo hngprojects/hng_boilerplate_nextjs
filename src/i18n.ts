@@ -8,6 +8,6 @@ export default getRequestConfig(async () => {
 
   return {
     locale,
-    messages: messagesResponse.default
+    messages: messagesResponse.default,
   };
 });
