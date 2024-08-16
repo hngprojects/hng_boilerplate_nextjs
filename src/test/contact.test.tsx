@@ -1,6 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
-import { getApiUrl } from "~/actions/getApiUrl";
 import Contact from "~/app/(landing-routes)/contact-us/page";
 
 describe("contact Page tests", () => {
