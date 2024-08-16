@@ -1,6 +1,7 @@
 "use client";
 
 import axios from "axios";
+import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -21,12 +22,17 @@ export default function Career() {
   const pageSize = 6;
   const router = useRouter();
   const { toast } = useToast();
+  const locale = getCookie("NEXT_LOCALE") || "en";
 
   useEffect(() => {
     const fetchCarrers = async () => {
       try {
         const apiUrl = await getApiUrl();
-        const response = await axios.get(`${apiUrl}/api/v1/jobs`);
+        const response = await axios.get(`${apiUrl}/api/v1/jobs`, {
+          headers: {
+            ...(locale ? { "Accept-Language": locale } : {}),
+          },
+        });
         setAllJobs(response.data.data);
       } catch {
         toast({
@@ -40,7 +46,7 @@ export default function Career() {
     };
 
     fetchCarrers();
-  }, [toast]);
+  }, [locale, toast]);
 
   useEffect(() => {
     // Calculate the jobs to display based on the current page
@@ -67,9 +73,23 @@ export default function Career() {
   return (
     <div className="mx-auto max-w-7xl bg-white px-5 py-5 sm:bg-transparent md:px-10 lg:px-10 xl:px-10">
       <Heading
-        tag="Career"
-        title="Available {{Jobs}} in Our Company"
-        content="Explore job opportunities across various fields that fit for your skills and career aspirations."
+        tag={`${
+          locale === "es" ? "Carrera" : locale === "fr" ? "Carrière" : "Career"
+        }`}
+        title={`${
+          locale === "es"
+            ? "Ofertas de Empleo Disponibles en Nuestra Empresa"
+            : locale === "fr"
+              ? "Offres d'Emploi Disponibles dans Notre Entreprise"
+              : "Available Jobs in Our Company"
+        }`}
+        content={`${
+          locale === "es"
+            ? "Explora oportunidades laborales en diversos campos que se ajustan a tus habilidades y aspiraciones profesionales."
+            : locale === "fr"
+              ? "Découvrez des opportunités d'emploi dans divers domaines qui correspondent à vos compétences et aspirations professionnelles."
+              : "Explore job opportunities across various fields that fit your skills and career aspirations."
+        }`}
       />
 
       <div className="flex w-full items-center justify-center">

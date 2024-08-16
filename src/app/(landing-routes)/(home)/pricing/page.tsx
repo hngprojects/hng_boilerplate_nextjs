@@ -1,6 +1,8 @@
 "use client";
 
 import axios from "axios";
+import { getCookie } from "cookies-next";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -29,12 +31,18 @@ export default function Pricing() {
   const [plans, setPlans] = useState<BillingPlan[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | undefined>();
+  const locale = getCookie("NEXT_LOCALE") || "en";
+  const t = useTranslations("pricing");
 
   useEffect(() => {
     const fetchPlans = async () => {
       try {
         const apiUrl = await getApiUrl();
-        const response = await axios.get(`${apiUrl}/api/v1/billing-plans`);
+        const response = await axios.get(`${apiUrl}/api/v1/billing-plans`, {
+          headers: {
+            ...(locale ? { "Accept-Language": locale } : {}),
+          },
+        });
         setPlans(response.data.data);
       } catch {
         setError("Failed to fetch billing plans");
@@ -44,7 +52,7 @@ export default function Pricing() {
     };
 
     fetchPlans();
-  }, []);
+  }, [locale]);
 
   //
 
@@ -55,14 +63,27 @@ export default function Pricing() {
         data-testid="pricing-container"
       >
         <Heading
-          tag="Pricing"
-          title="Simple and {{Affordable}} Pricing Plan"
-          content="Our flexible plans are designed to scale with your business. We have
-            a plan for you."
+          tag={`${
+            locale === "es" ? "Precios" : locale === "fr" ? "Prix" : "Pricing"
+          }`}
+          title={`${
+            locale === "es"
+              ? "Plan de Precios Simple y {{Asequible}}"
+              : locale === "fr"
+                ? "Plan de Tarification Simple et {{Abordable}}"
+                : "Simple and {{Affordable}} Pricing Plan"
+          }`}
+          content={`${
+            locale === "es"
+              ? "Nuestros planes flexibles están diseñados para adaptarse a su negocio. Tenemos un plan para usted"
+              : locale === "fr"
+                ? "Nos plans flexibles sont conçus pour évoluer avec votre entreprise. Nous avons un plan pour vous."
+                : "Our flexible plans are designed to scale with your business. We have a plan for you."
+          }`}
         />
 
         <div
-          className="align-center mx-auto mt-[50px] flex w-[380px] justify-between rounded-md bg-gray-200 p-2"
+          className="align-center mx-auto mt-[50px] flex w-[405px] justify-between rounded-md bg-gray-200 p-2"
           data-testid="pricing-toggle"
         >
           <div
@@ -70,14 +91,14 @@ export default function Pricing() {
             className={`flex h-[50px] w-[190px] cursor-pointer items-center justify-center rounded-md ${toggle === 1 ? "bg-white font-medium" : ""}`}
             data-testid="monthly-toggle"
           >
-            Monthly
+            {t("monthly")}
           </div>
           <div
             onClick={() => setToggle(2)}
-            className={`flex h-[50px] w-[190px] cursor-pointer items-center justify-center rounded-md ${toggle === 2 ? "bg-white font-medium" : ""}`}
+            className={`flex h-[50px] w-[215px] cursor-pointer items-center justify-center rounded-md ${toggle === 2 ? "bg-white font-medium" : ""}`}
             data-testid="annual-toggle"
           >
-            Annual(save 20%)
+            {t("annual")}
           </div>
         </div>
 
@@ -89,7 +110,7 @@ export default function Pricing() {
 
         {!loading && plans?.length === 0 && (
           <div className="align-center mt-[50px] flex flex-col flex-wrap justify-center gap-6 sm:flex-row">
-            Billing plans not available
+            {t("billingPlansNotAvailable")}
           </div>
         )}
 
@@ -122,7 +143,7 @@ export default function Pricing() {
                     className="mb-[46px] text-[14px]"
                     data-testid={`${plan.name.toLowerCase()}-description`}
                   >
-                    The essentials to provide your best work for clients.
+                    {t("essentials")}
                   </p>
 
                   <div
@@ -135,7 +156,7 @@ export default function Pricing() {
                       height={20}
                       width={20}
                     />
-                    2 Projects
+                    {t("features.feature1")}
                   </div>
                   <div
                     className="text-md mb-3 flex items-center gap-3"
@@ -147,7 +168,7 @@ export default function Pricing() {
                       height={20}
                       width={20}
                     />
-                    Up to 100 subscribers
+                    {t("features.feature2")}
                   </div>
                   <div
                     className="text-md mb-3 flex items-center gap-3"
@@ -159,7 +180,7 @@ export default function Pricing() {
                       height={20}
                       width={20}
                     />
-                    Basic analytics
+                    {t("features.feature3")}
                   </div>
                   <div
                     className="text-md mb-3 flex items-center gap-3"
@@ -171,7 +192,7 @@ export default function Pricing() {
                       height={20}
                       width={20}
                     />
-                    24-hour support response time
+                    {t("features.feature4")}
                   </div>
                   <div
                     className="text-md mb-3 flex items-center gap-3"
@@ -183,7 +204,7 @@ export default function Pricing() {
                       height={20}
                       width={20}
                     />
-                    Marketing advisor
+                    {t("features.feature5")}
                   </div>
                   <div
                     className="text-md mb-3 flex items-center gap-3"
@@ -195,14 +216,14 @@ export default function Pricing() {
                       height={20}
                       width={20}
                     />
-                    Custom integration
+                    {t("features.feature6")}
                   </div>
                   <Button
                     size="lg"
                     className="mt-[51px] w-full bg-primary text-background hover:bg-destructive"
                     data-testid={`${plan.name.toLowerCase()}-button`}
                   >
-                    Continue
+                    {t("features.continue")}
                   </Button>
                 </div>
               ))}
@@ -223,11 +244,11 @@ export default function Pricing() {
                 role="heading"
                 aria-level={1}
               >
-                Frequently Asked Questions
+                {t("faqHeader")}
               </h1>
 
               <p className="mb-3 text-[18px] text-neutral-600">
-                We couldn’t answer your question?
+                {t("faqSubHeader")}
               </p>
 
               <Link
@@ -235,7 +256,7 @@ export default function Pricing() {
                 className="flex w-[150px] justify-center rounded-md border border-input bg-background py-4 hover:bg-accent hover:text-accent-foreground"
                 data-testid="contact-button"
               >
-                Contact us
+                {t("contactUs")}
               </Link>
             </div>
 
