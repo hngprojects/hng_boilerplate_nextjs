@@ -32,11 +32,13 @@ const Footer = () => {
       ? "Veuillez fournir votre e-mail"
       : locale === "es"
         ? "Por favor, proporcione su correo electrónico"
-        : "Please provide your email";
+        : "Please provide a valid email";
 
-  // handle submit
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const isValidEmail = (email: string): boolean => emailRegex.test(email);
+
   const handleSubmit = async () => {
-    if (email === "") {
+    if (!isValidEmail(email)) {
       setError(true);
 
       toast({
@@ -44,8 +46,6 @@ const Footer = () => {
         description: toastDesc,
         variant: "destructive",
       });
-      setLoading(false);
-
       return;
     }
     setLoading(true);
@@ -53,7 +53,7 @@ const Footer = () => {
     const apiUrl = await getApiUrl();
     await axios
       .post(
-        `${apiUrl}/api/v1/news-letter`,
+        `${apiUrl}/api/v1/newsletter-subscription`,
         { email },
         {
           headers: {
@@ -74,25 +74,25 @@ const Footer = () => {
       .catch((error) => {
         if (error?.response) {
           const errorData = error.response.data;
-          if (errorData.error === "401") {
+          if (errorData.status_code === 400) {
             toast({
               title: "You're already subscribed!",
               description:
                 "It looks like you're already on our list. Thank you for being part of our community!",
               variant: "default",
             });
+          } else {
+            toast({
+              title: "Oops! Something went wrong.",
+              description:
+                "We encountered an issue while trying to subscribe you to our newsletter. Check your internet connection or contact support if the problem persists.",
+              variant: "destructive",
+            });
+            setLoading(false);
           }
           setLoading(false);
-
           return;
         }
-        toast({
-          title: "Oops! Something went wrong.",
-          description:
-            "We encountered an issue while trying to subscribe you to our newsletter. Check your internet connection or contact support if the problem persists.",
-          variant: "destructive",
-        });
-        setLoading(false);
       });
   };
 
