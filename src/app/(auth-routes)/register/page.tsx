@@ -10,6 +10,7 @@ import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+import { getApiUrl } from "~/actions/getApiUrl";
 import { registerUser, resendOtp, verifyOtp } from "~/actions/register";
 import CustomButton from "~/components/common/common-button/common-button";
 import { Input } from "~/components/common/input";
@@ -67,23 +68,58 @@ const Register = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
+    const apiUrl = await getApiUrl();
+
     startTransition(async () => {
       await registerUser(values).then(async (data) => {
         if (data.status === 201) {
+          // Handle redirection based on createOrg condition
           if (createOrg) {
             router.push("/register/organisation");
           } else {
             router.push("/login");
           }
-        }
 
-        toast({
-          title:
-            data.status === 201
-              ? "Account created successfully"
-              : "an error occurred",
-          description: data.status === 201 ? "verify your account" : data.error,
-        });
+          toast({
+            title: "Account created successfully",
+            description: "Verify your account",
+          });
+
+          const emailTemplateId = data?.data?.email_template_id;
+
+          // Check if the email_template_id is provided
+          if (emailTemplateId) {
+            const emailData = {
+              template_id: emailTemplateId,
+              subject: "Welcome to Our Service!",
+              recipient: values.email,
+              variables: JSON.stringify({ name: values.first_name }),
+              status: "pending",
+            };
+
+            try {
+              const response = await fetch(`${apiUrl}/api/v1/email-requests`, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(emailData),
+              });
+
+              const emailResult = await response.json();
+              if (emailResult.status !== "success") {
+                throw new Error(emailResult.message || "Email sending failed");
+              }
+            } catch {
+              // Handle error, possibly show a toast notification or log it
+            }
+          }
+        } else {
+          toast({
+            title: "An error occurred",
+            description: data.error,
+          });
+        }
       });
     });
   };
