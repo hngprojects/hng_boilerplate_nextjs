@@ -1,4 +1,4 @@
-import { render, renderWithIntl } from "~/test/utils";
+import { renderWithIntl } from "~/test/utils";
 import Page from "./page";
 
 describe("page tests", () => {
