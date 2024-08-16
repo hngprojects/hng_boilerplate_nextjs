@@ -1,7 +1,7 @@
 "use client";
 
 import { Check, ChevronLeft, ChevronRight, Filter } from "lucide-react";
-import { ReactNode, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import CardComponent from "~/components/common/DashboardCard/CardComponent";
 import { Button } from "~/components/ui/button";
@@ -121,7 +121,6 @@ const UserPage = () => {
       setIsNextPageActive(response.data.data?.next_page_url ? true : false);
       setIsPreviousPageActive(response.data.data?.prev_page_url ? true : false);
       const usersData: UserData[] = response.data.data.data;
-
       setData(usersData);
       setFilterData(usersData);
       const totalUser = response.data.data.total;
@@ -155,8 +154,9 @@ const UserPage = () => {
     } catch (error) {
       setLoading(false);
       toast({
-        title: "Error fetching users",
-        description: error as ReactNode,
+        title: `Error fetching users`,
+        description:
+          error instanceof Error ? error.message : "An unknown error occurred",
         variant: "destructive",
       });
     } finally {

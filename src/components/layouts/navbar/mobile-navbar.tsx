@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import { useUser } from "~/hooks/user/use-user";
 import { cn } from "~/lib/utils";
 import { NAV_LINKS } from "./links";
 
@@ -14,14 +15,18 @@ export default function MobileNav() {
   const { user } = useUser();
   const t = useTranslations();
 
+  // the stagger effect
   const staggerList = stagger(0.1, { startDelay: 0.25 });
+
+  // create the animations that will be applied
+  // whenever the open state is toggled
 
   useEffect(() => {
     animate(
       "ul",
       {
         width: open ? 180 : 0,
-        height: open && session?.user ? 140 : open ? 250 : 0,
+        height: open && user.email ? 140 : open ? 250 : 0,
         opacity: open ? 1 : 0,
       },
       {
@@ -40,7 +45,7 @@ export default function MobileNav() {
         delay: open ? staggerList : 0,
       },
     );
-  }, [animate, open, session?.user, staggerList]);
+  }, [animate, open, staggerList, user.email]);
 
   return (
     <>
