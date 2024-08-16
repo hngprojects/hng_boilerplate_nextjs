@@ -1,4 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { getApiUrl } from "~/actions/getApiUrl";
 
 import Contact from "~/app/(landing-routes)/contact-us/page";
 
@@ -36,6 +37,8 @@ describe("contact Page tests", () => {
     const fetchMock = vi.fn();
     global.fetch = fetchMock;
 
+    const baseUrl = await getApiUrl();
+
     fetchMock.mockResolvedValueOnce(
       new Response(
         JSON.stringify({ message: "Form submitted successfully!" }),
@@ -65,7 +68,7 @@ describe("contact Page tests", () => {
 
     await waitFor(() => {
       expect(fetchMock).toHaveBeenCalledWith(
-        "https://test.gracefilledcollege.com/public/api/v1/contact",
+        `${baseUrl}/api/v1/contact`,
         expect.objectContaining({
           method: "POST",
           headers: { "Content-Type": "application/json" },

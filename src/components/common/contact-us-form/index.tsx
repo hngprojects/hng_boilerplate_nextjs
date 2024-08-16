@@ -6,6 +6,7 @@ import { z, ZodError } from "zod";
 
 import CustomButton from "../common-button/common-button";
 import InputField from "./inputfield";
+import { getApiUrl } from "~/actions/getApiUrl";
 
 const schema = z.object({
   name: z.string().min(5, "Name is required"),
@@ -73,9 +74,10 @@ const ContactForm: React.FC = () => {
       return;
     }
     try {
+      const baseUrl = await getApiUrl();
       setLoading(true);
       const response = await fetch(
-        "https://test.gracefilledcollege.com/public/api/v1/contact",
+        `${baseUrl}/api/v1/contact`,
         {
           method: "POST",
           headers: {
