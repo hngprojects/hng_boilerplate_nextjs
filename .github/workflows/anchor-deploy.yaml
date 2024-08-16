@@ -41,8 +41,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            cd boilerplate-frontend
-            rm -rf *
+            cd hng_boilerplate_nextjs
             tar -xzf /tmp/java/boilerplate.tar.gz
             mv /tmp/java/.env.java .env
             rm -f /tmp/java/boilerplate.tar.gz
@@ -84,8 +83,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            cd boilerplate-frontend
-            rm -rf *
+            cd hng_boilerplate_nextjs
             tar -xzf /tmp/python/boilerplate.tar.gz
             mv /tmp/python/.env.python .env
             rm -f /tmp/python/boilerplate.tar.gz
