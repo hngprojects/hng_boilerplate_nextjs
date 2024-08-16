@@ -69,17 +69,16 @@ const Register = () => {
 
   const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
     const apiUrl = await getApiUrl();
+
     startTransition(async () => {
       await registerUser(values).then(async (data) => {
         if (data.status === 201) {
-
-          router.push("/login");
+          // Handle redirection based on createOrg condition
           if (createOrg) {
             router.push("/register/organisation");
           } else {
             router.push("/login");
           }
-        }
 
           toast({
             title: "Account created successfully",
