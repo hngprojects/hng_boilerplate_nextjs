@@ -2,8 +2,6 @@
 
 import { Skeleton } from "~/components/ui/skeleton";
 
-//
-
 const PricingCardSkeleton = () => {
   return Array.from({ length: 4 }).map((_, index) => (
     <div

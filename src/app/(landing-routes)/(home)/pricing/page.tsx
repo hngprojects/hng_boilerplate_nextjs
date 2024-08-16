@@ -1,6 +1,7 @@
 "use client";
 
 import axios from "axios";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -16,6 +17,8 @@ interface BillingPlan {
   id: string;
   name: string;
   price: string;
+  features: string[];
+  duration: string;
 }
 
 const getAnnualPrice = (monthlyPrice: string) => {
@@ -25,6 +28,7 @@ const getAnnualPrice = (monthlyPrice: string) => {
 };
 
 export default function Pricing() {
+  const { data: session } = useSession();
   const [toggle, setToggle] = useState(1);
   const [plans, setPlans] = useState<BillingPlan[]>([]);
   const [loading, setLoading] = useState(true);
@@ -34,7 +38,13 @@ export default function Pricing() {
     const fetchPlans = async () => {
       try {
         const apiUrl = await getApiUrl();
-        const response = await axios.get(`${apiUrl}/api/v1/billing-plans`);
+        const access_token = session?.access_token;
+        const response = await axios.get(`${apiUrl}/api/v1/payment/plans`, {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+            "ngrok-skip-browser-warning": "true",
+          },
+        });
         setPlans(response.data.data);
       } catch {
         setError("Failed to fetch billing plans");
@@ -44,9 +54,7 @@ export default function Pricing() {
     };
 
     fetchPlans();
-  }, []);
-
-  //
+  }, [session]);
 
   return (
     <>
@@ -125,85 +133,41 @@ export default function Pricing() {
                     The essentials to provide your best work for clients.
                   </p>
 
-                  <div
-                    className="text-md mb-3 flex items-center gap-3"
-                    data-testid={`${plan.name.toLowerCase()}-feature-1`}
+                  {plan.features.map((feature, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="text-md mb-3 flex items-center gap-3"
+                        data-testid={`${plan.name.toLowerCase()}-feature-${index}`}
+                      >
+                        <Image
+                          src="/images/checkmark.svg"
+                          alt=""
+                          height={20}
+                          width={20}
+                        />
+                        {feature}
+                      </div>
+                    );
+                  })}
+                  <Link
+                    href={{
+                      pathname: "/payment",
+                      query: {
+                        planName: plan.name,
+                        price: plan.price,
+                        interval: plan.duration,
+                      },
+                    }}
                   >
-                    <Image
-                      src="/images/checkmark.svg"
-                      alt=""
-                      height={20}
-                      width={20}
-                    />
-                    2 Projects
-                  </div>
-                  <div
-                    className="text-md mb-3 flex items-center gap-3"
-                    data-testid={`${plan.name.toLowerCase()}-feature-2`}
-                  >
-                    <Image
-                      src="/images/checkmark.svg"
-                      alt=""
-                      height={20}
-                      width={20}
-                    />
-                    Up to 100 subscribers
-                  </div>
-                  <div
-                    className="text-md mb-3 flex items-center gap-3"
-                    data-testid={`${plan.name.toLowerCase()}-feature-3`}
-                  >
-                    <Image
-                      src="/images/checkmark.svg"
-                      alt=""
-                      height={20}
-                      width={20}
-                    />
-                    Basic analytics
-                  </div>
-                  <div
-                    className="text-md mb-3 flex items-center gap-3"
-                    data-testid={`${plan.name.toLowerCase()}-feature-4`}
-                  >
-                    <Image
-                      src="/images/checkmark.svg"
-                      alt=""
-                      height={20}
-                      width={20}
-                    />
-                    24-hour support response time
-                  </div>
-                  <div
-                    className="text-md mb-3 flex items-center gap-3"
-                    data-testid={`${plan.name.toLowerCase()}-feature-5`}
-                  >
-                    <Image
-                      src="/images/checkmark.svg"
-                      alt=""
-                      height={20}
-                      width={20}
-                    />
-                    Marketing advisor
-                  </div>
-                  <div
-                    className="text-md mb-3 flex items-center gap-3"
-                    data-testid={`${plan.name.toLowerCase()}-feature-6`}
-                  >
-                    <Image
-                      src="/images/checkmark.svg"
-                      alt=""
-                      height={20}
-                      width={20}
-                    />
-                    Custom integration
-                  </div>
-                  <Button
-                    size="lg"
-                    className="mt-[51px] w-full bg-primary text-background hover:bg-destructive"
-                    data-testid={`${plan.name.toLowerCase()}-button`}
-                  >
-                    Continue
-                  </Button>
+                    <Button
+                      size="lg"
+                      className="mt-[51px] w-full bg-primary text-background hover:bg-destructive"
+                      data-testid={`${plan.name.toLowerCase()}-button`}
+                    >
+                      Continue
+                    </Button>
+                  </Link>
                 </div>
               ))}
             </div>
