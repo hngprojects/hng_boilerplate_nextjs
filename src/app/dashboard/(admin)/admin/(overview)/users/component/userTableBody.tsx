@@ -12,13 +12,16 @@ import {
 } from "~/components/ui/dropdown-menu";
 import { UserData } from "../page";
 import DeleteDialog from "./dialogue/delete-dialog";
+import DeleteSuccessfulDialog from "./dialogue/delete-successful";
 
 interface UserTableProperties {
   data: UserData[];
   onDelete: (userId: string) => void;
   isDeleting: boolean;
   isDialogOpen: boolean;
+  isSuccessDeleteDialogOpen: boolean;
   setIsDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsSuccessDeleteDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const UserTableBody: React.FC<UserTableProperties> = ({
@@ -27,6 +30,8 @@ const UserTableBody: React.FC<UserTableProperties> = ({
   isDeleting,
   isDialogOpen,
   setIsDialogOpen,
+  isSuccessDeleteDialogOpen,
+  setIsSuccessDeleteDialogOpen,
 }) => {
   const [userId, setUserId] = useState("");
 
@@ -35,6 +40,8 @@ const UserTableBody: React.FC<UserTableProperties> = ({
     setUserId(id);
   };
   const handleCloseDialog = () => setIsDialogOpen(false);
+  const handleCloseDeleteSuccessDialog = () =>
+    setIsSuccessDeleteDialogOpen(false);
   return (
     <>
       <tbody className="user-table z-10">
@@ -132,6 +139,9 @@ const UserTableBody: React.FC<UserTableProperties> = ({
           onClose={handleCloseDialog}
           onDelete={() => onDelete(userId)}
         />
+      )}
+      {isSuccessDeleteDialogOpen && (
+        <DeleteSuccessfulDialog onClose={handleCloseDeleteSuccessDialog} />
       )}
     </>
   );
