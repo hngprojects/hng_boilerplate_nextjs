@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prevent-abbreviations */
 "use client";
 
 import React, {
@@ -68,7 +69,7 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
     (orgId: string) => {
       setOrgId(orgId);
     },
-    [setOrgId],
+    [org_id],
   );
 
   useLayoutEffect(() => {
@@ -76,17 +77,10 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
       startTransition(() => {
         getAllOrg().then((data) => {
           const fetchedOrganizations = (data && data.organization) || [];
-          const newOrganizations = fetchedOrganizations.filter(
-            (fetchedOrg: { organisation_id: string }) =>
-              !organizations.some(
-                (org) => org.organisation_id === fetchedOrg.organisation_id,
-              ),
-          );
-
-          if (newOrganizations.length > 0) {
-            setOrganizations((previousOrganizations) => [
-              ...previousOrganizations,
-              ...newOrganizations,
+          if (fetchedOrganizations.length > 0) {
+            setOrganizations((prevOrganizations) => [
+              ...prevOrganizations,
+              ...fetchedOrganizations,
             ]);
           }
         });
@@ -108,7 +102,7 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
         });
       });
     }
-  }, [organizations]);
+  }, [organizations.length]);
 
   useEffect(() => {
     if (userOrg.length > 0) {
@@ -119,12 +113,14 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
               existingOrg.organisation_id === org.organisation_id,
           ),
       );
-      setOrganizations((previousOrganizations) => [
-        ...previousOrganizations,
-        ...uniqueOrgs,
-      ]);
+      if (uniqueOrgs.length > 0) {
+        setOrganizations((prevOrganizations) => [
+          ...prevOrganizations,
+          ...uniqueOrgs,
+        ]);
+      }
     }
-  }, [userOrg, organizations]);
+  }, [userOrg]);
 
   useEffect(() => {
     document.body.style.overflow = isAnyModalOpen ? "hidden" : "auto";

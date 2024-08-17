@@ -12,8 +12,8 @@ export default function AdminLayout({
     <div className="min-h-screen w-full">
       <DashboardNavbar />
       <Providers />
-      <div className="">
-        <main className="mt-12 p-3 pt-6 md:p-5 md:pt-8">
+      <div className="bg-[#FFFFFF]">
+        <main className="mt-12 w-full p-3 pt-6 md:px-5 md:pt-8">
           <Suspense>{children}</Suspense>
         </main>
       </div>

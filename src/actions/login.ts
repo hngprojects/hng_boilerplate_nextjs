@@ -22,6 +22,7 @@ export const loginUser = async (values: z.infer<typeof LoginSchema>) => {
     return {
       status: response.status,
       organisations: response.data.data.organisations,
+      access_token: response.data.access_token,
     };
   } catch (error) {
     return axios.isAxiosError(error) && error.response

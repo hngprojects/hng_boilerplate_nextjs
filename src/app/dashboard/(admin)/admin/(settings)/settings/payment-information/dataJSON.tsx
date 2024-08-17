@@ -1,5 +1,6 @@
+/* eslint-disable unicorn/filename-case */
 interface DesiredPlanProperties {
-  id: number;
+  id: string;
   type: string;
   amount: number;
   desc: string;
@@ -11,7 +12,7 @@ interface HighlightsProperties {
   elArr: string[];
 }
 interface HighlightMobileProperties {
-  id: number;
+  id: string;
   type: string;
   amount: number;
   desc: string;
@@ -19,30 +20,30 @@ interface HighlightMobileProperties {
   elArr: string[];
 }
 
-const desiredPlan: DesiredPlanProperties[] = [
+const desiredPlans: DesiredPlanProperties[] = [
   {
-    id: 1,
+    id: "a320e964-aa0e-4a83-bb7c-3ef151fae7d8",
     type: "free",
     amount: 0,
     desc: "The essential to provide your best work for clients.",
     buttonText: "current plan",
   },
   {
-    id: 2,
+    id: "461bf947-cf4e-4320-8e8a-909d92be63e4",
     type: "basic",
     amount: 20,
     desc: " Ideal for growing needs who want more features.",
     buttonText: "upgrade",
   },
   {
-    id: 4,
+    id: "444f1881-c9e7-4c0f-8c44-93666ff02691",
     type: "advanced",
     amount: 50,
     desc: "Designed for power users and maximum functionalities.",
     buttonText: "upgrade",
   },
   {
-    id: 5,
+    id: "05a59c48-3980-428d-af5d-6be9a9626013",
     type: "premium",
     amount: 100,
     desc: "Perfect for users who want more features.",
@@ -88,7 +89,7 @@ export const highlights: HighlightsProperties[] = [
 
 export const highLightMobile: HighlightMobileProperties[] = [
   {
-    id: 1,
+    id: "a320e964-aa0e-4a83-bb7c-3ef151fae7d8",
     type: "free",
     amount: 0,
     desc: "The essential to provide your best work for clients.",
@@ -96,7 +97,7 @@ export const highLightMobile: HighlightMobileProperties[] = [
     elArr: ["10 Projects", "Up to 10 subscribers", "Advanced Anayltics"],
   },
   {
-    id: 2,
+    id: "461bf947-cf4e-4320-8e8a-909d92be63e4",
     type: "basic",
     amount: 20,
     desc: " Ideal for growing needs who want more features.",
@@ -109,7 +110,7 @@ export const highLightMobile: HighlightMobileProperties[] = [
     ],
   },
   {
-    id: 4,
+    id: "444f1881-c9e7-4c0f-8c44-93666ff02691",
     type: "advanced",
     amount: 50,
     desc: "Designed for power users and maximum functionalities.",
@@ -123,7 +124,7 @@ export const highLightMobile: HighlightMobileProperties[] = [
     ],
   },
   {
-    id: 5,
+    id: "05a59c48-3980-428d-af5d-6be9a9626013",
     type: "premium",
     amount: 100,
     desc: "Perfect for users who want more features.",
@@ -138,4 +139,4 @@ export const highLightMobile: HighlightMobileProperties[] = [
   },
 ];
 
-export default desiredPlan;
+export default desiredPlans;

@@ -3,13 +3,11 @@
 "use client";
 
 import axios from "axios";
-import axios from "axios";
 import { Search } from "lucide-react";
-import { getApiUrl } from "~/utils/getApiUrl";
+import { getApiUrl } from "~/actions/getApiUrl";
 import Link from "next/link";
 import { ChangeEvent, useEffect, useState } from "react";
 
-import { getApiUrl } from "~/actions/getApiUrl";
 import { Input } from "~/components/common/input";
 import FaqAccordion from "~/components/layouts/accordion/FaqsAccordion";
 import TopicsAccordions from "~/components/layouts/accordion/TopicAccordion";
@@ -31,10 +29,7 @@ const HelpCenter = () => {
   const { toast } = useToast();
 
   // eslint-disable-next-line unicorn/consistent-function-scoping
-  const myApiUrl = async () => {
-    const apiUrl = await getApiUrl()
-    console.log(apiUrl)
-  }
+
   useEffect(() => {
     const fetchTopics = async () => {
       try {

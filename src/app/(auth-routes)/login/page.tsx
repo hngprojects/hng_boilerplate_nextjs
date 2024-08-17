@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -36,7 +37,7 @@ const Login = () => {
   const { status } = useSession();
   const [isLoading, startTransition] = useTransition();
   const [showPassword, setShowPassword] = useState(false);
-  const [, setUserOrg] = useLocalStorage<Organisation[]>("user_org", []);
+  const [userOrg, setUserOrg] = useLocalStorage<Organisation[]>("user_org", []);
 
   const [currentOrgId, setCurrentOrgId] = useLocalStorage<string | undefined>(
     "current_orgid",
@@ -60,10 +61,11 @@ const Login = () => {
     startTransition(async () => {
       await loginUser(values).then(async (data) => {
         const { email, password } = values;
-
         if (data.status === 200) {
           setUserOrg(data.organisations);
-          if (!currentOrgId && data.organisations.length > 0) {
+
+          window.localStorage.setItem("token", data.access_token);
+          if (!currentOrgId && data.organisations?.length > 0) {
             setCurrentOrgId(data.organisations[0].organisation_id);
           }
           await signIn(
