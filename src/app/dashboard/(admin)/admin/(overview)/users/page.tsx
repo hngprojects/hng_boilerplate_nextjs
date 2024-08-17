@@ -23,6 +23,7 @@ import { UserCardData } from "./data/user-dummy-data";
 import "./assets/style.css";
 
 import axios from "axios";
+import { getSession } from "next-auth/react";
 
 import { getApiUrl } from "~/actions/getApiUrl";
 import { useToast } from "~/components/ui/use-toast";
@@ -73,6 +74,7 @@ const UserPage = () => {
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const { toast } = useToast();
+  // const { data: session } = useSession();
 
   const [totalUserOverview, setTotalUserOverview] = useState<UserCardData>({
     title: "Total Users",
@@ -114,16 +116,28 @@ const UserPage = () => {
 
   const fetchData = useCallback(async () => {
     try {
+      const session = await getSession();
       setLoading(true);
       const baseUrl = await getApiUrl();
       const API_URL = `${baseUrl}/api/v1/users`;
-      const response = await axios.get(`${API_URL}?page=${page}`);
-      setIsNextPageActive(response.data.data?.next_page_url ? true : false);
-      setIsPreviousPageActive(response.data.data?.prev_page_url ? true : false);
-      const usersData: UserData[] = response.data.data.data;
+      const response = await axios.get(`${API_URL}?page=${page}`, {
+        headers: {
+          Authorization: `Bearer ${session?.access_token}`,
+        },
+      });
+      setIsNextPageActive(
+        response.data.data.pagination.current_page ===
+          response.data.data.pagination.last_page
+          ? false
+          : true,
+      );
+      setIsPreviousPageActive(
+        response.data.data.pagination.current_page === 1 ? false : true,
+      );
+      const usersData: UserData[] = response.data.data?.users || [];
       setData(usersData);
       setFilterData(usersData);
-      const totalUser = response.data.data.total;
+      const totalUser = response.data.data.total || 0;
       const deletedUser = usersData.filter(
         (user) => user.deleted_at !== null,
       ).length;
