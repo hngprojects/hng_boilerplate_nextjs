@@ -188,13 +188,13 @@ const Footer = () => {
                   </div>
                   <CustomButton
                     variant="primary"
-                    className="h-full"
+                    className="h-full transition-all hover:-translate-y-2"
                     onClick={handleSubmit}
                   >
                     {loading ? (
                       <LoadingSpinner className="size-4 animate-spin sm:size-5" />
                     ) : (
-                      "Subscibe"
+                      "Subscribe"
                     )}
                   </CustomButton>
                 </div>
@@ -249,13 +249,13 @@ const Footer = () => {
                   />
                   <CustomButton
                     variant="primary"
-                    className="h-full hover:bg-destructive"
+                    className="h-full transition-all hover:-translate-y-1 hover:bg-destructive"
                     onClick={handleSubmit}
                   >
                     {loading ? (
                       <LoadingSpinner className="size-4 animate-spin sm:size-5" />
                     ) : (
-                      "Subscibe"
+                      "Subscribe"
                     )}
                   </CustomButton>
                 </div>
