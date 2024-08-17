@@ -1,6 +1,9 @@
 "use client";
 
 import axios from "axios";
+import { getCookie } from "cookies-next";
+import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -16,6 +19,9 @@ interface BillingPlan {
   id: string;
   name: string;
   price: string;
+  description: string;
+  features: string[];
+  duration: string;
 }
 
 const getAnnualPrice = (monthlyPrice: string) => {
@@ -25,16 +31,26 @@ const getAnnualPrice = (monthlyPrice: string) => {
 };
 
 export default function Pricing() {
+  const { data: session } = useSession();
   const [toggle, setToggle] = useState(1);
   const [plans, setPlans] = useState<BillingPlan[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | undefined>();
+  const locale = getCookie("NEXT_LOCALE") || "en";
+  const t = useTranslations("pricing");
 
   useEffect(() => {
     const fetchPlans = async () => {
       try {
         const apiUrl = await getApiUrl();
-        const response = await axios.get(`${apiUrl}/api/v1/billing-plans`);
+        const access_token = session?.access_token;
+        const response = await axios.get(`${apiUrl}/api/v1/payment/plans`, {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+            ...(locale ? { "Accept-Language": locale } : {}),
+            "ngrok-skip-browser-warning": "true",
+          },
+        });
         setPlans(response.data.data);
       } catch {
         setError("Failed to fetch billing plans");
@@ -44,9 +60,7 @@ export default function Pricing() {
     };
 
     fetchPlans();
-  }, []);
-
-  //
+  }, [session, locale]);
 
   return (
     <>
@@ -55,14 +69,27 @@ export default function Pricing() {
         data-testid="pricing-container"
       >
         <Heading
-          tag="Pricing"
-          title="Simple and {{Affordable}} Pricing Plan"
-          content="Our flexible plans are designed to scale with your business. We have
-            a plan for you."
+          tag={`${
+            locale === "es" ? "Precios" : locale === "fr" ? "Prix" : "Pricing"
+          }`}
+          title={`${
+            locale === "es"
+              ? "Plan de Precios Simple y {{Asequible}}"
+              : locale === "fr"
+                ? "Plan de Tarification Simple et {{Abordable}}"
+                : "Simple and {{Affordable}} Pricing Plan"
+          }`}
+          content={`${
+            locale === "es"
+              ? "Nuestros planes flexibles están diseñados para adaptarse a su negocio. Tenemos un plan para usted"
+              : locale === "fr"
+                ? "Nos plans flexibles sont conçus pour évoluer avec votre entreprise. Nous avons un plan pour vous."
+                : "Our flexible plans are designed to scale with your business. We have a plan for you."
+          }`}
         />
 
         <div
-          className="align-center mx-auto mt-[50px] flex w-[380px] justify-between rounded-md bg-gray-200 p-2"
+          className="align-center mx-auto mt-[50px] flex w-[405px] justify-between rounded-md bg-gray-200 p-2"
           data-testid="pricing-toggle"
         >
           <div
@@ -70,14 +97,14 @@ export default function Pricing() {
             className={`flex h-[50px] w-[190px] cursor-pointer items-center justify-center rounded-md ${toggle === 1 ? "bg-white font-medium" : ""}`}
             data-testid="monthly-toggle"
           >
-            Monthly
+            {t("monthly")}
           </div>
           <div
             onClick={() => setToggle(2)}
-            className={`flex h-[50px] w-[190px] cursor-pointer items-center justify-center rounded-md ${toggle === 2 ? "bg-white font-medium" : ""}`}
+            className={`flex h-[50px] w-[215px] cursor-pointer items-center justify-center rounded-md ${toggle === 2 ? "bg-white font-medium" : ""}`}
             data-testid="annual-toggle"
           >
-            Annual(save 20%)
+            {t("annual")}
           </div>
         </div>
 
@@ -89,7 +116,7 @@ export default function Pricing() {
 
         {!loading && plans?.length === 0 && (
           <div className="align-center mt-[50px] flex flex-col flex-wrap justify-center gap-6 sm:flex-row">
-            Billing plans not available
+            {t("billingPlansNotAvailable")}
           </div>
         )}
 
@@ -122,88 +149,44 @@ export default function Pricing() {
                     className="mb-[46px] text-[14px]"
                     data-testid={`${plan.name.toLowerCase()}-description`}
                   >
-                    The essentials to provide your best work for clients.
+                    {plan.description}
                   </p>
+                  {plan.features.map((feature, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="text-md mb-3 flex items-center gap-3"
+                        data-testid={`${plan.name.toLowerCase()}-feature-${index + 1}`}
+                      >
+                        <Image
+                          src="/images/checkmark.svg"
+                          alt="check icon"
+                          height={20}
+                          width={20}
+                        />
+                        {feature}
+                      </div>
+                    );
+                  })}
 
-                  <div
-                    className="text-md mb-3 flex items-center gap-3"
-                    data-testid={`${plan.name.toLowerCase()}-feature-1`}
+                  <Link
+                    href={{
+                      pathname: "/pricing/upgrade-plan",
+                      query: {
+                        planName: plan.name,
+                        price: plan.price,
+                        interval: plan.duration,
+                      },
+                    }}
                   >
-                    <Image
-                      src="/images/checkmark.svg"
-                      alt=""
-                      height={20}
-                      width={20}
-                    />
-                    2 Projects
-                  </div>
-                  <div
-                    className="text-md mb-3 flex items-center gap-3"
-                    data-testid={`${plan.name.toLowerCase()}-feature-2`}
-                  >
-                    <Image
-                      src="/images/checkmark.svg"
-                      alt=""
-                      height={20}
-                      width={20}
-                    />
-                    Up to 100 subscribers
-                  </div>
-                  <div
-                    className="text-md mb-3 flex items-center gap-3"
-                    data-testid={`${plan.name.toLowerCase()}-feature-3`}
-                  >
-                    <Image
-                      src="/images/checkmark.svg"
-                      alt=""
-                      height={20}
-                      width={20}
-                    />
-                    Basic analytics
-                  </div>
-                  <div
-                    className="text-md mb-3 flex items-center gap-3"
-                    data-testid={`${plan.name.toLowerCase()}-feature-4`}
-                  >
-                    <Image
-                      src="/images/checkmark.svg"
-                      alt=""
-                      height={20}
-                      width={20}
-                    />
-                    24-hour support response time
-                  </div>
-                  <div
-                    className="text-md mb-3 flex items-center gap-3"
-                    data-testid={`${plan.name.toLowerCase()}-feature-5`}
-                  >
-                    <Image
-                      src="/images/checkmark.svg"
-                      alt=""
-                      height={20}
-                      width={20}
-                    />
-                    Marketing advisor
-                  </div>
-                  <div
-                    className="text-md mb-3 flex items-center gap-3"
-                    data-testid={`${plan.name.toLowerCase()}-feature-6`}
-                  >
-                    <Image
-                      src="/images/checkmark.svg"
-                      alt=""
-                      height={20}
-                      width={20}
-                    />
-                    Custom integration
-                  </div>
-                  <Button
-                    size="lg"
-                    className="mt-[51px] w-full bg-primary text-background hover:bg-destructive"
-                    data-testid={`${plan.name.toLowerCase()}-button`}
-                  >
-                    Continue
-                  </Button>
+                    <Button
+                      size="lg"
+                      className="mt-[51px] w-full bg-primary text-background hover:bg-destructive"
+                      data-testid={`${plan.name.toLowerCase()}-button`}
+                    >
+                      {t("features.continue")}
+                    </Button>
+                  </Link>
                 </div>
               ))}
             </div>
@@ -223,11 +206,11 @@ export default function Pricing() {
                 role="heading"
                 aria-level={1}
               >
-                Frequently Asked Questions
+                {t("faqHeader")}
               </h1>
 
               <p className="mb-3 text-[18px] text-neutral-600">
-                We couldn’t answer your question?
+                {t("faqSubHeader")}
               </p>
 
               <Link
@@ -235,7 +218,7 @@ export default function Pricing() {
                 className="flex w-[150px] justify-center rounded-md border border-input bg-background py-4 hover:bg-accent hover:text-accent-foreground"
                 data-testid="contact-button"
               >
-                Contact us
+                {t("contactUs")}
               </Link>
             </div>
 

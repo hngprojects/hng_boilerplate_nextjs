@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { useTranslations } from "next-intl";
 
 import {
   Accordion,
@@ -20,6 +21,7 @@ const FaqAccordion = ({
   contentClassName,
   containerClassName,
 }: FaqAccordionProperties) => {
+  const t = useTranslations("faq");
   return (
     <div
       role="region"
@@ -37,7 +39,7 @@ const FaqAccordion = ({
                 triggerClassName,
               )}
             >
-              {faq.question}
+              {t(`${faq.question}`)}
             </AccordionTrigger>
             <AccordionContent
               className={clsx(
@@ -45,7 +47,7 @@ const FaqAccordion = ({
                 contentClassName,
               )}
             >
-              {faq.content}
+              {t(`${faq.content}`)}
             </AccordionContent>
           </AccordionItem>
         ))}

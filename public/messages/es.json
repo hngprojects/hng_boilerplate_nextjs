@@ -1,0 +1,191 @@
+{
+    "navbar": {
+        "login": "Iniciar sesión",
+        "register": "Comenzar"
+    },
+    "navLinks": {
+        "home": "Inicio",
+        "pricing": "Precios",
+        "careers": "Carreras"
+    },
+    "login": {
+        "title": "Iniciar sesión",
+        "welcomeBack": "¡Bienvenido de nuevo, te hemos extrañado!",
+        "continueWithGoogle": "Continuar con Google",
+        "emailPlaceholder": "Ingrese dirección de correo electrónico",
+        "passwordPlaceholder": "Ingrese contraseña",
+        "rememberMe": "Recuérdame",
+        "forgotPassword": "¿Olvidaste tu contraseña?",
+        "loginButton": "Iniciar sesión",
+        "signInWithMagicLink": "Iniciar sesión con enlace mágico",
+        "noAccount": "¿No tienes una cuenta?",
+        "agree": "Al iniciar sesión, aceptas los",
+        "and": "y",
+        "signUp": "Regístrate",
+        "termsOfService": "Términos del Servicio",
+        "privacyPolicy": "Política de Privacidad",
+        "loggingIn": "Iniciando sesión..."
+    },
+    "register": {
+        "signUp": "Regístrate",
+        "createAccountDesc": "Crea una cuenta para comenzar con nosotros.",
+        "continueWithGoogle": "Continuar con Google",
+        "firstName": "Nombre",
+        "firstNamePlaceholder": "Ingresa tu nombre",
+        "lastName": "Apellido",
+        "lastNamePlaceholder": "Ingresa tu apellido",
+        "email": "Correo electrónico",
+        "emailPlaceholder": "Ingresa la dirección de correo",
+        "password": "Contraseña",
+        "passwordPlaceholder": "Ingresa la contraseña",
+        "createAccount": "Crear cuenta",
+        "loggingIn": "Iniciando sesión...",
+        "emailVerification": "Verificación de correo electrónico",
+        "emailVerificationDesc": "Hemos enviado un código a tu correo {email}",
+        "checkSpam": "verifica tu spam si no recibes el correo",
+        "otpExpiresIn": "OTP expira en: {timeLeft}",
+        "resendCode": "¿No recibiste el código? reenviar",
+        "dataProcessing": "Procesaremos tus datos según lo establecido en nuestros Términos de uso, Política de privacidad y Acuerdo de procesamiento de datos",
+        "alreadyHaveAccount": "¿Ya tienes una cuenta? Iniciar sesión"
+    },
+    "HomePage": {
+        "title": "¡Hola, mundo!"
+    },
+    "hero": {
+        "headline": "Concéntrate en lo importante. Nosotros cubrimos los cimientos.",
+        "description": "Agiliza tus procesos con una base de código diseñada para la eficiencia y una productividad óptima.",
+        "cta": "Comenzar"
+    },
+    "userSection": {
+        "userSectionMoreThan": "Más de 200",
+        "userSectionUsers": "Usuarios",
+        "userSectionUsage": "usan nuestro Boilerplate"
+    },
+    "howItWorks": {
+        "howItWorksTitlePrefix": "Cómo Funciona:",
+        "howItWorksTitleHighlight": "Experimenta los beneficios de usar nuestro producto en cada paso.",
+        "howItWorksDescription": "Diseñamos nuestro producto para simplificar tu vida. Ofrece una solución integral. Así es como funciona y cómo te beneficia en cada etapa.",
+        "prebuiltTitle": "Secciones Preconstruidas",
+        "prebuiltDescription": "Aprovecha secciones preconstruidas como \"Características\", \"Beneficios\", \"Precios\" y \"Testimonios\" para mostrar tu producto de manera efectiva.",
+        "scalableTitle": "Fundación Escalable",
+        "scalableDescription": "Nuestro boilerplate está diseñado para crecer con tu producto. Añade fácilmente nuevas características y funcionalidades según sea necesario.",
+        "easyTitle": "Personalización Fácil",
+        "easyDescription": "Personaliza la experiencia según tus necesidades y preferencias específicas para obtener resultados óptimos."
+    },
+    "testimonials": {
+        "title": "Testimonios de Clientes",
+        "description": "No te fíes solo de nuestra palabra: descubre lo que los usuarios reales de nuestro producto tienen que decir sobre su experiencia.",
+        "content": "He estado usando este servicio de alojamiento web durante más de un año y estoy realmente impresionado con el tiempo de actividad y el soporte. El sitio web nunca ha caído y el servicio al cliente siempre es rápido para ayudar con cualquier problema que tenga. ¡Altamente recomendado!"
+    },
+    "perfectFit": {
+        "title": "Encuentra la Solución Perfecta",
+        "description": "Elige el plan de plantilla que mejor se adapte a las necesidades y presupuesto de tu proyecto. Todos los planes incluyen acceso a nuestra biblioteca completa de secciones preconstruidas y personalización mediante arrastrar y soltar.",
+        "cta": "Consulta Nuestro Plan de Precios"
+    },
+    "footer": {
+        "boilerplate": "Plantilla",
+        "address": "Detalles del logo y dirección",
+        "newsletterSignUp": "Suscríbete al Boletín",
+        "subscribe": "Suscribirse",
+        "navigation": "Navegación",
+        "support": "Soporte",
+        "legal": "Legal",
+        "followUs": "Síguenos",
+        "privacyPolicy": "Política de Privacidad",
+        "termsOfUse": "Términos de Uso",
+        "enterYourEmail": "Introduce tu correo electrónico",
+        "links": {
+            "navigation": "Navegación",
+            "home": "Inicio",
+            "aboutUs": "Sobre Nosotros",
+            "career": "Carrera",
+            "features": "Características",
+            "blog": "Blog",
+            "support": "Soporte",
+            "helpCenter": "Centro de Ayuda",
+            "faq": "FAQ",
+            "waitingList": "Lista de Espera",
+            "pricingExperience": "Experiencia de Precios",
+            "contactUs": "Contáctanos",
+            "legal": "Legal",
+            "privacyPolicy": "Política de Privacidad",
+            "termsAndConditions": "Términos y Condiciones"
+        },
+        "social": {
+            "facebook": "Facebook",
+            "instagram": "Instagram",
+            "linkedin": "LinkedIn",
+            "youtube": "YouTube"
+        },
+        "footerBottom": {
+            "privacyPolicy": "Política de Privacidad",
+            "termsOfUse": "Términos de Uso",
+            "copyright": "2024 Todos los Derechos Reservados"
+        }
+    },
+    "pricing": {
+        "pricingTitle": "Plan de Precios Simple y {{Asequible}}",
+        "pricingContent": "Nuestros planes flexibles están diseñados para adaptarse a su negocio. Tenemos un plan para usted.",
+        "monthly": "Mensual",
+        "annual": "Anual (ahorra un 20%)",
+        "billingPlansNotAvailable": "Planes de facturación no disponibles",
+        "features": {
+            "feature1": "2 Proyectos",
+            "feature2": "Hasta 100 suscriptores",
+            "feature3": "Análisis básico",
+            "feature4": "Tiempo de respuesta de soporte de 24 horas",
+            "feature5": "Asesor de marketing",
+            "feature6": "Integración personalizada",
+            "continue": "Continuar"
+        },
+        "essentials": "Los elementos esenciales para ofrecer tu mejor trabajo a los clientes.",
+        "faqHeader": "Preguntas Frecuentes",
+        "faqSubHeader": "¿No pudimos responder a su pregunta?",
+        "contactUs": "Contáctanos",
+        "continue": "Continuar"
+    },
+    "faq": {
+        "question1": "¿Cuál es el propósito de esta aplicación?",
+        "answer1": "Esta aplicación está diseñada para ayudar a los usuarios a gestionar sus tareas de manera eficiente proporcionando herramientas para la programación, el seguimiento del progreso y el establecimiento de recordatorios.",
+        "question2": "¿Cómo restablezco mi contraseña?",
+        "answer2": "Para restablecer tu contraseña, ve a la página de inicio de sesión y haz clic en el enlace 'Olvidé mi contraseña'. Sigue las instrucciones para recibir un correo electrónico de restablecimiento de contraseña y crear una nueva contraseña.",
+        "question3": "¿Puedo usar esta aplicación en varios dispositivos?",
+        "answer3": "Sí, la aplicación es accesible desde múltiples dispositivos, incluidos escritorios, tabletas y teléfonos inteligentes. Tus datos se sincronizarán en todos los dispositivos, garantizando una experiencia fluida."
+    },
+    "noJobs": {
+        "noJobsTitle": "No hay trabajos disponibles en este momento",
+        "noJobsContent": "¡Vuelve más tarde!"
+    },
+    "ourServices": {
+        "title": "Nuestros Servicios",
+        "description": "Capacitados para Ofrecerte Lo Mejor",
+        "details": "Desde nuestra fundación, Hng Boilerplate se ha dedicado a evolucionar constantemente para mantenerse a la vanguardia. Nuestra mentalidad ágil y nuestra búsqueda incesante de innovación garantizan que siempre estés equipado con las herramientas y estrategias más efectivas."
+    },
+    "mission": {
+        "title": "Nuestra Misión y Visión",
+        "subtitle": "Liderando el Camino, Redefiniendo Industrias",
+        "description": "En Hng Boilerplate, estamos dedicados a superar tus expectativas. Nos esforzamos por entender tus necesidades y desafíos únicos, proporcionando soluciones personalizadas que generan resultados reales y potencian tu éxito."
+    },
+    "coreValues": {
+        "title": "Nuestros Valores Fundamentales",
+        "description": "Nuestros Valores forman el núcleo de nuestra organización y definen el carácter de nuestra industria.",
+        "values": {
+            "integrity": {
+                "title": "Integridad",
+                "description": "Mantenemos los más altos estándares éticos en todo lo que hacemos, fomentando la confianza y la transparencia con nuestros clientes, socios y empleados. Creemos que la honestidad y la integridad son la base del éxito duradero."
+            },
+            "customerCentricity": {
+                "title": "Enfoque en el Cliente",
+                "description": "Nuestros clientes están en el corazón de nuestro negocio. Nos esforzamos por entender sus necesidades, superar sus expectativas y construir relaciones duraderas basadas en la confianza y el respeto mutuo. Creemos que poner a nuestros clientes en primer lugar es la clave para el éxito a largo plazo."
+            },
+            "innovation": {
+                "title": "Innovación",
+                "description": "Adoptamos una cultura de mejora continua y creatividad, buscando constantemente nuevas formas de evolucionar y mejorar nuestros productos, servicios y procesos. Fomentamos la experimentación y la toma de riesgos, reconociendo que la innovación es esencial para el crecimiento."
+            },
+            "excellence": {
+                "title": "Excelencia",
+                "description": "Estamos comprometidos a ofrecer una calidad excepcional en todo lo que hacemos, desde nuestros productos y servicios hasta nuestras interacciones con los clientes y procesos internos. Buscamos la mejora continua y nos mantenemos a los más altos estándares de desempeño."
+            }
+        }
+    }
+}
