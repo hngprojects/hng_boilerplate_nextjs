@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable unicorn/prevent-abbreviations */
 /* eslint-disable unused-imports/no-unused-imports */
 /* eslint-disable prettier/prettier */
@@ -48,6 +49,8 @@ const CheckoutForm = ({ plan }: { plan: planProperties | undefined }) => {
         "current_orgid",
         "",
     );
+
+    console.log('good')
 
     const [openModal, setOpenModal] = useState(false)
     const [isTermsChecked, setIsTermsChecked] = useState(false);

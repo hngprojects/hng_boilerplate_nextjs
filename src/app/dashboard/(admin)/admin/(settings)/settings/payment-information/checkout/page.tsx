@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-console */
+
 /* eslint-disable prettier/prettier */
 "use client"
 
@@ -11,7 +12,7 @@ import { ArrowLeft } from 'lucide-react';
 
 
 const Page = () => {
-
+console.log('checkout')
     return (
         <div className='px-[30px]'>
             <div className='flex flex-col gap-y-[16px]'>
