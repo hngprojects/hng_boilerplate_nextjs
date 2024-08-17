@@ -63,7 +63,8 @@ const Login = () => {
 
         if (data.status === 200) {
           setUserOrg(data.organisations);
-          if (!currentOrgId && data.organisations.length > 0) {
+
+          if (!currentOrgId ) {
             setCurrentOrgId(data.organisations[0].organisation_id);
           }
           await signIn(
@@ -80,6 +81,7 @@ const Login = () => {
         toast({
           title: data.status === 200 ? "Login success" : "An error occurred",
           description: data.status === 200 ? "Redirecting" : data.error,
+         
         });
       });
     });

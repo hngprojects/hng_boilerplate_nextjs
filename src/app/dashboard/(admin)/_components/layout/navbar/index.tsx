@@ -81,7 +81,7 @@ const DashboardNavbar = () => {
             />
             <input
               className="h-full w-full border-none text-neutral-dark-2 outline-none ring-0 placeholder:text-neutral-dark-1"
-              placeholder="Search option..."
+              placeholder="Search option"
               data-testid="input"
             />
           </div>
