@@ -1,0 +1,189 @@
+{
+    "navbar": {
+        "login": "Log in",
+        "register": "Get Started"
+    },
+    "navLinks": {
+        "home": "Home",
+        "pricing": "Pricing",
+        "careers": "Careers"
+    },
+    "login": {
+        "title": "Login",
+        "welcomeBack": "Welcome back, you've been missed!",
+        "continueWithGoogle": "Continue with Google",
+        "emailPlaceholder": "Enter Email Address",
+        "passwordPlaceholder": "Enter Password",
+        "rememberMe": "Remember me",
+        "forgotPassword": "Forgot Password?",
+        "loginButton": "Login",
+        "signInWithMagicLink": "Sign in with magic link",
+        "noAccount": "Don't Have An Account?",
+        "agree": "By logging in, you agree to the",
+        "and": "and",
+        "signUp": "Sign Up",
+        "termsOfService": "Terms of Service",
+        "privacyPolicy": "Privacy Policy",
+        "loggingIn": "Logging in..."
+    },
+    "register": {
+        "signUp": "Sign Up",
+        "createAccountDesc": "Create an account to get started with us.",
+        "continueWithGoogle": "Continue with Google",
+        "firstName": "First Name",
+        "firstNamePlaceholder": "Enter your first name",
+        "lastName": "Last Name",
+        "lastNamePlaceholder": "Enter your last name",
+        "email": "Email",
+        "emailPlaceholder": "Enter Email Address",
+        "password": "Password",
+        "passwordPlaceholder": "Enter Password",
+        "createAccount": "Create Account",
+        "loggingIn": "Logging in...",
+        "emailVerification": "Email Verification",
+        "emailVerificationDesc": "We have sent a code to your email {email}",
+        "checkSpam": "check your spam if you do not receive the email",
+        "otpExpiresIn": "OTP expires in: {timeLeft}",
+        "resendCode": "Didn't receive the code? resend",
+        "dataProcessing": "We would process your data as set forth in our Terms of Use, Privacy Policy and Data Processing Agreement",
+        "alreadyHaveAccount": "Already Have An Account? Login"
+    },
+    "HomePage": {
+        "title": "Hello world!"
+    },
+    "hero": {
+        "headline": "Focus on What Matters. We've Got the Foundation Covered.",
+        "description": "Streamline your processes with a boilerplate built for efficiency and optimal productivity.",
+        "cta": "Get Started"
+    },
+    "userSection": {
+        "userSectionMoreThan": "More than 200",
+        "userSectionUsers": "Users",
+        "userSectionUsage": "make use of our Boilerplate"
+    },
+    "howItWorks": {
+        "howItWorksTitlePrefix": "How It Works:",
+        "howItWorksTitleHighlight": "Experience the benefits of using our product with every step.",
+        "howItWorksDescription": "We designed our product to simplify your life. It offers a comprehensive solution. Here's how it works and how it benefits you at each stage.",
+        "prebuiltTitle": "Pre-Built Sections",
+        "prebuiltDescription": "Leverage pre-built sections like \"Features,\" \"Benefits,\" \"Pricing,\" and \"Testimonials\" to showcase your product effectively.",
+        "scalableTitle": "Scalable Foundation",
+        "scalableDescription": "Our boilerplate is designed to grow with your product. Easily add new features and functionalities as needed.",
+        "easyTitle": "Easy Customization",
+        "easyDescription": "Tailor the experience to your specific needs and preferences for maximum results."
+    },
+    "testimonials": {
+        "title": "Client Testimonials",
+        "description": "Don't just take our word for it - see what actual users of our product have to say about their experience.",
+        "content": "I've been using this web hosting service for over a year and I'm really impressed with the uptime and support. The website has never gone down and the customer service is always quick to help with any issues I have. Highly recommend!"
+    },
+    "perfectFit": {
+        "title": "Find The Perfect Fit",
+        "description": "Choose the boilerplate plan that best suits your project needs and budget. All plans include access to our comprehensive library of pre-built sections, drag-and-drop customization.",
+        "cta": "See Our Pricing Plan"
+    },
+    "footer": {
+        "newsletterSignUp": "Sign Up For Newsletters",
+        "subscribe": "Subscribe",
+        "navigation": "Navigation",
+        "support": "Support",
+        "legal": "Legal",
+        "followUs": "Follow Us",
+        "privacyPolicy": "Privacy Policy",
+        "termsOfUse": "Terms of Use",
+        "enterYourEmail": "Enter your email",
+        "links": {
+            "navigation": "Navigation",
+            "home": "Home",
+            "aboutUs": "About Us",
+            "career": "Career",
+            "features": "Features",
+            "blog": "Blog",
+            "support": "Support",
+            "helpCenter": "Help Center",
+            "faq": "FAQ",
+            "waitingList": "Waiting List",
+            "pricingExperience": "Pricing Experience",
+            "contactUs": "Contact Us",
+            "legal": "Legal",
+            "privacyPolicy": "Privacy Policy",
+            "termsAndConditions": "Terms and Conditions"
+        },
+        "social": {
+            "facebook": "Facebook",
+            "instagram": "Instagram",
+            "linkedin": "LinkedIn",
+            "youtube": "YouTube"
+        },
+        "footerBottom": {
+            "privacyPolicy": "Privacy Policy",
+            "termsOfUse": "Terms of Use",
+            "copyright": "2024 All Rights Reserved"
+        }
+    },
+    "pricing": {
+        "pricingTitle": "Simple and {{Affordable}} Pricing Plan",
+        "pricingContent": "Our flexible plans are designed to scale with your business. We have a plan for you.",
+        "monthly": "Monthly",
+        "annual": "Annual (save 20%)",
+        "billingPlansNotAvailable": "Billing plans not available",
+        "features": {
+            "feature1": "2 Projects",
+            "feature2": "Up to 100 subscribers",
+            "feature3": "Basic analytics",
+            "feature4": "24-hour support response time",
+            "feature5": "Marketing advisor",
+            "feature6": "Custom integration",
+            "continue": "Continue"
+        },
+        "essentials": "The essentials to provide your best work for clients.",
+        "faqHeader": "Frequently Asked Questions",
+        "faqSubHeader": "We couldn’t answer your question?",
+        "contactUs": "Contact us",
+        "continue": "Continue"
+    },
+    "faq": {
+        "question1": "What is the purpose of this application?",
+        "answer1": "This application is designed to help users manage their tasks efficiently by providing tools for scheduling, tracking progress, and setting reminders.",
+        "question2": "How do I reset my password?",
+        "answer2": "To reset your password, go to the login page and click on the 'Forgot Password' link. Follow the instructions to receive a password reset email and create a new password.",
+        "question3": "Can I use this application on multiple devices?",
+        "answer3": "Yes, the application is accessible from multiple devices including desktops, tablets, and smartphones. Your data will be synced across all devices, ensuring a seamless experience."
+    },
+    "noJobs": {
+        "noJobsTitle": "No available Jobs at the moment",
+        "noJobsContent": "Come back later!"
+    },
+    "ourServices": {
+        "title": "Our Services",
+        "description": "Trained to Give You The Best",
+        "details": "Since our founding in, Hng Boilerplate has been dedicated to constantly evolving to stay ahead of the curve. Our agile mindset and relentless pursuit of innovation ensure that you're always equipped with the most effective tools and strategies."
+    },
+    "mission": {
+        "title": "Our Mission & Vision",
+        "subtitle": "Leading the Way, Redefining Industries",
+        "description": "At Hng Boilerplate, we are dedicated to exceeding your expectations. We strive to understand your unique needs and challenges, providing tailored solutions that drive real results and empower your success."
+    },
+    "coreValues": {
+        "title": "Our Core Values",
+        "description": "Our Values shape the core of our organization and define the character of our industry.",
+        "values": {
+            "integrity": {
+                "title": "Integrity",
+                "description": "We uphold the highest ethical standards in everything we do, fostering trust and transparency with our clients, partners, and employees. We believe that honesty and integrity are the foundation of lasting success."
+            },
+            "customerCentricity": {
+                "title": "Customer Centricity",
+                "description": "Our customers are at the heart of our business. We strive to understand their needs, exceed their expectations, and build lasting relationships based on trust and mutual respect. We believe that putting our customers first is the key to long-term success."
+            },
+            "innovation": {
+                "title": "Innovation",
+                "description": "We embrace a culture of continuous improvement and creativity, constantly seeking new ways to evolve and enhance our products, services, and processes. We encourage experimentation and risk-taking, recognizing that innovation is essential for growth."
+            },
+            "excellence": {
+                "title": "Excellence",
+                "description": "We are committed to delivering exceptional quality in everything we do, from our products and services to our customer interactions and internal processes. We strive for continuous improvement and hold ourselves to the highest standards of performance."
+            }
+        }
+    }
+}

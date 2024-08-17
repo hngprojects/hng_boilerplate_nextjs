@@ -1,7 +1,8 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import React from "react";
 import { describe, expect, it, vi } from "vitest";
 
+import { renderWithIntl } from "~/test/utils";
 import Login from "./page";
 
 vi.mock("next/link", () => ({
@@ -91,7 +92,7 @@ describe("login", () => {
   it("renders login form", () => {
     expect.hasAssertions();
 
-    render(<Login />);
+    renderWithIntl(<Login />);
 
     expect(screen.getByRole("heading", { name: "Login" })).toBeInTheDocument();
     expect(
@@ -104,7 +105,7 @@ describe("login", () => {
   it("toggles password visibility", () => {
     expect.hasAssertions();
 
-    render(<Login />);
+    renderWithIntl(<Login />);
 
     const passwordInput = screen.getByPlaceholderText("Enter Password");
     const toggleButton = screen.getByRole("button", { name: "" });
@@ -126,7 +127,7 @@ describe("login", () => {
   it('renders "Sign in with magic link" button', () => {
     expect.hasAssertions();
 
-    render(<Login />);
+    renderWithIntl(<Login />);
 
     const magicLinkButton = screen.getByRole("button", {
       name: /sign in with magic link/i,
@@ -138,7 +139,7 @@ describe("login", () => {
   it("renders Terms of Service and Privacy Policy links", () => {
     expect.hasAssertions();
 
-    render(<Login />);
+    renderWithIntl(<Login />);
 
     const termsLink = screen.getByRole("link", { name: /terms of service/i });
     expect(termsLink).toBeInTheDocument();
@@ -154,7 +155,7 @@ describe("login", () => {
   it("submits form with valid inputs", async () => {
     expect.hasAssertions();
 
-    render(<Login />);
+    renderWithIntl(<Login />);
 
     const emailInput = screen.getByPlaceholderText("Enter Email Address");
     const passwordInput = screen.getByPlaceholderText("Enter Password");
