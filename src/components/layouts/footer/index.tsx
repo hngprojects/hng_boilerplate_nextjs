@@ -188,7 +188,7 @@ const Footer = () => {
                   </div>
                   <CustomButton
                     variant="primary"
-                    className="h-full hover:-translate-y-2 transition-all"
+                    className="h-full transition-all hover:-translate-y-2"
                     onClick={handleSubmit}
                   >
                     {loading ? (
@@ -249,7 +249,7 @@ const Footer = () => {
                   />
                   <CustomButton
                     variant="primary"
-                    className="h-full hover:bg-destructive hover:-translate-y-1 transition-all"
+                    className="h-full transition-all hover:-translate-y-1 hover:bg-destructive"
                     onClick={handleSubmit}
                   >
                     {loading ? (

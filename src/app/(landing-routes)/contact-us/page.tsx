@@ -26,11 +26,16 @@ const Contact = () => {
               </h3>
               <div className="grid gap-5 lg:gap-3">
                 {contactInfo.map((info) => (
-                  <div key={info.alt} className="flex items-center gap-4 hover:bg-stroke-colors-stroke transition-all duration-300 group">
-                    <div className="rounded-sm bg-neutral-dark-1 p-2.5 group-hover:bg-primary duration-300">
+                  <div
+                    key={info.alt}
+                    className="group flex items-center gap-4 transition-all duration-300 hover:bg-stroke-colors-stroke"
+                  >
+                    <div className="rounded-sm bg-neutral-dark-1 p-2.5 duration-300 group-hover:bg-primary">
                       <info.Icon color="white" size={24} />
                     </div>
-                    <p className="text-lg leading-5 group-hover:font-medium transition-all duration-300">{info.text}</p>
+                    <p className="text-lg leading-5 transition-all duration-300 group-hover:font-medium">
+                      {info.text}
+                    </p>
                   </div>
                 ))}
               </div>
