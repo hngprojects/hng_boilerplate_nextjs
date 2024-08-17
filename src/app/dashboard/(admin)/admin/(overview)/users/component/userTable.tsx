@@ -11,7 +11,9 @@ interface UserTableProperties {
   isDeleting: boolean;
   loading: boolean;
   isDialogOpen: boolean;
+  isSuccessDeleteDialogOpen: boolean;
   setIsDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsSuccessDeleteDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const UserTable: React.FC<UserTableProperties> = ({
@@ -21,24 +23,32 @@ const UserTable: React.FC<UserTableProperties> = ({
   loading,
   isDialogOpen,
   setIsDialogOpen,
+  isSuccessDeleteDialogOpen,
+  setIsSuccessDeleteDialogOpen,
 }) => {
   return (
     <>
       <table className="user-table h-full w-full overflow-hidden">
         <UserTableHead />
         {loading ? (
-          <span className="mx-auto flex w-full items-center justify-center gap-x-2">
+          <span className="mx-auto mt-4 flex w-full items-center justify-center gap-x-2">
             <span className="animate-pulse">Fetching user data...</span>{" "}
             <LoadingSpinner className="size-4 animate-spin sm:size-5" />
           </span>
-        ) : (
+        ) : data.length > 0 ? (
           <UserTableBody
             data={data}
             onDelete={onDelete}
             isDeleting={isDeleting}
             isDialogOpen={isDialogOpen}
             setIsDialogOpen={setIsDialogOpen}
+            isSuccessDeleteDialogOpen={isSuccessDeleteDialogOpen}
+            setIsSuccessDeleteDialogOpen={setIsSuccessDeleteDialogOpen}
           />
+        ) : (
+          <div className="w-full pb-5 pt-10 text-center text-neutral-dark-2">
+            No user data
+          </div>
         )}
       </table>
     </>
