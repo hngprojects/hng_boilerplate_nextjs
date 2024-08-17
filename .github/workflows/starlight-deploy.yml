@@ -6,7 +6,7 @@ on:
     types:
       - completed
 
-jobs:   
+jobs:
   deploy_to_nestsjs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
@@ -33,7 +33,7 @@ jobs:
           sudo apt update && sudo apt install sshpass -y
           sshpass -p ${{ secrets.PASSWORD }} scp -o StrictHostKeyChecking=no boilerplate.tar.gz .env.nestsjs ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/tmp/nestsjs
           rm -f boilerplate.tar.gz .env.nestsjs
-        
+
       - name: Deploy on server
         uses: appleboy/ssh-action@master
         with:

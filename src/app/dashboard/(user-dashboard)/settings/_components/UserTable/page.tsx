@@ -1,22 +1,22 @@
 "use client";
 
-import * as React from "react";
 import { CaretSortIcon, DotsHorizontalIcon } from "@radix-ui/react-icons";
 import {
   ColumnDef,
   ColumnFiltersState,
-  SortingState,
-  VisibilityState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
+  SortingState,
   useReactTable,
+  VisibilityState,
 } from "@tanstack/react-table";
+import Image from "next/image";
+import * as React from "react";
 
 import { Button } from "~/components/ui/button";
-import { Checkbox } from "~/components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -31,9 +31,8 @@ import {
   TableHeader,
   TableRow,
 } from "~/components/ui/table";
-import Image from "next/image";
 
-interface MemberDetailsProps {
+interface MemberDetailsProperties {
   data: Payment[];
 }
 export type UserLoginData = {
@@ -73,7 +72,7 @@ const columns: ColumnDef<UserLoginData>[] = [
             alt="Avatar"
             width={30}
             height={30}
-            className="rounded-full h-8 w-8"
+            className="h-8 w-8 rounded-full"
           />
           <div className="ml-2">
             <div className="text-[#353535]">{row.getValue("name")}</div>
@@ -92,15 +91,15 @@ const columns: ColumnDef<UserLoginData>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          <CaretSortIcon className=" hidden ml-2 h-4 w-4" />
+          <CaretSortIcon className="ml-2 hidden h-4 w-4" />
         </Button>
       );
     },
     cell: ({ row }) => (
-      <div className="text-[#6e7079] hidden"> {row.getValue("email")}</div>
+      <div className="hidden text-[#6e7079]"> {row.getValue("email")}</div>
     ),
   },
-    {
+  {
     accessorKey: "role",
     header: "Role",
     cell: ({ row }) => <div>{row.getValue("role")}</div>,
@@ -118,7 +117,9 @@ const columns: ColumnDef<UserLoginData>[] = [
   {
     accessorKey: "logoutTime",
     header: "Logout Time",
-    cell: ({ row }) => <div>{row.getValue("logoutTime") || "Still Logged In"}</div>,
+    cell: ({ row }) => (
+      <div>{row.getValue("logoutTime") || "Still Logged In"}</div>
+    ),
   },
   {
     id: "actions",
@@ -133,18 +134,16 @@ const columns: ColumnDef<UserLoginData>[] = [
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
-         
         </DropdownMenuContent>
       </DropdownMenu>
     ),
   },
 ];
 
-
-export function UserTable({ data }: MemberDetailsProps) {
+export function UserTable({ data }: MemberDetailsProperties) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
+    [],
   );
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
@@ -178,12 +177,12 @@ export function UserTable({ data }: MemberDetailsProps) {
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id} className="text-black font-bold">
+                  <TableHead key={header.id} className="font-bold text-black">
                     {header.isPlaceholder
-                      ? null
+                      ? undefined
                       : flexRender(
                           header.column.columnDef.header,
-                          header.getContext()
+                          header.getContext(),
                         )}
                   </TableHead>
                 ))}
@@ -199,7 +198,10 @@ export function UserTable({ data }: MemberDetailsProps) {
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>

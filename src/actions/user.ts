@@ -1,26 +1,26 @@
 "use server";
 
 import axios from "axios";
-import { getApiUrl } from './getApiUrl';
-import { auth } from '~/lib/auth';
+
+import { auth } from "~/lib/auth";
+import { getApiUrl } from "./getApiUrl";
 
 export const fetchUserData = async () => {
   try {
     const apiUrl = await getApiUrl();
     const session = await auth();
 
-    
     if (!session?.access_token) {
       return {
         error: "Authentication token is missing.",
-        status: 401, 
+        status: 401,
       };
     }
 
     // Making the API request
     const response = await axios.get(`${apiUrl}/api/last-login`, {
       headers: {
-        Authorization: `Bearer ${session.access_token}`, 
+        Authorization: `Bearer ${session.access_token}`,
       },
     });
 
@@ -33,11 +33,6 @@ export const fetchUserData = async () => {
       return {
         error: error.response.data.message || "Unable to fetch user data.",
         status: error.response.status,
-      };
-    } else {
-      return {
-        error: "An unexpected error occurred.",
-        status: 500, // Internal Server Error
       };
     }
   }

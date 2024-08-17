@@ -6,7 +6,7 @@ on:
     types:
       - completed
 
-jobs:   
+jobs:
   deploy_to_dev:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest

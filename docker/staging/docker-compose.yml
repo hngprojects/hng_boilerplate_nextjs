@@ -1,5 +1,4 @@
 services:
-  
   frontend:
     image: hngdevops/nextjs-boilerplate:staging
     ports:
