@@ -99,6 +99,7 @@ export const acceptInvite = async (inviteLink: string) => {
   if (!token) {
     return {
       error: "Invalid invite link. No token found.",
+      status: 400, // Bad Request
     };
   }
 
@@ -115,7 +116,6 @@ export const acceptInvite = async (inviteLink: string) => {
       },
     );
 
-    // Handle the response as needed
     return {
       data: response.data,
       status: response.status,
@@ -128,14 +128,11 @@ export const acceptInvite = async (inviteLink: string) => {
         }
       : {
           error: "An unexpected error occurred.",
+          status: 500, // Internal Server Error
         };
   }
 };
-
-export const generateInviteLink = async (
-  org_id: string,
-  invite_token: string,
-) => {
+export const generateInviteLink = async (org_id: string) => {
   const apiUrl = await getApiUrl();
   const session = await auth();
 
@@ -143,7 +140,6 @@ export const generateInviteLink = async (
     const response = await axios.get(
       `${apiUrl}/api/v1/organisations/${org_id}/invites`,
       {
-        params: { invite_token },
         headers: {
           Authorization: `Bearer ${session?.access_token}`,
         },

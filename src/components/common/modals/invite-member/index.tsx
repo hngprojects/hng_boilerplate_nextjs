@@ -99,15 +99,8 @@ const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
       return;
     }
 
-    const inviteResponse = await inviteMembers(emails, organization);
-    if (inviteResponse?.error) {
-      setError(inviteResponse.error);
-      clearError();
-      return;
-    }
-
     const { data: inviteLinkData, error: inviteLinkError } =
-      await generateInviteLink(organization, inviteResponse.data.invite_token);
+      await generateInviteLink(organization);
 
     if (inviteLinkError) {
       setError(inviteLinkError);
@@ -198,7 +191,7 @@ const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
               </CustomButton>
             </div>
             {linkGenerated && (
-              <div className="mt-4 text-sm text-[#f85318]">
+              <div className="mt-4 hidden text-sm text-[#f85318]">
                 <span className="">{inviteLink}</span>
               </div>
             )}
