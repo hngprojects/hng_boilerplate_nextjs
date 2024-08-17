@@ -100,29 +100,37 @@ export default function UserSettingsPage() {
   }, [data?.access_token, data?.user.id]);
 
   const submit = async () => {
-    // if (!isValidInstagramUrl(formData.facebook_link)) {
-    //   return toast({
-    //     title: "Warning!",
-    //     description: "Enter a valid Instagram url",
-    //   });
-    // }
-    // if (!isValidLinkedInUrl(formData.linkedin_link)) {
-    //   return toast({
-    //     title: "Warning!",
-    //     description: "Enter a valid Linkedin url",
-    //   });
-    // }
+    
 
     try {
+      const payload = {
+        ...formData,
+        pronoun,
+      };
+
       setIsPending(true);
 
-      setIsSuccess(true);
+      const baseUrl = await getApiUrl();
+      const API_URL = `${baseUrl}/api/v1/profile/${data?.user.email}`;
+
+      const updated = await axios.put(API_URL, payload, {
+        headers: {
+          Authorization: `Bearer ${data?.access_token}`,
+        },
+      });
+
+      if (updated.status === 200) {
+        setIsSuccess(true);
+      } else {
+        setError("An error occurred while updating your profile");
+      }
     } catch {
-      setIsPending(false);
+      setError("An error occurred while updating your profile");
     } finally {
       setIsPending(false);
     }
   };
+
 
   return (
     <div className="min-h-screen w-full max-w-[926px] bg-white p-[32px]">
@@ -212,7 +220,7 @@ export default function UserSettingsPage() {
               onValueChange={(value) => setPronoun(value)}
             >
               <SelectTrigger className="w-full rounded-md border border-slate-300 bg-white text-sm font-medium text-slate-700 focus:border-orange-500 focus:ring-0">
-                <SelectValue placeholder="Select pronouns" />
+                <SelectValue placeholder="Select Pronouns" />
               </SelectTrigger>
               <SelectContent>
                 {pronouns.map((pronoun) => (
@@ -250,7 +258,7 @@ export default function UserSettingsPage() {
             className="border-border bg-white"
             type="email"
             name="email"
-            isDisabled
+            isDisabled={true}
             value={data?.user.email}
           />
         </div>
