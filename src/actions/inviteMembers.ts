@@ -151,7 +151,12 @@ export const generateInviteLink = async (
     );
 
     // Extract the invite link from the nested data object
-    const inviteLink = response.data.data.invite_link;
+    let inviteLink = response.data.data.invite_link;
+
+    // Ensure the link has a slash between the domain and the path
+    if (!inviteLink.includes("/invite")) {
+      inviteLink = inviteLink.replace("techinvite", "tech/invite");
+    }
 
     return {
       data: inviteLink,
