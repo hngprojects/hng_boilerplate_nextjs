@@ -57,8 +57,10 @@ const CustomInput: React.FC<CustomInputProperties> = ({
       variant={variant}
       state={inputState}
       className={cn(
-        `border-${variant} focus:outline-none focus:ring-1 focus:ring-${variant} `, 
-        isDisabled ? "bg-gray-50 text-gray-100 cursor-not-allowed" : "text-foreground", // Apply grey text and background when disabled
+        `border-${variant} focus:outline-none focus:ring-1 focus:ring-${variant} `,
+        isDisabled
+          ? "cursor-not-allowed bg-gray-50 text-gray-100"
+          : "text-foreground", // Apply grey text and background when disabled
         className,
       )}
       isButtonVisible={isButtonVisible}

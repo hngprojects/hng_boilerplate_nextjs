@@ -5,7 +5,6 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { ChangeEvent, useEffect, useState } from "react";
 
-import defaultProfilePic from "~/../public/images/pfp.jpg";
 import { getApiUrl } from "~/actions/getApiUrl";
 import CustomButton from "~/components/common/common-button/common-button";
 import CustomInput from "~/components/common/input/input";
@@ -91,7 +90,7 @@ export default function UserSettingsPage() {
             twitter_link: userData.twitter_link || "",
             linkedin_link: userData.linkedin_link || "",
           });
-          setProfilePicture(response?.data.avatar_url || defaultProfilePic.src);
+          setProfilePicture(response?.data.avatar_url);
         }
       } catch {
         setError("An error occurred while retrieving your information");
@@ -100,8 +99,6 @@ export default function UserSettingsPage() {
   }, [data?.access_token, data?.user.id]);
 
   const submit = async () => {
-    
-
     try {
       const payload = {
         ...formData,
@@ -130,7 +127,6 @@ export default function UserSettingsPage() {
       setIsPending(false);
     }
   };
-
 
   return (
     <div className="min-h-screen w-full max-w-[926px] bg-white p-[32px]">

@@ -36,7 +36,7 @@ export default function ProfilePictureModal({
     try {
       const formData = new FormData();
       formData.append("file", image);
-      formData.append("DisplayPhoto", image);
+      // formData.append("DisplayPhoto", image);
       formData.append("upload_preset", "starterhouse");
       formData.append("api_key", "673723355315667");
 
@@ -57,7 +57,7 @@ export default function ProfilePictureModal({
 
       await axios.put(
         API_URL,
-        { DisplayPhoto: profilePictureUrl, Email: email },
+        { DisplayPhoto: profilePictureUrl },
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
