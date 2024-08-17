@@ -7,7 +7,7 @@ const PaymentInformation = () => {
     <div className="p-4 md:p-6">
       <h1 className="mb-10 text-[28px] font-bold">Current Plan</h1>
       <div className="flex min-h-screen max-w-[1000px] flex-col gap-6">
-        <div className="space-y-2 rounded-[12px] bg-[#FFF8F2] p-5 w-full">
+        <div className="w-full space-y-2 rounded-[12px] bg-[#FFF8F2] p-5">
           <h2 className="text-2xl font-semibold">Free</h2>
           <p className="text-sm">
             Your account is on a free 90-day trial of our free plan, through

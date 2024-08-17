@@ -13,11 +13,11 @@ import PlanUpgradeSuccessfulModal from "~/components/common/modals/plan-upgrade-
 const billingOption = [
   {
     name: "Pay monthly",
-    description: "$20/ month/member ",
+    description: "$20/ month/member",
   },
   {
     name: "Pay yearly",
-    description: "$200/ year/member ",
+    description: "$200/ year/member",
   },
 ];
 
