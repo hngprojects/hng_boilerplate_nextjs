@@ -1,12 +1,11 @@
-import React from 'react'
-import BasicPlan from './basicPlan'
+import BasicPlan from "./basicPlan";
 
 const Page = () => {
   return (
     <>
       <BasicPlan />
     </>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;
