@@ -73,8 +73,9 @@ const UserPage = () => {
   const [loading, setLoading] = useState(false);
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isSuccessDeleteDialogOpen, setIsSuccessDeleteDialogOpen] =
+    useState(false);
   const { toast } = useToast();
-  // const { data: session } = useSession();
 
   const [totalUserOverview, setTotalUserOverview] = useState<UserCardData>({
     title: "Total Users",
@@ -103,6 +104,8 @@ const UserPage = () => {
   const [selectedFilter, setSelectedFilter] = useState<
     FilterDataProperties | undefined
   >();
+
+  const deletedUser = 0;
 
   const filterActionsHandler = (title: string) => {
     if (title === "Active") {
@@ -137,10 +140,7 @@ const UserPage = () => {
       const usersData: UserData[] = response.data.data?.users || [];
       setData(usersData);
       setFilterData(usersData);
-      const totalUser = response.data.data.total || 0;
-      const deletedUser = usersData.filter(
-        (user) => user.deleted_at !== null,
-      ).length;
+      const totalUser = response.data.data.pagination.total || 0;
 
       setTotalUserOverview((previous) => ({
         ...previous,
@@ -176,7 +176,7 @@ const UserPage = () => {
     } finally {
       setLoading(false);
     }
-  }, [page, toast]);
+  }, [deletedUser, page, toast]);
 
   useEffect(() => {
     fetchData();
@@ -184,39 +184,48 @@ const UserPage = () => {
 
   const deleteUser = async (userId: string) => {
     try {
+      const session = await getSession();
       const baseUrl = await getApiUrl();
       const API_URL = `${baseUrl}/api/v1/users/${userId}`;
       setIsDeleting(true);
-      await axios.delete(API_URL);
-      fetchData();
+      await axios.delete(API_URL, {
+        headers: {
+          Authorization: `Bearer ${session?.access_token}`,
+        },
+      });
+
+      // Update data without calling fetchData
       const updatedUser = data.filter((user) => user.id !== userId);
       setData(updatedUser);
       setFilterData(updatedUser);
-      const deletedCount = updatedUser.filter(
-        (user) => user.deleted_at !== null,
-      ).length;
+
+      // Update overviews
       setdeletedUserOverview((previous) => ({
         ...previous,
-        value: deletedCount,
+        value: previous.value + 1, // Increment the count
       }));
       const activeCount = updatedUser.filter((user) => user.is_active).length;
       setActiveUserOverview((previous) => ({
         ...previous,
         value: activeCount,
       }));
-    } catch {
-      setIsDeleting(false);
+      setTotalUserOverview((previous) => ({
+        ...previous,
+        value: previous.value - 1,
+      }));
+      setIsSuccessDeleteDialogOpen(true);
+    } catch (error) {
+      toast({
+        title: `Error deleting user`,
+        description:
+          error instanceof Error ? error.message : "An unknown error occurred",
+        variant: "destructive",
+      });
     } finally {
       setIsDeleting(false);
       setIsDialogOpen(false);
     }
   };
-
-  if (!data) {
-    <div className="w-full pb-5 pt-10 text-center text-neutral-dark-2">
-      No data
-    </div>;
-  }
 
   return (
     <>
@@ -303,6 +312,8 @@ const UserPage = () => {
               loading={loading}
               isDialogOpen={isDialogOpen}
               setIsDialogOpen={setIsDialogOpen}
+              isSuccessDeleteDialogOpen={isSuccessDeleteDialogOpen}
+              setIsSuccessDeleteDialogOpen={setIsSuccessDeleteDialogOpen}
             />
           </div>
 
