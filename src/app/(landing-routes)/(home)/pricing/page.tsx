@@ -115,7 +115,7 @@ export default function Pricing() {
         )}
 
         {!loading && plans?.length === 0 && (
-          <div className="align-center mt-[50px] flex flex-col flex-wrap justify-center gap-6 sm:flex-row">
+          <div className="mt-[50px] flex flex-col flex-wrap items-start justify-center gap-6 sm:flex-row">
             {t("billingPlansNotAvailable")}
           </div>
         )}
@@ -123,7 +123,7 @@ export default function Pricing() {
         {!loading && !error && (
           <>
             <div
-              className="align-center mt-[50px] flex flex-col flex-wrap justify-center gap-5 sm:flex-row"
+              className="align-start mt-[50px] flex flex-col flex-wrap justify-center gap-5 sm:flex-row"
               data-testid="pricing-cards"
             >
               {plans.map((plan) => (
@@ -174,7 +174,7 @@ export default function Pricing() {
                       pathname: "/pricing/upgrade-plan",
                       query: {
                         planName: plan.name,
-                        price: plan.price,
+                        price: `${toggle === 1 ? plan.price : getAnnualPrice(plan.price)}`,
                         interval: plan.duration,
                       },
                     }}
