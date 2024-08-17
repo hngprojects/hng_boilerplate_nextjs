@@ -22,7 +22,7 @@ const PaymentInformation = () => {
           </div>
 
           <div className="flex w-full flex-col items-center justify-center gap-8 md:flex-row md:items-start md:justify-between md:gap-0">
-            <div className="flex w-[258px] flex-col gap-[16px] px-[20px] py-[15px] hover:rounded-md hover:border hover:border-primary md:h-[220px] md:w-[200px] md:border-none">
+            <div className="flex w-[258px] flex-col gap-[16px] px-[20px] py-[15px] hover:rounded-md hover:border hover:border-primary md:w-[200px] md:border-none">
               <p className="font-semibold">Free</p>
               <p>
                 {" "}
@@ -47,7 +47,7 @@ const PaymentInformation = () => {
                 Current Plan
               </Button>
             </div>
-            <div className="flex w-[258px] flex-col gap-[16px] rounded-md border-primary bg-[#FFF8F2] px-[20px] py-[15px] hover:border md:h-[220px] md:w-[200px] md:bg-white">
+            <div className="flex w-[258px] flex-col gap-[16px] rounded-md border-primary bg-[#FFF8F2] px-[20px] py-[15px] hover:border md:w-[200px] md:bg-white">
               <p className="font-semibold">Basic</p>
               <p>
                 {" "}
@@ -77,7 +77,7 @@ const PaymentInformation = () => {
                 </Button>
               </Link>
             </div>
-            <div className="flex w-[258px] flex-col gap-[16px] rounded-md border-primary bg-[#FFF8F2] px-[20px] py-[15px] hover:border md:h-[220px] md:w-[200px] md:bg-white">
+            <div className="flex w-[258px] flex-col gap-[16px] rounded-md border-primary bg-[#FFF8F2] px-[20px] py-[15px] hover:border md:w-[200px] md:bg-white">
               <p className="font-semibold">Advanced</p>
               <p>
                 {" "}
@@ -110,7 +110,7 @@ const PaymentInformation = () => {
                 </Button>
               </Link>
             </div>
-            <div className="flex w-[258px] flex-col justify-between gap-[16px] rounded-md border-primary bg-[#FFF8F2] px-[20px] py-[15px] hover:border md:h-[220px] md:w-[200px] md:bg-white">
+            <div className="flex w-[258px] flex-col justify-between gap-[16px] rounded-md border-primary bg-[#FFF8F2] px-[20px] py-[15px] hover:border md:h-full md:w-[200px] md:bg-white">
               <p className="font-semibold">Premium</p>
               <p>
                 {" "}
