@@ -89,49 +89,6 @@ export const fetchOrganizations = async () => {
   }
 };
 
-export const acceptInvite = async (inviteLink: string) => {
-  const apiUrl = await getApiUrl();
-  const session = await auth();
-
-  // Extract the token from the invite link
-  const token = inviteLink.split("?")[1]; // Assuming the token is the only query parameter
-
-  if (!token) {
-    return {
-      error: "Invalid invite link. No token found.",
-      status: 400, // Bad Request
-    };
-  }
-
-  try {
-    const response = await axios.post(
-      `${apiUrl}/api/v1/organisations/invites/accept`,
-      {
-        invite_token_guid: token,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${session?.access_token}`,
-        },
-      },
-    );
-
-    return {
-      data: response.data,
-      status: response.status,
-    };
-  } catch (error) {
-    return axios.isAxiosError(error) && error.response
-      ? {
-          error: error.response.data.message || "Failed to accept invite.",
-          status: error.response.status,
-        }
-      : {
-          error: "An unexpected error occurred.",
-          status: 500, // Internal Server Error
-        };
-  }
-};
 export const generateInviteLink = async (org_id: string) => {
   const apiUrl = await getApiUrl();
   const session = await auth();
@@ -163,6 +120,37 @@ export const generateInviteLink = async (org_id: string) => {
       ? {
           error:
             error.response.data.message || "Failed to generate invite link.",
+          status: error.response.status,
+        }
+      : {
+          error: "An unexpected error occurred.",
+        };
+  }
+};
+
+export const acceptInviteRequest = async (token: string) => {
+  const apiUrl = await getApiUrl();
+  const session = await auth();
+
+  try {
+    const response = await axios.post(
+      `${apiUrl}/api/v1/organisations/invites/accept`,
+      { invite_token_guid: token },
+      {
+        headers: {
+          Authorization: `Bearer ${session?.access_token}`,
+        },
+      },
+    );
+
+    return {
+      data: response.data,
+      status: response.status,
+    };
+  } catch (error) {
+    return axios.isAxiosError(error) && error.response
+      ? {
+          error: error.response.data.message || "Failed to accept invite.",
           status: error.response.status,
         }
       : {
