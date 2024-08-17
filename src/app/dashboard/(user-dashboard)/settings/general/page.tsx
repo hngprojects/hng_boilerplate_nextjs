@@ -100,18 +100,18 @@ export default function UserSettingsPage() {
   }, [data?.access_token, data?.user.id]);
 
   const submit = async () => {
-    if (!isValidInstagramUrl(formData.facebook_link)) {
-      return toast({
-        title: "Warning!",
-        description: "Enter a valid Instagram url",
-      });
-    }
-    if (!isValidLinkedInUrl(formData.linkedin_link)) {
-      return toast({
-        title: "Warning!",
-        description: "Enter a valid Linkedin url",
-      });
-    }
+    // if (!isValidInstagramUrl(formData.facebook_link)) {
+    //   return toast({
+    //     title: "Warning!",
+    //     description: "Enter a valid Instagram url",
+    //   });
+    // }
+    // if (!isValidLinkedInUrl(formData.linkedin_link)) {
+    //   return toast({
+    //     title: "Warning!",
+    //     description: "Enter a valid Linkedin url",
+    //   });
+    // }
 
     try {
       setIsPending(true);
@@ -212,7 +212,7 @@ export default function UserSettingsPage() {
               onValueChange={(value) => setPronoun(value)}
             >
               <SelectTrigger className="w-full rounded-md border border-slate-300 bg-white text-sm font-medium text-slate-700 focus:border-orange-500 focus:ring-0">
-                <SelectValue placeholder="Select language" />
+                <SelectValue placeholder="Select pronouns" />
               </SelectTrigger>
               <SelectContent>
                 {pronouns.map((pronoun) => (
@@ -329,12 +329,12 @@ export default function UserSettingsPage() {
   );
 }
 
-function isValidLinkedInUrl(url: string) {
-  const linkedInRegex = /^(https?:\/\/)?(www\.)?linkedin\.com\/[\w/-]+\/?$/;
-  return linkedInRegex.test(url);
-}
+// function isValidLinkedInUrl(url: string) {
+//   const linkedInRegex = /^(https?:\/\/)?(www\.)?linkedin\.com\/[\w/-]+\/?$/;
+//   return linkedInRegex.test(url);
+// }
 
-function isValidInstagramUrl(url: string) {
-  const instagramRegex = /^(https?:\/\/)?(www\.)?instagram\.com\/[\w.]+\/?$/;
-  return instagramRegex.test(url);
-}
+// function isValidInstagramUrl(url: string) {
+//   const instagramRegex = /^(https?:\/\/)?(www\.)?instagram\.com\/[\w.]+\/?$/;
+//   return instagramRegex.test(url);
+// }
