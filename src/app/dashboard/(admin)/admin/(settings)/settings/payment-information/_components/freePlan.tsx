@@ -11,59 +11,59 @@ import {
 
 const projectManagement = [
   {
-    invoice: "Projects",
-    paymentStatus: "Up to 5",
-    totalAmount: "Up to 5",
-    paymentMethod: "Up to 5",
+    id: "Projects",
+    feature_1: "Up to 5",
+    feature_2: "Up to 5",
+    feature_3: "Up to 5",
     time: "Unlimited",
   },
   {
-    invoice: "File Upload",
-    paymentStatus: "10gb",
-    totalAmount: "20gb",
-    paymentMethod: "50gb",
+    id: "File Upload",
+    feature_1: "10gb",
+    feature_2: "20gb",
+    feature_3: "50gb",
     time: "Unlimited",
   },
   {
-    invoice: "User Account",
-    paymentStatus: "1",
-    totalAmount: "10",
-    paymentMethod: "50",
+    id: "User Account",
+    feature_1: "1",
+    feature_2: "10",
+    feature_3: "50",
     time: "Unlimited",
   },
   {
-    invoice: "Teams",
-    paymentStatus: "1",
-    totalAmount: "Unlimited",
-    paymentMethod: "Unlimited",
+    id: "Teams",
+    feature_1: "1",
+    feature_2: "Unlimited",
+    feature_3: "Unlimited",
     time: "Unlimited",
   },
 ];
 
 const collaborations = [
   {
-    invoice: "Integration",
+    id: "Integration",
     paymentStatus: <Check />,
     paymentMethod: <Check />,
     timeManagment: <Check />,
     time: <Check />,
   },
   {
-    invoice: "Guest Access",
+    id: "Guest Access",
     paymentStatus: <Check />,
     paymentMethod: <Check />,
     timeManagment: <Check />,
     time: <Check />,
   },
   {
-    invoice: "Page Analysis",
+    id: "Page Analysis",
     paymentStatus: <Check />,
     paymentMethod: <Check />,
     timeManagment: <Check />,
     time: <Check />,
   },
   {
-    invoice: "Task Managment",
+    id: "Task Managment",
     paymentStatus: <Check />,
     paymentMethod: <Check />,
     timeManagment: <Check />,
@@ -73,21 +73,21 @@ const collaborations = [
 
 const managements = [
   {
-    invoice: "Team Security",
+    id: "Team Security",
     paymentStatus: "  ",
     totalAmount: <Check />,
     paymentMethod: <Check />,
     time: <Check />,
   },
   {
-    invoice: "Data Backup",
+    id: "Data Backup",
     paymentStatus: "",
     totalAmount: <Check />,
     paymentMethod: <Check />,
     time: <Check />,
   },
   {
-    invoice: "HIPAA Compliance",
+    id: "HIPAA Compliance",
     paymentStatus: "",
     totalAmount: <Check />,
     paymentMethod: <Check />,
@@ -97,14 +97,14 @@ const managements = [
 
 const supports = [
   {
-    invoice: "Priority Support",
+    id: "Priority Support",
     paymentStatus: <Check />,
     totalAmount: <Check />,
     paymentMethod: <Check />,
     time: <Check />,
   },
   {
-    invoice: "Customer Support",
+    id: "Customer Support",
     paymentStatus: "",
     totalAmount: <Check />,
     paymentMethod: <Check />,
@@ -114,7 +114,7 @@ const supports = [
 
 function FreePlan() {
   return (
-    <>
+    <div className="px-5">
       <Table className="border">
         <TableHeader className="w-full bg-[#FFF8F2]">
           <TableRow>
@@ -129,11 +129,13 @@ function FreePlan() {
         </TableHeader>
         <TableBody>
           {projectManagement.map((project) => (
-            <TableRow key={project.invoice}>
-              <TableCell className="font-medium">{project.invoice}</TableCell>
-              <TableCell>{project.paymentStatus}</TableCell>
-              <TableCell>{project.paymentMethod}</TableCell>
-              <TableCell>{project.totalAmount}</TableCell>
+            <TableRow key={project.id} className="text-center">
+              <TableCell className="text-start font-medium">
+                {project.id}
+              </TableCell>
+              <TableCell>{project.feature_1}</TableCell>
+              <TableCell>{project.feature_2}</TableCell>
+              <TableCell>{project.feature_3}</TableCell>
               <TableCell>{project.time}</TableCell>
             </TableRow>
           ))}
@@ -154,9 +156,9 @@ function FreePlan() {
         </TableHeader>
         <TableBody>
           {collaborations.map((collaboration) => (
-            <TableRow key={collaboration.invoice}>
-              <TableCell className="font-medium">
-                {collaboration.invoice}
+            <TableRow key={collaboration.id} className="text-center">
+              <TableCell className="text-start font-medium">
+                {collaboration.id}
               </TableCell>
               <TableCell>{collaboration.paymentStatus}</TableCell>
               <TableCell>{collaboration.paymentMethod}</TableCell>
@@ -181,9 +183,9 @@ function FreePlan() {
         </TableHeader>
         <TableBody>
           {managements.map((management) => (
-            <TableRow key={management.invoice}>
-              <TableCell className="font-medium">
-                {management.invoice}
+            <TableRow key={management.id} className="text-center">
+              <TableCell className="text-start font-medium">
+                {management.id}
               </TableCell>
               <TableCell>{management.paymentStatus}</TableCell>
               <TableCell>{management.totalAmount}</TableCell>
@@ -208,8 +210,10 @@ function FreePlan() {
         </TableHeader>
         <TableBody>
           {supports.map((support) => (
-            <TableRow key={support.invoice}>
-              <TableCell className="font-medium">{support.invoice}</TableCell>
+            <TableRow key={support.id} className="text-center">
+              <TableCell className="text-start font-medium">
+                {support.id}
+              </TableCell>
               <TableCell>{support.paymentStatus}</TableCell>
               <TableCell>{support.totalAmount}</TableCell>
               <TableCell>{support.paymentMethod}</TableCell>
@@ -231,7 +235,7 @@ function FreePlan() {
           <p className="text-neutral-dark-1">$0/month</p>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
