@@ -1,10 +1,9 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable no-console */
 "use client";
 
+import { getApiUrl } from "~/actions/getApiUrl";
 import axios from "axios";
 import { Search } from "lucide-react";
-import { getApiUrl } from "~/actions/getApiUrl";
 import Link from "next/link";
 import { ChangeEvent, useEffect, useState } from "react";
 
@@ -28,7 +27,7 @@ const HelpCenter = () => {
   const [searchValue, setSearchValue] = useState<string>("");
   const { toast } = useToast();
 
-  // eslint-disable-next-line unicorn/consistent-function-scoping
+   
 
   useEffect(() => {
     const fetchTopics = async () => {

@@ -34,11 +34,11 @@ const Page = ({ params }: { params: { slug: string } }) => {
       }
     };
     getSpecificPlan();
-  }, [toast]);
+  }, [toast, params.slug]);
 
   return (
     <div className=''>
-      <div className='flex flex-col gap-y-[16px]'>
+      <div className='flex flex-col gap-y-[16px] px-[14px]'>
         <div className='flex items-center gap-x-[10px]'>
           <Link href={'/dashboard/admin/settings/payment-information'}>
             <ArrowLeft />

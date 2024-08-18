@@ -17,6 +17,7 @@ const AcceptInvitePage = () => {
 
   // Function to extract token from the query string
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleAcceptInvite = async () => {
     // Extract token using the function
     const token = extractToken();
@@ -61,7 +62,7 @@ const AcceptInvitePage = () => {
   // Process the invite on page load
   useEffect(() => {
     handleAcceptInvite();
-  }, []);
+  }, [handleAcceptInvite]);
 
   return (
     <div className="flex h-[100vh] w-[100vw] items-center justify-center">

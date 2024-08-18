@@ -69,7 +69,7 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
     (orgId: string) => {
       setOrgId(orgId);
     },
-    [org_id],
+    [setOrgId],
   );
 
   useLayoutEffect(() => {
@@ -120,7 +120,7 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
         ]);
       }
     }
-  }, [userOrg]);
+  }, [organizations, userOrg]);
 
   useEffect(() => {
     document.body.style.overflow = isAnyModalOpen ? "hidden" : "auto";
