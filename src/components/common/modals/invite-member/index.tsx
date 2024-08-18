@@ -70,6 +70,10 @@ const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
     }
   };
 
+  // Clear error after a timeout
+  const clearError = () => setTimeout(() => setError(""), 3000);
+
+  // Function to handle invite submission via email
   const handleSubmit = async () => {
     setError("");
 
@@ -87,33 +91,25 @@ const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
     }
   };
 
-  const clearError = () => setTimeout(() => setError(""), 3000);
-  const handleInviteWithLink = async () => {
+  // Function to generate the invite link
+  const generateAndCopyInviteLink = async () => {
     if (!organization) {
       setError("Please select an organization first.");
       clearError();
       return;
     }
 
-    const inviteResponse = await inviteMembers(emails, organization);
-    if (inviteResponse?.error) {
-      setError(inviteResponse.error);
-      clearError();
-      return;
-    }
-
     const { data: inviteLinkData, error: inviteLinkError } =
-      await generateInviteLink(organization, inviteResponse.data.invite_token);
+      await generateInviteLink(organization);
 
     if (inviteLinkError) {
       setError(inviteLinkError);
       clearError();
     } else {
-      setInviteLink(inviteLinkData); // Correctly store the invite link
+      setInviteLink(inviteLinkData); // Store the invite link
       setLinkGenerated(true);
 
       try {
-        // Ensure the document is focused before attempting to write to the clipboard
         if (document.hasFocus()) {
           await navigator.clipboard.writeText(inviteLinkData);
           toast({
@@ -183,7 +179,7 @@ const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
                 <Link2Icon className="pointer-events-none absolute ml-3" />
                 <CustomButton
                   variant="subtle"
-                  onClick={handleInviteWithLink}
+                  onClick={generateAndCopyInviteLink}
                   className="pl-10"
                 >
                   Invite with link
@@ -195,8 +191,8 @@ const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
               </CustomButton>
             </div>
             {linkGenerated && (
-              <div className="text-green mt-4 text-sm">
-                Invite link: {inviteLink}
+              <div className="mt-4 hidden text-sm text-[#f85318]">
+                <span className="">{inviteLink}</span>
               </div>
             )}
 
