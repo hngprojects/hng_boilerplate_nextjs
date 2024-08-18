@@ -17,9 +17,20 @@ import { users } from "~/components/adminDashboard/userData";
 import CardComponent from "~/components/common/DashboardCard/CardComponent";
 import { UserTable } from "../settings/_components/UserTable/page";
 
-function formatDateTime(dateTimeString) {
+export type UserLoginData = {
+  id: string;
+  ipAddress: string;
+  loginTime: string;
+  logoutTime: string | null;
+  role: string;
+  name: string;
+  email: string;
+  img: string;
+};
+
+function formatDateTime(dateTimeString: string): string {
   const date = new Date(dateTimeString);
-  const options = {
+  const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -28,41 +39,48 @@ function formatDateTime(dateTimeString) {
     second: "2-digit",
     hour12: true,
   };
-  return date.toLocaleDateString(undefined, options);
+
+  return date.toLocaleString(undefined, options);
 }
 
 const Users = () => {
-  const [userData, setUserData] = useState([]);
+  const [userData, setUserData] = useState<UserLoginData[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState();
+  const [error, setError] = useState<string | undefined>();
 
   useEffect(() => {
     const loadData = async () => {
-      if (error) {
-        return error;
-      }
       try {
-        const data = await fetchUserData();
-        const mappedData = data.data.data.map((item, index) => ({
-          id: index + 1,
-          name: "Oladipo Munirat",
-          email: "oladipomunirat@gmail.com",
-          img: "",
-          role: "User",
-          loginTime: formatDateTime(item.loginTime),
-          status: item.logoutTime ? "success" : "failure",
-          ipAddress: item.ipAddress,
-        }));
-        setUserData(mappedData);
-        setLoading(false);
-      } catch (error_) {
-        setError(error_.message || "Failed to fetch user data");
+        const userdata = await fetchUserData();
+        if (userdata?.data?.data) {
+          const mappedData: UserLoginData[] = userdata.data.data.map(
+            (item: UserLoginData, index: number) => ({
+              id: (index + 1).toString(),
+              name: "Oladipo Munirat",
+              email: "oladipomunirat@gmail.com",
+              img: "",
+              role: "User",
+              loginTime: formatDateTime(item.loginTime),
+              status: item.logoutTime ? "success" : "failure",
+              ipAddress: item.ipAddress,
+              logoutTime: item.logoutTime, // Ensure this field is included
+            }),
+          );
+          setUserData(mappedData);
+        } else {
+          setError("No user data available");
+        }
+      } catch (error) {
+        const errorMessage =
+          (error as Error).message || "Failed to fetch user data";
+        setError(errorMessage);
+      } finally {
         setLoading(false);
       }
     };
 
     loadData();
-  }, [error]);
+  }, []);
 
   return (
     <div className="mx-6 my-10">
@@ -110,6 +128,7 @@ const Users = () => {
       </div>
 
       {loading ? <p>Loading...</p> : <UserTable data={userData} />}
+      {error && <p>Error: {error}</p>}
     </div>
   );
 };

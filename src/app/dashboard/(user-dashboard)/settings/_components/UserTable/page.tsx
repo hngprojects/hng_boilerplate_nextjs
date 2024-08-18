@@ -33,12 +33,12 @@ import {
 } from "~/components/ui/table";
 
 interface MemberDetailsProperties {
-  data: Payment[];
+  data: UserLoginData[];
 }
 export type UserLoginData = {
   id: string;
   ipAddress: string;
-  loginTime: number;
+  loginTime: string;
   logoutTime: string | null;
   role: string;
   name: string;
