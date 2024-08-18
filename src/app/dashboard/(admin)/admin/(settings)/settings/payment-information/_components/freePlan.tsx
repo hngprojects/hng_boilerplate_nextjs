@@ -160,9 +160,7 @@ function FreePlan() {
               <TableCell className="text-start font-medium">
                 {collaboration.id}
               </TableCell>
-              <TableCell className="grid place-items-center">
-                {collaboration.paymentStatus}
-              </TableCell>
+              <TableCell>{collaboration.paymentStatus}</TableCell>
               <TableCell>{collaboration.paymentMethod}</TableCell>
               <TableCell>{collaboration.timeManagment}</TableCell>
               <TableCell>{collaboration.time}</TableCell>
