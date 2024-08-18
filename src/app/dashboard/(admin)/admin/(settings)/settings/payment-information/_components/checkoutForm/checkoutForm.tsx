@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable unicorn/prevent-abbreviations */
 /* eslint-disable unused-imports/no-unused-imports */
 /* eslint-disable prettier/prettier */
@@ -49,10 +48,6 @@ const CheckoutForm = ({ plan }: { plan: planProperties | undefined }) => {
         "current_orgid",
         "",
     );
-
-    console.log('good')
-
-    const [openModal, setOpenModal] = useState(false)
     const [isTermsChecked, setIsTermsChecked] = useState(false);
     const [pricePerMonth, setPricePerMonth] = useState<number | undefined>()
     const [pricePerYear, setPricePerYear] = useState<number | undefined>()
@@ -110,10 +105,6 @@ const CheckoutForm = ({ plan }: { plan: planProperties | undefined }) => {
                     }
                 }
             );
-
-            if (response.data.status === "success") {
-                setIsDialogOpen(true);
-            }
 
             if (response.data.url)
                 window.location.href = response.data.url;

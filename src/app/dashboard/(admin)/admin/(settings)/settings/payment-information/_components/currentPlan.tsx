@@ -76,13 +76,13 @@ const CurrentPlan = () => {
           </div>
 
           {/* Highlight */}
-          <div className="mt-[24px] flex flex-col rounded-[12px] bg-[#FFF8F2] px-2">
+          <div className="mt-[24px] flex flex-col rounded-[12px] bg-[#FFF8F2] px-2 lg:flex-row lg:items-start">
             <div className="hidden py-[15px] lg:block">
               <h2 className="font-Inter text-[16px] font-semibold leading-[19.36px]">
                 Highlights
               </h2>
             </div>
-            <article className="hidden w-full grid-cols-1 justify-start gap-2 !pb-16 text-neutral-dark-2 md:grid-cols-2 min-[820px]:mt-[24px] lg:grid lg:grid-cols-3 min-[1200px]:grid-cols-4">
+            <article className="hidden w-full grid-cols-1 justify-start gap-2 !pb-16 text-neutral-dark-2 max-[820px]:mt-[24px] md:grid-cols-2 lg:grid lg:grid-cols-3 min-[1200px]:grid-cols-4">
               {highlights.map((items) => {
                 const { id, elArr } = items;
                 return (
