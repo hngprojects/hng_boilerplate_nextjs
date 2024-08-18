@@ -38,7 +38,7 @@ interface MemberDetailsProperties {
 export type UserLoginData = {
   id: string;
   ipAddress: string;
-  loginTime: string
+  loginTime: string;
   logoutTime: string | null;
   role: string;
   name: string;

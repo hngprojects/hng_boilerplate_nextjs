@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 import { fetchUserData } from "~/actions/user";
 import { users } from "~/components/adminDashboard/userData";
 import CardComponent from "~/components/common/DashboardCard/CardComponent";
-import { UserTable, UserLoginData } from "../_components/UserTable/page";
+import { UserLoginData, UserTable } from "../_components/UserTable/page";
 
 function formatDateTime(dateTimeString: string): string {
   const date = new Date(dateTimeString);
