@@ -1,6 +1,6 @@
 name: Feature
 description: An enhancement or feature
-title: "[Feature]: "
+title: "[FEAT]: "
 labels: ["triage", "feature"]
 body:
   - type: textarea
