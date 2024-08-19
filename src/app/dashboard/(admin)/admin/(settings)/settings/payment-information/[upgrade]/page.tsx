@@ -1,52 +1,158 @@
 "use client";
 
+import axios from "axios";
 import { ArrowLeft, ChevronDown, ChevronUp } from "lucide-react";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
+import { getApiUrl } from "~/actions/getApiUrl";
 import CustomButton from "~/components/common/common-button/common-button";
 import CustomInput from "~/components/common/input/input";
 import PlanUpgradeSuccessfulModal from "~/components/common/modals/plan-upgrade-successful";
+import { toast } from "~/components/ui/use-toast";
 
-const billingOption = [
-  {
-    name: "Pay monthly",
-    description: "$20/ month/member",
-  },
-  {
-    name: "Pay yearly",
-    description: "$200/ year/member",
-  },
-];
-
-const paymentMethod = [
-  {
-    name: "Credit Card",
-    icon: "/user-dashboard/svg/credit-card.svg",
-    width: 64,
-  },
-  {
-    name: "Stripe Payment",
-    icon: "/user-dashboard/svg/stripe-logo.svg",
-    width: 84,
-  },
-  {
-    name: "Paypal Payment",
-    icon: "/user-dashboard/svg/paypal-logo.svg",
-    width: 153,
-  },
-];
+type PlanName = "Basic" | "Advanced" | "Premium";
 
 const Checkout = () => {
   const [open, setOpen] = useState<boolean>(false);
   const router = useRouter();
-
+  const [loading, setLoading] = useState(false);
   const [isDetailsVisible, setIsDetailsVisible] = useState(false);
+  const searchParameters = useSearchParams();
+
+  const { data: session, status } = useSession();
+  const { user } = session ?? {};
+
+  const planName = searchParameters.get("plan") as PlanName | null;
+  let planPrice: number | undefined;
+  switch (planName) {
+    case "Basic": {
+      planPrice = 20;
+      break;
+    }
+    case "Advanced": {
+      planPrice = 50;
+      break;
+    }
+    case "Premium": {
+      planPrice = 100;
+      break;
+    }
+    default: {
+      toast({
+        title: "Error",
+        description: "Invalid plan selected",
+        variant: "destructive",
+      });
+      return;
+    }
+  }
+
+  const billingOption = [
+    {
+      name: "Pay monthly",
+      description: `$ ${planPrice}/ month/member`,
+    },
+    {
+      name: "Pay yearly",
+      description: `$ ${planPrice * 10}/ year/member`,
+    },
+  ];
+
+  const paymentMethod = [
+    {
+      name: "Credit Card",
+      icon: "/user-dashboard/svg/credit-card.svg",
+      width: 64,
+    },
+    {
+      name: "Stripe Payment",
+      icon: "/user-dashboard/svg/stripe-logo.svg",
+      width: 84,
+    },
+    {
+      name: "Paypal Payment",
+      icon: "/user-dashboard/svg/paypal-logo.svg",
+      width: 153,
+    },
+  ];
 
   const toggleDetails = () => {
     setIsDetailsVisible(!isDetailsVisible);
+  };
+
+  const paymentCheckout = async () => {
+    const fullNameInput = document.querySelector<HTMLInputElement>(
+      'input[placeholder="Full Name"]',
+    );
+    const termsCheckbox = document.querySelector(
+      "#termsAndConditions",
+    ) as HTMLInputElement;
+
+    if (!fullNameInput?.value) {
+      toast({
+        title: "Error",
+        description: "Please enter your full name",
+        variant: "destructive",
+      });
+      setLoading(false);
+      return;
+    }
+
+    if (!termsCheckbox?.checked) {
+      toast({
+        title: "Error",
+        description: "You must agree to the terms and conditions",
+        variant: "destructive",
+      });
+      setLoading(false);
+      return;
+    }
+    setLoading(true);
+
+    if (status === "authenticated" && user?.id) {
+      const billingFrequency = document.querySelector(
+        'input[name="billing_option"]:checked',
+      )?.id;
+      let amount = planPrice as number;
+
+      if (billingFrequency === "Pay yearly") {
+        amount *= 10;
+      }
+      const payload = {
+        email: user?.email as string,
+        amount: amount,
+        plan: planName as string,
+        frequency: billingFrequency === "Pay yearly" ? "yearly" : "monthly",
+      };
+      try {
+        const baseUrl = await getApiUrl();
+        const API_URL = `${baseUrl}/api/v1/transactions/initiate/subscription`;
+        const response = await axios.post(API_URL, payload, {
+          headers: {
+            Authorization: `Bearer ${session?.access_token}`,
+          },
+        });
+        if (response.data) {
+          setLoading(false);
+          toast({
+            title: "Success",
+            description: `Wait while you are being redirected...`,
+          });
+          window.location.href = response.data?.data?.authorization_url;
+        }
+      } catch {
+        toast({
+          title: "Error",
+          description: "Failed to create transaction",
+          variant: "destructive",
+        });
+        setLoading(false);
+      }
+    }
   };
 
   return (
@@ -58,7 +164,7 @@ const Checkout = () => {
               <ArrowLeft className="size-6" />
             </button>
             <h1 className="text-lg font-semibold text-zinc-950 md:text-2xl">
-              Upgrade to Basic
+              Upgrade to {planName}
             </h1>
           </span>
           <p className="text-xs font-normal leading-[19.36px] text-zinc-950 md:text-base">
@@ -114,7 +220,7 @@ const Checkout = () => {
 
           <div className="flex flex-col gap-4">
             <span className="flex items-center justify-between gap-8">
-              <p className="text-base font-semibold">$20 /month</p>
+              <p className="text-base font-semibold">${planPrice} /month</p>
               <CustomButton
                 variant="outline"
                 icon={isDetailsVisible ? <ChevronUp /> : <ChevronDown />}
@@ -218,9 +324,11 @@ const Checkout = () => {
         <CustomButton
           type="submit"
           className="bg-primary"
-          onClick={() => setOpen(true)}
+          onClick={paymentCheckout}
+          isLoading={loading}
+          isDisabled={loading}
         >
-          Proceed to Payment
+          {loading ? "Processing..." : "Proceed to Payment"}
         </CustomButton>
       </div>
 
