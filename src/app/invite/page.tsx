@@ -17,52 +17,50 @@ const AcceptInvitePage = () => {
 
   // Function to extract token from the query string
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const handleAcceptInvite = async () => {
-    // Extract token using the function
-    const token = extractToken();
-
-    if (!token) {
-      router.push("/error?message=Invalid invite link");
-      return;
-    }
-
-    try {
-      const response = await acceptInviteRequest(token);
-
-      switch (response.status) {
-        case 200: {
-          // User was added, redirect to login page
-          router.push("/login?message=Invite accepted, please login");
-          break;
-        }
-        case 202: {
-          // Redirect to registration page
-          router.push("/register?message=Please complete registration");
-          break;
-        }
-        case 422: {
-          // Bad invite code, redirect to error page
-          router.push("/error?message=Invalid invite code");
-          break;
-        }
-        default: {
-          // Handle unexpected status codes
-          router.push(
-            `/error?message=${response.error || "Unexpected error occurred"}`,
-          );
-        }
-      }
-    } catch {
-      // Handle unexpected errors
-      router.push("/error?message=An unexpected error occurred");
-    }
-  };
-
   // Process the invite on page load
   useEffect(() => {
+    const handleAcceptInvite = async () => {
+      // Extract token using the function
+      const token = extractToken();
+
+      if (!token) {
+        router.push("/error?message=Invalid invite link");
+        return;
+      }
+
+      try {
+        const response = await acceptInviteRequest(token);
+
+        switch (response.status) {
+          case 200: {
+            // User was added, redirect to login page
+            router.push("/login?message=Invite accepted, please login");
+            break;
+          }
+          case 202: {
+            // Redirect to registration page
+            router.push("/register?message=Please complete registration");
+            break;
+          }
+          case 422: {
+            // Bad invite code, redirect to error page
+            router.push("/error?message=Invalid invite code");
+            break;
+          }
+          default: {
+            // Handle unexpected status codes
+            router.push(
+              `/error?message=${response.error || "Unexpected error occurred"}`,
+            );
+          }
+        }
+      } catch {
+        // Handle unexpected errors
+        router.push("/error?message=An unexpected error occurred");
+      }
+    };
     handleAcceptInvite();
-  }, [handleAcceptInvite]);
+  }, [router]);
 
   return (
     <div className="flex h-[100vh] w-[100vw] items-center justify-center">

@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/prevent-abbreviations */
 "use client";
 
 import React, {
@@ -78,8 +77,8 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
         getAllOrg().then((data) => {
           const fetchedOrganizations = (data && data.organization) || [];
           if (fetchedOrganizations.length > 0) {
-            setOrganizations((prevOrganizations) => [
-              ...prevOrganizations,
+            setOrganizations((previousOrganizations) => [
+              ...previousOrganizations,
               ...fetchedOrganizations,
             ]);
           }
@@ -114,8 +113,8 @@ const OrgContextProvider = ({ children }: { children: React.ReactNode }) => {
           ),
       );
       if (uniqueOrgs.length > 0) {
-        setOrganizations((prevOrganizations) => [
-          ...prevOrganizations,
+        setOrganizations((previousOrganizations) => [
+          ...previousOrganizations,
           ...uniqueOrgs,
         ]);
       }

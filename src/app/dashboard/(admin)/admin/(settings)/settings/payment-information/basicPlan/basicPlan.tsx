@@ -1,6 +1,15 @@
 import { Check } from "lucide-react";
 
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "~/components/ui/dialog";
+import {
   Table,
   TableBody,
   TableCell,
@@ -11,76 +20,76 @@ import {
 
 const projectManagement = [
   {
-    invoice: "Projects",
-    paymentStatus: "Up to 5",
+    task: "Projects",
+    specification: "Up to 5",
   },
   {
-    invoice: "File Upload",
-    paymentStatus: "20gb",
+    task: "File Upload",
+    specification: "20gb",
   },
   {
-    invoice: "User Account",
-    paymentStatus: "10",
+    task: "User Account",
+    specification: "10",
   },
   {
-    invoice: "Teams",
-    paymentStatus: "Unlimited",
+    task: "Teams",
+    specification: "Unlimited",
   },
 ];
 
 const collaborations = [
   {
-    invoice: "Integration",
-    paymentStatus: <Check />,
+    task: "Integration",
+    confirmation: <Check />,
   },
   {
-    invoice: "Guest Access",
-    paymentStatus: <Check />,
+    task: "Guest Access",
+    confirmation: <Check />,
   },
   {
-    invoice: "Page Analysis",
-    paymentStatus: <Check />,
+    task: "Page Analysis",
+    confirmation: <Check />,
   },
   {
-    invoice: "Task Managment",
-    paymentStatus: <Check />,
+    task: "Task Managment",
+    confirmation: <Check />,
   },
 ];
 
 const managements = [
   {
-    invoice: "Team Security",
-    paymentStatus: <Check />,
+    task: "Team Security",
+    confirmation: <Check />,
   },
   {
-    invoice: "Data Backup",
-    paymentStatus: <Check />,
+    task: "Data Backup",
+    confirmation: <Check />,
   },
   {
-    invoice: "HIPAA Compliance",
-    paymentStatus: <Check />,
+    task: "HIPAA Compliance",
+    confirmation: <Check />,
   },
 ];
 
 const supports = [
   {
-    invoice: "Priority Support",
-    paymentStatus: <Check />,
+    task: "Priority Support",
+    confirmation: <Check />,
   },
   {
-    invoice: "Customer Support",
-    paymentStatus: <Check />,
+    task: "Customer Support",
+    confirmation: <Check />,
   },
 ];
 
 const recentTransactions = [
   {
-    invoice: "Date",
+    date: "Date",
     paymentStatus: "Status",
     totalAmount: "Invoice",
   },
   {
-    invoice: "7-7-24",
+    date: "7-7-24",
     paymentStatus: "Paid",
     totalAmount: "Download",
   },
@@ -128,9 +137,9 @@ const BasicPlan = () => {
         </TableHeader>
         <TableBody>
           {projectManagement.map((project) => (
-            <TableRow key={project.invoice}>
-              <TableCell className="font-medium">{project.invoice}</TableCell>
-              <TableCell>{project.paymentStatus}</TableCell>
+            <TableRow key={project.task}>
+              <TableCell className="font-medium">{project.task}</TableCell>
+              <TableCell>{project.specification}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -147,11 +156,11 @@ const BasicPlan = () => {
         </TableHeader>
         <TableBody>
           {collaborations.map((collaboration) => (
-            <TableRow key={collaboration.invoice}>
+            <TableRow key={collaboration.task}>
               <TableCell className="font-medium">
-                {collaboration.invoice}
+                {collaboration.task}
               </TableCell>
-              <TableCell>{collaboration.paymentStatus}</TableCell>
+              <TableCell>{collaboration.confirmation}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -168,11 +177,9 @@ const BasicPlan = () => {
         </TableHeader>
         <TableBody>
           {managements.map((management) => (
-            <TableRow key={management.invoice}>
-              <TableCell className="font-medium">
-                {management.invoice}
-              </TableCell>
-              <TableCell>{management.paymentStatus}</TableCell>
+            <TableRow key={management.task}>
+              <TableCell className="font-medium">{management.task}</TableCell>
+              <TableCell>{management.confirmation}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -189,9 +196,9 @@ const BasicPlan = () => {
         </TableHeader>
         <TableBody>
           {supports.map((support) => (
-            <TableRow key={support.invoice}>
-              <TableCell className="font-medium">{support.invoice}</TableCell>
-              <TableCell>{support.paymentStatus}</TableCell>
+            <TableRow key={support.task}>
+              <TableCell className="font-medium">{support.task}</TableCell>
+              <TableCell>{support.confirmation}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -209,9 +216,9 @@ const BasicPlan = () => {
         </TableHeader>
         <TableBody>
           {recentTransactions.map((recentTransaction) => (
-            <TableRow key={recentTransaction.invoice}>
+            <TableRow key={recentTransaction.date}>
               <TableCell className="font-medium">
-                {recentTransaction.invoice}
+                {recentTransaction.date}
               </TableCell>
               <TableCell>{recentTransaction.paymentStatus}</TableCell>
               <TableCell
@@ -227,9 +234,36 @@ const BasicPlan = () => {
         <button className="rounded-[6px] bg-primary px-[16px] py-[8px] text-[14px] text-[#FFFFFF]">
           Upgrade Subscription
         </button>
-        <button className="bg-[#FFF]border-slate-200 rounded-[6px] border-slate-200 text-[14px] text-[#0F172A]">
-          Cancel Subscription
-        </button>
+
+        <Dialog>
+          <DialogTrigger asChild>
+            <button className="bg-[#FFF]border-slate-200 rounded-[6px] border-slate-200 text-[14px] text-[#0F172A]">
+              Cancel Subscription
+            </button>
+          </DialogTrigger>
+          <DialogContent className="max-w-sm:rounded-[6px] w-[80%] sm:max-w-[425px]">
+            <DialogHeader>
+              <DialogTitle>Edit profile</DialogTitle>
+              <DialogDescription>
+                Make changes to your profile here. Click save when you are done.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="grid gap-4 py-4">
+              <div className="grid grid-cols-4 items-center gap-4"></div>
+              <div className="grid grid-cols-4 items-center gap-4"></div>
+            </div>
+            <DialogFooter>
+              <div className="flex flex-col items-center justify-end space-x-4 md:flex-row">
+                <button className="rounded-[6px] bg-primary px-[16px] py-[8px] text-[#FFFFFF]">
+                  Keep subscription
+                </button>
+                <button className="rounded-[6px] bg-primary px-[16px] py-[8px] text-[#FFFFFF]">
+                  Cancel Subscription
+                </button>
+              </div>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );

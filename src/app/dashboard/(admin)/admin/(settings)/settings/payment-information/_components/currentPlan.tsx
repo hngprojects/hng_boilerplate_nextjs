@@ -1,4 +1,3 @@
-/* eslint-disable no-irregular-whitespace */
 import Link from "next/link";
 
 import desiredPlan, { highLightMobile, highlights } from "../dataJSON";
@@ -15,9 +14,9 @@ const CurrentPlan = () => {
             Free
           </h4>
           <p className="text-[13px] leading-[15.6px] text-neutral-dark-2">
-            Your account is on a free 90-day trial of our free plan,
-            through September 27th. Upgrade anytime to stay on this plan when
-            your trial ends.
+            Your account is on a free 90-day trial of our free plan, //
+            eslint-disable-next-line no-irregular-whitespace through September
+            27th. Upgrade anytime to stay on this plan when your trial ends.
           </p>
           <p className="text-[13px] leading-[15.6px] text-neutral-dark-1">
             $0/month
