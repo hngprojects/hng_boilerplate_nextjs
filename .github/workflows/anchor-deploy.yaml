@@ -49,7 +49,7 @@ jobs:
             mv /tmp/java/.env.java .env
             rm -f /tmp/java/boilerplate.tar.gz
             cp -r .next/standalone/* .
-            pm2 restart java-boilerplate --update-env
+            pm2 restart nextjs_boilerplate --update-env
 
      
   deploy_to_python:
@@ -94,4 +94,4 @@ jobs:
             mv /tmp/python/.env.python .env
             rm -f /tmp/python/boilerplate.tar.gz
             cp -r .next/standalone/* .
-            pm2 restart python-boilerplate --update-env
+            pm2 restart nextjs_boilerplate --update-env
