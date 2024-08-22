@@ -8,93 +8,162 @@ import {
   Text,
 } from "@react-email/components";
 
-import Layout from "../_components/layout/layout";
+import Layout from "../../layout/layout";
 
 interface PasswordChangeConfirmation {
-  title: string;
   username: string;
-  image: string;
-  description: string;
-  descriptionTwo: string;
   link: string;
 }
 
 export const PasswordConfirmation = ({
-  title,
   username,
-  image,
-  description,
-  descriptionTwo,
+  link,
 }: PasswordChangeConfirmation) => {
   return (
     <Layout>
       <Preview>{username}, password reset completed</Preview>
-      <Section className="my-[56px]">
-        <Section className="mx-auto flex items-center justify-center md:w-[316px]">
-          <Img src={image} alt="hello" className="h-[100%] w-[100%]" />
-        </Section>
+      <Container style={containerStyle}>
+        <Section style={sectionStyle}>
+          <Section style={imageContainerStyle}>
+            <Img
+              src="https://imgur.com/zkXwuyQ.png"
+              alt="Password Reset"
+              style={imageStyle}
+            />
+          </Section>
 
-        <Container className="max-w-[680px] px-[48px] md:px-0">
-          <Section className="mt-[56px] flex flex-col items-center justify-center">
-            <Heading
-              as="h5"
-              className="my-0 mb-[56px] text-center text-[24px] leading-[28px] text-[#121212]"
-            >
-              {title}
+          <Section style={textSectionStyle}>
+            <Heading as="h5" style={headingStyle}>
+              Password Reset Complete
             </Heading>
 
             <Section>
-              <Text className="my-0 text-[16px] font-[600] text-[#121212] md:text-[18px]">
-                Hi {username},
+              <Text style={greetingTextStyle}>Hi {username},</Text>
+              <Text style={descriptionTextStyle}>
+                The password for your Boilerplate account has been successfully
+                changed. You can now continue to access your account as usual.
               </Text>
-              <Text className="text-justify text-[14px] leading-[19.36px] text-[#525252] md:text-[16px]">
-                {description}
-              </Text>
-              <Text className="text-justify text-[14px] leading-[19.36px] text-[#525252] md:text-[16px]">
-                {descriptionTwo}
+              <Text style={descriptionTextStyle}>
+                If this wasn&apos;t done by you, please immediately reset the
+                password to your Boilerplate account by following the steps
+                below:
               </Text>
             </Section>
-            <ol className="m-0 pl-4">
-              <li className="my-[1rem]">
-                Recover your account here:
-                <Link
-                  className="text-[#F97316]"
-                  href={`https://login.[companyname].com/forgot`}
-                >
-                  https://login.boilerplate.com/forgot
-                </Link>
-              </li>
-              <li className="my-[1rem]">
-                Review your phone numbers and email addresses and remove the
-                ones that don’t belong to you once you gain access to your
-                account.
-              </li>
-            </ol>
+
+            <Section style={listSectionStyle}>
+              <ol style={listStyle}>
+                <li style={listItemStyle}>
+                  Recover your account here:
+                  <Link style={linkStyle} href={link}>
+                    {link}
+                  </Link>
+                </li>
+                <li style={listItemStyle}>
+                  Review your phone numbers and email addresses and remove the
+                  ones that don’t belong to you once you gain access to your
+                  account.
+                </li>
+              </ol>
+            </Section>
           </Section>
-        </Container>
-        <Section className="mt-[28px]">
-          <Container className="max-w-[680px] px-[48px] md:px-0">
-            <Text className="my-0 font-[600] text-[#121212]">
+
+          <Section style={footerSectionStyle}>
+            <Text style={footerTextStyle}>
               Regards,
               <br />
               Boilerplate
             </Text>
-          </Container>
+          </Section>
         </Section>
-      </Section>
+      </Container>
     </Layout>
   );
 };
 
+const containerStyle: React.CSSProperties = {
+  padding: "0 48px",
+  maxWidth: "792px",
+  margin: "0 auto",
+};
+
+const sectionStyle: React.CSSProperties = {
+  margin: "56px 0",
+};
+
+const imageContainerStyle: React.CSSProperties = {
+  margin: "0 auto",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  maxWidth: "fit-content",
+};
+
+const imageStyle: React.CSSProperties = {
+  width: "100%",
+  height: "auto",
+};
+
+const textSectionStyle: React.CSSProperties = {
+  marginTop: "56px",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+};
+
+const headingStyle: React.CSSProperties = {
+  margin: "0 0 56px 0",
+  textAlign: "center",
+  fontSize: "24px",
+  lineHeight: "28px",
+  color: "#121212",
+};
+
+const greetingTextStyle: React.CSSProperties = {
+  fontSize: "16px",
+  fontWeight: "600",
+  color: "#121212",
+  margin: "0 0 32px 0",
+};
+
+const descriptionTextStyle: React.CSSProperties = {
+  fontSize: "16px",
+  color: "#525252",
+  lineHeight: "19.36px",
+  textAlign: "justify",
+  margin: "0 0 16px 0",
+};
+
+const listSectionStyle: React.CSSProperties = {
+  marginTop: "32px",
+  textAlign: "left",
+};
+
+const listStyle: React.CSSProperties = {
+  paddingLeft: "16px",
+};
+
+const listItemStyle: React.CSSProperties = {
+  marginBottom: "16px",
+};
+
+const linkStyle: React.CSSProperties = {
+  color: "#F97316",
+  textDecoration: "underline",
+};
+
+const footerSectionStyle: React.CSSProperties = {
+  marginTop: "28px",
+};
+
+const footerTextStyle: React.CSSProperties = {
+  fontWeight: "600",
+  color: "#121212",
+};
+
 PasswordConfirmation.PreviewProps = {
-  title: "Password Reset Complete",
   username: "John Doe",
-  image: "https://imgur.com/zkXwuyQ.png",
-  link: "www.boilerData.com",
-  description:
-    "The password for your Boilerplate account has been successfully changed. You can now continue to access your account as usual.",
-  descriptionTwo:
-    "If this wasn't done by you, please immediately reset the password to your Boilerplate account by following the steps below:",
+  link: "https://login.boilerplate.com/forgot",
 } satisfies PasswordChangeConfirmation;
 
 export default PasswordConfirmation;

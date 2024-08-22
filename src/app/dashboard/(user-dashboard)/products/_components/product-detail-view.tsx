@@ -1,57 +1,63 @@
+"use client";
+
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { useRouter } from "next-nprogress-bar";
 import { useEffect, useTransition } from "react";
 
+import { deleteProduct } from "~/actions/product";
 import BlurImage from "~/components/miscellaneous/blur-image";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import { Button } from "~/components/ui/button";
 import { toast } from "~/components/ui/use-toast";
-import { useProductModal } from "~/hooks/admin-product/use-product.modal";
-import { useProducts } from "~/hooks/admin-product/use-products.persistence";
-import { cn, formatPrice, simulateDelay } from "~/lib/utils";
+import { useOrgContext } from "~/contexts/orgContext";
+import { useLocalStorage } from "~/hooks/use-local-storage";
+import { cn, formatPrice } from "~/lib/utils";
 
 const ProductDetailView = () => {
-  const router = useRouter();
-  const { products, deleteProduct } = useProducts();
-  const [isLoading, startTransition] = useTransition();
   const {
-    product_id,
-    updateProductId,
-    updateOpen,
-    isOpen,
+    products,
+    selectedProduct,
     isDelete,
     setIsDelete,
-  } = useProductModal();
+    updateOpen,
+    isOpen,
+  } = useOrgContext();
+  const router = useRouter();
 
-  const product = products?.find(
-    (product) => product.product_id === product_id,
-  );
-  const handleDelete = async (id: string) => {
+  const [isLoading, startTransition] = useTransition();
+
+  const product = products.find((p) => p.id === selectedProduct);
+  const [org_id] = useLocalStorage<string>("current_orgid", "");
+
+  const handleDelete = async () => {
     toast({
       title: "Deleting product",
       description: "Please wait...",
       variant: "destructive",
     });
 
-    setIsDelete(true);
     startTransition(async () => {
-      await simulateDelay(3);
-      updateOpen(false);
-      deleteProduct(id);
-      toast({
-        title: `Product deleted`,
-        description: `${product?.name} has been deleted.`,
-        variant: "default",
+      await deleteProduct(org_id, selectedProduct).then((data) => {
+        if (data.status === 200) {
+          toast({
+            title: "Product deleted",
+            description: "Product deleted successfully.",
+          });
+        } else {
+          toast({
+            title: "Error",
+            description: data.error || "An unexpected error occurred.",
+            variant: "destructive",
+          });
+        }
+        setIsDelete(false);
       });
-      updateProductId("null");
-      setIsDelete(false);
     });
   };
   const handleEditAction = (id: string) => {
-    updateOpen(false);
+    setIsDelete(false);
     router.push(`/dashboard/products/${id}`);
-    updateProductId("null");
   };
 
   useEffect(() => {
@@ -83,7 +89,7 @@ const ProductDetailView = () => {
             </p>
             <div className="flex w-full items-center justify-center gap-x-2">
               <Button
-                onClick={() => handleDelete(product!.product_id!)}
+                onClick={handleDelete}
                 variant="outline"
                 className="bg-white font-medium text-error"
               >
@@ -106,7 +112,6 @@ const ProductDetailView = () => {
               variant="ghost"
               size="icon"
               onClick={() => {
-                updateProductId("");
                 updateOpen(false);
               }}
             >
@@ -125,7 +130,7 @@ const ProductDetailView = () => {
             <p className="flex w-full items-center justify-between text-sm lg:text-base">
               <span className="text-neutral-dark-1">Product ID</span>
               <span className="uppercase text-neutral-dark-2">
-                {product?.product_id}
+                {product?.id}
               </span>
             </p>
             <p className="flex w-full items-center justify-between text-sm lg:text-base">
@@ -135,15 +140,15 @@ const ProductDetailView = () => {
             <p className="flex w-full items-center justify-between text-sm lg:text-base">
               <span className="text-neutral-dark-1">Date added</span>
               <span className="text-neutral-dark-2">
-                {product?.date_added}, {product?.time}
+                {product?.created_at},
               </span>
             </p>
-            <p className="flex w-full items-center justify-between text-sm lg:text-base">
+            {/* <p className="flex w-full items-center justify-between text-sm lg:text-base">
               <span className="text-neutral-dark-1">Stock</span>
               <span className="text-neutral-dark-2">
                 {product?.stock} {product!.stock! > 1 ? "pcs" : "pc"}
               </span>
-            </p>
+            </p> */}
             <p className="flex w-full items-center justify-between text-sm lg:text-base">
               <span className="text-neutral-dark-1">Stock</span>
               <span className="text-neutral-dark-2">
@@ -173,7 +178,7 @@ const ProductDetailView = () => {
               )}
             </Button>
             <Button
-              onClick={() => handleEditAction(product!.product_id)}
+              onClick={() => handleEditAction(selectedProduct)}
               variant="outline"
               className="bg-white font-medium"
             >

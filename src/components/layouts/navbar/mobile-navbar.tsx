@@ -1,7 +1,7 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import "./menu.css";
 
 import { motion, stagger, useAnimate } from "framer-motion";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -13,6 +13,7 @@ export default function MobileNav() {
   const [open, setOpen] = useState(false);
   const [scope, animate] = useAnimate();
   const { user } = useUser();
+  const t = useTranslations();
 
   // the stagger effect
   const staggerList = stagger(0.1, { startDelay: 0.25 });
@@ -44,7 +45,7 @@ export default function MobileNav() {
         delay: open ? staggerList : 0,
       },
     );
-  }, [open]);
+  }, [animate, open, staggerList, user.email]);
 
   return (
     <>
@@ -92,7 +93,7 @@ export default function MobileNav() {
                   "hover:text-accent-color relative w-fit text-sm font-medium text-neutral-dark-1 transition-colors duration-300",
                 )}
               >
-                {link.route}
+                {t(`${link.route}`)}
                 <span
                   tabIndex={-1}
                   aria-hidden
@@ -111,7 +112,7 @@ export default function MobileNav() {
                 user?.email ? "hidden" : "",
               )}
             >
-              Log in
+              {t("navbar.login")}
             </Link>
           </motion.li>
 
@@ -123,7 +124,7 @@ export default function MobileNav() {
                 user?.email ? "hidden" : "",
               )}
             >
-              Get Started
+              {t("navbar.register")}
             </Link>
           </motion.li>
         </ul>

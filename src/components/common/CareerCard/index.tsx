@@ -4,7 +4,6 @@ import CareerCard from "./CareerCard";
 import { Job } from "./Jobs";
 
 interface CareerCardParentProperties {
-  isLoading: boolean;
   job: Job;
   location?: string;
   description?: string;
@@ -14,13 +13,11 @@ interface CareerCardParentProperties {
 }
 
 const CareerCardParent: FC<CareerCardParentProperties> = ({
-  isLoading,
   job,
   onViewDetails,
 }) => {
   return (
     <CareerCard
-      isLoading={isLoading}
       jobTitle={job.title}
       location={job.location}
       description={job.description}

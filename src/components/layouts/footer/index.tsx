@@ -1,3 +1,6 @@
+"use client";
+
+import axios from "axios";
 import {
   Copyright,
   Facebook,
@@ -6,38 +9,119 @@ import {
   XIcon,
   Youtube,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { useState } from "react";
 
+import { getApiUrl } from "~/actions/getApiUrl";
 import CustomButton from "~/components/common/common-button/common-button";
 import { Input } from "~/components/common/input";
+import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
+import { Toaster } from "~/components/ui/toaster";
+import { useToast } from "~/components/ui/use-toast";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
+  const t = useTranslations("footer");
+  const locale = localStorage.getItem("preferredLanguage");
+  const toastDesc =
+    locale === "fr"
+      ? "Veuillez fournir votre e-mail"
+      : locale === "es"
+        ? "Por favor, proporcione su correo electrónico"
+        : "Please provide a valid email";
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const isValidEmail = (email: string): boolean => emailRegex.test(email);
+
+  const handleSubmit = async () => {
+    if (!isValidEmail(email)) {
+      setError(true);
+
+      toast({
+        title: "Error",
+        description: toastDesc,
+        variant: "destructive",
+      });
+      return;
+    }
+    setLoading(true);
+
+    const apiUrl = await getApiUrl();
+    await axios
+      .post(
+        `${apiUrl}/api/v1/newsletter-subscription`,
+        { email },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      )
+      .then(() => {
+        toast({
+          title: "Thank you for subscribing!",
+          description:
+            "You've successfully joined our newsletter. We're excited to keep you updated with our latest news and offers!",
+          variant: "default",
+        });
+        setLoading(false);
+        setEmail("");
+      })
+      .catch((error) => {
+        if (error?.response) {
+          const errorData = error.response.data;
+          if (errorData.status_code === 400) {
+            toast({
+              title: "You're already subscribed!",
+              description:
+                "It looks like you're already on our list. Thank you for being part of our community!",
+              variant: "default",
+            });
+          } else {
+            toast({
+              title: "Oops! Something went wrong.",
+              description:
+                "We encountered an issue while trying to subscribe you to our newsletter. Check your internet connection or contact support if the problem persists.",
+              variant: "destructive",
+            });
+            setLoading(false);
+          }
+          setLoading(false);
+          return;
+        }
+      });
+  };
+
   const footerLinks = [
     {
-      title: "Navigation",
+      title: t("navigation"),
       links: [
-        { route: "Home", link: "/" },
-        { route: "About us", link: "/about-us" },
-        { route: "Career", link: "/career" },
-        { route: "Feature updates", link: "/" },
-        { route: "Blog", link: "/blog" },
+        { route: "home", link: "/" },
+        { route: "aboutUs", link: "/about-us" },
+        { route: "career", link: "/career" },
+        { route: "features", link: "/" },
+        { route: "blog", link: "/blog" },
       ],
     },
     {
-      title: "Support",
+      title: t("support"),
       links: [
-        { route: "Help center", link: "/help-center" },
-        { route: "FAQ", link: "/faqs" },
-        { route: "Waiting List", link: "/waitlist" },
-        { route: "Pricing Experience", link: "/pricing" },
-        { route: "Contact Us", link: "/contact-us" },
+        { route: "helpCenter", link: "/help-center" },
+        { route: "faq", link: "/faqs" },
+        { route: "waitingList", link: "/waitlist" },
+        { route: "pricingExperience", link: "/pricing" },
+        { route: "contactUs", link: "/contact-us" },
       ],
     },
     {
-      title: "Legal",
+      title: t("legal"),
       links: [
-        { route: "Privacy Policy", link: "/privacy-policy" },
-        { route: "Terms and condition", link: "/terms-and-conditions" },
+        { route: "privacyPolicy", link: "/privacy-policy" },
+        { route: "termsAndConditions", link: "/terms-and-conditions" },
       ],
     },
   ];
@@ -66,9 +150,12 @@ const Footer = () => {
   ];
 
   const footerBottom = [
-    { route: "Privacy Policy", link: "/" },
-    { route: "Terms of Use", link: "/" },
+    { route: "privacyPolicy", link: "/" },
+    { route: "termsOfUse", link: "/" },
   ];
+
+  //
+
   return (
     <footer className="bg-background dark:bg-default">
       <div className="px-4">
@@ -84,16 +171,38 @@ const Footer = () => {
             </div>
             <div className="flex flex-col items-center justify-center md:block lg:hidden">
               <h5 className="text-neurtal-dark-2 text-md mb-4 text-center font-semibold sm:text-left md:mb-[36px]">
-                Sign Up For Newsletter
+                {t("newsletterSignUp")}
               </h5>
-              <div className="item flex h-[46px] w-full items-center justify-start md:max-w-[283px]">
-                <Input
-                  placeholder="Enter your email"
-                  className="border-r-none text-md h-[46px] rounded-r-none border-r-0 border-r-transparent bg-transparent active:border-transparent"
-                />
-                <CustomButton variant="primary" className="h-full">
-                  Subscibe
-                </CustomButton>
+              <div className="">
+                <div className="item flex h-[46px] w-full items-center justify-start md:max-w-[283px]">
+                  <div className="flex flex-col gap-0.5">
+                    <Input
+                      placeholder="Enter your email"
+                      className={`border-r-none text-md h-[46px] rounded-r-none border-r-0 border-r-transparent bg-transparent active:border-transparent ${error && "!border-red-500"}`}
+                      onChange={(event) => setEmail(event.target.value)}
+                      value={email}
+                      onBlur={() =>
+                        email.length === 0 ? setError(true) : setError(false)
+                      }
+                    />
+                  </div>
+                  <CustomButton
+                    variant="primary"
+                    className="h-full transition-all hover:-translate-y-2"
+                    onClick={handleSubmit}
+                  >
+                    {loading ? (
+                      <LoadingSpinner className="size-4 animate-spin sm:size-5" />
+                    ) : (
+                      "Subscribe"
+                    )}
+                  </CustomButton>
+                </div>
+                {error && (
+                  <small className="mt-0.5 block text-xs text-red-500">
+                    Please provide your email
+                  </small>
+                )}
               </div>
             </div>
           </div>
@@ -110,9 +219,9 @@ const Footer = () => {
                         <li key={index}>
                           <Link
                             href={item.link}
-                            className="cursor-pointer text-sm text-neutral-dark-2 transition-colors duration-300 hover:text-primary hover:underline dark:text-white"
+                            className="text-md cursor-pointer text-neutral-dark-2 transition-colors duration-300 hover:text-primary hover:underline dark:text-white"
                           >
-                            {item.route}
+                            {t(`links.${item.route}`)}
                           </Link>
                         </li>
                       );
@@ -121,30 +230,53 @@ const Footer = () => {
                 </div>
               );
             })}
+
             <div className="hidden lg:block">
               <h5 className="text-neurtal-dark-2 text-md mb-4 font-semibold md:mb-[36px]">
-                Sign Up For Newsletter
+                {t("newsletterSignUp")}
               </h5>
-              <div className="item flex h-[46px] w-full max-w-[283px] items-center justify-start">
-                <Input
-                  className="border-r-none h-[46px] rounded-r-none border-r-0 border-r-transparent bg-transparent active:border-transparent"
-                  placeholder="Enter your email"
-                />
-                <CustomButton variant="primary" className="h-full">
-                  Subscibe
-                </CustomButton>
+
+              <div className="">
+                <div className="item flex h-[46px] w-full max-w-[283px] items-center justify-start">
+                  <Input
+                    className={`border-r-none h-[46px] rounded-r-none border-r-0 border-r-transparent bg-transparent active:border-transparent ${error && "!border-red-500"}`}
+                    placeholder="Enter your email"
+                    onChange={(event) => setEmail(event.target.value)}
+                    value={email}
+                    onBlur={() =>
+                      email.length === 0 ? setError(true) : setError(false)
+                    }
+                  />
+                  <CustomButton
+                    variant="primary"
+                    className="h-full transition-all hover:-translate-y-1 hover:bg-destructive"
+                    onClick={handleSubmit}
+                  >
+                    {loading ? (
+                      <LoadingSpinner className="size-4 animate-spin sm:size-5" />
+                    ) : (
+                      "Subscribe"
+                    )}
+                  </CustomButton>
+                </div>
+                {error && (
+                  <small className="mt-0.5 block text-xs text-red-500">
+                    Please provide your email
+                  </small>
+                )}
               </div>
             </div>
+
             <div className="lg:hidden">
               <h5 className="text-neurtal-dark-2 mb-[10px] text-[20px] font-semibold">
-                Follow Us
+                {t("followUs")}
               </h5>
               <div className="flex w-full max-w-[116px] items-center justify-between gap-1 md:max-w-[212px]">
                 {socialLinks.map((item, index) => {
                   return (
                     <div
                       key={index}
-                      className="flex h-5 w-5 items-center justify-center rounded-full bg-primary p-1 hover:bg-default md:h-10 md:w-10"
+                      className="flex h-5 w-5 cursor-pointer items-center justify-center rounded-full bg-primary p-1 hover:bg-default md:h-10 md:w-10"
                     >
                       <item.icon className="h-[10px] w-[10px] text-white md:h-4 md:w-4" />
                     </div>
@@ -164,7 +296,7 @@ const Footer = () => {
                 return (
                   <div
                     key={index}
-                    className="flex h-5 w-5 items-center justify-center rounded-full bg-primary p-1 hover:bg-default md:h-10 md:w-10"
+                    className="flex h-5 w-5 cursor-pointer items-center justify-center rounded-full bg-primary p-1 hover:bg-destructive md:h-10 md:w-10"
                   >
                     <item.icon className="h-[10px] w-[10px] text-white md:h-4 md:w-4" />
                   </div>
@@ -174,7 +306,7 @@ const Footer = () => {
           </div>
           <span className="flex items-center justify-center text-center text-xs font-semibold text-stroke-colors-stroke">
             <Copyright className="h-5 w-5 text-stroke-colors-stroke" />
-            2024 All Rights Reserved
+            {t("footerBottom.copyright")}
           </span>
           <div className="hidden lg:block">
             <ul className="flex items-center justify-between gap-[13px]">
@@ -185,7 +317,7 @@ const Footer = () => {
                       href={item.link}
                       className="cursor-pointer text-sm text-neutral-dark-2 transition-colors duration-300 hover:text-primary hover:underline"
                     >
-                      {item.route}
+                      {t(`footerBottom.${item.route}`)}
                     </Link>
                   </li>
                 );
@@ -194,6 +326,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
+
+      <Toaster />
     </footer>
   );
 };

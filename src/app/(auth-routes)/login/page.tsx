@@ -3,12 +3,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff, ShieldCheck } from "lucide-react";
 import { signIn, useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next-nprogress-bar";
 import Link from "next/link";
 import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+import { loginUser } from "~/actions/login";
 import CustomButton from "~/components/common/common-button/common-button";
 import { Input } from "~/components/common/input";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
@@ -22,38 +24,28 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import { useToast } from "~/components/ui/use-toast";
+import { useLocalStorage } from "~/hooks/use-local-storage";
 import { cn } from "~/lib/utils";
 import { LoginSchema } from "~/schemas";
-import { getApiUrl } from "~/utils/getApiUrl";
-import { loginAuth } from "~/utils/loginAuth";
+import { Organisation } from "~/types";
 
 const Login = () => {
+  const t = useTranslations("login");
   const router = useRouter();
   const { toast } = useToast();
   const { status } = useSession();
-  const [apiUrl, setApiUrl] = useState("");
   const [isLoading, startTransition] = useTransition();
   const [showPassword, setShowPassword] = useState(false);
+  const [, setUserOrg] = useLocalStorage<Organisation[]>("user_org", []);
+
+  const [currentOrgId, setCurrentOrgId] = useLocalStorage<string | undefined>(
+    "current_orgid",
+    "",
+  );
 
   if (status === "authenticated") {
     router.push("/dashboard");
   }
-  useEffect(() => {
-    const fetchApiUrl = async () => {
-      try {
-        const url = await getApiUrl();
-        setApiUrl(url);
-      } catch {
-        toast({
-          title: "Error",
-          description: "Failed to fetch API URL",
-          variant: "destructive",
-        });
-      }
-    };
-
-    fetchApiUrl();
-  }, [toast]);
 
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -66,10 +58,14 @@ const Login = () => {
 
   const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
     startTransition(async () => {
-      await loginAuth(values).then(async (data) => {
+      await loginUser(values).then(async (data) => {
         const { email, password } = values;
 
-        if (data) {
+        if (data.status === 200) {
+          setUserOrg(data.organisations);
+          if (!currentOrgId && data.organisations.length > 0) {
+            setCurrentOrgId(data.organisations[0].organisation_id);
+          }
           await signIn(
             "credentials",
             {
@@ -100,10 +96,10 @@ const Login = () => {
       <div className="w-full max-w-md space-y-6">
         <div className="text-center">
           <h1 className="font-inter text-neutralColor-dark-2 mb-5 text-center text-2xl font-semibold leading-tight">
-            Login
+            {t("title")}
           </h1>
           <p className="font-inter text-neutralColor-dark-2 mt-2 text-center text-sm font-normal leading-6">
-            Welcome back, you&apos;ve been missed!
+            {t("welcomeBack")}
           </p>
         </div>
         <div className="flex flex-col justify-center space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
@@ -138,37 +134,7 @@ const Login = () => {
               </svg>
             }
           >
-            Continue with Google
-          </CustomButton>
-          <CustomButton
-            className="w-full"
-            isDisabled={!apiUrl}
-            variant="outline"
-            href={apiUrl === "" ? undefined : `${apiUrl}/api/v1/auth/facebook`}
-            isLeftIconVisible={true}
-            icon={
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clipPath="url(#clip0_16038_1232)">
-                  <path
-                    d="M24 12.073C24 5.40405 18.6269 -0.00195312 11.9999 -0.00195312C5.36995 -0.000453125 -0.00305176 5.40405 -0.00305176 12.0745C-0.00305176 18.1 4.38595 23.095 10.1219 24.001V15.5635H7.07695V12.0745H10.1249V9.41205C10.1249 6.38655 11.9174 4.71555 14.6579 4.71555C15.9719 4.71555 17.3444 4.95105 17.3444 4.95105V7.92105H15.8309C14.3414 7.92105 13.8764 8.85255 13.8764 9.80805V12.073H17.2034L16.6724 15.562H13.8749V23.9995C19.6109 23.0935 24 18.0985 24 12.073Z"
-                    fill="#1976D2"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_16038_1232">
-                    <rect width="24" height="24" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-            }
-          >
-            Continue with Facebook
+            {t("continueWithGoogle")}
           </CustomButton>
         </div>
         <div className="flex items-center justify-center">
@@ -191,7 +157,7 @@ const Login = () => {
                   <FormControl>
                     <Input
                       disabled={isLoading}
-                      placeholder="Enter Email Address"
+                      placeholder={`${t("emailPlaceholder")}`}
                       {...field}
                       className={cn(
                         "font-inter w-full rounded-md border px-3 py-6 text-sm font-normal leading-[21.78px] transition duration-150 ease-in-out focus:outline-none",
@@ -216,7 +182,7 @@ const Login = () => {
                       <Input
                         disabled={isLoading}
                         type={showPassword ? "text" : "password"}
-                        placeholder="Enter Password"
+                        placeholder={`${t("passwordPlaceholder")}`}
                         {...field}
                         className={cn(
                           "font-inter w-full rounded-md border px-3 py-6 text-sm font-normal leading-[21.78px] transition duration-150 ease-in-out focus:outline-none",
@@ -260,7 +226,7 @@ const Login = () => {
                       />
                     </FormControl>
                     <div className="space-y-1 leading-none">
-                      <FormLabel>Remember me</FormLabel>
+                      <FormLabel>{t("rememberMe")}</FormLabel>
                     </div>
                   </FormItem>
                 )}
@@ -270,7 +236,7 @@ const Login = () => {
                   href="/forgot-password"
                   className="text-neutralColor-dark-2 text-sm font-medium"
                 >
-                  Forgot Password?
+                  {t("forgotPassword")}
                 </Link>
               </div>
             </div>
@@ -287,7 +253,7 @@ const Login = () => {
                   <LoadingSpinner className="size-4 animate-spin sm:size-5" />
                 </span>
               ) : (
-                <span>Login</span>
+                <span>{t("loginButton")}</span>
               )}
             </CustomButton>
           </form>
@@ -299,35 +265,35 @@ const Login = () => {
           size="default"
           className="w-full py-6"
         >
-          <Link href="/login/magic-link">Sign in with magic link</Link>
+          <Link href="/login/magic-link">{t("signInWithMagicLink")}</Link>
         </CustomButton>
 
         <p className="font-inter text-neutralColor-dark-1 mt-5 text-center text-sm font-normal leading-[15.6px]">
-          Don&apos;t Have An Account?{" "}
+          {t("noAccount")}{" "}
           <Link
             href="/register"
             className="font-inter ms-1 text-left text-base font-bold leading-[19.2px] text-primary hover:text-orange-400"
             data-testid="link"
           >
-            Sign Up
+            {t("signUp")}
           </Link>
         </p>
 
         <p className="mt-2 text-center text-xs text-gray-500">
           <ShieldCheck className="mr-1 hidden h-4 w-4 text-gray-400 sm:inline-block" />
-          By logging in, you agree to the{" "}
+          {t("agree")}{" "}
           <a
             href="#"
             className="text-sm font-bold text-primary hover:text-orange-500"
           >
-            Terms of Service
+            {t("termsOfService")}
           </a>{" "}
-          and{" "}
+          {t("and")}{" "}
           <a
             href="#"
             className="text-sm font-bold text-primary hover:text-orange-500"
           >
-            Privacy Policy
+            {t("privacyPolicy")}
           </a>
         </p>
       </div>

@@ -1,10 +1,13 @@
+// components/admin/NewProductModal.tsx
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion } from "framer-motion";
 import { Loader, X } from "lucide-react";
-import { useTransition } from "react";
+import Image from "next/image";
+import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { createProduct } from "~/actions/product";
 import WordCounter from "~/components/miscellaneous/WordCounter";
 import { Button } from "~/components/ui/button";
 import {
@@ -16,6 +19,7 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
+import { Label } from "~/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -26,66 +30,81 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 import { Textarea } from "~/components/ui/textarea";
-import { useProductModal } from "~/hooks/admin-product/use-product.modal";
-import { useProducts } from "~/hooks/admin-product/use-products.persistence";
-import {
-  cn,
-  generateId,
-  getCurrentDateTime,
-  isMobileDevice,
-  simulateDelay,
-} from "~/lib/utils";
+import { useToast } from "~/components/ui/use-toast";
+import { useOrgContext } from "~/contexts/orgContext";
+import { useLocalStorage } from "~/hooks/use-local-storage";
+import { cn } from "~/lib/utils";
+import { productSchema } from "~/schemas";
+import { CloudinaryAsset } from "~/types";
 import { CATEGORIES } from "../data/categories.mock";
-import ProjectLogo from "./form-images/project-logo";
-import { MAX_CHAR, NewProductSchema } from "./schema/schema";
+import { MAX_CHAR } from "./schema/schema";
 
 const NewProductModal = () => {
-  const { setIsNewModal, isNewModal } = useProductModal();
-  const { addProduct } = useProducts();
-  const isMobile = isMobileDevice();
+  const { setIsNewModal, isNewModal } = useOrgContext();
+  const [image, setImage] = useState<File | Blob>();
   const [isLoading, startTransition] = useTransition();
+  const [org_id] = useLocalStorage<string>("current_orgid", "");
+
   const variantProperties = {
     left: "50%",
     top: "50%",
     translateX: "-50%",
     translateY: "-50%",
   };
-  const new_product_form = useForm<z.infer<typeof NewProductSchema>>({
+
+  const { toast } = useToast();
+
+  const newProductForm = useForm<z.infer<typeof productSchema>>({
+    resolver: zodResolver(productSchema),
     defaultValues: {
-      product_name: "",
+      name: "",
       description: "",
-      price: "",
+      size: "Small",
+      image_url: "",
+      quantity: "0",
+      price: "0",
       category: "",
-      quantity: "",
-      media: {
-        url: "",
-        id: "",
-      },
     },
-    resolver: zodResolver(NewProductSchema),
   });
 
-  const hasProjectLogo = new_product_form.getValues("media.url");
-
-  const onSubmit = async (values: z.infer<typeof NewProductSchema>) => {
+  const onSubmit = async (values: z.infer<typeof productSchema>) => {
     startTransition(async () => {
-      const date_data = getCurrentDateTime();
-      await simulateDelay(3);
-      addProduct({
-        product_id: `P${generateId(6)}`,
-        category: values.category,
-        description: values.description,
-        name: values.product_name,
-        price: Number(values.price),
-        stock: Number(values.quantity),
-        image: "/product/product-image.webp",
-        status: "in_stock",
-        date_added: date_data.date_added,
-        time: date_data.time,
+      const formData = new FormData();
+      formData.append("file", image!);
+      formData.append("upload_preset", "starterhouse");
+      formData.append("api_key", "673723355315667");
+
+      await fetch(`https://api.cloudinary.com/v1_1/dnik53vns/image/upload`, {
+        method: "POST",
+        body: formData,
+      }).then(async (response) => {
+        const data: CloudinaryAsset = await response.json();
+        values.image_url = data.url;
       });
-      new_product_form.reset();
-      setIsNewModal(false);
+
+      await createProduct(values, org_id).then((data) => {
+        if (data.status === 201) {
+          newProductForm.reset();
+          setIsNewModal(false);
+        }
+        toast({
+          title: data.status === 201 ? "Success" : "Error",
+          description:
+            data.status === 201 ? "Product created successfully" : data.error,
+        });
+      });
     });
+  };
+
+  const SIZE_CATEGORIES = new Set(["clothes", "shoes", "hats"]);
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    newProductForm.setValue("category", category);
+    if (!SIZE_CATEGORIES.has(category)) {
+      newProductForm.setValue("size", "Small");
+    }
   };
 
   return (
@@ -93,7 +112,7 @@ const NewProductModal = () => {
       <div
         onClick={() => setIsNewModal(false)}
         className={cn(
-          "fixed left-0 top-0 z-[9999] min-h-screen w-full overflow-hidden bg-[rgba(10,10,10,0.40)] transition-all duration-300",
+          "fixed left-0 top-0 z-[99] min-h-screen w-full overflow-hidden bg-[rgba(10,10,10,0.40)] transition-all duration-300",
           isNewModal
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0",
@@ -103,23 +122,11 @@ const NewProductModal = () => {
       <AnimatePresence>
         {isNewModal && (
           <motion.div
-            initial={{
-              ...variantProperties,
-              opacity: 0,
-              scale: 0.5,
-            }}
-            animate={{
-              ...variantProperties,
-              opacity: 1,
-              scale: 1,
-            }}
-            exit={{
-              ...variantProperties,
-              opacity: 0,
-              scale: 0.5,
-            }}
+            initial={{ ...variantProperties, opacity: 0, scale: 0.5 }}
+            animate={{ ...variantProperties, opacity: 1, scale: 1 }}
+            exit={{ ...variantProperties, opacity: 0, scale: 0.5 }}
             className={cn(
-              "fixed left-1/2 top-1/2 z-[9999] grid h-fit max-h-[90%] w-full max-w-[95%] -translate-x-1/2 -translate-y-1/2 transform-gpu place-items-center items-center overflow-y-auto rounded-md bg-white pb-6 min-[500px]:max-w-[480px] min-[500px]:rounded-xl md:max-h-[850px] lg:h-fit lg:max-w-[491px]",
+              "fixed left-1/2 top-1/2 z-[100] grid h-fit max-h-[90%] w-full max-w-[95%] -translate-x-1/2 -translate-y-1/2 transform-gpu place-items-center items-center overflow-hidden overflow-y-auto rounded-md bg-white pb-6 min-[500px]:max-w-[480px] min-[500px]:rounded-xl md:max-h-[850px] lg:h-fit lg:max-w-[491px]",
             )}
           >
             <div className="flex h-full w-full flex-col items-center gap-y-4">
@@ -133,20 +140,19 @@ const NewProductModal = () => {
                   <X className="xl:size-6" />
                 </Button>
               </div>
-              <Form {...new_product_form}>
+              <Form {...newProductForm}>
                 <form
-                  onSubmit={new_product_form.handleSubmit(onSubmit)}
+                  onSubmit={newProductForm.handleSubmit(onSubmit)}
                   className="flex h-full w-full flex-col gap-y-2"
                 >
                   <div className="flex h-full w-full flex-col gap-y-2 px-2 min-[500px]:px-6">
-                    {" "}
                     <FormField
-                      control={new_product_form.control}
-                      name="product_name"
+                      control={newProductForm.control}
+                      name="name"
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="hidden font-medium text-neutral-dark-2 min-[376px]:inline">
-                            Title<span className="text-red-500">*</span>
+                            Name<span className="text-red-500">*</span>
                           </FormLabel>
                           <FormControl>
                             <Input
@@ -162,7 +168,7 @@ const NewProductModal = () => {
                       )}
                     />
                     <FormField
-                      control={new_product_form.control}
+                      control={newProductForm.control}
                       name="description"
                       render={({ field }) => (
                         <FormItem>
@@ -198,7 +204,7 @@ const NewProductModal = () => {
                       )}
                     />
                     <FormField
-                      control={new_product_form.control}
+                      control={newProductForm.control}
                       name="category"
                       render={({ field }) => (
                         <FormItem>
@@ -206,136 +212,170 @@ const NewProductModal = () => {
                             Category
                           </FormLabel>
                           <FormControl>
-                            {isMobile ? (
-                              <select
-                                {...field}
-                                onChange={(event) =>
-                                  field.onChange(event.target.value)
-                                }
-                                className="h-10 w-full rounded-md border bg-transparent px-2"
-                              >
-                                <option value="" disabled>
-                                  Select a category
-                                </option>
-                                {CATEGORIES.map((category) => (
-                                  <option
-                                    key={category.value}
-                                    value={category.value}
-                                  >
-                                    {category.label}
-                                  </option>
-                                ))}
-                              </select>
-                            ) : (
-                              <Select {...field} onValueChange={field.onChange}>
-                                <SelectTrigger className="bg-transparent">
-                                  <SelectValue placeholder="Select a category" />
-                                </SelectTrigger>
-                                <SelectContent className="z-[99999]">
-                                  <SelectGroup>
-                                    <SelectLabel>Fruits</SelectLabel>
-                                    {CATEGORIES.map((category) => (
-                                      <SelectItem
-                                        key={category.value}
-                                        value={category.value}
-                                      >
-                                        {category.label}
-                                      </SelectItem>
-                                    ))}
-                                  </SelectGroup>
-                                </SelectContent>
-                              </Select>
-                            )}
+                            <Select
+                              disabled={isLoading}
+                              onValueChange={(value) => {
+                                field.onChange(value);
+                                handleCategoryChange(value);
+                              }}
+                              value={field.value}
+                            >
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select a category" />
+                              </SelectTrigger>
+                              <SelectContent className="z-[300]">
+                                <SelectGroup>
+                                  <SelectLabel>Categories</SelectLabel>
+                                  {CATEGORIES.map((category) => (
+                                    <SelectItem
+                                      key={category.label}
+                                      value={category.value}
+                                    >
+                                      {category.label}
+                                    </SelectItem>
+                                  ))}
+                                </SelectGroup>
+                              </SelectContent>
+                            </Select>
                           </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
                     />
-                    <div className="flex w-full items-center gap-x-4 gap-y-4 xl:flex-col">
-                      {" "}
+                    {SIZE_CATEGORIES.has(selectedCategory) && (
                       <FormField
-                        control={new_product_form.control}
-                        name="price"
+                        control={newProductForm.control}
+                        name="size"
                         render={({ field }) => (
-                          <FormItem className="relative w-full">
+                          <FormItem>
                             <FormLabel className="hidden font-medium text-neutral-dark-2 min-[376px]:inline">
-                              Standard Price
-                              <span className="text-red-500">*</span>
+                              Size
                             </FormLabel>
                             <FormControl>
-                              <div className="relative flex w-full items-center gap-x-2">
-                                <span className="absolute left-2 font-medium text-black">
-                                  $
-                                </span>
-                                <Input
-                                  disabled={isLoading}
-                                  placeholder="0.00"
-                                  className="bg-transparent pl-8 placeholder:text-slate-400"
-                                  {...field}
-                                />
-                              </div>
-                            </FormControl>
-                            <FormMessage className="absolute -bottom-5" />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={new_product_form.control}
-                        name="quantity"
-                        render={({ field }) => (
-                          <FormItem className="relative w-full">
-                            <FormLabel className="hidden font-medium text-neutral-dark-2 min-[376px]:inline">
-                              Quantity<span className="text-red-500">*</span>
-                            </FormLabel>
-                            <FormControl>
-                              <Input
+                              <Select
                                 disabled={isLoading}
-                                placeholder="0.00"
-                                className="bg-transparent placeholder:text-slate-400"
-                                {...field}
-                              />
+                                onValueChange={field.onChange}
+                                value={field.value}
+                              >
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Select a size" />
+                                </SelectTrigger>
+                                <SelectContent className="z-[300]">
+                                  <SelectGroup>
+                                    <SelectLabel>Sizes</SelectLabel>
+                                    {["Small", "Standard", "Large"].map(
+                                      (size) => (
+                                        <SelectItem key={size} value={size}>
+                                          {size}
+                                        </SelectItem>
+                                      ),
+                                    )}
+                                  </SelectGroup>
+                                </SelectContent>
+                              </Select>
                             </FormControl>
-                            <FormMessage className="absolute -bottom-5" />
+                            <FormMessage />
                           </FormItem>
                         )}
                       />
-                    </div>
-                    <div className="relative mt-2 flex h-fit min-h-[125px] w-full flex-col gap-y-2 rounded-xl md:rounded-2xl">
-                      <p className="font-medium text-neutral-dark-2">Media</p>
-                      <ProjectLogo form={new_product_form} name="media" />
-                      {hasProjectLogo.length === 0 &&
-                        new_product_form.formState.errors.media && (
-                          <p className="mt-0.5 w-full justify-self-start border-l-4 border-red-500 bg-red-500/10 px-2 text-sm font-bold text-red-500">
-                            {new_product_form.formState.errors.media.message}
-                          </p>
-                        )}
-                    </div>
+                    )}
+
+                    <FormField
+                      control={newProductForm.control}
+                      name="quantity"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="hidden font-medium text-neutral-dark-2 min-[376px]:inline">
+                            Quantity<span className="text-red-500">*</span>
+                          </FormLabel>
+                          <FormControl>
+                            <Input
+                              id="quantity"
+                              disabled={isLoading}
+                              type="int"
+                              placeholder="Quantity"
+                              className="bg-transparent placeholder:text-slate-400"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={newProductForm.control}
+                      name="price"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="hidden font-medium text-neutral-dark-2 min-[376px]:inline">
+                            Price<span className="text-red-500">*</span>
+                          </FormLabel>
+                          <FormControl>
+                            <Input
+                              id="price"
+                              type="int"
+                              disabled={isLoading}
+                              placeholder="Price"
+                              className="bg-transparent placeholder:text-slate-400"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
                   </div>
-                  <div className="mt-4 flex w-full items-center justify-end gap-x-4 border-t border-neutral-200 px-2 pt-4 min-[500px]:px-6">
+                  <div className="relative mt-2 flex h-fit max-h-[150px] min-h-[125px] w-full flex-col items-center justify-center gap-y-2 rounded-xl px-4 md:rounded-2xl">
+                    <p className="font-medium text-neutral-dark-2">Media</p>
+                    {image ? (
+                      <Image
+                        src={URL.createObjectURL(image)}
+                        alt="Uploaded image"
+                        width={200}
+                        height={200}
+                        className="h-40 w-full rounded-t-md object-cover"
+                      />
+                    ) : (
+                      <Label htmlFor="image" className="cursor-pointer">
+                        <Input
+                          className="sr-only"
+                          id="image"
+                          type="file"
+                          onChange={(entries) =>
+                            setImage(
+                              entries.target.files
+                                ? entries.target.files[0]
+                                : undefined,
+                            )
+                          }
+                          accept="image/jpeg,image/png,image/svg+xml"
+                        />
+                        Add Image
+                      </Label>
+                    )}
+                  </div>
+
+                  <div className="sticky bottom-0 z-50 flex w-full items-center justify-center gap-x-2 border-t border-neutral-200 bg-white/70 px-2 py-2 backdrop-blur min-[500px]:px-6 min-[500px]:py-4">
                     <Button
-                      type="button"
-                      onClick={() => setIsNewModal(false)}
-                      variant="outline"
-                      size="default"
-                      className="rounded-md bg-transparent px-4 py-3 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                      variant="ghost"
+                      type="reset"
+                      disabled={isLoading}
+                      onClick={() => {
+                        setIsNewModal(false);
+                        newProductForm.reset();
+                      }}
                     >
                       Cancel
                     </Button>
                     <Button
-                      type="submit"
                       variant="default"
-                      size="default"
-                      className="rounded-md bg-primary px-4 py-3 font-normal text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                      type="submit"
+                      disabled={isLoading}
                     >
                       {isLoading ? (
-                        <span className="flex items-center gap-x-2">
-                          <span className="animate-pulse">
-                            Adding product...
-                          </span>{" "}
-                          <Loader className="size-4 animate-spin sm:size-5" />
-                        </span>
+                        <Loader className="h-5 w-5 animate-spin" />
                       ) : (
-                        <span>Add product</span>
+                        "Add Product"
                       )}
                     </Button>
                   </div>

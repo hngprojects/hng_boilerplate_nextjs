@@ -1,0 +1,50 @@
+name: Build and Upload
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.fork == false
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: "20"
+
+    - name: Cache pnpm modules
+      uses: actions/cache@v3
+      with:
+        path: ~/.pnpm-store
+        key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-
+
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 9
+
+    - name: Install dependencies
+      run: pnpm install
+
+    - name: Build Next.js application
+      run: pnpm build
+
+    - name: Archive production artifacts
+      run: tar -czf boilerplate.tar.gz .next public
+
+    - name: Upload production artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: boilerplate-build
+        path: boilerplate.tar.gz
+
+    - name: Delete zip file
+      run: rm -f boilerplate.tar.gz

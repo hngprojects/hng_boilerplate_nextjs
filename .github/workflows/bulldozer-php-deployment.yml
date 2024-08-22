@@ -1,0 +1,53 @@
+name: Bulldozer PHP Deployment
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Build and Upload"]
+    types:
+      - completed
+
+jobs:   
+  deploy_boilerplate_frontend:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    environment:
+      name: "bulldozer-php"
+      url: ${{ vars.URL }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+          name: boilerplate-build
+          path: .
+
+
+      - name: Copy Artifacts to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          source: "boilerplate.tar.gz"
+          target: "/var/www/boilerplate_fe/dev"
+
+      - name: Deploy on server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd /var/www/boilerplate_fe/dev
+            rm -rf .next
+            rm -rf public
+            tar -xzf boilerplate.tar.gz
+            rm -f boilerplate.tar.gz
+            pm2 restart boilerplate-frontend --update-env

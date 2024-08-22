@@ -35,7 +35,7 @@ export const LoginSchema = z.object({
     message: "Invalid email address",
   }),
   password: passwordSchema,
-  rememberMe: z.boolean().default(false),
+  rememberMe: z.boolean().default(false).optional(),
 });
 
 export const organizationSchema = z.object({
@@ -65,8 +65,70 @@ export const organizationSchema = z.object({
   }),
 });
 
+export const ResetPasswordSchema = z
+  .object({
+    password: passwordSchema,
+    confirmPassword: z
+      .string()
+      .min(1, { message: "Confirm Password is required" }),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
+
 export const OtpSchema = z.object({
-  otp: z.string().optional(),
-  token: z.string().optional(),
+  token: z.string(),
   email: z.string().email().optional(),
+});
+
+export const ContactSchema = z.object({
+  email: z
+    .string()
+    .min(1, { message: "Email is required" })
+    .email({ message: "Email is invalid" }),
+  name: z.string().min(1, { message: "Name is required" }),
+  phone: z.string().min(1, { message: "Phone is required" }),
+  message: z.string().min(1, { message: "Message is required" }),
+});
+
+export const productSchema = z.object({
+  name: z.string().min(2, {
+    message: "name is required",
+  }),
+  description: z.string().min(2, {
+    message: "Company description must be at least 2 characters.",
+  }),
+  size: z
+    .enum(["Small", "Standard", "Large"], {
+      errorMap: () => ({
+        message:
+          "Size must be one of the following values: Small, Standard, Large",
+      }),
+    })
+    .optional(),
+  image_url: z.string().optional(),
+  quantity: z.string(),
+  price: z.string(),
+  category: z.string(),
+});
+
+export const permissionsSchema = z.object({
+  "Can view transactions": z.boolean(),
+  "Can view refunds": z.boolean(),
+  "Can log refunds": z.boolean(),
+  "Can view users": z.boolean(),
+  "Can create users": z.boolean(),
+  "Can blacklist/whitelist users": z.boolean(),
+});
+export const roleSchema = z.object({
+  name: z.string().min(2, {
+    message: "name is required",
+  }),
+  permissions: z
+    .array(z.string().uuid())
+    .nonempty("At least one permission must be selected"),
+  description: z.string().min(2, {
+    message: "Role description must be at least 2 characters.",
+  }),
 });

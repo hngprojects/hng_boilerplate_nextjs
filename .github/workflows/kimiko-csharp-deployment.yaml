@@ -1,0 +1,65 @@
+name: Kimiko Csharp Deployment
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Build and Upload"]
+    types:
+      - completed
+
+jobs:
+  deploy_boilerplate_frontend:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    environment:
+      name: "kimiko-csharp"
+      url: ${{ vars.URL }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+          name: boilerplate-build
+          path: .
+
+      - name: Create .env
+        uses: vicradon/create-env-action@v1.0.1
+        with:
+          action_input_file: ".env.sample"
+          action_output_file: ".env"
+          API_URL: ${{ vars.API_URL }}
+          NEXTAUTH_URL: ${{ vars.URL }}
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          TWITTER_CLIENT_ID: ${{ secrets.TWITTER_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          TWITTER_CLIENT_SECRET: ${{ secrets.TWITTER_CLIENT_SECRET }}
+          AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
+
+      - name: Copy Artifacts to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          source: ".env,boilerplate.tar.gz"
+          target: "~/deployments/hng_boilerplate_nextjs"
+
+      - name: Deploy on server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd ~/deployments/hng_boilerplate_nextjs
+            tar -xzf boilerplate.tar.gz
+            rm -f boilerplate.tar.gz
+            git reset --hard
+            git pull origin dev
+            pm2 restart boilerplate-frontend --update-env

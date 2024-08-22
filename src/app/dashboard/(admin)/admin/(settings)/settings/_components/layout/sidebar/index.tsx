@@ -16,6 +16,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FC, ForwardRefExoticComponent, RefAttributes } from "react";
 
+import { useOrgContext } from "~/contexts/orgContext";
+import { useLocalStorage } from "~/hooks/use-local-storage";
+
 const sideItems = [
   {
     route: "General",
@@ -92,6 +95,12 @@ const SettingsSidebar: FC<Iproperties> = ({ sideNavitems = sideItems }) => {
   const currentPath =
     pathname?.split("/").length == 2 ? "general" : pathname?.split("/")[3];
   const organizationPath = pathname?.split("/")[4];
+  const { organizations } = useOrgContext();
+  const [org_id] = useLocalStorage<string>("current_orgid", "");
+
+  const organization = organizations.find(
+    (org) => org.organisation_id === org_id,
+  );
 
   return (
     <div className="h-screen w-[50px] flex-col items-center justify-center bg-[#FAFAFA] pt-6 md:block md:w-[304px] md:justify-start md:px-4">
@@ -118,10 +127,35 @@ const SettingsSidebar: FC<Iproperties> = ({ sideNavitems = sideItems }) => {
           </Link>
         ))}
       </section>
-      <h3 className="hidden p-2.5 text-lg text-neutral-dark-2 md:block">
-        Organization
-      </h3>
-      <section className="flex flex-col items-center gap-y-3 pt-2 md:items-stretch">
+      {organization?.user_role !== "user" && (
+        <>
+          <h3 className="hidden p-2.5 text-lg text-neutral-dark-2 md:block">
+            Organization
+          </h3>
+          <section className="flex flex-col items-center gap-y-3 pt-2 md:items-stretch">
+            {organizationLinks.map((item, index) => (
+              <Link
+                key={index}
+                href={item.link}
+                data-testid={item.id}
+                role="sidebar-link"
+                className={`${
+                  organizationPath === item.id
+                    ? "bg-primary text-white"
+                    : "bg-transparent text-neutral-dark-2 hover:bg-gray-200"
+                } flex items-center justify-center gap-2.5 rounded-full px-2.5 py-3 text-sm transition-all duration-300 ease-in md:h-auto md:w-auto md:justify-between md:rounded-sm`}
+              >
+                <div className="flex items-center justify-start gap-2.5">
+                  <item.icon className="h-5 w-5" role="sidebar-icon" />
+                  <span className="hidden md:block">{item.route}</span>
+                </div>
+                <ChevronRight className="hidden h-5 w-5 md:block" />
+              </Link>
+            ))}
+          </section>
+        </>
+      )}
+      {/* <section className="flex flex-col items-center gap-y-3 pt-2 md:items-stretch">
         {organizationLinks.map((item, index) => (
           <Link
             key={index}
@@ -137,7 +171,7 @@ const SettingsSidebar: FC<Iproperties> = ({ sideNavitems = sideItems }) => {
             <ChevronRight className="hidden h-5 w-5 md:block" />
           </Link>
         ))}
-      </section>
+      </section> */}
     </div>
   );
 };
