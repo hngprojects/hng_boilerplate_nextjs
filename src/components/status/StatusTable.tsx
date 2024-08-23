@@ -44,7 +44,7 @@ const data: ApiStatus[] = [
   },
 ];
 
-const StatusGrid: React.FC = () => {
+const StatusGrid = () => {
   return (
     <div className="mt-1 flex items-center justify-center">
       <div className="w-full max-w-4xl rounded-lg border">

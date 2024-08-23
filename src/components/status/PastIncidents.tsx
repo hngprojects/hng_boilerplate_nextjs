@@ -31,7 +31,7 @@ const incidents: Incident[] = [
   },
 ];
 
-const PastIncidents: React.FC = () => {
+const PastIncidents = () => {
   const [showAll, setShowAll] = useState(false);
 
   const toggleShowAll = () => setShowAll(!showAll);
