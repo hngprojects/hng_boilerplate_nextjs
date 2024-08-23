@@ -32,6 +32,7 @@ const ContactForm: React.FC = () => {
   const [status, setStatus] = useState<boolean | undefined>();
   const [message, setMessage] = useState<string | undefined>();
   const [loading, setLoading] = useState<boolean>(false);
+  const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
 
   useEffect(() => {
     if (status !== undefined) {
@@ -63,6 +64,15 @@ const ContactForm: React.FC = () => {
   ) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+
+    // Set touched state
+    if (!touched[name]) {
+      setTouched({ ...touched, [name]: true });
+    }
+
+    // Real-time validation
+    const validationErrors = validate();
+    setErrors(validationErrors);
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -95,6 +105,7 @@ const ContactForm: React.FC = () => {
       setMessage(responseData?.message || "Form submitted successfully!");
       setFormData({ ...initialFormData });
       setErrors({});
+      setTouched({});
     } catch (error) {
       setStatus(false);
       setMessage(
@@ -149,7 +160,7 @@ const ContactForm: React.FC = () => {
                 name={field.name}
                 label={field.label}
               />
-              {errors[field.name] && (
+              {touched[field.name] && errors[field.name] && (
                 <p className="text-xs italic text-destructive">
                   {errors[field.name]}
                 </p>
