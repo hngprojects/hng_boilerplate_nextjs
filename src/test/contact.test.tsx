@@ -30,6 +30,17 @@ describe("contact Page tests", () => {
     });
   });
 
+  it("should handle routing correctly when FAQ link is clicked", () => {
+    expect.hasAssertions();
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, unicorn/prefer-module
+    const { push } = require("next/navigation").useRouter();
+    render(<Contact />);
+
+    fireEvent.click(screen.getByText(/faq/i));
+
+    expect(push).toHaveBeenCalledWith("/faqs");
+  });
+
   it("should be responsive", () => {
     expect.assertions(2);
     render(<Contact />);
