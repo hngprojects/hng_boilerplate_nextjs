@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 
