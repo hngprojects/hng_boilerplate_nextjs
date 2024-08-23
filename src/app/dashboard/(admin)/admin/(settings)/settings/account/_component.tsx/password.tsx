@@ -10,7 +10,7 @@ import { getApiUrl } from "~/actions/getApiUrl";
 import CustomButton from "~/components/common/common-button/common-button";
 import PasswordSuccessfulModal from "~/components/common/modals/password-successful";
 import { toast } from "~/components/ui/use-toast";
-import { cn } from "~/lib/utils";
+import PasswordField from "./password-field";
 import { passwordSchema, type PasswordFormData } from "./schema";
 
 const Password = () => {
@@ -77,14 +77,10 @@ const Password = () => {
                 Current Password
               </label>
               <div className="flex w-full items-center">
-                <input
-                  className={cn(
-                    "flex h-10 w-full flex-col gap-2 rounded-md border border-border bg-background px-4 py-2 text-sm text-foreground ring-offset-background transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary focus-visible:border-primary focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
-                    errors.currentPassword && "border-red-500",
-                  )}
-                  placeholder="Enter current password"
-                  type="password"
-                  {...register("currentPassword")}
+                <PasswordField
+                  register={register}
+                  name="currentPassword"
+                  errorMessage={errors?.currentPassword?.message}
                 />
               </div>
             </div>
@@ -100,14 +96,10 @@ const Password = () => {
                 New Password
               </label>
               <div className="flex w-full items-center">
-                <input
-                  className={cn(
-                    "flex h-10 w-full flex-col gap-2 rounded-md border border-border bg-background px-4 py-2 text-sm text-foreground ring-offset-background transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary focus-visible:border-primary focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
-                    errors.newPassword && "border-red-500",
-                  )}
-                  placeholder="Enter new password"
-                  type="password"
-                  {...register("newPassword")}
+                <PasswordField
+                  register={register}
+                  name="newPassword"
+                  errorMessage={errors?.newPassword?.message}
                 />
               </div>
             </div>
@@ -123,14 +115,10 @@ const Password = () => {
                 Confirm new password
               </label>
               <div className="flex w-full items-center">
-                <input
-                  className={cn(
-                    "flex h-10 w-full flex-col gap-2 rounded-md border border-border bg-background px-4 py-2 text-sm text-foreground ring-offset-background transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary focus-visible:border-primary focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
-                    errors.confirmPassword && "border-red-500",
-                  )}
-                  placeholder="Confrim new Password"
-                  type="password"
-                  {...register("confirmPassword")}
+                <PasswordField
+                  register={register}
+                  name="confirmPassword"
+                  errorMessage={errors?.confirmPassword?.message}
                 />
               </div>
             </div>
