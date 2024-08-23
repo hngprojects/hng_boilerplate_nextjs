@@ -1,6 +1,7 @@
 "use client";
 
 import axios from "axios";
+import { Eye, EyeOff } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { ChangeEvent, useState } from "react";
 
@@ -10,12 +11,20 @@ import CustomInput from "~/components/common/input/input";
 import PasswordSuccessfulModal from "~/components/common/modals/password-successful";
 import { toast } from "~/components/ui/use-toast";
 
+type PasswordField = "current" | "new" | "confirmNew";
+
 const Password = () => {
   const { data } = useSession();
 
   const [open, setOpen] = useState<boolean>(false);
 
   const [isPending, setIsPending] = useState(false);
+
+  const [showPassword, setShowPassword] = useState({
+    current: false,
+    new: false,
+    confirmNew: false,
+  });
 
   const [formData, setFormData] = useState({
     oldPassword: "",
@@ -71,6 +80,13 @@ const Password = () => {
     }
   };
 
+  const togglePasswordVisibility = (field: PasswordField) => {
+    setShowPassword((previousState) => ({
+      ...previousState,
+      [field]: !previousState[field],
+    }));
+  };
+
   const disabled =
     !formData.confirmPassword || !formData.oldPassword || !formData.password;
 
@@ -86,33 +102,61 @@ const Password = () => {
       </div>
       <div>
         <div className="mb-6 grid gap-4">
-          <CustomInput
-            placeholder="Enter current password"
-            label="Current Password"
-            className="border-border"
-            type="password"
-            name="oldPassword"
-            value={formData.oldPassword}
-            onChange={formDataHandler}
-          />
-          <CustomInput
-            placeholder="Enter new password"
-            label="New Password"
-            className="border-border"
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={formDataHandler}
-          />
-          <CustomInput
-            placeholder="Confirm new password"
-            label="Confrim new Password"
-            className="border-border"
-            type="password"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={formDataHandler}
-          />
+          <div className="relative">
+            <CustomInput
+              placeholder="Enter current password"
+              label="Current Password"
+              className="border-border"
+              type={`${showPassword.current ? "text" : "password"}`}
+              name="oldPassword"
+              value={formData.oldPassword}
+              onChange={formDataHandler}
+            />
+            <span
+              className="absolute right-2 top-9 cursor-pointer"
+              onClick={() => togglePasswordVisibility("current")}
+            >
+              {showPassword.current ? <EyeOff size={20} /> : <Eye size={20} />}
+            </span>
+          </div>
+          <div className="relative">
+            <CustomInput
+              placeholder="Enter new password"
+              label="New Password"
+              className="border-border"
+              type={`${showPassword.new ? "text" : "password"}`}
+              name="password"
+              value={formData.password}
+              onChange={formDataHandler}
+            />
+            <span
+              className="absolute right-2 top-9 cursor-pointer"
+              onClick={() => togglePasswordVisibility("new")}
+            >
+              {showPassword.new ? <EyeOff size={20} /> : <Eye size={20} />}
+            </span>
+          </div>
+          <div className="relative">
+            <CustomInput
+              placeholder="Confirm new password"
+              label="Confirm new Password"
+              className="border-border"
+              type={`${showPassword.confirmNew ? "text" : "password"}`}
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={formDataHandler}
+            />
+            <span
+              className="absolute right-2 top-9 cursor-pointer"
+              onClick={() => togglePasswordVisibility("confirmNew")}
+            >
+              {showPassword.confirmNew ? (
+                <EyeOff size={20} />
+              ) : (
+                <Eye size={20} />
+              )}
+            </span>
+          </div>
         </div>
         <div className="flex items-center justify-start gap-6">
           <CustomButton variant="outline" onClick={() => setOpen(false)}>
