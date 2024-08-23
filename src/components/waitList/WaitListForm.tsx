@@ -122,7 +122,7 @@ const WaitlistForm: React.FC = () => {
   };
 
   return (
-    <div className="mt-20 flex flex-col items-center justify-center text-neutral-dark-2">
+    <div className="mt-20 flex flex-col items-center justify-center text-neutral-dark-2 ">
       <div className="flex flex-col items-center justify-center text-center md:mb-[50px] md:w-[623px]">
         <div className="mb-4 flex items-center justify-center gap-2 md:mb-[18px]">
           <Image
@@ -131,19 +131,19 @@ const WaitlistForm: React.FC = () => {
             src="/images/WaitList/circle 1.svg"
             alt="Circle with Tick"
           />
-          <h3 className="text-[18px] font-normal leading-5 md:text-[24px]">
+          <h3 className="text-sm font-normal leading-5 md:text-[24px]">
             Deployment made easy
           </h3>
         </div>
-        <h1 className="mb-2 w-[320px] text-[24px] font-bold leading-7 md:h-[108px] md:w-[623px] md:text-[36px] md:leading-10">
+        <h1 className="mb-2 w-[320px] text-2xl font-bold leading-8 md:h-[108px] md:w-[623px] md:text-[36px] lg:text-4xl lg:font-semibold lg:leading-10">
           You can level up your SaaS production today
         </h1>
-        <h1 className="text-center text-[16px] font-normal leading-5 md:text-[20px] md:leading-7">
+        <h1 className="text-center text-base font-normal leading-7 md:text-[20px] md:leading-7">
           Join our waitlist and get early access to our boilerplates
         </h1>
       </div>
 
-      <div className="mt-[52px] flex h-auto w-[383.344px] shrink-0 items-start gap-[19.2px] rounded-md border border-gray-300 p-7 md:mt-5 md:w-[510px] md:p-2.5">
+      <div className="mb-24 mt-[52px] flex h-auto w-[383.344px] shrink-0 items-start gap-[19.2px] rounded-md border border-gray-200 p-7 md:mt-5 md:w-[510px] md:p-2.5">
         {isSubmitted ? (
           <div className="flex w-full flex-col items-center justify-center">
             <Image
@@ -162,7 +162,7 @@ const WaitlistForm: React.FC = () => {
               <div className="mb-6 h-[90px]">
                 <label
                   htmlFor="full_name"
-                  className="mb-5 block text-left text-lg font-normal text-neutral-dark-2"
+                  className="mb-5 block text-left text-lg font-normal text-[#0A0A0A]"
                 >
                   Full Name
                 </label>
