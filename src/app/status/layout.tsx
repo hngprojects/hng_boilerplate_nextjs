@@ -1,16 +1,14 @@
 import Navbar from "~/components/layouts/navbar";
 
 export default function StatusLayout({
-    children,
+  children,
 }: {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-    return (
-        <>
-            <Navbar />
-            <div className="container pb-10">
-                {children}
-            </div>
-        </>
-    );
+  return (
+    <>
+      <Navbar />
+      <div className="container pb-10">{children}</div>
+    </>
+  );
 }
