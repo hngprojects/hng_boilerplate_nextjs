@@ -1,9 +1,14 @@
 import { ArrowRight } from "lucide-react";
+import { useRouter } from "next/router";
 
 import ContactForm from "~/components/common/contact-us-form";
 import { bizTime, contactInfo } from "./constants";
 
 const Contact = () => {
+  const router = useRouter();
+  const faqPage = () => {
+    router.push("/faqs");
+  };
   return (
     <main className="bg-white">
       <section className="mx-auto max-w-[1200px] pb-20 text-neutral-dark-1 transition-all lg:container lg:pb-44 lg:pt-9">
@@ -41,7 +46,10 @@ const Contact = () => {
               </div>
             </div>
             <div className="gap-2 max-lg:grid">
-              <div className="flex justify-between">
+              <div
+                onClick={faqPage}
+                className="flex cursor-pointer justify-between"
+              >
                 <h2 className="text-xl font-semibold text-primary underline underline-offset-2">
                   FAQ
                 </h2>
