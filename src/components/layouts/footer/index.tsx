@@ -105,6 +105,7 @@ const Footer = () => {
         { route: "career", link: "/career" },
         { route: "features", link: "/" },
         { route: "blog", link: "/blog" },
+        { route: "status", link: "/status" },
       ],
     },
     {
