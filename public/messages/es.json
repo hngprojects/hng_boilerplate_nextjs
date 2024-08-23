@@ -188,5 +188,74 @@
                 "description": "Estamos comprometidos a ofrecer una calidad excepcional en todo lo que hacemos, desde nuestros productos y servicios hasta nuestras interacciones con los clientes y procesos internos. Buscamos la mejora continua y nos mantenemos a los más altos estándares de desempeño."
             }
         }
+    },
+    "waitlist": {
+        "hero": {
+            "title": "Únete a la lista de espera y obtén acceso",
+            "titleHighlight": "anticipado",
+            "description": "Transforma tus reuniones de trabajo remoto en sesiones divertidas y atractivas con nuestra innovadora plataforma basada en juegos.",
+            "discount": "Sé uno de los primeros 2300 usuarios y obtén un",
+            "discountHighlight": "10% de descuento.",
+            "joinButton": "Unirse a la lista de espera"
+        },
+        "features": {
+            "customization": {
+                "title": "Personalización Fácil",
+                "description": "Adapta tu experiencia a tus necesidades y preferencias específicas para obtener resultados máximos."
+            },
+            "scalable": {
+                "title": "Base Escalable",
+                "description": "Añade fácilmente nuevas características y funcionalidades según sea necesario para hacer crecer tu producto."
+            },
+            "prebuilt": {
+                "title": "Secciones Preconstruidas",
+                "description": "Aprovecha nuestros recursos y secciones preconstruidas para mostrar tu producto de manera efectiva."
+            },
+            "teamSupport": {
+                "title": "Variedad de recursos",
+                "description": "Soporte de equipo de más de 150 personas"
+            }
+        },
+        "deployment": {
+            "subtitle": "Te tenemos cubierto",
+            "title": "Transforma tu Implementación de manera fácil y sin problemas con nuestros modelos predefinidos.",
+            "payments": {
+                "button": "Pagos",
+                "title": "Pago Fácil",
+                "description": "Maneja proyectos junto con el equipo de forma virtual"
+            },
+            "safety": {
+                "button": "Seguridad",
+                "title": "Pago Seguro",
+                "description": "Nuestro sistema garantiza el más alto nivel de seguridad."
+            },
+            "database": {
+                "button": "Base de datos",
+                "title": "Base de Datos Flexible",
+                "description": "Gestiona tus datos de manera eficiente y segura."
+            },
+            "email": {
+                "button": "Gestión de correo electrónico",
+                "title": "Gestión de Correo Electrónico",
+                "description": "La gestión del correo electrónico es simplificada y sencilla."
+            }
+        },
+        "waitlistForm": {
+            "topSubTitle": "Implementación facilitada",
+            "title": "Puedes mejorar tu producción de SaaS hoy mismo",
+            "bottomSubTitle": "Únete a nuestra lista de espera y obtén acceso anticipado a nuestros modelos predefinidos",
+            "form": {
+                "fullNameLabel": "Nombre Completo",
+                "fullNamePlaceholder": "Meghan Grace",
+                "emailLabel": "Correo Electrónico",
+                "emailPlaceholder": "Introduce tu correo electrónico",
+                "submitText": "Unirse a la Lista de Espera"
+            },
+            "errors": {
+                "emailAlreadyRegistered": "Correo electrónico ya registrado",
+                "invalidEmail": "Por favor, introduce una dirección de correo electrónico válida",
+                "requiredFullName": "Se requiere tu nombre completo aquí"
+            }
+        }
     }
 }

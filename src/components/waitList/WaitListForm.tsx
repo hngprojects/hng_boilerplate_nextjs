@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import React, { FormEvent, useEffect, useRef, useState } from "react";
 
@@ -17,6 +18,7 @@ interface FormErrors {
 }
 
 const WaitlistForm: React.FC = () => {
+  const t = useTranslations("waitlist.waitlistForm");
   const [formData, setFormData] = useState<FormData>({
     full_name: "",
     email: "",
@@ -47,18 +49,18 @@ const WaitlistForm: React.FC = () => {
       {
         check: formData.full_name.trim() === "",
         field: "full_name",
-        message: "Your full name is required here",
+        message: t("errors.requiredFullName"),
       },
       {
         check: formData.email.trim() === "",
         field: "email",
-        message: "Please enter a valid email address",
+        message: t("errors.invalidEmail"),
       },
       {
         check:
           formData.email.trim() !== "" && !/\S+@\S+\.\S+/.test(formData.email),
         field: "email",
-        message: "Please enter a valid email address",
+        message: t("errors.invalidEmail"),
       },
     ];
 
@@ -96,7 +98,7 @@ const WaitlistForm: React.FC = () => {
         if (!response.ok) {
           const errorData = await response.json();
           if (errorData.message.message === "Email already registered") {
-            setErrors({ server: "Email already registered" });
+            setErrors({ server: t("errors.emailAlreadyRegistered") });
           } else {
             throw new Error(`HTTP error! Status: ${response.status}`);
           }
@@ -132,14 +134,14 @@ const WaitlistForm: React.FC = () => {
             alt="Circle with Tick"
           />
           <h3 className="text-[18px] font-normal leading-5 md:text-[24px]">
-            Deployment made easy
+            {t("topSubTitle")}
           </h3>
         </div>
         <h1 className="mb-2 w-[320px] text-[24px] font-bold leading-7 md:h-[108px] md:w-[623px] md:text-[36px] md:leading-10">
-          You can level up your SaaS production today
+          {t("title")}
         </h1>
         <h1 className="text-center text-[16px] font-normal leading-5 md:text-[20px] md:leading-7">
-          Join our waitlist and get early access to our boilerplates
+          {t("bottomSubTitle")}
         </h1>
       </div>
 
@@ -164,13 +166,13 @@ const WaitlistForm: React.FC = () => {
                   htmlFor="full_name"
                   className="mb-5 block text-left text-lg font-normal text-neutral-dark-2"
                 >
-                  Full Name
+                  {t("form.fullNameLabel")}
                 </label>
                 <input
                   type="text"
                   id="full_name"
                   name="full_name"
-                  placeholder="Meghan Grace"
+                  placeholder={t("form.fullNamePlaceholder")}
                   value={formData.full_name}
                   onChange={handleChange}
                   className={`w-full rounded-md border px-3.5 py-3 text-left text-lg font-normal leading-6 ${
@@ -190,13 +192,13 @@ const WaitlistForm: React.FC = () => {
                   htmlFor="email"
                   className="mb-3.5 block text-left text-lg font-normal text-neutral-dark-2"
                 >
-                  Email
+                  {t("form.emailLabel")}
                 </label>
                 <input
                   type="email"
                   id="email"
                   name="email"
-                  placeholder="Enter email"
+                  placeholder={t("form.emailPlaceholder")}
                   value={formData.email}
                   onChange={handleChange}
                   className={`w-full rounded-md border px-3.5 py-3 text-left text-lg font-normal leading-6 ${
@@ -216,7 +218,7 @@ const WaitlistForm: React.FC = () => {
             <div className="flex items-center justify-center">
               <CustomButton
                 variant="primary"
-                className="flex h-[51.78px] w-[195.6px] items-center justify-between rounded-md px-[19.2px] py-[9.6px] text-[16.8px] font-bold leading-[28.8px] text-white transition-transform duration-300 hover:scale-105 hover:bg-destructive hover:shadow-lg"
+                className="flex h-[51.78px] w-fit items-center justify-between rounded-md px-[19.2px] py-[9.6px] text-[16.8px] font-bold leading-[28.8px] text-white transition-transform duration-300 hover:scale-105 hover:bg-destructive hover:shadow-lg"
                 type="submit"
               >
                 <Image
@@ -225,7 +227,7 @@ const WaitlistForm: React.FC = () => {
                   src="/images/WaitList/icon.svg"
                   alt="Envelope"
                 />
-                Join the Waitlist
+                {t("form.submitText")}
               </CustomButton>
             </div>
           </form>

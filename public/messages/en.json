@@ -186,5 +186,74 @@
                 "description": "We are committed to delivering exceptional quality in everything we do, from our products and services to our customer interactions and internal processes. We strive for continuous improvement and hold ourselves to the highest standards of performance."
             }
         }
+    },
+    "waitlist": {
+        "hero": {
+            "title": "Join the waitlist and get early",
+            "titleHighlight": "access!",
+            "description": "Transform your remote work meetings into fun and engaging sessions with our innovative game-based platform.",
+            "discount": "Be one of the first 2300 users for a",
+            "discountHighlight": "10% discount.",
+            "joinButton": "Join the waitlist"
+        },
+        "features": {
+            "customization": {
+                "title": "Easy Customization",
+                "description": "Tailor your experience to your specific needs and preferences for maximum results."
+            },
+            "scalable": {
+                "title": "Scalable Foundation",
+                "description": "Easily add new features and functionalities as needed to grow your product."
+            },
+            "prebuilt": {
+                "title": "Pre-built Sections",
+                "description": "Leverage our prebuilt resources and sections to showcase your product effectively."
+            },
+            "teamSupport": {
+                "title": "Resource variety",
+                "description": "150+ Team support"
+            }
+        },
+        "deployment": {
+            "subtitle": "We have got you covered",
+            "title": "Transform your Deployment the easy and seamless way with our boilerplates.",
+            "payments": {
+                "button": "Payments",
+                "title": "Easy Payment",
+                "description": "Handle projects together with team virtually"
+            },
+            "safety": {
+                "button": "Safety",
+                "title": "Safe Payment",
+                "description": "Our system ensures the highest level of safety."
+            },
+            "database": {
+                "button": "Database",
+                "title": "Flexible Database",
+                "description": "Manage your data efficiently and securely."
+            },
+            "email": {
+                "button": "Email management",
+                "title": "Email Management",
+                "description": "Email management is streamlined and simple."
+            }
+        },
+        "waitlistForm": {
+            "topSubTitle": "Deployment made easy",
+            "title": "You can level up your SaaS production today",
+            "bottomSubTitle": "Join our waitlist and get early access to our boilerplates",
+            "form": {
+                "fullNameLabel": "Full Name",
+                "fullNamePlaceholder": "Meghan Grace",
+                "emailLabel": "Email",
+                "emailPlaceholder": "Enter email",
+                "submitText": "Join the Waitlist"
+            },
+            "errors": {
+                "emailAlreadyRegistered": "Email already registered",
+                "invalidEmail": "Please enter a valid email address",
+                "requiredFullName": "Your full name is required here"
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -7,6 +8,7 @@ import CustomButton from "~/components/common/common-button/common-button";
 
 const WaitlistPayment: React.FC = () => {
   const [activeButton, setActiveButton] = useState("Payments");
+  const t = useTranslations("waitlist.deployment");
 
   const handleClick = (button: string) => {
     setActiveButton(button);
@@ -24,11 +26,9 @@ const WaitlistPayment: React.FC = () => {
               height="344"
             />
             <h1 className="text-[24px] font-bold leading-[30px] md:text-[30px] md:font-semibold">
-              Easy Payment
+              {t("payments.title")}
             </h1>
-            <p className="mt-2 text-lg">
-              Handle projects together with team virtually
-            </p>
+            <p className="mt-2 text-lg">{t("payments.description")}</p>
           </>
         );
       }
@@ -42,11 +42,9 @@ const WaitlistPayment: React.FC = () => {
               height="344"
             />
             <h1 className="text-[24px] font-bold leading-[30px] md:text-[30px] md:font-semibold">
-              Safe Payment
+              {t("safety.title")}
             </h1>
-            <p className="mt-2 text-lg">
-              Our system ensures the highest level of safety.
-            </p>
+            <p className="mt-2 text-lg">{t("database.description")}</p>
           </>
         );
       }
@@ -60,11 +58,9 @@ const WaitlistPayment: React.FC = () => {
               height="344"
             />
             <h1 className="text-[24px] font-bold leading-[30px] md:text-[30px] md:font-semibold">
-              Flexible Database
+              {t("database.title")}
             </h1>
-            <p className="mt-2 text-lg">
-              Manage your data efficiently and securely.
-            </p>
+            <p className="mt-2 text-lg">{t("database.description")}</p>
           </>
         );
       }
@@ -78,11 +74,9 @@ const WaitlistPayment: React.FC = () => {
               height="354"
             />
             <h1 className="text-[24px] font-bold leading-[30px] md:text-[30px] md:font-semibold">
-              Email Management
+              {t("email.title")}
             </h1>
-            <p className="mt-2 text-lg">
-              Email management is streamlined and simple.
-            </p>
+            <p className="mt-2 text-lg">{t("email.description")}</p>
           </>
         );
       }
@@ -95,10 +89,9 @@ const WaitlistPayment: React.FC = () => {
   return (
     <div className="mt-[60px] flex flex-col items-center justify-center px-3 text-neutral-dark-2 md:mt-[100px] md:flex-col">
       <div className="text-center">
-        <p className="text-[18px] md:text-[24px]">We have got you covered</p>
+        <p className="text-[18px] md:text-[24px]">{t("subtitle")}</p>
         <h1 className="h-[87px] w-[332px] text-[24px] font-bold leading-[29.05px] md:h-[132px] md:w-[669px] md:text-[36px] md:leading-[43.57px]">
-          Transform your Deployment the easy and seamless way with our
-          boilerplates.
+          {t("title")}
         </h1>
       </div>
 
@@ -130,7 +123,7 @@ const WaitlistPayment: React.FC = () => {
               />
             </div>
             <p className="text-[20px] font-semibold leading-normal text-neutral-dark-1">
-              Payments
+              {t("payments.button")}
             </p>
           </CustomButton>
 
@@ -152,7 +145,7 @@ const WaitlistPayment: React.FC = () => {
               />
             </div>
             <p className="text-[20px] font-semibold leading-normal text-neutral-dark-1">
-              Safety
+              {t("safety.button")}
             </p>
           </CustomButton>
 
@@ -174,7 +167,7 @@ const WaitlistPayment: React.FC = () => {
               />
             </div>
             <p className="text-[20px] font-semibold leading-normal text-neutral-dark-1">
-              Database
+              {t("database.button")}
             </p>
           </CustomButton>
 
@@ -198,7 +191,7 @@ const WaitlistPayment: React.FC = () => {
               />
             </div>
             <p className="text-[20px] font-semibold leading-normal text-neutral-dark-1">
-              Email management
+              {t("email.button")}
             </p>
           </CustomButton>
         </div>
