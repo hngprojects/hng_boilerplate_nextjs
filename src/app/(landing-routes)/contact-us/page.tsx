@@ -1,5 +1,6 @@
+"use client"
 import { ArrowRight } from "lucide-react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 import ContactForm from "~/components/common/contact-us-form";
 import { bizTime, contactInfo } from "./constants";
