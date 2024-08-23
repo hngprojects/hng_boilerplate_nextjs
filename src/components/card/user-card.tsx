@@ -23,12 +23,18 @@ const handleLogout = async () => {
   await signOut({
     callbackUrl: "/",
   });
+  toast({
+    title: "Success",
+    description: "You have Sucessfully Logged out.",
+    variant: "default",
+  });
 };
 
 const UserCard = () => {
   const { data: session, status } = useSession();
   const { user } = session ?? {};
   const [profilePicUrl, setProfilePicUrl] = useState<string | undefined>("");
+  const [logoutModalIsOpen, setLogoutModalIsOpen] = useState<boolean>(false);
 
   const fetchProfileData = useCallback(async () => {
     if (status === "authenticated" && user?.id) {
@@ -143,11 +149,37 @@ const UserCard = () => {
           </Link>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
+        <DropdownMenuItem
+          onClick={() => setLogoutModalIsOpen(true)}
+          className="cursor-pointer"
+        >
           <span className="font-medium">Log out</span>
           <DropdownMenuShortcut>⇧Q</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>
+      {logoutModalIsOpen && (
+        <div className="fixed left-0 top-0 z-10 flex h-screen w-screen items-center justify-center bg-[#00000025]">
+          <div className="flex w-4/5 flex-col items-center justify-center gap-2 rounded-xl bg-white p-4 sm:h-1/6 sm:w-1/3">
+            <span className="font-medium">
+              Are you sure you want to leave the application ?
+            </span>
+            <div className="flex w-full items-center justify-end gap-2">
+              <button
+                onClick={() => setLogoutModalIsOpen(false)}
+                className="rounded-lg border-2 border-black p-2 text-black"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleLogout}
+                className="rounded-lg bg-red-500 p-2 text-white hover:opacity-75"
+              >
+                Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </DropdownMenu>
   );
 };

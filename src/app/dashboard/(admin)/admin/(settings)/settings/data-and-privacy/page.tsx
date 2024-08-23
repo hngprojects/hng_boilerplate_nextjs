@@ -21,7 +21,7 @@ const ToggleSwitch: React.FC<ToggleSwitchProperties> = ({
   return (
     <div className="mb-4 rounded-md border p-6 shadow">
       <div className="mb-2 flex items-center justify-between">
-        <label className="text-2xl text-lg font-semibold">{label}</label>
+        <label className="text-2xl font-semibold">{label}</label>
         <label className="relative inline-block h-8 w-14">
           <input
             type="checkbox"
