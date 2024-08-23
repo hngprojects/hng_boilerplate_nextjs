@@ -237,9 +237,9 @@ const Footer = () => {
               </h5>
 
               <div className="">
-                <div className="item flex h-[46px] w-full max-w-[283px] items-center justify-start">
+                <div className="item flex h-[46px] w-full max-w-[283px] items-center justify-start ">
                   <Input
-                    className={`border-r-none h-[46px] rounded-r-none border-r-0 border-r-transparent bg-transparent active:border-transparent ${error && "!border-red-500"}`}
+                    className={`border-r-none h-[46px] py-0 rounded-r-none border-r-0 border-r-transparent focus:outline-none bg-transparent active:border-transparent ${error && "!border-red-500"}`}
                     placeholder="Enter your email"
                     onChange={(event) => setEmail(event.target.value)}
                     value={email}
@@ -249,7 +249,7 @@ const Footer = () => {
                   />
                   <CustomButton
                     variant="primary"
-                    className="h-full transition-all hover:-translate-y-1 hover:bg-destructive"
+                    className="h-full transition-all hover:-translate-1 hover:bg-destructive"
                     onClick={handleSubmit}
                   >
                     {loading ? (
