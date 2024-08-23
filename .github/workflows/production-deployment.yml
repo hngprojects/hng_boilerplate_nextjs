@@ -11,58 +11,62 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
     steps:
-      - uses: actions/checkout@v2
-      
-      - name: Build Docker image
-        run: docker build -t hngdevops/nextjs-boilerplate:prod -f docker/prod/Dockerfile .
-      
-      - name: Save and compress Docker image
-        run: |
-          docker save hngdevops/nextjs-boilerplate:prod > nextjs-prod.tar
-          gzip nextjs-prod.tar
-      
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: docker-image
-          path: nextjs-prod.tar.gz
-        
-  deploy_to_prod:
-    if: github.event.repository.fork == false
-    runs-on: ubuntu-latest
+    - uses: actions/checkout@v4
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: "20"
 
-    environment:
-      name: "prod"
-      url: ${{ vars.URL }}
+    - name: Cache pnpm modules
+      uses: actions/cache@v3
+      with:
+        path: ~/.pnpm-store
+        key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-
 
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: docker-image
-          path: .
-      
-      - name: Copy to server
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          source: "nextjs-prod.tar.gz"
-          target: "/tmp/nextjs"
-  
-      - name: Deploy on server
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          script: |
-            cd /tmp/nextjs
-            gunzip nextjs-prod.tar.gz
-            docker load < nextjs-prod.tar
-            rm -f nextjs-prod.tar
-            cd /home/${{ secrets.USERNAME }}/hng_boilerplate_nextjs
-            chmod +x ./scripts/*.sh
-            ./scripts/prod_deploy.sh
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 9
+
+    - name: Decode and create .env file
+      run: |
+        echo ${{ secrets.ENV_BASE64 }} | base64 -d > .env
+
+    - name: Install dependencies
+      run: pnpm install
+
+    - name: Build Next.js application
+      run: pnpm build
+
+    - name: Archive production artifacts
+      run: tar -czf nextjs-prod.tar.gz .next public .env
+    
+    - name: Copy to server
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        source: "nextjs-prod.tar.gz"
+        target: "~/hng_boilerplate_nextjs"
+
+    - name: Delete zip file
+      run: rm -f nextjs-prod.tar.gz
+
+    - name: Deploy on server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        script: |
+          cd ~/hng_boilerplate_nextjs
+          tar -xzf nextjs-prod.tar.gz
+          rm -f nextjs-prod.tar.gz
+          cp -r .next/standalone/* .
+          pm2 restart nextjs_boilerplateg --update-env
