@@ -61,6 +61,7 @@ const AcceptInvitePage = () => {
   // Process the invite on page load
   useEffect(() => {
     handleAcceptInvite();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
