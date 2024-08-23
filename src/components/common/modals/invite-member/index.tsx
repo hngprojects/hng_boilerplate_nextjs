@@ -82,9 +82,9 @@ const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
       setError(response.error);
     } else {
       toast({
-        title: "Success",
-        description: "Your invite has been sent successfully to members' email",
-        variant: "default",
+        // title: "Success",
+        description: "1 Invite sent successfully.",
+        variant: "success",
       });
       setEmails("");
       onClose();
@@ -113,8 +113,9 @@ const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
         if (document.hasFocus()) {
           await navigator.clipboard.writeText(inviteLinkData);
           toast({
-            title: "Invite Link",
+            title: "",
             description: "Invite link copied to clipboard!",
+            variant: "success",
           });
         } else {
           setError("Failed to copy invite link. Please manually copy it.");
