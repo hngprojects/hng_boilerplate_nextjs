@@ -95,7 +95,7 @@ const WaitlistForm: React.FC = () => {
 
         if (!response.ok) {
           const errorData = await response.json();
-          if (errorData.message.message === "Email already registered") {
+          if (errorData.message === "Email already registered") {
             setErrors({ server: "Email already registered" });
           } else {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -109,9 +109,12 @@ const WaitlistForm: React.FC = () => {
         timeoutReference.current = setTimeout(() => {
           setIsSubmitted(false);
         }, 6000);
-      } catch {
+      } catch (error) {
         // eslint-disable-next-line no-console
-        console.error("There was a problem with the fetch operation:", errors);
+        console.error("There was a problem with the fetch operation:", error);
+        setErrors({
+          server: "An unexpected error occurred. Please try again.",
+        });
       }
     }
   };
