@@ -156,8 +156,6 @@ const Footer = () => {
     { route: "termsOfUse", link: "/terms-and-conditions" },
   ];
 
-  //
-
   return (
     <footer className="bg-background dark:bg-default">
       <div className="px-4">

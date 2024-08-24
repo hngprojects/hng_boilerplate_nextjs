@@ -82,6 +82,11 @@ const Members = () => {
 
   const [exporting, setExporting] = useState(false);
   const [text, setText] = useState("Export CSV");
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
 
   const { toast } = useToast();
   const handleCopy = () => {
@@ -177,25 +182,28 @@ const Members = () => {
               <input
                 type="checkbox"
                 className="peer sr-only"
-                onChange={() => {}}
+                onChange={toggleVisibility}
+                checked={isVisible}
               />
               <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-orange-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-4 peer-focus:ring-orange-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-orange-800"></div>
             </label>
           </div>
         </div>
 
-        <div className="flex w-full justify-between">
-          <CustomButton variant="outline" className="w-full overflow-hidden">
-            https://www.figma.com/design/7hCSTNzQOJLl9aww6wEEd1/Managing-Users----Team-Learn-AI?node-i
-          </CustomButton>
-          <CustomButton
-            variant="primary"
-            className="ml-8 space-x-4"
-            onClick={handleCopy}
-          >
-            Copy link
-          </CustomButton>
-        </div>
+        {isVisible && (
+          <div className="flex w-full justify-between">
+            <CustomButton variant="outline" className="w-full overflow-hidden">
+              https://www.figma.com/design/7hCSTNzQOJLl9aww6wEEd1/Managing-Users----Team-Learn-AI?node-i
+            </CustomButton>
+            <CustomButton
+              variant="primary"
+              className="ml-8 space-x-4"
+              onClick={handleCopy}
+            >
+              Copy link
+            </CustomButton>
+          </div>
+        )}
       </div>
       <div className="w-full space-y-2">
         <h4 className="text-lg font-medium">Manage members</h4>

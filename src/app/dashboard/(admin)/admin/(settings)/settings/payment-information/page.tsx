@@ -213,10 +213,6 @@ const PaymentInformation = () => {
           </div>
         </div>
       </div>
-
-      <div className="max-w-[1000px]">
-        <p>Compare all features</p>
-      </div>
     </div>
   );
 };
