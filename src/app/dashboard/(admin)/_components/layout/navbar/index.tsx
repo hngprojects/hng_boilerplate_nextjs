@@ -2,9 +2,9 @@
 
 import { BellIcon, HelpCircle, SearchIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 
 import { getAllNotifications } from "~/actions/notifications/getAllNotifications";
 import UserCard from "~/components/card/user-card";
@@ -110,10 +110,11 @@ const DashboardNavbar = () => {
               <span className="absolute right-1 top-0 h-[6px] w-[6px] rounded-full bg-error"></span>
             </div>
             <div>
-              <Link href={"/help-center"}><HelpCircle
-                data-testid="help"
-                className="h-6 w-6 text-neutral-dark-2 transition-colors duration-300 hover:cursor-pointer hover:text-neutral-dark-1"
-              />
+              <Link href={"/help-center"}>
+                <HelpCircle
+                  data-testid="help"
+                  className="h-6 w-6 text-neutral-dark-2 transition-colors duration-300 hover:cursor-pointer hover:text-neutral-dark-1"
+                />
               </Link>
             </div>
             <div className="hover:bg-black-1 flex w-full max-w-[64px] cursor-pointer items-center justify-between gap-2">
