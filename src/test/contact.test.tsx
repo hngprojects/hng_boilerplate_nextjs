@@ -1,11 +1,22 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { SessionProvider } from "next-auth/react";
+import { ReactNode } from "react";
 
 import Contact from "~/app/(landing-routes)/contact-us/page";
 
 describe("contact Page tests", () => {
+
+  const renderWithSession = (component: ReactNode) => {
+    return render(
+      <SessionProvider session={null}>
+        {component}
+      </SessionProvider>
+    );
+  };
+
   it("should render the Contact Us form and content card correctly", () => {
     expect.assertions(4);
-    render(<Contact />);
+    renderWithSession(<Contact />);
 
     expect(screen.getByRole("form")).toBeInTheDocument();
 
@@ -18,7 +29,7 @@ describe("contact Page tests", () => {
 
   it("should validate the form inputs correctly", async () => {
     expect.assertions(1);
-    render(<Contact />);
+    renderWithSession(<Contact />);
 
     fireEvent.change(screen.getByLabelText(/email/i), {
       target: { value: "invalid-email" },
@@ -32,7 +43,7 @@ describe("contact Page tests", () => {
 
   it("should be responsive", () => {
     expect.assertions(2);
-    render(<Contact />);
+    renderWithSession(<Contact />);
 
     window.innerWidth = 320;
     window.dispatchEvent(new Event("resize"));
