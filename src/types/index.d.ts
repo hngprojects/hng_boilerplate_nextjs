@@ -6,24 +6,24 @@ export interface CustomJWT extends JWT {
   email?: string;
   picture?: string;
   avatar_url?: string;
-  role?: string;
   first_name?: string;
   last_name?: string;
   fullname?: string;
   access_token?: string;
+  organisations?: Organisation[];
 }
 export interface CustomSession extends Session {
   user: {
     id: string;
-    name: string;
     first_name: string;
     last_name: string;
     email: string;
     image: string;
-    role: string;
   };
   expires: DefaultSession["expires"];
   access_token?: string;
+  currentOrgId?: string;
+  userOrg?: Organisation[];
 }
 
 export interface User {
