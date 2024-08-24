@@ -12,8 +12,7 @@ const HowItWorks: React.FC = () => {
 
   const handleCloseVideo = () => {
     setShowVideo(false);
-    // Set a timeout to show the video again after 5 minutes (300000 ms)
-    timeoutReference.current = setTimeout(() => setShowVideo(true), 3000);
+    timeoutReference.current = setTimeout(() => setShowVideo(true), 30000);
   };
 
   useEffect(() => {
@@ -34,9 +33,9 @@ const HowItWorks: React.FC = () => {
           >
             X
           </button>
-          <video className="h-auto w-72" loop autoPlay playsInline>
+          <video className="h-auto w-72" loop autoPlay muted playsInline>
             <source
-              src="/freecompress-copy_C1FFA9B1-6325-4D47-83FC-232E47D8EE10.mp4"
+              src="/freecompress-Boilerplate Ad Video.mp4"
               type="video/mp4"
             />
             Your browser does not support the video tag.
