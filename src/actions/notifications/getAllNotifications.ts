@@ -3,10 +3,10 @@
 import axios from "axios";
 
 import { auth } from "~/lib/auth";
-import { getApiUrl } from "../getApiUrl";
+
+const apiUrl = process.env.API_URL;
 
 export const getAllNotifications = async () => {
-  const apiUrl = await getApiUrl();
   const session = await auth();
   try {
     const response = await axios.get(`${apiUrl}/api/v1/notifications`, {

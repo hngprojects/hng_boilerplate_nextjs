@@ -2,14 +2,14 @@
 
 import axios from "axios";
 
-import { AuthResponse, ErrorResponse, Profile } from "~/types";
+import { AuthResponse, ErrorResponse } from "~/types";
 
 const apiUrl = process.env.API_URL;
 
-const googleAuth = async (profile: Profile): Promise<AuthResponse> => {
+const googleAuth = async (idToken: string): Promise<AuthResponse> => {
   try {
     const response = await axios.post(`${apiUrl}/api/v1/auth/google`, {
-      id_token: profile.id_token,
+      id_token: idToken,
     });
 
     return {

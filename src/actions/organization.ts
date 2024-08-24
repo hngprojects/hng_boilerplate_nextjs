@@ -102,8 +102,13 @@ export const getAnalytics = async () => {
       },
     });
 
+    const formattedData = Object.keys(response.data.data).map((key) => ({
+      month: key,
+      revenue: response.data.data[key],
+    }));
+
     return {
-      data: response.data.data,
+      data: formattedData,
     };
   } catch (error) {
     return axios.isAxiosError(error) && error.response

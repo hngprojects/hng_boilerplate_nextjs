@@ -1,8 +1,8 @@
-"use client ";
+"use client";
 
-import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+import { useState } from "react";
 
-import { getCurrentOrgApi } from "~/actions/switchOrganization";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Button } from "~/components/ui/button";
 import {
@@ -14,43 +14,30 @@ import {
 } from "~/components/ui/select";
 import { Skeleton } from "~/components/ui/skeleton";
 import { useOrgContext } from "~/contexts/orgContext";
-import { useLocalStorage } from "~/hooks/use-local-storage";
 import { CreateOrganization } from "../../create-organization";
 
 export const OrganisationSwitcher = () => {
-  const [currentOrgId, setCurrentOrgId] = useLocalStorage<string | undefined>(
-    "current_orgid",
-    "",
-  );
+  const { data: session } = useSession();
+  const { isLoading, switchOrganization } = useOrgContext();
 
-  const { organizations, isLoading, switchOrganization } = useOrgContext();
-
-  useEffect(() => {
-    if (!currentOrgId && organizations.length > 0) {
-      setCurrentOrgId(organizations[0].organisation_id);
-      switchOrganization(organizations[0].organisation_id);
-    }
-    // console.log(organizations);
-  }, [currentOrgId, organizations, setCurrentOrgId, switchOrganization]);
-
-  const handleOrgChange = (currentOrg: string) => {
-    setCurrentOrgId(currentOrg);
-    switchOrganization(currentOrg);
-    getCurrentOrgApi({ orgId: currentOrg });
+  // Ensure that switchOrganization is properly defined and used
+  const handleOrgChange = (currentOrgId: string) => {
+    switchOrganization(currentOrgId);
   };
 
-  const currentOrg =
-    organizations.length > 0
-      ? organizations.find((org) => org.organisation_id === currentOrgId)
-      : undefined;
+  // Ensure currentOrg is correctly derived
+  const currentOrg = session?.userOrg?.find(
+    (org) => org.organisation_id === session.currentOrgId,
+  );
 
+  // State to manage the modal visibility
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
       <CreateOrganization isOpen={isOpen} setIsOpen={setIsOpen} />
       <Select
-        defaultValue={currentOrgId}
+        defaultValue={currentOrg?.name}
         onValueChange={(value) => handleOrgChange(value)}
       >
         <SelectTrigger
@@ -60,31 +47,33 @@ export const OrganisationSwitcher = () => {
           {isLoading ? (
             <Skeleton className="h-4 w-full" />
           ) : (
-            <SelectValue placeholder={currentOrg?.name}>
-              <span className="ml-2">{currentOrg && currentOrg.name}</span>
+            <SelectValue placeholder="Select an organization">
+              <span className="ml-2">
+                {currentOrg?.name || "No Organization Selected"}
+              </span>
             </SelectValue>
           )}
         </SelectTrigger>
         <SelectContent>
-          {organizations.map((org) => (
-            <SelectItem key={org.id} value={org.organisation_id}>
-              <div className="flex items-center gap-3 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0 [&_svg]:text-foreground">
-                <Avatar className="size-4 sm:size-3">
+          {session?.userOrg?.map((org) => (
+            <SelectItem key={org.organisation_id} value={org.organisation_id}>
+              <div className="flex items-center gap-3">
+                <Avatar className="h-4 w-4 sm:h-3 sm:w-3">
                   <AvatarImage src={""} />
                   <AvatarFallback className="bg-primary/30 uppercase">
-                    {org?.name?.charAt(0)}
+                    {org.name?.charAt(0)}
                   </AvatarFallback>
-                </Avatar>{" "}
+                </Avatar>
                 {org.name}
               </div>
             </SelectItem>
           ))}
           <Button
             variant="outline"
-            className="w-full"
+            className="mt-2 w-full"
             onClick={() => setIsOpen(!isOpen)}
           >
-            Create Organisation
+            Create Organization
           </Button>
         </SelectContent>
       </Select>
