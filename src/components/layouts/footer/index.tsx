@@ -10,7 +10,9 @@ import {
   Youtube,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 import { getApiUrl } from "~/actions/getApiUrl";
@@ -36,7 +38,7 @@ const Footer = () => {
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const isValidEmail = (email: string): boolean => emailRegex.test(email);
-
+  const pathname = usePathname();
   const handleSubmit = async () => {
     if (!isValidEmail(email)) {
       setError(true);
@@ -103,7 +105,7 @@ const Footer = () => {
         { route: "home", link: "/" },
         { route: "aboutUs", link: "/about-us" },
         { route: "career", link: "/career" },
-        { route: "features", link: "/" },
+        { route: "features", link: "/features" },
         { route: "blog", link: "/blog" },
         { route: "status", link: "/status" },
       ],
@@ -162,12 +164,17 @@ const Footer = () => {
       <div className="px-4">
         <div className="mx-auto w-full max-w-[1200px] items-start justify-between gap-[60px] pb-[130px] pt-[28px] sm:grid-cols-2 md:gap-4 md:pb-[46px] md:pt-[72px] lg:flex">
           <div className="mb-[100px] lg:mb-0">
-            <div className="mb-[47px] flex w-full flex-col items-center justify-center sm:mb-[60px] md:block md:max-w-[254px] lg:mb-0">
-              <h5 className="text-nuetral-dark-2 text-md mb-[34px] text-center font-bold sm:text-left">
-                Boiler plate
+            <div className="mb-[47px] flex w-full flex-col items-center justify-center sm:mb-[60px] md:block md:max-w-[254px] lg:mx-4 lg:mb-0">
+              <h5 className="text-nuetral-dark-2 text-md mb-[18px] text-center font-bold sm:text-left">
+                <Image
+                  src={"/home/HNG Boilerplate-Logo.png"}
+                  alt="hng_logo"
+                  width={180}
+                  height={52}
+                />
               </h5>
               <p className="text-nuetral-dark-2 text-center text-[12px] font-medium sm:text-left">
-                Logo subject details and address
+                10111, Hornchurch, London, United Kingdom
               </p>
             </div>
             <div className="flex flex-col items-center justify-center md:block lg:hidden">
@@ -178,7 +185,7 @@ const Footer = () => {
                 <div className="item flex h-[46px] w-full items-center justify-start md:max-w-[283px]">
                   <div className="flex flex-col gap-0.5">
                     <Input
-                      placeholder="Enter your email"
+                      placeholder="Enter email"
                       className={`border-r-none text-md h-[46px] rounded-r-none border-r-0 border-r-transparent bg-transparent active:border-transparent ${error && "!border-red-500"}`}
                       onChange={(event) => setEmail(event.target.value)}
                       value={email}
@@ -211,7 +218,7 @@ const Footer = () => {
             {footerLinks.map((item, index) => {
               return (
                 <div key={index}>
-                  <h5 className="text-neurtal-dark-2 mb-[37px] text-[16px] font-semibold">
+                  <h5 className="mb-[37px] text-[16px] font-semibold text-neutral-dark-1">
                     {item.title}
                   </h5>
                   <ul className="flex flex-col gap-4">
@@ -220,7 +227,7 @@ const Footer = () => {
                         <li key={index}>
                           <Link
                             href={item.link}
-                            className="text-md cursor-pointer text-neutral-dark-2 transition-colors duration-300 hover:text-primary hover:underline dark:text-white"
+                            className={`text-md cursor-pointer text-neutral-dark-1 transition-colors duration-300 hover:text-primary hover:underline dark:text-white ${pathname === item.link ? "text-primary" : ""}`}
                           >
                             {t(`links.${item.route}`)}
                           </Link>
@@ -233,7 +240,7 @@ const Footer = () => {
             })}
 
             <div className="hidden lg:block">
-              <h5 className="text-neurtal-dark-2 text-md mb-4 font-semibold md:mb-[36px]">
+              <h5 className="mb-4 text-sm font-semibold text-neutral-dark-2 md:mb-6">
                 {t("newsletterSignUp")}
               </h5>
 
@@ -241,7 +248,7 @@ const Footer = () => {
                 <div className="item flex h-[46px] w-full max-w-[283px] items-center justify-start">
                   <Input
                     className={`border-r-none h-[46px] rounded-r-none border-r-0 border-r-transparent bg-transparent active:border-transparent ${error && "!border-red-500"}`}
-                    placeholder="Enter your email"
+                    placeholder="Enter email"
                     onChange={(event) => setEmail(event.target.value)}
                     value={email}
                     onBlur={() =>
@@ -305,8 +312,9 @@ const Footer = () => {
               })}
             </div>
           </div>
-          <span className="flex items-center justify-center text-center text-xs font-semibold text-stroke-colors-stroke">
-            <Copyright className="h-5 w-5 text-stroke-colors-stroke" />
+          <span className="flex items-center justify-center text-center text-xs font-semibold text-neutral-dark-2">
+            {t("footerBottom.websiteName")}
+            <Copyright className="h-5 w-5 text-neutral-dark-2" />
             {t("footerBottom.copyright")}
           </span>
           <div className="hidden lg:block">
