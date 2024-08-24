@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 import { getFaqs } from "~/actions/externalPages";
@@ -18,6 +19,7 @@ interface FaqItem {
 const Faq = () => {
   const [faqs, setFaqs] = useState<FaqItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const t = useTranslations();
 
   // Get FAQs
   useEffect(() => {
@@ -38,9 +40,9 @@ const Faq = () => {
     <div className="bg-white">
       <main className="mx-auto max-w-7xl bg-white px-5 py-10 sm:bg-transparent md:px-10 lg:px-10 xl:px-10">
         <Heading
-          tag="FAQS"
-          title="Frequently {{asked}} questions"
-          content="Questions you might ask about our product"
+          tag={t("FAQS")}
+          title={t("Frequently {{asked}} questions")}
+          content={t("Questions you might ask about our product")}
         />
 
         <div className="mx-auto mb-40 mt-4 max-w-xl">

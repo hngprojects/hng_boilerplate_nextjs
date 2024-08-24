@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -19,6 +20,7 @@ import FormSchema from "./formSchema";
 import { FormResponse, submitForm } from "./formSubmitHelper";
 
 export default function AdditionalInquiriesForm() {
+  const t = useTranslations();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -52,10 +54,10 @@ export default function AdditionalInquiriesForm() {
     <div className="mx-auto mb-[11.375rem] mt-[2.75rem] flex w-full max-w-[676px] flex-col gap-[28px] md:mb-[4rem] md:gap-[4.125rem]">
       <div className="flex flex-col items-center gap-[.9375rem] text-center md:gap-[9px]">
         <h3 className="text-[1.25rem] font-[700] leading-[33.89px] text-primary md:text-[1.75rem]">
-          Still have questions?
+          {t("Still have questions?")}
         </h3>
         <p className="text-[1rem] font-[400] leading-[1.3613rem] text-[#525252] md:text-[1.125rem]">
-          Fill the form and enter your message
+          {t("Fill the form and enter your message")}
         </p>
       </div>
       <Form {...form}>
@@ -70,7 +72,7 @@ export default function AdditionalInquiriesForm() {
             render={({ field, fieldState }) => (
               <FormItem>
                 <FormLabel className="text-[1rem] font-[400] leading-[1.5rem] text-[#434343] md:text-[1.25rem]">
-                  Email
+                  {t("Email")}
                 </FormLabel>
                 <FormControl>
                   <Input
@@ -91,7 +93,7 @@ export default function AdditionalInquiriesForm() {
             render={({ field, fieldState }) => (
               <FormItem>
                 <FormLabel className="text-[1rem] font-[400] leading-[1.5rem] text-[#434343] md:text-[1.25rem]">
-                  Name
+                  {t("Name")}
                 </FormLabel>
                 <FormControl>
                   <Input
@@ -112,7 +114,7 @@ export default function AdditionalInquiriesForm() {
             render={({ field, fieldState }) => (
               <FormItem>
                 <FormLabel className="text-[1rem] font-[400] leading-[1.5rem] text-[#434343] md:text-[1.25rem]">
-                  Message
+                  {t("Message")}
                 </FormLabel>
                 <FormControl>
                   <Textarea
@@ -132,7 +134,7 @@ export default function AdditionalInquiriesForm() {
               type="submit"
               className="mb-3 mt-[1.75rem] h-[3rem] w-full rounded-md bg-primary px-4 py-2 text-[1rem] font-[400] leading-[1.3613rem] text-white hover:bg-destructive md:h-[3.75rem] md:text-[1.125rem]"
             >
-              Submit
+              {t("Submit")}
             </Button>
             {successMessage && (
               <div className="text-success">{successMessage}</div>
