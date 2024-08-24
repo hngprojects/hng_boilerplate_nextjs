@@ -130,7 +130,7 @@ const Footer = () => {
   const socialLinks = [
     {
       icon: XIcon,
-      link: "https://twitter.com",
+      link: "https://twitter.com/hnginternship",
     },
     {
       icon: Youtube,
@@ -138,15 +138,15 @@ const Footer = () => {
     },
     {
       icon: Instagram,
-      link: "https://instagram.com",
+      link: "https://instagram.com/hngtech",
     },
     {
       icon: Linkedin,
-      link: "https://linkedin.com",
+      link: "https://linkedin.com/company/hng-internship/",
     },
     {
       icon: Facebook,
-      link: "https://facebook.com",
+      link: " https://m.facebook.com/hngtech/",
     },
   ];
 
