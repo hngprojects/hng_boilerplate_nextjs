@@ -5,12 +5,9 @@ import { ReactNode } from "react";
 import Contact from "~/app/(landing-routes)/contact-us/page";
 
 describe("contact Page tests", () => {
-
   const renderWithSession = (component: ReactNode) => {
     return render(
-      <SessionProvider session={null}>
-        {component}
-      </SessionProvider>
+      <SessionProvider session={undefined}>{component}</SessionProvider>,
     );
   };
 
