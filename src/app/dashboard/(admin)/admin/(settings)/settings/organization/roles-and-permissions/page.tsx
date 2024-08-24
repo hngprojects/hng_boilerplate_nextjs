@@ -162,9 +162,23 @@ const RolesAndPermission = () => {
 
   return (
     <div className="">
-      <div className="flex gap-8">
-        <div className="w-1/4">
-          <h2 className="mb-10 text-xl font-medium">Roles</h2>
+      <div className="mb-7 flex items-end justify-between md:mb-10">
+        <div className="">
+          <h2 className="mb-1.5 text-xl font-medium">Roles</h2>
+          <small className="text-xs text-[#525252]">
+            Manage user roles for members
+          </small>
+        </div>
+        <div className="">
+          <CustomButton variant="primary" className="">
+            <Link href="/dashboard/admin/settings/organization/roles-and-permissions/create-role">
+              + Create roles
+            </Link>
+          </CustomButton>
+        </div>
+      </div>
+      <div className="flex flex-col gap-10 md:flex-row md:gap-11">
+        <div className="md:w-[256px]">
           <ul className="rounded-md border border-[#CBD5E1] p-3">
             {loadingRoles ? (
               <div className="flex justify-center py-8">
@@ -192,14 +206,7 @@ const RolesAndPermission = () => {
             )}
           </ul>
         </div>
-        <div className="w-3/4">
-          <div className="mb-2 flex justify-end">
-            <CustomButton variant="primary" className="mb-6">
-              <Link href="/dashboard/admin/settings/organization/roles-and-permissions/create-role">
-                + Create roles
-              </Link>
-            </CustomButton>
-          </div>
+        <div className="flex-grow">
           <div className="rounded-md border border-[#CBD5E1] px-5 py-6">
             <div className="border-b border-[#CBD5E1] pb-4 pl-2">
               <h2 className="mb-2 text-base font-medium text-[#0A0A0A]">
