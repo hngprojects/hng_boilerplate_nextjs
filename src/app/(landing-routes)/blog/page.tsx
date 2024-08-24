@@ -15,8 +15,6 @@ import {
   PaginationPrevious,
 } from "~/components/ui/pagination";
 
-// import { blogPosts } from "./data/mock";
-
 const BlogHome = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [data, setData] = useState<
@@ -43,7 +41,6 @@ const BlogHome = () => {
         const result = await response.json();
         setData(result.data);
       } catch {
-        // console.error("Error fetching data:", error);
       } finally {
         setIsLoading(false);
       }

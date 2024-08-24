@@ -37,7 +37,6 @@ const BlogDetailsPage: FC<IProperties> = ({ id }) => {
   const [comments, setComments] =
     useState<Omit<CommentProperties, "session">[]>(sampleComments);
 
-  // const post = articlesData.find((item) => item.id === id);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [post, setPost] = useState<{
     title: string;
@@ -58,7 +57,6 @@ const BlogDetailsPage: FC<IProperties> = ({ id }) => {
         const result = await response.json();
         setPost(result.data);
       } catch {
-        // console.error("Error fetching data:", error);
       } finally {
         setIsLoading(false);
       }

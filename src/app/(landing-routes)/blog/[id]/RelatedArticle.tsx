@@ -34,7 +34,6 @@ const RelatedArticle = () => {
         const result = await response.json();
         setData(result.data);
       } catch {
-        // console.error("Error fetching data:", error);
       } finally {
         setIsLoading(false);
       }
