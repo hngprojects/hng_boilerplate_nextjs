@@ -57,7 +57,7 @@ const Navbar = () => {
               <Link
                 key={index}
                 href={item.link}
-                className={`p-3 text-[16px] font-medium text-neutral-dark-1 transition-all duration-300 hover:text-primary ${pathname === item.link ? "text-primary" : ""}`}
+                className={`p-[10px] text-[16px] font-medium text-neutral-dark-1 transition-all duration-300 hover:text-primary ${pathname === item.link ? "text-primary" : ""}`}
               >
                 {t(`${item.route}`)}
               </Link>
