@@ -283,14 +283,14 @@ const Login = () => {
           <ShieldCheck className="mr-1 hidden h-4 w-4 text-gray-400 sm:inline-block" />
           {t("agree")}{" "}
           <a
-            href="#"
+            href="/terms-and-conditions"
             className="text-sm font-bold text-primary hover:text-orange-500"
           >
             {t("termsOfService")}
           </a>{" "}
           {t("and")}{" "}
           <a
-            href="#"
+            href="/privacy-policy"
             className="text-sm font-bold text-primary hover:text-orange-500"
           >
             {t("privacyPolicy")}
