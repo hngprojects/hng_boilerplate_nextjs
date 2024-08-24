@@ -82,7 +82,6 @@ const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
       setError(response.error);
     } else {
       toast({
-        // title: "Success",
         description: "1 Invite sent successfully.",
         variant: "success",
       });
@@ -113,7 +112,6 @@ const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
         if (document.hasFocus()) {
           await navigator.clipboard.writeText(inviteLinkData);
           toast({
-            title: "",
             description: "Invite link copied to clipboard!",
             variant: "success",
           });
