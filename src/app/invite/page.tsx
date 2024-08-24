@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation"; // Import from next/navigation
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 import { acceptInviteRequest } from "~/actions/inviteMembers";
 
@@ -12,12 +12,12 @@ const extractToken = () => {
     ? queryString
     : queryString.slice(0, Math.max(0, ampersandIndex));
 };
+
 const AcceptInvitePage = () => {
   const router = useRouter();
 
-  // Function to extract token from the query string
-
-  const handleAcceptInvite = async () => {
+  // Memoized function to handle invite acceptance
+  const handleAcceptInvite = useCallback(async () => {
     // Extract token using the function
     const token = extractToken();
 
@@ -56,12 +56,12 @@ const AcceptInvitePage = () => {
       // Handle unexpected errors
       router.push("/error?message=An unexpected error occurred");
     }
-  };
+  }, [router]);
 
   // Process the invite on page load
   useEffect(() => {
     handleAcceptInvite();
-  }, []);
+  }, [handleAcceptInvite]);
 
   return (
     <div className="flex h-[100vh] w-[100vw] items-center justify-center">
