@@ -12,7 +12,7 @@ const HowItWorks: React.FC = () => {
 
   const handleCloseVideo = () => {
     setShowVideo(false);
-    timeoutReference.current = setTimeout(() => setShowVideo(true), 40000);
+    timeoutReference.current = setTimeout(() => setShowVideo(true), 9000);
   };
 
   useEffect(() => {
