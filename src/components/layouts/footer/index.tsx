@@ -10,6 +10,7 @@ import {
   Youtube,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -161,13 +162,19 @@ const Footer = () => {
     <footer className="bg-background dark:bg-default">
       <div className="px-4">
         <div className="mx-auto w-full max-w-[1200px] items-start justify-between gap-[60px] pb-[130px] pt-[28px] sm:grid-cols-2 md:gap-4 md:pb-[46px] md:pt-[72px] lg:flex">
-          <div className="mb-[100px] lg:mb-0">
+          <div className="mb-[100px] max-w-[272px] shrink-0 px-2.5 lg:mb-0">
             <div className="mb-[47px] flex w-full flex-col items-center justify-center sm:mb-[60px] md:block md:max-w-[254px] lg:mb-0">
-              <h5 className="text-nuetral-dark-2 text-md mb-[34px] text-center font-bold sm:text-left">
-                Boiler plate
+              <h5 className="text-md mb-[18px] flex items-center gap-2.5 text-center font-bold text-neutral-dark-2 sm:text-left">
+                <Image
+                  src="/images/logo(large).svg"
+                  width={32}
+                  height={32}
+                  alt=""
+                />
+                <span className="text-2xl font-semibold">HNG Boilerplate</span>
               </h5>
-              <p className="text-nuetral-dark-2 text-center text-[12px] font-medium sm:text-left">
-                Logo subject details and address
+              <p className="text-nuetral-dark-2 text-center text-sm font-medium sm:text-left">
+                10111, Hornchurch, London, United Kingdom
               </p>
             </div>
             <div className="flex flex-col items-center justify-center md:block lg:hidden">
