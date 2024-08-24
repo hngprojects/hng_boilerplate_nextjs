@@ -1,11 +1,26 @@
+import axios from "axios";
 import { Check } from "lucide-react";
-import { NextPage } from "next";
 import Link from "next/link";
+import { toast } from "sonner";
 
 import PastIncidents from "~/components/status/PastIncidents";
-import StatusGrid from "~/components/status/StatusTable";
+import StatusGrid, { ApiStatus } from "~/components/status/StatusTable";
 
-const StatusPage: NextPage = () => {
+const fetchData = async (): Promise<ApiStatus[]> => {
+  const baseURL = process.env.API_URL;
+
+  try {
+    const response = await axios.get(`${baseURL}/api/v1/api-status`);
+    return response.data.data;
+  } catch {
+    toast("Something went wrong, please try again later!");
+    return []; // Return an empty array on error
+  }
+};
+
+const StatusPage = async () => {
+  const data = await fetchData();
+
   return (
     <div>
       <div
@@ -42,7 +57,7 @@ const StatusPage: NextPage = () => {
           View historical uptime.
         </Link>
       </div>
-      <StatusGrid />
+      <StatusGrid data={data} />
       <PastIncidents />
     </div>
   );
