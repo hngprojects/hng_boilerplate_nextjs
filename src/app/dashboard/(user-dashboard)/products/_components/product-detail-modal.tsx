@@ -1,17 +1,17 @@
+"use client";
+
 import { AnimatePresence, motion } from "framer-motion";
 import { Loader2, X } from "lucide-react";
-import { useRouter } from "next-nprogress-bar";
+import { cn, formatPrice } from "~/lib/utils";
+import { deleteProduct, getProductDetails } from "~/actions/product";
 import { startTransition, useEffect, useState, useTransition } from "react";
 
-import { deleteProduct, getProductDetails } from "~/actions/product";
 import BlurImage from "~/components/miscellaneous/blur-image";
 import { Button } from "~/components/ui/button";
-import { toast } from "~/components/ui/use-toast";
-import { useOrgContext } from "~/contexts/orgContext";
-import { useLocalStorage } from "~/hooks/use-local-storage";
-import useWindowWidth from "~/hooks/use-window-width";
-import { cn, formatPrice } from "~/lib/utils";
 import { Product } from "~/types";
+import { useLocalStorage } from "~/hooks/use-local-storage";
+import { useOrgContext } from "~/contexts/orgContext";
+import { useRouter } from "next-nprogress-bar";
 
 const variantProperties = {
   left: "50%",

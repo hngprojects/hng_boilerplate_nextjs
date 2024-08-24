@@ -67,6 +67,7 @@
     "react-email": "2.1.5",
     "react-hook-form": "^7.52.2",
     "react-paginate": "^8.2.0",
+    "react-toastify": "^10.0.5",
     "recharts": "^2.12.7",
     "sharp": "^0.33.4",
     "swiper": "^11.1.9",
