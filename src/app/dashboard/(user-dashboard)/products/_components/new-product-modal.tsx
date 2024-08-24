@@ -185,7 +185,7 @@ const NewProductModal = () => {
                     </div>
                   </div>
 
-                  <div className="relative bottom-0 z-50 flex w-full items-center justify-center gap-x-2 border-t border-neutral-200 bg-white/70 px-2 py-2 backdrop-blur min-[500px]:px-6 min-[500px]:py-4">
+                  <div className="relative bottom-0 z-50 flex w-full items-center justify-end gap-x-2 border-t border-neutral-200 bg-white/70 px-2 py-2 backdrop-blur min-[500px]:px-6 min-[500px]:py-4">
                     <Button
                       variant="ghost"
                       type="reset"
