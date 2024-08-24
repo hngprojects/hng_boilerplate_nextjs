@@ -2,8 +2,9 @@
 
 import { AxiosResponse } from "axios";
 import { EllipsisIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
+import { fetchOrganizationUsers } from "~/actions/inviteMembers";
 import CustomButton from "~/components/common/common-button/common-button";
 import { Input } from "~/components/common/input";
 import InviteMemberModal from "~/components/common/modals/invite-member";
@@ -21,59 +22,53 @@ import { useToast } from "~/components/ui/use-toast";
 import { exportMembersEndpoint } from "../export";
 
 type Member = {
-  avatar?: string;
-  id: number;
-  name: string;
+  avatar_url?: string | null;
+  id: string;
+  first_name: string;
+  last_name: string;
   email: string;
+  is_super_admin: boolean;
+  phone_number?: string | null;
+  created_at: string;
+  updated_at: string;
   role: string;
 };
-
-const memberData: Member[] = [
-  {
-    avatar: "CB",
-    id: 1,
-    name: "Chad Bosewick",
-    email: "ChadBoseW@gmail.com",
-    role: "Admin",
-  },
-  {
-    avatar: "SN",
-    id: 2,
-    name: "Chad Bosewick",
-    email: "ChadBoseW@gmail.com",
-    role: "Admin",
-  },
-  {
-    avatar: "CB",
-    id: 3,
-    name: "Chad Bosewick",
-    email: "ChadBoseW@gmail.com",
-    role: "Admin",
-  },
-  {
-    avatar: "CB",
-    id: 4,
-    name: "Chad Bosewick",
-    email: "ChadBoseW@gmail.com",
-    role: "Admin",
-  },
-  {
-    avatar: "CB",
-    id: 5,
-    name: "Chad Bosewick",
-    email: "ChadBoseW@gmail.com",
-    role: "Admin",
-  },
-];
-
-const activeMembers: number = memberData.length;
 
 const Members = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [exporting, setExporting] = useState(false);
   const [text, setText] = useState("Export CSV");
+  const [memberData, setMemberData] = useState<Member[]>([]); // State to hold fetched members
+  const [loadingMembers, setLoadingMembers] = useState(true); // Loading state for members
 
   const { toast } = useToast();
+
+  useEffect(() => {
+    const fetchMembers = async () => {
+      const storedOrg = localStorage.getItem("user_org");
+      if (storedOrg) {
+        const parsedOrg = JSON.parse(storedOrg);
+        const organisation_id = parsedOrg[0]?.organisation_id;
+
+        try {
+          const fetchedMembers = await fetchOrganizationUsers(organisation_id);
+          // Ensure that memberData is always an array
+          setMemberData(fetchedMembers.data.users);
+        } catch {
+          toast({
+            title: "Error",
+            description: "Failed to load members.",
+            variant: "destructive",
+          });
+        } finally {
+          setLoadingMembers(false); // Set loading to false after fetch attempt
+        }
+      }
+    };
+
+    fetchMembers();
+  }, [toast]);
+
   const handleCopy = () => {
     navigator.clipboard.writeText("https://example.com").then(() => {
       toast({
@@ -197,31 +192,33 @@ const Members = () => {
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>Roles</SelectLabel>
-                <SelectItem value="apple">Name</SelectItem>
-                <SelectItem value="banana">Email</SelectItem>
+                <SelectItem value="name">Name</SelectItem>
+                <SelectItem value="email">Email</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
         </div>
         <CustomButton variant="primary" onClick={handleModalOpen}>
-          Invite people
+          Invite Members
         </CustomButton>
       </div>
       <div>
-        <p className="text-sm">{activeMembers} active members</p>
-        <ul>
-          {memberData.map((member) => {
-            return (
+        <p className="text-sm">{memberData.length} active members</p>
+        {loadingMembers ? (
+          <LoadingSpinner />
+        ) : (
+          <ul>
+            {memberData.map((member) => (
               <li
                 key={member.id}
                 className="flex items-center justify-between border-b border-[#CBD5E1] p-2"
               >
                 <span className="flex gap-2">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-center">
-                    {member.avatar}
+                    {member.avatar_url || member.first_name[0].toUpperCase()}
                   </div>
                   <div className="flex flex-col gap-2 font-semibold">
-                    {member.name}
+                    {`${member.last_name} ${member.first_name} `}
                     <p className="text-sm font-normal">{member.email}</p>
                   </div>
                 </span>
@@ -229,7 +226,11 @@ const Members = () => {
                 <div className="justify-self-end">
                   <Select>
                     <SelectTrigger className="mx-6 w-[100px] border-none bg-white">
-                      <SelectValue placeholder={member.role} />
+                      <SelectValue
+                        placeholder={
+                          member.is_super_admin ? member.role || "user" : "user"
+                        }
+                      />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
@@ -243,14 +244,16 @@ const Members = () => {
 
                 <EllipsisIcon onClick={() => {}} className="flex-shrink-0" />
               </li>
-            );
-          })}
-        </ul>
+            ))}
+          </ul>
+        )}
         <div className="my-8 flex items-center justify-between">
           <div>
             <h4 className="text-lg font-medium">Export Members List</h4>
             <p className="text-sm">
-              Export a CSV with information of all members of your team
+              On the Free plan all members in a workspace are administrators.
+              Upgrade to a paid plan to add the ability to assign or remove
+              administrator roles.
             </p>
           </div>
           <CustomButton
@@ -267,7 +270,7 @@ const Members = () => {
             ) : (
               <span>{text}</span>
             )}
-          </CustomButton>
+          </CustomButton>{" "}
         </div>
       </div>
       <InviteMemberModal show={isModalOpen} onClose={handleModalClose} />

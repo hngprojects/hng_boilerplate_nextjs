@@ -158,3 +158,34 @@ export const acceptInviteRequest = async (token: string) => {
         };
   }
 };
+
+// Fetch users within an organization
+export const fetchOrganizationUsers = async (orgId: string) => {
+  const apiUrl = await getApiUrl();
+  const session = await auth();
+
+  try {
+    const response = await axios.get(
+      `${apiUrl}/api/v1/organisations/${orgId}/users`,
+      {
+        headers: {
+          Authorization: `Bearer ${session?.access_token}`,
+        },
+      },
+    );
+
+    return {
+      data: response.data.data, // Returns the users data array
+      status: response.status,
+    };
+  } catch (error) {
+    return axios.isAxiosError(error) && error.response
+      ? {
+          error: error.response.data.message || "Failed to fetch users.",
+          status: error.response.status,
+        }
+      : {
+          error: "An unexpected error occurred.",
+        };
+  }
+};
