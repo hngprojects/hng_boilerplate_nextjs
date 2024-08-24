@@ -9,7 +9,14 @@ import { fetchOrganizationUsers } from "~/actions/inviteMembers";
 import CustomButton from "~/components/common/common-button/common-button";
 import { Input } from "~/components/common/input";
 import InviteMemberModal from "~/components/common/modals/invite-member";
+import DeleteMember from "~/components/common/modals/invite-member/DeleteMembers";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "~/components/ui/dropdown-menu";
 import {
   Select,
   SelectContent,
@@ -37,6 +44,8 @@ type Member = {
 
 const Members = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
   const [exporting, setExporting] = useState(false);
   const [text, setText] = useState("Export CSV");
   const [memberData, setMemberData] = useState<Member[]>([]); // State to hold fetched members
@@ -82,8 +91,16 @@ const Members = () => {
     setIsModalOpen(true);
   };
 
+  const handleDeleteOpen = () => {
+    setIsDeleteModalOpen(true);
+  };
+
   const handleModalClose = () => {
     setIsModalOpen(false);
+  };
+
+  const handleDeleteClose = () => {
+    setIsDeleteModalOpen(false);
   };
 
   const exportMembers = async () => {
@@ -247,7 +264,19 @@ const Members = () => {
                   </Select>
                 </div>
 
-                <EllipsisIcon onClick={() => {}} className="flex-shrink-0" />
+                <DropdownMenu>
+                  <DropdownMenuTrigger>
+                    <EllipsisIcon
+                      onClick={() => {}}
+                      className="flex-shrink-0"
+                    />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-[7.875rem] text-[0.875rem]">
+                    <DropdownMenuItem onClick={handleDeleteOpen}>
+                      <span>Delete Member</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </li>
             ))}
           </ul>
@@ -279,6 +308,7 @@ const Members = () => {
         </div>
       </div>
       <InviteMemberModal show={isModalOpen} onClose={handleModalClose} />
+      <DeleteMember show={isDeleteModalOpen} onClose={handleDeleteClose} />
     </div>
   );
 };
