@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { ChangeEvent, FormEvent, useState } from "react";
 
+import Image from "next/image";
+import Link from "next/link";
 import user from "../../../../../../public/images/user.png";
 
 const Discard = () => {
@@ -325,6 +325,14 @@ const ProductDetail = () => {
                   <option>Low in Stock</option>
                 </select>
               </div>
+              <div className="rounded-md bg-white p-4 shadow-md">
+                <h2 className="mt-2 text-lg font-semibold">Archive</h2>
+                <p className="mb-2 text-sm text-gray-500">Archive a product.</p>
+                <hr className="my-3" />
+                <button className="mb-4 w-full rounded-md bg-gray-200 px-4 py-2">
+                  Archive Product 2
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -332,24 +340,7 @@ const ProductDetail = () => {
 
       <div className="mt-8 rounded-md bg-white p-4 shadow-md">
         <h2 className="mb-4 text-lg font-semibold">Comments</h2>
-        {comments.map((comment, index) => (
-          <div key={index} className="mb-4">
-            <div className="mb-2 flex items-center">
-              <Image
-                src={user}
-                alt="User Avatar"
-                width={40}
-                height={40}
-                className="rounded-full"
-              />
-              <div className="ml-4">
-                <p className="font-semibold">{comment.name}</p>
-                <p className="text-sm text-gray-500">{`${comment.date} ${comment.time}`}</p>
-              </div>
-            </div>
-            <p className="text-sm text-gray-700">{comment.comment}</p>
-          </div>
-        ))}
+        {/*comment and reply*/}
         <textarea
           className="w-full rounded-md border-[1px] border-orange-500 bg-[#FAFAFA] p-2 focus:outline-none"
           rows={4}
