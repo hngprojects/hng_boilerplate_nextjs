@@ -1,6 +1,7 @@
 "use client";
 
 import axios from "axios";
+import { Camera } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { ChangeEvent, useEffect, useState } from "react";
@@ -151,16 +152,16 @@ export default function SettingsPage() {
   };
 
   const submit = async () => {
-    if (!isValidXUrl(socialLinks.x)) {
+    if (isValidXUrl(socialLinks.x)) {
       return toast({ title: "Warning!", description: "Enter a valid X url" });
     }
-    if (!isValidInstagramUrl(socialLinks.instagram)) {
+    if (isValidInstagramUrl(socialLinks.instagram)) {
       return toast({
         title: "Warning!",
         description: "Enter a valid Instagram url",
       });
     }
-    if (!isValidLinkedInUrl(socialLinks.linkedin)) {
+    if (isValidLinkedInUrl(socialLinks.linkedin)) {
       return toast({
         title: "Warning!",
         description: "Enter a valid Linkedin url",
@@ -211,7 +212,7 @@ export default function SettingsPage() {
           Your photo
         </h2>
         <div className="flex items-center gap-[16px]">
-          <div className="relative grid h-[108px] w-[108px] shrink-0 place-items-center overflow-hidden rounded-full border-[1px] border-dashed border-[#cbd5e1] bg-[#fafafa]">
+          <div className="group relative grid h-[108px] w-[108px] shrink-0 place-items-center overflow-hidden rounded-full border-[1px] border-dashed border-[#cbd5e1] bg-[#fafafa]">
             <label
               htmlFor="profile-picture"
               className="cursor-pointer text-[24px] font-medium"
@@ -236,7 +237,11 @@ export default function SettingsPage() {
                 unoptimized={true}
               />
             )}
+            <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <Camera />
+            </div>
           </div>
+
           <div>
             <label
               htmlFor="profile-picture"
@@ -385,18 +390,43 @@ export default function SettingsPage() {
     </div>
   );
 }
-
-function isValidLinkedInUrl(url: string) {
-  const linkedInRegex = /^(https?:\/\/)?(www\.)?linkedin\.com\/[\w/-]+\/?$/;
-  return linkedInRegex.test(url);
+function isValidLinkedInUrl(url: string): boolean {
+  try {
+    const parsedUrl = new URL(url);
+    const hostname = parsedUrl.hostname.toLowerCase();
+    return (
+      (hostname === "linkedin.com" || hostname === "www.linkedin.com") &&
+      parsedUrl.pathname.startsWith("/in/")
+    );
+  } catch {
+    return false;
+  }
 }
-
-function isValidXUrl(url: string) {
-  const xRegex = /^(https?:\/\/)?(www\.)?x\.com\/\w{1,15}\/?$/;
-  return xRegex.test(url);
+function isValidXUrl(url: string): boolean {
+  try {
+    const parsedUrl = new URL(url);
+    const hostname = parsedUrl.hostname.toLowerCase();
+    const pathParts = parsedUrl.pathname.split("/").filter(Boolean);
+    return (
+      (hostname === "x.com" || hostname === "www.x.com") &&
+      pathParts.length === 1 &&
+      pathParts[0].length <= 15
+    );
+  } catch {
+    return false;
+  }
 }
-
-function isValidInstagramUrl(url: string) {
-  const instagramRegex = /^(https?:\/\/)?(www\.)?instagram\.com\/[\w.]+\/?$/;
-  return instagramRegex.test(url);
+function isValidInstagramUrl(url: string): boolean {
+  try {
+    const parsedUrl = new URL(url);
+    const hostname = parsedUrl.hostname.toLowerCase();
+    const pathParts = parsedUrl.pathname.split("/").filter(Boolean);
+    return (
+      (hostname === "instagram.com" || hostname === "www.instagram.com") &&
+      pathParts.length === 1 &&
+      /^[\w.]+$/.test(pathParts[0])
+    );
+  } catch {
+    return false;
+  }
 }
