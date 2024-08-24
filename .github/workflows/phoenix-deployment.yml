@@ -47,7 +47,7 @@ jobs:
           script: |
             cd hng_boilerplate_nextjs
             tar -xzf /tmp/expressjs/boilerplate.tar.gz
-            mv /tmp/java/.env.expressjs .env
+            mv /tmp/expressjs/.env.expressjs .env
             rm -f /tmp/expressjs/boilerplate.tar.gz
             cp -r .next/standalone/* .
             pm2 restart nextjs_boilerplate --update-env
