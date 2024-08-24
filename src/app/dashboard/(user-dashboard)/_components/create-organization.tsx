@@ -1,7 +1,13 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
+import {
+  GetCountries,
+  GetState,
+  type Country,
+  type State,
+} from "react-country-state-city";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
@@ -33,7 +39,6 @@ import {
 } from "~/components/ui/select";
 import { useToast } from "~/components/ui/use-toast";
 import { organizationSchema } from "~/schemas";
-import { countries } from "./county";
 
 interface ModalProperties {
   isOpen: boolean;
@@ -41,18 +46,19 @@ interface ModalProperties {
 }
 
 export const CreateOrganization = ({ isOpen, setIsOpen }: ModalProperties) => {
-  const [selectedCountry, setSelectedCountry] = useState<string | undefined>();
-  const [states, setStates] = useState<string[]>([]);
+  const [countryid, setCountryid] = useState(0);
+
+  const [countries, setCountries] = useState<Country[] | []>([]);
+  const [states, setStates] = useState<State[] | []>([]);
+
+  useEffect(() => {
+    GetCountries().then((result: Country[]) => {
+      setCountries(result);
+    });
+  }, []);
   const [isLoading, startTransition] = useTransition();
   const { toast } = useToast();
 
-  const handleCountryChange = (value: string) => {
-    setSelectedCountry(value);
-    const country = countries.find((c) => c.name === value);
-    if (country) {
-      setStates(country.states);
-    }
-  };
   const form = useForm<z.infer<typeof organizationSchema>>({
     resolver: zodResolver(organizationSchema),
     defaultValues: {
@@ -201,8 +207,14 @@ export const CreateOrganization = ({ isOpen, setIsOpen }: ModalProperties) => {
                     <FormControl>
                       <Select
                         onValueChange={(value) => {
-                          field.onChange(value);
-                          handleCountryChange(value);
+                          const country =
+                            countries.find((c) => c.name === value) ??
+                            countries[0];
+                          field.onChange(country.name);
+                          setCountryid(country.id);
+                          GetState(country.id).then((result: State[]) => {
+                            setStates(result);
+                          });
                         }}
                         defaultValue={field.value}
                       >
@@ -233,17 +245,19 @@ export const CreateOrganization = ({ isOpen, setIsOpen }: ModalProperties) => {
                     <FormLabel>State</FormLabel>
                     <FormControl>
                       <Select
-                        onValueChange={field.onChange}
+                        onValueChange={(value) => {
+                          field.onChange(value);
+                        }}
                         defaultValue={field.value}
-                        disabled={!selectedCountry}
+                        disabled={countryid === 0}
                       >
                         <SelectTrigger className="min-w-[180px]">
                           <SelectValue placeholder="Select a state" />
                         </SelectTrigger>
                         <SelectContent>
                           {states.map((state) => (
-                            <SelectItem key={state} value={state}>
-                              {state}
+                            <SelectItem key={state.id} value={state.name}>
+                              {state.name}
                             </SelectItem>
                           ))}
                         </SelectContent>

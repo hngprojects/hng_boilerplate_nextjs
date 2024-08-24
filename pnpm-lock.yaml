@@ -137,6 +137,9 @@ importers:
       react:
         specifier: ^18.3.1
         version: 18.3.1
+      react-country-state-city:
+        specifier: ^1.1.3
+        version: 1.1.3(react@18.3.1)
       react-day-picker:
         specifier: ^8.10.1
         version: 8.10.1(date-fns@3.6.0)(react@18.3.1)
@@ -4404,6 +4407,11 @@ packages:
 
   randombytes@2.1.0:
     resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
+
+  react-country-state-city@1.1.3:
+    resolution: {integrity: sha512-/P3afDKRJ6gMe4SfYZ8FockUDmQfjLNgxYzqYtsP0vPggFJyq1eI/XoV2ArdvV6ISsbE04dPO/PiKl5Y2LLIcA==}
+    peerDependencies:
+      react: '>=16'
 
   react-day-picker@8.10.1:
     resolution: {integrity: sha512-TMx7fNbhLk15eqcMt+7Z7S2KF7mfTId/XJDjKE8f+IUcFn0l08/kI4FiYTL/0yuOLmEcbR4Fwe3GJf/NiiMnPA==}
@@ -9868,6 +9876,10 @@ snapshots:
   randombytes@2.1.0:
     dependencies:
       safe-buffer: 5.2.1
+
+  react-country-state-city@1.1.3(react@18.3.1):
+    dependencies:
+      react: 18.3.1
 
   react-day-picker@8.10.1(date-fns@3.6.0)(react@18.3.1):
     dependencies:
