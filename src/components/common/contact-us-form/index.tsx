@@ -1,13 +1,13 @@
 "use client";
 
 import { Mail } from "lucide-react";
+import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { z, ZodError } from "zod";
 
 import { getApiUrl } from "~/actions/getApiUrl";
 import { Toaster } from "~/components/ui/toaster";
 import { useToast } from "~/components/ui/use-toast";
-import { useLocalStorage } from "~/hooks/use-local-storage";
 import CustomButton from "../common-button/common-button";
 import InputField from "./inputfield";
 
@@ -44,7 +44,7 @@ const ContactForm: React.FC = () => {
   const [status, setStatus] = useState<boolean | undefined>();
   const [message, setMessage] = useState<string | undefined>();
   const [loading, setLoading] = useState<boolean>(false);
-  const [org_id] = useLocalStorage<string>("current_orgid", "");
+  const { data: session } = useSession();
   const { toast } = useToast();
 
   useEffect(() => {
@@ -72,22 +72,6 @@ const ContactForm: React.FC = () => {
     }
   };
 
-  function transformFormData(
-    formData: FormData,
-    orgId: string,
-  ): TransformedData {
-    // Create a new object with the required structure
-    const transformedData = {
-      full_name: formData.name,
-      email: formData.email,
-      phone_number: formData.phone,
-      message: formData.message,
-      org_id: orgId, // Pass orgId as a parameter or obtain it from your application context
-    };
-
-    return transformedData;
-  }
-
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
@@ -104,7 +88,13 @@ const ContactForm: React.FC = () => {
     }
     try {
       const baseUrl = await getApiUrl();
-      const apiData = transformFormData(formData, org_id);
+      const apiData: TransformedData = {
+        full_name: formData.name,
+        email: formData.email,
+        phone_number: formData.phone,
+        message: formData.message,
+        org_id: session?.currentOrgId ?? "",
+      };
       setLoading(true);
       const response = await fetch(`${baseUrl}/api/v1/contact`, {
         method: "POST",

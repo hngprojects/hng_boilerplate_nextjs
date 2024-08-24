@@ -12,7 +12,6 @@ const CommentPage = () => {
       last_name: "User",
       email: "user@example.com",
       image: "path/to/image",
-      role: "user",
     },
     access_token: "some-token",
     expires: "1",
