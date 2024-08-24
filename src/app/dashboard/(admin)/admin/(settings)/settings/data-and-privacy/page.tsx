@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 interface ToggleSwitchProperties {
@@ -21,7 +22,7 @@ const ToggleSwitch: React.FC<ToggleSwitchProperties> = ({
   return (
     <div className="mb-4 rounded-md border p-6 shadow">
       <div className="mb-2 flex items-center justify-between">
-        <label className="text-2xl text-lg font-semibold">{label}</label>
+        <label className="text-2xl font-semibold">{label}</label>
         <label className="relative inline-block h-8 w-14">
           <input
             type="checkbox"
@@ -56,7 +57,13 @@ const Page = () => {
           Your data is important for helping improve and personalize HNG
           Boilerplate, and you have control over how it is used. You can change
           these settings anytime if you feel like playing a part in our
-          development. <span className="underline">Learn more.</span>
+          development.{" "}
+          <Link
+            href={"/privacy-policy"}
+            className="underline hover:text-orange-500"
+          >
+            Learn more.
+          </Link>
         </p>
       </div>
       <ToggleSwitch
