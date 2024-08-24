@@ -1,13 +1,13 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { useSession } from "next-auth/react";
 import { useTransition } from "react";
 
 import { deleteProduct } from "~/actions/product";
 import { Button } from "~/components/ui/button";
 import { toast } from "~/components/ui/use-toast";
 import { useOrgContext } from "~/contexts/orgContext";
-import { useLocalStorage } from "~/hooks/use-local-storage";
 import { cn } from "~/lib/utils";
 
 const variantProperties = {
@@ -18,7 +18,7 @@ const variantProperties = {
 };
 
 const ProductDeleteModal = () => {
-  const [org_id] = useLocalStorage<string>("current_orgid", "");
+  const { data: session } = useSession();
   const [isPending, startTransition] = useTransition();
   const { selectedProduct, products, isDelete, setIsDelete } = useOrgContext();
 
@@ -32,21 +32,24 @@ const ProductDeleteModal = () => {
     });
 
     startTransition(async () => {
-      await deleteProduct(org_id, selectedProduct).then((data) => {
-        if (data.status === 200) {
-          toast({
-            title: "Product deleted",
-            description: "Product deleted successfully.",
-          });
-        } else {
-          toast({
-            title: "Error",
-            description: data.error || "An unexpected error occurred.",
-            variant: "destructive",
-          });
-        }
-        setIsDelete(false);
-      });
+      if (session?.currentOrgId === undefined) return;
+      await deleteProduct(session?.currentOrgId, selectedProduct).then(
+        (data) => {
+          if (data.status === 200) {
+            toast({
+              title: "Product deleted",
+              description: "Product deleted successfully.",
+            });
+          } else {
+            toast({
+              title: "Error",
+              description: data.error || "An unexpected error occurred.",
+              variant: "destructive",
+            });
+          }
+          setIsDelete(false);
+        },
+      );
     });
   };
 

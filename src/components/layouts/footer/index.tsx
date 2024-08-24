@@ -153,8 +153,8 @@ const Footer = () => {
   ];
 
   const footerBottom = [
-    { route: "privacyPolicy", link: "/" },
-    { route: "termsOfUse", link: "/" },
+    { route: "privacyPolicy", link: "/privacy-policy" },
+    { route: "termsOfUse", link: "/terms-and-conditions" },
   ];
 
   //

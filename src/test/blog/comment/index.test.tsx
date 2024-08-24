@@ -15,7 +15,6 @@ describe("comment box component", () => {
       last_name: "User",
       email: "user@example.com",
       image: "path/to/image",
-      role: "user",
     },
     access_token: "some-token",
     expires: "2100-01-01T00:00:00.000Z",
