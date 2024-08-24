@@ -298,7 +298,7 @@ const Register = () => {
                       <Input
                         disabled={isLoading}
                         type={showPassword ? "text" : "password"}
-                        placeholder={`${t("paswwordPlaceholder")}`}
+                        placeholder={`${t("passwordPlaceholder")}`}
                         {...field}
                         className={cn(
                           "font-inter w-full rounded-md border px-3 py-6 text-sm font-normal leading-[21.78px] transition duration-150 ease-in-out focus:outline-none",
