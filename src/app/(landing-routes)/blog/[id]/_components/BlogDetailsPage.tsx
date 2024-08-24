@@ -4,7 +4,7 @@ import { MessageCircleMore, ThumbsUpIcon } from "lucide-react";
 import { Session } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 
 import Comment, {
   CommentProperties,
@@ -38,7 +38,36 @@ const BlogDetailsPage: FC<IProperties> = ({ id }) => {
   const [comments, setComments] =
     useState<Omit<CommentProperties, "session">[]>(sampleComments);
 
-  const post = articlesData.find((item) => item.id === id);
+  // const post = articlesData.find((item) => item.id === id);
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [post, setPost] = useState<{
+    title: string,
+    avatar: string,
+    thumbnail: string,
+    author: string,
+    minsRead: string,
+    datePublished: string
+  }>()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch(
+          `https://staging.api-csharp.boilerplate.hng.tech/api/v1/blogs/${id}`
+        );
+        const result = await response.json();
+        setPost(result.data);
+        console.log(result.data)
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [])
 
   const handleSubmit = () => {
     if (newComment.trim()) {
