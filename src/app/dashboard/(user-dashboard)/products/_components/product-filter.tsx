@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import { AnimatePresence, motion } from "framer-motion";
 import { Filter, Grid, List, Search } from "lucide-react";
 import { Dispatch, SetStateAction, useEffect, useRef } from "react";
@@ -101,7 +102,7 @@ const ProductFilter = ({ view, setView }: ProductFilterProperties) => {
           onClick={() => updateFilterModal(!isOpenFilterModal)}
           ref={filterTriggerReference}
           variant="outline"
-          className="flex items-center gap-3 text-sm md:text-md"
+          className="md:text-md flex items-center gap-3 text-sm"
         >
           <Filter className="size-5" />
           <span className="hidden min-[500px]:inline">Filter by Status</span>
