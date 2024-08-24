@@ -1,7 +1,7 @@
 "use client";
 
 import { AxiosResponse } from "axios";
-import { EllipsisIcon } from "lucide-react";
+import { EllipsisIcon, SearchIcon } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -139,16 +139,16 @@ const Members = () => {
   };
 
   return (
-    <div className="ml-4 w-5/6 space-x-4 text-[#0A0A0A]">
+    <div className="ml-4 w-5/6 space-x-4 space-y-6 text-[#0A0A0A]">
       <div className="border-b border-[#CBD5E1] p-4">
         <h2 className="text-2xl font-semibold">Members</h2>
         <p className="text-sm text-[#525252]">
           Manage who has access to this workspace
         </p>
       </div>
-      <div className="flex flex-col justify-between space-y-2 p-4 text-sm">
+      <div className="flex flex-col justify-between space-y-4 text-sm">
         <div className="flex w-full items-center justify-between">
-          <div>
+          <div className="space-y-2">
             <p className="font-bold">Invite Link</p>
             <p>
               This provides a unique URL that allows anyone to join your
@@ -194,7 +194,12 @@ const Members = () => {
       </div>
       <div className="my-8 flex justify-between">
         <div className="flex gap-4">
-          <Input placeholder="Search by name or email" />
+          <div className="relative">
+            <Input placeholder="Search by name or email" className="pl-8" />
+            <span className="absolute inset-0 left-2 w-max place-content-center">
+              <SearchIcon className="size-4" />
+            </span>
+          </div>
           <Select>
             <SelectTrigger className="w-[100px] bg-white">
               <SelectValue placeholder="All" />
