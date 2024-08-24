@@ -15,8 +15,10 @@ export default function AdminLayout({
       <UserNavbar />
       <div className="relative mx-auto w-full bg-white max-lg:overflow-hidden xl:px-4">
         <div className="flex">
-          <SettingsSidebar />
-          <div className="w-full p-4">
+          <div className="shrink-0">
+            <SettingsSidebar />
+          </div>
+          <div className="w-[calc(100%_-_50px)] flex-1">
             <Suspense>{children}</Suspense>
           </div>
         </div>{" "}
