@@ -29,7 +29,7 @@ const BlogHome = () => {
               labelClassName={post.labelClassName}
               onClick={() => {
                 localStorage.setItem("currentBlogPost", JSON.stringify(post));
-                router.push(`/blog/$?id=${post.id}`);
+                router.push(`/blog/${post.id}`);
               }}
             />
           ))}
