@@ -46,19 +46,23 @@ const LatestArticlesPage = () => {
             })}
         </div>
 
-        <div className="mt-10">
-          <div className="mx-auto w-fit">
-            <CustomButton
-              variant="primary"
-              size="lg"
-              isLoading={false}
-              isDisabled={false}
-              className="hover:bg-destructive"
-            >
-              Load more
-            </CustomButton>
+        {articlesData.length > 5 ? (
+          <div className="mt-10">
+            <div className="mx-auto w-fit">
+              <CustomButton
+                variant="primary"
+                size="lg"
+                isLoading={false}
+                isDisabled={false}
+                className="hover:bg-destructive"
+              >
+                Load more
+              </CustomButton>
+            </div>
           </div>
-        </div>
+        ) : (
+          <span></span>
+        )}
       </main>
     </>
   );
