@@ -9,7 +9,7 @@ const layout: FC<Iproperties> = ({ children }) => {
   return (
     <div className="grid grid-cols-[auto_1fr]">
       <SettingsSidebar />
-      <div className="mt-7">{children}</div>
+      <div className="bg-white pt-7">{children}</div>
     </div>
   );
 };
