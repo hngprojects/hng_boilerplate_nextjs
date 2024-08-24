@@ -136,8 +136,9 @@ function CreateNewRolePage() {
     handleSubmit,
     formState: { errors },
     setValue,
+    trigger,
   } = useForm<UseFormInputs>({
-    mode: "onBlur",
+    mode: "onChange",
     resolver: zodResolver(roleSchema),
   });
 
@@ -199,6 +200,10 @@ function CreateNewRolePage() {
     }
   };
 
+  const handleInputChange = (field: keyof UseFormInputs) => {
+    trigger(field);
+  };
+
   return (
     <div className="flex w-full max-w-[682px] flex-col gap-6">
       <div className="flex flex-col gap-2">
@@ -229,17 +234,28 @@ function CreateNewRolePage() {
             <input
               type="text"
               placeholder="e.g: IT Staff"
-              {...register("name")}
-              className="!w-full rounded-md border border-border bg-transparent px-3 py-2 shadow-sm outline-none focus:border-primary focus:ring-ring md:w-56"
+              {...register("name", {
+                onChange: () => handleInputChange("name"),
+              })}
+              className={`!w-full rounded-md border ${
+                errors.name ? "border-red-500" : "border-border"
+              } bg-transparent px-3 py-2 shadow-sm outline-none focus:border-primary focus:ring-ring md:w-56`}
             />
+            {errors.name && (
+              <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>
+            )}
           </div>
+
           <div className="flex w-full max-w-[620px] flex-col gap-2">
             <label className="block text-left text-base font-bold text-neutral-dark-2">
               Permissions
             </label>
             <div className="flex flex-col gap-0.5">
               <Select
-                onValueChange={(value) => setPermissions(JSON.parse(value))}
+                onValueChange={(value) => {
+                  setPermissions(JSON.parse(value));
+                  trigger("permissions");
+                }}
               >
                 <SelectTrigger className="!text-left">
                   <SelectValue
@@ -261,7 +277,9 @@ function CreateNewRolePage() {
                 </SelectContent>
               </Select>
               {errors.permissions && (
-                <p className="text-red-500">Please select valid permissions.</p>
+                <p className="mt-1 text-sm text-red-500">
+                  {errors.permissions.message}
+                </p>
               )}
             </div>
           </div>
@@ -271,9 +289,18 @@ function CreateNewRolePage() {
             </label>
             <textarea
               placeholder="describe role"
-              {...register("description")}
-              className="min-h-20 w-full resize-none rounded-md border border-border bg-transparent px-3 py-2 shadow-sm outline-none focus:border-primary focus:ring-ring"
+              {...register("description", {
+                onChange: () => handleInputChange("description"),
+              })}
+              className={`min-h-20 w-full resize-none rounded-md border ${
+                errors.description ? "border-red-500" : "border-border"
+              } bg-transparent px-3 py-2 shadow-sm outline-none focus:border-primary focus:ring-ring`}
             />
+            {errors.description && (
+              <p className="mt-1 text-sm text-red-500">
+                {errors.description.message}
+              </p>
+            )}
           </div>
         </div>
         <div className="flex gap-x-6">
