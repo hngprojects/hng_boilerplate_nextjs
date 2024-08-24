@@ -1,5 +1,6 @@
-import ProductCard from "../_components/productcadrcomponent";
 import productimage from "/public/images/productimage.png";
+
+import ProductCard from "../_components/productcadrcomponent";
 
 const Home: React.FC = () => {
   return (
