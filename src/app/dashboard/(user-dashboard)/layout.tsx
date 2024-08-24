@@ -21,7 +21,7 @@ export default function AdminLayout({
           <div className="w-[calc(100%_-_50px)] flex-1">
             <Suspense>{children}</Suspense>
           </div>
-        </div>{" "}
+        </div>
       </div>
     </div>
   );
