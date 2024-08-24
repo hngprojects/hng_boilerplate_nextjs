@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { ChangeEvent, FormEvent, useState } from "react";
 
+import Image from "next/image";
+import Link from "next/link";
 import user from "../../../../../../public/images/user.png";
 
 const Discard = () => {
@@ -315,15 +315,17 @@ const ProductDetail = () => {
             </div>
 
             <div className="">
-              {/*availablelity*/}
-              <div className="rounded-md bg-white p-4 shadow-md">
-                <h2 className="mt-2 text-lg font-semibold">Archive</h2>
-                <p className="mb-2 text-sm text-gray-500">Archive a product.</p>
-                <hr className="my-3" />
-                <button className="mb-4 w-full rounded-md bg-gray-200 px-4 py-2">
-                  Archive Product 2
-                </button>
+              <div className="mb-6 rounded-md bg-white p-4 shadow-md">
+                <h2 className="text-lg font-semibold">Status</h2>
+                <p className="mb-2 text-sm text-gray-500">Availability</p>
+                <hr className="my-4" />
+                <select className="mb-4 w-full rounded-md border border-gray-300 p-2 outline-none">
+                  <option>In Stock</option>
+                  <option>Out of Stock</option>
+                  <option>Low in Stock</option>
+                </select>
               </div>
+
             </div>
           </div>
         </div>
