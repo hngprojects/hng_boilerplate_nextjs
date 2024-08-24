@@ -69,7 +69,7 @@ const Faq = () => {
           )}
         </div>
 
-        <div className="aspect-w-5 mx-auto aspect-h-5 w-[80%] border border-primary-70 mt-3">
+        <div className="aspect-w-5 aspect-h-5 border-primary-70 mx-auto mt-3 w-[80%] border">
           <video
             ref={videoReference}
             className="h-[80%] w-full object-cover"

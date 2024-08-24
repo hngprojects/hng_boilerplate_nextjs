@@ -1,45 +1,44 @@
-"use client"
-import React, { useState, useEffect, useRef } from 'react';
+"use client";
+
 import { useTranslations } from "next-intl";
+import React, { useEffect, useRef, useState } from "react";
+
 import { Easy, Prebuilt, Scalable } from "./svgs";
 
 const HowItWorks: React.FC = () => {
   const t = useTranslations("howItWorks");
   const [showVideo, setShowVideo] = useState(true);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutReference = useRef<NodeJS.Timeout | null>(null);
 
   const handleCloseVideo = () => {
     setShowVideo(false);
     // Set a timeout to show the video again after 5 minutes (300000 ms)
-    timeoutRef.current = setTimeout(() => setShowVideo(true), 3000);
+    timeoutReference.current = setTimeout(() => setShowVideo(true), 3000);
   };
 
   useEffect(() => {
     return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
+      if (timeoutReference.current) {
+        clearTimeout(timeoutReference.current);
       }
     };
   }, []);
 
   return (
-    <div className="bg-[#ffffff] py-20 relative">
+    <div className="relative bg-[#ffffff] py-20">
       {showVideo && (
-        <div className="fixed right-0 top-3/4 transform -translate-y-1/2 z-50 bg-white p-4 shadow-lg transition-all duration-300 ease-in-out">
+        <div className="fixed right-0 top-3/4 z-50 -translate-y-1/2 transform bg-white p-4 shadow-lg transition-all duration-300 ease-in-out">
           <button
             onClick={handleCloseVideo}
-            className="absolute bg-black w-5 h-5 justify-center items-center text-[12px] rounded-full z-30 top-2 right-2 text-white hover:text-gray-200"
+            className="absolute right-2 top-2 z-30 h-5 w-5 items-center justify-center rounded-full bg-black text-[12px] text-white hover:text-gray-200"
           >
             X
           </button>
-          <video
-            className="w-72 h-auto"
-            loop
-            autoPlay
-
-            playsInline
-          >
-            <source src="/freecompress-copy_C1FFA9B1-6325-4D47-83FC-232E47D8EE10.mp4" type="video/mp4" />
+          <video className="h-auto w-72" loop autoPlay playsInline>
+            <source
+              src="/freecompress-copy_C1FFA9B1-6325-4D47-83FC-232E47D8EE10.mp4"
+              type="video/mp4"
+            />
             Your browser does not support the video tag.
           </video>
         </div>
@@ -60,11 +59,11 @@ const HowItWorks: React.FC = () => {
 
           <div className="flex w-full flex-col items-end md:items-start lg:w-2/5">
             <div className="mb-9 flex space-x-5">
-//               <div>
-//                 <Prebuilt />
-//               </div>
-//               <div>
-//                 <h3
+              <div>
+                <Prebuilt />
+              </div>
+              <div>
+                <h3
                   className="font-inter mb-2 text-lg font-bold md:text-xl"
                   data-testid="prebuilt"
                 >
@@ -122,9 +121,6 @@ const HowItWorks: React.FC = () => {
         </div>
       </div>
     </div>
-    //   </div>
-    // </div>
-    // </div>
   );
 };
 
