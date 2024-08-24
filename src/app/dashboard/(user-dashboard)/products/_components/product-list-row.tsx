@@ -143,11 +143,11 @@ export function ProductListRow({
                 isBottomRow ? "bottom-[3.7rem]" : "-bottom-[5.5rem]",
               )}
             >
-              <span className="border-b border-gray-200 px-2 py-2 text-sm font-semibold text-neutral-dark-2 md:px-4">
+              <span className="border-b border-gray-200 px-2 py-2 text-sm font-bold text-neutral-dark-2 md:px-4">
                 Actions
               </span>
               <div className="flex flex-col">
-                <Button
+              <Button
                   variant="ghost"
                   onClick={onEdit}
                   size={"sm"}
@@ -168,7 +168,6 @@ export function ProductListRow({
                   )}
                 >
                   <Trash className={cn("size-4")} />
-
                   <span>Delete</span>
                 </Button>
               </div>
