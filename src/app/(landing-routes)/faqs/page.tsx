@@ -78,7 +78,7 @@ const Faq = () => {
             controls
           >
             <source
-              src="/freecompress-copy_C1FFA9B1-6325-4D47-83FC-232E47D8EE10.mp4"
+              src="/videos/freecompress-copy_C1FFA9B1-6325-4D47-83FC-232E47D8EE10.mp4"
               type="video/mp4"
             />
             Your browser does not support the video tag.

@@ -35,7 +35,7 @@ const HowItWorks: React.FC = () => {
           </button>
           <video className="h-auto w-72" loop autoPlay muted playsInline>
             <source
-              src="/freecompress-Boilerplate Ad Video.mp4"
+              src="/videos/freecompress-Boilerplate Ad Video.mp4"
               type="video/mp4"
             />
             Your browser does not support the video tag.
