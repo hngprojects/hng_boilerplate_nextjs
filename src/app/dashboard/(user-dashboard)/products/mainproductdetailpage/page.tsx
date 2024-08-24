@@ -1,8 +1,10 @@
 "use client";
 
+import { ChangeEvent, FormEvent, useState } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
-import { ChangeEvent, FormEvent, useState } from "react";
+import user from "../../../../../../public/images/user.png";
 
 const Discard = () => {
   alert("Changes discard");
@@ -338,7 +340,24 @@ const ProductDetail = () => {
 
       <div className="mt-8 rounded-md bg-white p-4 shadow-md">
         <h2 className="mb-4 text-lg font-semibold">Comments</h2>
-        {/*comment and reply*/}
+        {comments.map((comment, index) => (
+          <div key={index} className="mb-4">
+            <div className="mb-2 flex items-center">
+              <Image
+                src={user}
+                alt="User Avatar"
+                width={40}
+                height={40}
+                className="rounded-full"
+              />
+              <div className="ml-4">
+                <p className="font-semibold">{comment.name}</p>
+                <p className="text-sm text-gray-500">{`${comment.date} ${comment.time}`}</p>
+              </div>
+            </div>
+            <p className="text-sm text-gray-700">{comment.comment}</p>
+          </div>
+        ))}
         <textarea
           className="w-full rounded-md border-[1px] border-orange-500 bg-[#FAFAFA] p-2 focus:outline-none"
           rows={4}
