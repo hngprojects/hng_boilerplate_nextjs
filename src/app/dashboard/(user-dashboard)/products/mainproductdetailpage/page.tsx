@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/Link";
+import Link from "next/link";
 import { ChangeEvent, FormEvent, useState } from "react";
 
 import user from "../../../../../../public/images/user.png";
