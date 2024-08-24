@@ -36,6 +36,7 @@ import { useLocalStorage } from "~/hooks/use-local-storage";
 import { cn } from "~/lib/utils";
 import { productSchema } from "~/schemas";
 import { CloudinaryAsset } from "~/types";
+import DollarIcon from "../_components/form-images/icon";
 import { CATEGORIES } from "../data/categories.mock";
 import { MAX_CHAR } from "./schema/schema";
 
@@ -307,7 +308,8 @@ const NewProductModal = () => {
                       name="price"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="hidden font-medium text-neutral-dark-2 min-[376px]:inline">
+                          <FormLabel className="hidden items-center gap-3 font-medium text-neutral-dark-2 min-[376px]:flex">
+                            <DollarIcon />
                             Price<span className="text-red-500">*</span>
                           </FormLabel>
                           <FormControl>

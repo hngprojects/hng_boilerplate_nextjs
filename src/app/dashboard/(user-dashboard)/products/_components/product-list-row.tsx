@@ -147,7 +147,7 @@ export function ProductListRow({
                 Actions
               </span>
               <div className="flex flex-col">
-              <Button
+                <Button
                   variant="ghost"
                   onClick={onEdit}
                   size={"sm"}
