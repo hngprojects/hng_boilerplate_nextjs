@@ -131,23 +131,23 @@ const Footer = () => {
   const socialLinks = [
     {
       icon: XIcon,
-      link: "/",
+      link: "https://twitter.com/hnginternship",
     },
     {
       icon: Youtube,
-      link: "/",
+      link: "https://youtube.com",
     },
     {
       icon: Instagram,
-      link: "/",
+      link: "https://instagram.com/hngtech",
     },
     {
       icon: Linkedin,
-      link: "/",
+      link: "https://linkedin.com/company/hng-internship/",
     },
     {
       icon: Facebook,
-      link: "/",
+      link: " https://m.facebook.com/hngtech/",
     },
   ];
 
@@ -302,12 +302,15 @@ const Footer = () => {
             <div className="flex w-full max-w-[116px] items-center justify-between gap-1 md:max-w-[212px]">
               {socialLinks.map((item, index) => {
                 return (
-                  <div
+                  <Link
                     key={index}
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex h-5 w-5 cursor-pointer items-center justify-center rounded-full bg-primary p-1 hover:bg-destructive md:h-10 md:w-10"
                   >
                     <item.icon className="h-[10px] w-[10px] text-white md:h-4 md:w-4" />
-                  </div>
+                  </Link>
                 );
               })}
             </div>
