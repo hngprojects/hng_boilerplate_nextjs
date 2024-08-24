@@ -127,7 +127,7 @@ export const roleSchema = z.object({
     .string()
     .min(2, { message: "Name is required" })
     .max(50, { message: "Name must be 50 characters or less" })
-    .regex(/^[a-zA-Z0-9 .,!?()-]+$/, {
+    .regex(/^[\d !(),.?A-Za-z-]+$/, {
       message:
         "Name can only include letters, numbers, spaces, and common punctuation marks",
     }),
@@ -135,7 +135,7 @@ export const roleSchema = z.object({
     .string()
     .min(10, { message: "Role description must be at least 10 characters" })
     .max(200, { message: "Role description must be 200 characters or less" })
-    .regex(/^[a-zA-Z0-9 .,!?()-]+$/, {
+    .regex(/^[\d !(),.?A-Za-z-]+$/, {
       message:
         "Description can only include letters, numbers, spaces, and common punctuation marks",
     }),
