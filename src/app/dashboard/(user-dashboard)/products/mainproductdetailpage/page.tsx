@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { ChangeEvent, FormEvent, useState } from "react";
 
+import Image from "next/image";
+import Link from "next/link";
 import user from "../../../../../../public/images/user.png";
 
 const Discard = () => {
@@ -274,6 +274,10 @@ const ProductDetail = () => {
                   </tr>
                 </tbody>
               </table>
+
+              <button className="my-2 mt-4 cursor-pointer rounded-md border-[1px] bg-white px-4 py-2">
+                Add a Variant
+              </button>
             </div>
           </div>
 
@@ -309,10 +313,9 @@ const ProductDetail = () => {
                 </label>
               </div>
             </div>
-            {/**variant*/}
 
             <div className="">
-              {/*available*/}
+              {/*availablelity*/}
               <div className="rounded-md bg-white p-4 shadow-md">
                 <h2 className="mt-2 text-lg font-semibold">Archive</h2>
                 <p className="mb-2 text-sm text-gray-500">Archive a product.</p>
