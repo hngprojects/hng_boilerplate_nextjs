@@ -275,9 +275,7 @@ const ProductDetail = () => {
                 </tbody>
               </table>
 
-              <div className="my-2 mt-4 w-[140px] cursor-pointer rounded-md border-[1px] bg-white px-4 py-2">
-                Add a Variant
-              </div>
+
             </div>
           </div>
 
@@ -312,19 +310,10 @@ const ProductDetail = () => {
                   +
                 </label>
               </div>
-            </div>
+            </div>{/**variant*/}
 
             <div className="">
-              <div className="mb-6 rounded-md bg-white p-4 shadow-md">
-                <h2 className="text-lg font-semibold">Status</h2>
-                <p className="mb-2 text-sm text-gray-500">Availability</p>
-                <hr className="my-4" />
-                <select className="mb-4 w-full rounded-md border border-gray-300 p-2 outline-none">
-                  <option>In Stock</option>
-                  <option>Out of Stock</option>
-                  <option>Low in Stock</option>
-                </select>
-              </div>
+              {/*available*/}
               <div className="rounded-md bg-white p-4 shadow-md">
                 <h2 className="mt-2 text-lg font-semibold">Archive</h2>
                 <p className="mb-2 text-sm text-gray-500">Archive a product.</p>
