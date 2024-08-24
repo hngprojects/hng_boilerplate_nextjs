@@ -2,8 +2,8 @@
 
 import { AxiosResponse } from "axios";
 import { EllipsisIcon } from "lucide-react";
-import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 import { fetchOrganizationUsers } from "~/actions/inviteMembers";
 import CustomButton from "~/components/common/common-button/common-button";
