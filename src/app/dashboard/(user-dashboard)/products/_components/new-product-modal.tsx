@@ -152,7 +152,7 @@ const NewProductModal = () => {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="hidden font-medium text-neutral-dark-2 min-[376px]:inline">
-                            Name<span className="text-red-500">*</span>
+                            Title<span className="text-red-500">*</span>
                           </FormLabel>
                           <FormControl>
                             <Input
