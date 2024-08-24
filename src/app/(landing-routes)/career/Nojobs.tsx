@@ -1,61 +1,174 @@
+"use client";
+
+import axios from "axios";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
+import { useState } from "react";
+
+import { getApiUrl } from "~/actions/getApiUrl";
+import CustomButton from "~/components/common/common-button/common-button";
+import { Input } from "~/components/common/input";
+import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "~/components/ui/dialog";
+import { useToast } from "~/components/ui/use-toast";
+import noJob from "../../../../public/images/career/noJob.svg";
 
 function Nojobs() {
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const { toast } = useToast();
+
   const t = useTranslations("noJobs");
+
+  const locale = localStorage.getItem("preferredLanguage");
+  const toastDesc =
+    locale === "fr"
+      ? "Veuillez fournir votre e-mail"
+      : locale === "es"
+        ? "Por favor, proporcione su correo electrónico"
+        : "Please provide a valid email";
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const isValidEmail = (email: string): boolean => emailRegex.test(email);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleSubmit = async () => {
+    if (!isValidEmail(email)) {
+      setError(true);
+
+      toast({
+        title: "Error",
+        description: toastDesc,
+        variant: "destructive",
+      });
+      return;
+    }
+    setLoading(true);
+
+    const apiUrl = await getApiUrl();
+    await axios
+      .post(
+        `${apiUrl}/api/v1/newsletter-subscription`,
+        { email },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      )
+      .then(() => {
+        toast({
+          title: "Thank you for subscribing!",
+          description:
+            "You've successfully joined our newsletter. We're excited to keep you updated with our latest news and offers!",
+          variant: "default",
+        });
+        setIsOpen(false);
+        setLoading(false);
+        setEmail("");
+        setIsSubscribed(true);
+      })
+      .catch((error) => {
+        if (error?.response) {
+          const errorData = error.response.data;
+          if (errorData.status_code === 400) {
+            toast({
+              title: "You're already subscribed!",
+              description:
+                "It looks like you're already on our list. Thank you for being part of our community!",
+              variant: "default",
+            });
+          } else {
+            toast({
+              title: "Oops! Something went wrong.",
+              description:
+                "We encountered an issue while trying to subscribe you to our newsletter. Check your internet connection or contact support if the problem persists.",
+              variant: "destructive",
+            });
+            setLoading(false);
+          }
+          setLoading(false);
+          return;
+        }
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
   return (
     <div>
       <div className="flex items-center justify-center">
-        <svg
-          width="340"
-          height="329"
-          viewBox="0 0 340 329"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            opacity="0.24"
-            d="M275.084 274.158C229.24 329.502 119.125 305.246 65.2968 258.112C11.4691 210.978 24.562 120.003 70.4056 64.6589C116.249 9.31497 216.664 11.1046 270.492 58.2395C324.32 105.374 320.928 218.814 275.084 274.158Z"
-            fill="#EAB308"
-            fillOpacity="0.4"
-          />
-          <path
-            opacity="0.24"
-            d="M275.084 274.158C229.24 329.502 119.125 305.246 65.2968 258.112C11.4691 210.978 24.562 120.003 70.4056 64.6589C116.249 9.31497 216.664 11.1046 270.492 58.2395C324.32 105.374 320.928 218.814 275.084 274.158Z"
-            fill="#EAB308"
-            fillOpacity="0.4"
-          />
-          <mask
-            id="mask0_1666_53454"
-            maskUnits="userSpaceOnUse"
-            x="0"
-            y="0"
-            width="340"
-            height="329"
-          >
-            <path d="M339.166 0H0.833984V329H339.166V0Z" fill="white" />
-          </mask>
-          <g mask="url(#mask0_1666_53454)"></g>
-          <path
-            d="M249.646 89.2871C249.646 89.2871 238.421 81.3863 231.351 76.8143C224.283 72.2399 217.215 71.4095 217.215 71.4095C217.215 71.4095 110.777 69.3311 98.3018 69.3311C85.8266 69.3311 84.9962 77.6471 84.9962 77.6471L68.7842 145.001C66.3722 155.061 68.1194 161.798 68.1194 161.798C68.1194 161.798 72.0266 172.277 73.6898 177.432C75.353 182.587 78.929 182.587 78.929 182.587C78.929 182.587 212.059 180.093 216.384 179.925C220.709 179.76 221.955 175.351 221.955 175.351C221.955 175.351 250.061 100.013 251.475 95.6879C252.807 91.3655 249.646 89.2871 249.646 89.2871ZM247.318 96.8543C247.318 96.8543 220.709 169.615 219.046 174.105C217.383 178.596 212.311 178.596 212.311 178.596C212.311 178.596 89.4914 180.924 82.505 181.089C75.521 181.255 78.4298 173.937 78.4298 173.937C78.4298 173.937 98.3882 104.753 100.798 96.9359C103.21 89.1191 112.771 90.1175 112.771 90.1175C112.771 90.1175 235.26 90.9479 242.825 90.8663C250.395 90.8687 247.318 96.8543 247.318 96.8543Z"
-            fill="#F97316"
-          />
-          <path
-            d="M267.608 213.855C261.704 209.614 224.202 182.506 224.202 182.506C224.202 182.506 220.876 179.763 214.972 179.928C209.068 180.094 79.4293 182.506 79.4293 182.506C79.4293 182.506 75.1885 182.59 75.1885 185.998C75.1885 189.408 75.9373 220.591 75.9373 220.591C75.9373 220.591 75.5221 223.169 77.2669 225.665C79.0141 228.159 104.293 266.412 104.293 266.412C104.293 266.412 107.37 271.983 117.431 271.486L258.212 265.082C258.212 265.082 268.441 264.667 269.022 259.344C269.605 254.023 272.348 220.26 272.348 220.26C272.348 220.26 273.512 218.095 267.608 213.855ZM261.121 223.915C261.121 223.915 119.675 229.07 114.27 228.905C108.865 228.739 105.872 224.748 105.872 224.748C105.872 224.748 84.9181 196.142 80.3437 189.739C75.7693 183.336 84.9181 184.251 84.9181 184.251C84.9181 184.251 210.4 181.838 214.057 181.757C217.633 181.673 221.54 184.251 221.54 184.251C221.54 184.251 260.291 212.357 266.279 217.097C272.264 221.837 261.121 223.915 261.121 223.915Z"
-            fill="#F97316"
-          />
-          <path
-            d="M200.835 57.3552C206.405 57.3552 211.064 60.432 209.151 65.8368L204.495 76.6464H194.931L199.587 65.8368C199.671 65.5872 199.421 65.3376 199.172 65.3376L153.104 64.5072C152.854 64.5072 152.52 64.7568 152.439 65.0064L147.783 76.6488H138.219L142.875 65.0064C144.953 59.5176 149.194 57.3552 154.767 57.3552H200.835Z"
-            fill="#F97316"
-          />
-        </svg>
+        <Image src={noJob} alt="No Job" />
       </div>
 
       <h3 className="font-inter mb-1 text-center text-[22px] font-semibold leading-normal text-neutral-800 sm:w-[auto]">
         {t("noJobsTitle")}
       </h3>
       <p className="font-inter text-wrap text-center text-[16px] font-normal leading-normal text-neutral-600 sm:text-[18px]">
-        {t("noJobsContent")}
+        {isSubscribed ? t("subscribed") : t("noJobsContent")}
       </p>
+
+      {!isSubscribed && (
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+          <DialogTrigger asChild>
+            <div className="mt-4 flex justify-center">
+              <button className="rounded bg-primary px-6 py-4 text-background hover:bg-destructive">
+                {t("button")}
+              </button>
+            </div>
+          </DialogTrigger>
+
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>{t("modalTitle")}</DialogTitle>
+              <DialogDescription>{t("noJobsContent")}</DialogDescription>
+            </DialogHeader>
+
+            <div className="">
+              <div className="item flex h-[46px] w-full items-center justify-start">
+                <div className="flex grow flex-col gap-0.5">
+                  <Input
+                    name="email"
+                    placeholder={t("placeholder")}
+                    className={`border-r-none text-md h-[46px] rounded-r-none border-r-0 border-r-transparent bg-transparent active:border-transparent ${error && "!border-red-500"}`}
+                    onChange={(event) => setEmail(event.target.value)}
+                    value={email}
+                    onBlur={() =>
+                      email.length === 0 ? setError(true) : setError(false)
+                    }
+                  />
+                </div>
+                <CustomButton
+                  variant="primary"
+                  className="h-full transition-all hover:bg-primary/80"
+                  onClick={handleSubmit}
+                >
+                  {loading ? (
+                    <LoadingSpinner className="size-4 animate-spin sm:size-5" />
+                  ) : (
+                    t("modalButton")
+                  )}
+                </CustomButton>
+              </div>
+              {error && (
+                <small className="mt-0.5 block text-xs text-red-500">
+                  {t("error")}
+                </small>
+              )}
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
     </div>
   );
 }
