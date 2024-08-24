@@ -3,16 +3,19 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
 import { signIn, useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next-nprogress-bar";
 import Link from "next/link";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+import { getApiUrl } from "~/actions/getApiUrl";
 import { registerUser, resendOtp, verifyOtp } from "~/actions/register";
 import CustomButton from "~/components/common/common-button/common-button";
 import { Input } from "~/components/common/input";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
+import { Checkbox } from "~/components/ui/checkbox";
 import {
   Dialog,
   DialogContent,
@@ -39,6 +42,7 @@ import { RegisterSchema } from "~/schemas";
 import { formatTime, maskEmail } from "~/utils";
 
 const Register = () => {
+  const t = useTranslations("register");
   const router = useRouter();
   const { toast } = useToast();
   const { status } = useSession();
@@ -47,6 +51,7 @@ const Register = () => {
   const [showOtp, setShowOtp] = useState(false);
   const [timeLeft, setTimeLeft] = useState<number>(15 * 60);
   const [value, setValue] = useState("");
+  const [createOrg, setCreateOrg] = useState<boolean>(false);
 
   if (status === "authenticated") {
     router.push("/dashboard");
@@ -63,19 +68,58 @@ const Register = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
+    const apiUrl = await getApiUrl();
+
     startTransition(async () => {
       await registerUser(values).then(async (data) => {
         if (data.status === 201) {
-          router.push("/login");
-        }
+          // Handle redirection based on createOrg condition
+          if (createOrg) {
+            router.push("/register/organisation");
+          } else {
+            router.push("/login");
+          }
 
-        toast({
-          title:
-            data.status === 201
-              ? "Account created successfully"
-              : "an error occurred",
-          description: data.status === 201 ? "verify your account" : data.error,
-        });
+          toast({
+            title: "Account created successfully",
+            description: "Verify your account",
+          });
+
+          const emailTemplateId = data?.data?.email_template_id;
+
+          // Check if the email_template_id is provided
+          if (emailTemplateId) {
+            const emailData = {
+              template_id: emailTemplateId,
+              subject: "Welcome to Our Service!",
+              recipient: values.email,
+              variables: JSON.stringify({ name: values.first_name }),
+              status: "pending",
+            };
+
+            try {
+              const response = await fetch(`${apiUrl}/api/v1/email-requests`, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(emailData),
+              });
+
+              const emailResult = await response.json();
+              if (emailResult.status !== "success") {
+                throw new Error(emailResult.message || "Email sending failed");
+              }
+            } catch {
+              // Handle error, possibly show a toast notification or log it
+            }
+          }
+        } else {
+          toast({
+            title: "An error occurred",
+            description: data.error,
+          });
+        }
       });
     });
   };
@@ -125,10 +169,10 @@ const Register = () => {
       <div className="w-full max-w-md space-y-6">
         <div className="text-center">
           <h1 className="font-inter text-neutralColor-dark-2 mb-5 text-center text-2xl font-semibold leading-tight">
-            Sign Up
+            {t("signUp")}
           </h1>
           <p className="font-inter text-neutralColor-dark-2 mt-2 text-center text-sm font-normal leading-6">
-            Create an account to get started with us.
+            {t("createAccountDesc")}
           </p>
         </div>
         <div className="flex flex-col justify-center space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
@@ -163,7 +207,7 @@ const Register = () => {
               </svg>
             }
           >
-            Continue with Google
+            {t("continueWithGoogle")}
           </CustomButton>
         </div>
         <div className="flex items-center justify-center">
@@ -181,13 +225,13 @@ const Register = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-neutralColor-dark-2">
-                    First Name
+                    {t("firstName")}
                   </FormLabel>
                   <FormControl>
                     <Input
                       type="text"
                       disabled={isLoading}
-                      placeholder="Enter your first name"
+                      placeholder={`${t("firstNamePlaceholder")}`}
                       {...field}
                       className={cn(
                         "font-inter w-full rounded-md border px-3 py-6 text-sm font-normal leading-[21.78px] transition duration-150 ease-in-out focus:outline-none",
@@ -206,13 +250,13 @@ const Register = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-neutralColor-dark-2">
-                    Last Name
+                    {t("lastName")}
                   </FormLabel>
                   <FormControl>
                     <Input
                       type="text"
                       disabled={isLoading}
-                      placeholder="Enter your last name"
+                      placeholder={`${t("lastNamePlaceholder")}`}
                       {...field}
                       className={cn(
                         "font-inter w-full rounded-md border px-3 py-6 text-sm font-normal leading-[21.78px] transition duration-150 ease-in-out focus:outline-none",
@@ -230,13 +274,13 @@ const Register = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-neutralColor-dark-2">
-                    Email
+                    {t("email")}
                   </FormLabel>
                   <FormControl>
                     <Input
                       type="email"
                       disabled={isLoading}
-                      placeholder="Enter Email Address"
+                      placeholder={`${t("emailPlaceholder")}`}
                       {...field}
                       className={cn(
                         "font-inter w-full rounded-md border px-3 py-6 text-sm font-normal leading-[21.78px] transition duration-150 ease-in-out focus:outline-none",
@@ -254,14 +298,14 @@ const Register = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-neutralColor-dark-2">
-                    Password
+                    {t("password")}
                   </FormLabel>
                   <FormControl>
                     <div className="relative">
                       <Input
                         disabled={isLoading}
                         type={showPassword ? "text" : "password"}
-                        placeholder="Enter Password"
+                        placeholder={`${t("paswwordPlaceholder")}`}
                         {...field}
                         className={cn(
                           "font-inter w-full rounded-md border px-3 py-6 text-sm font-normal leading-[21.78px] transition duration-150 ease-in-out focus:outline-none",
@@ -292,6 +336,18 @@ const Register = () => {
                 </FormItem>
               )}
             />
+            <div
+              className="flex items-center gap-2"
+              onClick={() => setCreateOrg((a) => !a)}
+            >
+              <Checkbox id="createOrg" />
+              <label
+                htmlFor="createOrg"
+                className="font-inter ms-1 text-center text-sm leading-[19.2px] hover:cursor-pointer"
+              >
+                Also create an organisation
+              </label>
+            </div>
             <CustomButton
               type="submit"
               variant="primary"
@@ -301,11 +357,11 @@ const Register = () => {
             >
               {isLoading ? (
                 <span className="flex items-center gap-x-2">
-                  <span className="animate-pulse">Logging in...</span>{" "}
+                  <span className="animate-pulse">{t("loggingIn")}</span>{" "}
                   <LoadingSpinner className="size-4 animate-spin sm:size-5" />
                 </span>
               ) : (
-                <span>Create Account</span>
+                <span>{t("createAccount")}</span>
               )}
             </CustomButton>
           </form>
@@ -318,16 +374,18 @@ const Register = () => {
           >
             <DialogHeader>
               <DialogTitle className="w-full text-center text-xl font-bold text-[#0F172A]">
-                Email Verification
+                {t("emailVerification")}
               </DialogTitle>
               <DialogDescription className="flex flex-col items-center text-[#0F172A]">
                 <p className="text-base font-medium text-[#0F172A]">
-                  We have sent a code to your email{" "}
+                  {t("emailVerificationDesc")}{" "}
                   {maskEmail(form.getValues().email)}
                 </p>
                 <div className="flex flex-col items-center text-base">
-                  <span>check your spam if you do not recive the email</span>
-                  <span>OTP expires in: {formatTime(timeLeft)}</span>
+                  <span>{t("checkSpam")}</span>
+                  <span>
+                    {t("otpExpiresIn")}: {formatTime(timeLeft)}
+                  </span>
                 </div>
               </DialogDescription>
             </DialogHeader>
@@ -349,7 +407,7 @@ const Register = () => {
 
             <div className="flex flex-col items-center">
               <p className="text-xs text-gray-500">
-                Didn&apos;t receive the code?{" "}
+                {t("resendCode")}{" "}
                 <span
                   className="cursor-pointer text-orange-500"
                   onClick={() => resendOtpreq()}
@@ -359,14 +417,13 @@ const Register = () => {
               </p>
             </div>
             <p className="text-center text-xs text-gray-500">
-              We would process your data as set forth in our Terms of Use,
-              Privacy Policy and Data Processing Agreement
+              {t("dataProcessing")}
             </p>
           </DialogContent>
         </Dialog>
 
         <p className="font-inter text-neutralColor-dark-1 mt-5 text-center text-sm font-normal leading-[15.6px]">
-          Already Have An Account?{" "}
+          {t("alreadyHaveAccount")}{" "}
           <Link
             href="/login"
             className="font-inter ms-1 text-left text-base font-bold leading-[19.2px] text-primary hover:text-orange-400"

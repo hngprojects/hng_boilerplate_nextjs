@@ -22,6 +22,7 @@ import { useToast } from "~/components/ui/use-toast";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
+  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
   const t = useTranslations("footer");
@@ -31,29 +32,27 @@ const Footer = () => {
       ? "Veuillez fournir votre e-mail"
       : locale === "es"
         ? "Por favor, proporcione su correo electrónico"
-        : "Please provide your email";
+        : "Please provide a valid email";
 
-  // handle submit
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const isValidEmail = (email: string): boolean => emailRegex.test(email);
+
   const handleSubmit = async () => {
-    setLoading(true);
+    if (!isValidEmail(email)) {
+      setError(true);
 
-    if (email === "") {
       toast({
         title: "Error",
         description: toastDesc,
         variant: "destructive",
       });
-      setLoading(false);
       return;
     }
+    setLoading(true);
 
-    // const payload = {
-    //   email: values,
-    // };
-
-    try {
-      const apiUrl = await getApiUrl();
-      const response = await axios.post(
+    const apiUrl = await getApiUrl();
+    await axios
+      .post(
         `${apiUrl}/api/v1/newsletter-subscription`,
         { email },
         {
@@ -61,30 +60,40 @@ const Footer = () => {
             "Content-Type": "application/json",
           },
         },
-      );
-      toast({
-        title: "Success",
-        description: response?.data?.message,
-        variant: "default",
+      )
+      .then(() => {
+        toast({
+          title: "Thank you for subscribing!",
+          description:
+            "You've successfully joined our newsletter. We're excited to keep you updated with our latest news and offers!",
+          variant: "default",
+        });
+        setLoading(false);
+        setEmail("");
+      })
+      .catch((error) => {
+        if (error?.response) {
+          const errorData = error.response.data;
+          if (errorData.status_code === 400) {
+            toast({
+              title: "You're already subscribed!",
+              description:
+                "It looks like you're already on our list. Thank you for being part of our community!",
+              variant: "default",
+            });
+          } else {
+            toast({
+              title: "Oops! Something went wrong.",
+              description:
+                "We encountered an issue while trying to subscribe you to our newsletter. Check your internet connection or contact support if the problem persists.",
+              variant: "destructive",
+            });
+            setLoading(false);
+          }
+          setLoading(false);
+          return;
+        }
       });
-      setLoading(false);
-      setEmail("");
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        toast({
-          title: "Error",
-          description: error.message,
-          variant: "destructive",
-        });
-      } else {
-        toast({
-          title: "Error",
-          description: "An unknown error occurred",
-          variant: "destructive",
-        });
-      }
-      setLoading(false);
-    }
   };
 
   const footerLinks = [
@@ -96,6 +105,7 @@ const Footer = () => {
         { route: "career", link: "/career" },
         { route: "features", link: "/" },
         { route: "blog", link: "/blog" },
+        { route: "status", link: "/status" },
       ],
     },
     {
@@ -164,27 +174,36 @@ const Footer = () => {
               <h5 className="text-neurtal-dark-2 text-md mb-4 text-center font-semibold sm:text-left md:mb-[36px]">
                 {t("newsletterSignUp")}
               </h5>
-              <div className="item flex h-[46px] w-full items-center justify-start md:max-w-[283px]">
-                <Input
-                  placeholder="Enter your email"
-                  className="border-r-none text-md h-[46px] rounded-r-none border-r-0 border-r-transparent bg-transparent active:border-transparent"
-                  onChange={(event) => setEmail(event.target.value)}
-                  value={email}
-                />
-                <CustomButton
-                  variant="primary"
-                  className="h-full"
-                  onClick={handleSubmit}
-                >
-                  {loading ? (
-                    <span className="flex items-center gap-x-2">
-                      <span className="animate-pulse">Loading</span>{" "}
+              <div className="">
+                <div className="item flex h-[46px] w-full items-center justify-start md:max-w-[283px]">
+                  <div className="flex flex-col gap-0.5">
+                    <Input
+                      placeholder="Enter your email"
+                      className={`border-r-none text-md h-[46px] rounded-r-none border-r-0 border-r-transparent bg-transparent active:border-transparent ${error && "!border-red-500"}`}
+                      onChange={(event) => setEmail(event.target.value)}
+                      value={email}
+                      onBlur={() =>
+                        email.length === 0 ? setError(true) : setError(false)
+                      }
+                    />
+                  </div>
+                  <CustomButton
+                    variant="primary"
+                    className="h-full transition-all hover:-translate-y-2"
+                    onClick={handleSubmit}
+                  >
+                    {loading ? (
                       <LoadingSpinner className="size-4 animate-spin sm:size-5" />
-                    </span>
-                  ) : (
-                    "Subscibe"
-                  )}
-                </CustomButton>
+                    ) : (
+                      "Subscribe"
+                    )}
+                  </CustomButton>
+                </div>
+                {error && (
+                  <small className="mt-0.5 block text-xs text-red-500">
+                    Please provide your email
+                  </small>
+                )}
               </div>
             </div>
           </div>
@@ -217,27 +236,35 @@ const Footer = () => {
               <h5 className="text-neurtal-dark-2 text-md mb-4 font-semibold md:mb-[36px]">
                 {t("newsletterSignUp")}
               </h5>
-              <div className="item flex h-[46px] w-full max-w-[283px] items-center justify-start">
-                <Input
-                  className="border-r-none h-[46px] rounded-r-none border-r-0 border-r-transparent bg-transparent active:border-transparent"
-                  placeholder={t("enterYourEmail")}
-                  onChange={(event) => setEmail(event.target.value)}
-                  value={email}
-                />
-                <CustomButton
-                  variant="primary"
-                  className="h-full hover:bg-destructive"
-                  onClick={handleSubmit}
-                >
-                  {loading ? (
-                    <span className="flex items-center gap-x-2">
-                      <span className="animate-pulse">Loading</span>{" "}
+
+              <div className="">
+                <div className="item flex h-[46px] w-full max-w-[283px] items-center justify-start">
+                  <Input
+                    className={`border-r-none h-[46px] rounded-r-none border-r-0 border-r-transparent bg-transparent active:border-transparent ${error && "!border-red-500"}`}
+                    placeholder="Enter your email"
+                    onChange={(event) => setEmail(event.target.value)}
+                    value={email}
+                    onBlur={() =>
+                      email.length === 0 ? setError(true) : setError(false)
+                    }
+                  />
+                  <CustomButton
+                    variant="primary"
+                    className="h-full transition-all hover:-translate-y-1 hover:bg-destructive"
+                    onClick={handleSubmit}
+                  >
+                    {loading ? (
                       <LoadingSpinner className="size-4 animate-spin sm:size-5" />
-                    </span>
-                  ) : (
-                    `${t("subscribe")}`
-                  )}
-                </CustomButton>
+                    ) : (
+                      "Subscribe"
+                    )}
+                  </CustomButton>
+                </div>
+                {error && (
+                  <small className="mt-0.5 block text-xs text-red-500">
+                    Please provide your email
+                  </small>
+                )}
               </div>
             </div>
 
