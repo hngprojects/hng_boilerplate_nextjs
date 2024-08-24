@@ -29,16 +29,8 @@ const Password = () => {
     mode: "all",
   });
 
-  const clearPassword = (values: PasswordFormData) => {
-    /*PasswordFormData({
-      oldPassword: "",
-      password: "",
-      confirmPassword: "",
-    });*/
-
-    values.currentPassword = "";
-    values.newPassword = "";
-    values.confirmPassword = "";
+  const clearPassword = () => {
+    reset();
   };
 
   const submitHandler = async (values: PasswordFormData) => {
