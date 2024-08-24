@@ -198,14 +198,14 @@ const Checkout = () => {
             <span className="text- text-xs">
               By submitting this form, you confirm that you agree to our{" "}
               <Link
-                href=""
+                href="/terms-and-conditions"
                 className="font-bold text-primary duration-150 hover:underline"
               >
                 Terms of Service
               </Link>{" "}
               and{" "}
               <Link
-                href=""
+                href="/privacy-policy"
                 className="font-bold text-primary duration-150 hover:underline"
               >
                 Privacy Policy
