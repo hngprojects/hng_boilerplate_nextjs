@@ -121,14 +121,25 @@ export const permissionsSchema = z.object({
   "Can create users": z.boolean(),
   "Can blacklist/whitelist users": z.boolean(),
 });
+
 export const roleSchema = z.object({
-  name: z.string().min(2, {
-    message: "name is required",
-  }),
+  name: z
+    .string()
+    .min(2, { message: "Name is required" })
+    .max(50, { message: "Name must be 50 characters or less" })
+    .regex(/^[\d !(),.?A-Za-z-]+$/, {
+      message:
+        "Name can only include letters, numbers, spaces, and common punctuation marks",
+    }),
+  description: z
+    .string()
+    .min(10, { message: "Role description must be at least 10 characters" })
+    .max(200, { message: "Role description must be 200 characters or less" })
+    .regex(/^[\d !(),.?A-Za-z-]+$/, {
+      message:
+        "Description can only include letters, numbers, spaces, and common punctuation marks",
+    }),
   permissions: z
     .array(z.string().uuid())
     .nonempty("At least one permission must be selected"),
-  description: z.string().min(2, {
-    message: "Role description must be at least 2 characters.",
-  }),
 });
