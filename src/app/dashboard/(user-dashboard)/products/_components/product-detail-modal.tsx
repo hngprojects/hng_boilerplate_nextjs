@@ -2,18 +2,18 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Loader2, X } from "lucide-react";
-import { cn, formatPrice } from "~/lib/utils";
-import { deleteProduct, getProductDetails } from "~/actions/product";
+import { useRouter } from "next-nprogress-bar";
 import { startTransition, useEffect, useState, useTransition } from "react";
 
+import { deleteProduct, getProductDetails } from "~/actions/product";
 import BlurImage from "~/components/miscellaneous/blur-image";
 import { Button } from "~/components/ui/button";
-import { Product } from "~/types";
 import { toast } from "~/components/ui/use-toast";
-import { useLocalStorage } from "~/hooks/use-local-storage";
 import { useOrgContext } from "~/contexts/orgContext";
-import { useRouter } from "next-nprogress-bar";
+import { useLocalStorage } from "~/hooks/use-local-storage";
 import useWindowWidth from "~/hooks/use-window-width";
+import { cn, formatPrice } from "~/lib/utils";
+import { Product } from "~/types";
 
 const variantProperties = {
   left: "50%",

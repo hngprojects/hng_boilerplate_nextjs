@@ -1,6 +1,16 @@
 // components/admin/NewProductModal.tsx
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion } from "framer-motion";
+import { Loader, X } from "lucide-react";
+import Image from "next/image";
+import { useState, useTransition } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+import { createProduct } from "~/actions/product";
+import WordCounter from "~/components/miscellaneous/WordCounter";
+import { Button } from "~/components/ui/button";
 import {
   Form,
   FormControl,
@@ -9,7 +19,8 @@ import {
   FormLabel,
   FormMessage,
 } from "~/components/ui/form";
-import { Loader, X } from "lucide-react";
+import { Input } from "~/components/ui/input";
+import { Label } from "~/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -19,26 +30,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select";
-import { useState, useTransition } from "react";
-
-import { Button } from "~/components/ui/button";
-import { CATEGORIES } from "../data/categories.mock";
-import { CloudinaryAsset } from "~/types";
-import Image from "next/image";
-import { Input } from "~/components/ui/input";
-import { Label } from "~/components/ui/label";
-import { MAX_CHAR } from "./schema/schema";
 import { Textarea } from "~/components/ui/textarea";
-import WordCounter from "~/components/miscellaneous/WordCounter";
-import { cn } from "~/lib/utils";
-import { createProduct } from "~/actions/product";
-import { productSchema } from "~/schemas";
-import { useForm } from "react-hook-form";
-import { useLocalStorage } from "~/hooks/use-local-storage";
-import { useOrgContext } from "~/contexts/orgContext";
 import { useToast } from "~/components/ui/use-toast";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useOrgContext } from "~/contexts/orgContext";
+import { useLocalStorage } from "~/hooks/use-local-storage";
+import { cn } from "~/lib/utils";
+import { productSchema } from "~/schemas";
+import { CloudinaryAsset } from "~/types";
+import { CATEGORIES } from "../data/categories.mock";
+import { MAX_CHAR } from "./schema/schema";
 
 const NewProductModal = () => {
   const { setIsNewModal, isNewModal } = useOrgContext();

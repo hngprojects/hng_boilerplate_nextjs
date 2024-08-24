@@ -1,10 +1,14 @@
 "use client";
 
-import { ChangeEvent, FormEvent, useState } from "react";
-
 import Image from "next/image";
 import Link from "next/Link";
+import { ChangeEvent, FormEvent, useState } from "react";
+
 import user from "../../../../../../public/images/user.png";
+
+const Discard = () => {
+  alert("Changes discard");
+};
 
 const ProductDetail = () => {
   const [textValue, setTextValue] = useState<string>("Product 2");
@@ -22,16 +26,25 @@ const ProductDetail = () => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!textValue.trim() || !messageValue.trim() || !smallQuantity || !standardQuantity || !largeQuantity || !smallPrice || !standardPrice || !largePrice || !largePrice || !image) {
-      alert("Please fill in all the necessary fields including your image before submitting.");
+    if (
+      !textValue.trim() ||
+      !messageValue.trim() ||
+      !smallQuantity ||
+      !standardQuantity ||
+      !largeQuantity ||
+      !smallPrice ||
+      !standardPrice ||
+      !largePrice ||
+      !largePrice ||
+      !image
+    ) {
+      alert(
+        "Please fill in all the necessary fields including your image before submitting.",
+      );
       return;
     }
     alert("Details updated");
-    };
-
-    const Discard = ()=> {
-        alert("Changes discard")
-    }
+  };
 
   const handleSmallQty = (event: ChangeEvent<HTMLInputElement>) => {
     setSmallQuantity(Number(event.target.value));
@@ -57,7 +70,7 @@ const ProductDetail = () => {
     }
   };
 
-    //comment section
+  //comment section
   const [comments, setComments] = useState([
     {
       name: "Adetunji Oluwatobi",
@@ -126,7 +139,10 @@ const ProductDetail = () => {
             <span className="mr-2 text-green-500">● In stock</span>
           </div>
           <div className="mt-5 flex items-center sm:mt-0">
-            <div onClick={Discard} className="mr-2 rounded-md border-[1px] p-2 text-gray-500 disabled">
+            <div
+              onClick={Discard}
+              className="disabled mr-2 rounded-md border-[1px] p-2 text-gray-500"
+            >
               Discard
             </div>
             <button
@@ -259,7 +275,7 @@ const ProductDetail = () => {
                 </tbody>
               </table>
 
-              <div className="w-[140px] cursor-pointer my-2 mt-4 rounded-md border-[1px] bg-white px-4 py-2">
+              <div className="my-2 mt-4 w-[140px] cursor-pointer rounded-md border-[1px] bg-white px-4 py-2">
                 Add a Variant
               </div>
             </div>
@@ -290,8 +306,7 @@ const ProductDetail = () => {
                   <input
                     type="file"
                     accept="image/*"
-                                      onChange={handleImageChange}
-
+                    onChange={handleImageChange}
                     className="hidden"
                   />
                   +
@@ -344,15 +359,15 @@ const ProductDetail = () => {
           </div>
         ))}
         <textarea
-                  className="bg-[#FAFAFA] border-[1px] w-full rounded-md border-orange-500 p-2 focus:outline-none"
+          className="w-full rounded-md border-[1px] border-orange-500 bg-[#FAFAFA] p-2 focus:outline-none"
           rows={4}
           placeholder="Add a comment..."
           value={newComment}
           onChange={handleCommentChange}
         ></textarea>
         <div className="flex justify-end">
-                  <button
-                      onClick={handleCommentSubmit}
+          <button
+            onClick={handleCommentSubmit}
             type="submit"
             className="mt-2 rounded-md bg-orange-500 px-4 py-2 text-white"
           >
