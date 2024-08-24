@@ -13,7 +13,7 @@ interface Properties {
 const TestimonialCard = (properties: Properties) => {
   const t = useTranslations("testimonials");
   return (
-    <div className="flex h-full flex-col items-center justify-center rounded-md border border-solid border-primary bg-white px-5 py-10 text-center sm:h-[500px] md:h-[500px] lg:h-[500px] xl:px-10">
+    <div className="flex h-full transform flex-col items-center justify-center rounded-md border border-solid border-primary bg-white px-5 py-10 text-center transition-transform duration-300 hover:scale-105 sm:h-[500px] md:h-[500px] lg:h-[500px] xl:px-10">
       <p className="font-inter mb-6 text-base font-normal">
         {t(`${properties?.content}`)}
       </p>
