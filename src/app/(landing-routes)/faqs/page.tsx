@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { getFaqs } from "~/actions/externalPages";
 import FaqAccordion from "~/components/layouts/accordion/FaqAccordion";
@@ -18,6 +18,14 @@ interface FaqItem {
 const Faq = () => {
   const [faqs, setFaqs] = useState<FaqItem[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const videoReference = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    if (videoReference.current) {
+      videoReference.current.play();
+    }
+  }, []);
 
   // Get FAQs
   useEffect(() => {
@@ -59,6 +67,22 @@ const Faq = () => {
               )}
             </>
           )}
+        </div>
+
+        <div className="aspect-w-5 mx-auto aspect-h-5 w-[80%] border border-primary-70 mt-3">
+          <video
+            ref={videoReference}
+            className="h-[80%] w-full object-cover"
+            loop
+            playsInline
+            controls
+          >
+            <source
+              src="/freecompress-copy_C1FFA9B1-6325-4D47-83FC-232E47D8EE10.mp4"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
         </div>
 
         <AdditionalInquiriesForm />
