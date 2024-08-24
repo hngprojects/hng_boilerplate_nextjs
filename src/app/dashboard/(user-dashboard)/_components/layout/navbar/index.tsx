@@ -112,12 +112,12 @@ const UserNavbar = () => {
               </>
             )}
           </div>
-          <div className="max-sm:hidden">
+          <button className="max-sm:hidden">
             <HelpCircle
               data-testid="help"
               className="h-6 w-6 text-neutral-dark-2 transition-colors duration-300 hover:cursor-pointer hover:text-neutral-dark-1"
             />
-          </div>
+          </button>
           <div className="pr-1">
             <UserCard />
           </div>
