@@ -153,7 +153,14 @@
   },
   "noJobs": {
     "noJobsTitle": "No available Jobs at the moment",
-    "noJobsContent": "Come back later!"
+
+    "noJobsContent": "Sign up for our newsletter to get updates on job postings",
+    "modalTitle": "Newsletter",
+    "button": "Sign up for newsletter",
+    "placeholder": "Enter your email",
+    "modalButton": "Subscribe",
+    "error": "Please provide your email",
+    "subscribed": "Thank you for subscribing"
   },
   "ourServices": {
     "title": "Our Services",
