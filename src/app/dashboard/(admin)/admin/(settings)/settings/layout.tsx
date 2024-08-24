@@ -7,9 +7,11 @@ interface Iproperties {
 }
 const layout: FC<Iproperties> = ({ children }) => {
   return (
-    <div className="grid grid-cols-[auto_1fr]">
+    <div className="grid h-screen grid-cols-[auto_1fr]">
       <SettingsSidebar />
-      <div className="mt-7">{children}</div>
+      <div className="hide_scrollbar mt-7 h-full overflow-y-auto">
+        {children}
+      </div>
     </div>
   );
 };
