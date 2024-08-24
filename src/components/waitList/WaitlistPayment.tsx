@@ -95,8 +95,10 @@ const WaitlistPayment: React.FC = () => {
   return (
     <div className="mt-[60px] flex flex-col items-center justify-center px-3 text-neutral-dark-2 md:mt-[100px] md:flex-col">
       <div className="text-center">
-        <p className="text-[18px] md:text-[24px]">We have got you covered</p>
-        <h1 className="h-[87px] w-[332px] text-[24px] font-bold leading-[29.05px] md:h-[132px] md:w-[669px] md:text-[36px] md:leading-[43.57px]">
+        <p className="text-[18px] font-normal leading-8 md:text-[24px]">
+          We have got you covered
+        </p>
+        <h1 className="mb-6 mt-3 h-[87px] w-[332px] text-[24px] font-bold leading-[29.05px] md:h-[132px] md:w-[632px] md:text-[36px] md:leading-[43.57px] lg:w-[950px]">
           Transform your Deployment the easy and seamless way with our
           boilerplates.
         </h1>
