@@ -161,7 +161,7 @@ const Footer = () => {
   return (
     <footer className="bg-background dark:bg-default">
       <div className="px-4">
-        <div className="mx-auto w-full max-w-[1200px] items-start justify-between gap-[60px] pb-[130px] pt-[28px] sm:grid-cols-2 md:gap-4 md:pb-[46px] md:pt-[72px] lg:flex">
+        <div className="mx-auto w-full max-w-[1200px] items-start justify-between gap-[60px] pb-10 pt-[28px] sm:grid-cols-2 md:gap-4 md:pb-20 md:pb-[46px] md:pt-[72px] lg:flex lg:pb-[130px]">
           <div className="mb-[100px] max-w-[272px] shrink-0 px-2.5 lg:mb-0">
             <div className="mb-[47px] flex w-full flex-col items-center justify-center sm:mb-[60px] md:block md:max-w-[254px] lg:mb-0">
               <h5 className="text-md mb-[18px] flex items-center gap-2.5 text-center font-bold text-neutral-dark-2 sm:text-left">
@@ -214,11 +214,11 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-x-1 gap-y-[60px] md:grid-cols-3 md:gap-4 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-x-1 gap-y-10 md:grid-cols-3 md:gap-4 md:gap-y-[60px] lg:grid-cols-4">
             {footerLinks.map((item, index) => {
               return (
                 <div key={index}>
-                  <h5 className="text-neurtal-dark-2 mb-[37px] text-[16px] font-semibold">
+                  <h5 className="text-neurtal-dark-2 mb-4 text-[16px] font-semibold md:mb-[37px]">
                     {item.title}
                   </h5>
                   <ul className="flex flex-col gap-4">
@@ -275,19 +275,22 @@ const Footer = () => {
               </div>
             </div>
 
-            <div className="lg:hidden">
+            <div className="md:hidden">
               <h5 className="text-neurtal-dark-2 mb-[10px] text-[20px] font-semibold">
                 {t("followUs")}
               </h5>
-              <div className="flex w-full max-w-[116px] items-center justify-between gap-1 md:max-w-[212px]">
+              <div className="flex w-full flex-wrap items-center gap-2 md:max-w-[212px] md:justify-between md:gap-1">
                 {socialLinks.map((item, index) => {
                   return (
-                    <div
+                    <Link
                       key={index}
-                      className="flex h-5 w-5 cursor-pointer items-center justify-center rounded-full bg-primary p-1 hover:bg-default md:h-10 md:w-10"
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-primary p-1 hover:bg-default md:h-10 md:w-10"
                     >
-                      <item.icon className="h-[10px] w-[10px] text-white md:h-4 md:w-4" />
-                    </div>
+                      <item.icon className="h-4 w-4 text-white" />
+                    </Link>
                   );
                 })}
               </div>
@@ -295,11 +298,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="h-[1px] w-full bg-default"></div>
-      <div className="px-4">
-        <div className="mx-auto block w-full max-w-[1200px] items-center justify-between pb-[30px] pt-4 md:pt-[27px] lg:flex">
-          <div className="hidden lg:block">
-            <div className="flex w-full max-w-[116px] items-center justify-between gap-1 md:max-w-[212px]">
+      {/* <div className="flex w-full md:hidden md:max-w-[116px] pb-4 px-4 items-center md:justify-between md:gap-1 gap-3 md:max-w-[212px]">
               {socialLinks.map((item, index) => {
                 return (
                   <Link
@@ -307,9 +306,28 @@ const Footer = () => {
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex h-5 w-5 cursor-pointer items-center justify-center rounded-full bg-primary p-1 hover:bg-destructive md:h-10 md:w-10"
+                    className="flex md:h-10 md:w-10 h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-primary p-1 hover:bg-destructive md:h-10 md:w-10"
                   >
-                    <item.icon className="h-[10px] w-[10px] text-white md:h-4 md:w-4" />
+                    <item.icon className="text-white h-3 md:h-4 w-3 md:w-4" />
+                  </Link>
+                );
+              })}
+            </div> */}
+      <div className="h-[1px] w-full bg-default"></div>
+      <div className="px-4">
+        <div className="mx-auto block w-full max-w-[1200px] items-center justify-between pb-[30px] pt-4 md:pt-[27px] lg:flex">
+          <div className="">
+            <div className="hidden w-full max-w-[116px] items-center justify-between gap-1 md:flex md:max-w-[212px]">
+              {socialLinks.map((item, index) => {
+                return (
+                  <Link
+                    key={index}
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-primary p-1 hover:bg-destructive md:h-10 md:w-10"
+                  >
+                    <item.icon className="h-3 w-3 text-white md:h-4 md:w-4" />
                   </Link>
                 );
               })}
