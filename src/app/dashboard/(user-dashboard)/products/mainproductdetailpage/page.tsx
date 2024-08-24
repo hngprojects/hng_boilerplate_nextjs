@@ -1,9 +1,9 @@
 "use client";
 
-import { ChangeEvent, FormEvent, useState } from "react";
-
 import Image from "next/image";
 import Link from "next/link";
+import { ChangeEvent, FormEvent, useState } from "react";
+
 import user from "../../../../../../public/images/user.png";
 
 const Discard = () => {
@@ -325,7 +325,6 @@ const ProductDetail = () => {
                   <option>Low in Stock</option>
                 </select>
               </div>
-
             </div>
           </div>
         </div>
