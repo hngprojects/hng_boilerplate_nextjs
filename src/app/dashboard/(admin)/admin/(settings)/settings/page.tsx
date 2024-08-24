@@ -65,9 +65,20 @@ export default function SettingsPage() {
   const formDataHandler = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
+    const { name, value } = event.target;
+
+    // Bio validation
+    if (name === "bio" && value.length > 64) {
+      toast({
+        title: "Warning!",
+        description: "Bio cannot exceed 64 characters",
+      });
+      return;
+    }
+
     setFormData((previous) => ({
       ...previous,
-      [event.target.name]: event.target.value,
+      [name]: value,
     }));
   };
 
