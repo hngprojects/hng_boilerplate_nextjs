@@ -1,12 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 import CustomButton from "~/components/common/common-button/common-button";
 import HeroSection from "~/components/extDynamicPages/blogCollection/BlogPageHero";
 import BlogCard from "~/components/layouts/BlogCards";
-import { blogPosts } from "./data/mock";
 import {
   Pagination,
   PaginationContent,
@@ -16,10 +15,22 @@ import {
   PaginationPrevious,
 } from "~/components/ui/pagination";
 
+// import { blogPosts } from "./data/mock";
+
 const BlogHome = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [data, setData] = useState<[]>([])
-  const [page, setPage] = useState<number>(1)
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [data, setData] = useState<
+    {
+      id: string;
+      title: string;
+      date: string;
+      readTime: string;
+      category: string;
+      image: string;
+      labelClassName: string;
+    }[]
+  >([]);
+  const [page, setPage] = useState<number>(1);
   const router = useRouter();
 
   useEffect(() => {
@@ -27,13 +38,12 @@ const BlogHome = () => {
       try {
         setIsLoading(true);
         const response = await fetch(
-          `https://staging.api-csharp.boilerplate.hng.tech/api/v1/blogs`
+          `https://staging.api-csharp.boilerplate.hng.tech/api/v1/blogs`,
         );
         const result = await response.json();
         setData(result.data);
-        console.log(result.data)
-      } catch (error) {
-        console.error("Error fetching data:", error);
+      } catch {
+        // console.error("Error fetching data:", error);
       } finally {
         setIsLoading(false);
       }
@@ -49,23 +59,29 @@ const BlogHome = () => {
         <h1 className="mb-6 mt-12 text-3xl font-bold text-[#525252]">
           Recent Blog Posts
         </h1>
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
-          {blogPosts.map((post, index) => (
-            <BlogCard
-              key={index}
-              title={post.title}
-              date={post.date}
-              readTime={post.readTime}
-              category={post.category}
-              image={post.image}
-              labelClassName={post.labelClassName}
-              onClick={() => {
-                localStorage.setItem("currentBlogPost", JSON.stringify(post));
-                router.push(`/blog/${post.id}`);
-              }}
-            />
-          ))}
-        </div>
+        {isLoading ? (
+          <div className="animate-pulse text-2xl font-bold">
+            Loading Blogs...
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+            {data?.map((post, index) => (
+              <BlogCard
+                key={index}
+                title={post.title}
+                date={post.date}
+                readTime={post.readTime}
+                category={post.category}
+                image={post.image}
+                labelClassName={post.labelClassName}
+                onClick={() => {
+                  localStorage.setItem("currentBlogPost", JSON.stringify(post));
+                  router.push(`/blog/${post.id}`);
+                }}
+              />
+            ))}
+          </div>
+        )}
       </div>
       <div className="my-10 flex justify-center">
         <CustomButton
@@ -78,48 +94,47 @@ const BlogHome = () => {
           Show More Articles
         </CustomButton>
       </div>
-      <Pagination className="max-md:hidden mt-12">
-            <PaginationContent>
-              <PaginationItem className="mr-4">
-                <PaginationPrevious
-                  className={
-                    "hover:cursor-pointer" +
-                    (page == 1 ? " opacity-50 pointer-events-none" : "")
-                  }
-                  onClick={() => setPage((a) => (a > 1 ? a - 1 : a))}
-                />
-              </PaginationItem>
-              {Array.from(
-                { length: Math.ceil(data?.length / 6) },
-                (link, id) => (
-                  <PaginationItem key={id}>
-                    <PaginationLink
-                      className={
-                        "hover:cursor-pointer text-black rounded-md" +
-                        (page === id + 1 ? " border border-[#97B3BA] bg-primary text-white" : "")
-                      }
-                      onClick={() => setPage(id + 1)}
-                    >
-                      {id + 1}
-                    </PaginationLink>
-                  </PaginationItem>
-                )
-              )}
-              <PaginationItem className="ml-4">
-                <PaginationNext
-                  className={
-                    "hover:cursor-pointer" +
-                    (page == Math.ceil(data?.length / 6)
-                      ? " opacity-50 pointer-events-none"
-                      : "")
-                  }
-                  onClick={() =>
-                    setPage((a) => (a < Math.ceil(data?.length / 6) ? a + 1 : a))
-                  }
-                />
-              </PaginationItem>
-            </PaginationContent>
-          </Pagination>
+      <Pagination className="mt-12 max-md:hidden">
+        <PaginationContent>
+          <PaginationItem className="mr-4">
+            <PaginationPrevious
+              className={
+                "hover:cursor-pointer" +
+                (page == 1 ? " pointer-events-none opacity-50" : "")
+              }
+              onClick={() => setPage((a) => (a > 1 ? a - 1 : a))}
+            />
+          </PaginationItem>
+          {Array.from({ length: Math.ceil(data?.length / 6) }, (link, id) => (
+            <PaginationItem key={id}>
+              <PaginationLink
+                className={
+                  "rounded-md text-black hover:cursor-pointer" +
+                  (page === id + 1
+                    ? " border border-[#97B3BA] bg-primary text-white"
+                    : "")
+                }
+                onClick={() => setPage(id + 1)}
+              >
+                {id + 1}
+              </PaginationLink>
+            </PaginationItem>
+          ))}
+          <PaginationItem className="ml-4">
+            <PaginationNext
+              className={
+                "hover:cursor-pointer" +
+                (page == Math.ceil(data?.length / 6)
+                  ? " pointer-events-none opacity-50"
+                  : "")
+              }
+              onClick={() =>
+                setPage((a) => (a < Math.ceil(data?.length / 6) ? a + 1 : a))
+              }
+            />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
     </div>
   );
 };
