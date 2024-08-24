@@ -2,6 +2,7 @@
 
 import { AxiosResponse } from "axios";
 import { EllipsisIcon } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 
 import CustomButton from "~/components/common/common-button/common-button";
@@ -184,7 +185,13 @@ const Members = () => {
         <p className="text-sm">
           On the Free plan all members in a workspace are administrators.
           Upgrade to a paid plan to add the ability to assign or remove
-          administrator roles. <span className="text-primary">Go to Plans</span>
+          administrator roles.{" "}
+          <Link
+            href={"/dashboard/admin/settings/organization/payment-information"}
+            className="text-primary"
+          >
+            Go to Plans
+          </Link>
         </p>
       </div>
       <div className="my-8 flex justify-between">
