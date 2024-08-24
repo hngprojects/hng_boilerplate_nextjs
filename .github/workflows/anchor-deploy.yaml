@@ -29,10 +29,13 @@ jobs:
           echo ${{ secrets.ENV }} | base64 -d > .env.java
 
       - name: Copy Artifacts to server
-        run: |
-          sudo apt update && sudo apt install sshpass -y
-          sshpass -p ${{ secrets.PASSWORD }} scp -o StrictHostKeyChecking=no boilerplate.tar.gz .env.java ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/tmp/java
-          rm -f boilerplate.tar.gz .env.java
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          source: ".env.java,boilerplate.tar.gz"
+          target: "/tmp/java"
         
       - name: Deploy on server
         uses: appleboy/ssh-action@master
@@ -46,7 +49,7 @@ jobs:
             mv /tmp/java/.env.java .env
             rm -f /tmp/java/boilerplate.tar.gz
             cp -r .next/standalone/* .
-            pm2 restart java-boilerplate --update-env
+            pm2 restart nextjs_boilerplate --update-env
 
      
   deploy_to_python:
@@ -71,10 +74,13 @@ jobs:
           echo ${{ secrets.ENV }} | base64 -d > .env.python
 
       - name: Copy Artifacts to server
-        run: |
-          sudo apt update && sudo apt install sshpass -y
-          sshpass -p ${{ secrets.PASSWORD }} scp -o StrictHostKeyChecking=no boilerplate.tar.gz .env.python ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/tmp/python
-          rm -f boilerplate.tar.gz .env.python
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          source: ".env.python,boilerplate.tar.gz"
+          target: "/tmp/python"
         
       - name: Deploy on server
         uses: appleboy/ssh-action@master
@@ -88,4 +94,4 @@ jobs:
             mv /tmp/python/.env.python .env
             rm -f /tmp/python/boilerplate.tar.gz
             cp -r .next/standalone/* .
-            pm2 restart python-boilerplate --update-env
+            pm2 restart nextjs_boilerplate --update-env
