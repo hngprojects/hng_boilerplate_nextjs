@@ -95,7 +95,8 @@ const UserCard = () => {
                 alt="User Avatar"
               />
               <AvatarFallback className="bg-primary/30 uppercase">
-                {user?.first_name?.charAt(0)}
+                {(user?.first_name?.charAt(0) || "") +
+                  (user?.last_name?.charAt(0) || "")}
               </AvatarFallback>
             </Avatar>
           )}
