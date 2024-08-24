@@ -6,7 +6,7 @@ import {
   Facebook,
   Instagram,
   Linkedin,
-  XIcon,
+  Twitter,
   Youtube,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -129,7 +129,7 @@ const Footer = () => {
 
   const socialLinks = [
     {
-      icon: XIcon,
+      icon: Twitter,
       link: "/",
     },
     {
