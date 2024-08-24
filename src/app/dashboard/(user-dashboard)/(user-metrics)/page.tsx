@@ -9,7 +9,7 @@ export default function DashboardOverview() {
         <OverviewRevenue />
       </div>
       <div className="flex flex-wrap gap-4">
-        <OverviewChart className="flex-grow basis-full md:basis-1/2 lg:max-w-[787px]" />
+        <OverviewChart className="w-full basis-full md:basis-1/2 lg:max-w-[787px]" />
         <div className="flex-1 flex-grow md:min-w-[400px]">
           <OverviewSales />
         </div>

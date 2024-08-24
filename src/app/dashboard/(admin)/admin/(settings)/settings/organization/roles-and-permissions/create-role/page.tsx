@@ -3,12 +3,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ChevronLeftIcon } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { createRole, getPermissions } from "~/actions/roles-and-permissions";
-import CustomButton from "~/components/common/common-button/common-button";
 import RolePermissionsCreationModal from "~/components/common/modals/roles-permissions-creation";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import {
@@ -122,6 +122,7 @@ const transformPermissions = (apiResponse: APIPermissions[]) => {
 };
 
 function CreateNewRolePage() {
+  const router = useRouter();
   const [currentOrgId] = useLocalStorage<string>("current_orgid", "");
   const [isSaving, setIsSaving] = useState(false);
   const [permissions, setPermissions] = useState<
@@ -164,6 +165,12 @@ function CreateNewRolePage() {
     }
   }, [permissions, setValue]);
 
+  useEffect(() => {
+    if (permissionOptions && permissionOptions.length > 0) {
+      setPermissions(permissionOptions[0].permissions);
+    }
+  }, [permissionOptions]);
+
   const onValid = async (values: UseFormInputs) => {
     setIsSaving(true);
     try {
@@ -176,6 +183,7 @@ function CreateNewRolePage() {
                 "You have successfully created the new role Role Name. You can now assign this role to team members and manage their permissions in the Roles & Permissions section.",
               variant: "default",
             });
+            router.push("");
           }
           setIsSaving(false);
         })
@@ -281,7 +289,11 @@ function CreateNewRolePage() {
             handleChange={setPermissions}
             permissions={permissions}
           />
-          <CustomButton variant="primary" type="submit" isDisabled={isSaving}>
+          <button
+            type="submit"
+            className="inline-flex h-9 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+            disabled={isSaving}
+          >
             {isSaving ? (
               <LoadingSpinner
                 className={`mx-auto size-4 animate-spin sm:size-5 ${isSaving && "opacity-50"}`}
@@ -289,7 +301,7 @@ function CreateNewRolePage() {
             ) : (
               "Create Role"
             )}
-          </CustomButton>
+          </button>
         </div>
       </form>
     </div>

@@ -1,4 +1,5 @@
 {
+
     "navbar": {
         "login": "Log in",
         "register": "Get Started"
@@ -187,5 +188,7 @@
                 "description": "We are committed to delivering exceptional quality in everything we do, from our products and services to our customer interactions and internal processes. We strive for continuous improvement and hold ourselves to the highest standards of performance."
             }
         }
+
     }
+  }
 }
