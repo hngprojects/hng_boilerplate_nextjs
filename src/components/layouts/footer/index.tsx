@@ -158,7 +158,7 @@ const Footer = () => {
   //
 
   return (
-    <footer className="bg-background dark:bg-default">
+    <footer className="bg-[#FAFAFA] dark:bg-default">
       <div className="px-4">
         <div className="mx-auto w-full max-w-[1200px] items-start justify-between gap-[60px] pb-[130px] pt-[28px] sm:grid-cols-2 md:gap-4 md:pb-[46px] md:pt-[72px] lg:flex">
           <div className="mb-[100px] lg:mb-0">

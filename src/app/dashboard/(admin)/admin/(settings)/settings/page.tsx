@@ -36,6 +36,8 @@ export default function SettingsPage() {
   const [isPending, setIsPending] = useState(false);
 
   const [pronoun, setPronoun] = useState("");
+  const [bioCharacterLeft, setBioCharacterLeft] = useState(64);
+  const [isbioCharacterExceeded, setIsBioCharacterExceeded] = useState(false);
 
   const [profilePicture, setProfilePicture] = useState<string | undefined>();
 
@@ -45,6 +47,11 @@ export default function SettingsPage() {
     linkedin: "",
   });
 
+  const checkCharacterLeft = () => {
+    const bioLength: number = formData.bio.length;
+    setBioCharacterLeft(64 - bioLength);
+    setIsBioCharacterExceeded(bioLength > 50);
+  };
   const linksDataHandler = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
@@ -317,13 +324,17 @@ export default function SettingsPage() {
           </label>
           <Textarea
             name="bio"
+            maxLength={64}
+            onKeyUp={checkCharacterLeft}
             value={formData.bio}
             onChange={formDataHandler}
             className="resize-none bg-white text-[#020817]"
           />
           <div className="border-b-[1px] border-b-[#e4e2e2]">
-            <p className="pb-[24px] pt-2 text-[14px] text-[#64748B]">
-              Maximum of 64 characters
+            <p
+              className={`pb-[24px] pt-2 text-[14px] ${isbioCharacterExceeded ? "text-red-400" : "text-[#64748B]"} `}
+            >
+              Maximum of 64 characters (character left : {bioCharacterLeft})
             </p>
           </div>
         </div>

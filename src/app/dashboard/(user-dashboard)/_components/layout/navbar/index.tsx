@@ -2,6 +2,7 @@
 
 import { BellIcon, HelpCircle } from "lucide-react";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -113,10 +114,12 @@ const UserNavbar = () => {
             )}
           </div>
           <div className="max-sm:hidden">
-            <HelpCircle
-              data-testid="help"
-              className="h-6 w-6 text-neutral-dark-2 transition-colors duration-300 hover:cursor-pointer hover:text-neutral-dark-1"
-            />
+            <Link href={"/help-center"}>
+              <HelpCircle
+                data-testid="help"
+                className="h-6 w-6 text-neutral-dark-2 transition-colors duration-300 hover:cursor-pointer hover:text-neutral-dark-1"
+              />
+            </Link>
           </div>
           <div className="pr-1">
             <UserCard />

@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 import ContactForm from "~/components/common/contact-us-form";
 import { bizTime, contactInfo } from "./constants";
@@ -40,19 +41,22 @@ const Contact = () => {
                 ))}
               </div>
             </div>
-            <div className="gap-2 max-lg:grid">
-              <div className="flex justify-between">
-                <h2 className="text-xl font-semibold text-primary underline underline-offset-2">
-                  FAQ
-                </h2>
-                <div>
-                  <ArrowRight className="text-primary" />
+
+            <Link href={"/faqs"}>
+              <div className="gap-2 max-lg:grid">
+                <div className="flex justify-between">
+                  <h2 className="text-xl font-semibold text-primary underline underline-offset-2">
+                    FAQ
+                  </h2>
+                  <div>
+                    <ArrowRight className="text-primary" />
+                  </div>
                 </div>
+                <p className="texl-lg">
+                  See and get answers to the most frequent asked questions
+                </p>
               </div>
-              <p className="texl-lg">
-                See and get answers to the most frequent asked questions
-              </p>
-            </div>
+            </Link>
           </div>
         </div>
       </section>

@@ -31,6 +31,13 @@ const Password = () => {
     }));
   };
 
+  const clearPassword = () => {
+    setFormData({
+      oldPassword: "",
+      password: "",
+      confirmPassword: "",
+    });
+  };
   const submit = async () => {
     if (formData.password !== formData.confirmPassword) {
       return toast({
@@ -115,7 +122,7 @@ const Password = () => {
           />
         </div>
         <div className="flex items-center justify-start gap-6">
-          <CustomButton variant="outline" onClick={() => setOpen(false)}>
+          <CustomButton variant="outline" onClick={clearPassword}>
             Cancel
           </CustomButton>
           <CustomButton
