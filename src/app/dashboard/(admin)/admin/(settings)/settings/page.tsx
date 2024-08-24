@@ -277,7 +277,7 @@ export default function SettingsPage() {
               onValueChange={(value) => setPronoun(value)}
             >
               <SelectTrigger className="w-full rounded-md border border-slate-300 bg-white text-sm font-medium text-slate-700 focus:border-orange-500 focus:ring-0">
-                <SelectValue placeholder="Select language" />
+                <SelectValue placeholder="Select" />
               </SelectTrigger>
               <SelectContent>
                 {pronouns.map((pronoun) => (
