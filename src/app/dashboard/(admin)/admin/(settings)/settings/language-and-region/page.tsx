@@ -34,11 +34,8 @@ const formatTimeZone = () => {
     const sign = offset >= 0 ? "+" : "-";
     const formattedOffset = `UTC${sign}${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
 
-    // Create a simplified value for the timezone (e.g., "utc+0" or "utc-8")
-    const value = `utc${sign}${hours}`;
-
     return {
-      value: value,
+      value: `(${formattedOffset}) ${tz.replace("_", " ")}`,
       label: `(${formattedOffset}) ${tz.replace("_", " ")}`,
     };
   });
