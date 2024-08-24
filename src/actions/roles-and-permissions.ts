@@ -154,7 +154,7 @@ export const updateRole = async (
 
   try {
     const response = await axios.put(
-      `${apiUrl}/organisations/${currentOrgId}/roles/${roleId}`,
+      `${apiUrl}/api/v1/organisations/${currentOrgId}/roles/${roleId}`,
       payload,
       {
         headers: {
