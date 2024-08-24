@@ -2,13 +2,14 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ChevronLeftIcon } from "lucide-react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { createRole, getPermissions } from "~/actions/roles-and-permissions";
-import CustomButton from "~/components/common/common-button/common-button";
 import RolePermissionsCreationModal from "~/components/common/modals/roles-permissions-creation";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import {
@@ -19,7 +20,6 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 import { toast } from "~/components/ui/use-toast";
-import { useLocalStorage } from "~/hooks/use-local-storage";
 import { roleSchema } from "~/schemas";
 
 type UseFormInputs = z.infer<typeof roleSchema>;
@@ -122,7 +122,8 @@ const transformPermissions = (apiResponse: APIPermissions[]) => {
 };
 
 function CreateNewRolePage() {
-  const [currentOrgId] = useLocalStorage<string>("current_orgid", "");
+  const router = useRouter();
+  const { data: session } = useSession();
   const [isSaving, setIsSaving] = useState(false);
   const [permissions, setPermissions] = useState<
     PermissionOption["permissions"] | []
@@ -136,8 +137,9 @@ function CreateNewRolePage() {
     handleSubmit,
     formState: { errors },
     setValue,
+    trigger,
   } = useForm<UseFormInputs>({
-    mode: "onBlur",
+    mode: "onChange",
     resolver: zodResolver(roleSchema),
   });
 
@@ -164,10 +166,16 @@ function CreateNewRolePage() {
     }
   }, [permissions, setValue]);
 
+  useEffect(() => {
+    if (permissionOptions && permissionOptions.length > 0) {
+      setPermissions(permissionOptions[0].permissions);
+    }
+  }, [permissionOptions]);
+
   const onValid = async (values: UseFormInputs) => {
     setIsSaving(true);
     try {
-      await createRole(values, currentOrgId)
+      await createRole(values, session?.currentOrgId ?? "")
         .then((data) => {
           if (!data.error) {
             toast({
@@ -176,6 +184,7 @@ function CreateNewRolePage() {
                 "You have successfully created the new role Role Name. You can now assign this role to team members and manage their permissions in the Roles & Permissions section.",
               variant: "default",
             });
+            router.push("");
           }
           setIsSaving(false);
         })
@@ -197,6 +206,10 @@ function CreateNewRolePage() {
       });
       setIsSaving(false);
     }
+  };
+
+  const handleInputChange = (field: keyof UseFormInputs) => {
+    trigger(field);
   };
 
   return (
@@ -229,17 +242,28 @@ function CreateNewRolePage() {
             <input
               type="text"
               placeholder="e.g: IT Staff"
-              {...register("name")}
-              className="!w-full rounded-md border border-border bg-transparent px-3 py-2 shadow-sm outline-none focus:border-primary focus:ring-ring md:w-56"
+              {...register("name", {
+                onChange: () => handleInputChange("name"),
+              })}
+              className={`!w-full rounded-md border ${
+                errors.name ? "border-red-500" : "border-border"
+              } bg-transparent px-3 py-2 shadow-sm outline-none focus:border-primary focus:ring-ring md:w-56`}
             />
+            {errors.name && (
+              <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>
+            )}
           </div>
+
           <div className="flex w-full max-w-[620px] flex-col gap-2">
             <label className="block text-left text-base font-bold text-neutral-dark-2">
               Permissions
             </label>
             <div className="flex flex-col gap-0.5">
               <Select
-                onValueChange={(value) => setPermissions(JSON.parse(value))}
+                onValueChange={(value) => {
+                  setPermissions(JSON.parse(value));
+                  trigger("permissions");
+                }}
               >
                 <SelectTrigger className="!text-left">
                   <SelectValue
@@ -261,7 +285,9 @@ function CreateNewRolePage() {
                 </SelectContent>
               </Select>
               {errors.permissions && (
-                <p className="text-red-500">Please select valid permissions.</p>
+                <p className="mt-1 text-sm text-red-500">
+                  {errors.permissions.message}
+                </p>
               )}
             </div>
           </div>
@@ -271,9 +297,18 @@ function CreateNewRolePage() {
             </label>
             <textarea
               placeholder="describe role"
-              {...register("description")}
-              className="min-h-20 w-full resize-none rounded-md border border-border bg-transparent px-3 py-2 shadow-sm outline-none focus:border-primary focus:ring-ring"
+              {...register("description", {
+                onChange: () => handleInputChange("description"),
+              })}
+              className={`min-h-20 w-full resize-none rounded-md border ${
+                errors.description ? "border-red-500" : "border-border"
+              } bg-transparent px-3 py-2 shadow-sm outline-none focus:border-primary focus:ring-ring`}
             />
+            {errors.description && (
+              <p className="mt-1 text-sm text-red-500">
+                {errors.description.message}
+              </p>
+            )}
           </div>
         </div>
         <div className="flex gap-x-6">
@@ -281,7 +316,11 @@ function CreateNewRolePage() {
             handleChange={setPermissions}
             permissions={permissions}
           />
-          <CustomButton variant="primary" type="submit" isDisabled={isSaving}>
+          <button
+            type="submit"
+            className="inline-flex h-9 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+            disabled={isSaving}
+          >
             {isSaving ? (
               <LoadingSpinner
                 className={`mx-auto size-4 animate-spin sm:size-5 ${isSaving && "opacity-50"}`}
@@ -289,7 +328,7 @@ function CreateNewRolePage() {
             ) : (
               "Create Role"
             )}
-          </CustomButton>
+          </button>
         </div>
       </form>
     </div>
