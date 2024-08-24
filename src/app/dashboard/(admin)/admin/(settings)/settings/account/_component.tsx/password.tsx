@@ -1,13 +1,14 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { Eye, EyeOff } from "lucide-react";
 import { useSession } from "next-auth/react";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 import { getApiUrl } from "~/actions/getApiUrl";
 import CustomButton from "~/components/common/common-button/common-button";
-import CustomInput from "~/components/common/input/input";
 import PasswordSuccessfulModal from "~/components/common/modals/password-successful";
 import { toast } from "~/components/ui/use-toast";
 
@@ -17,7 +18,6 @@ const Password = () => {
   const { data } = useSession();
 
   const [open, setOpen] = useState<boolean>(false);
-
   const [isPending, setIsPending] = useState(false);
 
   const [showPassword, setShowPassword] = useState({
@@ -40,34 +40,24 @@ const Password = () => {
     }));
   };
 
-  const submit = async () => {
-    if (formData.password !== formData.confirmPassword) {
-      return toast({
-        title: "Warning!",
-        description: "Password does not match",
-      });
-    }
+  const submitHandler = async (values: PasswordFormData) => {
     try {
       setIsPending(true);
-      const baseUrl = await getApiUrl();
-      const API_URL = `${baseUrl}/api/v1/auth/change-password`;
-
       const payload = {
-        oldPassword: formData.oldPassword,
-        newPassword: formData.password,
+        old_password: values.currentPassword,
+        new_password: values.newPassword,
+        confirm_new_password: values.confirmPassword,
       };
+      const baseUrl = await getApiUrl();
+      const API_URL = `${baseUrl}/api/v1/auth/password`;
 
-      await axios.post(API_URL, payload, {
+      await axios.put(API_URL, payload, {
         headers: {
           Authorization: `Bearer ${data?.access_token}`,
         },
       });
       setOpen(true);
-      setFormData({
-        oldPassword: "",
-        password: "",
-        confirmPassword: "",
-      });
+      reset({ currentPassword: "", newPassword: "", confirmPassword: "" });
     } catch (error) {
       const errorMessage = (error as HttpError)?.response?.data?.message;
       toast({
@@ -100,7 +90,7 @@ const Password = () => {
           Update password for enhanced account security
         </p>
       </div>
-      <div>
+      <form onSubmit={handleSubmit(submitHandler)}>
         <div className="mb-6 grid gap-4">
           <div className="relative">
             <CustomInput
@@ -159,19 +149,23 @@ const Password = () => {
           </div>
         </div>
         <div className="flex items-center justify-start gap-6">
-          <CustomButton variant="outline" onClick={() => setOpen(false)}>
+          <CustomButton
+            type="button"
+            variant="outline"
+            onClick={() => setOpen(false)}
+          >
             Cancel
           </CustomButton>
           <CustomButton
-            isDisabled={disabled}
-            onClick={submit}
-            className="bg-primary"
+            isDisabled={!isValid}
+            type="submit"
+            className={`bg-primary ${isPending && "opacity-50"}`}
             isLoading={isPending}
           >
             Update Password
           </CustomButton>
         </div>
-      </div>
+      </form>
       <PasswordSuccessfulModal onClose={() => setOpen(!open)} show={open} />
     </div>
   );
