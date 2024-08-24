@@ -33,7 +33,6 @@ const RelatedArticle = () => {
         );
         const result = await response.json();
         setData(result.data);
-      } catch {
       } finally {
         setIsLoading(false);
       }

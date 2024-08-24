@@ -56,7 +56,6 @@ const BlogDetailsPage: FC<IProperties> = ({ id }) => {
         );
         const result = await response.json();
         setPost(result.data);
-      } catch {
       } finally {
         setIsLoading(false);
       }
