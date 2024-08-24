@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ChevronLeftIcon } from "lucide-react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -19,7 +20,6 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 import { toast } from "~/components/ui/use-toast";
-import { useLocalStorage } from "~/hooks/use-local-storage";
 import { roleSchema } from "~/schemas";
 
 type UseFormInputs = z.infer<typeof roleSchema>;
@@ -123,7 +123,7 @@ const transformPermissions = (apiResponse: APIPermissions[]) => {
 
 function CreateNewRolePage() {
   const router = useRouter();
-  const [currentOrgId] = useLocalStorage<string>("current_orgid", "");
+  const { data: session } = useSession();
   const [isSaving, setIsSaving] = useState(false);
   const [permissions, setPermissions] = useState<
     PermissionOption["permissions"] | []
@@ -175,7 +175,7 @@ function CreateNewRolePage() {
   const onValid = async (values: UseFormInputs) => {
     setIsSaving(true);
     try {
-      await createRole(values, currentOrgId)
+      await createRole(values, session?.currentOrgId ?? "")
         .then((data) => {
           if (!data.error) {
             toast({

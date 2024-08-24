@@ -1,5 +1,6 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -13,7 +14,6 @@ import {
 import CustomButton from "~/components/common/common-button/common-button";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import { useToast } from "~/components/ui/use-toast";
-import { useLocalStorage } from "~/hooks/use-local-storage";
 
 type Role = {
   id: string;
@@ -39,18 +39,15 @@ const RolesAndPermission = () => {
   const [loadingRoles, setLoadingRoles] = useState<boolean>(true);
   const [loadingPermissions, setLoadingPermissions] = useState<boolean>(false);
   const [loadingRequest, setLoadingRequest] = useState<boolean>(false);
-  const [currentOrgId] = useLocalStorage<string | undefined>(
-    "current_orgid",
-    "",
-  );
+  const { data: session } = useSession();
 
   useEffect(() => {
-    if (!currentOrgId) return;
+    if (!session?.currentOrgId) return;
     const fetchData = async () => {
       try {
         const url = await getApiUrl();
         setApiUrl(url);
-        const { data, error } = await getRoles(currentOrgId);
+        const { data, error } = await getRoles(session?.currentOrgId ?? "");
 
         if (error) throw new Error("An error occurred!");
 
@@ -68,14 +65,14 @@ const RolesAndPermission = () => {
     };
     setLoadingRoles(true);
     fetchData();
-  }, [currentOrgId, toast]);
+  }, [session?.currentOrgId, toast]);
 
   useEffect(() => {
     const fetchPermissions = async () => {
-      if (selectedRoleId && currentOrgId) {
+      if (selectedRoleId && session?.currentOrgId) {
         setLoadingPermissions(true);
         try {
-          await getRolePermissions(currentOrgId, selectedRoleId).then(
+          await getRolePermissions(session?.currentOrgId, selectedRoleId).then(
             (data) => {
               const rolesData = data.data;
               if (rolesData.permissions.length > 0) {
@@ -99,7 +96,7 @@ const RolesAndPermission = () => {
       }
     };
     fetchPermissions();
-  }, [selectedRoleId, apiUrl, currentOrgId, toast]);
+  }, [selectedRoleId, apiUrl, session?.currentOrgId, toast]);
 
   useEffect(() => {
     const fetchPermissions = async () => {
@@ -132,7 +129,7 @@ const RolesAndPermission = () => {
   };
 
   const handleSave = async () => {
-    if (!selectedRoleId || !currentOrgId) return;
+    if (!selectedRoleId || !session?.currentOrgId) return;
     const selectedRole =
       roles.some((role) => role.id === selectedRoleId) &&
       roles.find((role) => role.id === selectedRoleId);
@@ -141,7 +138,7 @@ const RolesAndPermission = () => {
     try {
       await updateRole(
         { ...selectedRole, permissions },
-        currentOrgId,
+        session?.currentOrgId,
         selectedRoleId,
       ).then(() => {
         toast({
