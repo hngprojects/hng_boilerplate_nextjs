@@ -11,7 +11,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select";
@@ -143,9 +142,9 @@ const Members = () => {
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectLabel>Roles</SelectLabel>
-                <SelectItem value="apple">Name</SelectItem>
-                <SelectItem value="banana">Email</SelectItem>
+                <SelectItem value="members">Members</SelectItem>
+                <SelectItem value="apple">Suspended</SelectItem>
+                <SelectItem value="banana">Left Workspace</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
