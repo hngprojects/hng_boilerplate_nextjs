@@ -14,6 +14,7 @@ import {
 } from "~/components/ui/popover";
 import UnreadNotificationCard from "../../unread-notification-card/UnreadNotificationCard";
 import DashboardLogo from "../logo";
+import { Navlinks } from "~/app/dashboard/(user-dashboard)/_components/layout/navbar/navlinks";
 
 interface NotificationPreview {
   message: string;
@@ -69,12 +70,13 @@ const DashboardNavbar = () => {
       className="fixed left-0 right-0 top-0 z-50 border-b-[0.5px] border-border"
       role="navbar"
     >
-      <div className="flex items-center gap-2 bg-[#FDFDFD] px-[10px] py-[14px]">
+      <div className="flex justify-between items-center gap-2 bg-[#FDFDFD] px-[10px] py-[14px]">
         <div className="w-[50px] md:w-[220px] md:px-4 lg:w-[320px]">
           <DashboardLogo />
         </div>
-        <div className="flex w-full justify-between">
-          <div className="flex h-10 items-center justify-between gap-2 rounded-[6px] border border-border bg-white px-3 text-sm font-normal placeholder:text-sm">
+        <Navlinks />
+        <div className="flex w-full justify-end ">
+          <div className="flex mx-10 h-10 items-center justify-between gap-2 rounded-[6px] border border-border bg-white px-3 text-sm font-normal placeholder:text-sm">
             <SearchIcon
               data-testid="search"
               className="h-4 w-4 text-neutral-dark-2"
