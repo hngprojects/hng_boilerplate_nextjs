@@ -92,8 +92,10 @@ interface Iproperties {
 }
 const SettingsSidebar: FC<Iproperties> = ({ sideNavitems = sideItems }) => {
   const pathname = usePathname();
-  const currentPath =
-    pathname?.split("/").length == 2 ? "general" : pathname?.split("/")[3];
+  const urlPathnames = pathname
+    ?.split("/")
+    .filter((segment: string) => segment !== "");
+  const currentPath = urlPathnames.length == 3 ? "general" : urlPathnames.pop();
   const organizationPath = pathname?.split("/")[4];
   const { organizations } = useOrgContext();
   const [org_id] = useLocalStorage<string>("current_orgid", "");
