@@ -2,7 +2,7 @@
 
 import { Dispatch, SetStateAction } from "react";
 
-import CustomButton from "~/components/common/common-button/common-button";
+import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import {
   Dialog,
   DialogClose,
@@ -51,10 +51,8 @@ function RolePreferencesCreationModal({
   return (
     <>
       <Dialog>
-        <DialogTrigger asChild>
-          <CustomButton type="button" variant="secondary">
-            Add Permissions
-          </CustomButton>
+        <DialogTrigger className="inline-flex h-9 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground shadow-sm transition-colors hover:bg-secondary/80 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
+          Add Permissions
         </DialogTrigger>
         <DialogContent className="flex flex-col gap-6">
           <DialogHeader className="!space-y-0 border-b border-[#CBD5E1] p-1 !pt-0 md:p-3">
@@ -65,41 +63,48 @@ function RolePreferencesCreationModal({
               See the list of permissions for this role
             </DialogDescription>
           </DialogHeader>
-          <div className="flex flex-col gap-8">
-            <div className="flex flex-col gap-4 px-3">
-              {permissions.map((permission, index) => (
-                <div
-                  key={permission.id}
-                  className="flex items-center justify-between pb-1.5"
+          {permissions.length > 0 ? (
+            <div className="flex flex-col gap-8">
+              <div className="flex flex-col gap-4 px-3">
+                {permissions.map((permission, index) => (
+                  <div
+                    key={permission.id}
+                    className="flex items-center justify-between pb-1.5"
+                  >
+                    <span className="text-sm font-normal text-[#525252]">
+                      {permission.name
+                        .replaceAll("_", " ")
+                        .replaceAll(/\b\w/g, (l) => l.toUpperCase())}
+                    </span>
+                    <label className="relative inline-flex cursor-pointer items-center">
+                      <input
+                        type="checkbox"
+                        className="peer sr-only"
+                        checked={permission.value}
+                        onChange={(event) =>
+                          handleToggle(index, event.target.checked)
+                        }
+                      />
+                      <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-orange-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-4 peer-focus:ring-orange-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-orange-800"></div>
+                    </label>
+                  </div>
+                ))}
+              </div>
+              <div className="flex justify-end gap-4">
+                <DialogClose
+                  type="button"
+                  className="rounded border border-[#E2E8F0] bg-[#F1F5F9] px-4 py-2 text-sm font-medium text-[#0F172A] hover:bg-[#c1c9d2]"
                 >
-                  <span className="text-sm font-normal text-[#525252]">
-                    {permission.name
-                      .replaceAll("_", " ")
-                      .replaceAll(/\b\w/g, (l) => l.toUpperCase())}
-                  </span>
-                  <label className="relative inline-flex cursor-pointer items-center">
-                    <input
-                      type="checkbox"
-                      className="peer sr-only"
-                      checked={permission.value}
-                      onChange={(event) =>
-                        handleToggle(index, event.target.checked)
-                      }
-                    />
-                    <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-orange-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-4 peer-focus:ring-orange-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-orange-800"></div>
-                  </label>
-                </div>
-              ))}
+                  Done
+                </DialogClose>
+              </div>
             </div>
-            <div className="flex justify-end gap-4">
-              <DialogClose
-                type="button"
-                className="rounded border border-[#E2E8F0] bg-[#F1F5F9] px-4 py-2 text-sm font-medium text-[#0F172A] hover:bg-[#c1c9d2]"
-              >
-                Done
-              </DialogClose>
-            </div>
-          </div>
+          ) : (
+            <LoadingSpinner
+              stroke="#f85318"
+              className="mx-auto size-4 animate-spin text-primary opacity-50 sm:size-5"
+            />
+          )}
         </DialogContent>
       </Dialog>
     </>
