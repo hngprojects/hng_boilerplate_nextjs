@@ -155,14 +155,14 @@ const InviteMemberModal: React.FC<ModalProperties> = ({ show, onClose }) => {
             </div>
             <div>
               <label className="mb-2 block text-left text-base text-neutral-dark-2">
-                Add to Organization (Optional)
+                Invite as
               </label>
               <Select
                 onOpenChange={handleOrganizationDropdownOpen}
                 onValueChange={handleOrganizationChange}
               >
                 <SelectTrigger className="bg-white">
-                  <SelectValue placeholder="Select Organization" />
+                  <SelectValue placeholder="Select Role" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
