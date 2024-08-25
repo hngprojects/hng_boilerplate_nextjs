@@ -1,8 +1,13 @@
 const MarketingAd = () => {
   return (
     <div className="mx-auto flex w-full items-center justify-center">
-      <video width="1000" controls>
-        <source src="/video/boilerplate-mkt-ad.mp4" type="video/mp4" />
+      <video
+        width="1000"
+        autoPlay
+        loop
+        src="https://res.cloudinary.com/dswi7h0dg/video/upload/v1724593475/IMG_3650_qmoqjz.mp4"
+        controls
+      >
         Your browser does not support the video tag.
       </video>
     </div>
