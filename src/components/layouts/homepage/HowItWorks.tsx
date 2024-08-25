@@ -24,6 +24,7 @@ const HowItWorks = () => {
               src={
                 "https://res.cloudinary.com/dif45jmwd/video/upload/v1724572073/aivideo/nofcx7ddauggumuxhb3h.mp4"
               }
+              autoPlay={false}
               controls
               muted
               autoPlay
@@ -40,6 +41,7 @@ const HowItWorks = () => {
               src={
                 "https://res.cloudinary.com/dif45jmwd/video/upload/v1724573854/aivideo/dp61xuzfnqxqte8jwzk3.mp4"
               }
+              autoPlay={false}
               controls
               muted
               autoPlay
