@@ -77,7 +77,7 @@ const NotificationPage = () => {
   };
 
   return (
-    <main className="text-neutral-dark-2">
+    <main className="px-4 text-neutral-dark-2">
       <div className="mx-[24px] mb-[30px] flex w-fit items-center gap-1 md:hidden">
         <ChevronLeft size="18" className="text-muted-foreground" />
         <span className="font-[600] text-muted-foreground">Notification</span>
@@ -178,7 +178,7 @@ const NotificationPage = () => {
           />
         </section>
       </section>
-      <section className="text-center md:text-end">
+      <section className="text-end">
         <CustomButton
           variant="primary"
           icon={<Check />}
