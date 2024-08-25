@@ -114,17 +114,6 @@ const HelpCenter = () => {
               >
                 Frequently Asked Questions
               </h1>
-
-              <p className="mb-3 text-[18px] text-neutral-600">
-                We couldn&apos;t answer your question?
-              </p>
-
-              <Link
-                href="/contact-us"
-                className="align-center flex w-[150px] justify-center rounded-md border border-[#0A0A0A] bg-[#FFF] py-4 text-[#0F172A] hover:bg-accent hover:text-accent-foreground"
-              >
-                Contact us
-              </Link>
             </div>
 
             <FaqAccordion faqs={faqData} containerClassName="px-0 py-0 " />

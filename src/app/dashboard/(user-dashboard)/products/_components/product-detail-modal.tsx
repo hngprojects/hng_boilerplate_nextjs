@@ -1,5 +1,8 @@
+"use client";
+
 import { AnimatePresence, motion } from "framer-motion";
 import { Loader2, X } from "lucide-react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next-nprogress-bar";
 import { startTransition, useEffect, useState, useTransition } from "react";
 
@@ -8,7 +11,6 @@ import BlurImage from "~/components/miscellaneous/blur-image";
 import { Button } from "~/components/ui/button";
 import { toast } from "~/components/ui/use-toast";
 import { useOrgContext } from "~/contexts/orgContext";
-import { useLocalStorage } from "~/hooks/use-local-storage";
 import useWindowWidth from "~/hooks/use-window-width";
 import { cn, formatPrice } from "~/lib/utils";
 import { Product } from "~/types";
@@ -29,7 +31,7 @@ const ProductDetailModal = () => {
     useOrgContext();
 
   const [isLoading, startLoading] = useTransition();
-  const [org_id] = useLocalStorage<string>("current_orgid", "");
+  const { data: session } = useSession();
   const { winWidth } = useWindowWidth();
 
   useEffect(() => {
@@ -51,23 +53,27 @@ const ProductDetailModal = () => {
     });
 
     startLoading(() => {
-      deleteProduct(org_id, selectedProduct).then(async (data) => {
-        toast({
-          title: data.status === 200 ? `Product deleted` : "an error occurred",
-          description: (
-            <span>
-              <b>{product?.name}</b>{" "}
-              {data.status === 200 ? " has been deleted." : data.error}
-            </span>
-          ),
-          variant: "default",
-          className: "z-[99999]",
-        });
-        if (data.status === 200) {
-          updateOpen(false);
-          setIsDelete(false);
-        }
-      });
+      if (session?.currentOrgId === undefined) return;
+      deleteProduct(session?.currentOrgId, selectedProduct).then(
+        async (data) => {
+          toast({
+            title:
+              data.status === 200 ? `Product deleted` : "an error occurred",
+            description: (
+              <span>
+                <b>{product?.name}</b>{" "}
+                {data.status === 200 ? " has been deleted." : data.error}
+              </span>
+            ),
+            variant: "default",
+            className: "z-[99999]",
+          });
+          if (data.status === 200) {
+            updateOpen(false);
+            setIsDelete(false);
+          }
+        },
+      );
     });
   };
   const handleEditAction = (id: string) => {

@@ -10,7 +10,6 @@ import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-import { loginUser } from "~/actions/login";
 import CustomButton from "~/components/common/common-button/common-button";
 import { Input } from "~/components/common/input";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
@@ -24,28 +23,22 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import { useToast } from "~/components/ui/use-toast";
-import { useLocalStorage } from "~/hooks/use-local-storage";
 import { cn } from "~/lib/utils";
 import { LoginSchema } from "~/schemas";
-import { Organisation } from "~/types";
 
 const Login = () => {
   const t = useTranslations("login");
   const router = useRouter();
   const { toast } = useToast();
-  const { status } = useSession();
   const [isLoading, startTransition] = useTransition();
   const [showPassword, setShowPassword] = useState(false);
-  const [, setUserOrg] = useLocalStorage<Organisation[]>("user_org", []);
+  const { status } = useSession();
 
-  const [currentOrgId, setCurrentOrgId] = useLocalStorage<string | undefined>(
-    "current_orgid",
-    "",
-  );
-
-  if (status === "authenticated") {
-    router.push("/dashboard");
-  }
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/dashboard");
+    }
+  }, [status, router]);
 
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -55,34 +48,37 @@ const Login = () => {
       rememberMe: false,
     },
   });
-
   const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
-    startTransition(async () => {
-      await loginUser(values).then(async (data) => {
-        const { email, password } = values;
+    const { email, password } = values;
 
-        if (data.status === 200) {
-          setUserOrg(data.organisations);
-          if (!currentOrgId && data.organisations.length > 0) {
-            setCurrentOrgId(data.organisations[0].organisation_id);
-          }
-          await signIn(
-            "credentials",
-            {
-              email,
-              password,
-              redirect: false,
-            },
-            { callbackUrl: "/dashboard" },
-          );
-          router.push("/dashboard");
-        }
-        toast({
-          title: data.status === 200 ? "Login success" : "An error occurred",
-          description: data.status === 200 ? "Redirecting" : data.error,
+    try {
+      startTransition(async () => {
+        const result = await signIn("credentials", {
+          email,
+          password,
+          redirect: false,
         });
+
+        if (result?.ok) {
+          router.push("/dashboard");
+          toast({
+            title: "Login success",
+            description: "Redirecting",
+          });
+        } else {
+          toast({
+            title: "An error occurred",
+            description: result?.error || "Unknown error",
+          });
+        }
       });
-    });
+    } catch (error) {
+      toast({
+        title: "Login failed",
+        description:
+          (error as Error).message || "An error occurred during login",
+      });
+    }
   };
 
   const togglePasswordVisibility = () => {
@@ -91,6 +87,7 @@ const Login = () => {
   useEffect(() => {
     document.title = "Login";
   }, []);
+
   return (
     <div className="flex min-h-full items-center justify-center px-4 py-10 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-6">
@@ -106,7 +103,7 @@ const Login = () => {
           <CustomButton
             variant="outline"
             isLeftIconVisible={true}
-            onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+            onClick={() => signIn("google", { callbackUrl: "/" })}
             icon={
               <svg
                 width="25"
@@ -283,14 +280,14 @@ const Login = () => {
           <ShieldCheck className="mr-1 hidden h-4 w-4 text-gray-400 sm:inline-block" />
           {t("agree")}{" "}
           <a
-            href="#"
+            href="/terms-and-conditions"
             className="text-sm font-bold text-primary hover:text-orange-500"
           >
             {t("termsOfService")}
           </a>{" "}
           {t("and")}{" "}
           <a
-            href="#"
+            href="/privacy-policy"
             className="text-sm font-bold text-primary hover:text-orange-500"
           >
             {t("privacyPolicy")}
