@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+import CustomButton from "~/components/common/common-button/common-button";
+
 interface ToggleSwitchProperties {
   label: string;
   description: string;
@@ -21,7 +23,7 @@ const ToggleSwitch: React.FC<ToggleSwitchProperties> = ({
   return (
     <div className="mb-4 rounded-md border p-6 shadow">
       <div className="mb-2 flex items-center justify-between">
-        <label className="text-2xl text-lg font-semibold">{label}</label>
+        <label className="text-2xl font-semibold">{label}</label>
         <label className="relative inline-block h-8 w-14">
           <input
             type="checkbox"
@@ -94,6 +96,14 @@ const Page = () => {
         description="Allow us to show you personalized ads based on your interests and browsing behavior. By enabling this feature, you consent to the use of data collected from your interactions within the app and across other platforms to deliver ads that are more relevant to you."
         apiEndpoint="/api/toggle-ads"
       />
+      <div className="mt-6 flex items-center justify-between gap-3 sm:justify-end">
+        <CustomButton variant="outline" className="font-[500] max-sm:w-full">
+          Cancel
+        </CustomButton>
+        <CustomButton variant="primary" className="font-[500] max-sm:w-full">
+          Save Changes
+        </CustomButton>
+      </div>
     </div>
   );
 };
