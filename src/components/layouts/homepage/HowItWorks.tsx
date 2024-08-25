@@ -7,8 +7,9 @@ const HowItWorks = () => {
   return (
     <div className="bg-[#ffffff] py-20">
       <div className="mx-auto max-w-7xl px-5 md:px-10 lg:px-10 xl:px-10">
-        <div className="flex flex-col items-center lg:flex-row">
-          <div className="w-full md:pr-10 lg:w-3/5 lg:pr-20">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
+          {/* Text Content */}
+          <div className="flex flex-col justify-center">
             <h1 className="font-inter text-3xl font-bold leading-snug md:text-4xl md:leading-tight">
               <span className="text-primary">{t("howItWorksTitlePrefix")}</span>{" "}
               {t("howItWorksTitleHighlight")}
@@ -18,11 +19,39 @@ const HowItWorks = () => {
             </p>
           </div>
 
-          <div className="flex w-full flex-col items-end md:items-start lg:w-2/5">
-            <div className="mb-9 flex space-x-5">
-              <div>
-                <Prebuilt />
-              </div>
+          <div className="flex flex-col space-y-10">
+            <video
+              src={
+                "https://res.cloudinary.com/dif45jmwd/video/upload/v1724572073/aivideo/nofcx7ddauggumuxhb3h.mp4"
+              }
+              controls
+              muted
+              autoPlay
+              loop
+              className="h-auto w-full rounded-lg shadow-lg"
+              style={{ maxHeight: "400px", maxWidth: "100%" }}
+            />
+          </div>
+        </div>
+
+        <div className="mt-16 grid grid-cols-1 gap-10 lg:grid-cols-2">
+          <div className="order-2 flex flex-col space-y-10 lg:order-1">
+            <video
+              src={
+                "https://res.cloudinary.com/dif45jmwd/video/upload/v1724573854/aivideo/dp61xuzfnqxqte8jwzk3.mp4"
+              }
+              controls
+              muted
+              autoPlay
+              loop
+              className="h-auto w-full rounded-lg shadow-lg"
+              style={{ maxHeight: "400px", maxWidth: "100%" }}
+            />
+          </div>
+
+          <div className="order-1 flex flex-col gap-8 lg:order-2">
+            <div className="flex items-center space-x-5">
+              <Prebuilt />
               <div>
                 <h3
                   className="font-inter mb-2 text-lg font-bold md:text-xl"
@@ -38,11 +67,8 @@ const HowItWorks = () => {
                 </small>
               </div>
             </div>
-
-            <div className="mb-9 flex space-x-5">
-              <div>
-                <Scalable />
-              </div>
+            <div className="flex items-center space-x-5">
+              <Scalable />
               <div>
                 <h3
                   className="font-inter mb-2 text-lg font-bold md:text-xl"
@@ -58,11 +84,8 @@ const HowItWorks = () => {
                 </small>
               </div>
             </div>
-
-            <div className="mb-9 flex space-x-5">
-              <div>
-                <Easy />
-              </div>
+            <div className="flex items-center space-x-5">
+              <Easy />
               <div>
                 <h3
                   className="font-inter mb-2 text-lg font-bold md:text-xl"
