@@ -12,12 +12,12 @@ import {
   UserRoundCog,
   UsersIcon,
 } from "lucide-react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FC, ForwardRefExoticComponent, RefAttributes } from "react";
 
 import { useOrgContext } from "~/contexts/orgContext";
-import { useLocalStorage } from "~/hooks/use-local-storage";
 
 const sideItems = [
   {
@@ -96,10 +96,10 @@ const SettingsSidebar: FC<Iproperties> = ({ sideNavitems = sideItems }) => {
     pathname?.split("/").length == 2 ? "general" : pathname?.split("/")[3];
   const organizationPath = pathname?.split("/")[4];
   const { organizations } = useOrgContext();
-  const [org_id] = useLocalStorage<string>("current_orgid", "");
+  const { data: session } = useSession();
 
   const organization = organizations.find(
-    (org) => org.organisation_id === org_id,
+    (org) => org.organisation_id === session?.currentOrgId,
   );
 
   return (
