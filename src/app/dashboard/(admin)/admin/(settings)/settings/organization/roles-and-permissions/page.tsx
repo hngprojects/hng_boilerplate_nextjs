@@ -1,5 +1,6 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -13,7 +14,6 @@ import {
 import CustomButton from "~/components/common/common-button/common-button";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import { useToast } from "~/components/ui/use-toast";
-import { useLocalStorage } from "~/hooks/use-local-storage";
 
 type Role = {
   id: string;
@@ -39,18 +39,15 @@ const RolesAndPermission = () => {
   const [loadingRoles, setLoadingRoles] = useState<boolean>(true);
   const [loadingPermissions, setLoadingPermissions] = useState<boolean>(false);
   const [loadingRequest, setLoadingRequest] = useState<boolean>(false);
-  const [currentOrgId] = useLocalStorage<string | undefined>(
-    "current_orgid",
-    "",
-  );
+  const { data: session } = useSession();
 
   useEffect(() => {
-    if (!currentOrgId) return;
+    if (!session?.currentOrgId) return;
     const fetchData = async () => {
       try {
         const url = await getApiUrl();
         setApiUrl(url);
-        const { data, error } = await getRoles(currentOrgId);
+        const { data, error } = await getRoles(session?.currentOrgId ?? "");
 
         if (error) throw new Error("An error occurred!");
 
@@ -68,14 +65,14 @@ const RolesAndPermission = () => {
     };
     setLoadingRoles(true);
     fetchData();
-  }, [currentOrgId, toast]);
+  }, [session?.currentOrgId, toast]);
 
   useEffect(() => {
     const fetchPermissions = async () => {
-      if (selectedRoleId && currentOrgId) {
+      if (selectedRoleId && session?.currentOrgId) {
         setLoadingPermissions(true);
         try {
-          await getRolePermissions(currentOrgId, selectedRoleId).then(
+          await getRolePermissions(session?.currentOrgId, selectedRoleId).then(
             (data) => {
               const rolesData = data.data;
               if (rolesData.permissions.length > 0) {
@@ -99,7 +96,7 @@ const RolesAndPermission = () => {
       }
     };
     fetchPermissions();
-  }, [selectedRoleId, apiUrl, currentOrgId, toast]);
+  }, [selectedRoleId, apiUrl, session?.currentOrgId, toast]);
 
   useEffect(() => {
     const fetchPermissions = async () => {
@@ -132,7 +129,7 @@ const RolesAndPermission = () => {
   };
 
   const handleSave = async () => {
-    if (!selectedRoleId || !currentOrgId) return;
+    if (!selectedRoleId || !session?.currentOrgId) return;
     const selectedRole =
       roles.some((role) => role.id === selectedRoleId) &&
       roles.find((role) => role.id === selectedRoleId);
@@ -141,7 +138,7 @@ const RolesAndPermission = () => {
     try {
       await updateRole(
         { ...selectedRole, permissions },
-        currentOrgId,
+        session?.currentOrgId,
         selectedRoleId,
       ).then(() => {
         toast({
@@ -162,9 +159,23 @@ const RolesAndPermission = () => {
 
   return (
     <div className="">
-      <div className="flex gap-8">
-        <div className="w-1/4">
-          <h2 className="mb-10 text-xl font-medium">Roles</h2>
+      <div className="mb-7 flex items-end justify-between md:mb-10">
+        <div className="">
+          <h2 className="mb-1.5 text-xl font-medium">Roles</h2>
+          <small className="text-xs text-[#525252]">
+            Manage user roles for members
+          </small>
+        </div>
+        <div className="">
+          <CustomButton variant="primary" className="">
+            <Link href="/dashboard/admin/settings/organization/roles-and-permissions/create-role">
+              + Create roles
+            </Link>
+          </CustomButton>
+        </div>
+      </div>
+      <div className="flex flex-col gap-10 md:flex-row md:gap-11">
+        <div className="md:w-[256px]">
           <ul className="rounded-md border border-[#CBD5E1] p-3">
             {loadingRoles ? (
               <div className="flex justify-center py-8">
@@ -192,14 +203,7 @@ const RolesAndPermission = () => {
             )}
           </ul>
         </div>
-        <div className="w-3/4">
-          <div className="mb-2 flex justify-end">
-            <CustomButton variant="primary" className="mb-6">
-              <Link href="/dashboard/admin/settings/organization/roles-and-permissions/create-role">
-                + Create roles
-              </Link>
-            </CustomButton>
-          </div>
+        <div className="flex-grow">
           <div className="rounded-md border border-[#CBD5E1] px-5 py-6">
             <div className="border-b border-[#CBD5E1] pb-4 pl-2">
               <h2 className="mb-2 text-base font-medium text-[#0A0A0A]">
