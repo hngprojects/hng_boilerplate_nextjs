@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next-nprogress-bar";
 import { useEffect, useTransition } from "react";
 
@@ -11,7 +12,6 @@ import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import { Button } from "~/components/ui/button";
 import { toast } from "~/components/ui/use-toast";
 import { useOrgContext } from "~/contexts/orgContext";
-import { useLocalStorage } from "~/hooks/use-local-storage";
 import { cn, formatPrice } from "~/lib/utils";
 
 const ProductDetailView = () => {
@@ -28,7 +28,7 @@ const ProductDetailView = () => {
   const [isLoading, startTransition] = useTransition();
 
   const product = products.find((p) => p.id === selectedProduct);
-  const [org_id] = useLocalStorage<string>("current_orgid", "");
+  const { data: session } = useSession();
 
   const handleDelete = async () => {
     toast({
@@ -38,21 +38,24 @@ const ProductDetailView = () => {
     });
 
     startTransition(async () => {
-      await deleteProduct(org_id, selectedProduct).then((data) => {
-        if (data.status === 200) {
-          toast({
-            title: "Product deleted",
-            description: "Product deleted successfully.",
-          });
-        } else {
-          toast({
-            title: "Error",
-            description: data.error || "An unexpected error occurred.",
-            variant: "destructive",
-          });
-        }
-        setIsDelete(false);
-      });
+      if (session?.currentOrgId === undefined) return;
+      await deleteProduct(session?.currentOrgId, selectedProduct).then(
+        (data) => {
+          if (data.status === 200) {
+            toast({
+              title: "Product deleted",
+              description: "Product deleted successfully.",
+            });
+          } else {
+            toast({
+              title: "Error",
+              description: data.error || "An unexpected error occurred.",
+              variant: "destructive",
+            });
+          }
+          setIsDelete(false);
+        },
+      );
     });
   };
   const handleEditAction = (id: string) => {

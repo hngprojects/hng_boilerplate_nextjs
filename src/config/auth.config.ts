@@ -43,6 +43,7 @@ export default {
         }
 
         const user = {
+          ...response.data,
           ...response.data.user,
           access_token: response.access_token,
         };
@@ -73,7 +74,7 @@ export default {
           return token;
         }
 
-        const response = await googleAuth({ id_token: account?.id_token });
+        const response = await googleAuth(account?.id_token);
 
         if (!response.data) {
           token = {
@@ -127,21 +128,16 @@ export default {
       const customToken = token as CustomJWT;
       session.user = {
         id: customToken.id as string,
-        first_name:
-          customToken.first_name ||
-          customToken.name?.split(" ")[0] ||
-          customToken.fullname?.split(" ")[0] ||
-          "",
-        last_name:
-          customToken.last_name ||
-          customToken.name?.split(" ").slice(1).join(" ") ||
-          customToken.fullname?.split(" ").slice(1).join(" ") ||
-          "",
-        image: token.picture || customToken.avatar_url || "",
-        role: customToken.role as string,
-        email: token.email as string,
+        first_name: customToken.first_name,
+        last_name: customToken.last_name,
+        image: customToken.avatar_url || "",
+        email: customToken.email as string,
       };
       session.access_token = customToken.access_token;
+      session.userOrg = customToken.organisations;
+      session.currentOrgId =
+        customToken.organisations &&
+        customToken.organisations[0]?.organisation_id;
 
       return session;
     },
