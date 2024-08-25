@@ -70,7 +70,6 @@ export const getAllProduct = async (org_id: string) => {
     );
     return {
       products: response.data.data,
-      response: response,
     };
   } catch (error) {
     return axios.isAxiosError(error) && error.response
