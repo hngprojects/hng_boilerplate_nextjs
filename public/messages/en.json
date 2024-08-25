@@ -46,7 +46,7 @@
     "otpExpiresIn": "OTP expires in: {timeLeft}",
     "resendCode": "Didn't receive the code? resend",
     "dataProcessing": "We would process your data as set forth in our Terms of Use, Privacy Policy and Data Processing Agreement",
-    "alreadyHaveAccount": "Already Have An Account? Login"
+    "alreadyHaveAccount": "Already Have An Account?"
   },
   "HomePage": {
     "title": "Hello world!"
@@ -153,6 +153,7 @@
   },
   "noJobs": {
     "noJobsTitle": "No available Jobs at the moment",
+
     "noJobsContent": "Sign up for our newsletter to get updates on job postings",
     "modalTitle": "Newsletter",
     "button": "Sign up for newsletter",
