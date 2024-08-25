@@ -313,7 +313,8 @@ const Footer = () => {
               })}
             </div>
           </div>
-          <span className="flex items-center justify-center text-center text-xs font-semibold text-stroke-colors-stroke">
+          <span className="flex items-center justify-center gap-1 text-center text-xs font-semibold text-stroke-colors-stroke">
+            {t("footerBottom.companyName")}
             <Copyright className="h-5 w-5 text-stroke-colors-stroke" />
             {t("footerBottom.copyright")}
           </span>

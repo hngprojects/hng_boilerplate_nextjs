@@ -1,4 +1,4 @@
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 
 import BlogLabel from "~/app/(landing-routes)/blog/_component/label";
 import { Card, CardHeader, CardTitle } from "~/components/ui/card";
@@ -8,7 +8,7 @@ interface BlogCardProperties {
   date: string;
   readTime: string;
   category: string;
-  image: StaticImageData;
+  image: string;
   labelClassName: string;
   onClick?: () => void;
 }
