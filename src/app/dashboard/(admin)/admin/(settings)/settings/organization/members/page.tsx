@@ -8,7 +8,14 @@ import { useState } from "react";
 import CustomButton from "~/components/common/common-button/common-button";
 import { Input } from "~/components/common/input";
 import InviteMemberModal from "~/components/common/modals/invite-member";
+import DeleteMember from "~/components/common/modals/invite-member/DeleteMembers";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "~/components/ui/dropdown-menu";
 import {
   Select,
   SelectContent,
@@ -71,8 +78,15 @@ const activeMembers: number = memberData.length;
 
 const Members = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
   const [exporting, setExporting] = useState(false);
   const [text, setText] = useState("Export CSV");
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
 
   const { toast } = useToast();
   const handleCopy = () => {
@@ -87,8 +101,16 @@ const Members = () => {
     setIsModalOpen(true);
   };
 
+  const handleDeleteOpen = () => {
+    setIsDeleteModalOpen(true);
+  };
+
   const handleModalClose = () => {
     setIsModalOpen(false);
+  };
+
+  const handleDeleteClose = () => {
+    setIsDeleteModalOpen(false);
   };
 
   const exportMembers = async () => {
@@ -160,25 +182,28 @@ const Members = () => {
               <input
                 type="checkbox"
                 className="peer sr-only"
-                onChange={() => {}}
+                onChange={toggleVisibility}
+                checked={isVisible}
               />
               <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-orange-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-4 peer-focus:ring-orange-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-orange-800"></div>
             </label>
           </div>
         </div>
 
-        <div className="flex w-full justify-between">
-          <CustomButton variant="outline" className="w-full overflow-hidden">
-            https://www.figma.com/design/7hCSTNzQOJLl9aww6wEEd1/Managing-Users----Team-Learn-AI?node-i
-          </CustomButton>
-          <CustomButton
-            variant="primary"
-            className="ml-8 space-x-4"
-            onClick={handleCopy}
-          >
-            Copy link
-          </CustomButton>
-        </div>
+        {isVisible && (
+          <div className="flex w-full justify-between">
+            <CustomButton variant="outline" className="w-full overflow-hidden">
+              https://www.figma.com/design/7hCSTNzQOJLl9aww6wEEd1/Managing-Users----Team-Learn-AI?node-i
+            </CustomButton>
+            <CustomButton
+              variant="primary"
+              className="ml-8 space-x-4"
+              onClick={handleCopy}
+            >
+              Copy link
+            </CustomButton>
+          </div>
+        )}
       </div>
       <div className="w-full space-y-2">
         <h4 className="text-lg font-medium">Manage members</h4>
@@ -246,7 +271,19 @@ const Members = () => {
                   </Select>
                 </div>
 
-                <EllipsisIcon onClick={() => {}} className="flex-shrink-0" />
+                <DropdownMenu>
+                  <DropdownMenuTrigger>
+                    <EllipsisIcon
+                      onClick={() => {}}
+                      className="flex-shrink-0"
+                    />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-[7.875rem] text-[0.875rem]">
+                    <DropdownMenuItem onClick={handleDeleteOpen}>
+                      <span>Delete Member</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </li>
             );
           })}
@@ -276,6 +313,7 @@ const Members = () => {
         </div>
       </div>
       <InviteMemberModal show={isModalOpen} onClose={handleModalClose} />
+      <DeleteMember show={isDeleteModalOpen} onClose={handleDeleteClose} />
     </div>
   );
 };

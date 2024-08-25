@@ -1,7 +1,7 @@
 import NextAuth, { type DefaultSession } from "next-auth";
 
 import authConfig from "~/config/auth.config";
-import { User } from "~/types";
+import { Organisation, User } from "~/types";
 
 export const {
   handlers: { GET, POST },
@@ -19,11 +19,12 @@ declare module "next-auth" {
       last_name: User["last_name"];
       email: User["email"];
       image: User["avatar_url"];
-      role: User["role"];
       bio?: string;
       username?: string;
       is_superadmin?: boolean;
     } & DefaultSession["user"];
     access_token?: string;
+    currentOrgId?: string;
+    userOrg?: Organisation[];
   }
 }
