@@ -1,19 +1,20 @@
 import "./menu.css";
 
 import { motion, stagger, useAnimate } from "framer-motion";
+import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import { useUser } from "~/hooks/user/use-user";
 import { cn } from "~/lib/utils";
 import { NAV_LINKS } from "./links";
 
 export default function MobileNav() {
   const [open, setOpen] = useState(false);
   const [scope, animate] = useAnimate();
-  const { user } = useUser();
   const t = useTranslations();
+  const { data: session } = useSession();
+  const user = session?.user;
 
   // the stagger effect
   const staggerList = stagger(0.1, { startDelay: 0.25 });
@@ -26,7 +27,7 @@ export default function MobileNav() {
       "ul",
       {
         width: open ? 180 : 0,
-        height: open && user.email ? 140 : open ? 250 : 0,
+        height: open && user?.email ? 140 : open ? 250 : 0,
         opacity: open ? 1 : 0,
       },
       {
@@ -45,7 +46,7 @@ export default function MobileNav() {
         delay: open ? staggerList : 0,
       },
     );
-  }, [animate, open, staggerList, user.email]);
+  }, [animate, open, staggerList, user?.email]);
 
   return (
     <>

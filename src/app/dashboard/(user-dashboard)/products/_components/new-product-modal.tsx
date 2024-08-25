@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion } from "framer-motion";
 import { Loader, X } from "lucide-react";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
@@ -33,7 +34,6 @@ import {
 import { Textarea } from "~/components/ui/textarea";
 import { useToast } from "~/components/ui/use-toast";
 import { useOrgContext } from "~/contexts/orgContext";
-import { useLocalStorage } from "~/hooks/use-local-storage";
 import { cn } from "~/lib/utils";
 import { productSchema } from "~/schemas";
 import { CloudinaryAsset } from "~/types";
@@ -44,7 +44,7 @@ const NewProductModal = () => {
   const { setIsNewModal, isNewModal } = useOrgContext();
   const [image, setImage] = useState<File | Blob>();
   const [isLoading, startTransition] = useTransition();
-  const [org_id] = useLocalStorage<string>("current_orgid", "");
+  const { data: session } = useSession();
 
   const variantProperties = {
     left: "50%",
@@ -83,7 +83,8 @@ const NewProductModal = () => {
         values.image_url = data.url;
       });
 
-      await createProduct(values, org_id).then((data) => {
+      if (session?.currentOrgId === undefined) return;
+      await createProduct(values, session?.currentOrgId).then((data) => {
         if (data.status === 201) {
           newProductForm.reset();
           setIsNewModal(false);

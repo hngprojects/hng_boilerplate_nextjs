@@ -1,14 +1,62 @@
 "use client";
 
+import axios from "axios";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
+import { getApiUrl } from "~/actions/getApiUrl";
 import CustomButton from "~/components/common/common-button/common-button";
 import HeroSection from "~/components/extDynamicPages/blogCollection/BlogPageHero";
 import BlogCard from "~/components/layouts/BlogCards";
+import { useToast } from "~/components/ui/use-toast";
 import { blogPosts } from "./data/mock";
 
 const BlogHome = () => {
   const router = useRouter();
+  const { toast } = useToast();
+  const { data: session } = useSession();
+  const [, setBlogPost] = useState("");
+
+  useEffect(() => {
+    async function fetchBlog() {
+      try {
+        const apiUrl = await getApiUrl();
+        const token = session?.access_token;
+        const response = await axios.get(`${apiUrl}/api/v1/blogs`, {
+          headers: {
+            Authorization: `Bearer: ${token}`,
+          },
+        });
+        const data = response.data;
+        setBlogPost(data);
+        toast({
+          title:
+            Array.isArray(data.data) && data.data.length === 0
+              ? "No Blog Post Available"
+              : "Blog Posts Retrieved",
+          description:
+            Array.isArray(data.data) && data.data.length === 0
+              ? "Blog posts are empty"
+              : "Blog posts retrieved successfully",
+          variant:
+            Array.isArray(data.data) && data.data.length === 0
+              ? "destructive"
+              : "default",
+        });
+      } catch (error) {
+        toast({
+          title: "Error occured",
+          description:
+            error instanceof Error
+              ? error.message
+              : "An unknown error occurred",
+          variant: "destructive",
+        });
+      }
+    }
+    fetchBlog();
+  }, [session?.access_token, toast]);
 
   return (
     <div>
