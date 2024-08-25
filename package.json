@@ -16,7 +16,8 @@
     "test:ci": "vitest --coverage",
     "email:dev": "email dev --dir \"./src/email/templates\"",
     "email:build": "email build --dir \"./src/email/templates\"",
-    "email:start": "email start"
+    "email:start": "email start",
+    "typecheck": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -67,6 +68,7 @@
     "react-email": "2.1.5",
     "react-hook-form": "^7.52.2",
     "react-paginate": "^8.2.0",
+    "react-toastify": "^10.0.5",
     "recharts": "^2.12.7",
     "sharp": "^0.33.4",
     "swiper": "^11.1.9",

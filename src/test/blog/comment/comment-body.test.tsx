@@ -13,7 +13,6 @@ describe("comment body component", () => {
       last_name: "User",
       email: "user@example.com",
       image: "path/to/image",
-      role: "user",
     },
     access_token: "some-token",
     expires: "1",
@@ -35,6 +34,7 @@ describe("comment body component", () => {
         onLike={vi.fn()}
         onDislike={vi.fn()}
         onReply={vi.fn()}
+        isReplyActive={false}
       />,
     );
     expect(screen.getByTestId("comment-text")).toHaveTextContent(
@@ -64,6 +64,7 @@ describe("comment body component", () => {
         dislikes={0}
         onLike={mockOnLike}
         onDislike={mockOnDislike}
+        isReplyActive={false}
       />,
     );
 
@@ -93,6 +94,7 @@ describe("comment body component", () => {
         dislikes={3}
         onLike={vi.fn()}
         onDislike={vi.fn()}
+        isReplyActive={false}
       />,
     );
 
@@ -118,6 +120,7 @@ describe("comment body component", () => {
         onLike={vi.fn()}
         onDislike={vi.fn()}
         onReply={vi.fn()}
+        isReplyActive={false}
       />,
     );
 
@@ -142,6 +145,7 @@ describe("comment body component", () => {
         onLike={vi.fn()}
         onDislike={vi.fn()}
         onReply={vi.fn()}
+        isReplyActive={false}
       />,
     );
     expect(
