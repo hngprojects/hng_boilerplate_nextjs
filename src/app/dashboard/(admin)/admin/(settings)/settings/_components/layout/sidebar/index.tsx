@@ -105,7 +105,10 @@ const SettingsSidebar: FC<Iproperties> = ({ sideNavitems = sideItems }) => {
 
   return (
     <div className="h-screen w-[50px] flex-col items-center justify-center bg-[#FAFAFA] pt-6 md:block md:w-[304px] md:justify-start md:px-4">
-      <div className="mb-6 flex items-center justify-center md:justify-start md:gap-2 hover:cursor-pointer" onClick={() => router.push("/dashboard")}>
+      <div
+        className="mb-6 flex items-center justify-center hover:cursor-pointer md:justify-start md:gap-2"
+        onClick={() => router.push("/dashboard")}
+      >
         <ChevronLeft className="h-5 w-5 text-neutral-dark-2" />
         <h2 className="hidden text-xl text-neutral-dark-2 md:block">
           Settings

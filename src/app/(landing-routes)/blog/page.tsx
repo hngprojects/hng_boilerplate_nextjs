@@ -9,7 +9,6 @@ import { getApiUrl } from "~/actions/getApiUrl";
 import CustomButton from "~/components/common/common-button/common-button";
 import HeroSection from "~/components/extDynamicPages/blogCollection/BlogPageHero";
 import BlogCard from "~/components/layouts/BlogCards";
-import { useToast } from "~/components/ui/use-toast";
 import {
   Pagination,
   PaginationContent,
@@ -18,6 +17,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "~/components/ui/pagination";
+import { useToast } from "~/components/ui/use-toast";
 
 const BlogHome = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -49,6 +49,7 @@ const BlogHome = () => {
           },
         });
         const data = response.data;
+        setData(response.data);
         setBlogPost(data);
         toast({
           title:
@@ -73,6 +74,8 @@ const BlogHome = () => {
               : "An unknown error occurred",
           variant: "destructive",
         });
+      } finally {
+        setIsLoading(false);
       }
     }
     fetchBlog();
