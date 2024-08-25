@@ -5,7 +5,7 @@ const MarketingAd = () => {
         width="1000"
         autoPlay
         loop
-        src="https://res.cloudinary.com/dswi7h0dg/video/upload/v1724590050/Boilerplate_Marketing_Ad_ez9v1a.mov"
+        src="https://res.cloudinary.com/dswi7h0dg/video/upload/v1724593475/IMG_3650_qmoqjz.mp4"
         controls
       >
         Your browser does not support the video tag.
