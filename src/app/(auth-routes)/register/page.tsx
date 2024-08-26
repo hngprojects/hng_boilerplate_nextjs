@@ -15,7 +15,6 @@ import { registerUser, resendOtp, verifyOtp } from "~/actions/register";
 import CustomButton from "~/components/common/common-button/common-button";
 import { Input } from "~/components/common/input";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
-import { Checkbox } from "~/components/ui/checkbox";
 import {
   Dialog,
   DialogContent,
@@ -51,7 +50,6 @@ const Register = () => {
   const [showOtp, setShowOtp] = useState(false);
   const [timeLeft, setTimeLeft] = useState<number>(15 * 60);
   const [value, setValue] = useState("");
-  const [createOrg, setCreateOrg] = useState<boolean>(false);
 
   if (status === "authenticated") {
     router.push("/dashboard");
@@ -73,12 +71,7 @@ const Register = () => {
     startTransition(async () => {
       await registerUser(values).then(async (data) => {
         if (data.status === 201) {
-          // Handle redirection based on createOrg condition
-          if (createOrg) {
-            router.push("/register/organisation");
-          } else {
-            router.push("/login");
-          }
+          router.push("/login");
 
           toast({
             title: "Account created successfully",
@@ -336,18 +329,6 @@ const Register = () => {
                 </FormItem>
               )}
             />
-            <div
-              className="flex items-center gap-2"
-              onClick={() => setCreateOrg((a) => !a)}
-            >
-              <Checkbox id="createOrg" />
-              <label
-                htmlFor="createOrg"
-                className="font-inter ms-1 text-center text-sm leading-[19.2px] hover:cursor-pointer"
-              >
-                Also create an organisation
-              </label>
-            </div>
             <CustomButton
               type="submit"
               variant="primary"
