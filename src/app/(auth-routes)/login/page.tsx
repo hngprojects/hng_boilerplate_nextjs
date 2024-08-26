@@ -103,7 +103,7 @@ const Login = () => {
           <CustomButton
             variant="outline"
             isLeftIconVisible={true}
-            onClick={() => signIn("google", { callbackUrl: "/" })}
+            onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
             icon={
               <svg
                 width="25"
