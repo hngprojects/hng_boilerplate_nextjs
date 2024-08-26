@@ -146,7 +146,7 @@ export default {
   },
   pages: {
     signIn: "/login",
-    error: "/error",
+    error: "/",
   },
   secret: process.env.AUTH_SECRET,
   trustHost: true,
