@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC, useEffect, useState } from "react";
 
+import { fetchBlogById } from "~/actions/blog";
 import Comment, {
   CommentProperties,
 } from "~/components/common/comment-component";
@@ -50,18 +51,15 @@ const BlogDetailsPage: FC<IProperties> = ({ id }) => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch(
-          `https://staging.api-csharp.boilerplate.hng.tech/api/v1/blogs/${id}`,
-        );
-        const result = await response.json();
-        setPost(result.data);
+        const response = await fetchBlogById(id);
+        setPost(response.data);
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchData();
-  }, []);
+  }, [id]);
 
   const handleSubmit = () => {
     if (newComment.trim()) {
