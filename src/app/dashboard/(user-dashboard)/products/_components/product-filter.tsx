@@ -1,7 +1,10 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { Filter, Grid, List, Search } from "lucide-react";
-import { Dispatch, SetStateAction, useEffect, useRef } from "react";
+"use client";
 
+import { AnimatePresence, motion } from "framer-motion";
+import { CheckIcon, Filter, Grid, List, Search } from "lucide-react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+
+import { Input } from "~/components/common/input";
 import { Button } from "~/components/ui/button";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
 import { cn } from "~/lib/utils";
@@ -14,8 +17,42 @@ type ProductFilterProperties = {
 const ProductFilter = ({ view, setView }: ProductFilterProperties) => {
   const { isOpenFilterModal, updateFilterModal } = useProductModal();
 
+  const [currentStat, setCurrentStat] = useState<string | null>();
+  const [currentCat, setCurrentCat] = useState<string | null | number>();
+  const [currentPrice, setCurrentPrice] = useState<string | null | number>();
+
   const filterReference = useRef<HTMLDivElement>(null);
   const filterTriggerReference = useRef<HTMLButtonElement>(null);
+  const PriceFilter = [
+    {
+      value: 1,
+      label: "Min-Max",
+    },
+    {
+      value: 2,
+      label: "Max-Min",
+    },
+  ];
+  const StatusFilter = [
+    {
+      value: "in_stock",
+      label: "In Stock",
+    },
+    {
+      value: "out_of_stock",
+      label: "Out Of Stock",
+    },
+  ];
+  const CatFilter = [
+    {
+      value: 1,
+      label: "Breakfast",
+    },
+    {
+      value: 2,
+      label: "Lunch",
+    },
+  ];
 
   useEffect(() => {
     document.body.style.overflow = isOpenFilterModal ? "hidden" : "unset";
@@ -39,30 +76,30 @@ const ProductFilter = ({ view, setView }: ProductFilterProperties) => {
     };
   });
 
+  const [priceFilterOpen, setPriceFilterOpen] = useState(false);
+  const [categoryFilterOpen, setCategoryFilterOpen] = useState(false);
+  const [statusFilterOpen, setStatusFilterOpen] = useState(false);
+
   return (
     <div className="flex w-full items-center justify-between gap-x-2 min-[500px]:gap-x-0">
       <div className="relative w-full max-w-[300px]">
-        {/* <Input
+        <Input
           type="text"
-          value={searchTerm}
-          onChange={(event) => setSearchTerm(event.target.value)}
+          // value={searchTerm}
+          // onChange={(event) => setSearchTerm(event.target.value)}
           placeholder="search products..."
-          className="h-8 w-full bg-transparent px-8 text-sm min-[500px]:h-10"
-        /> */}
-        {/* <Button
-          onClick={() => setSearchTerm("")}
+          className="h-9 w-full bg-transparent px-5 text-sm min-[500px]:h-12"
+        />
+        <Button
+          // onClick={() => setSearchTerm("")}
           variant="ghost"
           size="icon"
           className={cn(
-            "absolute right-0 top-1/2 -translate-y-1/2 transition-opacity duration-300",
-            searchTerm
-              ? "pointer-events-auto opacity-100"
-              : "pointer-events-none opacity-0",
+            "absolute right-0 top-1/2 h-8 -translate-y-1/2 transition-opacity duration-300 min-[500px]:h-9",
           )}
         >
-          <X />
-        </Button> */}
-        <Search className="absolute left-2 top-1/2 size-5 -translate-y-1/2 text-gray-400" />
+          <Search className="absolute right-2 top-1/2 size-5 -translate-y-1/2 text-gray-400" />
+        </Button>
       </div>
       <div className="relative flex items-center gap-x-2 min-[500px]:gap-x-4">
         <div className="flex items-center gap-x-2">
@@ -97,13 +134,111 @@ const ProductFilter = ({ view, setView }: ProductFilterProperties) => {
         </div>
         <span className="h-[30px] w-[1px] flex-1 bg-[#E4E4E7] min-[500px]:h-[36px]" />
         <Button
-          onClick={() => updateFilterModal(!isOpenFilterModal)}
+          onClick={() =>
+            setStatusFilterOpen((previous: boolean) => (previous = !previous))
+          }
           ref={filterTriggerReference}
           variant="outline"
-          className="relative grid w-8 place-items-center bg-transparent px-2 text-sm min-[500px]:flex min-[500px]:w-[82px] min-[500px]:items-center min-[500px]:justify-between min-[500px]:gap-x-2 min-[500px]:text-base"
+          className="relative grid h-[36px] !w-fit place-items-center bg-transparent px-2 text-sm min-[500px]:flex min-[500px]:w-[82px] min-[500px]:items-center min-[500px]:justify-between min-[500px]:gap-x-2 min-[500px]:text-base"
         >
           <Filter className="size-5" />
-          <span className="hidden min-[500px]:inline">Filter</span>
+          <span className="hidden w-fit text-base min-[500px]:inline">
+            Filter by Status
+          </span>
+
+          {statusFilterOpen ? (
+            <motion.div className="absolute left-0 top-12 z-20 flex w-[160px] flex-col gap-2 rounded-md border-2 border-gray-100/50 bg-white p-2 shadow-md">
+              <span className="border-b border-gray-300 px-2 py-2 text-left text-sm font-semibold text-neutral-dark-2 md:px-4">
+                Filters
+              </span>
+              {StatusFilter.map((range: { value: string; label: string }) => (
+                <span
+                  key={range.value}
+                  className="flex w-full justify-start gap-2 p-3 text-left text-sm hover:bg-gray-100"
+                  onClick={() => setCurrentStat(range.value)}
+                >
+                  {currentStat === range.value ? <CheckIcon size={15} /> : ""}
+                  {range.label}
+                </span>
+              ))}
+            </motion.div>
+          ) : (
+            ""
+          )}
+        </Button>
+        <Button
+          onClick={() =>
+            setCategoryFilterOpen((previous: boolean) => (previous = !previous))
+          }
+          ref={filterTriggerReference}
+          variant="outline"
+          className="relative grid h-[36px] !w-fit place-items-center bg-transparent px-2 text-sm min-[500px]:flex min-[500px]:w-[82px] min-[500px]:items-center min-[500px]:justify-between min-[500px]:gap-x-2 min-[500px]:text-base"
+        >
+          <Filter className="size-5" />
+          <span className="hidden w-fit text-base min-[500px]:inline">
+            Filter by Categories
+          </span>
+
+          {categoryFilterOpen ? (
+            <motion.div className="absolute left-0 top-12 z-20 flex w-[150px] flex-col gap-2 rounded-md border-2 border-gray-100/50 bg-white p-2 shadow-md">
+              <span className="border-b border-gray-300 px-2 py-2 text-left text-sm font-semibold text-neutral-dark-2 md:px-4">
+                Filters
+              </span>
+              {CatFilter.map(
+                (range: { value: number | string; label: string }) => (
+                  <span
+                    key={range.value}
+                    className="flex w-full justify-start gap-2 p-3 text-left text-sm hover:bg-gray-100"
+                    onClick={() => setCurrentCat(range.value)}
+                  >
+                    {currentCat === range.value ? <CheckIcon size={15} /> : ""}
+                    {range.label}
+                  </span>
+                ),
+              )}
+            </motion.div>
+          ) : (
+            ""
+          )}
+        </Button>
+        <Button
+          onClick={() =>
+            setPriceFilterOpen((previous: boolean) => (previous = !previous))
+          }
+          ref={filterTriggerReference}
+          variant="outline"
+          className="relative grid h-[36px] !w-fit place-items-center bg-transparent px-2 text-sm min-[500px]:flex min-[500px]:w-[82px] min-[500px]:items-center min-[500px]:justify-between min-[500px]:gap-x-2 min-[500px]:text-base"
+        >
+          <Filter className="size-5" />
+          <span className="hidden w-fit text-base min-[500px]:inline">
+            Filter by Price
+          </span>
+
+          {priceFilterOpen ? (
+            <motion.div className="absolute left-0 top-12 z-20 flex w-[150px] flex-col gap-2 rounded-md border-2 border-gray-100/50 bg-white p-2 shadow-md">
+              <span className="border-b border-gray-300 px-2 py-2 text-left text-sm font-semibold text-neutral-dark-2 md:px-4">
+                Filters
+              </span>
+              {PriceFilter.map(
+                (range: { value: number | string; label: string }) => (
+                  <span
+                    key={range.value}
+                    className="flex w-full justify-start gap-2 p-3 text-left text-sm hover:bg-gray-100"
+                    onClick={() => setCurrentPrice(range.value)}
+                  >
+                    {currentPrice === range.value ? (
+                      <CheckIcon size={15} />
+                    ) : (
+                      ""
+                    )}
+                    {range.label}
+                  </span>
+                ),
+              )}
+            </motion.div>
+          ) : (
+            ""
+          )}
         </Button>
 
         <AnimatePresence>
@@ -115,7 +250,7 @@ const ProductFilter = ({ view, setView }: ProductFilterProperties) => {
               ref={filterReference}
               className="absolute -bottom-[12rem] right-0 z-30 flex w-[150px] flex-col gap-y-1 rounded-[6px] border border-gray-300 bg-white/80 shadow-[0px_1px_18px_0px_rgba(10,_57,_176,_0.12)] backdrop-blur-sm min-[500px]:-bottom-[14rem] sm:w-full sm:max-w-[185px]"
             >
-              <span className="border-b border-gray-300 px-2 py-2 text-sm font-semibold text-neutral-dark-2 md:px-4">
+              <span className="border-b border-gray-300 px-2 py-2 text-left text-sm font-semibold text-neutral-dark-2 md:px-4">
                 Filters
               </span>
               {/* {filters.map((filter) => (

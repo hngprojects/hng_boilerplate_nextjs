@@ -1,9 +1,7 @@
 // components/admin/NewProductModal.tsx
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion } from "framer-motion";
 import { Loader, X } from "lucide-react";
-import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
@@ -34,6 +32,7 @@ import {
 import { Textarea } from "~/components/ui/textarea";
 import { useToast } from "~/components/ui/use-toast";
 import { useOrgContext } from "~/contexts/orgContext";
+import { useLocalStorage } from "~/hooks/use-local-storage";
 import { cn } from "~/lib/utils";
 import { productSchema } from "~/schemas";
 import { CloudinaryAsset } from "~/types";
@@ -44,7 +43,7 @@ const NewProductModal = () => {
   const { setIsNewModal, isNewModal } = useOrgContext();
   const [image, setImage] = useState<File | Blob>();
   const [isLoading, startTransition] = useTransition();
-  const { data: session } = useSession();
+  const [org_id] = useLocalStorage<string>("current_orgid", "");
 
   const variantProperties = {
     left: "50%",
@@ -83,8 +82,7 @@ const NewProductModal = () => {
         values.image_url = data.url;
       });
 
-      if (session?.currentOrgId === undefined) return;
-      await createProduct(values, session?.currentOrgId).then((data) => {
+      await createProduct(values, org_id).then((data) => {
         if (data.status === 201) {
           newProductForm.reset();
           setIsNewModal(false);
@@ -94,6 +92,7 @@ const NewProductModal = () => {
           description:
             data.status === 201 ? "Product created successfully" : data.error,
         });
+        setIsNewModal(false);
       });
     });
   };
@@ -128,7 +127,7 @@ const NewProductModal = () => {
             animate={{ ...variantProperties, opacity: 1, scale: 1 }}
             exit={{ ...variantProperties, opacity: 0, scale: 0.5 }}
             className={cn(
-              "fixed left-1/2 top-1/2 z-[100] grid h-fit max-h-[90%] w-full max-w-[95%] -translate-x-1/2 -translate-y-1/2 transform-gpu place-items-center items-center overflow-hidden overflow-y-auto rounded-md bg-white pb-6 min-[500px]:max-w-[480px] min-[500px]:rounded-xl md:max-h-[850px] lg:h-fit lg:max-w-[491px]",
+              "fixed left-1/2 top-1/2 z-[100] grid h-fit max-h-[90%] w-full max-w-[95%] -translate-x-1/2 -translate-y-1/2 transform-gpu place-items-center items-center overflow-hidden overflow-y-scroll scroll-smooth rounded-md bg-white pb-6 min-[500px]:max-w-[480px] min-[500px]:rounded-xl md:max-h-[550px] lg:h-fit lg:max-h-[650px] lg:max-w-[491px]",
             )}
           >
             <div className="flex h-full w-full flex-col items-center gap-y-4">
@@ -154,7 +153,7 @@ const NewProductModal = () => {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="hidden font-medium text-neutral-dark-2 min-[376px]:inline">
-                            Name<span className="text-red-500">*</span>
+                            Title<span className="text-red-500">*</span>
                           </FormLabel>
                           <FormControl>
                             <Input
@@ -175,7 +174,7 @@ const NewProductModal = () => {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="hidden font-medium text-neutral-dark-2 min-[376px]:inline">
-                            Description
+                            Description <span className="text-red-500">*</span>
                           </FormLabel>
                           <FormControl>
                             <div className="relative flex w-full flex-col gap-y-2">
@@ -188,6 +187,7 @@ const NewProductModal = () => {
                                     ? "focus-visible:outline-red-500 focus-visible:ring-red-500"
                                     : "",
                                 )}
+                                maxLength={MAX_CHAR}
                                 {...field}
                               />
                               <div className="flex w-full items-center justify-between">
@@ -211,7 +211,7 @@ const NewProductModal = () => {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="hidden font-medium text-neutral-dark-2 min-[376px]:inline">
-                            Category
+                            Category <span className="text-red-500">*</span>
                           </FormLabel>
                           <FormControl>
                             <Select
@@ -221,6 +221,7 @@ const NewProductModal = () => {
                                 handleCategoryChange(value);
                               }}
                               value={field.value}
+                              required
                             >
                               <SelectTrigger>
                                 <SelectValue placeholder="Select a category" />
@@ -294,7 +295,7 @@ const NewProductModal = () => {
                             <Input
                               id="quantity"
                               disabled={isLoading}
-                              type="int"
+                              type="number"
                               placeholder="Quantity"
                               className="bg-transparent placeholder:text-slate-400"
                               {...field}
@@ -315,7 +316,7 @@ const NewProductModal = () => {
                           <FormControl>
                             <Input
                               id="price"
-                              type="int"
+                              type="number"
                               disabled={isLoading}
                               placeholder="Price"
                               className="bg-transparent placeholder:text-slate-400"
@@ -327,15 +328,17 @@ const NewProductModal = () => {
                       )}
                     />
                   </div>
-                  <div className="relative mt-2 flex h-fit max-h-[150px] min-h-[125px] w-full flex-col items-center justify-center gap-y-2 rounded-xl px-4 md:rounded-2xl">
-                    <p className="font-medium text-neutral-dark-2">Media</p>
+                  <div className="relative mt-3 flex h-fit max-h-[150px] min-h-[125px] w-full flex-col items-center justify-center gap-y-2 rounded-xl px-4 md:rounded-2xl">
+                    <p className="w-full text-start font-medium text-neutral-dark-2">
+                      Media
+                    </p>
                     {image ? (
                       <Image
                         src={URL.createObjectURL(image)}
                         alt="Uploaded image"
                         width={200}
                         height={200}
-                        className="h-40 w-full rounded-t-md object-cover"
+                        className="h-40 w-full rounded-t-md border-2 border-gray-200 object-cover"
                       />
                     ) : (
                       <Label htmlFor="image" className="cursor-pointer">
@@ -352,7 +355,14 @@ const NewProductModal = () => {
                           }
                           accept="image/jpeg,image/png,image/svg+xml"
                         />
-                        Add Image
+                        <div className="flex h-[80px] w-full items-center justify-center gap-3 rounded-lg border border-dashed bg-[#CBD5E1]">
+                          <span className="flex h-[32px] w-[114px] items-center justify-center rounded-md bg-white text-sm font-medium text-black shadow-md">
+                            Upload New
+                          </span>
+                          <span className="text-center text-sm text-[#525252]">
+                            Accepts images, videos or 3D models
+                          </span>
+                        </div>
                       </Label>
                     )}
                   </div>
