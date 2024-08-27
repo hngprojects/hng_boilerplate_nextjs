@@ -2,6 +2,7 @@
 
 import { AxiosResponse } from "axios";
 import { EllipsisIcon } from "lucide-react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -84,6 +85,8 @@ const Members = () => {
   const [text, setText] = useState("Export CSV");
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
+  const { data: session } = useSession();
+
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
   };
@@ -117,7 +120,8 @@ const Members = () => {
     setExporting(true);
     setText("Exporting...");
 
-    const result = await exportMembersEndpoint();
+    if (!session?.currentOrgId) return;
+    const result = await exportMembersEndpoint(session?.currentOrgId);
 
     if (result.success) {
       toast({

@@ -1,15 +1,16 @@
 import axios from "axios";
 
 import { getApiUrl } from "~/actions/getApiUrl";
-import { useSession } from "next-auth/react";
 
-export const exportMembersEndpoint = async (format: string = "csv") => {
+export const exportMembersEndpoint = async (
+  currentOrgId: string,
+  format: string = "csv",
+) => {
   const apiUrl = await getApiUrl();
-  const { data: session } = useSession();
-  if (!session?.currentOrgId) return;
+
   try {
     const response = await axios.get(
-      `${apiUrl}/api/v1/organisations/${session?.currentOrgId}/users/export`,
+      `${apiUrl}/api/v1/organisations/${currentOrgId}/users/export`,
       {
         params: {
           format: format,
