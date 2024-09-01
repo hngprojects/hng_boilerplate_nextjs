@@ -16,7 +16,9 @@
     "test:ci": "vitest --coverage",
     "email:dev": "email dev --dir \"./src/email/templates\"",
     "email:build": "email build --dir \"./src/email/templates\"",
-    "email:start": "email start"
+    "email:start": "email start",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\""
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
