@@ -119,7 +119,8 @@
     "footerBottom": {
       "privacyPolicy": "Privacy Policy",
       "termsOfUse": "Terms of Use",
-      "copyright": "2024 All Rights Reserved"
+      "copyright": "2024 All Rights Reserved",
+            "companyName": "HNG Boilerplate"
     }
   },
   "pricing": {

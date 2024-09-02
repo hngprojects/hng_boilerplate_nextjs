@@ -4,8 +4,7 @@ import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 import Twitter from "next-auth/providers/twitter";
 
-import { nextlogin } from "~/actions/login";
-import { googleAuth, twitterAuth } from "~/actions/socialAuth";
+import { credentialsAuth, googleAuth, twitterAuth } from "~/actions/userAuth";
 import { LoginSchema } from "~/schemas";
 import { CustomJWT } from "~/types";
 
@@ -32,22 +31,25 @@ export default {
       async authorize(credentials) {
         const validatedFields = LoginSchema.safeParse(credentials);
         if (!validatedFields.success) {
-          return;
+          // eslint-disable-next-line unicorn/no-null
+          return null;
         }
 
         const { email, password, rememberMe } = validatedFields.data;
-        const response = await nextlogin({ email, password, rememberMe });
+        const response = await credentialsAuth({ email, password, rememberMe });
 
         if (!response) {
-          return;
+          // eslint-disable-next-line unicorn/no-null
+          return null;
         }
 
-        const user = {
-          ...response.data,
-          ...response.data.user,
-          access_token: response.access_token,
-        };
+        if (!response || !("data" in response)) {
+          // eslint-disable-next-line unicorn/no-null
+          return null;
+        }
 
+        const user = response.data as CustomJWT;
+        user.access_token = response.access_token;
         return user;
       },
     }),
@@ -68,7 +70,7 @@ export default {
 
       return !!user;
     },
-    async jwt({ token, user, account, profile }) {
+    async jwt({ token, user, account }) {
       if (account?.provider === "google") {
         if (!account?.id_token) {
           return token;
@@ -76,22 +78,12 @@ export default {
 
         const response = await googleAuth(account?.id_token);
 
-        if (!response.data) {
-          token = {
-            email: profile?.email,
-            name: profile?.given_name,
-            picture: profile?.picture,
-          } as CustomJWT;
-          token.access_token = response.access_token;
+        if (!response || !("data" in response)) {
           return token;
         }
 
         token = response.data as CustomJWT;
-        token.picture = profile?.picture;
         token.access_token = response.access_token;
-
-        user = response.data as CustomJWT;
-
         return token;
       }
 
@@ -103,19 +95,11 @@ export default {
         const response = await twitterAuth(account?.access_token);
 
         if (!response || !("data" in response)) {
-          token = {
-            email: user?.email,
-            name: user?.name,
-            picture: user?.image,
-          } as CustomJWT;
           return token;
         }
+
         token = response.data as CustomJWT;
-        token.picture = profile?.picture;
         token.access_token = response.access_token;
-
-        user = response.data as CustomJWT;
-
         return token;
       }
 
@@ -126,6 +110,24 @@ export default {
     },
     async session({ session, token }: { session: Session; token: JWT }) {
       const customToken = token as CustomJWT;
+
+      if (!customToken || !customToken.id) {
+        return {
+          ...session,
+          user: {
+            id: "",
+            first_name: "",
+            last_name: "",
+            email: "",
+            image: "",
+          },
+          access_token: undefined,
+          userOrg: undefined,
+          currentOrgId: undefined,
+          expires: new Date(0).toISOString(),
+        };
+      }
+
       session.user = {
         id: customToken.id as string,
         first_name: customToken.first_name,

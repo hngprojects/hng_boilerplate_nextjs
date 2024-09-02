@@ -91,7 +91,7 @@ const Password = () => {
     !formData.confirmPassword || !formData.oldPassword || !formData.password;
 
   return (
-    <div className="w-full max-w-[674px] px-8 pt-[50px]">
+    <div className="w-full px-3 pt-[50px] md:px-8">
       <div className="mb-8">
         <h2 className="mb-2 text-2xl font-semibold text-neutral-dark-1">
           Password Settings

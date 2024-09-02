@@ -54,12 +54,12 @@ const PaginationLink = ({
     aria-current={isActive ? "page" : undefined}
     className={cn(
       buttonVariants({
-        variant: isActive ? activeVariant : "ghost",
+        variant: isActive ? activeVariant : "default",
         size,
       }),
       isActive
         ? "border-solid border-border bg-transparent"
-        : "bg-white text-[#98A2B3]",
+        : "bg-white text-[#09090B]",
       className,
     )}
     {...properties}
@@ -73,12 +73,11 @@ const PaginationPrevious = ({
 }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
     aria-label="Go to previous page"
-    size="icon"
-    className={cn("border text-foreground", className)}
+    className={cn("size-auto text-foreground min-[500px]:size-auto", className)}
     {...properties}
   >
     <ChevronLeft className="h-4 w-4" />
-    <span></span>
+    <span className="text-xl font-semibold">Previous</span>
   </PaginationLink>
 );
 PaginationPrevious.displayName = "PaginationPrevious";
@@ -89,11 +88,10 @@ const PaginationNext = ({
 }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
     aria-label="Go to next page"
-    size="icon"
-    className={cn("border text-foreground", className)}
+    className={cn("size-auto text-foreground min-[500px]:size-auto", className)}
     {...properties}
   >
-    <span></span>
+    <span className="text-xl font-semibold">Next</span>
     <ChevronRight className="h-4 w-4" />
   </PaginationLink>
 );
