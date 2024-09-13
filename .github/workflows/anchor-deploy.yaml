@@ -1,10 +1,10 @@
 name: Anchor Deployment
 
 on:
-  workflow_run:
-    workflows: ["Build and Upload"]
-    types:
-      - completed
+  # workflow_run:
+  #   workflows: ["Build and Upload"]
+  #   types:
+  #     - completed
 
 jobs:   
   deploy_to_java:
