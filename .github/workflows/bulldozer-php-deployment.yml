@@ -1,7 +1,7 @@
 name: Bulldozer PHP Deployment
 
 on:
-  # workflow_dispatch:
+  workflow_dispatch:
   # workflow_run:
   #   workflows: ["Build and Upload"]
   #   types:
