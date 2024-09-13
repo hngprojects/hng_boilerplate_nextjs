@@ -36,7 +36,7 @@ const RoleCreationModal: React.FC<ModalProperties> = ({ show, onClose }) => {
                 <input
                   type="text"
                   placeholder="e.g: IT Staff"
-                  className="w-full rounded-md border border-border px-3 py-2 shadow-sm outline-none focus:border-primary focus:ring-ring md:w-56"
+                  className="w-full rounded-md border border-border bg-transparent px-3 py-2 shadow-sm outline-none focus:border-primary focus:ring-ring md:w-56"
                 />
               </div>
               <div>
@@ -45,7 +45,7 @@ const RoleCreationModal: React.FC<ModalProperties> = ({ show, onClose }) => {
                 </label>
                 <textarea
                   placeholder="describe role"
-                  className="min-h-20 w-full resize-none rounded-md border border-border px-3 py-2 shadow-sm outline-none focus:border-primary focus:ring-ring"
+                  className="min-h-20 w-full resize-none rounded-md border border-border bg-transparent px-3 py-2 shadow-sm outline-none focus:border-primary focus:ring-ring"
                 />
               </div>
               <div className="mt-8 flex items-center justify-end gap-4">

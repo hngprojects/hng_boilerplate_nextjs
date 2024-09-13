@@ -17,13 +17,15 @@ export const publicRoutes = [
 ];
 
 export const authRoutes = [
-  "/sign-up",
+  "/register",
   "/login",
   "/forgot-password",
   "/reset-password",
   "/verify-otp",
   "/recovery",
 ];
+
+export const superAdminRoutes = ["dashboard/admin/faqs"];
 
 export const apiAuthPrefix = "/api/";
 

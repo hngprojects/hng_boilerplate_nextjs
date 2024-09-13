@@ -1,9 +1,9 @@
-import BlogDetailsPage from "./BlogDetailsPage";
+import BlogDetailsPage from "./_components/BlogDetailsPage";
 
-const page = () => {
+const page = ({ params }: { params: { id: string } }) => {
   return (
     <div>
-      <BlogDetailsPage />
+      <BlogDetailsPage id={params.id} />
     </div>
   );
 };

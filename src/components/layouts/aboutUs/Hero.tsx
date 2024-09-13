@@ -1,23 +1,39 @@
+"use client";
+
+import { getCookie } from "cookies-next";
 import Image from "next/image";
 
+import Heading from "../heading";
+
 const Hero = () => {
+  const locale = getCookie("NEXT_LOCALE") || "en";
+
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-7xl px-5 py-20 md:px-10 lg:px-10 xl:px-10">
-        <div className="mx-auto flex flex-col items-center">
-          <p className="text-center text-[20px] font-[500] text-neutral-600 sm:text-[22px] md:text-[24px] lg:text-[26px] xl:text-[28px]">
-            About Us
-          </p>
-          <p className="text-center text-[30px] font-[700] text-neutral-600 sm:text-[36px] md:text-[42px] lg:text-[48px] xl:text-[54px]">
-            More Than Just A BoilerPlate
-          </p>
-
-          <p className="mt-2 w-full text-center text-[16px] font-[400] text-neutral-600 sm:w-[600px] md:w-[700px] md:text-[18px] lg:w-[784px]">
-            Welcome to Hng Boilerplate, where passion meets innovation. Discover
-            how we started, the challenges we overcame, and the milestones that
-            define our journey.
-          </p>
-        </div>
+      <div className="mx-auto max-w-7xl px-5 py-8 md:px-10 lg:px-10 xl:px-10">
+        <Heading
+          tag={`${
+            locale === "es"
+              ? "Sobre Nosotros"
+              : locale === "fr"
+                ? "À Propos De Nous"
+                : "About Us"
+          }`}
+          title={`${
+            locale === "es"
+              ? "Más Que {{Solo}} Un BoilerPlate"
+              : locale === "fr"
+                ? "Plus Que {{Juste}} Un BoilerPlate"
+                : "More Than {{Just}} A BoilerPlate"
+          }`}
+          content={`${
+            locale === "es"
+              ? "Bienvenido a Hng Boilerplate, donde la pasión se encuentra con la innovación. Descubre cómo comenzamos, los desafíos que superamos y los hitos que definen nuestro viaje."
+              : locale === "fr"
+                ? "Bienvenue sur Hng Boilerplate, où la passion rencontre l'innovation. Découvrez comment nous avons commencé, les défis que nous avons surmontés et les jalons qui définissent notre parcours."
+                : "Welcome to Hng Boilerplate, where passion meets innovation. Discover how we started, the challenges we overcame, and the milestones that define our journey."
+          }`}
+        />
 
         <div className="mt-[10px] w-full">
           <Image

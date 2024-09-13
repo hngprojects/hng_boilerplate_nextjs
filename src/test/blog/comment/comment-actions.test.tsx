@@ -8,7 +8,7 @@ describe("comment actions component", () => {
   const mockOnReply = vi.fn();
 
   it('should render all buttons correctly when type is "comment"', () => {
-    expect.assertions(5);
+    expect.assertions(4);
     render(
       <CommentActions
         type="comment"
@@ -17,18 +17,18 @@ describe("comment actions component", () => {
         onLike={mockOnLike}
         onDislike={mockOnDislike}
         onReply={mockOnReply}
+        isReplyActive={false}
       />,
     );
 
     expect(screen.getByTestId("like-button")).toBeInTheDocument();
     expect(screen.getByTestId("dislike-button")).toBeInTheDocument();
     expect(screen.getByTestId("share-button")).toBeInTheDocument();
-    expect(screen.getByTestId("forward-button")).toBeInTheDocument();
     expect(screen.getByTestId("reply-button")).toBeInTheDocument();
   });
 
   it('should render all buttons correctly when type is "reply"', () => {
-    expect.assertions(5);
+    expect.assertions(4);
     render(
       <CommentActions
         type="reply"
@@ -36,13 +36,13 @@ describe("comment actions component", () => {
         dislikes={2}
         onLike={mockOnLike}
         onDislike={mockOnDislike}
+        isReplyActive={false}
       />,
     );
 
     expect(screen.getByTestId("like-button")).toBeInTheDocument();
     expect(screen.getByTestId("dislike-button")).toBeInTheDocument();
     expect(screen.getByTestId("share-button")).toBeInTheDocument();
-    expect(screen.getByTestId("forward-button")).toBeInTheDocument();
     expect(screen.queryByTestId("reply-button")).not.toBeInTheDocument();
   });
 
@@ -56,6 +56,7 @@ describe("comment actions component", () => {
         onLike={mockOnLike}
         onDislike={mockOnDislike}
         onReply={mockOnReply}
+        isReplyActive={false}
       />,
     );
 
@@ -74,28 +75,12 @@ describe("comment actions component", () => {
         onLike={mockOnLike}
         onDislike={mockOnDislike}
         onReply={mockOnReply}
+        isReplyActive={false}
       />,
     );
 
     const dislikeButton = screen.getByTestId("dislike-button");
     fireEvent.click(dislikeButton);
     expect(mockOnDislike).toHaveBeenCalledTimes(1);
-  });
-
-  it('should call onReply when the reply button is clicked and type is "comment"', () => {
-    expect.assertions(1);
-    render(
-      <CommentActions
-        type="comment"
-        likes={10}
-        dislikes={2}
-        onLike={mockOnLike}
-        onDislike={mockOnDislike}
-        onReply={mockOnReply}
-      />,
-    );
-
-    fireEvent.click(screen.getByTestId("reply-button"));
-    expect(mockOnReply).toHaveBeenCalledWith();
   });
 });

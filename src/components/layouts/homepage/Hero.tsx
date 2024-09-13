@@ -1,19 +1,16 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import Image from "next/image";
+import Link from "next/link";
 import { A11y, Autoplay, Pagination, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { HeroBoilerPlate, HeroChat, HeroCheckMark } from "./svgs";
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
-
-import Link from "next/link";
 
 const Hero = () => {
+  const t = useTranslations("hero");
+
   //
 
   return (
@@ -21,8 +18,8 @@ const Hero = () => {
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <div className="flex flex-col items-center lg:flex-row">
           <div className="w-full text-center sm:text-left lg:w-1/2">
-            <h1 className="mb-2 text-4xl font-bold leading-snug lg:text-5xl lg:leading-tight xl:text-6xl">
-              {`Focus on What Matters. We've Got the Foundation Covered.`}
+            <h1 className="mb-2 text-4xl font-bold leading-snug lg:mr-20 lg:text-[50px] lg:leading-tight">
+              {t("headline")}
             </h1>
 
             <div className="">
@@ -36,16 +33,15 @@ const Hero = () => {
             </div>
 
             <p className="mb-8 mt-5 text-lg text-foreground md:mb-12 md:mt-7 md:text-xl">
-              Streamline your processes with a boilerplate built for efficiency
-              and optimal productivity.
+              {t("description")}
             </p>
 
             <Link
               href="/register"
-              className="rounded bg-primary px-8 py-4 text-background"
+              className="rounded bg-primary px-8 py-4 text-background hover:bg-destructive"
               data-testid="get-started"
             >
-              Get Started
+              {t("cta")}
             </Link>
           </div>
 
@@ -77,11 +73,11 @@ const Hero = () => {
                 spaceBetween={1}
                 slidesPerView={1}
                 autoplay={{
-                  delay: 3000,
+                  delay: 5000,
                   disableOnInteraction: false,
                 }}
                 loop={true}
-                speed={4000}
+                speed={1000}
                 data-testid="swiper"
               >
                 <SwiperSlide>

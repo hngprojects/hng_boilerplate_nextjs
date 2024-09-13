@@ -1,51 +1,68 @@
+"use client";
+
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next-nprogress-bar";
 import { useEffect, useTransition } from "react";
 
+import { deleteProduct } from "~/actions/product";
 import BlurImage from "~/components/miscellaneous/blur-image";
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import { Button } from "~/components/ui/button";
 import { toast } from "~/components/ui/use-toast";
-import { useProductModal } from "~/hooks/admin-product/use-product.modal";
-import { useProducts } from "~/hooks/admin-product/use-products.persistence";
-import { cn, formatPrice, simulateDelay } from "~/lib/utils";
+import { useOrgContext } from "~/contexts/orgContext";
+import { cn, formatPrice } from "~/lib/utils";
 
 const ProductDetailView = () => {
-  const { products, deleteProduct } = useProducts();
-  const [isLoading, startTransition] = useTransition();
   const {
-    product_id,
-    updateProductId,
-    updateOpen,
-    isOpen,
+    products,
+    selectedProduct,
     isDelete,
     setIsDelete,
-  } = useProductModal();
+    updateOpen,
+    isOpen,
+  } = useOrgContext();
+  const router = useRouter();
 
-  const product = products?.find(
-    (product) => product.product_id === product_id,
-  );
-  const handleDelete = async (id: string) => {
+  const [isLoading, startTransition] = useTransition();
+
+  const product = products.find((p) => p.id === selectedProduct);
+  const { data: session } = useSession();
+
+  const handleDelete = async () => {
     toast({
       title: "Deleting product",
       description: "Please wait...",
       variant: "destructive",
     });
 
-    setIsDelete(true);
     startTransition(async () => {
-      await simulateDelay(3);
-      updateOpen(false);
-      deleteProduct(id);
-      toast({
-        title: `Product deleted`,
-        description: `${product?.name} has been deleted.`,
-        variant: "default",
-      });
-      updateProductId("null");
-      setIsDelete(false);
+      if (session?.currentOrgId === undefined) return;
+      await deleteProduct(session?.currentOrgId, selectedProduct).then(
+        (data) => {
+          if (data.status === 200) {
+            toast({
+              title: "Product deleted",
+              description: "Product deleted successfully.",
+            });
+          } else {
+            toast({
+              title: "Error",
+              description: data.error || "An unexpected error occurred.",
+              variant: "destructive",
+            });
+          }
+          setIsDelete(false);
+        },
+      );
     });
   };
+  const handleEditAction = (id: string) => {
+    setIsDelete(false);
+    router.push(`/dashboard/products/${id}`);
+  };
+
   useEffect(() => {
     document.title = isOpen
       ? `Product - ${product?.name}`
@@ -59,8 +76,8 @@ const ProductDetailView = () => {
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 100 }}
-          transition={{ duration: 0.5 }}
-          className="sticky top-0 hidden w-full min-w-[350px] flex-col gap-y-5 rounded-[6px] border border-gray-300 bg-white px-2 py-4 shadow-[0px_1px_18px_0px_rgba(10,_57,_176,_0.12)] lg:flex lg:max-w-[370px] xl:w-[403px] xl:px-4"
+          transition={{ duration: 0.3 }}
+          className="sticky top-0 hidden w-full min-w-[340px] flex-col gap-y-5 rounded-[6px] border border-gray-300 bg-white px-2 py-4 shadow-[0px_1px_18px_0px_rgba(10,_57,_176,_0.12)] lg:flex lg:max-w-[370px] xl:w-[403px] xl:px-4"
         >
           <div
             className={cn(
@@ -75,7 +92,7 @@ const ProductDetailView = () => {
             </p>
             <div className="flex w-full items-center justify-center gap-x-2">
               <Button
-                onClick={() => handleDelete(product!.product_id!)}
+                onClick={handleDelete}
                 variant="outline"
                 className="bg-white font-medium text-error"
               >
@@ -98,7 +115,6 @@ const ProductDetailView = () => {
               variant="ghost"
               size="icon"
               onClick={() => {
-                updateProductId("");
                 updateOpen(false);
               }}
             >
@@ -117,7 +133,7 @@ const ProductDetailView = () => {
             <p className="flex w-full items-center justify-between text-sm lg:text-base">
               <span className="text-neutral-dark-1">Product ID</span>
               <span className="uppercase text-neutral-dark-2">
-                {product?.product_id}
+                {product?.id}
               </span>
             </p>
             <p className="flex w-full items-center justify-between text-sm lg:text-base">
@@ -127,15 +143,15 @@ const ProductDetailView = () => {
             <p className="flex w-full items-center justify-between text-sm lg:text-base">
               <span className="text-neutral-dark-1">Date added</span>
               <span className="text-neutral-dark-2">
-                {product?.date_added}, {product?.time}
+                {product?.created_at},
               </span>
             </p>
-            <p className="flex w-full items-center justify-between text-sm lg:text-base">
+            {/* <p className="flex w-full items-center justify-between text-sm lg:text-base">
               <span className="text-neutral-dark-1">Stock</span>
               <span className="text-neutral-dark-2">
                 {product?.stock} {product!.stock! > 1 ? "pcs" : "pc"}
               </span>
-            </p>
+            </p> */}
             <p className="flex w-full items-center justify-between text-sm lg:text-base">
               <span className="text-neutral-dark-1">Stock</span>
               <span className="text-neutral-dark-2">
@@ -164,7 +180,11 @@ const ProductDetailView = () => {
                 <span>Delete</span>
               )}
             </Button>
-            <Button variant="outline" className="bg-white font-medium">
+            <Button
+              onClick={() => handleEditAction(selectedProduct)}
+              variant="outline"
+              className="bg-white font-medium"
+            >
               Edit
             </Button>
           </div>

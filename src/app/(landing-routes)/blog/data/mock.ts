@@ -9,7 +9,7 @@ import {
 
 export const blogPosts = [
   {
-    id: 1,
+    id: "1",
     title: "The Power of Networking: How to Build Meaningful Connections",
     date: "Jul 12, 2024",
     readTime: "5",
@@ -18,7 +18,7 @@ export const blogPosts = [
     labelClassName: "bg-primary",
   },
   {
-    id: 2,
+    id: "2",
     title: "The Global Impact of Climate Change: A Look at the Evidence",
     date: "Jul 12, 2024",
     readTime: "5",
@@ -27,7 +27,7 @@ export const blogPosts = [
     labelClassName: "bg-warning",
   },
   {
-    id: 3,
+    id: "3",
     title: "5 Easy and Delicious Recipes for Busy Weeknights",
     date: "Jul 12, 2024",
     readTime: "5",
@@ -36,7 +36,7 @@ export const blogPosts = [
     labelClassName: "bg-success",
   },
   {
-    id: 4,
+    id: "4",
     title: "5 Simple Habits to Improve Your Mental Wellbeing",
     date: "Jul 12, 2024",
     readTime: "5",
@@ -45,7 +45,7 @@ export const blogPosts = [
     labelClassName: "bg-primary",
   },
   {
-    id: 5,
+    id: "5",
     title: "The Ultimate Guide to Dressing Stylishly with Fewer Clothes",
     date: "Jul 12, 2024",
     readTime: "5",
@@ -54,7 +54,7 @@ export const blogPosts = [
     labelClassName: "bg-success",
   },
   {
-    id: 6,
+    id: "6",
     title: "The Future of Travel: What Will the World Look Like in 2030?",
     date: "Jul 12, 2024",
     readTime: "5",

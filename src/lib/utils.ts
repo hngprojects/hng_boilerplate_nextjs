@@ -6,6 +6,17 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export const isMobileDevice = () => {
+  if (typeof window === "undefined") {
+    return false;
+  }
+  return (
+    /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(
+      navigator?.userAgent,
+    ) || navigator?.maxTouchPoints > 0
+  );
+};
+
 export function getCurrentDateTime() {
   const now = new Date();
 

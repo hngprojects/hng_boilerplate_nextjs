@@ -1,10 +1,4 @@
-import {
-  Forward,
-  MessageCircle,
-  Share2,
-  ThumbsDown,
-  ThumbsUp,
-} from "lucide-react";
+import { MessageCircle, Share2, ThumbsDown, ThumbsUp } from "lucide-react";
 
 import CustomButton from "../common-button/common-button";
 import ButtonWrapper from "./button-wrapper";
@@ -36,13 +30,13 @@ const CommentActions = ({
       <ButtonWrapper data-testid="like-button" onClick={onLike}>
         <CustomButton
           variant="outline"
-          className={`group h-[24.96px] min-w-8 gap-1.5 rounded-[6px] border-[1.5px] border-stroke-colors-stroke bg-zinc-50 py-1 text-neutral-dark-2 hover:border-primary hover:bg-primary hover:text-white sm:h-9 sm:min-w-12 sm:py-1.5 ${likes > 0 ? "px-2" : "pl-2 pr-4"}`}
+          className={`h-9 w-auto bg-transparent p-0.5 transition-all duration-200 ease-in-out hover:bg-primary hover:text-white ${likes > 0 ? "px-2" : "pl-2 pr-4"}`}
           aria-label="Like Button"
         >
           <ThumbsUp className="size-4 sm:size-6" aria-label="thumbs-up-icon" />
           {likes > 0 && (
             <span
-              className="font-medium text-neutral-dark-1 transition-colors group-hover:text-white"
+              className="font-medium transition-colors group-hover:text-white"
               aria-label="likes-count"
             >
               {likes}
@@ -53,7 +47,7 @@ const CommentActions = ({
       <ButtonWrapper data-testid="dislike-button" onClick={onDislike}>
         <CustomButton
           variant="outline"
-          className={`group h-[24.96px] min-w-8 gap-1.5 rounded-[6px] border-[1.5px] border-stroke-colors-stroke bg-zinc-50 py-1 text-neutral-dark-1 hover:border-primary hover:bg-primary hover:text-white sm:h-9 sm:sm:min-w-12 sm:py-1.5 ${dislikes > 0 ? "px-[5.33px] sm:px-2" : "pl-[5.33px] pr-[10.67px] sm:pl-2 sm:pr-4"}`}
+          className={`h-9 w-auto bg-transparent p-0.5 transition-all duration-200 ease-in-out hover:bg-primary hover:text-white ${dislikes > 0 ? "px-[5.33px] sm:px-2" : "pl-[5.33px] pr-[10.67px] sm:pl-2 sm:pr-4"}`}
           aria-label="Dislike Button"
         >
           <ThumbsDown
@@ -62,7 +56,7 @@ const CommentActions = ({
           />
           {dislikes > 0 && (
             <span
-              className="text-[10.7px] font-medium text-neutral-dark-1 transition-colors group-hover:text-white sm:text-base"
+              className="text-[10.7px] font-medium transition-colors group-hover:text-white sm:text-base"
               aria-label="dislikes-count"
             >
               {dislikes}
@@ -72,7 +66,7 @@ const CommentActions = ({
       </ButtonWrapper>
       <ButtonWrapper data-testid="share-button">
         <CustomButton
-          className="group h-[24.96px] min-w-8 gap-1.5 rounded-[6px] border-[1.5px] border-stroke-colors-stroke bg-zinc-50 py-1 pl-[5.33px] pr-[10.67px] text-neutral-dark-1 hover:border-primary hover:bg-primary hover:text-white sm:h-9 sm:min-w-12 sm:py-1.5 sm:pl-2 sm:pr-4"
+          className="size-9 bg-transparent p-0.5 transition-all duration-200 ease-in-out hover:bg-primary hover:text-white"
           variant="outline"
           size="icon"
           aria-label="Share Button"
@@ -83,21 +77,10 @@ const CommentActions = ({
           />
         </CustomButton>
       </ButtonWrapper>
-      <ButtonWrapper data-testid="forward-button">
-        <CustomButton
-          className="group h-[24.96px] min-w-8 gap-1.5 rounded-[6px] border-[1.5px] border-stroke-colors-stroke bg-zinc-50 py-1 pl-[5.33px] pr-[10.67px] text-neutral-dark-1 hover:border-primary hover:bg-primary hover:text-white sm:h-9 sm:min-w-12 sm:py-1.5 sm:pl-2 sm:pr-4"
-          variant="outline"
-          size="icon"
-          aria-label="Forward Button"
-        >
-          <Forward className="size-4 sm:size-6" aria-label="forward-icon" />
-        </CustomButton>
-      </ButtonWrapper>
-
       {type === "comment" && onReply && (
         <ButtonWrapper data-testid="reply-button" onClick={() => onReply?.()}>
           <CustomButton
-            className={`group h-[24.96px] min-w-8 gap-1.5 rounded-[6px] border-[1.5px] border-stroke-colors-stroke bg-zinc-50 py-1 pl-[5.33px] pr-[10.67px] text-neutral-dark-1 hover:border-primary hover:bg-primary hover:text-white sm:h-9 sm:min-w-12 sm:py-1.5 sm:pl-2 sm:pr-4 ${isReplyActive ? "border-primary bg-primary text-white" : ""}`}
+            className={`size-9 bg-transparent p-0.5 transition-all duration-200 ease-in-out hover:bg-primary hover:text-white ${isReplyActive ? "border-primary bg-primary text-white" : ""}`}
             aria-label="Reply Button"
             variant="outline"
             size="icon"

@@ -1,0 +1,98 @@
+name: Anchor Deployment
+
+on:
+  workflow_dispatch:
+  # workflow_run:
+  #   workflows: ["Build and Upload"]
+  #   types:
+  #     - completed
+
+jobs:   
+  deploy_to_java:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    environment:
+      name: "anchor-java"
+      url: ${{ vars.URL }}
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+          name: boilerplate-build
+          path: .
+
+      - name: Decode and create .env file
+        run: |
+          echo ${{ secrets.ENV }} | base64 -d > .env.java
+
+      - name: Copy Artifacts to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          source: ".env.java,boilerplate.tar.gz"
+          target: "/tmp/java"
+        
+      - name: Deploy on server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd hng_boilerplate_nextjs
+            tar -xzf /tmp/java/boilerplate.tar.gz
+            mv /tmp/java/.env.java .env
+            rm -f /tmp/java/boilerplate.tar.gz
+            cp -r .next/standalone/* .
+            pm2 restart nextjs_boilerplate --update-env
+
+     
+  deploy_to_python:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    environment:
+      name: "anchor-python"
+      url: ${{ vars.URL }}
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+          name: boilerplate-build
+          path: .
+
+      - name: Decode and create .env file
+        run: |
+          echo ${{ secrets.ENV }} | base64 -d > .env.python
+
+      - name: Copy Artifacts to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          source: ".env.python,boilerplate.tar.gz"
+          target: "/tmp/python"
+        
+      - name: Deploy on server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd hng_boilerplate_nextjs
+            tar -xzf /tmp/python/boilerplate.tar.gz
+            mv /tmp/python/.env.python .env
+            rm -f /tmp/python/boilerplate.tar.gz
+            cp -r .next/standalone/* .
+            pm2 restart nextjs_boilerplate --update-env

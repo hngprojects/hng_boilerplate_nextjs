@@ -1,8 +1,9 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import React from "react";
 import { describe, expect, it, vi } from "vitest";
 
-import LoginPage from "./page";
+import { renderWithIntl } from "~/test/utils";
+import Login from "./page";
 
 vi.mock("next/link", () => ({
   default: ({ children }: { children: React.ReactNode }) => children,
@@ -84,14 +85,14 @@ vi.mock("~/components/ui/button", () => ({
   ),
 }));
 
-describe("loginPage", () => {
+describe("login", () => {
   afterEach(() => {
     vi.clearAllMocks();
   });
   it("renders login form", () => {
     expect.hasAssertions();
 
-    render(<LoginPage />);
+    renderWithIntl(<Login />);
 
     expect(screen.getByRole("heading", { name: "Login" })).toBeInTheDocument();
     expect(
@@ -104,7 +105,7 @@ describe("loginPage", () => {
   it("toggles password visibility", () => {
     expect.hasAssertions();
 
-    render(<LoginPage />);
+    renderWithIntl(<Login />);
 
     const passwordInput = screen.getByPlaceholderText("Enter Password");
     const toggleButton = screen.getByRole("button", { name: "" });
@@ -126,7 +127,7 @@ describe("loginPage", () => {
   it('renders "Sign in with magic link" button', () => {
     expect.hasAssertions();
 
-    render(<LoginPage />);
+    renderWithIntl(<Login />);
 
     const magicLinkButton = screen.getByRole("button", {
       name: /sign in with magic link/i,
@@ -138,7 +139,7 @@ describe("loginPage", () => {
   it("renders Terms of Service and Privacy Policy links", () => {
     expect.hasAssertions();
 
-    render(<LoginPage />);
+    renderWithIntl(<Login />);
 
     const termsLink = screen.getByRole("link", { name: /terms of service/i });
     expect(termsLink).toBeInTheDocument();
@@ -154,7 +155,7 @@ describe("loginPage", () => {
   it("submits form with valid inputs", async () => {
     expect.hasAssertions();
 
-    render(<LoginPage />);
+    renderWithIntl(<Login />);
 
     const emailInput = screen.getByPlaceholderText("Enter Email Address");
     const passwordInput = screen.getByPlaceholderText("Enter Password");

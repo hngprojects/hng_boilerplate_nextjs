@@ -1,74 +1,20 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-import { useProductModal } from "~/hooks/admin-product/use-product.modal";
-import { useProducts } from "~/hooks/admin-product/use-products.persistence";
+import { useOrgContext } from "~/contexts/orgContext";
 import NewProductModal from "./_components/new-product-modal";
+import ProductContent from "./_components/product-content";
 import ProductDeleteModal from "./_components/product-delete-modal";
 import ProductDetailModal from "./_components/product-detail-modal";
 import ProductDetailView from "./_components/product-detail-view";
+import ProductFilter from "./_components/product-filter";
 import ProductHeader from "./_components/product-header";
-import { PRODUCT_TABLE } from "./data/product.mock";
-
-const ProductContent = dynamic(() => import("./_components/product-content"), {
-  ssr: false,
-});
-const ProductFilter = dynamic(() => import("./_components/product-filter"), {
-  ssr: false,
-});
 
 const ProductPage = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [view, setView] = useState<"list" | "grid">("list");
-  const { addProducts } = useProducts();
-  const {
-    isOpen,
-    updateProductId,
-    updateOpen,
-    updateFilterModal,
-    setIsNewModal,
-    isNewModal,
-    isActionModal,
-    setIsActionModal,
-    isDelete,
-    setIsDelete,
-  } = useProductModal();
-
-  useEffect(() => {
-    const is_saved = localStorage.getItem("admin_products");
-    if (is_saved) {
-      const parse_data = JSON.parse(is_saved);
-      if (parse_data.state.products) return;
-      setTimeout(() => {
-        addProducts(PRODUCT_TABLE);
-      }, 5000);
-    }
-  }, []);
-  useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        updateOpen(false);
-        updateFilterModal(false);
-        setIsNewModal(false);
-        updateProductId("null");
-        setIsActionModal(false);
-        setIsDelete(false);
-      }
-    };
-    document.addEventListener("keydown", handleEscape);
-    return () => {
-      document.removeEventListener("keydown", handleEscape);
-    };
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow =
-      isNewModal || isActionModal || isDelete ? "hidden" : "unset";
-  }, [isNewModal, isActionModal, isDelete]);
+  const [view, setView] = useState<"list" | "grid">("grid");
+  const { isOpen } = useOrgContext();
 
   return (
     <div className="relative flex w-full flex-col gap-y-8 pt-8">
@@ -83,17 +29,11 @@ const ProductPage = () => {
             transition={{ duration: 0.2 }}
             className="flex w-full flex-col gap-y-8"
           >
-            <ProductFilter
-              view={view}
-              setView={setView}
-              searchTerm={searchTerm}
-              setSearchTerm={setSearchTerm}
-            />
-            <ProductContent searchTerm={searchTerm} view={view} />
+            <ProductFilter view={view} setView={setView} />
+            <ProductContent view={view} searchTerm={""} />
+            {isOpen && <ProductDetailView />}
+            <ProductDetailModal />
           </motion.div>
-
-          {isOpen && <ProductDetailView />}
-          <ProductDetailModal />
         </div>
       </AnimatePresence>
     </div>

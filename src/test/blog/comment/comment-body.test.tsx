@@ -6,8 +6,16 @@ import { CommentBody } from "~/components/common/comment-component/comment-body"
 
 describe("comment body component", () => {
   const mockSession: Session = {
+    user: {
+      id: "12345",
+      name: "Current User",
+      first_name: "Current",
+      last_name: "User",
+      email: "user@example.com",
+      image: "path/to/image",
+    },
+    access_token: "some-token",
     expires: "1",
-    user: { email: "a", name: "skeby", image: "c" },
   };
   it("should display content, timestamp, and action buttons correctly", async () => {
     expect.assertions(3);
@@ -26,6 +34,7 @@ describe("comment body component", () => {
         onLike={vi.fn()}
         onDislike={vi.fn()}
         onReply={vi.fn()}
+        isReplyActive={false}
       />,
     );
     expect(screen.getByTestId("comment-text")).toHaveTextContent(
@@ -55,6 +64,7 @@ describe("comment body component", () => {
         dislikes={0}
         onLike={mockOnLike}
         onDislike={mockOnDislike}
+        isReplyActive={false}
       />,
     );
 
@@ -84,6 +94,7 @@ describe("comment body component", () => {
         dislikes={3}
         onLike={vi.fn()}
         onDislike={vi.fn()}
+        isReplyActive={false}
       />,
     );
 
@@ -109,6 +120,7 @@ describe("comment body component", () => {
         onLike={vi.fn()}
         onDislike={vi.fn()}
         onReply={vi.fn()}
+        isReplyActive={false}
       />,
     );
 
@@ -133,6 +145,7 @@ describe("comment body component", () => {
         onLike={vi.fn()}
         onDislike={vi.fn()}
         onReply={vi.fn()}
+        isReplyActive={false}
       />,
     );
     expect(

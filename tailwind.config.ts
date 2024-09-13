@@ -82,9 +82,20 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        error: "hsl(var(--error))",
-        success: "hsl(var(--success))",
-        warning: "hsl(var(--warning))",
+        error: {
+          DEFAULT: "hsl(var(--error))",
+          "50": "hsl(var(--error-50))",
+          "700": "hsl(var(--error-700))",
+        },
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          "50": "hsl(var(--success-50))",
+          "700": "hsl(var(--success-700))",
+        },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          "50": "hsl(var(--warning-50))",
+        },
         neutral: {
           dark: {
             1: "hsl(var(--neutralColor-dark-1))",

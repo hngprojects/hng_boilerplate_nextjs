@@ -53,6 +53,7 @@ const LatestArticlesPage = () => {
               size="lg"
               isLoading={false}
               isDisabled={false}
+              className="hover:bg-destructive"
             >
               Load more
             </CustomButton>

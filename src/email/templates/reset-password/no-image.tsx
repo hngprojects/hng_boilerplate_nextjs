@@ -7,85 +7,122 @@ import {
   Text,
 } from "@react-email/components";
 
-import Layout from "../_components/layout/layout";
+import Layout from "../../layout/layout";
 
 interface PasswordResetProperties {
-  title: string;
   username: string;
-  image: string;
-  description: string;
   link: string;
 }
 
-export const PasswordReset = ({
-  title,
-  username,
-  description,
-  link,
-}: PasswordResetProperties) => {
+export const PasswordReset = ({ username, link }: PasswordResetProperties) => {
   return (
     <Layout>
-      <Preview>{username}, reset password</Preview>
-      <Section className="my-[56px]">
-        <Container className="max-w-[680px] px-[48px] md:px-0">
-          <Section className="flex flex-col items-center justify-center">
-            <Heading
-              as="h5"
-              className="my-0 mb-[56px] text-center text-[24px] leading-[28px] text-[#121212]"
-            >
-              {title}
-            </Heading>
+      <Container style={containerStyle}>
+        <Preview>{username}, reset your password.</Preview>
+        <Section style={sectionStyle}>
+          <Section>
+            <Heading style={headingStyle}>Reset Your Password</Heading>
 
             <Section>
-              <Text className="my-0 text-[16px] font-[600] text-[#121212] md:text-[18px]">
-                Hi {username},
-              </Text>
-              <Text className="text-justify text-[14px] leading-[19.36px] text-[#525252] md:text-[16px]">
-                {description}
+              <Text style={greetingStyle}>Hi {username},</Text>
+              <Text style={descriptionStyle}>
+                You recently requested to reset your password. If you did not
+                make this request, you can ignore this email.
               </Text>
             </Section>
           </Section>
-        </Container>
 
-        <Section className="text-center">
-          <Container className="mb-[40px] max-w-[680px] px-[48px] md:px-0">
-            <Text className="text-left leading-[19px] text-[#525252] md:text-[16px]">
+          <Section style={buttonSectionStyle}>
+            <Text style={buttonTextStyle}>
               To reset your password, please click the button below.
             </Text>
-          </Container>
-          <Section className="mt-[32px] w-[100%] text-center">
-            <Container className="mb-[40px] max-w-[680px] px-[48px] md:px-0">
-              <Button
-                target={"_blank"}
-                className="w-[100%] rounded-[8px] bg-[#F97316] py-[16px] text-[#FAFAFA] md:w-fit md:px-[2rem]"
-                href={link}
-              >
-                Reset Password
+            <Section style={buttonWrapperStyle}>
+              <Button target={"_blank"} style={buttonStyle} href={link}>
+                Reset password
               </Button>
-            </Container>
+            </Section>
           </Section>
-        </Section>
-        <Section className="mt-[28px]">
-          <Container className="max-w-[680px] px-[48px] md:px-0">
-            <Text className="my-0 font-[600] text-[#121212]">
+          <Section style={footerSectionStyle}>
+            <Text style={footerTextStyle}>
               Regards,
               <br />
               Boilerplate
             </Text>
-          </Container>
+          </Section>
         </Section>
-      </Section>
+      </Container>
     </Layout>
   );
 };
 
+const containerStyle: React.CSSProperties = {
+  padding: "0 48px",
+  maxWidth: "792px",
+  margin: "0 auto",
+};
+
+const sectionStyle: React.CSSProperties = {
+  margin: "56px 0",
+};
+
+const headingStyle: React.CSSProperties = {
+  margin: "0 0 56px",
+  textAlign: "center",
+  fontSize: "24px",
+  lineHeight: "28px",
+  color: "#121212",
+};
+
+const greetingStyle: React.CSSProperties = {
+  margin: "0",
+  fontSize: "16px",
+  fontWeight: "600",
+  color: "#121212",
+};
+
+const descriptionStyle: React.CSSProperties = {
+  textAlign: "justify",
+  fontSize: "14px",
+  lineHeight: "19.36px",
+  color: "#525252",
+};
+
+const buttonSectionStyle: React.CSSProperties = {
+  textAlign: "center",
+};
+
+const buttonTextStyle: React.CSSProperties = {
+  textAlign: "left",
+  lineHeight: "19px",
+  color: "#525252",
+};
+
+const buttonWrapperStyle: React.CSSProperties = {
+  marginTop: "32px",
+  textAlign: "center",
+};
+
+const buttonStyle: React.CSSProperties = {
+  borderRadius: "8px",
+  backgroundColor: "#F97316",
+  padding: "16px",
+  color: "#FAFAFA",
+  textAlign: "center",
+  textDecoration: "none",
+};
+
+const footerSectionStyle: React.CSSProperties = {
+  marginTop: "28px",
+};
+
+const footerTextStyle: React.CSSProperties = {
+  fontWeight: "600",
+  color: "#121212",
+};
+
 PasswordReset.PreviewProps = {
-  title: "Reset Your Password",
   username: "John Doe",
-  image: "https://imgur.com/uPk3aq2.png",
-  link: "www.boilerplate.com",
-  description:
-    "You recently requested to reset your password.  If you did not make this request, you can ignore this email.",
+  link: "https://www.boilerplate.com/reset-password",
 } satisfies PasswordResetProperties;
 
 export default PasswordReset;

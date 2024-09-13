@@ -51,11 +51,11 @@ const Main = () => {
   //
 
   return (
-    <section className="relative my-[70px] scroll-smooth text-left">
+    <section className="relative my-20 scroll-smooth text-left">
       <div className="flex max-w-full flex-col-reverse items-start justify-between pb-10 lg:flex-row">
         <div className="text-neutral-dark-1 lg:w-[750px]">
           <div className="max-w-full self-stretch" id="introduction">
-            <h2 className="relative mb-[10px] self-stretch text-2xl font-bold sm:text-[28px]">
+            <h2 className="relative mb-[10px] self-stretch text-lg font-bold text-foreground">
               Introduction
             </h2>
             <div className="relative inline-block self-stretch text-base">
@@ -84,7 +84,7 @@ const Main = () => {
             className="mb-6 self-stretch text-neutral-dark-1"
             id="changes-to-terms"
           >
-            <h2 className="font-inherit relative mb-2 mt-0 self-stretch text-2xl font-bold text-inherit sm:text-[28px]">
+            <h2 className="font-inherit relative mb-2 mt-0 self-stretch text-lg font-bold text-foreground">
               Changes to Terms
             </h2>
             <div className="mb-[10px] text-base">
@@ -99,7 +99,7 @@ const Main = () => {
             className="mb-6 flex flex-col items-start justify-start gap-[10px] self-stretch text-neutral-dark-1"
             id="contact-information"
           >
-            <h2 className="font-inherit relative mt-0 self-stretch text-2xl font-bold text-inherit sm:text-[28px]">
+            <h2 className="font-inherit relative mt-0 self-stretch text-lg font-bold text-foreground">
               Contact Information
             </h2>
             <div className="mb-[10px] text-base">
@@ -112,7 +112,7 @@ const Main = () => {
             className="flex flex-col items-start justify-start gap-[10px] self-stretch text-neutral-dark-1"
             id="last-updated"
           >
-            <h2 className="font-inherit relative mt-0 self-stretch text-2xl font-bold text-inherit sm:text-[28px]">
+            <h2 className="font-inherit relative mt-0 self-stretch text-lg font-bold text-foreground">
               Last Updated
             </h2>
             <div className="mb-[10px] text-base">
@@ -123,11 +123,8 @@ const Main = () => {
           </div>
           <div className="mb-[10px] text-base text-neutral-dark-1">
             For more information about our privacy practices, please visit our{" "}
-            <Link
-              href={"/legal/privacy-policy"}
-              className="text-primary underline"
-            >
-              Privacy Policy page.{" "}
+            <Link href={"/privacy-policy"} className="text-primary underline">
+              Privacy Policy page.
             </Link>
           </div>
         </div>

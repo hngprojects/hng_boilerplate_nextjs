@@ -1,5 +1,5 @@
-import Image from "next/image";
-import React from "react";
+import { ArrowUpRightIcon } from "lucide-react";
+import { FC } from "react";
 
 import { Card } from "../ui/card";
 
@@ -13,21 +13,7 @@ type TopProductsProperties = {
   gradients: string[];
 };
 
-const ExternalLinkIcon = () => {
-  return (
-    <>
-      <Image
-        src="/admin-dashboard/icons/arrowUp.svg"
-        alt="external link icon"
-        height={16}
-        width={16}
-        className="invert"
-      />
-    </>
-  );
-};
-
-const TopProductsComponent: React.FC<TopProductsProperties> = ({
+const TopProductsComponent: FC<TopProductsProperties> = ({
   data,
   gradients,
 }) => {
@@ -45,7 +31,7 @@ const TopProductsComponent: React.FC<TopProductsProperties> = ({
         </div>
         <button className="flex items-center justify-center gap-2 whitespace-nowrap rounded-md bg-orange-500 px-4 py-2 text-sm font-medium text-neutral-50">
           <div className="text-sm font-semibold leading-6">View All</div>
-          <ExternalLinkIcon />
+          <ArrowUpRightIcon size={16} />
         </button>
       </div>
       <ul className="text-[#0A0A0A]">

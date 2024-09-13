@@ -1,9 +1,13 @@
 "use client";
 
 import { Mail } from "lucide-react";
+import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { z, ZodError } from "zod";
 
+import { getApiUrl } from "~/actions/getApiUrl";
+import { Toaster } from "~/components/ui/toaster";
+import { useToast } from "~/components/ui/use-toast";
 import CustomButton from "../common-button/common-button";
 import InputField from "./inputfield";
 
@@ -26,12 +30,22 @@ const initialFormData: FormData = {
   message: "",
 };
 
+interface TransformedData {
+  full_name: string;
+  email: string;
+  phone_number: string;
+  message: string;
+  org_id: string;
+}
+
 const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({ ...initialFormData });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [status, setStatus] = useState<boolean | undefined>();
   const [message, setMessage] = useState<string | undefined>();
   const [loading, setLoading] = useState<boolean>(false);
+  const { data: session } = useSession();
+  const { toast } = useToast();
 
   useEffect(() => {
     if (status !== undefined) {
@@ -73,34 +87,55 @@ const ContactForm: React.FC = () => {
       return;
     }
     try {
+      const baseUrl = await getApiUrl();
+      const apiData: TransformedData = {
+        full_name: formData.name,
+        email: formData.email,
+        phone_number: formData.phone,
+        message: formData.message,
+        org_id: session?.currentOrgId ?? "",
+      };
       setLoading(true);
-      const response = await fetch(
-        "https://test.gracefilledcollege.com/public/api/v1/contact",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
+      const response = await fetch(`${baseUrl}/api/v1/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify(apiData),
+      });
 
       const responseData = await response.json();
 
       if (!response.ok) {
-        throw new Error(responseData.message || "Failed to submit the form.");
+        // throw new Error(responseData.message || "Failed to submit the form.");
+        toast({
+          title: "Submission Failed",
+          description:
+            "There was an error submitting your message. Please check your internet connection and try again. If the problem persists, contact our support team.",
+          variant: "destructive",
+        });
+        return;
       }
 
       setStatus(true);
+      toast({
+        title: "Message Sent!",
+        description:
+          "Thank you for reaching out to us. Your message has been received, and we'll get back to you shortly.",
+        variant: "default",
+      });
       setMessage(responseData?.message || "Form submitted successfully!");
       setFormData({ ...initialFormData });
       setErrors({});
-    } catch (error) {
+    } catch {
+      toast({
+        title: "Submission Failed",
+        description:
+          "There was an error submitting your message. Please check your internet connection and try again. If the problem persists, contact our support team.",
+        variant: "destructive",
+      });
       setStatus(false);
-      setMessage(
-        (error as Error).message ||
-          "Failed to submit the form. Please try again.",
-      );
+      setMessage("Failed to submit the form. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -178,7 +213,7 @@ const ContactForm: React.FC = () => {
             variant="primary"
             size="lg"
             isLoading={loading}
-            className="w-full px-4 py-7"
+            className="w-full px-4 py-7 transition-all hover:-translate-y-2 hover:bg-destructive"
           >
             <Mail />
             Send
@@ -193,6 +228,8 @@ const ContactForm: React.FC = () => {
           )}
         </form>
       </div>
+
+      <Toaster />
     </>
   );
 };

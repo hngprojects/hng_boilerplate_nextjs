@@ -1,41 +1,22 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { AnimatePresence, motion } from "framer-motion";
-import { Check, Filter, Grid, List, X } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { Filter, Grid, List, Search } from "lucide-react";
 import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 
 import { Button } from "~/components/ui/button";
-import { Input } from "~/components/ui/input";
 import { useProductModal } from "~/hooks/admin-product/use-product.modal";
-import { useProductsFilters } from "~/hooks/admin-product/use-products.-filters.persistence";
 import { cn } from "~/lib/utils";
 
 type ProductFilterProperties = {
-  searchTerm: string;
   view: "list" | "grid";
   setView: Dispatch<SetStateAction<"list" | "grid">>;
-  setSearchTerm: Dispatch<SetStateAction<string>>;
 };
 
-const ProductFilter = ({
-  searchTerm,
-  setSearchTerm,
-  view,
-  setView,
-}: ProductFilterProperties) => {
-  const { filters, active_filter, updateFilter } = useProductsFilters();
+const ProductFilter = ({ view, setView }: ProductFilterProperties) => {
   const { isOpenFilterModal, updateFilterModal } = useProductModal();
-  const router = useRouter();
-  const search = useSearchParams();
-  const filter = search?.get("filter");
+
   const filterReference = useRef<HTMLDivElement>(null);
   const filterTriggerReference = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => {
-    if (filter) {
-      updateFilter(filter);
-    }
-  }, [filter]);
   useEffect(() => {
     document.body.style.overflow = isOpenFilterModal ? "hidden" : "unset";
   }, [isOpenFilterModal]);
@@ -61,14 +42,14 @@ const ProductFilter = ({
   return (
     <div className="flex w-full items-center justify-between gap-x-2 min-[500px]:gap-x-0">
       <div className="relative w-full max-w-[300px]">
-        <Input
+        {/* <Input
           type="text"
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
           placeholder="search products..."
-          className="h-8 w-full bg-transparent text-sm min-[500px]:h-10"
-        />
-        <Button
+          className="h-8 w-full bg-transparent px-8 text-sm min-[500px]:h-10"
+        /> */}
+        {/* <Button
           onClick={() => setSearchTerm("")}
           variant="ghost"
           size="icon"
@@ -80,17 +61,18 @@ const ProductFilter = ({
           )}
         >
           <X />
-        </Button>
+        </Button> */}
+        <Search className="absolute left-2 top-1/2 size-5 -translate-y-1/2 text-gray-400" />
       </div>
       <div className="relative flex items-center gap-x-2 min-[500px]:gap-x-4">
         <div className="flex items-center gap-x-2">
           <Button
             onClick={() => setView("grid")}
-            disabled
+            disabled={view === "grid"}
             variant="outline"
             size="icon"
             className={cn(
-              "flex items-center gap-x-2 bg-transparent p-1 text-sm hover:!bg-black hover:text-white disabled:!opacity-85 md:rounded-[6px] md:p-2",
+              "flex items-center gap-x-2 bg-transparent p-2 text-sm hover:!bg-black hover:text-white disabled:!opacity-85 md:rounded-[6px]",
               view === "grid"
                 ? "bg-black text-white transition-all duration-300 hover:!opacity-80 active:scale-90"
                 : "",
@@ -104,7 +86,7 @@ const ProductFilter = ({
             variant="outline"
             size="icon"
             className={cn(
-              "flex items-center gap-x-2 p-1 text-sm hover:!bg-black hover:text-white disabled:!cursor-not-allowed disabled:!opacity-85 md:rounded-[6px] md:p-2",
+              "flex items-center gap-x-2 p-2 text-sm hover:!bg-black hover:text-white disabled:!cursor-not-allowed disabled:!opacity-85 md:rounded-[6px]",
               view === "list"
                 ? "bg-black text-white transition-all duration-300 hover:!opacity-80 active:scale-90"
                 : "",
@@ -118,9 +100,9 @@ const ProductFilter = ({
           onClick={() => updateFilterModal(!isOpenFilterModal)}
           ref={filterTriggerReference}
           variant="outline"
-          className="relative grid w-8 place-items-center gap-x-2 bg-transparent text-sm min-[500px]:flex min-[500px]:w-fit min-[500px]:items-center"
+          className="relative grid w-8 place-items-center bg-transparent px-2 text-sm min-[500px]:flex min-[500px]:w-[82px] min-[500px]:items-center min-[500px]:justify-between min-[500px]:gap-x-2 min-[500px]:text-base"
         >
-          <Filter className="size-5 min-[500px]:size-6" />
+          <Filter className="size-5" />
           <span className="hidden min-[500px]:inline">Filter</span>
         </Button>
 
@@ -136,7 +118,7 @@ const ProductFilter = ({
               <span className="border-b border-gray-300 px-2 py-2 text-sm font-semibold text-neutral-dark-2 md:px-4">
                 Filters
               </span>
-              {filters.map((filter) => (
+              {/* {filters.map((filter) => (
                 <Button
                   variant="ghost"
                   key={filter.value}
@@ -161,7 +143,7 @@ const ProductFilter = ({
 
                   <span>{filter.label}</span>
                 </Button>
-              ))}
+              ))} */}
             </motion.div>
           )}
         </AnimatePresence>

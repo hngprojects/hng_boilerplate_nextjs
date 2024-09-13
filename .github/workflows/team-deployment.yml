@@ -1,14 +1,15 @@
 name: Team Deployment
 
 on:
-  workflow_run:
-    workflows: ["Build and Push"]
-    types:
-      - completed
+  workflow_dispatch:
+  # workflow_run:
+  #   workflows: ["Build and Upload"]
+  #   types:
+  #     - completed
 
 jobs:
   kimiko-golang:
-    if: github.event.repository.fork == false
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     environment:
@@ -27,7 +28,7 @@ jobs:
             ./scripts/team_deploy.sh kimiko-golang ${{ vars.PORT }}
             
   kimiko-csharp:
-    if: github.event.repository.fork == false
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     environment:
@@ -45,16 +46,16 @@ jobs:
             cd hng_boilerplate_nextjs
             ./scripts/team_deploy.sh kimiko-csharp ${{ vars.PORT }}
 
-  cyborgs-java:
-    if: github.event.repository.fork == false
+  anchor-java:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     environment:
-      name: "cyborgs-java"
+      name: "anchor-java"
       url: ${{ vars.URL }}
 
     steps:
-      - name: Deploy to cyborgs-java environment
+      - name: Deploy to anchor-java environment
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.HOST }}
@@ -62,18 +63,18 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd hng_boilerplate_nextjs
-            ./scripts/team_deploy.sh cyborgs-java ${{ vars.PORT }}
+            ./scripts/team_deploy.sh anchor-java ${{ vars.PORT }}
 
-  cyborgs-python:
-    if: github.event.repository.fork == false
+  anchor-python:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     environment:
-      name: "cyborgs-python"
+      name: "anchor-python"
       url: ${{ vars.URL }}
 
     steps:
-      - name: Deploy to cyborgs-python environment
+      - name: Deploy to anchor-python environment
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.HOST }}
@@ -81,10 +82,10 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd hng_boilerplate_nextjs
-            ./scripts/team_deploy.sh cyborgs-python ${{ vars.PORT }}
+            ./scripts/team_deploy.sh anchor-python ${{ vars.PORT }}
 
   bulldozer-php:
-    if: github.event.repository.fork == false
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     environment:
@@ -103,7 +104,7 @@ jobs:
             ./scripts/team_deploy.sh bulldozer-php ${{ vars.PORT }}
 
   starlight-nestjs:
-    if: github.event.repository.fork == false
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     environment:
@@ -122,7 +123,7 @@ jobs:
             ./scripts/team_deploy.sh starlight-nestjs ${{ vars.PORT }}
 
   panther-expressjs:
-    if: github.event.repository.fork == false
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     environment:

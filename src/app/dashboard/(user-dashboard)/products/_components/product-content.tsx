@@ -5,22 +5,10 @@ import { useEffect, useMemo, useState } from "react";
 
 import LoadingSpinner from "~/components/miscellaneous/loading-spinner";
 import ProductCardSkeleton from "~/components/skeleton/product.skeleton";
-
-import "~/components/ui/table";
-
-import {
-  Table,
-  TableBody,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "~/components/ui/table";
-import { useProductModal } from "~/hooks/admin-product/use-product.modal";
-import { useProductsFilters } from "~/hooks/admin-product/use-products.-filters.persistence";
-import { useProducts } from "~/hooks/admin-product/use-products.persistence";
+import { useOrgContext } from "~/contexts/orgContext";
 import { cn } from "~/lib/utils";
-import { ProductTableProperties } from "~/types/admin-product.types";
-import ProductBodyShadcn from "./product-body-shadcn";
+import { Product } from "~/types";
+import { ProductContentView } from "./product-content-view";
 
 const Pagination = dynamic(() => import("react-paginate"), {
   ssr: false,
@@ -28,20 +16,18 @@ const Pagination = dynamic(() => import("react-paginate"), {
 });
 
 const ProductContent = ({
-  searchTerm,
   view,
+  searchTerm,
 }: {
-  searchTerm: string;
   view: "list" | "grid";
+  searchTerm: string;
 }) => {
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
-  const { products } = useProducts();
   const [perPage, setPerPage] = useState("10");
-  const { isOpen } = useProductModal();
-  const { active_filter } = useProductsFilters();
+  const { products, isOpen, active_filter } = useOrgContext();
 
-  const [subset, setSubset] = useState<ProductTableProperties[]>([]);
+  const [subset, setSubset] = useState<Product[]>([]);
 
   const startIndex = currentPage * Number(perPage);
   const endIndex = startIndex + Number(perPage);
@@ -51,13 +37,12 @@ const ProductContent = ({
     window?.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // sort products by date_added new to old
   const sortedProducts = useMemo(() => {
     if (!products) return [];
     if (products.length === 0) return [];
     return products.sort(
       (a, b) =>
-        new Date(b.date_added).getTime() - new Date(a.date_added).getTime(),
+        new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
     );
   }, [products]);
   // filter by active filter
@@ -66,7 +51,7 @@ const ProductContent = ({
     if (sortedProducts.length === 0) return [];
     return sortedProducts.filter((product) => {
       if (active_filter === "all") return product;
-      return product.status === active_filter;
+      return product.stock_status === active_filter;
     });
   }, [active_filter, sortedProducts]);
 
@@ -83,7 +68,7 @@ const ProductContent = ({
       }
       return product.name.toLowerCase().includes(searchTerm.toLowerCase());
     });
-  }, [searchTerm, filteredProductsByActiveFilter]);
+  }, [filteredProductsByActiveFilter, searchTerm]);
 
   useEffect(() => {
     if (filteredProducts.length === 0) return;
@@ -108,49 +93,18 @@ const ProductContent = ({
     <div className="relative flex w-full flex-col overflow-hidden pb-10">
       <div
         className={cn(
-          "show_scrollbar rounded-xl border border-gray-300 bg-[#F1F5F9] pt-4",
           isOpen
-            ? "max-w-full lg:max-w-[600px] min-[1090px]:max-w-[650px] min-[1150px]:max-w-[750px] min-[1200px]:max-w-[800px] xl:max-w-full"
+            ? "max-w-full lg:max-w-[600px] min-[1090px]:max-w-[650px] min-[1150px]:max-w-[750px] min-[1200px]:max-w-[800px] xl:max-w-[820px] min-[1300px]:max-w-full"
             : "max- w-full",
         )}
       >
-        <AnimatePresence>
-          {view === "list" && (
-            <Table divClassName={cn("relative")}>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-[100px] overflow-x-auto text-center md:w-[200px] lg:w-[200px]">
-                    Product Name
-                  </TableHead>
-                  <TableHead className="whitespace-nowrap">
-                    Product ID
-                  </TableHead>
-                  <TableHead>Category</TableHead>
-                  <TableHead>Price</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody className="w-full">
-                <ProductBodyShadcn
-                  subset={subset}
-                  filteredProducts={filteredProducts}
-                  searchTerm={searchTerm}
-                />
-              </TableBody>
-            </Table>
-          )}
-        </AnimatePresence>
+        <ProductContentView
+          view={view}
+          searchTerm={searchTerm}
+          filteredProducts={products}
+          subset={subset}
+        />
         {!products && <ProductCardSkeleton count={9} />}
-        {filteredProducts.length === 0 && searchTerm.length > 1 && (
-          <div className="flex h-[400px] w-full items-center justify-center bg-white">
-            <p className="w-full text-center">
-              No product found for &quot;
-              <span className="font-bold">{searchTerm}</span>
-              &quot;
-            </p>
-          </div>
-        )}
       </div>
       <AnimatePresence>
         {products && filteredProducts.length > 0 && (

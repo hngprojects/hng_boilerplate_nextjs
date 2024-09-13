@@ -1,7 +1,30 @@
-import NextAuth from "next-auth";
+import NextAuth, { type DefaultSession } from "next-auth";
 
-const authOptions = NextAuth({
-  providers: [],
+import authConfig from "~/config/auth.config";
+import { Organisation, User } from "~/types";
+
+export const {
+  handlers: { GET, POST },
+  auth,
+  unstable_update,
+} = NextAuth({
+  ...authConfig,
 });
 
-export const { handlers, signIn, signOut, auth } = authOptions;
+declare module "next-auth" {
+  interface Session {
+    user: {
+      id: User["id"];
+      first_name: User["first_name"];
+      last_name: User["last_name"];
+      email: User["email"];
+      image: User["avatar_url"];
+      bio?: string;
+      username?: string;
+      is_superadmin?: boolean;
+    } & DefaultSession["user"];
+    access_token?: string;
+    currentOrgId?: string;
+    userOrg?: Organisation[];
+  }
+}
