@@ -2,16 +2,22 @@ name: Production Deployment
 
 on:
   workflow_dispatch:
-  push:
+  workflow_run:
+    workflows: ["Build and Upload"]
+    types:
+      - completed
     branches:
       - main
-    paths-ignore:
-      - .github/workflows/**
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+    if: ${{ github.ref == 'refs/heads/main'}} && ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    environment:
+      name: "production"
+      url: ${{ vars.URL }}
+      
     steps:
     - uses: actions/checkout@v4
     
@@ -19,14 +25,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: "20"
-
-    - name: Cache pnpm modules
-      uses: actions/cache@v3
-      with:
-        path: ~/.pnpm-store
-        key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-        restore-keys: |
-          ${{ runner.os }}-pnpm-
 
     - name: Install pnpm
       uses: pnpm/action-setup@v4
@@ -53,7 +51,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         source: "nextjs-prod.tar.gz"
-        target: "~/hng_boilerplate_nextjs"
+        target: "~/hng_boilerplate_nextjs/prod"
 
     - name: Delete zip file
       run: rm -f nextjs-prod.tar.gz
@@ -65,7 +63,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         script: |
-          cd ~/hng_boilerplate_nextjs
+          cd ~/hng_boilerplate_nextjs/prod
           tar -xzf nextjs-prod.tar.gz
           rm -f nextjs-prod.tar.gz
           cp -r .next/standalone/* .

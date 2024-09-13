@@ -2,10 +2,10 @@ name: Kimiko Golang Deployment
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Build and Upload"]
-    types:
-      - completed
+  # workflow_run:
+  #   workflows: ["Build and Upload"]
+  #   types:
+  #     - completed
 
 jobs:
   deploy_boilerplate_frontend:
