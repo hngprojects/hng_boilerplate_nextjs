@@ -2,8 +2,7 @@ name: Build and Upload
 
 on:
   push:
-    branches:
-      - dev
+    branches: [staging, main]
 
 jobs:
   build:
