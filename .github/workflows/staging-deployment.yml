@@ -67,4 +67,4 @@ jobs:
           tar -xzf nextjs-staging.tar.gz
           rm -f nextjs-staging.tar.gz
           cp -r .next/standalone/* .
-          pm2 restart nextjs_boilerplate --update-env
+          pm2 restart nextjs_boilerplate_staging --update-env
