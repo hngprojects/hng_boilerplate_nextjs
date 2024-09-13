@@ -2,16 +2,17 @@ name: Staging Deployment
 
 on:
   workflow_dispatch:
-  push:
+  workflow_run:
+    workflows: ["Build and Upload"]
+    types:
+      - completed
     branches:
       - staging
-    paths-ignore:
-      - .github/workflows/**
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event.repository.fork == false
+    if: ${{ github.ref == 'refs/heads/staging'}} && ${{ github.event.workflow_run.conclusion == 'success' }}
 
     environment:
       name: "staging"
@@ -24,14 +25,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: "20"
-
-    - name: Cache pnpm modules
-      uses: actions/cache@v3
-      with:
-        path: ~/.pnpm-store
-        key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-        restore-keys: |
-          ${{ runner.os }}-pnpm-
 
     - name: Install pnpm
       uses: pnpm/action-setup@v4
@@ -58,7 +51,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         source: "nextjs-staging.tar.gz"
-        target: "~/hng_boilerplate_nextjs"
+        target: "~/hng_boilerplate_nextjs/staging"
 
     - name: Delete zip file
       run: rm -f nextjs-staging.tar.gz
@@ -70,7 +63,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         script: |
-          cd ~/hng_boilerplate_nextjs
+          cd ~/hng_boilerplate_nextjs/staging
           tar -xzf nextjs-staging.tar.gz
           rm -f nextjs-staging.tar.gz
           cp -r .next/standalone/* .
