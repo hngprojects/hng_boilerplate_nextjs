@@ -1,10 +1,11 @@
 name: Team Deployment
 
 on:
-  workflow_run:
-    workflows: ["Build-and-Upload"]
-    types:
-      - completed
+  workflow_dispatch:
+  # workflow_run:
+  #   workflows: ["Build and Upload"]
+  #   types:
+  #     - completed
 
 jobs:
   kimiko-golang:
