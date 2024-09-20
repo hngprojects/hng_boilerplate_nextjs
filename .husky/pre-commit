@@ -1,0 +1,48 @@
+#!/usr/bin/env sh
+
+echo '🏗️👷 Running checks on your code before committing' 🔍🧐
+
+echo "styling your work" 🎨✨
+
+
+# Check Prettier standards
+npm run check-format ||
+(
+    echo '🤢🤮🤢🤮 Its so ugly!! - Your styling looks disgusting. 🤢🤮🤢🤮
+            Prettier Check Failed. Running npm run format...';
+    npm run format;
+    git add .;
+    echo '✨ Formatting complete and changes added. Committing with the previous commit message...';
+    git commit --amend --no-edit;
+    echo '✅✅ Amended commit with the new changes. Please try to push again.';
+
+)
+
+
+echo '🏗️👷 checking for eslint errors' 🔍🧐
+
+# Check ESLint Standards
+npm run check-lint ||
+	(
+		echo '😤🏀👋😤 Get that beans code out of here! 😤🏀👋😤
+                ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
+		false
+	)
+
+echo '🏗️👷 checking for typescript errors' 🔍🧐
+
+# Check tsconfig standards
+npm run check-types ||
+	(
+		echo '🤡😂❌🤡 Failed Type check. 🤡😂❌🤡
+           Are you seriously trying to write that? Make the changes required above.'
+		false
+	)
+
+npx lint-staged
+
+# If everything passes... Now we can commit
+echo '✅✅✅✅ You win this time... I am committing this now. ✅✅✅✅'
+
+echo '✅✅ Awesome work! ✅✅'
+echo '🚀⛅ Run git push to upload your changes to the remote repository ⛅🚀'
