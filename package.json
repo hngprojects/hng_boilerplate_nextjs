@@ -11,7 +11,8 @@
     "format": "npm run check-lint --fix && npx prettier --write .",
     "check-types": "tsc --pretty --noEmit",
     "check-format": "prettier --check .",
-    "check-lint": "eslint . --ext ts --ext tsx --ext js"
+    "check-lint": "eslint . --ext ts --ext tsx --ext js",
+     "commitlint": "commitlint --edit"
   },
   "dependencies": {
     "@radix-ui/react-icons": "^1.3.0",
@@ -25,6 +26,8 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
     "@types/node": "^20.16.5",
     "@types/react": "^18.3.8",
     "@types/react-dom": "^18.3.0",
