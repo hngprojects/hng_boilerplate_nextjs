@@ -1,0 +1,52 @@
+- /
+- pricing
+- about
+- help
+- legal
+  - privacy-policy
+  - terms-and-condition
+- career
+  - :id (individual jobs page)
+- trial (squeeze page)
+- blog
+  - latest (latest articles page)
+  - :id (Individual blog page)
+- contact
+- faq
+- waitlist
+- auth
+  - register
+    - ?otp
+    - organisation
+  - login
+    - email-link
+      - success
+  - forgot-password
+    - verify-otp
+    - success
+  - reset-password
+- dashboard
+  - products
+    - add
+    - :id
+  - settings
+    - profile
+    - account-security
+      - password
+    - payment-information
+      - checkout
+      - cancel-subscription
+    - notification
+    - payment-information
+    - data-and-privacy
+    - language-and-region
+- admin
+  - dashboard
+  - products
+    - add
+    - :id
+  - users
+  - email-templates
+  - squeeze
+  - waitlist
+  - settings
