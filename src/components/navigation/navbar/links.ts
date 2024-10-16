@@ -1,5 +1,5 @@
 export const NAV_LINKS = [
-  { route: 'navLinks.home', link: '/' },
-  { route: 'navLinks.pricing', link: '/pricing' },
-  { route: 'navLinks.careers', link: '/career' },
+  { route: 'home', link: '/' },
+  { route: 'pricing', link: '/pricing' },
+  { route: 'careers', link: '/career' },
 ]
