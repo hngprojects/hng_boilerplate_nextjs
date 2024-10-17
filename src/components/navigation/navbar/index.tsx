@@ -36,11 +36,14 @@ const Navbar = () => {
   })
   return (
     <nav
-      className={`${scrolling ? 'shadow-md' : 'shadow-none'} sticky left-0 right-0 top-0 z-40 bg-background`}
+      className={cn(
+        'sticky left-0 right-0 top-0 z-40 bg-background',
+        scrolling ? 'shadow-md' : 'shadow-none'
+      )}
     >
       <div
         className={cn(
-          `relative mx-auto flex w-full max-w-[1200px] items-center gap-x-4 transition-all duration-500 md:justify-between`,
+          'relative mx-auto flex w-full max-w-[1200px] items-center gap-x-4 transition-all duration-500 md:justify-between',
           scrolling ? 'py-2' : 'py-4 md:py-6',
           status === 'authenticated' && 'justify-between md:justify-between'
         )}
@@ -54,7 +57,10 @@ const Navbar = () => {
               <Link
                 key={index}
                 href={item.link}
-                className={`text-neutral-dark-1 p-3 text-[16px] font-medium transition-all duration-300 hover:text-primary ${pathname === item.link ? 'text-primary' : ''}`}
+                className={cn(
+                  'text-neutral-dark-1 p-3 text-[16px] font-medium capitalize transition-all duration-300 hover:text-primary',
+                  pathname === item.link ? 'text-primary' : ''
+                )}
               >
                 {item.route}
               </Link>
