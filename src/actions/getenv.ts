@@ -19,18 +19,43 @@ export const getEnvVariables = async (
 }
 
 export const getBaseURL = async (backend?: string) => {
-  const { python, php, BaseURL } = await getEnvVariables(
-    'PYTHON_BASEURL',
-    'PHP_BASEURL',
-    'BASE_URL' // Add the default base URL
-  )
+  try {
+    const { PYTHON_BASEURL: python, PHP_BASEURL: php, BASE_URL: BaseURL } = await getEnvVariables(
+      'PYTHON_BASEURL',
+      'PHP_BASEURL',
+      'BASE_URL'
+    )
 
-  switch (backend) {
-    case 'python':
-      return python
-    case 'php':
-      return php
-    default:
-      return BaseURL
+    console.log({
+      python, php
+    })
+
+    switch (backend) {
+      case 'python':
+        if (!python) {
+          throw new Error('PYTHON_BASEURL environment variable is not defined')
+        }
+        return python
+      case 'php':
+        if (!php) {
+          throw new Error('PHP_BASEURL environment variable is not defined')
+        }
+        return php
+      default:
+        if (!BaseURL) {
+          throw new Error('BASE_URL environment variable is not defined')
+        }
+        return BaseURL
+    }
+  } catch (error) {
+    if (backend === 'python' && error instanceof Error && error.message.includes('PYTHON_BASEURL')) {
+      throw error
+    } else if (backend === 'php' && error instanceof Error && error.message.includes('PHP_BASEURL')) {
+      throw error
+    } else if (!backend && error instanceof Error && error.message.includes('BASE_URL')) {
+      throw error
+    }
+
+    return undefined
   }
 }
