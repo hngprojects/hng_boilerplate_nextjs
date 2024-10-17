@@ -20,14 +20,15 @@ export const getEnvVariables = async (
 
 export const getBaseURL = async (backend?: string) => {
   try {
-    const { PYTHON_BASEURL: python, PHP_BASEURL: php, BASE_URL: BaseURL } = await getEnvVariables(
-      'PYTHON_BASEURL',
-      'PHP_BASEURL',
-      'BASE_URL'
-    )
+    const {
+      PYTHON_BASEURL: python,
+      PHP_BASEURL: php,
+      BASE_URL: BaseURL,
+    } = await getEnvVariables('PYTHON_BASEURL', 'PHP_BASEURL', 'BASE_URL')
 
     console.log({
-      python, php
+      python,
+      php,
     })
 
     switch (backend) {
@@ -48,11 +49,23 @@ export const getBaseURL = async (backend?: string) => {
         return BaseURL
     }
   } catch (error) {
-    if (backend === 'python' && error instanceof Error && error.message.includes('PYTHON_BASEURL')) {
+    if (
+      backend === 'python' &&
+      error instanceof Error &&
+      error.message.includes('PYTHON_BASEURL')
+    ) {
       throw error
-    } else if (backend === 'php' && error instanceof Error && error.message.includes('PHP_BASEURL')) {
+    } else if (
+      backend === 'php' &&
+      error instanceof Error &&
+      error.message.includes('PHP_BASEURL')
+    ) {
       throw error
-    } else if (!backend && error instanceof Error && error.message.includes('BASE_URL')) {
+    } else if (
+      !backend &&
+      error instanceof Error &&
+      error.message.includes('BASE_URL')
+    ) {
       throw error
     }
 

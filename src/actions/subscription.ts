@@ -4,11 +4,8 @@ import { Calls } from './axios'
 import { getBaseURL } from './getenv'
 
 export const makeSubscription = async (email: string, backend: string = '') => {
-
   console.log(backend)
   const baseURL = await getBaseURL(backend)
-
-  
 
   if (!baseURL) {
     return {
