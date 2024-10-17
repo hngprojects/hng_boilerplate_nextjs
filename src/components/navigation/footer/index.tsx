@@ -20,11 +20,10 @@ const Footer = () => {
   const [values, setValues] = useState('')
   const [isPending, startTransition] = useTransition()
 
-  // handle submit
   const handleSubmit = async () => {
     startTransition(async () => {
       await makeSubscription(values).then((res) => {
-        toast[res.success ? 'success' : 'error'](res.data)
+        toast[res.success ? 'success' : 'error'](res.message)
       })
     })
   }

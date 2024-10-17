@@ -1,22 +1,14 @@
 'use server'
 
 import { Calls } from './axios'
-import { getEnvVariables } from './getenv'
+import { getBaseURL } from './getenv'
 
-export const makeSubscription = async (
-  email: string,
-  backend: string = 'python'
-) => {
-  const { python, php } = await getEnvVariables('PYTHON_BASEURL', 'PHP_BASEURL')
+export const makeSubscription = async (email: string, backend: string = '') => {
+  const baseURL = await getBaseURL(backend)
 
-  let baseURL
-  if (backend === 'python') {
-    baseURL = python
-  } else if (backend === 'php') {
-    baseURL = php
-  } else {
+  if (!baseURL) {
     return {
-      error: 'Unsupported backend type',
+      message: 'Unable to determine backend URL',
       success: false,
     }
   }
@@ -25,7 +17,7 @@ export const makeSubscription = async (
 
   if (!email) {
     return {
-      error: 'Please provide your email',
+      message: 'Please provide your email',
       success: false,
     }
   }
@@ -33,15 +25,16 @@ export const makeSubscription = async (
   const payload = { email }
 
   try {
-    const response = await $http.post('/subscribe', payload)
+    const response = await $http.post('/newsletter-subscription', payload)
 
     return {
       data: response.data,
       success: true,
+      message: 'Subscribed',
     }
   } catch (error) {
     return {
-      error:
+      message:
         error instanceof Error
           ? error.message
           : 'An error occurred during subscription',

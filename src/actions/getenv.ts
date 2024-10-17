@@ -17,3 +17,20 @@ export const getEnvVariables = async (
 
   return envVariables
 }
+
+export const getBaseURL = async (backend?: string) => {
+  const { python, php, BaseURL } = await getEnvVariables(
+    'PYTHON_BASEURL',
+    'PHP_BASEURL',
+    'BASE_URL' // Add the default base URL
+  )
+
+  switch (backend) {
+    case 'python':
+      return python
+    case 'php':
+      return php
+    default:
+      return BaseURL
+  }
+}
