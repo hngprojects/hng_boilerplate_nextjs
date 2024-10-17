@@ -18,6 +18,8 @@ export default function EnvironmentSwitcher() {
     return null
   }
 
+  const currentBackend = backend || 'default'
+
   return (
     <motion.div
       className="fixed bottom-4 left-4 z-50 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 p-4 shadow-lg"
@@ -30,12 +32,13 @@ export default function EnvironmentSwitcher() {
         <motion.div
           className="relative flex h-12 w-24 cursor-pointer items-center justify-center rounded-full bg-white"
           onClick={async () => {
-            setBackend(backend === 'python' ? 'php' : 'python')
+            const newBackend = currentBackend === 'python' ? 'php' : 'python'
+            setBackend(newBackend)
             await signOut({
               callbackUrl: '/',
             })
           }}
-          aria-label={`Switch to ${backend === 'python' ? 'PHP' : 'Python'}`}
+          aria-label={`Switch to ${currentBackend === 'python' ? 'PHP' : 'Python'}`}
         >
           <motion.div
             className="absolute h-11 w-11 rounded-full"
@@ -46,26 +49,44 @@ export default function EnvironmentSwitcher() {
               damping: 30,
             }}
             style={{
-              backgroundColor: backend === 'python' ? '#306998' : '#8892BF',
-              left: backend === 'python' ? '2px' : 'calc(100% - 46px)',
+              backgroundColor:
+                currentBackend === 'python' ? '#306998' : '#8892BF',
+              left: currentBackend === 'python' ? '2px' : 'calc(100% - 46px)',
             }}
           />
           <PythonIcon
             className={cn(
               'absolute left-0.5 h-9 w-9',
-              backend === 'python' ? 'text-white' : 'text-gray-400'
+              currentBackend === 'python' ? 'text-white' : 'text-gray-400'
             )}
           />
           <PhpIcon
             className={cn(
               'absolute left-0.5 h-9 w-9',
-              backend === 'php' ? 'text-white' : 'text-gray-400'
+              currentBackend === 'php' ? 'text-white' : 'text-gray-400'
             )}
           />
         </motion.div>
         <span className="text-lg font-semibold text-white">
-          {backend === 'python' ? 'Python' : 'PHP'}
+          {currentBackend === 'python'
+            ? 'Python'
+            : currentBackend === 'php'
+              ? 'PHP'
+              : 'Default'}
         </span>
+      </div>
+      <div className="mt-4 flex space-x-4">
+        <button
+          className="rounded bg-gray-700 px-4 py-2 text-white hover:bg-gray-800"
+          onClick={async () => {
+            setBackend('')
+            await signOut({
+              callbackUrl: '/',
+            })
+          }}
+        >
+          Default
+        </button>
       </div>
     </motion.div>
   )
