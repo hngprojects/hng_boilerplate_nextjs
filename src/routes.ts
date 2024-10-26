@@ -3,7 +3,7 @@
  * These routes do not require authentication
  * @type {string[]}
  */
-export const publicRoutes = [
+export const publicRoutes: string[] = [
   '/',
   '/career',
   '/faqs',
@@ -33,17 +33,17 @@ export const apiAuthPrefix = '/api/'
  * The default redirect after login
  * @type {string}
  */
-export const DEFAULT_LOGIN_REDIRECT = '/dashboard'
+export const DEFAULT_LOGIN_REDIRECT: string = '/dashboard'
 
 /**
  * An array of routes that are accessible to the client
  * These routes require authentication
  * @type {string[]}
  */
-export const clientRoutes = [
+export const clientRoutes: string[] = [
   '/dashboard',
   '/hisory',
-  'messages',
+  '/messages',
   '/notifications',
   '/profile',
 ]
