@@ -62,8 +62,6 @@ export const googleAuth = async (idToken: string) => {
       }
     )
 
-    cookieStore.delete('backend')
-
     return {
       data: res.data.user,
       access_token: res.access_token,
