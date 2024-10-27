@@ -5,6 +5,7 @@ import { LoginSchema } from '~/schemas'
 import { getBaseURL } from './getenv'
 import { createFetchUtil, HttpError } from './fetchutil'
 import { User } from '~/types'
+import { cookies } from 'next/headers'
 
 interface LoginResponse {
   user: User
@@ -22,20 +23,27 @@ export const nextLogin = async (values: z.infer<typeof LoginSchema>) => {
   }
   const api = createFetchUtil({ baseUrl: baseURL })
 
-  const response = await api<{ data: LoginResponse }>('/auth/login', {
-    method: 'POST',
-    body: values,
-  })
+  const response = await api<{ data: LoginResponse; access_token: string }>(
+    '/auth/login',
+    {
+      method: 'POST',
+      body: values,
+    }
+  )
 
   return {
     data: response.data.user,
-    access_token: response.data.access_token,
+    access_token: response.access_token,
     success: true,
   }
 }
 
 export const googleAuth = async (idToken: string) => {
-  const baseURL = await getBaseURL()
+  const cookieStore = await cookies()
+  const backend = cookieStore.get('backend')?.value
+
+  console.log(backend)
+  const baseURL = await getBaseURL(backend)
   if (!baseURL) {
     return {
       status: 500,
@@ -46,14 +54,19 @@ export const googleAuth = async (idToken: string) => {
   const api = createFetchUtil({ baseUrl: baseURL })
 
   try {
-    const res = await api<{ data: LoginResponse }>('/auth/google', {
-      method: 'POST',
-      body: { id_token: idToken },
-    })
+    const res = await api<{ data: LoginResponse; access_token: string }>(
+      '/auth/google',
+      {
+        method: 'POST',
+        body: { id_token: idToken },
+      }
+    )
+
+    cookieStore.delete('backend')
 
     return {
       data: res.data.user,
-      access_token: res.data.access_token,
+      access_token: res.access_token,
       success: true,
     }
   } catch (error) {
@@ -80,5 +93,16 @@ export const googleAuth = async (idToken: string) => {
     } else {
       return { success: false, message: 'An unexpected error occurred' }
     }
+  }
+}
+
+export const setBackend = async (backend?: string) => {
+  const cookieStore = await cookies()
+  if (backend) {
+    cookieStore.set('backend', backend)
+  }
+
+  return {
+    sucess: true,
   }
 }

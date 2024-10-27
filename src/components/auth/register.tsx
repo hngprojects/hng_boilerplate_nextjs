@@ -25,6 +25,7 @@ import { Button } from '~ui/button'
 import GoogleLogo from '../icons/google-logo'
 import FramerButton from '../ui/framer-button'
 import useEnvironmentStore from '~/hooks/global/use-enviroment'
+import { setBackend } from '~/actions/nextauth'
 
 const Register = () => {
   const router = useRouter()
@@ -77,7 +78,10 @@ const Register = () => {
         </div>
         <div className="flex flex-col justify-center space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
           <Button
-            onClick={() => signIn('google', { redirectTo: '/' })}
+            onClick={async () => {
+              await setBackend(backend)
+              signIn('google', { redirectTo: '/' })
+            }}
             disabled={isLoading || status === 'authenticated'}
             variant="outline"
             className="h-10 w-full gap-x-3"

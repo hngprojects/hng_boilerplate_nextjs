@@ -68,6 +68,8 @@ export default {
 
         const response = await googleAuth(account?.id_token)
 
+        console.log(response, 'google response')
+
         if (!response || !('data' in response)) {
           return token
         }
@@ -85,6 +87,7 @@ export default {
     async session({ session, token }: { session: Session; token: JWT }) {
       const customToken = token as CustomJWT
 
+      console.log(customToken, 'token from res')
       if (!customToken || !customToken.id) {
         return {
           ...session,
