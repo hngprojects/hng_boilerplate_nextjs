@@ -8,9 +8,10 @@ import { AuthResponse, ErrorResponse } from '~/types'
 import { getBaseURL } from './getenv'
 
 const credentialsAuth = async (
-  values: z.infer<typeof LoginSchema>
+  values: z.infer<typeof LoginSchema>,
+  backend?: string
 ): Promise<AuthResponse | ErrorResponse> => {
-  const baseURL = await getBaseURL()
+  const baseURL = await getBaseURL(backend)
   const validatedFields = LoginSchema.safeParse(values)
   if (!validatedFields.success) {
     return {
@@ -43,9 +44,12 @@ const credentialsAuth = async (
   }
 }
 
-export const registerUser = async (values: z.infer<typeof RegisterSchema>) => {
+export const registerUser = async (
+  values: z.infer<typeof RegisterSchema>,
+  backend?: string
+) => {
   const validatedFields = RegisterSchema.safeParse(values)
-  const baseURL = await getBaseURL()
+  const baseURL = await getBaseURL(backend)
   if (!validatedFields.success) {
     return {
       error: 'registration  Failed. Please check your inputs.',
@@ -53,7 +57,7 @@ export const registerUser = async (values: z.infer<typeof RegisterSchema>) => {
   }
   try {
     const response = await axios.post(
-      `${baseURL}/api/v1/auth/register`,
+      `${baseURL}/auth/register`,
       validatedFields.data
     )
 
@@ -81,7 +85,7 @@ export const registerUser = async (values: z.infer<typeof RegisterSchema>) => {
 
 //     try {
 //         const response = await axios.post(
-//             `${apiUrl}/api/v1/auth/verify-otp`,
+//             `${apiUrl}//auth/verify-otp`,
 //             payload,
 //         );
 //         return {
@@ -104,7 +108,7 @@ export const registerUser = async (values: z.infer<typeof RegisterSchema>) => {
 export const resendOtp = async (email: string) => {
   const baseURL = await getBaseURL()
   try {
-    const response = await axios.post(`${baseURL}/api/v1/auth/request/token`, {
+    const response = await axios.post(`${baseURL}/auth/request/token`, {
       email,
     })
 
