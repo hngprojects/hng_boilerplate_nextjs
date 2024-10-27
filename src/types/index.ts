@@ -58,10 +58,13 @@ export interface Profile {
 export interface AuthResponse {
   data: User
   access_token: string
+  success: boolean
+  message: string
 }
 export interface ErrorResponse {
   message: string
   status_code?: number
+  success: boolean
 }
 
 export interface Organisation {

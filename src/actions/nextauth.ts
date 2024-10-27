@@ -13,7 +13,10 @@ interface LoginResponse {
 }
 
 export const nextLogin = async (values: z.infer<typeof LoginSchema>) => {
-  const baseURL = await getBaseURL()
+  const cookieStore = await cookies()
+  const backend = cookieStore.get('backend')?.value
+  const baseURL = await getBaseURL(backend)
+
   if (!baseURL) {
     return {
       status: 500,

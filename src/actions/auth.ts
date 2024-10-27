@@ -17,6 +17,7 @@ const credentialsAuth = async (
     return {
       message: 'Something went wrong',
       status_code: 401,
+      success: false,
     }
   }
   const { email, password } = validatedFields.data
@@ -27,9 +28,12 @@ const credentialsAuth = async (
     return {
       data: response.data.user,
       access_token: response.data.access_token,
+      success: true,
+      message: 'login success',
     }
   } catch (error) {
     return {
+      success: false,
       message:
         axios.isAxiosError(error) &&
         error.response &&
