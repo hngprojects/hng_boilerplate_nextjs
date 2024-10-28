@@ -74,3 +74,12 @@ export interface Organisation {
   user_role: 'admin' | 'manager' | 'user' | string
   organisation_id: string
 }
+
+export interface FAQ {
+  question: string
+  answer: string
+}
+
+export interface FAQData {
+  [key: string]: FAQ[]
+}
