@@ -66,4 +66,4 @@ jobs:
           cd ~/hng_boilerplate_nextjs/prod
           tar -xzf nextjs-prod.tar.gz
           rm -f nextjs-prod.tar.gz
-          pm2 restart nextjs_boilerplate_prod --update-env
+          pm2 restart boilerplate_fe_prod --update-env
