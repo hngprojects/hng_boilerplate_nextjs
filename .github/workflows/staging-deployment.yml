@@ -42,7 +42,7 @@ jobs:
         target: "~/hng_boilerplate_nextjs/staging"
 
     - name: Delete zip file
-      run: rm -f nextjs-staging.tar.gz .env
+      run: rm -f boilerplate.tar.gz .env
 
     - name: Deploy on server
       uses: appleboy/ssh-action@master
