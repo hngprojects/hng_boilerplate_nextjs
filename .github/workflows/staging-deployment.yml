@@ -42,7 +42,7 @@ jobs:
       run: pnpm build
 
     - name: Archive production artifacts
-      run: tar -czf nextjs-staging.tar.gz .next public .env
+      run: tar -czf nextjs-staging.tar.gz .next .env
     
     - name: Copy to server
       uses: appleboy/scp-action@master
@@ -64,10 +64,11 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         script: |
           cd ~/hng_boilerplate_nextjs/staging
-          tar -xzf nextjs-staging.tar.gz
-          rm -f nextjs-staging.tar.gz
+          git add .
           git stash
           git reset --hard
           git pull
+          tar -xzf nextjs-staging.tar.gz
+          rm -f nextjs-staging.tar.gz
           pnpm install
           pm2 restart boilerplate_fe_staging --update-env
