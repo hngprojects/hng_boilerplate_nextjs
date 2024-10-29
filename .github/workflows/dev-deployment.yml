@@ -1,0 +1,52 @@
+name: Dev Deployment
+
+on:
+  workflow_dispatch:
+  # workflow_run:
+  #   workflows: ["Build and Upload"]
+  #   types:
+  #     - completed
+
+jobs:   
+  deploy_to_dev:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    environment:
+      name: "dev"
+      url: ${{ vars.URL }}
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+          name: boilerplate-build
+          path: .
+
+      - name: Decode and create .env file
+        run: |
+          echo ${{ secrets.ENV_BASE64 }} | base64 -d > .env
+
+      - name: Copy Artifacts to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          source: ".env,boilerplate.tar.gz"
+          target: "~/hng_boilerplate_nextjs"
+          
+      - name: Deploy on server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd ~/hng_boilerplate_nextjs
+            tar -xzf boilerplate.tar.gz
+            rm -f boilerplate.tar.gz
+            cp -r .next/standalone/* .
+            # pm2 restart nextjs_boilerplate --update-env

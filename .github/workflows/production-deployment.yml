@@ -1,0 +1,69 @@
+name: Production Deployment
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Build and Upload"]
+    types:
+      - completed
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main'}} && ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    environment:
+      name: "production"
+      url: ${{ vars.URL }}
+      
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: "20"
+
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 9
+
+    - name: Decode and create .env file
+      run: |
+        echo ${{ secrets.ENV_BASE64 }} | base64 -d > .env
+
+    - name: Install dependencies
+      run: pnpm install
+
+    - name: Build Next.js application
+      run: pnpm build
+
+    - name: Archive production artifacts
+      run: tar -czf nextjs-prod.tar.gz .next public .env
+    
+    - name: Copy to server
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        source: "nextjs-prod.tar.gz"
+        target: "~/hng_boilerplate_nextjs/prod"
+
+    - name: Delete zip file
+      run: rm -f nextjs-prod.tar.gz
+
+    - name: Deploy on server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        script: |
+          cd ~/hng_boilerplate_nextjs/prod
+          tar -xzf nextjs-prod.tar.gz
+          rm -f nextjs-prod.tar.gz
+          pm2 restart boilerplate_fe_prod --update-env
