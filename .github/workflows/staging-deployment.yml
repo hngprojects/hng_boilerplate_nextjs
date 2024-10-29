@@ -66,5 +66,8 @@ jobs:
           cd ~/hng_boilerplate_nextjs/staging
           tar -xzf nextjs-staging.tar.gz
           rm -f nextjs-staging.tar.gz
-          cp -r .next/standalone/* .
+          git stash
+          git reset --hard
+          git pull
+          pnpm install
           pm2 restart boilerplate_fe_staging --update-env
