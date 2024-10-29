@@ -10,7 +10,7 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/main'}} && ${{ github.event.workflow_run.conclusion == 'success' }}
 
@@ -66,5 +66,4 @@ jobs:
           cd ~/hng_boilerplate_nextjs/prod
           tar -xzf nextjs-prod.tar.gz
           rm -f nextjs-prod.tar.gz
-          cp -r .next/standalone/* .
-          pm2 restart nextjs_boilerplateg --update-env
+          pm2 restart nextjs_boilerplate_prod --update-env
