@@ -68,7 +68,7 @@ jobs:
           git stash
           git reset --hard
           git pull
-          tar -xzf nextjs-staging.tar.gz
-          rm -f nextjs-staging.tar.gz
+          tar -xzf nextjs-prod.tar.gz
+          rm -f nextjs-prod.tar.gz
           pnpm install
           pm2 restart boilerplate_fe_prod --update-env
