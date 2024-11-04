@@ -58,4 +58,5 @@ jobs:
           git pull
           tar -xzf boilerplate.tar.gz
           rm -f boilerplate.tar.gz
+          pnpm install
           pm2 restart boilerplate_fe_staging --update-env
