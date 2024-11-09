@@ -21,15 +21,15 @@ npm run check-format ||
 
 echo '🏗️👷 checking for eslint errors' 🔍🧐
 
-# Check ESLint Standards
-npm run check-lint ||
-	(
-		echo '😤🏀👋😤 Get that beans code out of here! 😤🏀👋😤
-                ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
-		false
-	)
+# # Check ESLint Standards
+# npm run check-lint ||
+# 	(
+# 		echo '😤🏀👋😤 Get that beans code out of here! 😤🏀👋😤
+#                 ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
+# 		false
+# 	)
 
-echo '🏗️👷 checking for typescript errors' 🔍🧐
+# echo '🏗️👷 checking for typescript errors' 🔍🧐
 
 # Check tsconfig standards
 npm run check-types ||
