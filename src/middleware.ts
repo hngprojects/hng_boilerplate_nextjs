@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextRequest, NextResponse } from 'next/server'
 
 import {
@@ -26,7 +27,7 @@ export default async function middleware(request: NextRequest) {
   const authToken = cookieStore.get('authToken')
   const domain = inDevEnvironment ? '.localhost' : `.${ROOT_DOMAIN}`
 
-  cookieStore.set('authToken', session?.access_token!, {
+  cookieStore.set('authToken', session?.access_token as string, {
     httpOnly: true,
     secure: !inDevEnvironment,
     sameSite: false,
