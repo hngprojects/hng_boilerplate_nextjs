@@ -37,7 +37,7 @@ const Login = () => {
 
   useEffect(() => {
     if (status === 'authenticated') {
-      router.push('/dashboard')
+      router.push('/')
     }
   }, [status, router])
 
@@ -65,7 +65,7 @@ const Login = () => {
           toast.success('Login success', {
             description: 'Redirecting',
           })
-          router.push('/dashboard')
+          router.push('/')
         } else {
           toast.error('Login failed', {
             description: result.message || 'An error occurred during login',
@@ -210,7 +210,7 @@ const Login = () => {
             <FramerButton
               isLoading={isLoading}
               disabled={isLoading}
-              text="Sign up"
+              text="Login"
             />
           </form>
         </Form>

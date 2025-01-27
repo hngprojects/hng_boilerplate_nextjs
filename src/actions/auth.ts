@@ -2,10 +2,11 @@
 
 import axios from 'axios'
 import * as z from 'zod'
-
 import { LoginSchema, RegisterSchema } from '~/schemas'
 import { AuthResponse, ErrorResponse } from '~/types'
+import { cookies } from 'next/headers'
 import { getBaseURL } from './getenv'
+import { ROOT_DOMAIN, inDevEnvironment } from '~/utils'
 
 const credentialsAuth = async (
   values: z.infer<typeof LoginSchema>,
@@ -24,6 +25,29 @@ const credentialsAuth = async (
   const payload = { email, password }
   try {
     const response = await axios.post(`${baseURL}/auth/login`, payload)
+    const cookieStore = await cookies()
+
+    const domain = inDevEnvironment ? 'localhost:3000' : ROOT_DOMAIN
+
+    cookieStore.set('GauthToken', response.data.access_token, {
+      httpOnly: true,
+      secure: !inDevEnvironment,
+      sameSite: 'none',
+      domain: domain,
+      maxAge: 60 * 60 * 24 * 30,
+    })
+
+    cookieStore.set('authToken', response.data.access_token, {
+      httpOnly: true,
+      secure: !inDevEnvironment,
+      sameSite: 'none',
+      // domain: `dashboard.${domain}`,
+      maxAge: 60 * 60 * 24 * 30,
+    })
+
+    // const authToken = cookieStore.get('authToken');
+
+    // console.log({ authToken })
 
     return {
       data: response.data.user,

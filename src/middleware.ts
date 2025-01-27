@@ -7,12 +7,13 @@ import {
   superAdminRoutes,
 } from '~/routes'
 import { auth } from './auth'
-
-const NEXT_PUBLIC_ROOT_DOMAIN = 'staging.nextjs.boilerplate.hng.tech'
+import { inDevEnvironment, ROOT_DOMAIN } from './utils'
+import { cookies } from 'next/headers'
 
 export default async function middleware(request: NextRequest) {
   const { nextUrl } = request
   const session = await auth()
+  const cookieStore = await cookies()
 
   const isLoggedIn = session !== null
   const isSuperAdmin = session?.user?.is_superadmin === true
@@ -22,21 +23,34 @@ export default async function middleware(request: NextRequest) {
   const isAuthRoute = authRoutes.includes(nextUrl.pathname)
   const isSuperAdminRoute = superAdminRoutes.includes(nextUrl.pathname)
 
-  if (isApiAuthRoute || isPublicRoute) return NextResponse.next()
+  const authToken = cookieStore.get('authToken')
+  const domain = inDevEnvironment ? '.localhost' : `.${ROOT_DOMAIN}`
+
+  cookieStore.set('authToken', session?.access_token!, {
+    httpOnly: true,
+    secure: !inDevEnvironment,
+    sameSite: false,
+    domain,
+    maxAge: 60 * 60 * 24 * 30,
+  })
+
+  console.log({ authToken })
+
+  if (isApiAuthRoute) return null
 
   const url = request.nextUrl
   let hostname = request.headers
     .get('host')!
-    .replace(/\.localhost(:\d+)?/, `.${NEXT_PUBLIC_ROOT_DOMAIN}`)
+    .replace(/\.localhost(:\d+)?/, `.${ROOT_DOMAIN}`)
 
-  hostname = hostname.replace('www.', '') // remove www. from domain
+  hostname = hostname.replace('www.', '')
   const searchParameters = request.nextUrl.searchParams.toString()
   const path = `${url.pathname}${
     searchParameters.length > 0 ? `?${searchParameters}` : ''
   }`
 
   // Rewrites for dashboard pages and dev subdomains
-  if (hostname == `dashboard.${NEXT_PUBLIC_ROOT_DOMAIN}`) {
+  if (hostname == `dashboard.${ROOT_DOMAIN}`) {
     if (!isLoggedIn && !isAuthRoute) {
       return NextResponse.redirect(
         new URL(`/login?callbackUrl=${nextUrl.pathname}`, nextUrl)
@@ -52,7 +66,7 @@ export default async function middleware(request: NextRequest) {
     )
   }
 
-  return NextResponse.next()
+  return
 }
 
 // Optionally, don't invoke Middleware on some paths
