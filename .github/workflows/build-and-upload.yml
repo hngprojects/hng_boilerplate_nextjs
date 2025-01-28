@@ -13,14 +13,12 @@ jobs:
     - uses: actions/checkout@v4
     
     - name: Set up Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
-        node-version: "20"
+        node-version: "22"
 
     - name: Install pnpm
       uses: pnpm/action-setup@v4
-      with:
-        version: 9
 
     - name: Install dependencies
       run: pnpm install
@@ -29,13 +27,11 @@ jobs:
       run: pnpm build
 
     - name: Archive production artifacts
-      run: tar -czf boilerplate.tar.gz .next public
+      run: tar -czf boilerplate.tar.gz .next
 
-    - name: Upload production artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: boilerplate-build
-        path: boilerplate.tar.gz
+    - name: Copy Artifacts to server
+      run: |
+        sshpass -p $PASSWORD scp -o StrictHostKeyChecking=no boilerplate.tar.gz $USERNAME@$HOST:~/build-artifacts
 
     - name: Delete zip file
       run: rm -f boilerplate.tar.gz

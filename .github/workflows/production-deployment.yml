@@ -11,51 +11,27 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/main'}} && ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: hng12
 
-    environment:
-      name: "production"
-      url: ${{ vars.URL }}
       
     steps:
-    - name: Download build artifact
-      uses: actions/download-artifact@v4
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        run-id: ${{ github.event.workflow_run.id }}
-        name: boilerplate-build
-        path: .
+    - name: Checkout Repository
+      uses: actions/checkout@v4
 
-    - name: Decode and create .env file
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+
+    - name: Deploy Main
       run: |
-        echo ${{ secrets.ENV_BASE64 }} | base64 -d > .env
-    
-    - name: Copy to server
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        source: ".env,boilerplate.tar.gz"
-        target: "~/hng_boilerplate_nextjs/prod"
-
-    - name: Delete zip file
-      run: rm -f boilerplate.tar.gz
-
-    - name: Deploy on server
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        script: |
-          cd ~/hng_boilerplate_nextjs/prod
-          git add .
-          git stash
-          git reset --hard
-          git pull
-          tar -xzf boilerplate.tar.gz
-          rm -f boilerplate.tar.gz
-          pnpm install
-          pm2 restart boilerplate_fe_prod --update-env
+        cd ~/boilerplate/main
+        git reset --hard
+        git pull
+        cp ~/build-artifacts/boilerplate.tar.gz .
+        tar --overwrite -xzf boilerplate.tar.gz
+        rm -f boilerplate.tar.gz
+        pm2 stop boilerplate_main
+        pnpm install
+        pm2 restart boilerplate_main --update-env

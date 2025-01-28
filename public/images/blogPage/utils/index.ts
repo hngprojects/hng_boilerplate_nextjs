@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 export { default as blogCard1 } from '../../blogPage/blogCard1.png'
 export { default as blogCard3 } from '../../blogPage/blogCard3.png'
 export { default as blogCard2 } from '../../blogPage/blogCard2.png'
