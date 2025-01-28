@@ -6,8 +6,13 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
     if: github.event.repository.fork == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      HOST: ${{ secrets.HOST }}
+      USERNAME: ${{ secrets.USERNAME }}
+      PASSWORD: ${{ secrets.PASSWORD }}
 
     steps:
     - uses: actions/checkout@v4
