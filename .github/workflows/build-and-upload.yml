@@ -31,7 +31,7 @@ jobs:
 
     - name: Copy Artifacts to server
       run: |
-        sshpass -p $PASSWORD scp -o StrictHostKeyChecking=no boilerplate.tar.gz $USERNAME@$HOST:~/build-artifacts
-
+        sshpass -p "$PASSWORD" scp -o StrictHostKeyChecking=no boilerplate.tar.gz "$USERNAME@$HOST:~/build-artifacts"
+        
     - name: Delete zip file
       run: rm -f boilerplate.tar.gz
