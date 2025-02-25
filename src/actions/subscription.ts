@@ -1,10 +1,9 @@
 'use server'
 
 import { Calls } from './axios'
-import { getBaseURL } from './getenv'
 
-export const makeSubscription = async (email: string, backend: string = '') => {
-  const baseURL = await getBaseURL(backend)
+export const makeSubscription = async (email: string) => {
+  const baseURL = process.env.BASEURL
 
   if (!baseURL) {
     return {
@@ -13,7 +12,7 @@ export const makeSubscription = async (email: string, backend: string = '') => {
     }
   }
 
-  const $http = Calls(baseURL)
+  const $http = Calls()
 
   if (!email) {
     return {

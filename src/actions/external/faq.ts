@@ -3,19 +3,9 @@
 import { cache } from 'react'
 import { isAxiosError } from 'axios'
 import { Calls } from '../axios'
-import { getBaseURL } from '../getenv'
 
-export const getFaqs = cache(async (backend: string = '') => {
-  const baseURL = await getBaseURL(backend)
-
-  if (!baseURL) {
-    return {
-      message: 'Unable to determine backend URL',
-      success: false,
-    }
-  }
-
-  const $http = Calls(baseURL)
+export const getFaqs = cache(async () => {
+  const $http = Calls()
 
   try {
     const response = await $http.get('/faqs')

@@ -10,7 +10,6 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import * as z from 'zod'
 import { credentialsAuth } from '~/actions/auth'
-import { setBackend } from '~/actions/nextauth'
 import { Checkbox } from '~/components/ui/checkbox'
 import {
   Form,
@@ -20,7 +19,6 @@ import {
   FormLabel,
   FormMessage,
 } from '~/components/ui/form'
-import useEnvironmentStore from '~/hooks/global/use-enviroment'
 import { cn } from '~/utils'
 import { LoginSchema } from '~/schemas'
 import { Input } from '../ui/input'
@@ -33,7 +31,6 @@ const Login = () => {
   const [isLoading, startTransition] = useTransition()
   const [showPassword, setShowPassword] = useState(false)
   const { status } = useSession()
-  const { backend } = useEnvironmentStore()
 
   useEffect(() => {
     if (status === 'authenticated') {
@@ -53,7 +50,6 @@ const Login = () => {
     const { email, password } = values
 
     startTransition(async () => {
-      await setBackend(backend)
       await credentialsAuth(values).then(async (result) => {
         console.log(result)
         if (result.success) {
@@ -93,7 +89,6 @@ const Login = () => {
         <div className="flex flex-col justify-center space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
           <Button
             onClick={async () => {
-              await setBackend(backend)
               signIn('google', { redirectTo: '/' })
             }}
             disabled={isLoading || status === 'authenticated'}

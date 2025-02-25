@@ -5,7 +5,6 @@ import { useQuery } from '@tanstack/react-query'
 import useExternalStore from '~/hooks/external/use-external'
 import { getFaqs } from '~/actions/external/faq'
 import { FAQData } from '~/types'
-import useEnvironmentStore from '~/hooks/global/use-enviroment'
 import { Skeleton } from '../ui/skeleton'
 import Heading from '../miscellaneous/heading'
 import FaqAccordion from './accordin'
@@ -19,11 +18,10 @@ interface QueryRes {
 
 const FaqPage = () => {
   const { setFAQs, faqs } = useExternalStore()
-  const { backend } = useEnvironmentStore()
 
   const { data, error, isLoading } = useQuery<QueryRes, Error>({
-    queryKey: ['faqs', backend],
-    queryFn: () => getFaqs(backend),
+    queryKey: ['faqs'],
+    queryFn: () => getFaqs(),
   })
 
   useEffect(() => {

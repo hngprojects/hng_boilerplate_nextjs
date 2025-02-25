@@ -2,7 +2,6 @@
 
 import * as z from 'zod'
 import { LoginSchema } from '~/schemas'
-import { getBaseURL } from './getenv'
 import { createFetchUtil, HttpError } from './fetchutil'
 import { User } from '~/types'
 import { cookies } from 'next/headers'
@@ -13,9 +12,7 @@ interface LoginResponse {
 }
 
 export const nextLogin = async (values: z.infer<typeof LoginSchema>) => {
-  const cookieStore = await cookies()
-  const backend = cookieStore.get('backend')?.value
-  const baseURL = await getBaseURL(backend)
+  const baseURL = process.env.BASEURL
 
   if (!baseURL) {
     return {
@@ -42,11 +39,7 @@ export const nextLogin = async (values: z.infer<typeof LoginSchema>) => {
 }
 
 export const googleAuth = async (idToken: string) => {
-  const cookieStore = await cookies()
-  const backend = cookieStore.get('backend')?.value
-
-  console.log(backend)
-  const baseURL = await getBaseURL(backend)
+  const baseURL = process.env.BASEURL
   if (!baseURL) {
     return {
       status: 500,

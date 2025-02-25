@@ -24,15 +24,12 @@ import { toast } from 'sonner'
 import { Button } from '~ui/button'
 import GoogleLogo from '../icons/google-logo'
 import FramerButton from '../ui/framer-button'
-import useEnvironmentStore from '~/hooks/global/use-enviroment'
-import { setBackend } from '~/actions/nextauth'
 
 const Register = () => {
   const router = useRouter()
   const { status } = useSession()
   const [isLoading, startTransition] = useTransition()
   const [showPassword, setShowPassword] = useState(false)
-  const { backend } = useEnvironmentStore()
 
   if (status === 'authenticated') {
     router.push('/dashboard')
@@ -50,7 +47,7 @@ const Register = () => {
 
   const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
     startTransition(async () => {
-      await registerUser(values, backend).then(async (data) => {
+      await registerUser(values).then(async (data) => {
         console.log(data)
         toast[data.status === 201 ? 'success' : 'error'](
           data.status === 201
@@ -79,7 +76,6 @@ const Register = () => {
         <div className="flex flex-col justify-center space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
           <Button
             onClick={async () => {
-              await setBackend(backend)
               signIn('google', { redirectTo: '/' })
             }}
             disabled={isLoading || status === 'authenticated'}
