@@ -16,7 +16,8 @@ const Hero = () => {
         <div className="flex flex-col items-center lg:flex-row">
           <div className="w-full text-center sm:text-left lg:w-1/2">
             <h1 className="mb-2 text-4xl font-bold leading-snug lg:mr-20 lg:text-[50px] lg:leading-tight">
-              Focus on What Matters. We&apos;ve Got the Foundation Covered.
+              Integrate our customer service, AI powered chatbot to manage your
+              users queries.
             </h1>
 
             <div className="">
@@ -30,12 +31,21 @@ const Hero = () => {
             </div>
 
             <p className="mb-8 mt-5 text-lg text-foreground md:mb-12 md:mt-7 md:text-xl">
-              Streamline your processes with a boilerplate built for efficiency
-              and optimal productivity.
+              Get ultimate customer support through automation. We offer; speedy
+              responses and precise responses. Just sign up, upload your
+              information documents for the AIs knowledge base, and let users
+              interact with the bot on{' '}
+              <Link
+                href="https://telex.im/"
+                className="text-primary"
+                data-testid="get-started"
+              >
+                Telex
+              </Link>
             </p>
 
             <Link
-              href="/register"
+              href="https://telex.im/"
               className="rounded bg-primary px-8 py-4 text-background hover:bg-destructive"
               data-testid="get-started"
             >
@@ -80,7 +90,7 @@ const Hero = () => {
               >
                 <SwiperSlide>
                   <Image
-                    src="/images/hero-image.svg"
+                    src="/home/chatbot.png"
                     alt="Hero Image"
                     width={100}
                     height={100}
@@ -91,7 +101,7 @@ const Hero = () => {
 
                 <SwiperSlide>
                   <Image
-                    src="/images/hero-image2.svg"
+                    src="/home/chat-sample2.png"
                     alt="Hero Image"
                     width={100}
                     height={100}

@@ -228,7 +228,7 @@ const Login = () => {
         <p className="font-inter text-neutralColor-dark-1 mt-5 text-center text-sm font-normal leading-[15.6px]">
           Don&apos;t Have An Account?{' '}
           <Link
-            href="/register"
+            href="https://telex.im/"
             className="font-inter ms-1 text-left text-base font-bold leading-[19.2px] text-primary hover:text-orange-400"
             data-testid="link"
           >

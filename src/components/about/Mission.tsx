@@ -28,7 +28,7 @@ const Mission = () => {
             className="text-[16px] font-[400] text-neutral-600 sm:text-[17px] md:text-[18px]"
             data-testid="description web"
           >
-            At Hng Boilerplate, we are dedicated to exceeding your expectations.
+            At Telex AI Agent, we are dedicated to exceeding your expectations.
             We strive to understand your unique needs and challenges, providing
             tailored solutions that drive real results and empower your success.
           </p>

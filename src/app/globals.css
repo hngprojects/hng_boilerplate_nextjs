@@ -20,7 +20,7 @@
     --default: 222 47% 11%;
     --default-foreground: 0 0% 100%;
 
-    --primary: 25 95% 53%;
+    --primary: 270 80% 40%;
 
     --primary-foreground: 0 0% 100%;
 
@@ -33,7 +33,7 @@
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 270 84% 20%;
     --destructive-hover: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 

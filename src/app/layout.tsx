@@ -7,8 +7,8 @@ import { Providers } from './provider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'HNG Boilerplate',
-  description: 'HNG Boilerplate',
+  title: 'AI AGENTS',
+  description: 'AI AGENTS',
 }
 export default function RootLayout({
   children,

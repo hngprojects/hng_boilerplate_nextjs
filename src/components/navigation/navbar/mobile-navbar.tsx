@@ -105,7 +105,7 @@ export default function MobileNav() {
           ))}
           <motion.li key={NAV_LINKS.length + 1}>
             <Link
-              href="/login"
+              href="/https://telex.im/"
               className={cn(
                 'grid max-w-[100px] place-items-center whitespace-nowrap rounded-md border border-primary px-2 py-2 text-sm text-primary',
                 user?.email ? 'hidden' : ''
@@ -117,7 +117,7 @@ export default function MobileNav() {
 
           <motion.li key={NAV_LINKS.length + 2}>
             <Link
-              href="/register"
+              href="/https://telex.im/"
               className={cn(
                 'grid max-w-[100px] place-items-center whitespace-nowrap rounded-md border border-primary bg-primary px-2 py-2 text-sm text-white',
                 user?.email ? 'hidden' : ''

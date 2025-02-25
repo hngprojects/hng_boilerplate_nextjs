@@ -70,13 +70,13 @@ const Navbar = () => {
         {status !== 'authenticated' && (
           <div className="w-fullx hidden items-center justify-end gap-x-4 justify-self-end md:flex lg:gap-x-8">
             <Link
-              href="/login"
+              href="https://telex.im/"
               className="hover:bg-subtle grid h-[44px] place-items-center whitespace-nowrap rounded-md border border-primary px-4 text-primary lg:px-8"
             >
               Log in
             </Link>
             <Link
-              href="/register"
+              href="https://telex.im/"
               className="grid h-[44px] place-items-center whitespace-nowrap rounded-md border border-primary bg-primary px-4 text-white hover:bg-destructive lg:px-8"
             >
               Get Started

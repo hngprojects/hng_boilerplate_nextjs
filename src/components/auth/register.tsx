@@ -242,7 +242,7 @@ const Register = () => {
         <p className="font-inter text-neutralColor-dark-1 mt-5 text-center text-sm font-normal leading-[15.6px]">
           Already Have An Account?{' '}
           <Link
-            href="/login"
+            href="https://telex.im/"
             className="font-inter ms-1 text-left text-base font-bold leading-[19.2px] text-primary hover:text-orange-400"
             data-testid="link"
           >

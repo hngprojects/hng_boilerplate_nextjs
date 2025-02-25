@@ -106,7 +106,7 @@ const Footer = () => {
                   height={32}
                   alt=""
                 />
-                <span className="text-2xl font-semibold">HNG Boilerplate</span>
+                <span className="text-2xl font-semibold">Telex AI Agents</span>
               </h5>
               <p className="text-nuetral-dark-2 text-center text-sm font-medium sm:text-left">
                 10111, Hornchurch, London, United Kingdom

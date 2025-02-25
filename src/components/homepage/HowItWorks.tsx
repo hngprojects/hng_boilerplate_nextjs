@@ -51,7 +51,7 @@ const HowItWorks = () => {
                   className="font-inter text-base font-normal"
                   data-testid="boilerplate"
                 >
-                  Our boilerplate is designed to grow with your product. Easily
+                  Our AI Agents are designed to grow with your product. Easily
                   add new features and functionalities as needed.
                 </small>
               </div>

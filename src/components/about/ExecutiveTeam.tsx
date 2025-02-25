@@ -54,7 +54,7 @@ const ExecutiveTeam = () => {
             imageAlt="Joshua Image"
             imageSrc="/images/about-us/team4.svg"
             role="Data Analyst"
-            description="Joshua, our data analyst, uses user data to optimize our boilerplates for performance."
+            description="Joshua, our data analyst, uses user data to optimize our AI Agents for performance."
             facebookURL="/"
             twitterURL="/"
             instagramURL="/"

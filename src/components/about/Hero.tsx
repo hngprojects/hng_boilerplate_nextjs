@@ -7,8 +7,8 @@ const Hero = () => {
       <div className="mx-auto max-w-7xl px-5 py-8 md:px-10 lg:px-10 xl:px-10">
         <Heading
           tag="About Us"
-          title="More Than {{Just}} A BoilerPlate"
-          content={`Welcome to Hng Boilerplate, where passion meets innovation. Discoverhow we started, the challenges we overcame, and the milestones thatdefine our journey.`}
+          title="More Than {{Just}} A Bot"
+          content={`Welcome to Telx AI Agents, where passion meets innovation. Discoverhow we started, the challenges we overcame, and the milestones thatdefine our journey.`}
         />
 
         <div className="mt-[10px] w-full">

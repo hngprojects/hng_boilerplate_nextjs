@@ -25,9 +25,9 @@ const OurServices = () => {
 
         <div className="items-start lg:w-2/3">
           <p className="text-[16px] leading-[30px] text-neutral-600 sm:text-[18px] sm:leading-[32px] md:leading-[35px]">
-            Since our founding in, Hng Boilerplate has been dedicated to
-            constantly evolving to stay ahead of the curve. Our agile mindset
-            and relentless pursuit of innovation ensure that you&apos;re always
+            Since our founding, Telex AI Agent has been dedicated to constantly
+            evolving to stay ahead of the curve. Our agile mindset and
+            relentless pursuit of innovation ensure that you&apos;re always
             equipped with the most effective tools and strategies.
           </p>
         </div>
