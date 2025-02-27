@@ -15,19 +15,15 @@ import { Input } from '~ui/input'
 import { Button } from '~ui/button'
 import { makeSubscription } from '~/actions/subscription'
 import { toast } from 'sonner'
-import useEnvironmentStore from '~/hooks/global/use-enviroment'
 import Image from 'next/image'
 
 const Footer = () => {
   const [values, setValues] = useState('')
   const [isPending, startTransition] = useTransition()
-  const { backend } = useEnvironmentStore()
-
-  console.log(backend)
 
   const handleSubmit = async () => {
     startTransition(async () => {
-      await makeSubscription(values, backend).then((res) => {
+      await makeSubscription(values).then((res) => {
         toast[res.success ? 'success' : 'error'](res.message)
       })
     })

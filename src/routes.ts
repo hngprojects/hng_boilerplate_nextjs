@@ -27,7 +27,7 @@ export const authRoutes = [
 
 export const superAdminRoutes = ['dashboard/admin/faqs']
 
-export const apiAuthPrefix = '/api/'
+export const apiAuthPrefix = '/api/auth'
 
 /**
  * The default redirect after login

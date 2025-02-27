@@ -7,18 +7,10 @@ import { inDevEnvironment } from '~/utils'
 import { LoginSchema } from '~/schemas'
 import { CustomJWT } from '~/types'
 
-export default {
+const authConfig: NextAuthConfig = {
   providers: [
     Google({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-      authorization: {
-        params: {
-          prompt: 'consent',
-          access_type: 'offline',
-          response_type: 'code',
-        },
-      },
+      checks: ['none'],
     }),
     Credentials({
       async authorize(credentials) {
@@ -53,11 +45,6 @@ export default {
       if (account?.provider === 'google' && profile?.email) {
         return true
       }
-
-      if (account?.provider === 'twitter') {
-        return true
-      }
-
       return !!user
     },
     async jwt({ token, user, account }) {
@@ -65,15 +52,10 @@ export default {
         if (!account?.id_token) {
           return token
         }
-
         const response = await googleAuth(account?.id_token)
-
-        console.log(response, 'google response')
-
         if (!response || !('data' in response)) {
           return token
         }
-
         token = response.data as CustomJWT
         token.access_token = response.access_token
         return token
@@ -86,8 +68,6 @@ export default {
     },
     async session({ session, token }: { session: Session; token: JWT }) {
       const customToken = token as CustomJWT
-
-      console.log(customToken, 'token from res')
       if (!customToken || !customToken.id) {
         return {
           ...session,
@@ -120,8 +100,10 @@ export default {
   },
   pages: {
     signIn: '/login',
-    error: '/error',
   },
+  basePath: '/api/auth',
   secret: process.env.AUTH_SECRET,
   trustHost: true,
 } satisfies NextAuthConfig
+
+export default authConfig
