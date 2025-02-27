@@ -88,9 +88,7 @@ const Login = () => {
         </div>
         <div className="flex flex-col justify-center space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
           <Button
-            onClick={async () => {
-              signIn('google', { redirectTo: '/' })
-            }}
+            onClick={() => signIn('google')}
             disabled={isLoading || status === 'authenticated'}
             variant="outline"
             className="h-10 w-full gap-x-3"

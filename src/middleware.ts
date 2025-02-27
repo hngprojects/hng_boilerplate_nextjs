@@ -1,15 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-
 import { apiAuthPrefix } from '~/routes'
-import { ROOT_DOMAIN } from './utils'
+import { getSubdomain, ROOT_DOMAIN } from './utils'
 
 export default async function middleware(request: NextRequest) {
   const { nextUrl } = request
-
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix)
-  if (isApiAuthRoute) return null
-
-  const url = request.nextUrl
+  const url = nextUrl
   let hostname = request.headers
     .get('host')!
     .replace(/\.localhost(:\d+)?/, `.${ROOT_DOMAIN}`)
@@ -18,12 +14,17 @@ export default async function middleware(request: NextRequest) {
   const path = `${url.pathname}${
     searchParams.length > 0 ? `?${searchParams}` : ''
   }`
+  const subdomain = getSubdomain(hostname, ROOT_DOMAIN)
 
   console.log('++++++++++++++++++++++++++++++++++++')
   console.log('HOSTNAME: ', hostname)
+  console.log('SUBDOMAIN:', subdomain)
   console.log('PATHNAME: ', url.pathname)
   console.log('PATH: ', path)
   console.log('++++++++++++++++++++++++++++++++++++')
+
+  if (isApiAuthRoute) return null
+
   if (hostname == `nestjs.${ROOT_DOMAIN}`) {
     return NextResponse.rewrite(
       new URL(`/nestjs${path === '/' ? '/' : path}`, request.url)
@@ -37,6 +38,11 @@ export default async function middleware(request: NextRequest) {
   if (hostname == `go.${ROOT_DOMAIN}`) {
     return NextResponse.rewrite(
       new URL(`/go${path === '/' ? '/' : path}`, request.url)
+    )
+  }
+  if (hostname == `python-fastapi.${ROOT_DOMAIN}`) {
+    return NextResponse.rewrite(
+      new URL(`/python${path === '/' ? '/' : path}`, request.url)
     )
   }
   return

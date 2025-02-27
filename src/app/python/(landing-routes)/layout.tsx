@@ -1,6 +1,6 @@
 import Navbar from '~/components/navigation/navbar/index'
+import GotoTop from '~/components/miscellaneous/goto-top'
 import Footer from '~/components/navigation/footer'
-import { Suspense } from 'react'
 
 export default function LandingLayout({
   children,
@@ -8,12 +8,11 @@ export default function LandingLayout({
   children: React.ReactNode
 }>) {
   return (
-    <>
+    <div className="flex min-h-screen w-full flex-col justify-between">
       <Navbar />
-      <div className="mx-auto w-5/6">
-        <Suspense>{children}</Suspense>
-      </div>
+      <div className="flex-1">{children}</div>
       <Footer />
-    </>
+      <GotoTop />
+    </div>
   )
 }

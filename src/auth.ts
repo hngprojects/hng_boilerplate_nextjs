@@ -1,5 +1,4 @@
 import NextAuth, { type DefaultSession } from 'next-auth'
-
 import authConfig from '~/config/auth.config'
 import { Organisation, User } from '~/types'
 
