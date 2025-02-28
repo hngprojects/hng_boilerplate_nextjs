@@ -3,7 +3,32 @@ import { getSubdomain, ROOT_DOMAIN } from '~/utils'
 import { envConfig } from '~/config/env.config'
 import { createFetchUtil, HttpError } from '~/actions/fetchutil'
 import { z } from 'zod'
-import { LoginResponse } from '~/actions/nextauth'
+
+interface User {
+  id: string
+  email: string
+  first_name: string
+  last_name: string
+  avatar_url: string | null
+  is_superadmin: boolean
+}
+
+interface Organisation {
+  organisation_id: string
+  name: string
+  user_role: string
+  is_owner: boolean
+}
+
+interface LoginResponse {
+  status_code: number
+  message: string
+  access_token: string
+  data: {
+    user: User
+    organisations: Organisation[]
+  }
+}
 
 export async function POST(request: NextRequest) {
   let hostname = request.headers
@@ -55,8 +80,6 @@ export async function POST(request: NextRequest) {
       baseurl = envConfig.BASEURL
   }
 
-  console.log('Base URL:', baseurl)
-
   if (!baseurl) {
     return NextResponse.json(
       { message: 'Unable to determine backend URL' },
@@ -67,15 +90,12 @@ export async function POST(request: NextRequest) {
   const api = createFetchUtil({ baseUrl: baseurl })
 
   try {
-    const res = await api<{ data: LoginResponse; access_token: string }>(
-      '/auth/google',
-      {
-        method: 'POST',
-        body: { id_token },
-      }
-    )
+    const res = await api<LoginResponse>('/auth/google', {
+      method: 'POST',
+      body: { id_token: id_token },
+    })
 
-    console.log(res)
+    console.log(res, 'response')
 
     return NextResponse.json({
       data: res.data.user,
@@ -83,7 +103,7 @@ export async function POST(request: NextRequest) {
       success: true,
     })
   } catch (error) {
-    console.log('Error:', error)
+    console.dir(error, { depth: null })
     if (error instanceof z.ZodError) {
       return NextResponse.json(
         {
@@ -121,3 +141,5 @@ export async function POST(request: NextRequest) {
     }
   }
 }
+
+// http://49.12.208.6:3008/api/docs#/Authentication/RegistrationController_googleAuth

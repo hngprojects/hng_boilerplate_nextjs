@@ -2,13 +2,14 @@
 
 import axios from 'axios'
 import * as z from 'zod'
+import { envConfig } from '~/config/env.config'
 import { LoginSchema, RegisterSchema } from '~/schemas'
 import { AuthResponse, ErrorResponse } from '~/types'
 
 const credentialsAuth = async (
   values: z.infer<typeof LoginSchema>
 ): Promise<AuthResponse | ErrorResponse> => {
-  const baseURL = process.env.BASEURL
+  const baseURL = envConfig.BASEURL
   const validatedFields = LoginSchema.safeParse(values)
   if (!validatedFields.success) {
     return {
@@ -46,7 +47,7 @@ const credentialsAuth = async (
 
 export const registerUser = async (values: z.infer<typeof RegisterSchema>) => {
   const validatedFields = RegisterSchema.safeParse(values)
-  const baseURL = process.env.BASEURL
+  const baseURL = envConfig.BASEURL
   if (!validatedFields.success) {
     return {
       error: 'registration  Failed. Please check your inputs.',
@@ -73,34 +74,6 @@ export const registerUser = async (values: z.infer<typeof RegisterSchema>) => {
         }
   }
 }
-
-// export const verifyOtp = async (values: z.infer<typeof OtpSchema>) => {
-//     const token = values.token;
-//     const email = values.email;
-
-//     const payload = { token, email };
-
-//     try {
-//         const response = await axios.post(
-//             `${apiUrl}//auth/verify-otp`,
-//             payload,
-//         );
-//         return {
-//             status: response.status,
-//             message: response.data.message,
-//             data: response.data,
-//         };
-//     } catch (error) {
-//         return axios.isAxiosError(error) && error.response
-//             ? {
-//                 error: error.response.data.message || "OTP verification failed.",
-//                 status: error.response.status,
-//             }
-//             : {
-//                 error: "An unexpected error occurred.",
-//             };
-//     }
-// };
 
 export const resendOtp = async (email: string) => {
   const baseURL = process.env.BASEURL

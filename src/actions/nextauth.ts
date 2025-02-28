@@ -40,7 +40,6 @@ export const nextLogin = async (values: z.infer<typeof LoginSchema>) => {
 }
 
 export const googleAuth = async (idToken: string) => {
-  console.log(idToken, 'Action')
   const res = await fetch(`${envConfig.APP_URL}/api/social/google`, {
     method: 'POST',
     headers: {
@@ -53,10 +52,11 @@ export const googleAuth = async (idToken: string) => {
     throw new Error(`Error: ${res.status}`)
   }
 
-  const data: { data: LoginResponse; access_token: string } = await res.json()
+  const data: { data: User; access_token: string } = await res.json()
+  console.log(data, 'action')
 
   return {
-    data: data.data.user,
+    data: data.data,
     access_token: data.access_token,
     success: true,
   }
