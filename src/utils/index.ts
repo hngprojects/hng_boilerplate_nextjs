@@ -43,7 +43,7 @@ export const inDevEnvironment =
  *
  * @type {string}
  */
-export const ROOT_DOMAIN = 'boilerplate.hng.tech'
+export const ROOT_DOMAIN = 'abincii.online'
 
 /**
  * Extracts the subdomain from a hostname
