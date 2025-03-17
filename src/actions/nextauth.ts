@@ -2,20 +2,18 @@
 
 import * as z from 'zod'
 import { LoginSchema } from '~/schemas'
-import { getBaseURL } from './getenv'
-import { createFetchUtil, HttpError } from './fetchutil'
+import { createFetchUtil } from './fetchutil'
 import { User } from '~/types'
 import { cookies } from 'next/headers'
+import { envConfig } from '~/config/env.config'
 
-interface LoginResponse {
+export interface LoginResponse {
   user: User
   access_token: string
 }
 
 export const nextLogin = async (values: z.infer<typeof LoginSchema>) => {
-  const cookieStore = await cookies()
-  const backend = cookieStore.get('backend')?.value
-  const baseURL = await getBaseURL(backend)
+  const baseURL = process.env.BASEURL
 
   if (!baseURL) {
     return {
@@ -42,58 +40,25 @@ export const nextLogin = async (values: z.infer<typeof LoginSchema>) => {
 }
 
 export const googleAuth = async (idToken: string) => {
-  const cookieStore = await cookies()
-  const backend = cookieStore.get('backend')?.value
+  const res = await fetch(`${envConfig.APP_URL}/api/social/google`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ id_token: idToken }),
+  })
 
-  console.log(backend)
-  const baseURL = await getBaseURL(backend)
-  if (!baseURL) {
-    return {
-      status: 500,
-      message: 'Base URL not defined',
-      success: true,
-    }
+  if (!res.ok) {
+    throw new Error(`Error: ${res.status}`)
   }
-  const api = createFetchUtil({ baseUrl: baseURL })
 
-  try {
-    const res = await api<{ data: LoginResponse; access_token: string }>(
-      '/auth/google',
-      {
-        method: 'POST',
-        body: { id_token: idToken },
-      }
-    )
+  const data: { data: User; access_token: string } = await res.json()
+  console.log(data, 'action')
 
-    return {
-      data: res.data.user,
-      access_token: res.access_token,
-      success: true,
-    }
-  } catch (error) {
-    if (error instanceof z.ZodError) {
-      return {
-        success: false,
-        message: 'Invalid form data',
-        errors: error.errors,
-      }
-    } else if (error instanceof HttpError) {
-      console.error(
-        'HTTP Error:',
-        error.message,
-        'Status:',
-        error.response.status
-      )
-      return {
-        success: false,
-        message:
-          error.responseBody?.message || `Server error: ${error.message}`,
-        statusCode: error.statusCode,
-        responseBody: error.responseBody,
-      }
-    } else {
-      return { success: false, message: 'An unexpected error occurred' }
-    }
+  return {
+    data: data.data,
+    access_token: data.access_token,
+    success: true,
   }
 }
 

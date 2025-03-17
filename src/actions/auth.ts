@@ -2,17 +2,14 @@
 
 import axios from 'axios'
 import * as z from 'zod'
+import { envConfig } from '~/config/env.config'
 import { LoginSchema, RegisterSchema } from '~/schemas'
 import { AuthResponse, ErrorResponse } from '~/types'
-import { cookies } from 'next/headers'
-import { getBaseURL } from './getenv'
-import { ROOT_DOMAIN, inDevEnvironment } from '~/utils'
 
 const credentialsAuth = async (
-  values: z.infer<typeof LoginSchema>,
-  backend?: string
+  values: z.infer<typeof LoginSchema>
 ): Promise<AuthResponse | ErrorResponse> => {
-  const baseURL = await getBaseURL(backend)
+  const baseURL = envConfig.BASEURL
   const validatedFields = LoginSchema.safeParse(values)
   if (!validatedFields.success) {
     return {
@@ -25,30 +22,6 @@ const credentialsAuth = async (
   const payload = { email, password }
   try {
     const response = await axios.post(`${baseURL}/auth/login`, payload)
-    const cookieStore = await cookies()
-
-    const domain = inDevEnvironment ? 'localhost:3000' : ROOT_DOMAIN
-
-    cookieStore.set('GauthToken', response.data.access_token, {
-      httpOnly: true,
-      secure: !inDevEnvironment,
-      sameSite: 'none',
-      domain: domain,
-      maxAge: 60 * 60 * 24 * 30,
-    })
-
-    cookieStore.set('authToken', response.data.access_token, {
-      httpOnly: true,
-      secure: !inDevEnvironment,
-      sameSite: 'none',
-      // domain: `dashboard.${domain}`,
-      maxAge: 60 * 60 * 24 * 30,
-    })
-
-    // const authToken = cookieStore.get('authToken');
-
-    // console.log({ authToken })
-
     return {
       data: response.data.user,
       access_token: response.data.access_token,
@@ -72,12 +45,9 @@ const credentialsAuth = async (
   }
 }
 
-export const registerUser = async (
-  values: z.infer<typeof RegisterSchema>,
-  backend?: string
-) => {
+export const registerUser = async (values: z.infer<typeof RegisterSchema>) => {
   const validatedFields = RegisterSchema.safeParse(values)
-  const baseURL = await getBaseURL(backend)
+  const baseURL = envConfig.BASEURL
   if (!validatedFields.success) {
     return {
       error: 'registration  Failed. Please check your inputs.',
@@ -105,36 +75,8 @@ export const registerUser = async (
   }
 }
 
-// export const verifyOtp = async (values: z.infer<typeof OtpSchema>) => {
-//     const token = values.token;
-//     const email = values.email;
-
-//     const payload = { token, email };
-
-//     try {
-//         const response = await axios.post(
-//             `${apiUrl}//auth/verify-otp`,
-//             payload,
-//         );
-//         return {
-//             status: response.status,
-//             message: response.data.message,
-//             data: response.data,
-//         };
-//     } catch (error) {
-//         return axios.isAxiosError(error) && error.response
-//             ? {
-//                 error: error.response.data.message || "OTP verification failed.",
-//                 status: error.response.status,
-//             }
-//             : {
-//                 error: "An unexpected error occurred.",
-//             };
-//     }
-// };
-
 export const resendOtp = async (email: string) => {
-  const baseURL = await getBaseURL()
+  const baseURL = process.env.BASEURL
   try {
     const response = await axios.post(`${baseURL}/auth/request/token`, {
       email,

@@ -1,6 +1,7 @@
 import axios, { AxiosInstance } from 'axios'
 
-const Calls = (baseURL?: string): AxiosInstance => {
+const Calls = (): AxiosInstance => {
+  const baseURL = process.env.BASEURL
   return axios.create({
     baseURL,
     headers: {
