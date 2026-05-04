@@ -14,8 +14,8 @@ In order to run this app locally, you should have the following programs install
 #### Clone this repository
 
 ```
-git clone git@github.com/hngprojects/hng_boilerplate_nextjs.git
-cd hng_boilerplate_nextjs
+git clone git@github.com/hngprojects/vulnwatch-fe.git
+cd vulnwatch-fe
 ```
 
 #### Install dependencies
