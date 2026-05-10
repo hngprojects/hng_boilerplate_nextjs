@@ -38,3 +38,5 @@ next-env.d.ts
 .env
 tsconfig.tsbuildinfo
 .eslintcache
+temp_auto_push.bat
+temp_interactive_push.bat
