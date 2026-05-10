@@ -85,7 +85,7 @@ const PricingSection = () => {
                 <div className="flex items-baseline gap-1.5">
                   <span
                     className={cn(
-                      'font-weight-[400] text-[2.5rem] leading-none',
+                      'text-[2.5rem] font-[400] leading-none',
                       plan.featured ? 'text-[#072E28]' : 'text-[#2E251C]'
                     )}
                   >
@@ -128,7 +128,7 @@ const PricingSection = () => {
                 {/* CTA - close to features */}
                 <div className="mt-6">
                   <Link
-                    href="#"
+                    href="/demo"
                     className="group/btn relative block w-full overflow-hidden rounded-xl bg-[#072E28] py-3.5 text-center text-sm font-semibold text-white transition-colors hover:bg-[#0a3d36]"
                   >
                     <span className="relative">
