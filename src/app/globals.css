@@ -8,6 +8,13 @@
 
 @layer base {
   :root {
+    --vw-primary: #072e28;
+    --vw-secondary: #a0e870;
+    --vw-background: #f0f0f0;
+    --vw-cards: #ffffff;
+    --vw-body: #666666;
+    --vw-header: #2b2b2b;
+
     --background: 0 0% 98%;
     --foreground: 222.2 84% 4.9%;
 
