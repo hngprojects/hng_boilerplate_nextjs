@@ -4,18 +4,21 @@ import * as AccordionPrimitive from '@radix-ui/react-accordion'
 import { ChevronDown } from 'lucide-react'
 import React from 'react'
 import { cn } from '~/utils'
+import { Card } from './card'
 
 const Accordion = AccordionPrimitive.Root
 
 const AccordionItem = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
->(({ className, ...properties }, reference) => (
+>(({ className, children, ...properties }, reference) => (
   <AccordionPrimitive.Item
     ref={reference}
-    className={cn('border-b', className)}
+    className={cn('', className)}
     {...properties}
-  />
+  >
+    <Card className="border p-4">{children}</Card>
+  </AccordionPrimitive.Item>
 ))
 AccordionItem.displayName = 'AccordionItem'
 const AccordionTrigger = React.forwardRef<
@@ -26,7 +29,7 @@ const AccordionTrigger = React.forwardRef<
     <AccordionPrimitive.Trigger
       ref={reference}
       className={cn(
-        'flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180',
+        'flex flex-1 items-center justify-between text-sm font-semibold transition-all hover:underline [&[data-state=open]>svg]:rotate-180',
         className
       )}
       {...properties}
@@ -47,7 +50,7 @@ const AccordionContent = React.forwardRef<
     className="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
     {...properties}
   >
-    <div className={cn('pb-4 pt-0', className)}>{children}</div>
+    <div className={cn('mt-4', className)}>{children}</div>
   </AccordionPrimitive.Content>
 ))
 

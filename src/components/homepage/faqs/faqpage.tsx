@@ -5,9 +5,9 @@ import { useQuery } from '@tanstack/react-query'
 import useExternalStore from '~/hooks/external/use-external'
 import { getFaqs } from '~/actions/external/faq'
 import { FAQData } from '~/types'
-import { Skeleton } from '../ui/skeleton'
-import Heading from '../miscellaneous/heading'
-import FaqAccordion from './accordin'
+import { Skeleton } from '../../ui/skeleton'
+import Heading from '../../miscellaneous/heading'
+import FaqAccordion from './accordion'
 
 interface QueryRes {
   data?: FAQData

@@ -1,8 +1,5 @@
-import React from 'react'
-import FaqPage from '~/components/faq/faqpage'
+import FAQs from '~/components/homepage/faqs/Faqs'
 
-const Faq = () => {
-  return <FaqPage />
+export default function FAQsPage() {
+  return <FAQs />
 }
-
-export default Faq

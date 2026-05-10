@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git show *)",
+      "Read(//tmp/**)",
+      "Bash(node -e \"const p = require\\('./node_modules/tailwindcss/package.json'\\); console.log\\(p.version\\)\")",
+      "Bash(ls pnpm-lock.yaml yarn.lock package-lock.json)",
+      "Bash(which pnpm *)",
+      "Bash(pnpm add *)",
+      "Bash(node -e \"console.log\\(require\\('./node_modules/tailwindcss/package.json'\\).version\\)\")",
+      "Bash(node -e \"console.log\\(require\\('./node_modules/tailwindcss-animate/package.json'\\).version\\)\")",
+      "Bash(git commit -m ' *)",
+      "Bash(git checkout *)"
+    ]
+  }
+}
