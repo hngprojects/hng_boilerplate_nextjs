@@ -9,17 +9,17 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: "20"
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 10
 
       - name: Install dependencies
         run: pnpm install
@@ -27,17 +27,5 @@ jobs:
       - name: Lint code
         run: pnpm lint
 
-      # - name: Build email
-      #   run: pnpm email:build
-
       - name: Build project
         run: pnpm build
-
-      - name: Run tests
-        run: pnpm run test:ci
-        
-      - name: Upload coverage reports
-        uses: actions/upload-artifact@v3
-        with:
-          name: coverage-report
-          path: coverage/

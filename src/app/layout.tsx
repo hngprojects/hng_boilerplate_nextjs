@@ -1,41 +1,25 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import type { Metadata } from 'next'
+import { Geist } from 'next/font/google'
+import './globals.css'
+import { cn } from '~/utils'
+import { Providers } from './provider'
 
-import "./globals.css";
+const geist = Geist({ subsets: ['latin'] })
 
-import { NextIntlClientProvider } from "next-intl";
-import { getLocale, getMessages } from "next-intl/server";
-
-import Providers from "~/components/providers";
-import { Toaster } from "~/components/ui/toaster";
-import AuthProvider from "~/contexts/authContext";
-
-const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
-  title: "HNG Boilerplate",
-  description: "HNG Boilerplate",
-};
-
-export default async function RootLayout({
+  title: 'HNG Boilerplate',
+  description: 'HNG Boilerplate',
+}
+export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
-  const locale = await getLocale();
-  const messages = await getMessages();
   return (
-    <html lang={locale}>
-      <body className={inter.className}>
-        <div className="mx-auto h-full w-full max-w-[1920px]">
-          <Providers />
-          <AuthProvider>
-            <NextIntlClientProvider messages={messages}>
-              {children}
-            </NextIntlClientProvider>
-          </AuthProvider>
-          <Toaster />
-        </div>
+    <html lang="en" suppressHydrationWarning>
+      <body className={cn(geist.className, 'max-w-[1920px] antialiased')}>
+        <Providers>{children}</Providers>
       </body>
     </html>
-  );
+  )
 }

@@ -1,70 +1,93 @@
+import { clsx, type ClassValue } from 'clsx'
+import { twMerge } from 'tailwind-merge'
+
 /**
- * Mask the local part of an email address.
- * @function maskEmail
- * @param {string} email - The email address to be masked.
- * @returns {string} The masked email address.
+ * Merges and deduplicates CSS class names using clsx and tailwind-merge
+ *
+ * This utility function combines multiple class names or class name arrays into a single
+ * string, while intelligently handling Tailwind CSS class conflicts by merging them
+ * according to the tailwind-merge algorithm.
+ *
+ * @param inputs - Any number of class values (strings, objects, or arrays) that will be processed by clsx
+ * @returns A string of merged and deduplicated class names optimized for Tailwind CSS
+ *
+ * @example
+ * // Returns "p-4 bg-blue-500" (p-2 is overridden by p-4)
+ * cn('p-2', 'p-4', 'bg-blue-500')
+ *
+ * @example
+ * // Returns "dark:bg-gray-800 bg-white" with conditional classes
+ * cn('bg-white', { 'dark:bg-gray-800': isDarkMode })
  */
-export function maskEmail(email: string): string {
-  const [localPart, domain] = email.split("@");
-  if (localPart.length <= 2) {
-    return `${localPart}***@${domain}`;
-  }
-  const maskedLocalPart = `${localPart.slice(0, 2)}***`;
-  return `${maskedLocalPart}@${domain}`;
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
 }
 
 /**
- * Shrink a string to a specified length(len).
- * @function shrinkString
- * @param {string} str
- * @param {number} len
- * @returns {string}
+ * Indicates whether the application is running in a development environment
+ *
+ * This constant checks if the Node.js process exists and if its environment
+ * is set to 'development'.
+ *
+ * @type {boolean}
  */
-export const shrinkString = ({
-  str,
-  len,
-}: {
-  str?: string;
-  len: number;
-}): string => {
-  if (!str) return "";
-  if (str.length > len) {
-    return str.slice(0, Math.max(0, len)) + "...";
+export const inDevEnvironment =
+  !!process && process.env.NODE_ENV === 'development'
+
+/**
+ * The root domain for the application
+ *
+ * This constant defines the base domain used throughout the application.
+ * It's used for consistent domain handling, especially when working with
+ * subdomains.
+ *
+ * @type {string}
+ */
+export const ROOT_DOMAIN = 'abincii.online'
+
+/**
+ * Extracts the subdomain from a hostname
+ *
+ * This function parses a hostname string and extracts just the subdomain portion.
+ * It handles various edge cases including development environments, hostnames with
+ * ports, and cases where no subdomain exists.
+ *
+ * @param hostname - The full hostname (e.g., "blog.example.com" or "test.localhost:3000")
+ * @param rootDomain - The root domain (e.g., "example.com")
+ * @returns The subdomain string or an empty string if no subdomain is present
+ *
+ * @example
+ * // Returns "blog"
+ * getSubdomain("blog.example.com", "example.com")
+ *
+ * @example
+ * // Returns "" (empty string)
+ * getSubdomain("example.com", "example.com")
+ *
+ * @example
+ * // Returns "test"
+ * getSubdomain("test.localhost:3000", "localhost")
+ */
+export function getSubdomain(hostname: string, rootDomain: string): string {
+  hostname = hostname.split(':')[0]
+  if (hostname.endsWith(`.${rootDomain}`)) {
+    const subdomain = hostname.slice(0, -rootDomain.length - 1)
+    return subdomain
   }
-  return str;
-};
+  if (hostname === rootDomain) {
+    return ''
+  }
+  if (hostname.includes('localhost')) {
+    const parts = hostname.split('.')
+    if (parts.length > 1) {
+      return parts[0]
+    }
+    return ''
+  }
+  const parts = hostname.split('.')
+  if (parts.length > 2) {
+    return parts[0]
+  }
 
-/**
- * Returns an Encrypted a string .
- * @function encryptString - Encodes or encrypts a string using a base64 Buffer
- * @returns A encoded string .
- */
-export const encryptString = (string_?: string): string => {
-  if (!string_) return "";
-  const buffer = Buffer.from(string_);
-  return buffer.toString("base64");
-};
-
-/**
- * Decodes and Returns a string .
- * @function decryptString - Decodes or decrypts an encrypted string Buffer
- * @returns A decoded string .
- */
-
-export const decryptString = (string_?: string): string => {
-  if (!string_) return "";
-  const buffer = Buffer.from(string_, "base64");
-  return buffer.toString();
-};
-
-/**
- * Format the given time in seconds to a mm:ss string.
- * @function formatTime
- * @param {number} time - Time in seconds.
- * @returns {string} The formatted time string.
- */
-export const formatTime = (time: number): string => {
-  const minutes = Math.floor(time / 60);
-  const seconds = time % 60;
-  return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-};
+  return ''
+}

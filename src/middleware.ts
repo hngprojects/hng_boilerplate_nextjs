@@ -1,62 +1,53 @@
-import { NextRequest, NextResponse } from "next/server";
-
-import {
-  apiAuthPrefix,
-  authRoutes,
-  publicRoutes,
-  superAdminRoutes,
-} from "~/lib/routes";
-import { auth } from "./lib/auth";
-
-const NEXT_PUBLIC_ROOT_DOMAIN = "staging.nextjs.boilerplate.hng.tech";
+import { NextRequest, NextResponse } from 'next/server'
+import { apiAuthPrefix } from '~/routes'
+import { getSubdomain, ROOT_DOMAIN } from './utils'
 
 export default async function middleware(request: NextRequest) {
-  const { nextUrl } = request;
-  const session = await auth();
-
-  const isLoggedIn = session !== null;
-  const isSuperAdmin = session?.user?.is_superadmin === true;
-
-  const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
-  const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
-  const isAuthRoute = authRoutes.includes(nextUrl.pathname);
-  const isSuperAdminRoute = superAdminRoutes.includes(nextUrl.pathname);
-
-  if (isApiAuthRoute || isPublicRoute) return NextResponse.next();
-
-  const url = request.nextUrl;
+  const { nextUrl } = request
+  const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix)
+  const url = nextUrl
   let hostname = request.headers
-    .get("host")!
-    .replace(/\.localhost(:\d+)?/, `.${NEXT_PUBLIC_ROOT_DOMAIN}`);
-
-  hostname = hostname.replace("www.", ""); // remove www. from domain
-  const searchParameters = request.nextUrl.searchParams.toString();
+    .get('host')!
+    .replace(/\.localhost(:\d+)?/, `.${ROOT_DOMAIN}`)
+  hostname = hostname.replace('www.', '')
+  const searchParams = request.nextUrl.searchParams.toString()
   const path = `${url.pathname}${
-    searchParameters.length > 0 ? `?${searchParameters}` : ""
-  }`;
+    searchParams.length > 0 ? `?${searchParams}` : ''
+  }`
+  const subdomain = getSubdomain(hostname, ROOT_DOMAIN)
 
-  // Rewrites for dashboard pages and dev subdomains
-  if (hostname == `dashboard.${NEXT_PUBLIC_ROOT_DOMAIN}`) {
-    if (!isLoggedIn && !isAuthRoute) {
-      return NextResponse.redirect(
-        new URL(`/login?callbackUrl=${nextUrl.pathname}`, nextUrl),
-      );
-    } else if (isLoggedIn && isAuthRoute) {
-      return NextResponse.redirect(new URL("/", nextUrl));
-    }
-    if (isSuperAdminRoute && !isSuperAdmin) {
-      return NextResponse.redirect(new URL("/dashboard", nextUrl));
-    }
+  console.log('++++++++++++++++++++++++++++++++++++')
+  console.log('HOSTNAME: ', hostname)
+  console.log('SUBDOMAIN:', subdomain)
+  console.log('PATHNAME: ', url.pathname)
+  console.log('PATH: ', path)
+  console.log('++++++++++++++++++++++++++++++++++++')
+
+  if (isApiAuthRoute) return null
+
+  if (hostname == `nestjs.${ROOT_DOMAIN}`) {
     return NextResponse.rewrite(
-      new URL(`/dashboard${path === "/" ? "/" : path}`, request.url),
-    );
+      new URL(`/nestjs${path === '/' ? '/' : path}`, request.url)
+    )
   }
-
-  return NextResponse.next();
+  if (hostname == `php.${ROOT_DOMAIN}`) {
+    return NextResponse.rewrite(
+      new URL(`/php${path === '/' ? '/' : path}`, request.url)
+    )
+  }
+  if (hostname == `go.${ROOT_DOMAIN}`) {
+    return NextResponse.rewrite(
+      new URL(`/go${path === '/' ? '/' : path}`, request.url)
+    )
+  }
+  if (hostname == `python-fastapi.${ROOT_DOMAIN}`) {
+    return NextResponse.rewrite(
+      new URL(`/python${path === '/' ? '/' : path}`, request.url)
+    )
+  }
+  return
 }
 
-// Optionally, don't invoke Middleware on some paths
 export const config = {
-  // eslint-disable-next-line unicorn/prefer-string-raw
-  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
-};
+  matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
+}

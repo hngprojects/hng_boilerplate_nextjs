@@ -1,153 +1,110 @@
-import { NextAuthConfig, Session } from "next-auth";
-import { JWT } from "next-auth/jwt";
-import Credentials from "next-auth/providers/credentials";
-import Google from "next-auth/providers/google";
-import Twitter from "next-auth/providers/twitter";
+import { NextAuthConfig, Session } from 'next-auth'
+import { JWT } from 'next-auth/jwt'
+import Credentials from 'next-auth/providers/credentials'
+import Google from 'next-auth/providers/google'
+import { nextLogin, googleAuth } from '~/actions/nextauth'
+import { inDevEnvironment } from '~/utils'
+import { LoginSchema } from '~/schemas'
+import { CustomJWT } from '~/types'
 
-import { credentialsAuth, googleAuth, twitterAuth } from "~/actions/userAuth";
-import { LoginSchema } from "~/schemas";
-import { CustomJWT } from "~/types";
-
-const isDevelopment = process.env.NODE_ENV === "development";
-
-export default {
+const authConfig: NextAuthConfig = {
   providers: [
     Google({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-      authorization: {
-        params: {
-          prompt: "consent",
-          access_type: "offline",
-          response_type: "code",
-        },
-      },
-    }),
-    Twitter({
-      clientId: process.env.TWITTER_CLIENT_ID!,
-      clientSecret: process.env.TWITTER_CLIENT_SECRET!,
+      checks: ['none'],
     }),
     Credentials({
       async authorize(credentials) {
-        const validatedFields = LoginSchema.safeParse(credentials);
+        const validatedFields = LoginSchema.safeParse(credentials)
         if (!validatedFields.success) {
-          // eslint-disable-next-line unicorn/no-null
-          return null;
+          return null
         }
 
-        const { email, password, rememberMe } = validatedFields.data;
-        const response = await credentialsAuth({ email, password, rememberMe });
+        const { email, password, rememberMe } = validatedFields.data
+        const response = await nextLogin({ email, password, rememberMe })
 
         if (!response) {
-          // eslint-disable-next-line unicorn/no-null
-          return null;
+          return null
         }
 
-        if (!response || !("data" in response)) {
-          // eslint-disable-next-line unicorn/no-null
-          return null;
+        if (!response || !('data' in response)) {
+          return null
         }
 
-        const user = response.data as CustomJWT;
-        user.access_token = response.access_token;
-        return user;
+        const user = response.data as CustomJWT
+        user.access_token = response.access_token
+        return user
       },
     }),
   ],
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
   },
-  debug: isDevelopment,
+  debug: inDevEnvironment,
   callbacks: {
     async signIn({ account, profile, user }) {
-      if (account?.provider === "google" && profile?.email) {
-        return true;
+      if (account?.provider === 'google' && profile?.email) {
+        return true
       }
-
-      if (account?.provider === "twitter") {
-        return true;
-      }
-
-      return !!user;
+      return !!user
     },
     async jwt({ token, user, account }) {
-      if (account?.provider === "google") {
+      if (account?.provider === 'google') {
         if (!account?.id_token) {
-          return token;
+          return token
         }
-
-        const response = await googleAuth(account?.id_token);
-
-        if (!response || !("data" in response)) {
-          return token;
+        const response = await googleAuth(account?.id_token)
+        if (!response || !('data' in response)) {
+          return token
         }
-
-        token = response.data as CustomJWT;
-        token.access_token = response.access_token;
-        return token;
-      }
-
-      if (account?.provider === "twitter") {
-        if (!account?.access_token) {
-          return token;
-        }
-
-        const response = await twitterAuth(account?.access_token);
-
-        if (!response || !("data" in response)) {
-          return token;
-        }
-
-        token = response.data as CustomJWT;
-        token.access_token = response.access_token;
-        return token;
+        token = response.data as CustomJWT
+        token.access_token = response.access_token
+        return token
       }
 
       return {
         ...token,
         ...user,
-      } as CustomJWT;
+      } as CustomJWT
     },
     async session({ session, token }: { session: Session; token: JWT }) {
-      const customToken = token as CustomJWT;
-
+      const customToken = token as CustomJWT
       if (!customToken || !customToken.id) {
         return {
           ...session,
           user: {
-            id: "",
-            first_name: "",
-            last_name: "",
-            email: "",
-            image: "",
+            id: '',
+            first_name: '',
+            last_name: '',
+            email: '',
+            image: '',
           },
           access_token: undefined,
           userOrg: undefined,
           currentOrgId: undefined,
           expires: new Date(0).toISOString(),
-        };
+        }
       }
 
       session.user = {
         id: customToken.id as string,
         first_name: customToken.first_name,
         last_name: customToken.last_name,
-        image: customToken.avatar_url || "",
+        image: customToken.avatar_url || '',
         email: customToken.email as string,
-      };
-      session.access_token = customToken.access_token;
-      session.userOrg = customToken.organisations;
-      session.currentOrgId =
-        customToken.organisations &&
-        customToken.organisations[0]?.organisation_id;
+      }
+      session.access_token = customToken.access_token
+      session.userOrg = customToken.organisations
 
-      return session;
+      return session
     },
   },
   pages: {
-    signIn: "/login",
-    error: "/",
+    signIn: '/login',
+    error: '/',
   },
+  basePath: '/api/auth',
   secret: process.env.AUTH_SECRET,
   trustHost: true,
-} satisfies NextAuthConfig;
+} satisfies NextAuthConfig
+
+export default authConfig

@@ -24,18 +24,19 @@
     "paths": {
       "~/*": [
         "./src/*"
+      ],
+      "~ui/*": [
+        "./src/components/ui/*"
       ]
     },
-    "types": [
-      "vitest/globals"
-    ]
+    "target": "ES2017"
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "src/app/dashboard/(user-dashboard)/settings/notification/_components"  ],
+  ],
   "exclude": [
     "node_modules"
   ]

@@ -1,13 +1,13 @@
-import { useEffect } from "react";
+import { useEffect } from 'react'
 
 const useVersionSync = (version: string) => {
   useEffect(() => {
-    const currentVersion = localStorage.getItem("version");
+    const currentVersion = localStorage.getItem('version')
     if (currentVersion === null || currentVersion !== version) {
-      localStorage.clear();
-      localStorage.setItem("version", version);
+      localStorage.clear()
+      localStorage.setItem('version', version)
     }
-  }, [version]);
-};
+  }, [version])
+}
 
-export default useVersionSync;
+export default useVersionSync

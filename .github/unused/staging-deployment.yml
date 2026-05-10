@@ -1,0 +1,62 @@
+name: Staging Deployment
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Build and Upload"]
+    types:
+      - completed
+    branches:
+      - staging
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/staging'}} && ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    environment:
+      name: "staging"
+      url: ${{ vars.URL }}
+
+    steps:
+
+    - name: Download build artifact
+      uses: actions/download-artifact@v4
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        run-id: ${{ github.event.workflow_run.id }}
+        name: boilerplate-build
+        path: .
+
+    - name: Decode and create .env file
+      run: |
+        echo ${{ secrets.ENV_BASE64 }} | base64 -d > .env
+    
+    - name: Copy to server
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        source: ".env,boilerplate.tar.gz"
+        target: "~/hng_boilerplate_nextjs/staging"
+
+    - name: Delete zip file
+      run: rm -f boilerplate.tar.gz .env
+
+    - name: Deploy on server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        script: |
+          cd ~/hng_boilerplate_nextjs/staging
+          git add .
+          git stash
+          git reset --hard
+          git pull
+          tar -xzf boilerplate.tar.gz
+          rm -f boilerplate.tar.gz
+          pnpm install
+          pm2 restart boilerplate_fe_staging --update-env

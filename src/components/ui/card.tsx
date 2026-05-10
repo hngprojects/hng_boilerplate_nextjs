@@ -1,6 +1,5 @@
-import * as React from "react";
-
-import { cn } from "~/lib/utils";
+import * as React from 'react'
+import { cn } from '~/utils'
 
 const Card = React.forwardRef<
   HTMLDivElement,
@@ -9,13 +8,13 @@ const Card = React.forwardRef<
   <div
     ref={reference}
     className={cn(
-      "rounded-lg border bg-card text-card-foreground shadow-sm",
-      className,
+      'rounded-lg border border-border bg-card text-card-foreground',
+      className
     )}
     {...properties}
   />
-));
-Card.displayName = "Card";
+))
+Card.displayName = 'Card'
 
 const CardHeader = React.forwardRef<
   HTMLDivElement,
@@ -23,11 +22,11 @@ const CardHeader = React.forwardRef<
 >(({ className, ...properties }, reference) => (
   <div
     ref={reference}
-    className={cn("flex flex-col space-y-1.5 p-6", className)}
+    className={cn('flex flex-col space-y-1.5 p-6', className)}
     {...properties}
   />
-));
-CardHeader.displayName = "CardHeader";
+))
+CardHeader.displayName = 'CardHeader'
 
 const CardTitle = React.forwardRef<
   HTMLParagraphElement,
@@ -37,12 +36,12 @@ const CardTitle = React.forwardRef<
     ref={reference}
     className={cn(
       className,
-      "text-2xl font-semibold leading-none tracking-tight",
+      'text-2xl font-semibold leading-none tracking-tight'
     )}
     {...properties}
   />
-));
-CardTitle.displayName = "CardTitle";
+))
+CardTitle.displayName = 'CardTitle'
 
 const CardDescription = React.forwardRef<
   HTMLParagraphElement,
@@ -50,19 +49,19 @@ const CardDescription = React.forwardRef<
 >(({ className, ...properties }, reference) => (
   <p
     ref={reference}
-    className={cn("text-sm text-muted-foreground", className)}
+    className={cn('text-sm text-muted-foreground', className)}
     {...properties}
   />
-));
-CardDescription.displayName = "CardDescription";
+))
+CardDescription.displayName = 'CardDescription'
 
 const CardContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...properties }, reference) => (
-  <div ref={reference} className={cn("p-6 pt-0", className)} {...properties} />
-));
-CardContent.displayName = "CardContent";
+  <div ref={reference} className={cn('px-4 py-5', className)} {...properties} />
+))
+CardContent.displayName = 'CardContent'
 
 const CardFooter = React.forwardRef<
   HTMLDivElement,
@@ -70,17 +69,10 @@ const CardFooter = React.forwardRef<
 >(({ className, ...properties }, reference) => (
   <div
     ref={reference}
-    className={cn("flex items-center p-6 pt-0", className)}
+    className={cn('flex items-center p-6 pt-0', className)}
     {...properties}
   />
-));
-CardFooter.displayName = "CardFooter";
+))
+CardFooter.displayName = 'CardFooter'
 
-export {
-  Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
-  CardDescription,
-  CardContent,
-};
+export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }

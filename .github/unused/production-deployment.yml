@@ -1,0 +1,37 @@
+name: Production Deployment
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Build and Upload"]
+    types:
+      - completed
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    if: ${{ github.ref == 'refs/heads/main'}} && ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: hng12
+
+      
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+
+    - name: Deploy Main
+      run: |
+        cd ~/boilerplate/main
+        git reset --hard
+        git pull
+        cp ~/build-artifacts/boilerplate.tar.gz .
+        tar --overwrite -xzf boilerplate.tar.gz
+        rm -f boilerplate.tar.gz
+        pm2 stop boilerplate_main
+        pnpm install
+        pm2 restart boilerplate_main --update-env

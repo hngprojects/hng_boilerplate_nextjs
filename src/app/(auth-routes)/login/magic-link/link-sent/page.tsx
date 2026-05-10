@@ -1,12 +1,12 @@
-"use client";
+'use client'
 
-import { Check } from "lucide-react";
+import { Check } from 'lucide-react'
 
-import { Button } from "~/components/ui/button";
+import { Button } from '~/components/ui/button'
 
 const handleOpenEmail = () => {
-  window.location.href = "mailto:";
-};
+  window.location.href = 'mailto:'
+}
 const MagicLinkSuccess = () => {
   return (
     <div className="my-8 flex min-h-full items-center justify-center bg-gray-50 px-0 sm:px-6 lg:px-8">
@@ -16,7 +16,7 @@ const MagicLinkSuccess = () => {
             Sent! Check your email.
           </h1>
 
-          <div className="mx-auto mt-5 flex h-24 w-24 items-center justify-center rounded-full bg-success">
+          <div className="bg-success mx-auto mt-5 flex h-24 w-24 items-center justify-center rounded-full">
             <Check
               className="mx-auto h-20 w-20 text-center text-white"
               data-testid="check-icon"
@@ -39,7 +39,7 @@ const MagicLinkSuccess = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default MagicLinkSuccess;
+export default MagicLinkSuccess
