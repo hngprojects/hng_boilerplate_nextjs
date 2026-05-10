@@ -100,6 +100,7 @@ const authConfig: NextAuthConfig = {
   },
   pages: {
     signIn: '/login',
+    error: '/',
   },
   basePath: '/api/auth',
   secret: process.env.AUTH_SECRET,

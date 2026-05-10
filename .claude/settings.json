@@ -10,7 +10,11 @@
       "Bash(node -e \"console.log\\(require\\('./node_modules/tailwindcss/package.json'\\).version\\)\")",
       "Bash(node -e \"console.log\\(require\\('./node_modules/tailwindcss-animate/package.json'\\).version\\)\")",
       "Bash(git commit -m ' *)",
-      "Bash(git checkout *)"
+      "Bash(git checkout *)",
+      "Bash(git fetch *)",
+      "Bash(git rebase *)",
+      "Bash(git merge *)",
+      "Bash(npx prettier *)"
     ]
   }
 }
