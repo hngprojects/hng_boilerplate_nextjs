@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
 
-interface FetchOptions<TRequestBody>
-  extends Omit<RequestInit, 'body' | 'method'> {
+interface FetchOptions<TRequestBody> extends Omit<
+  RequestInit,
+  'body' | 'method'
+> {
   method?: HttpMethod
   headers?: Record<string, string>
   body?: TRequestBody
